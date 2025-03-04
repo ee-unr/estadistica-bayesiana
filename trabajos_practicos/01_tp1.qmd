@@ -62,6 +62,7 @@ Consideraremos que se toma una muestra al azar con reemplazo de tamaño $n$ de u
 Cosas que quisiera preguntar:
     - ¿por qué es válido utilizar una verosimilitud binomial?
     - para el caso de Werner, considerar un _prior_ uniforme y obtener el posterior exacto (hay que integrar el numerador, podemos darles unas pistas para que lo hagan, es lo que hace McElreath).
+    - pedirles que escriban la función que simula la respuesta genuina, la respuesta con mentira, la respuesta con Werner y la respuesta con Greenberg
     
     
 ## Posibles tareas
