@@ -1,0 +1,311 @@
+---
+title: "TP2: Metropolis-Hastings"
+practica: "Trabajo Práctico 2"
+---
+
+```{r}
+#| echo: false
+#| include: false
+library(ggplot2)
+library(dplyr)
+```
+
+# Metropolis-Hastings en 1D
+
+El algoritmo de Metropolis-Hastings (MH) permite generar muestras (pseudo-)aleatorias a 
+partir de una distribución de probabilidad $P$ que no necesariamente pertence a una 
+familia de distribuciones conocida. El único requisito es que se pueda evaluar la función
+de densidad (o de masa de probabilidad) $p^*(\theta)$ en cualquier valor de $\theta$,
+incluso cuando $p^*(\theta)$ sea impropia (es decir, incluso aunque sea
+desconocida la constante de normalización que hace que la integral en el soporte de la 
+función sea igual a uno).
+
+1.  Escriba una función que implemente el algoritmo de Metropolis-Hastings para tomar 
+    muestras de una distribución de probabilidad unidimensional a partir de su función de 
+    densidad. Separe en funciones cada uno de los pasos del procedimiento. 
+    Otorgue flexibilidad al algoritmo permitiendo elegir entre un punto de inicio arbitrario
+    o al azar y utilizar distribuciones de propuesta de transición arbitrarias 
+    (por defecto, se utiliza una distribución normal estándar).
+
+## Distribución de Kumaraswamy
+
+La distribución de Kumaraswamy es una distribución de probabilidad continua que se utiliza
+para modelar variables aleatorias con soporte en el intervalo $(0, 1)$. Si bien graficamente
+la forma de su función de densidad puede hacernos recordar a la distribución beta, 
+vale mencionar que la distribución de Kumaraswamy resulta en una expresión matemática
+cuyo cómputo es más sencillo:
+
+$$
+\begin{array}{lr}
+p(x \mid a, b) = a b x ^ {a - 1} (1 - x ^ a)^{b - 1} & \text{con } a, b > 0
+\end{array}
+$$
+
+2.  Grafique la función de densidad de la distribución de Kumaraswamy para 5 combinaciones
+    de los parámetros $a$ y $b$ que crea convenientes. Concluya sobre la utilidad que 
+    puede tener en la estadística bayesiana.
+
+3.  Utilizando la función construida en el punto **1**, obtenga 5000 muestras de una 
+    distribución de Kumaraswamy con parámetros $a=6$ y $b=2$.
+    Utilice una distribución de propuesta beta. Tenga en cuenta que la misma se puede 
+    parametrizar según media $\mu = \alpha / (\alpha + \beta)$ y  concentración 
+    $\kappa = \alpha + \beta$.
+
+    Compare las cadenas obtenidas al utilizar tres grados de concentración distintos
+    en la distribución de propuesta. Calcule la tasa de aceptación. Compare utilizando 
+    histogramas y funciones de autocorrelación (puede utilizar la función `acf` o 
+    escribir una función propia). Para elegir el punto inicial del algoritmo de MH, 
+    obtenga un valor aleatorio de una distribución conocida que sea conveniente.    
+    
+4.  Utilizando cada una de las cadenas anteriores, compute la media de la 
+    distribución y los percentiles 5 y 95 de $X$ y de $\mathrm{logit}(X)$.
+
+<!-- 5.  Considere un experimento binomial a partir del cual se quiere determinar la 
+    probabilidad de éxito $\theta$. Se realiza el experimento y se obtienen 8 éxitos en 
+    13 intentos. Obtenga la distribución _a posteriori_ de $\theta$ si la creencia 
+    _a priori_ viene dada por
+
+    $$
+    p(\theta) = 2 \theta \qquad \theta \in (0, 1)
+    $$
+
+    Obtenga muestras utilizando 6 cadenas independientes que partan de diferentes puntos
+    inciales. Estudie gráficamente la convergencia y, en caso de ser necesario, descarte 
+    muetras iniciales. Además, estime el tamaño efectivo de muestra 
+    ($ESS$ o $N_{\mathrm{eff}}$) y el MCSE de la media _a posteriori_ de la probabilidad 
+    de éxito. Concluya sobre la bondad de la aproximación obtenida de la distribución 
+    _a posteriori_ y su media. -->
+
+
+## Metropolis-Hastings en 2D
+
+Como veremos en esta sección del trabajo práctico, la verdadera utilidad del algoritmo de
+Metropolis-Hastings se aprecia cuando se obtienen muestras de distribuciones en más de 
+una dimensión, incluso cuando no se conoce la constante de normalización. 
+Paradójicamente, los ejemplos trabajados a continuación también serán los que nos 
+permitirán advertir sus limitaciones y motivarán la búsqueda de mejores alternativas.
+
+### Normal multivariada
+
+La distribución normal multivariada es la generalización de la distribución normal 
+univariada a múltiples dimensiones (o mejor dicho, el caso en una dimensión es un caso 
+particular de la distribución en múltiples dimensiones). La función de densidad de 
+la distribución normal en $k$ dimensiones es:
+
+$$
+p(\boldsymbol{x} \mid \boldsymbol{\mu}, \boldsymbol{\Sigma}) = 
+    \frac{1}{(2\pi)^{k/2} |\boldsymbol{\Sigma}|^{1/2}} 
+    \exp\left(-\frac{1}{2} (\boldsymbol{x} - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1} (\boldsymbol{x} - \boldsymbol{\mu})\right)
+$$
+
+donde $\boldsymbol{\mu}$ es el vector de medias y $\boldsymbol{\Sigma}$ la matriz de covarianza.
+
+6.  Escriba una función que implemente el algoritmo de Metropolis-Hastings para tomar 
+    muestras de una función de probabilidad bivariada dada. Separe en funciones cada una 
+    de los pasos del algoritmo. La probabilidad de salto será normal bivariada de matriz 
+    de covarianza variable (utilizar para ello la función `rmvnorm` del paquete 
+    `{mvtnorm}`). Otorgue flexibilidad al algoritmo haciendo que reciba como 
+    argumento la matriz de covarianza de la probabilidad de transición.
+
+7.  Utilice la función escrita en el punto anterior para obtenga muestras de una 
+    distribución normal bivariada con media $\boldsymbol{\mu}^*$ y matriz de covarianza 
+    $\boldsymbol{\Sigma}^*$. Determine una matriz de covarianza que crea conveniente para la 
+    distribución de propuesta. Justifique su decisión y valide la bondad del método 
+    mediante el uso de _traceplots_ y las estadísticas que crea adecuadas.
+    
+    $$
+    \begin{array}{lr}
+        \boldsymbol{\mu}^* = \begin{bmatrix} 0.4 \\ 0.75 \end{bmatrix} 
+        & \boldsymbol{\Sigma}^* = \begin{bmatrix} 1.35 & 0.4 \\ 0.4 & 2.4 \end{bmatrix}
+    \end{array}
+    $$
+
+8.  Estime las siguientes probabilidades utilizando las muestras obtenidas:
+
+    i.  $\mathrm{Pr}(X_1 > 1, X_2 < 0)$
+    i.  $\mathrm{Pr}(X_1 > 1, X_2 > 2)$
+    i.  $\mathrm{Pr}(X_1 > 0.4, X_2 > 0.75)$
+
+    Luego, calcule esas mismas probabilidades mediante algún método que crea conveniente 
+    (función de distribución, integración manual, integración numérica, monte carlo, etc.),
+    y compare los resultados con los obtenidos en base a las muestras seleccionadas con 
+    MH y concluya.
+
+
+### Función de Rosenbrock 
+
+La [función de Rosenbrock](https://es.wikipedia.org/wiki/Funci%C3%B3n_de_Rosenbrock), 
+a veces llamada el "valle de Rosenbrock", y comunmente conocida como la 
+"banana de Rosenbrock" 🍌, es una función matemática utilizada frecuentemente como un 
+problema de optimización y prueba para algoritmos de optimización numérica. 
+
+La función está definida por:
+$$
+f(x, y) = (a - x) ^ 2 + b(y - x^2) ^ 2
+$$
+
+y cuenta con un mínimo global en $(x, y) = (a, a^2)$, que satisface $f(a, a^2) = 0$.
+
+Debido a su forma peculiar, la función de Rosenbrock presenta desafíos particulares para 
+los algoritmos de optimización, ya que tiene un valle largo y estrecho en el que la 
+convergencia puede ser lenta.
+
+```{r}
+#| echo: false
+#| out-width: 60%
+#| fig-align: center
+#| fig-cap: "Función de Rosenbrock"
+knitr::include_graphics(file.path("imgs", "rosenbrock2.png"))
+```
+
+Esta forma de banana popularizada por Rosenbrock es también muy conocida en el campo
+de la estadística bayesiana, ya que en ciertos escenarios, la densidad del _posterior_ 
+toma una forma que definitivamente se asemeja a la banana de Rosenbrock. Un ejemplo de
+este fenómeno es la función $p^*$:
+
+$$
+p^*(x_1, x_2 \mid a, b) = \exp \left\{-\left[(a - x_1) ^ 2 + b(x_2 - x_1^2) ^ 2\right] \right\}
+$$
+
+
+```{r}
+#| echo: false
+#| fig-align: center
+#| fig-width: 8
+#| fig-height: 5
+#| fig-cap: Función de densidad de la que se desean obtener muestras con $a = 0.5$ y $b = 5$
+
+f <- function(x, y) {
+    a <- 0.5
+    b <- 5
+    exp(- ((a - x) ^ 2 + b * (y - x^2) ^ 2))
+}
+
+x1 <- seq(-2.5, 2.5, length.out = 100)
+x2 <- seq(-1, 6, length.out = 100)
+
+data <- tidyr::crossing(x1 = x1, x2 = x2)
+data |>
+    mutate(f = purrr::map2_dbl(x1, x2, ~ f(.x, .y))) |>
+    ggplot() + 
+    geom_raster(aes(x = x1, y = x2, fill = f)) +
+    stat_contour(aes(x = x1, y = x2, z = f), col = "white", bins = 8) +
+    # geom_hline(yintercept = seq(-1, 6, by = 1)) +
+    # geom_vline(xintercept = seq(-2, 2), by = 0.25) +
+    scale_x_continuous(expand = c(0, 0)) +
+    scale_y_continuous(expand = c(0, 0)) +
+    labs(x = expression(x[1]), y = expression(x[2]), fill = expression(p^"*" ~ "("~x[1]~", "~x[2]~" | a, b)")) +
+    viridis::scale_fill_viridis()
+```
+
+9.  Obtenga muestras de la distribución _a posteriori_ determinada por $p^*$ 
+    con $a=0.5$ y $b=5$ utlizando la función implementada en el punto **6**. 
+    Utilice tres matrices de covarianza distintas para la distribución de propuesta. 
+    En al menos dos de los casos, compare las trayectorias seguidas por las 
+    cadenas en el proceso de muestreo. Y en todos los casos, calcule la probabilidad de
+    aceptación y muestre la función de autocorrelación.
+
+10. Utilizando el conjunto de muestras que crea mas conveniente, estime las siguientes
+    probabilidades:
+
+    i.  $\mathrm{Pr}(0 < X_1 < 1, 0 < X_2 < 1)$
+    i.  $\mathrm{Pr}(-1 < X_1 < 0, 0 < X_2 < 1)$
+    i.  $\mathrm{Pr}(1 < X_1 < 2, 2 < X_2 < 3)$
+
+11. Finalmente, calcule las mismas probabilidades utilizando un método de su elección 
+    (integración manual, integración numérica, método de la grilla, etc.), compare los
+    resultados y concluya sobre lo observado en este experimento en particular y 
+    sobre la utilidad del algoritmo de Metropolis-Hastings en general.
+
+
+<!--
+# Apéndice (para mover a teoría)
+
+::: {.callout-tip}
+## Algoritmo de Metropolis Hastings
+
+Se desea generar una muestra de valores $\{y^{(1)}, y^{(2)}, \cdots, y^{(n)} \}$ a partir
+de una distribución de probabilidad $P$ con función de densidad $p$.
+
+1. Seleccionar un punto inicial $y^{(1)}$.
+
+1. Para cada $t\in \{1, \cdots, n\}$, repetir:
+
+    i.  **Proponer un nuevo valor**
+    
+        Obtener un valor aleatorio $y'$ de una variable $Y'$ cuya distribución está
+        dada por la distribución de propuesta $Q$ y el valor de la última muestra 
+        obtenida:
+    
+        $$
+        Y' \sim Q(y^{(t)})
+        $$
+    
+    i.  **Calcular la probabilidad de aceptación**
+
+        Calcular el cociente entre la función de densidad en el punto propuesto y en el
+        punto actual. La probabilidad de aceptación es igual a este cociente si es menor 
+        a 1, caso contrario es igual a 1.
+
+        $$
+        \alpha = \min \left\{ 1, \frac{p(y')}{p(y)} \right\}
+        $$
+
+    i.  **Seleccionar el nuevo valor**
+
+        Generar un valor aleatorio $u$ de una distribución $\mathcal{U}(0, 1)$ y determinar
+        $y^{(t + 1)}$ de la siguiente manera:
+
+        $$
+        y^{(t + 1)} = \left\{
+        \begin{array}{ll}
+        y' & \text{si} \quad u \le \alpha \\
+        y^{(t)} & \text{si} \quad u > \alpha
+        \end{array}\right.
+        $$
+
+**Notas**
+
+El cálculo del cociente en la determinación de la probabilidad de aceptación es
+en realidad:
+
+$$
+\frac{p(y')q(y^{(t)} \mid y')}{p(y)q(y' \mid y^{(t)})}
+$$
+
+donde $q$ es la función de densidad de la distribución de propuesta.
+
+Esta se simplifica a la expresión utilizada en el algoritmo cuando $q$ es una función 
+simétrica alrededor de su media.
+:::
+
+
+::: {.callout-tip}
+## _Effective sample size_ (ESS)
+
+El número efectivo de muestras $N_{eff}$ es el número de muestras independientes que tienen el mismo _poder de estimación_ que $S$ muestras correlacionadas.
+
+Este valor puede aproximarse por:
+
+$$N_{eff} = \frac{S}{1 + 2 \sum_{k=1}^\infty ACF(k)}$$
+
+Notar que la suma infinita del denominador empieza en $k=1$ (y no en $k=0$, donde $ACF(0)=1$). Además, en la práctica, una regla para truncar la $ACF$ es hacerlo a partir del primer $k$ valor donde $ACF(k)<0.05$ [@Kruschke2014, p. 184].
+:::
+
+::: {.callout-tip}
+## _Montecarlo standard error_ (MCSE)
+
+Por el Teorema Central del Límite sabemos que, si $\bar{X}_N$ es el promedio de $N$ observaciones 
+independientes e idénticamente distribuidas, entonces $\sqrt{N}(\bar{X}_N-\mu)$ converge en distribución 
+a $\mathcal{N}(0,\sigma^2)$ cuando $N$ tiende a infinito, donde $\mu$ es la media de la distribución
+de las $X_i$ y $\sigma$ es su desvío estándar. Si $\sigma$ se estima por $\hat{\sigma}$, el término 
+$\frac{\sigma}{\sqrt{N}}$ se conoce como error estándar.
+
+Cuando se realiza integración por Montecarlo y se estima $\mathbb{E}({X})$ con $N_{eff}$ muestras dependientes
+que se comportan como $N$ muestras independientes, el error estándar se aproxima por:
+$$
+MCSE = \frac{\hat{\sigma}}{\sqrt{N_{eff}}}
+$$
+:::
+
+-->

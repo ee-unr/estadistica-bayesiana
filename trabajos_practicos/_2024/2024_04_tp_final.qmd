@@ -1,0 +1,120 @@
+---
+title: "TP Final"
+practica: "Trabajo Práctico Final"
+---
+
+```{r}
+#| echo: false
+#| include: false
+is_html <- knitr::is_html_output()
+captions <- list()
+captions[["cerebros"]] <- "Imagen de resonancia magnética estructural con segmentación de regiones y estructuras del cerebro"
+```
+
+
+## Introducción
+
+La resonancia magnética es una técnica que utiliza campos magnéticos y ondas de radio 
+para generar imágenes detalladas de los órganos y tejidos dentro del cuerpo. 
+En el caso del cerebro, permite obtener imágenes muy precisas de su estructura anatómica. 
+Las neuroimágenes estructurales por resonancia magnética se caracterizan 
+por su alta resolución espacial y
+por un alto contraste entre los diferentes tipos de tejidos cerebrales.
+Estas características favorecen el uso de algoritmos de segmentación estructural, 
+lo cual permite caracterizar propiedades morfométricas del cerebro.
+
+El cuerpo y el cerebro sufren cambios durante la vejez. Entre los efectos de la vejez se pueden mencionar
+los conocidos problemas de memoria y deterioro de los reflejos, junto con procesos de razonamiento más lentos.
+A lo largo de los años, el cerebro va cambiando en su forma, en los volúmenes y espesores de las estructuras constitutivas: 
+aun en personas sanas, el volumen del cerebro disminuye. Cuando los trastornos cognitivos son mayores que los esperables para la edad, 
+se habla de deterioro cognitivo leve (DCL o MCI por sus siglas en inglés, _mild cognitive impairment_) o de demencia incipiente. 
+La demencia es un deterioro gradual en la memoria, el pensamiento, el comportamiento y las habilidades sociales, que impactan en la capacidad
+de una persona para realizar sus tareas diarias.
+El MCI, si bien no alcanza a interferir con el desarrollo de la vida diaria, se considera una enfermedad neurológica. 
+Este trastorno puede mantenerse durante varios años sin cambios o puede transformarse en la Enfermedad de Alzheimer, 
+la causa más habitual de demencia.
+Entre sus síntomas principales destacan la pérdida de la memoria inmediata
+y de otras capacidades mentales avanzadas. A medida que la enfermedad avanza, los síntomas pueden incluir problemas con el lenguaje, 
+desorientación (incluyendo perderse fácilmente), cambios de humor, pérdida de motivación, descuido personal y problemas de comportamiento.
+
+La Enfermedad de Alzheimer se asocia a la acumulación progresiva de una proteína anormal en el cerebro, que causa daños neuronales. 
+Es muy importante mencionar que los cambios neurobiológicos ocurren mucho antes de que aparezcan los síntomas. 
+En otras palabras, la patología del Alzheimer está presente en personas que no tienen signos de pérdida de memoria, 
+aunque la atrofia cerebral ya haya comenzado. 
+El patrón característico de esta demencia incluye cambios morfológicos en algunas regiones del cerebro.
+
+Dado que los cambios en el cerebro no son lineales con la edad y presentan además gran
+variabilidad entre diferentes personas, sumado a que la progresión de una enfermedad neurodegenerativa 
+no es igual en todos los pacientes, se vuelve difícil poder definir qué es normal y
+qué es patológico. El diagnóstico de enfermedades neurodegenerativas se hace yuxtaponiendo
+a los síntomas clínicos que observa un neurólogo (utilizando diversos instrumentos de análisis), 
+a la información extraida de las imágenes
+de resonancia magnética. Vale destacar que el enfoque de análisis de las imágenes de resonancia magnética es
+esencialmente cualitativo: un/a especialista en imágenes compara el grado de atrofia que observa
+con el modelo mental que tiene del cerebro sano a esa edad.
+
+```{r}
+#| echo: false
+#| out.width: 70%
+#| fig-align: center
+#| fig-cap: !expr captions[["cerebros"]]
+if (is_html) knitr::include_graphics(file.path("imgs", "cerebrito.png"))
+```
+
+## El objetivo
+
+El conjunto de datos `cerebros.csv` contiene información de 128 pacientes que se sometieron
+a diferentes estudios de resonancia magnética en diferentes partes del mundo.
+
+Incluye las siguientes variables
+
+* **id**
+* **intensidad_campo**: Intensidad del campo magnético utilizado en la imagen, puede ser 3 T o 1.5 T
+* **resonador_fab**: Marca del resonador magnético
+* **edad**
+* **sexo**
+* **diag**: Diagnóstico, puede ser HC (_healthy control_), MCI (_mild cognitive impairment_) o AD (_Alzheimer disease_)
+* **lh_subcx_hippocampus_volume**: Volumen del hipocampo izquierdo (en mm³)
+* **xh_general_etiv_volume**: Volumen intracraneal (en mm³)  
+* **lh_cortex_superiorfrontal_thickness**: Espesor de la corteza superior frontal (en mm)
+* **lh_cortex_fusiform_volume**: Volumen de la corteza fusiforme (en mm³)
+
+El objetivo final de este trabajo es realizar un análisis bayesiano que permita descubrir
+las variables que se asocian a una mayor predisposicion a desarrollar una enfermedad neurodogenerativa y 
+las asociaciones entre estas.
+
+Se propone, por ejemplo, considerar los siguientes interrogantes:
+
+* ¿Cuáles de las variables morfológicas están más asociadas a las patologías neurodegenerativas?
+* ¿Qué características demográficas pueden predecir los valores de esas variables morfológicas?
+* ¿Hay alguna asociación entre las variables tecnológicas (asociadas al resonador) y las variables de interés?
+
+Para ello, se recomienda que se tengan en consideración las siguientes pautas generales 
+que hacen a un análisis bayesiano:
+
+* Análisis exploratorio de datos
+* Propuesta y ajuste de modelos
+    - Descripción matemática 
+    - Elicitación de los _priors_
+    - Pruebas predictivas _a priori_
+    - Ajuste del modelo
+    - Evaluación de la convergencia de las cadenas de Markov
+    - Exploración de la distribución _a posteriori_ de los parámetros
+    - Pruebas predictivas _a posteriori_
+    - Evaluación del ajuste del modelo
+    - Interpretación de parámetros
+* Comparación de modelos
+* Análisis final y conclusión
+
+Se recomienda fuertemente que se haga uso de diferentes visualizaciones para comunicar 
+los resultados de las diferentes etapas del análisis y que se propongan y evalúen un 
+mínimo de tres modelos.
+
+La presentación deberá incluir:
+
+* Introducción clara al problema
+* Definición de las preguntas de investigación
+* Descripción del conjunto de datos a utilizar
+* Análisis exploratorio de los datos
+* Fundamentación y análisis de los modelos propuestos
+* Hallazgos, resultados y conclusiones
