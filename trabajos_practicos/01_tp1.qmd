@@ -53,11 +53,24 @@ Un mecanismo aleatorio selecciona la pregunta que se le presenta a la persona qu
 
 Un mecanismo aleatorio selecciona la pregunta que se le presenta a la persona que responde. Con probabilidad $p$ se le pregunta si es cierto que alguna vez participó en apuestas deportivas en línea ($Q_1$), mientras que con probabilidad $(1-p)$ se le pregunta si nació en un mes de 31 días ($Q_2$). Es decir, en general, con probabilidad $p$ se le pregunta si pertenece a una categoría $A$, mientras que con probabilidad $(1-p)$ se le pregunta si pertenece a una categoría $B$ (no controversial o no polémica).
 
-Existen dos versiones de esta modalidad, en relación al conocimiento o desconocimiento de $\pi_B$, la proporción de elementos en la población que pertenece a la categoría $B$. En el primer caso, se conoce de antemano $\pi_B$ (como en el caso presentado, en que $\pi_B = \frac{7}{12}$). Mientras que en el segundo caso, no se conoce $\pi_B$. Nos limitaremos al estudio del primer caso.
+Existen dos versiones de esta modalidad, en relación al conocimiento o desconocimiento de $\pi_B$, la proporción de elementos en la población que pertenece a la categoría $B$. En el primer caso, se conoce de antemano $\pi_B$ (como en el caso presentado, en que $\pi_B = \frac{7}{12}$). Mientras que en el segundo caso, no se conoce $\pi_B$. Nos limitaremos al estudio de la primera situación.
 
 # Actividades
 
-Consideraremos que se toma una muestra al azar con reemplazo de tamaño $n$ de una población de tamaño $N$. 
+Para todo lo que sigue, tenga en consideración lo siguiente:
+    - Se toma una muestra al azar con reemplazo de tamaño $n=100$ de una población de tamaño $N=1000$ (esto se podría omitir)
+    - Para nuestros estudios comparativos, supondremos que el porcentaje de alumnos que apuesta (lo que se quisiera estimar) es 40%
+    - Cuando se les pregunta directamente si han hecho alguna vez apuestas, los estudiantes mienten con probabilidad $\mu$
+    - Si se utilizan técnicas de respuesta aleatorizada, los estudiantes no mienten
+    
+    
+    
+Comenzaremos realizando un estudio de simulación para estudiar el efecto de la mentira en las estimaciones. En esta primera aproximación, consideraremos que se realiza la pregunta directa.
+
+    1. Proponga un modelo bayesiano que, a partir de encuestar a $n$ estudiantes, permita estimar $\pi_a$. Explique la elección de la función de verosimilitud y el _prior_ e indique cómo se obtiene el _posterior_.
+    2. Utilizando R, simule la obtención de una muestra para el caso en que los estudiantes no mienten y para el caso en que los estudiantes mienten con tres niveles de mentira $\mu$: bajo, alto y medio. Compare los resultados.
+    3. Realice ahora 1000 simulaciones y compare los resultados. 
+    
 
 Cosas que quisiera preguntar:
     - ¿por qué es válido utilizar una verosimilitud binomial?
