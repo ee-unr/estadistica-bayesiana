@@ -181,10 +181,11 @@ server <- function(input, output, session) {
     # y por lo tanto no hay cambio.
     # Dicho eso, igualmente se evalúa el condicional 
     # para evitar actualizaciones innecesarias en `priorValues()`.
-    column_idx <- info$col[[1]] # El valor es constante.
+    column_idx <- info$col[[1]]
     if (column_idx == 2) {
       new_value <- suppressWarnings(as.numeric(info$value))
       if (all(!is.na(new_value))) {
+        column_idx <- info$col[[1]] # El valor es constante.
         df[, column_idx] <- new_value
         # Save the updated data
         priorValues(df)
