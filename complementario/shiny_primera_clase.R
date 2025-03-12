@@ -20,13 +20,6 @@ ui <- fluidPage(
       
       numericInput("cant_color", "Y = ", value = 5, min = 0, step = 1),
       
-      # Tab navigation links
-      radioButtons("tab_selector", "Ir a:",
-                   choices = list("Prior" = "tab1",
-                                  "Likelihood" = "tab2",
-                                  "Posterior" = "tab3"),
-                   selected = "tab1"),
-      
       width = 2
     ),
     
@@ -42,8 +35,6 @@ ui <- fluidPage(
                           h3("Creencia inicial"),
                           plotOutput("plotA", height = "300px")
                    ),
-                   column(4), # Empty column as placeholder
-                   column(4)
                  ),
                  fluidRow(
                    column(4,
@@ -53,8 +44,6 @@ ui <- fluidPage(
                           actionButton("resetPrior", "Hacer uniforme"),
                           actionButton("normalizePrior", "Normalizar")
                    ),
-                   column(4), # Empty column as placeholder
-                   column(4)
                  )
         ),
         
@@ -87,15 +76,15 @@ ui <- fluidPage(
                  fluidRow(
                    column(4, 
                           h3("Creencia inicial"),
-                          plotOutput("plotA3", height = "250px")
+                          plotOutput("plotA3", height = "300px")
                    ),
                    column(4, 
                           h3("Verosimilitud"),
-                          plotOutput("plotC2", height = "250px")
+                          plotOutput("plotC2", height = "300px")
                    ),
                    column(4, 
                           h3("Creencia final"),
-                          plotOutput("plotE", height = "250px")
+                          plotOutput("plotE", height = "300px")
                    )
                  ),
                  fluidRow(
@@ -128,7 +117,7 @@ server <- function(input, output, session) {
   normalize_values <- function(df) {
     df$prior <- as.numeric(df$prior)
     df$prior <- df$prior / sum(df$prior)
-    df$prior <- round(df$prior, 3) # Round to 3 decimal places
+    df$prior <- round(df$prior, 3)
     return(df)
   }
   
@@ -136,7 +125,7 @@ server <- function(input, output, session) {
   theta_values <- reactive({
     N <- input$n_values
     df <- data.frame(
-      theta = round(seq(0, 1, length.out = N), 3),  # <-- Round theta here
+      theta = round(seq(0, 1, length.out = N), 3),
       prior = rep(1/N, N)
     )
     df$prior <- round(df$prior, 3)
@@ -165,7 +154,7 @@ server <- function(input, output, session) {
   observeEvent(input$normalizePrior, {
     df <- priorValues()
     df <- normalize_values(df)
-    priorValues(df) # triggers update automatically
+    priorValues(df)
   })
   
   # Table B (editable)
@@ -175,7 +164,7 @@ server <- function(input, output, session) {
     
     datatable(
       df,
-      editable = list(target = "cell", disable = list(columns = 1)),
+      editable = list(target = "column", disable = list(columns = 1)),
       colnames = c("θ", "p(θ)"),
       options = list(dom = "t", ordering = FALSE, paging = FALSE)
     )
@@ -185,22 +174,24 @@ server <- function(input, output, session) {
   observeEvent(input$tableB_cell_edit, {
     info <- input$tableB_cell_edit
     df <- priorValues()
-    
-    if (info$col == 2) {
-      # Convert the new value to numeric
+
+    # El evento se dispara cuando se edita cualquier columna, 
+    # aunque se haya marcado como no editable.
+    # Pero como no son editables, los valores siempre vienen iguales, 
+    # y por lo tanto no hay cambio.
+    # Dicho eso, igualmente se evalúa el condicional 
+    # para evitar actualizaciones innecesarias en `priorValues()`.
+    column_idx <- info$col[[1]]
+    if (column_idx == 2) {
       new_value <- suppressWarnings(as.numeric(info$value))
-      
-      # Basic validation
-      if (!is.na(new_value)) {
-        # In R, data frames use 1-based row/column indexing, so we do:
-        df[info$row, info$col] <- new_value
+      if (all(!is.na(new_value))) {
+        column_idx <- info$col[[1]] # El valor es constante.
+        df[, column_idx] <- new_value
         # Save the updated data
         priorValues(df)
       } else {
-        showNotification("Please enter a valid numeric value.", type = "error")
+        showNotification("Todos los valores deben ser numéricos.", type = "error")
       }
-    } else {
-      showNotification("θ (Theta) column is read-only.", type = "warning")
     }
   })
   
@@ -348,15 +339,6 @@ server <- function(input, output, session) {
       theme(plot.title = element_text(hjust = 0.5))
   })
   
-  # Update tab based on radio button selection
-  observeEvent(input$tab_selector, {
-    updateTabsetPanel(session, "tabs", selected = input$tab_selector)
-  })
-  
-  # Update radio button based on tab selection
-  observeEvent(input$tabs, {
-    updateRadioButtons(session, "tab_selector", selected = input$tabs)
-  })
 }
 
 shinyApp(ui, server)
