@@ -1,13 +1,27 @@
 ---
-title: "TP2: Metropolis-Hastings"
+title: "TP2: Metropolis-Hastings [WIP]"
 practica: "Trabajo Práctico 2"
 ---
 
 ```{r}
 #| echo: false
 #| include: false
-library(ggplot2)
 library(dplyr)
+library(ggplot2)
+library(patchwork)
+
+colores <- c(
+    "#644296",
+    "#F08533",
+    "#3B78B0",
+    "#D1352C"
+)
+
+semilla <- strsplit("metropolis hastings", "")[[1]] |>
+    match(c(letters), nomatch = 0) |>
+    sum()
+
+set.seed(semilla)
 ```
 
 # Metropolis-Hastings en 1D
@@ -27,57 +41,159 @@ función sea igual a uno).
     o al azar y utilizar distribuciones de propuesta de transición arbitrarias 
     (por defecto, se utiliza una distribución normal estándar).
 
-## Distribución de Kumaraswamy
+1.  Utilice la función implementada en el punto anterior para obtener muestras de una 
+    distribución normal de parámetros $\mu=5$ y $\sigma=3$. 
+    ¿Obtiene una representación fiel de la distribución objetivo?
+    Compare cuantiles empíricos con cuantiles teóricos.
 
-La distribución de Kumaraswamy es una distribución de probabilidad continua que se utiliza
-para modelar variables aleatorias con soporte en el intervalo $(0, 1)$. Si bien graficamente
-la forma de su función de densidad puede hacernos recordar a la distribución beta, 
-vale mencionar que la distribución de Kumaraswamy resulta en una expresión matemática
-cuyo cómputo es más sencillo:
+## Metropolis-Hastings en espacios paramétricos acotados
 
+* La distribución normal es conveniente para proponer saltos.
+* La distribución normal presenta desventajas cuando el espacio paramétrico es acotado.
+  * Se realizarán propuestas que caen fuera del espacio parámetrico.
+* Soluciones posibles:
+  * Utilizar distribuciones cuyo espacio parámetrico sea acotado e igual al de la distribución objetivo.
+    * Dificultad: No es sencillo encontrar para todas ellas parametrizaciones basadas en la media.
+  * Utilizar transfomación de variables para muestrear en un espacio paramétrico no acotado, lo que permite utilizar siempre la distribución normal.
+    * Dificultad: Se necesita la función de densidad objetivo en el nuevo espacio paramétrico, es decir, en el espacio de la variable transformada. Esto implica
+    el cálculo del determinante del jacobiano de la transormación.
+    * Ventaja: El procedimiento es sencillo para las transformaciones de variables
+    más utilizadas. Además, este proceso puede ser automatizado mediante sistemas de diferenciación automática (simbólica) existentes.
+  
+### Transformación de variables aleatorias
+
+Sean $X$ e $Y = g(X)$ variables aleatorias continuas, donde $g$ es una función uno a uno
+y $X$ tiene función de densidad $f_X(x)$. Luego, la función de densidad de $Y$ es:
 $$
-\begin{array}{lr}
-p(x \mid a, b) = a b x ^ {a - 1} (1 - x ^ a)^{b - 1} & \text{con } a, b > 0
-\end{array}
+f_Y(y) = f_X(g^{-1}(y)) \left\lvert \frac{d}{dy}g^{-1}(y) \right\rvert
 $$
 
-2.  Grafique la función de densidad de la distribución de Kumaraswamy para 5 combinaciones
-    de los parámetros $a$ y $b$ que crea convenientes. Concluya sobre la utilidad que 
-    puede tener en la estadística bayesiana.
+Por ejemplo, en el caso de la función $g(x) = \log(x)$, se tiene:
+$$
+\begin{aligned}
+g : \mathbb{R}^+ \to \mathbb{R} & = \log(x) \\
+g^{-1} : \mathbb{R} \to \mathbb{R}^+ &= \exp(x)
+\end{aligned}
+$$
 
-3.  Utilizando la función construida en el punto **1**, obtenga 5000 muestras de una 
-    distribución de Kumaraswamy con parámetros $a=6$ y $b=2$.
-    Utilice una distribución de propuesta beta. Tenga en cuenta que la misma se puede 
-    parametrizar según media $\mu = \alpha / (\alpha + \beta)$ y  concentración 
-    $\kappa = \alpha + \beta$.
+y luego:
+$$
+f_Y(y) = f_X(\exp(y)) \exp(y)
+$$
 
-    Compare las cadenas obtenidas al utilizar tres grados de concentración distintos
-    en la distribución de propuesta. Calcule la tasa de aceptación. Compare utilizando 
-    histogramas y funciones de autocorrelación (puede utilizar la función `acf` o 
-    escribir una función propia). Para elegir el punto inicial del algoritmo de MH, 
-    obtenga un valor aleatorio de una distribución conocida que sea conveniente.    
-    
-4.  Utilizando cada una de las cadenas anteriores, compute la media de la 
-    distribución y los percentiles 5 y 95 de $X$ y de $\mathrm{logit}(X)$.
+### Transformacion de v.a. Gamma
 
-<!-- 5.  Considere un experimento binomial a partir del cual se quiere determinar la 
-    probabilidad de éxito $\theta$. Se realiza el experimento y se obtienen 8 éxitos en 
-    13 intentos. Obtenga la distribución _a posteriori_ de $\theta$ si la creencia 
-    _a priori_ viene dada por
+Sea $X \sim \text{Gamma}(\alpha=2, \beta=2)$ e $Y = \log(X)$. 
+Se tiene que:
+$$
+f_Y = f_X(\exp(y)) \exp(y)
+$$
 
-    $$
-    p(\theta) = 2 \theta \qquad \theta \in (0, 1)
-    $$
+donde $f_X$ es la función de densidad de una variable aleatoria 
+$\text{Gamma}(\alpha=2, \beta=2)$.
 
-    Obtenga muestras utilizando 6 cadenas independientes que partan de diferentes puntos
-    inciales. Estudie gráficamente la convergencia y, en caso de ser necesario, descarte 
-    muetras iniciales. Además, estime el tamaño efectivo de muestra 
-    ($ESS$ o $N_{\mathrm{eff}}$) y el MCSE de la media _a posteriori_ de la probabilidad 
-    de éxito. Concluya sobre la bondad de la aproximación obtenida de la distribución 
-    _a posteriori_ y su media. -->
+La distribución de $Y = log(X)$ puede visualizarse mediante:
 
+* La evaluación de la función de densidad $f_Y$ en una grilla de valores de $y$.
+* La transformación de muestras aleatorias: se obtienen muestras de $X$ a las que luego
+se les calcula el logaritmo.
 
-## Metropolis-Hastings en 2D
+```{r}
+#| echo: false
+#| fig-align: center
+#| fig-width: 12
+#| fig-height: 5
+#| fig-cap: leyenda...
+
+x_grid <- seq(0, 5.5, length.out = 200)
+x_pdf <- dgamma(x_grid, shape = 2, rate = 2)
+
+y_grid <- log(x_grid)
+y_pdf <- dgamma(exp(y_grid), shape = 2, rate = 2) * exp(y_grid)
+
+p1 <- data.frame(x = x_grid, densidad = x_pdf) |>
+  ggplot() +
+  geom_line(
+    aes(x = x, y = densidad),
+    color = "grey30",
+    size = 1.5,
+  ) +
+  labs(x = "X", y = "Densidad") +
+  lims(x = c(0, 5.5), y = c(0, 0.8)) +
+  theme_bw()
+
+p2 <- data.frame(x = y_grid, densidad = y_pdf) |>
+  ggplot() +
+  geom_line(
+    aes(x = x, y = densidad),
+    color = "grey30",
+    size = 1.5,
+  ) +
+  labs(x = "Y = log(X)", y = "Densidad") +
+  lims(y = c(0, 0.8)) +
+  theme_bw()
+
+p1 | p2
+```
+
+```{r}
+#| echo: false
+#| fig-align: center
+#| fig-width: 12
+#| fig-height: 5
+#| fig-cap: otra leyenda...
+
+x_rvs <- rgamma(5000, shape = 2, rate = 2)
+y_rvs <- log(x_rvs)
+
+p1_hist <- ggplot() +
+  geom_histogram(
+    aes(x = x, y = after_stat(density)),
+    bins = 50,
+    fill = colores[2],
+    color = NA,
+    alpha = 0.7,
+    data = data.frame(x = x_rvs)
+  ) + 
+  geom_line(
+    aes(x = x, y = densidad),
+    color = "grey30",
+    size = 1.5,
+    data = data.frame(x = x_grid, densidad = x_pdf)
+  ) +
+  labs(x = "X", y = "Densidad") +
+  lims(x = c(0, 5.5), y = c(0, 0.8)) +
+  theme_bw()
+
+p2_hist <- ggplot() +
+  geom_histogram(
+    aes(x = x, y = after_stat(density)),
+    bins = 50,
+    fill = colores[2],
+    color = NA,
+    alpha = 0.7,
+    data = data.frame(x = y_rvs)
+  ) + 
+  geom_line(
+    aes(x = x, y = densidad),
+    color = "grey30",
+    size = 1.5,
+    data = data.frame(x = y_grid, densidad = y_pdf)
+  ) +
+  labs(x = "Y = log(X)", y = "Densidad") +
+  lims(y = c(0, 0.8)) +
+  theme_bw()
+
+p1_hist | p2_hist
+```
+
+### Obtención de muestras de v.a. Gamma con Metropolis-Hastings 
+
+1. Implementar la función de densidad de $Y = \log(X)$
+1. Obtener muestras de $Y$.
+1. Transformar muestras $x_i = \exp(y_i)$.
+
+# Metropolis-Hastings en espacios paramétricos generales
 
 Como veremos en esta sección del trabajo práctico, la verdadera utilidad del algoritmo de
 Metropolis-Hastings se aprecia cuando se obtienen muestras de distribuciones en más de 
@@ -85,137 +201,57 @@ una dimensión, incluso cuando no se conoce la constante de normalización.
 Paradójicamente, los ejemplos trabajados a continuación también serán los que nos 
 permitirán advertir sus limitaciones y motivarán la búsqueda de mejores alternativas.
 
-### Normal multivariada
+* Extensión a espacios paramétricos multidimensionales.
+* Utilización de transformaciones 
+  * Ergo, siempre se muestrea en $\mathbb{R}^p$ y por lo tanto se pueden realizar
+  propuestas con una normal multivariada.
 
-La distribución normal multivariada es la generalización de la distribución normal 
-univariada a múltiples dimensiones (o mejor dicho, el caso en una dimensión es un caso 
-particular de la distribución en múltiples dimensiones). La función de densidad de 
-la distribución normal en $k$ dimensiones es:
+## Metropolis-Hastings en escala logarítmica
 
-$$
-p(\boldsymbol{x} \mid \boldsymbol{\mu}, \boldsymbol{\Sigma}) = 
-    \frac{1}{(2\pi)^{k/2} |\boldsymbol{\Sigma}|^{1/2}} 
-    \exp\left(-\frac{1}{2} (\boldsymbol{x} - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1} (\boldsymbol{x} - \boldsymbol{\mu})\right)
-$$
+* Posiblidad de subdesbordamiento (_underflow_)
+* Utilización de escala logarítmica para estabilizar y robustecer los cálculos.
+* Mostrar implementación multivariada en escala logaritmica, usando normal multivariada como propuesta.
 
-donde $\boldsymbol{\mu}$ es el vector de medias y $\boldsymbol{\Sigma}$ la matriz de covarianza.
+## Precalentamiento
 
-6.  Escriba una función que implemente el algoritmo de Metropolis-Hastings para tomar 
-    muestras de una función de probabilidad bivariada dada. Separe en funciones cada una 
-    de los pasos del algoritmo. La probabilidad de salto será normal bivariada de matriz 
-    de covarianza variable (utilizar para ello la función `rmvnorm` del paquete 
-    `{mvtnorm}`). Otorgue flexibilidad al algoritmo haciendo que reciba como 
-    argumento la matriz de covarianza de la probabilidad de transición.
-
-7.  Utilice la función escrita en el punto anterior para obtenga muestras de una 
-    distribución normal bivariada con media $\boldsymbol{\mu}^*$ y matriz de covarianza 
-    $\boldsymbol{\Sigma}^*$. Determine una matriz de covarianza que crea conveniente para la 
-    distribución de propuesta. Justifique su decisión y valide la bondad del método 
-    mediante el uso de _traceplots_ y las estadísticas que crea adecuadas.
-    
-    $$
-    \begin{array}{lr}
-        \boldsymbol{\mu}^* = \begin{bmatrix} 0.4 \\ 0.75 \end{bmatrix} 
-        & \boldsymbol{\Sigma}^* = \begin{bmatrix} 1.35 & 0.4 \\ 0.4 & 2.4 \end{bmatrix}
-    \end{array}
-    $$
-
-8.  Estime las siguientes probabilidades utilizando las muestras obtenidas:
-
-    i.  $\mathrm{Pr}(X_1 > 1, X_2 < 0)$
-    i.  $\mathrm{Pr}(X_1 > 1, X_2 > 2)$
-    i.  $\mathrm{Pr}(X_1 > 0.4, X_2 > 0.75)$
-
-    Luego, calcule esas mismas probabilidades mediante algún método que crea conveniente 
-    (función de distribución, integración manual, integración numérica, monte carlo, etc.),
-    y compare los resultados con los obtenidos en base a las muestras seleccionadas con 
-    MH y concluya.
-
-
-### Función de Rosenbrock 
-
-La [función de Rosenbrock](https://es.wikipedia.org/wiki/Funci%C3%B3n_de_Rosenbrock), 
-a veces llamada el "valle de Rosenbrock", y comunmente conocida como la 
-"banana de Rosenbrock" 🍌, es una función matemática utilizada frecuentemente como un 
-problema de optimización y prueba para algoritmos de optimización numérica. 
-
-La función está definida por:
-$$
-f(x, y) = (a - x) ^ 2 + b(y - x^2) ^ 2
-$$
-
-y cuenta con un mínimo global en $(x, y) = (a, a^2)$, que satisface $f(a, a^2) = 0$.
-
-Debido a su forma peculiar, la función de Rosenbrock presenta desafíos particulares para 
-los algoritmos de optimización, ya que tiene un valle largo y estrecho en el que la 
-convergencia puede ser lenta.
-
-```{r}
-#| echo: false
-#| out-width: 60%
-#| fig-align: center
-#| fig-cap: "Función de Rosenbrock"
-knitr::include_graphics(file.path("imgs", "rosenbrock2.png"))
-```
-
-Esta forma de banana popularizada por Rosenbrock es también muy conocida en el campo
-de la estadística bayesiana, ya que en ciertos escenarios, la densidad del _posterior_ 
-toma una forma que definitivamente se asemeja a la banana de Rosenbrock. Un ejemplo de
-este fenómeno es la función $p^*$:
+Supongamos el siguiente modelo:
 
 $$
-p^*(x_1, x_2 \mid a, b) = \exp \left\{-\left[(a - x_1) ^ 2 + b(x_2 - x_1^2) ^ 2\right] \right\}
+\begin{aligned}
+Y_i & \sim \text{Normal}(\mu, \sigma^2) \\
+\mu & \sim \text{Normal}(0, 1^2) \\
+\sigma & \sim \text{Gamma}(\alpha=2, \beta=2) \\
+\end{aligned}
+$$
+
+con $i = 1, \dots, N$. Se desea obtener el _posterior_ de $\boldsymbol{\theta} = \{\mu, \sigma\}$.
+
+## Caso de aplicación
+
+### Modelo normal
+
+$$
+\begin{aligned}
+Y_{O, i} &\sim \text{Normal}(\mu_O, \sigma_O^2) \\
+Y_{C, i} &\sim \text{Normal}(\mu_C, \sigma_C^2) \\
+\mu_O, \mu_C &\sim \text{Normal}(0, 5^2) \\
+\sigma_O, \sigma_C & \sim \text{Gamma}(\alpha=6, \beta=2)
+\end{aligned}
 $$
 
 
-```{r}
-#| echo: false
-#| fig-align: center
-#| fig-width: 8
-#| fig-height: 5
-#| fig-cap: Función de densidad de la que se desean obtener muestras con $a = 0.5$ y $b = 5$
+### Modelo robusto
 
-f <- function(x, y) {
-    a <- 0.5
-    b <- 5
-    exp(- ((a - x) ^ 2 + b * (y - x^2) ^ 2))
-}
+$$
+\begin{aligned}
+Y_{O, i} &\sim \text{Student-T}(\mu_O, \sigma_O^2, \nu=3) \\
+Y_{C, i} &\sim \text{Student-T}(\mu_C, \sigma_C^2, \nu=3) \\
+\mu_O, \mu_C &\sim \text{Normal}(0, 5^2) \\
+\sigma_O, \sigma_C & \sim \text{Gamma}(\alpha=6, \beta=2)
+\end{aligned}
+$$
 
-x1 <- seq(-2.5, 2.5, length.out = 100)
-x2 <- seq(-1, 6, length.out = 100)
 
-data <- tidyr::crossing(x1 = x1, x2 = x2)
-data |>
-    mutate(f = purrr::map2_dbl(x1, x2, ~ f(.x, .y))) |>
-    ggplot() + 
-    geom_raster(aes(x = x1, y = x2, fill = f)) +
-    stat_contour(aes(x = x1, y = x2, z = f), col = "white", bins = 8) +
-    # geom_hline(yintercept = seq(-1, 6, by = 1)) +
-    # geom_vline(xintercept = seq(-2, 2), by = 0.25) +
-    scale_x_continuous(expand = c(0, 0)) +
-    scale_y_continuous(expand = c(0, 0)) +
-    labs(x = expression(x[1]), y = expression(x[2]), fill = expression(p^"*" ~ "("~x[1]~", "~x[2]~" | a, b)")) +
-    viridis::scale_fill_viridis()
-```
-
-9.  Obtenga muestras de la distribución _a posteriori_ determinada por $p^*$ 
-    con $a=0.5$ y $b=5$ utlizando la función implementada en el punto **6**. 
-    Utilice tres matrices de covarianza distintas para la distribución de propuesta. 
-    En al menos dos de los casos, compare las trayectorias seguidas por las 
-    cadenas en el proceso de muestreo. Y en todos los casos, calcule la probabilidad de
-    aceptación y muestre la función de autocorrelación.
-
-10. Utilizando el conjunto de muestras que crea mas conveniente, estime las siguientes
-    probabilidades:
-
-    i.  $\mathrm{Pr}(0 < X_1 < 1, 0 < X_2 < 1)$
-    i.  $\mathrm{Pr}(-1 < X_1 < 0, 0 < X_2 < 1)$
-    i.  $\mathrm{Pr}(1 < X_1 < 2, 2 < X_2 < 3)$
-
-11. Finalmente, calcule las mismas probabilidades utilizando un método de su elección 
-    (integración manual, integración numérica, método de la grilla, etc.), compare los
-    resultados y concluya sobre lo observado en este experimento en particular y 
-    sobre la utilidad del algoritmo de Metropolis-Hastings en general.
 
 
 <!--
