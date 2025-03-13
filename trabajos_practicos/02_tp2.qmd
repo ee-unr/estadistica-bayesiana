@@ -34,6 +34,8 @@ incluso cuando $p^*(\theta)$ sea impropia (es decir, incluso aunque sea
 desconocida la constante de normalización que hace que la integral en el soporte de la 
 función sea igual a uno).
 
+<!-- NOTA: No estoy seguro si haría esto -->
+
 1.  Escriba una función que implemente el algoritmo de Metropolis-Hastings para tomar 
     muestras de una distribución de probabilidad unidimensional a partir de su función de 
     densidad. Separe en funciones cada uno de los pasos del procedimiento. 
@@ -44,7 +46,6 @@ función sea igual a uno).
 1.  Utilice la función implementada en el punto anterior para obtener muestras de una 
     distribución normal de parámetros $\mu=5$ y $\sigma=3$. 
     ¿Obtiene una representación fiel de la distribución objetivo?
-    Compare cuantiles empíricos con cuantiles teóricos.
 
 ## Metropolis-Hastings en espacios paramétricos acotados
 
@@ -53,12 +54,13 @@ función sea igual a uno).
   * Se realizarán propuestas que caen fuera del espacio parámetrico.
 * Soluciones posibles:
   * Utilizar distribuciones cuyo espacio parámetrico sea acotado e igual al de la distribución objetivo.
-    * Dificultad: No es sencillo encontrar para todas ellas parametrizaciones basadas en la media.
+    * Dificultad: No es sencillo encontrar parametrizaciones adecuadas en la media para todas ellas.
   * Utilizar transfomación de variables para muestrear en un espacio paramétrico no acotado, lo que permite utilizar siempre la distribución normal.
-    * Dificultad: Se necesita la función de densidad objetivo en el nuevo espacio paramétrico, es decir, en el espacio de la variable transformada. Esto implica
-    el cálculo del determinante del jacobiano de la transormación.
-    * Ventaja: El procedimiento es sencillo para las transformaciones de variables
-    más utilizadas. Además, este proceso puede ser automatizado mediante sistemas de diferenciación automática (simbólica) existentes.
+    * Dificultad: Se necesita la función de densidad objetivo en el nuevo espacio paramétrico, es decir, en el espacio de la variable transformada. 
+    Esto implica el cálculo del determinante del jacobiano de la transormación.
+    * Ventaja: El procedimiento es sencillo para las transformaciones de variables más utilizadas. 
+    Además, este proceso puede ser automatizado mediante sistemas de diferenciación automática (simbólica) existentes.
+    * Imágen Homero^3?
   
 ### Transformación de variables aleatorias
 
@@ -89,8 +91,7 @@ $$
 f_Y = f_X(\exp(y)) \exp(y)
 $$
 
-donde $f_X$ es la función de densidad de una variable aleatoria 
-$\text{Gamma}(\alpha=2, \beta=2)$.
+donde $f_X$ es la función de densidad de una variable aleatoria $\text{Gamma}(\alpha=2, \beta=2)$.
 
 La distribución de $Y = log(X)$ puede visualizarse mediante:
 
@@ -116,7 +117,7 @@ p1 <- data.frame(x = x_grid, densidad = x_pdf) |>
   geom_line(
     aes(x = x, y = densidad),
     color = "grey30",
-    size = 1.5,
+    linewidth = 1.5,
   ) +
   labs(x = "X", y = "Densidad") +
   lims(x = c(0, 5.5), y = c(0, 0.8)) +
@@ -127,7 +128,7 @@ p2 <- data.frame(x = y_grid, densidad = y_pdf) |>
   geom_line(
     aes(x = x, y = densidad),
     color = "grey30",
-    size = 1.5,
+    linewidth = 1.5,
   ) +
   labs(x = "Y = log(X)", y = "Densidad") +
   lims(y = c(0, 0.8)) +
@@ -212,10 +213,117 @@ permitirán advertir sus limitaciones y motivarán la búsqueda de mejores alter
 * Utilización de escala logarítmica para estabilizar y robustecer los cálculos.
 * Mostrar implementación multivariada en escala logaritmica, usando normal multivariada como propuesta.
 
+```{r}
+metropolis_hastings <- function(logp, x, n, sigma = NULL, mensajes = FALSE) {
+  # ------------------------------------------------------------------------ #
+  # Algortimo de Metropolis Hastings en escala logaritmica                   #
+  #                                                                          #
+  # Parámetros                                                               # 
+  # ------------------------------------------------------------------------ #  
+  # | logp     | Función de densidad objetivo, normalizada o sin normalizar, | 
+  # |          | en escala logarítmica.                                      |
+  # | x        | Posición inicial del algoritmo.                             |
+  # | n        | Cantidad de muestras a obtener.                             |
+  # | sigma    | Matriz de varianzas y covarianzas para la distribución de   |
+  # |          | propuesta. Por defecto, es NULL y usa la matriz identidad.  |
+  # | mensajes | Indica si se imprimen mensajes con información del          |
+  # |          | algoritmo en cada paso. Por defecto, es FALSE.              |
+  # ------------------------------------------------------------------------ # 
+  #                                                                          #
+  # Salida                                                                   #
+  # ------------------------------------------------------------------------ #
+  # | muestras | Matriz con las muestras obtenidas.                          |
+  # ------------------------------------------------------------------------ #
+  
+
+  # Obtener dimensionalidad de la distribución objetivo a partir del punto inicial
+  p <- length(x)
+
+  # Inicializar matriz donde se guardan las muestras
+  muestras <- matrix(NA, nrow = n, ncol = p)
+
+  # Usar matriz diagonal unitaria para la distribución de propuesta cuando no se especifica
+  if (is.null(sigma)) {
+    sigma <- diag(p)
+  }
+
+  # Almacenar el punto inicial en la matriz de muestras
+  muestras[1, ] <- x
+
+  for (i in 1:(n - 1)) {
+    # Obtener el valor de la muestra actual
+    muestra_actual <- muestras[i, ]
+
+    # Proponer un nuevo valor
+    muestra_propuesta <- mvtnorm::rmvnorm(1, mean = muestra_actual, sigma = sigma)
+
+    # Evaluar la log densidad en el valor actual y en el propuesto
+    logp_propuesta <- logp(muestra_propuesta)
+    logp_actual <- logp(muestra_actual)
+
+    # Log densidad al pasar de muestra_propuesta a muestra_actual y viceversa
+    # Pregunta: ¿Es necesario este paso?
+    logq_actual <- mvtnorm::dmvnorm(muestra_actual, mean = muestra_propuesta, sigma = sigma, log = TRUE)
+    logq_propuesta <- mvtnorm::dmvnorm(muestra_propuesta, mean = muestra_actual, sigma = sigma, log = TRUE)
+
+    # Calcular log probabilidad de aceptación
+    log_alpha <- (logp_propuesta + logq_actual) - (logp_actual + logq_propuesta)
+
+    # Simular aceptación o rechazo
+    log_u <- log(runif(1))
+
+    aceptar <- log_u < log_alpha
+
+    if (mensajes) {
+      estado <- if (aceptar) "ACEPTAR" else "RECHAZAR"
+      log_step_info(i, estado, logp_actual, logp_propuesta, logq_actual, logq_propuesta, log_alpha, log_u)
+    }
+
+    # Determinar siguiente paso en base al criterio de selección
+    if (aceptar) {
+      muestras[i + 1, ] <- muestra_propuesta
+    } else {
+      muestras[i + 1, ] <- muestra_actual
+    }
+  }
+  # Devolver un vector si se trata de una distrbución univariada
+  if (p == 1) {
+    muestras <- as.vector(muestras)
+  }
+  return(muestras)
+}
+
+# Función auxiliar
+log_step_info <- function(
+  i, estado, logp_actual, logp_propuesta, logq_actual, logq_propuesta, log_alpha, log_u
+) {
+  cat(
+    "Paso", i, estado,
+    "\n---------------\n",
+    "  logp actual:", logp_actual, "\n",
+    "  logp propuesta:", logp_propuesta, "\n",
+    "  logq actual:", logq_actual, "\n",
+    "  logq propuesta:", logq_propuesta, "\n",
+    "  log_alpha", log_alpha, "\n",
+    "  log_u", log_u, "\n"
+  )
+}
+```
+
 ## Precalentamiento
 
-Supongamos el siguiente modelo:
+Para toda batalla que uno enfrente en la vida, ya sea literal o figurada, es importante
+estar bien preparados. Por ejemplo, un montañista necesita entre seis meses y dos años de 
+preparación antes de intentar subir el Aconcagua; Rocky Balboa se entrenó durante aproximadamente
+cuatro meses en una cabaña en Siberia para enfrentar a Iván Drago y vengar la muerte de Apollo; 
+y también son cuatro los duros meses que suele necesitar un estudiante para aprobar Estadística Bayesiana.
 
+Motivados por los ejemplos mencionados, y en preparación a nuestro desafío final, 
+primero aplicaremos el algoritmo de Metropolis-Hastings en escala logarítmica,
+con transformación de variables, en un escenario más sencillo que el que supone la resolución
+de un problema verdadero y con datos de del mundo real.
+
+Sea el siguiente modelo:
 $$
 \begin{aligned}
 Y_i & \sim \text{Normal}(\mu, \sigma^2) \\
@@ -224,9 +332,52 @@ Y_i & \sim \text{Normal}(\mu, \sigma^2) \\
 \end{aligned}
 $$
 
-con $i = 1, \dots, N$. Se desea obtener el _posterior_ de $\boldsymbol{\theta} = \{\mu, \sigma\}$.
+con $i = 1, \dots, N$.
 
-## Caso de aplicación
+  1. Implemente en R una función que permita calcular la densidad a _posteriori_ en escala 
+  logarítmica. Esta función tendrá `y`, `mu` y `sigma` como parámetros de entrada.
+  1. Utilice los valores de $y_i$ en el archivo `precalentamiento-mh.csv` para obtener muestras 
+  del _posterior_ de $\boldsymbol{\theta} = \{\mu, \sigma\}$. Utilice dos cadenas de Markov.
+  Evalúe mezcla y convergencia de manera gráfica.
+
+## Aplicación: Ozono, te quiero (no tan) cerca.
+
+El ozono (O₃) es un gas cuya molécula está formada por tres átomos de oxígeno y se encuentra
+tanto en la atmósfera como en la superficie terrestre.
+
+Seguramente, lo han escuchado en relación con la capa de ozono, 
+una región de la estratófera que se encuentra unos 15-30 kilómetros sobre la superficie terrestre,
+donde abunda el ozono, y que filtra los rayos ultravioletas del sol. 
+
+Esta capa permite que exista la vida tal como la conocemos y que una escapada a la isla
+no se convierta en un viaje solo de ida. 
+En otras palabras, la capa de ozono es como un Dibu Martinez de la vida, 
+atajando rayos ultravioletas que, de pasar, tan tristes nos harían.
+
+Pero no todo lo que brilla es oro. A nivel del suelo, el ozono es un contaminante atmosférico, 
+es perjudicial para la salud humana y ambiental. 
+Puede deteriorar la función pulmonar, generar ataques de asma, irritación ocular, nasal y de garganta, 
+y dañar la vegetación.
+
+En ese sentido, los científicos Doksum and Sievers (FALTAN NOMBRES) llevaron a cabo un estudio
+para evaluar el efecto del ozono en el incremento de peso en ratas. Tomaron un grupo de
+46 ratas de la misma edad, las pesaron, las dividieron aleatoriamente en 2 grupos de igual tamaño y las dejaron
+en dos ambientes disintos, el primero rico en ozono y el segundo libre de ozono. 
+Luego de 7 días pesaron a las ratas nuevamente. 
+
+El archivo X contiene la ganancia de peso, en gramos, para cada una de las ratas, y el grupo
+al que pertenecen.
+
+1.  Explorar los datos. ¿Encuentra datos atípicos?
+1.  Comparación de medias. Se quiere saber si la exposición al ozono se asocia a menor ganancia de peso.
+    Utilice el modelo normal. Luego utilice el modelo basado en la distribución T de Student.
+    En ambos casos:
+
+    1. Escriba la función de densidad en escala logaritmica.
+    1. Obtenga muestras, utilizando 2 cadenas de Markov. Utilice medidsa de diagnóstico numéricas y gráficas
+    para determinar la fiabilidad de las muestras obtenidas.
+    1. Concluir en términos del problema (que calculen alguna probabilidad). 
+    ¿Se llega a la misma conclusión con ambos modelos? ¿Por qué?
 
 ### Modelo normal
 
@@ -250,98 +401,3 @@ Y_{C, i} &\sim \text{Student-T}(\mu_C, \sigma_C^2, \nu=3) \\
 \sigma_O, \sigma_C & \sim \text{Gamma}(\alpha=6, \beta=2)
 \end{aligned}
 $$
-
-
-
-
-<!--
-# Apéndice (para mover a teoría)
-
-::: {.callout-tip}
-## Algoritmo de Metropolis Hastings
-
-Se desea generar una muestra de valores $\{y^{(1)}, y^{(2)}, \cdots, y^{(n)} \}$ a partir
-de una distribución de probabilidad $P$ con función de densidad $p$.
-
-1. Seleccionar un punto inicial $y^{(1)}$.
-
-1. Para cada $t\in \{1, \cdots, n\}$, repetir:
-
-    i.  **Proponer un nuevo valor**
-    
-        Obtener un valor aleatorio $y'$ de una variable $Y'$ cuya distribución está
-        dada por la distribución de propuesta $Q$ y el valor de la última muestra 
-        obtenida:
-    
-        $$
-        Y' \sim Q(y^{(t)})
-        $$
-    
-    i.  **Calcular la probabilidad de aceptación**
-
-        Calcular el cociente entre la función de densidad en el punto propuesto y en el
-        punto actual. La probabilidad de aceptación es igual a este cociente si es menor 
-        a 1, caso contrario es igual a 1.
-
-        $$
-        \alpha = \min \left\{ 1, \frac{p(y')}{p(y)} \right\}
-        $$
-
-    i.  **Seleccionar el nuevo valor**
-
-        Generar un valor aleatorio $u$ de una distribución $\mathcal{U}(0, 1)$ y determinar
-        $y^{(t + 1)}$ de la siguiente manera:
-
-        $$
-        y^{(t + 1)} = \left\{
-        \begin{array}{ll}
-        y' & \text{si} \quad u \le \alpha \\
-        y^{(t)} & \text{si} \quad u > \alpha
-        \end{array}\right.
-        $$
-
-**Notas**
-
-El cálculo del cociente en la determinación de la probabilidad de aceptación es
-en realidad:
-
-$$
-\frac{p(y')q(y^{(t)} \mid y')}{p(y)q(y' \mid y^{(t)})}
-$$
-
-donde $q$ es la función de densidad de la distribución de propuesta.
-
-Esta se simplifica a la expresión utilizada en el algoritmo cuando $q$ es una función 
-simétrica alrededor de su media.
-:::
-
-
-::: {.callout-tip}
-## _Effective sample size_ (ESS)
-
-El número efectivo de muestras $N_{eff}$ es el número de muestras independientes que tienen el mismo _poder de estimación_ que $S$ muestras correlacionadas.
-
-Este valor puede aproximarse por:
-
-$$N_{eff} = \frac{S}{1 + 2 \sum_{k=1}^\infty ACF(k)}$$
-
-Notar que la suma infinita del denominador empieza en $k=1$ (y no en $k=0$, donde $ACF(0)=1$). Además, en la práctica, una regla para truncar la $ACF$ es hacerlo a partir del primer $k$ valor donde $ACF(k)<0.05$ [@Kruschke2014, p. 184].
-:::
-
-::: {.callout-tip}
-## _Montecarlo standard error_ (MCSE)
-
-Por el Teorema Central del Límite sabemos que, si $\bar{X}_N$ es el promedio de $N$ observaciones 
-independientes e idénticamente distribuidas, entonces $\sqrt{N}(\bar{X}_N-\mu)$ converge en distribución 
-a $\mathcal{N}(0,\sigma^2)$ cuando $N$ tiende a infinito, donde $\mu$ es la media de la distribución
-de las $X_i$ y $\sigma$ es su desvío estándar. Si $\sigma$ se estima por $\hat{\sigma}$, el término 
-$\frac{\sigma}{\sqrt{N}}$ se conoce como error estándar.
-
-Cuando se realiza integración por Montecarlo y se estima $\mathbb{E}({X})$ con $N_{eff}$ muestras dependientes
-que se comportan como $N$ muestras independientes, el error estándar se aproxima por:
-$$
-MCSE = \frac{\hat{\sigma}}{\sqrt{N_{eff}}}
-$$
-:::
-
--->
