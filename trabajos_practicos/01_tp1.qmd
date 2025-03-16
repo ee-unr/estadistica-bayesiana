@@ -68,8 +68,46 @@ Para todo lo que sigue, tenga en consideración lo siguiente:
 Comenzaremos realizando un estudio de simulación para estudiar el efecto de la mentira en las estimaciones. En esta primera aproximación, consideraremos que se realiza la pregunta directa.
 
     1. Proponga un modelo bayesiano que, a partir de encuestar a $n$ estudiantes, permita estimar $\pi_a$. Explique la elección de la función de verosimilitud y el _prior_ e indique cómo se obtiene el _posterior_.
-    2. Utilizando R, simule la obtención de una muestra para el caso en que los estudiantes no mienten y para el caso en que los estudiantes mienten con tres niveles de mentira $\mu$: bajo, alto y medio. Compare los resultados.
-    3. Realice ahora 1000 simulaciones y compare los resultados. 
+    2. Utilizando R, simule la obtención de una muestra para el caso en que los estudiantes no mienten y para el caso en que los estudiantes mienten con tres niveles de mentira $\mu$: bajo, alto y medio. Compare los resultados de la inferencia.
+    3. Realice ahora 1000 simulaciones y compare los resultados de las inferencias. 
+    
+Considere ahora el caso del método propuesto por Werner:
+
+    4. Según este método, ¿cuál es la probabilidad (llamémosla $\lambda_W$) de que un estudiante responda que apuesta? ¿cuál es la probabilidad de que un estudiante           responda que no apuesta?
+    5. A partir de lo anterior, proponga un modelo razonable sobre cómo se generan los datos
+    6. Considere un _prior_ uniforme y halle el _posterior_ exacto.
+
+    ::: {.callout-tip}
+    ## Ayuda
+    
+    Escriba el _posterior_ dejando el denominador de la Regla de Bayes expresado como $Z$. Luego, muestre que:
+    
+    $$Z = \frac{B(1-p;y+1,n-y+1) - B(p;y+1,n-y+1)}{1-2p}$$
+    
+    donde $B(x; a,b) = \int_0^x t^{a-1} (1-t)^{b-1} dt$ es la función beta incompleta, $p$ es la probabilidad con la que se hace la pregunta alternativa e $y$ es la         cantidad de personas que responden que apuestan.
+    
+    Para resolver la integral, utilice el método de sustitución y hágalo en términos de $\lambda_W$. No es tan terrible como parece.
+    :::
+    
+    7. Grafique el _posterior_ para diferentes valores de $p$ y concluya.
+    8. ¿Qué pasaría si el porcentaje de alumnos que apuesta fuera diferente al $40\%$? Analice los resultados en función de diferentes niveles de $p$ y $\pi_a$
+    9. Escriba una función de R que le permita realizar la inferencia (en forma aproximada) con un _prior_ beta no necesariamente uniforme
+
+Para el método propuesto por Greenberg:
+
+    10. ¿Cuál es la probabilidad $\lambda_G$ de que un estudiante responda que apuesta? ¿y de que responda que no apuesta?
+    11. Escriba una función de R que le permita realizar la inferencia (en forma aproximada) con un _prior_ beta no necesariamente uniforme
+    
+Para terminar, es hora de comparar todos los escenarios
+
+    12. Utilizando R, simule la obtención de una muestra para el caso en que los estudiantes no mienten, mienten con tres niveles de mentira $\mu$ (bajo, alto y medio),     se utiliza el método de Werner y se utiliza el método de Greenberg. Compare los resultados de las inferencias en cada caso.
+    13. Realice ahora 1000 simulaciones y analice los resultados. 
+
+
+    
+
+    
+    
     
 
 Cosas que quisiera preguntar:
