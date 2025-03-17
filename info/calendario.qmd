@@ -1,6 +1,6 @@
 ---
 title: Calendario
-tbl-colwidths: [2.5, 12.5, 5, 30, 30, 20]
+tbl-colwidths: [2.5, 7.5, 5, 32.5, 32.5, 20]
 page-layout: full
 css: calendar.css
 ---
