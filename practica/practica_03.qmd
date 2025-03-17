@@ -370,7 +370,7 @@ características principales.
     muestras del _posterior_ y calcular las mismas probabilidades que en el ejercicio
     anterior en base a muestras. Ayuda: Para obtener muestras utilice la función `sample()`.
 
-1.  📌 **Aproximación de grilla en 2 dimensiones**
+1.  🧩📌 **Aproximación de grilla en 2 dimensiones**
 
     Sean dos variables aleatorias continuas $X$ e $Y$ tales que $(X, Y) \in \mathbb{R}^2$,
     y sea el siguiente modelo de regresión lineal simple:
@@ -383,15 +383,15 @@ características principales.
     \end{aligned}
     $$
 
-    i. Obtenga el _posterior_ conjunto del vector de parámetros $[\alpha, \beta]^T$ 
-    mediante el método de la grilla. Elabore un gráfico que permita visualizar esta 
+    i. Obtenga el _posterior_ conjunto del vector de parámetros $[\alpha, \beta]^T$
+    mediante el método de la grilla. Elabore un gráfico que permita visualizar esta
     distribución.
     i. Obtenga el _posterior_ marginal de $\alpha$ y grafíquelo.
     i. Obtenga el _posterior_ marginal de $\beta$ y grafíquelo.
     i. Calcule la probabilidad de que el intercepto sea mayor a 0.95.
     i. Calcule la probabilidad de que la pendiente sea menor a -2.
-    
-    Para responder las consignas utilice los datos simulados que se obtienen con el 
+
+    Para responder las consignas utilice los datos simulados que se obtienen con el
     siguiente bloque de código:
 
     ```{r}
@@ -405,8 +405,8 @@ características principales.
     df <- data.frame(x = x, y = y)
     ```
 
-    **Bonus:** ¿Cómo podría responder las consignas (ii)-(v) utilizando muestras del 
-    _posterior_? 
+    **Bonus:** ¿Cómo podría responder las consignas (ii)-(v) utilizando muestras del
+    _posterior_?
 
     ```{r scatterplot-lin-reg}
     #| eval: false
