@@ -1,5 +1,0 @@
----
-title: "Repaso de Probabilidad"
----
-
-
