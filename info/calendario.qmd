@@ -1,6 +1,6 @@
 ---
 title: Calendario
-tbl-colwidths: [2.5, 12.5, 5, 30, 30, 20]
+tbl-colwidths: [2.5, 7.5, 5, 32.5, 32.5, 20]
 page-layout: full
 css: calendar.css
 ---
@@ -34,7 +34,7 @@ format_date <- function(date, format, locale = NULL) {
 #| echo: false
 #| include: false
 FILE_ID <- "1lEmhEuxPychZjZOJLnkKYc0e7ZKPrKxdQdkw1XioHzo"
-SHEET_NAME <- "2024 (WIP)"
+SHEET_NAME <- "2025"
 googlesheets4::gs4_deauth()
 data <- googlesheets4::read_sheet(FILE_ID, sheet = SHEET_NAME)
 data[["fecha"]] <- as.Date(data[["fecha"]])

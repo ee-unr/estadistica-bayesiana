@@ -2,7 +2,7 @@ format:
   revealjs:
     incremental: true
     logo: /utils/imgs/logo.png
-    footer: "Estadística Bayesiana -- 2024"
+    footer: "Estadística Bayesiana -- 2025"
     background-transition: fade
     transition: fade
     slide-number: true

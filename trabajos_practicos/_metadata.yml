@@ -6,6 +6,6 @@ format:
         suppress-bibliography: true
         pdf-engine: xelatex
     html: default
-year: "2024"
+year: "2025"
 course: "Estadística Bayesiana"
 logo: ../templates/logo.png

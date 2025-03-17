@@ -39,7 +39,6 @@ ui <- fluidPage(
                  fluidRow(
                    column(4,
                           h3("Creencia inicial"),
-                          #p("Enter your prior probabilities in the second column:"),
                           DTOutput("tableB"),
                           actionButton("resetPrior", "Hacer uniforme"),
                           actionButton("normalizePrior", "Normalizar")

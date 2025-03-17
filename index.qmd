@@ -21,7 +21,7 @@ course-logo: utils/imgs/logo.png
 ::: {.course-meta}
 {{< fa graduation-cap >}} &nbsp; Licenciatura en Estadística  
 {{< fa university >}}     &nbsp; Facultad de Ciencias Económicas y Estadística  (UNR)  
-{{< fa calendar-alt >}}   &nbsp; 1° Cuatrimestre 2024  
+{{< fa calendar-alt >}}   &nbsp; 1° Cuatrimestre 2025  
 {{< fa clock >}}   &nbsp; Mié -- 7:00 a 11:00 &nbsp; | &nbsp; Vie -- 7:00 a 9:00
 :::
 
@@ -55,8 +55,8 @@ course-logo: utils/imgs/logo.png
 
 ### Nacho Evangelista
 
-* {{< fa envelope >}} &nbsp; [evangelistaignacio@gmail.com](mailto:evangelistaignacio@gmail.com)
-* {{< fa calendar >}} &nbsp; [Consultas: Lunes 14:00|15:00](https://calendar.app.google/DkZDwXqLjc9gyp59A)
+* {{< fa envelope >}} &nbsp; [ignacio.evangelista@fcecon.unr.edu.ar](mailto:ignacio.evangelista@fcecon.unr.edu.ar)
+* {{< fa calendar >}} &nbsp; [Consultas: Lunes 15:00](https://calendar.app.google/c2Ya9ena7NvkKVM39)
 
 :::
 
