@@ -34,7 +34,7 @@ format_date <- function(date, format, locale = NULL) {
 #| echo: false
 #| include: false
 FILE_ID <- "1lEmhEuxPychZjZOJLnkKYc0e7ZKPrKxdQdkw1XioHzo"
-SHEET_NAME <- "2024 (WIP)"
+SHEET_NAME <- "2025"
 googlesheets4::gs4_deauth()
 data <- googlesheets4::read_sheet(FILE_ID, sheet = SHEET_NAME)
 data[["fecha"]] <- as.Date(data[["fecha"]])
