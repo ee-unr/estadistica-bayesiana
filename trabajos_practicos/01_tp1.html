@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Estadística Bayesiana - TP1: The Multiarmed Bandit</title>
+<title>TP1: The Multiarmed Bandit – Estadística Bayesiana</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,7 +69,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -113,7 +113,7 @@ window.Quarto = {
     </a>
   </div>
             <div id="quarto-search" class="" title="Buscar"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -145,17 +145,17 @@ window.Quarto = {
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../trabajos_practicos/01_tp1.html">TP 1</a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
@@ -229,79 +229,122 @@ window.Quarto = {
 
 <section id="introducción" class="level1">
 <h1>Introducción</h1>
-<p>La vida nos enfrenta constantemente a decisiones que nos obligan a equilibrar entre la seguridad de lo familiar y la promesa de lo desconocido, un dilema conocido como <em>“explore vs.&nbsp;exploit”</em>. Esta dicotomía, se manifiesta en una multitud de escenarios cotidianos. Por ejemplo, consideremos la elección de una cafetería para una merienda. ¿Optamos por un lugar al que hemos ido muchas veces, conocido por su calidad constante (<em>‘exploit’</em>), o probamos uno de los nuevos locales que abrieron en Rosario con el furor del café de especialidad que podría ofrecer una experiencia culinaria increíble o decepcionante (<em>‘explore’</em>)? Esta elección representa una encrucijada entre lo seguro y lo novedoso, entre el confort de lo familiar y la emoción de la novedad.</p>
-<p>Este dilema también se extiende a decisiones más significativas en nuestras vidas, como la elección de una carrera, donde <em>‘exploit’</em> implicaría seguir en un campo donde ya tenemos habilidades y experiencia, mientras que <em>‘explore’</em> nos llevaría a aventurarnos en un nuevo dominio, potencialmente más gratificante pero también más arriesgado. Esta tensión entre explorar y explotar no es solo una curiosidad teórica; es un principio fundamental que guía nuestras decisiones diarias. Navegar entre estas dos opciones requiere una comprensión profunda de nuestras metas, recursos y el entorno en el que operamos, y es una habilidad esencial para la adaptación y el éxito en un mundo en constante cambio.</p>
-<p>Estos párrafos de <em>coaching emocional</em> sirven como la introducción a este trabajo práctico, donde estudiaremos el problema del <em>multi-armed bandit</em>, que pone énfasis en el dilema <em>“explore vs.&nbsp;exploit”</em>. La traducción de <em>multi-armed bandit</em> es bandido multibrazo por lo que, por motivos obvios, nos quedaremos con la expresión en inglés.</p>
+<!--
+Algunas fuentes:
+https://www.conicet.gov.ar/apuestas-online-en-la-adolescencia-y-juventud-una-mirada-desde-lo-biologico-y-lo-social/
+https://www.clarin.com/sociedad/nuevo-informe-apuestas-online-afecta-4-10-jovenes-pais-alertan-graves-consecuencias_0_X81rrMQMoH.html?srsltid=AfmBOooKGSu0al0XwGV8oIFnbptb7s64b2KXjCV5vgLquI8FmHxR1yd8
+https://ugc.production.linktr.ee/cd2596a8-1dce-4f38-b151-a217d61227f1_informe-resultados-apostar-no-es-un-juego-2024-final-IMPRENTA-v2.pdf
+-->
+<p>La idea de convertir unos pocos pesos en una fortuna con un solo clic tiene algo de magia, de esa que seduce con la promesa de éxito instantáneo. Masivo. ¿Qué puede salir mal? Total… “Está todo bajo control, yo decido cuándo frenar”. El problema es que, a veces de manera silenciosa, el juego compulsivo puede desencadenar problemas de largo plazo en la salud mental y el funcionamiento social del individuo</p>
+<p>Las apuestas en línea han ganado una creciente popularidad entre los adolescentes, impulsadas por la accesibilidad de plataformas digitales y la constante exposición a la publicidad en redes sociales y eventos deportivos. A esto se suma que se trata de una actividad escasamente regulada por el Estado y a la que cualquier persona puede acceder con relativa facilidad.</p>
+<p>Estas apuestas pueden dividirse en dos grandes categorías: los casinos virtuales, que incluyen juegos como ruleta o blackjack, y las apuestas deportivas, donde los jóvenes apuestan sobre el resultado de eventos deportivos, a menudo influenciados por pronósticos y estrategias compartidas en comunidades en línea. Ambas modalidades presentan riesgos relevantes, ya que la facilidad para depositar dinero y la sensación de control pueden llevar a un espiral de pérdidas y nuevas apuestas en busca de recuperar lo perdido.</p>
+<p>La sensación de ganar y perder plata genera adrenalina. La adolescencia, una etapa crucial de desarrollo de los seres humanos, es especialmente susceptible a la promesa del dinero fácil y a la gratificación instantánea que pueden otorgar los juegos de apuestas, debido a la inmadurez de las áreas cerebrales encargadas del control de impulsos, lo que incrementa la vulnerabilidad a comportamientos adictivos. A esto se suman factores sociales como la presión de grupo y la búsqueda de aceptación, donde ganar una apuesta se convierte en una forma de demostrar conocimiento y obtener reputación entre pares.</p>
+<p>La ilusión de ganar dinero rápido, junto con la normalización de las apuestas a través de la publicidad, crea un cóctel peligroso que atrapa a los jóvenes en un ciclo de riesgo y compulsión. A esto se suma la aparición de gurúes financieros y esquemas piramidales que prometen riqueza rápida, donde quienes no participan son vistos como ingenuos o fracasados. Esta presión social y la promesa de ganancias fáciles refuerzan la participación en un entorno cada vez más riesgoso y manipulador.</p>
+<p>Como si todo esto fuera poco, indagar en un grupo sobre temas sensibles puede resultar complejo. Muchas personas, por vergüenza, miedo al juicio social o simplemente por desconfianza, optan por no responder con sinceridad a ciertas preguntas, por ejemplo en el marco de una encuesta. En el caso de las apuestas, admitir la frecuencia con la que se participa, las cantidades apostadas o las pérdidas sufridas puede generar resistencia a contestar con la verdad. Algunas personas evitan responder, mientras que otras pueden proporcionar respuestas erróneas de manera deliberada. Este fenómeno, conocido como sesgo de respuesta, representa un desafío para quienes buscan obtener datos fiables en encuestas y estudios sobre este tema.</p>
+<p>Partiendo de la premisa de que una forma de incrementar la cooperación de los encuestados es garantizar la protección de información sensible, una posible forma de mitigar este sesgo es la técnica de respuesta aleatorizada, que permite que los encuestados respondan de manera más sincera sin temor a ser identificados. En la técnica de respuesta aleatorizada, se introduce una cuota de azar con el objetivo de preservar la privacidad de la persona que responde.</p>
+<p>Nos centraremos en el problema de querer realizar inferencias sobre <span class="math inline">\(\pi_A\)</span> la proporción de estudiantes de una escuela que participan de apuestas deportivas en línea.</p>
+<p>Estudiaremos dos técnicas de respuesta aleatorizada. En lugar de de responder directamente a la pregunta <em>“¿Participaste alguna vez en apuestas deportivas en línea?”</em>, se le pide al encuestado que utilice un mecanismo aleatorio, como arrojar una moneda. Dependiendo del resultado de este mecanismo, el encuestado sigue ciertas instrucciones para responder. En las variantes que estudiaremos, por ejemplo, si sale cara, el estudiante contesta a la pregunta <em>“¿Participaste alguna vez en apuestas deportivas en línea?”</em> mientras que si sale cruz, responde a otra pregunta. Así, como el investigador no conoce el resultado del mecanismo aleatorio no puede saber a qué pregunta está respondiendo el encuestado. No obstante, a partir de los resultados obtenidos para toda la muestra, pueden obtenerse conclusiones válidas.</p>
+<p>En el caso más general, diremos que <span class="math inline">\(p\)</span> es la probabilidad (conocida), debida al mecanismo aleatorio, de que el encuestado responda a la pregunta <em>“¿Participaste alguna vez en apuestas deportivas en línea?”</em> mientras que <span class="math inline">\((1-p)\)</span> es la probabilidad de que responda a la otra pregunta.</p>
 </section>
-<section id="el-multi-armed-bandit" class="level1">
-<h1>El <em>multi-armed bandit</em></h1>
-<p>El <em>multi-armed bandit</em> nos enfrenta a tres máquinas tragamonedas, tragaperras (si es por usar traducciones poco felices) o simplemente maquinitas (como les decimos en Rosario). El juego de las maquinitas consiste en hacer girar sus rodillos (analógicos o digitales) con el objetivo de obtener una combinación de símbolos ganadora y así acceder a un premio monetario 💰 (¡a esto sí que se le puede llamar éxito!).</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="imgs/slotmachines2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
-<figcaption>Tres maquinitas con diferentes probabilidades de ganar</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Cada máquina tiene una probabilidad de éxito desconocida y potencialmente diferente, es decir, una probabilidad distinta de entregar un premio. El desafío consiste en decidir a cuál máquina dedicar nuestras tiradas con el objetivo de maximizar las ganancias totales. Aquí es donde entra el dilema: ¿conviene <em>“explotar”</em> la máquina que hasta ahora ha dado mejores resultados, o <em>“explorar”</em> otras máquinas que podrían tener una tasa de éxito mayor pero aún desconocida?</p>
-<p>En la fase inicial, cuando se sabe poco sobre las máquinas, podría ser más prudente <em>“explorar”</em>, probando cada máquina varias veces para obtener una estimación aproximada de sus probabilidades de éxito. A medida que se acumulan datos sobre el rendimiento de cada máquina, la estrategia podría cambiar a <em>“explotar”</em> la máquina que ha demostrado ser la más rentable. Sin embargo, siempre existe la incertidumbre y la posibilidad de que una de las máquinas menos utilizadas tenga en realidad una tasa de éxito mayor. Este problema se complica aún más por el hecho de que cada elección de máquina proporciona información que podría alterar nuestra comprensión de cuál es la mejor opción. La solución óptima a este problema involucra un equilibrio cuidadoso entre explorar para ganar información y explotar esa información para maximizar las ganancias.</p>
-<p>En este trabajo práctico consideraremos la situación simplificada e imaginaria en la que no cuesta dinero jugar con una máquina. Es decir, si obtenemos una combinación ganadora, sumamos una unidad monetaria 🤑, pero si no, no perdemos nada. Supondremos, además, un escenario ficticio en que el deseo por descubrir cual es la máquina ganadora nos tendrá jugando los 366 días del año 2024 🍀. Lo que sí, cada día jugaremos con una sola máquina 🎰 y volveremos al día siguiente…</p>
-<p>El objetivo del trabajo consiste en evaluar y comparar diferentes estrategias de juego. Se analizarán mediante simulaciones diferentes estrategias de exploración y explotación de la máquina. ¿Dónde aparece la inferencia bayesiana? Partiremos de una creencia <em>a priori</em> para la probabilidad de éxito de cada máquina y la iremos actualizando con cada jugada.</p>
-<p>Para el estudio mediante simulaciones, consideraremos que las probabilidades de éxito de las tres máquinas son <span class="math inline">\(\theta_a = 0.30\)</span>, <span class="math inline">\(\theta_b = 0.55\)</span> y <span class="math inline">\(\theta_c = 0.45\)</span>. Recordemos que estas probabilidades son desconocidas (no podemos basar nuestras estrategias en esos valores, sino en las estimaciones que vamos haciendo de ellos).</p>
-<ol type="1">
-<li>Simule 1000 repeticiones de una persona que tiene información confidencial y privilegiada y juega 366 días con la mejor máquina. Realice un histograma del dinero acumulado al finalizar el período. ¿Cuánto se espera que gane en promedio?</li>
-</ol>
+<section id="técnicas-de-respuesta-aleatorizada" class="level1">
+<h1>Técnicas de respuesta aleatorizada</h1>
+<section id="warner" class="level2">
+<h2 class="anchored" data-anchor-id="warner">Warner</h2>
+<p>Un mecanismo aleatorio selecciona la pregunta que se le presenta a la persona que responde. Con probabilidad <span class="math inline">\(p\)</span> se le pregunta si es cierto que alguna vez participó en apuestas deportivas en línea (<span class="math inline">\(Q_1\)</span>), mientras que con probabilidad <span class="math inline">\((1-p)\)</span> se le pregunta si es cierto que nunca participó en apuestas deportivas en línea (<span class="math inline">\(Q_2\)</span>). Es decir, en general, con probabilidad <span class="math inline">\(p\)</span> se le pregunta si pertenece a una categoría <span class="math inline">\(A\)</span>, mientras que con probabilidad <span class="math inline">\((1-p)\)</span> se le pregunta si pertenece a la categoría <span class="math inline">\(A^c\)</span> (el complemento de <span class="math inline">\(A\)</span>).</p>
 </section>
-<section id="estrategias" class="level1">
-<h1>Estrategias</h1>
-<p>Utilizando nuestro ingenio e imaginación podríamos inventarnos al menos un par de estrategias que nos ayuden a determinar la máquina mas pagadora. Sin embargo, el género humano ya se ha inventado y debatido un sinfín de alternativas a seguir y nosotros podemos aportar nuestro granito de arena a la discusión mientras aprendemos estadística bayesiana y ejercitamos nuestras habilidades en R, ¡qué ofertón!.</p>
-<p>Por lo tanto, para cada una de las estrategias presentadas debajo:</p>
-<ol type="1">
-<li>Construya una función en R que elija una máquina siguiendo el método indicado, obtenga un resultado (éxito o fracaso) y actualice la credibilidad sobre los posibles valores de la probabilidad de éxito correspondiente.</li>
-<li>Utilice esa función para simular una secuencia de 366 días de juego. Registre la evolución diaria del dinero acumulado cada día, la cantidad de veces que se juega en cada máquina, y la distribución <em>a posteriori</em> de cada probabilidad de éxito. Muestre gráficamente los resultados.</li>
-<li>Simule 1000 secuencias de 366 días de juego y analice los resultado</li>
-<li>¿Podría considerarse bayesiano este método de elección de máquina?</li>
-</ol>
-<p>Consideraremos, en todos los escenarios, que la creencia <em>a priori</em> para <span class="math inline">\(\theta_a\)</span>, <span class="math inline">\(\theta_b\)</span> y <span class="math inline">\(\theta_c\)</span> se corresponde con una distribución <span class="math inline">\(\mathrm{Beta}(2, 2)\)</span></p>
-<section id="completamente-al-azar" class="level2">
-<h2 class="anchored" data-anchor-id="completamente-al-azar">Completamente al azar</h2>
-<p>Esta es la estrategia (o no-estrategia) más elemental: cada día, jugar con una máquina seleccionada al azar con probabilidad uniforme.</p>
+<section id="greenberg-y-otros" class="level2">
+<h2 class="anchored" data-anchor-id="greenberg-y-otros">Greenberg y otros</h2>
+<p>Un mecanismo aleatorio selecciona la pregunta que se le presenta a la persona que responde. Con probabilidad <span class="math inline">\(p\)</span> se le pregunta si es cierto que alguna vez participó en apuestas deportivas en línea (<span class="math inline">\(Q_1\)</span>), mientras que con probabilidad <span class="math inline">\((1-p)\)</span> se le pregunta si nació en un mes de 31 días (<span class="math inline">\(Q_2\)</span>). Es decir, en general, con probabilidad <span class="math inline">\(p\)</span> se le pregunta si pertenece a una categoría <span class="math inline">\(A\)</span>, mientras que con probabilidad <span class="math inline">\((1-p)\)</span> se le pregunta si pertenece a una categoría <span class="math inline">\(B\)</span> (no controversial o no polémica).</p>
+<p>Existen dos versiones de esta modalidad, en relación al conocimiento o desconocimiento de <span class="math inline">\(\pi_B\)</span>, la proporción de elementos en la población que pertenece a la categoría <span class="math inline">\(B\)</span>. En el primer caso, se conoce de antemano <span class="math inline">\(\pi_B\)</span> (como en el caso presentado, en que <span class="math inline">\(\pi_B = \frac{7}{12}\)</span>). Mientras que en el segundo caso, no se conoce <span class="math inline">\(\pi_B\)</span>. Nos limitaremos al estudio de la primera situación.</p>
 </section>
-<section id="greedy-con-tasa-observada" class="level2">
-<h2 class="anchored" data-anchor-id="greedy-con-tasa-observada"><em>Greedy</em> con tasa observada</h2>
-<p>Se elige la máquina que tenga la mayor tasa de éxito observada hasta el momento.</p>
 </section>
-<section id="greedy-con-probabilidad-a-posteriori" class="level2">
-<h2 class="anchored" data-anchor-id="greedy-con-probabilidad-a-posteriori"><em>Greedy</em> con probabilidad <em>a posteriori</em></h2>
-<p>Se elige la máquina que tenga, hasta el momento, mayor probabilidad de éxito promedio <em>a posteriori</em>.</p>
-</section>
-<section id="epsilon-greedy-con-tasa-observada" class="level2">
-<h2 class="anchored" data-anchor-id="epsilon-greedy-con-tasa-observada"><em><span class="math inline">\(\epsilon\)</span>-greedy</em> (con tasa observada)</h2>
-<p>Se selecciona la mejor máquina (la de mayor tasa de éxito observada según los datos actuales) con una probabilidad de <span class="math inline">\(1-\epsilon\)</span> y se elige una máquina al azar con una probabilidad <span class="math inline">\(\epsilon\)</span>.</p>
-</section>
-<section id="softmax" class="level2">
-<h2 class="anchored" data-anchor-id="softmax"><em>Softmax</em></h2>
-<p>Dada la tasa observada para cada máquina <span class="math inline">\(i\)</span>, <span class="math inline">\(\pi_i\)</span>, se calcula una probabilidad de elegir cada máquina utilizando la función <em>softmax</em>:</p>
+<section id="actividades" class="level1">
+<h1>Actividades</h1>
+<p>Para todo lo que sigue, tenga en consideración lo siguiente: - Se toma una muestra al azar con reemplazo de tamaño <span class="math inline">\(n=100\)</span> de una población de tamaño <span class="math inline">\(N=1000\)</span> (esto se podría omitir) - Para nuestros estudios comparativos, supondremos que el porcentaje de alumnos que apuesta (lo que se quisiera estimar) es 40% - Cuando se les pregunta directamente si han hecho alguna vez apuestas, los estudiantes mienten con probabilidad <span class="math inline">\(\mu\)</span> - Si se utilizan técnicas de respuesta aleatorizada, los estudiantes no mienten</p>
+<p>Comenzaremos realizando un estudio de simulación para estudiar el efecto de la mentira en las estimaciones. En esta primera aproximación, consideraremos que se realiza la pregunta directa.</p>
+<pre><code>1. Proponga un modelo bayesiano que, a partir de encuestar a $n$ estudiantes, permita estimar $\pi_a$. Explique la elección de la función de verosimilitud y el _prior_ e indique cómo se obtiene el _posterior_.
+2. Utilizando R, simule la obtención de una muestra para el caso en que los estudiantes no mienten y para el caso en que los estudiantes mienten con tres niveles de mentira $\mu$: bajo, alto y medio. Compare los resultados de la inferencia.
+3. Realice ahora 1000 simulaciones y compare los resultados de las inferencias. </code></pre>
+<p>Considere ahora el caso del método propuesto por Werner:</p>
+<pre><code>4. Según este método, ¿cuál es la probabilidad (llamémosla $\lambda_W$) de que un estudiante responda que apuesta? ¿cuál es la probabilidad de que un estudiante           responda que no apuesta?
+5. A partir de lo anterior, proponga un modelo razonable sobre cómo se generan los datos
+6. Considere un _prior_ uniforme y halle el _posterior_ exacto.
+
+::: {.callout-tip}
+## Ayuda
+
+Escriba el _posterior_ dejando el denominador de la Regla de Bayes expresado como $Z$. Luego, muestre que:
+
+$$Z = \frac{B(1-p;y+1,n-y+1) - B(p;y+1,n-y+1)}{1-2p}$$
+
+donde $B(x; a,b) = \int_0^x t^{a-1} (1-t)^{b-1} dt$ es la función beta incompleta, $p$ es la probabilidad con la que se hace la pregunta alternativa e $y$ es la         cantidad de personas que responden que apuestan.
+
+Para resolver la integral, utilice el método de sustitución y hágalo en términos de $\lambda_W$. No es tan terrible como parece.
+:::
+
+7. Grafique el _posterior_ para diferentes valores de $p$ y concluya.
+8. ¿Qué pasaría si el porcentaje de alumnos que apuesta fuera diferente al $40\%$? Analice los resultados en función de diferentes niveles de $p$ y $\pi_a$
+9. Escriba una función de R que le permita realizar la inferencia (en forma aproximada) con un _prior_ beta no necesariamente uniforme</code></pre>
+<p>Para el método propuesto por Greenberg:</p>
+<pre><code>10. ¿Cuál es la probabilidad $\lambda_G$ de que un estudiante responda que apuesta? ¿y de que responda que no apuesta?
+11. Escriba una función de R que le permita realizar la inferencia (en forma aproximada) con un _prior_ beta no necesariamente uniforme</code></pre>
+<p>Para terminar, es hora de comparar todos los escenarios</p>
+<pre><code>12. Utilizando R, simule la obtención de una muestra para el caso en que los estudiantes no mienten, mienten con tres niveles de mentira $\mu$ (bajo, alto y medio),     se utiliza el método de Werner y se utiliza el método de Greenberg. Compare los resultados de las inferencias en cada caso.
+13. Realice ahora 1000 simulaciones y analice los resultados. </code></pre>
+<p>Cosas que quisiera preguntar: - ¿por qué es válido utilizar una verosimilitud binomial? - para el caso de Werner, considerar un <em>prior</em> uniforme y obtener el posterior exacto (hay que integrar el numerador, podemos darles unas pistas para que lo hagan, es lo que hace McElreath). - pedirles que escriban la función que simula la respuesta genuina, la respuesta con mentira, la respuesta con Werner y la respuesta con Greenberg</p>
+<section id="posibles-tareas" class="level2">
+<h2 class="anchored" data-anchor-id="posibles-tareas">Posibles tareas</h2>
+<ul>
+<li>Medir el sesgo en la estimación para diferentes cantidad de encuestados, diferentes niveles de mentira, y diferentes valores del parámetro de interés.
+<ul>
+<li>Tal vez sea mucho, y aburrido.</li>
+</ul></li>
+<li>Técnica 1
+<ul>
+<li>Determinar <span class="math inline">\(\lambda\)</span> en función de <span class="math inline">\(p\)</span> y <span class="math inline">\(\pi\)</span></li>
+<li>Expresar el modelo bayesiano
+<ul>
+<li>Escribir función de verosimilitud en función de <span class="math inline">\(\pi\)</span>.</li>
+</ul></li>
+<li>Dado un escenario, obtener el posterior</li>
+<li>Comparar con:
+<ul>
+<li>El resultado obtenido mediante pregunta directa, usando un modelo beta-binomial y que las personas no mienten.</li>
+<li>El resultado obtenido mediante pregunta directa, usando un modelo beta-binomial y que las personas mienten en un grado leve, moderado y alto. Las personas mienten cuando tienen la característica de interés, con una probabilidad determinadad (e.g.&nbsp;25%, 50% y 75%).</li>
+</ul></li>
+</ul></li>
+<li>Técnica 2
+<ul>
+<li>Determinar <span class="math inline">\(\lambda\)</span> en función de <span class="math inline">\(p\)</span> y <span class="math inline">\(\pi\)</span></li>
+<li>Expresar el modelo bayesiano
+<ul>
+<li>Escribir función de verosimilitud en función de <span class="math inline">\(\pi\)</span>.</li>
+</ul></li>
+<li>Dado un escenario, obtener el posterior</li>
+<li>Comparar con:
+<ul>
+<li>El resultado obtenido mediante pregunta directa, usando un modelo beta-binomial y que las personas no mienten.</li>
+<li>El resultado obtenido mediante pregunta directa, usando un modelo beta-binomial y que las personas mienten en un grado leve, moderado y alto. Las personas mienten cuando tienen la característica de interés, con una probabilidad determinadad (e.g.&nbsp;25%, 50% y 75%).</li>
+</ul></li>
+<li>¿Qué escenario conviene más, uno donde <span class="math inline">\(\pi_y\)</span> sea bajo, moderado, o alto?</li>
+</ul></li>
+<li>Comparar inferencias entre sí.</li>
+</ul>
 <p><span class="math display">\[
-\mathrm{Pr}(i) = \frac{e^{\pi_i/\tau}}{\sum_{j=1}^3 e^{\pi_i/\tau}}
+f(\pi | r, n) \propto \pi^{\alpha - 1} (1 - \pi)^{\beta - 1}
+\left[ (2p - 1) \pi + (1 - p) \right]^r \left[ p - (2p - 1) \pi \right]^{n - r}
 \]</span></p>
-<p>donde <span class="math inline">\(\tau\)</span> es un parámetro de “temperatura” que controla el grado de exploración. Luego, se elige la máquina <span class="math inline">\(i\)</span> con probabilidad <span class="math inline">\(\mathrm{Pr}(i)\)</span>.</p>
-<p>Además:</p>
-<ol type="i">
-<li>Implemente la función <em>softmax</em> que, dadas tres tasas observadas, devuelva la probabilidad de elegir cada máquina. La función debe recibir la “temperatura” como argumento.</li>
-<li>Explique qué función cumple el parámetro de “temperatura” en términos de explorar versus explotar.</li>
-</ol>
-</section>
-<section id="upper-bound" class="level2">
-<h2 class="anchored" data-anchor-id="upper-bound"><em>Upper-bound</em></h2>
-<p>Se selecciona la máquina que tenga el mayor extremo derecho de un intervalo de credibilidad (construido a partir de la distribución <em>a posteriori</em> de la probabilidad de éxito).</p>
-</section>
-<section id="thompson-sampling" class="level2">
-<h2 class="anchored" data-anchor-id="thompson-sampling"><em>Thompson sampling</em></h2>
-<p>Para seleccionar una máquina, se toma una muestra de la distribución <em>a posteriori</em> de las probabilidades de éxito de cada máquina y se elige la máquina correspondiente a la muestra más grande.</p>
+<p><span class="math display">\[
+f(\pi | r, n) = \sum_{t=0}^{n} w_t f_{\beta} (\pi \mid \alpha + t, \beta + n - t)
+\]</span></p>
+<p><span class="math display">\[
+w_t = \frac{w_t^*}{\sum_{s=0}^{n} w_s^*}
+\]</span></p>
+<p>y</p>
+<p><span class="math display">\[
+w_t^* = \binom{n}{t} \frac{B(\alpha' + t, \beta' + n - t)}{B(\alpha', \beta')}
+\sum_{j=0}^{\min(r,t)} \binom{t}{j} \binom{n - t}{r - j} p^{n - t - r + 2j} (1 - p)^{t + r - 2j}.
+\]</span></p>
 
 
 </section>
@@ -343,18 +386,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -386,7 +418,47 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/estadisticaunr\.github\.io\/estadistica-bayesiana\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -421,7 +493,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -697,7 +773,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../trabajos_practicos/descripcion.html" class="pagination-link  aria-label=" generalidades"="">
+      <a href="../trabajos_practicos/descripcion.html" class="pagination-link" aria-label="Generalidades">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Generalidades</span>
       </a>          
   </div>
