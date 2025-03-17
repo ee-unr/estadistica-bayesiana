@@ -24,17 +24,24 @@ semilla <- strsplit("metropolis hastings", "")[[1]] |>
 set.seed(semilla)
 ```
 
-# Metropolis-Hastings en 1D
+## Metropolis-Hastings
 
 El algoritmo de Metropolis-Hastings (MH) permite generar muestras (pseudo-)aleatorias a 
 partir de una distribución de probabilidad $P$ que no necesariamente pertence a una 
 familia de distribuciones conocida. El único requisito es que se pueda evaluar la función
-de densidad (o de masa de probabilidad) $p^*(\theta)$ en cualquier valor de $\theta$,
-incluso cuando $p^*(\theta)$ sea impropia (es decir, incluso aunque sea
-desconocida la constante de normalización que hace que la integral en el soporte de la 
-función sea igual a uno).
+de densidad (o de masa de probabilidad) $p^*(\boldsymbol{\theta})$ en cualquier valor de 
+$\boldsymbol{\theta}$, incluso cuando $p^*(\boldsymbol{\theta})$ sea impropia 
+(es decir, incluso aunque sea desconocida la constante de normalización que hace que la integral en
+el soporte de la función sea igual a uno).
 
-<!-- NOTA: No estoy seguro si haría esto -->
+Resúmen del algoritmo:
+
+ESCRIBIR
+
+<!-- NOTA: Por ahora no lo incluyo porque creo que extiende el TP de manera innecesaria -->
+
+<!-- 
+
 
 1.  Escriba una función que implemente el algoritmo de Metropolis-Hastings para tomar 
     muestras de una distribución de probabilidad unidimensional a partir de su función de 
@@ -45,7 +52,9 @@ función sea igual a uno).
 
 1.  Utilice la función implementada en el punto anterior para obtener muestras de una 
     distribución normal de parámetros $\mu=5$ y $\sigma=3$. 
-    ¿Obtiene una representación fiel de la distribución objetivo?
+    ¿Obtiene una representación fiel de la distribución objetivo? 
+
+-->
 
 ## Metropolis-Hastings en espacios paramétricos acotados
 
@@ -194,7 +203,9 @@ p1_hist | p2_hist
 1. Obtener muestras de $Y$.
 1. Transformar muestras $x_i = \exp(y_i)$.
 
-# Metropolis-Hastings en espacios paramétricos generales
+## Metropolis-Hastings en $\mathbb{R}^p$
+
+<!-- NO SE SI PONDRÍA ESTA SECCIÓN -->
 
 Como veremos en esta sección del trabajo práctico, la verdadera utilidad del algoritmo de
 Metropolis-Hastings se aprecia cuando se obtienen muestras de distribuciones en más de 
@@ -207,11 +218,40 @@ permitirán advertir sus limitaciones y motivarán la búsqueda de mejores alter
   * Ergo, siempre se muestrea en $\mathbb{R}^p$ y por lo tanto se pueden realizar
   propuestas con una normal multivariada.
 
+Que elegancia la de Francia. Solo se necesitan unas pocas modificaciones para que nuestra descripción
+inicial del algoritmo de Metropolis-Hastings pueda ser utilizado para obtener muestras de cualquier
+distribución, sin distinción de dimensionalidad y soporte... Pero, la vida es más compleja de 
+lo que parece.
+
 ## Metropolis-Hastings en escala logarítmica
 
-* Posiblidad de subdesbordamiento (_underflow_)
-* Utilización de escala logarítmica para estabilizar y robustecer los cálculos.
-* Mostrar implementación multivariada en escala logaritmica, usando normal multivariada como propuesta.
+Sin importar cuan moderna y potente sea nuestra computadora, aún tenemos que convivir con 
+el Talón de Aquiles del cómputo informático: los problemas de subdesorbamiento y sobredesbordamiento
+(_underflow_ y _overflow_ en inglés). 
+Si intentamos multiplicar 100 números en el orden de `0.0001` en R, nos encontraremos que para
+la computadora esto es igual a 0, aunque no sea cierto.
+
+El problema del _underflow_ se presenta todo el tiempo en el cómputo estadístico.
+Por ejemplo, para evaluar una función de verosimilitud se multiplican tantas densidades como 
+observaciones se está tabajando. Dado que estos números suelen ser muy pequeños, no es raro
+encontrarse con un subdesbordamiento.
+Cuando mayor sea la cantidad de observaciones y la dimensionalidad de la distribución objetivo, 
+mayor es el riesgo de encontrarse con un problema de _underflow_.
+
+El riesgo de _underflow_ se incrementa aún más cuando usamos algoritmos del estilo de 
+Metrpolis-Hastings no solo porque la densidad objetivo se evalúa miles de veces en diferentes 
+puntos del espacio paramétrico, sino que también puede estar dada por la multiplicación de muchos números pequeños
+como sucede cuando se realiza inferencia bayesiana.
+
+Si nuestro algoritmo de muestreo se encuentra con un problema de _underflow_, podrían suceder dos cosas:
+
+* Se obtiene un error que detiene la ejecución del programa.
+* Se realiza una nueva propuesta, ignorando la propuesta problemática, pero se "rompe" la cadena de Markov.
+
+¿Y qué hacemos? ¿Cuál es la solución? ... Hacer todos los cálculos en escala logarítmica.
+
+TODO: Esribir MH en escala logarítmica.
+
 
 ```{r}
 metropolis_hastings <- function(logp, x, n, sigma = NULL, mensajes = FALSE) {
@@ -310,20 +350,22 @@ log_step_info <- function(
 }
 ```
 
-## Precalentamiento
+## Ejemplo: Los Colapinto de Bayes
 
-Para toda batalla que uno enfrente en la vida, ya sea literal o figurada, es importante
-estar bien preparados. Por ejemplo, un montañista necesita entre seis meses y dos años de 
-preparación antes de intentar subir el Aconcagua; Rocky Balboa se entrenó durante aproximadamente
-cuatro meses en una cabaña en Siberia para enfrentar a Iván Drago y vengar la muerte de Apollo; 
-y también son cuatro los duros meses que suele necesitar un estudiante para aprobar Estadística Bayesiana.
+La función `metropolis_hastings()` es una herramienta poderosa que, en teoría, permite obtener 
+muestras de cualquier distribución _a posteriori_ que se pueda implementar en R en escala logarítmica.
+Pero, ¿de qué sirve tener una herramienta tan potente si no está claro cómo usarla?
 
-Motivados por los ejemplos mencionados, y en preparación a nuestro desafío final, 
-primero aplicaremos el algoritmo de Metropolis-Hastings en escala logarítmica,
-con transformación de variables, en un escenario más sencillo que el que supone la resolución
-de un problema verdadero y con datos de del mundo real.
+Como bien dice el refrán, la práctica hace al maestro. 
+Y quienes conocen de primera mano la verdad de estas palabras son los pilotos de Fórmula 1.
+Por ejemplo, antes de cada Gran Premio, Franco Colapinto corre entre 
+400 y 500 vueltas en el circuito... ¡pero en un simulador!
 
-Sea el siguiente modelo:
+De esta manera, en preparación a la aplicación final en este trabajo, nuestro Gran Premio, 
+vamos a utilizar el algoritmo de Metropolis-Hastings en escala logarítmica, 
+con transformación de variables, en un escenario más sencilo.
+
+Dado el siguiente modelo:
 $$
 \begin{aligned}
 Y_i & \sim \text{Normal}(\mu, \sigma^2) \\
@@ -354,7 +396,8 @@ no se convierta en un viaje solo de ida.
 En otras palabras, la capa de ozono es como un Dibu Martinez de la vida, 
 atajando rayos ultravioletas que, de pasar, tan tristes nos harían.
 
-Pero no todo lo que brilla es oro. A nivel del suelo, el ozono es un contaminante atmosférico, 
+Pero no todo lo que brilla es oro. 
+A nivel del suelo, el ozono es un contaminante atmosférico, 
 es perjudicial para la salud humana y ambiental. 
 Puede deteriorar la función pulmonar, generar ataques de asma, irritación ocular, nasal y de garganta, 
 y dañar la vegetación.
@@ -362,13 +405,13 @@ y dañar la vegetación.
 En ese sentido, los científicos Doksum and Sievers (FALTAN NOMBRES) llevaron a cabo un estudio
 para evaluar el efecto del ozono en el incremento de peso en ratas. Tomaron un grupo de
 46 ratas de la misma edad, las pesaron, las dividieron aleatoriamente en 2 grupos de igual tamaño y las dejaron
-en dos ambientes disintos, el primero rico en ozono y el segundo libre de ozono. 
+en dos ambientes distintos, el primero rico en ozono y el segundo libre de ozono. 
 Luego de 7 días pesaron a las ratas nuevamente. 
 
 El archivo X contiene la ganancia de peso, en gramos, para cada una de las ratas, y el grupo
 al que pertenecen.
 
-1.  Explorar los datos. ¿Encuentra datos atípicos?
+1.  Explorar los datos. ¿Encuentra datos atípicos? ¿Qué consecuencias tendrían en la comparación de los incrementos medios de peso?
 1.  Comparación de medias. Se quiere saber si la exposición al ozono se asocia a menor ganancia de peso.
     Utilice el modelo normal. Luego utilice el modelo basado en la distribución T de Student.
     En ambos casos:
@@ -389,7 +432,6 @@ Y_{C, i} &\sim \text{Normal}(\mu_C, \sigma_C^2) \\
 \sigma_O, \sigma_C & \sim \text{Gamma}(\alpha=6, \beta=2)
 \end{aligned}
 $$
-
 
 ### Modelo robusto
 
