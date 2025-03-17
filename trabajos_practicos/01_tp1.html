@@ -260,94 +260,60 @@ https://ugc.production.linktr.ee/cd2596a8-1dce-4f38-b151-a217d61227f1_informe-re
 </section>
 <section id="actividades" class="level1">
 <h1>Actividades</h1>
-<p>Para todo lo que sigue, tenga en consideración lo siguiente: - Se toma una muestra al azar con reemplazo de tamaño <span class="math inline">\(n=100\)</span> de una población de tamaño <span class="math inline">\(N=1000\)</span> (esto se podría omitir) - Para nuestros estudios comparativos, supondremos que el porcentaje de alumnos que apuesta (lo que se quisiera estimar) es 40% - Cuando se les pregunta directamente si han hecho alguna vez apuestas, los estudiantes mienten con probabilidad <span class="math inline">\(\mu\)</span> - Si se utilizan técnicas de respuesta aleatorizada, los estudiantes no mienten</p>
-<p>Comenzaremos realizando un estudio de simulación para estudiar el efecto de la mentira en las estimaciones. En esta primera aproximación, consideraremos que se realiza la pregunta directa.</p>
-<pre><code>1. Proponga un modelo bayesiano que, a partir de encuestar a $n$ estudiantes, permita estimar $\pi_a$. Explique la elección de la función de verosimilitud y el _prior_ e indique cómo se obtiene el _posterior_.
-2. Utilizando R, simule la obtención de una muestra para el caso en que los estudiantes no mienten y para el caso en que los estudiantes mienten con tres niveles de mentira $\mu$: bajo, alto y medio. Compare los resultados de la inferencia.
-3. Realice ahora 1000 simulaciones y compare los resultados de las inferencias. </code></pre>
-<p>Considere ahora el caso del método propuesto por Werner:</p>
-<pre><code>4. Según este método, ¿cuál es la probabilidad (llamémosla $\lambda_W$) de que un estudiante responda que apuesta? ¿cuál es la probabilidad de que un estudiante           responda que no apuesta?
-5. A partir de lo anterior, proponga un modelo razonable sobre cómo se generan los datos
-6. Considere un _prior_ uniforme y halle el _posterior_ exacto.
-
-::: {.callout-tip}
-## Ayuda
-
-Escriba el _posterior_ dejando el denominador de la Regla de Bayes expresado como $Z$. Luego, muestre que:
-
-$$Z = \frac{B(1-p;y+1,n-y+1) - B(p;y+1,n-y+1)}{1-2p}$$
-
-donde $B(x; a,b) = \int_0^x t^{a-1} (1-t)^{b-1} dt$ es la función beta incompleta, $p$ es la probabilidad con la que se hace la pregunta alternativa e $y$ es la         cantidad de personas que responden que apuestan.
-
-Para resolver la integral, utilice el método de sustitución y hágalo en términos de $\lambda_W$. No es tan terrible como parece.
-:::
-
-7. Grafique el _posterior_ para diferentes valores de $p$ y concluya.
-8. ¿Qué pasaría si el porcentaje de alumnos que apuesta fuera diferente al $40\%$? Analice los resultados en función de diferentes niveles de $p$ y $\pi_a$
-9. Escriba una función de R que le permita realizar la inferencia (en forma aproximada) con un _prior_ beta no necesariamente uniforme</code></pre>
-<p>Para el método propuesto por Greenberg:</p>
-<pre><code>10. ¿Cuál es la probabilidad $\lambda_G$ de que un estudiante responda que apuesta? ¿y de que responda que no apuesta?
-11. Escriba una función de R que le permita realizar la inferencia (en forma aproximada) con un _prior_ beta no necesariamente uniforme</code></pre>
-<p>Para terminar, es hora de comparar todos los escenarios</p>
-<pre><code>12. Utilizando R, simule la obtención de una muestra para el caso en que los estudiantes no mienten, mienten con tres niveles de mentira $\mu$ (bajo, alto y medio),     se utiliza el método de Werner y se utiliza el método de Greenberg. Compare los resultados de las inferencias en cada caso.
-13. Realice ahora 1000 simulaciones y analice los resultados. </code></pre>
-<p>Cosas que quisiera preguntar: - ¿por qué es válido utilizar una verosimilitud binomial? - para el caso de Werner, considerar un <em>prior</em> uniforme y obtener el posterior exacto (hay que integrar el numerador, podemos darles unas pistas para que lo hagan, es lo que hace McElreath). - pedirles que escriban la función que simula la respuesta genuina, la respuesta con mentira, la respuesta con Werner y la respuesta con Greenberg</p>
-<section id="posibles-tareas" class="level2">
-<h2 class="anchored" data-anchor-id="posibles-tareas">Posibles tareas</h2>
+<p>Para todo lo que sigue, tenga en consideración lo siguiente:</p>
 <ul>
-<li>Medir el sesgo en la estimación para diferentes cantidad de encuestados, diferentes niveles de mentira, y diferentes valores del parámetro de interés.
-<ul>
-<li>Tal vez sea mucho, y aburrido.</li>
-</ul></li>
-<li>Técnica 1
-<ul>
-<li>Determinar <span class="math inline">\(\lambda\)</span> en función de <span class="math inline">\(p\)</span> y <span class="math inline">\(\pi\)</span></li>
-<li>Expresar el modelo bayesiano
-<ul>
-<li>Escribir función de verosimilitud en función de <span class="math inline">\(\pi\)</span>.</li>
-</ul></li>
-<li>Dado un escenario, obtener el posterior</li>
-<li>Comparar con:
-<ul>
-<li>El resultado obtenido mediante pregunta directa, usando un modelo beta-binomial y que las personas no mienten.</li>
-<li>El resultado obtenido mediante pregunta directa, usando un modelo beta-binomial y que las personas mienten en un grado leve, moderado y alto. Las personas mienten cuando tienen la característica de interés, con una probabilidad determinadad (e.g.&nbsp;25%, 50% y 75%).</li>
-</ul></li>
-</ul></li>
-<li>Técnica 2
-<ul>
-<li>Determinar <span class="math inline">\(\lambda\)</span> en función de <span class="math inline">\(p\)</span> y <span class="math inline">\(\pi\)</span></li>
-<li>Expresar el modelo bayesiano
-<ul>
-<li>Escribir función de verosimilitud en función de <span class="math inline">\(\pi\)</span>.</li>
-</ul></li>
-<li>Dado un escenario, obtener el posterior</li>
-<li>Comparar con:
-<ul>
-<li>El resultado obtenido mediante pregunta directa, usando un modelo beta-binomial y que las personas no mienten.</li>
-<li>El resultado obtenido mediante pregunta directa, usando un modelo beta-binomial y que las personas mienten en un grado leve, moderado y alto. Las personas mienten cuando tienen la característica de interés, con una probabilidad determinadad (e.g.&nbsp;25%, 50% y 75%).</li>
-</ul></li>
-<li>¿Qué escenario conviene más, uno donde <span class="math inline">\(\pi_y\)</span> sea bajo, moderado, o alto?</li>
-</ul></li>
-<li>Comparar inferencias entre sí.</li>
+<li>Se toma una muestra al azar con reemplazo de tamaño <span class="math inline">\(n=100\)</span> de una población de tamaño <span class="math inline">\(N=1000\)</span>.</li>
+<li>Para nuestros estudios comparativos, supondremos que el porcentaje de alumnos que apuesta (lo que se quisiera estimar) es 40%.</li>
+<li>Cuando se les pregunta directamente si han hecho alguna vez apuestas, los estudiantes mienten con probabilidad <span class="math inline">\(\mu\)</span>.</li>
+<li>Si se utilizan técnicas de respuesta aleatorizada, los estudiantes no mienten.</li>
 </ul>
+<p>Comenzaremos realizando un estudio de simulación para estudiar el efecto de la mentira en las estimaciones. En esta primera aproximación, consideraremos que se realiza la pregunta directa.</p>
+<ol type="1">
+<li>Proponga un modelo bayesiano que, a partir de encuestar a <span class="math inline">\(n\)</span> estudiantes, permita estimar <span class="math inline">\(\pi_a\)</span>. Explique la elección de la función de verosimilitud y el <em>prior</em> e indique cómse obtiene el <em>posterior</em>.</li>
+<li>Utilizando R, simule la obtención de una muestra para el caso en que los estudiantes no mienten y para el caso en que los estudiantes mienten con tres niveles de mentira <span class="math inline">\(\mu\)</span>bajo, alto y medio. Compare los resultados de la inferencia.</li>
+<li>Realice ahora 1000 simulaciones y compare los resultados de las inferencias.</li>
+</ol>
+<p>Considere ahora el caso del método propuesto por Werner:</p>
+<ol start="4" type="1">
+<li>Según este método, ¿cuál es la probabilidad (llamémosla <span class="math inline">\(\lambda_W\)</span>) de que un estudiante responda que apuesta? ¿cuál es la probabilidad de que un estudiante responda queno apuesta?</li>
+<li>A partir de lo anterior, proponga un modelo razonable sobre cómo se generan los datos.</li>
+<li>Considere un <em>prior</em> uniforme y halle el <em>posterior</em> exacto.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ayuda
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Escriba el <em>posterior</em> dejando el denominador de la Regla de Bayes expresado como <span class="math inline">\(Z\)</span>. Luego, muestre que:</p>
 <p><span class="math display">\[
-f(\pi | r, n) \propto \pi^{\alpha - 1} (1 - \pi)^{\beta - 1}
-\left[ (2p - 1) \pi + (1 - p) \right]^r \left[ p - (2p - 1) \pi \right]^{n - r}
+Z = \frac{B(1-p;y+1,n-y+1) - B(p;y+1,n-y+1)}{1-2p}
 \]</span></p>
-<p><span class="math display">\[
-f(\pi | r, n) = \sum_{t=0}^{n} w_t f_{\beta} (\pi \mid \alpha + t, \beta + n - t)
-\]</span></p>
-<p><span class="math display">\[
-w_t = \frac{w_t^*}{\sum_{s=0}^{n} w_s^*}
-\]</span></p>
-<p>y</p>
-<p><span class="math display">\[
-w_t^* = \binom{n}{t} \frac{B(\alpha' + t, \beta' + n - t)}{B(\alpha', \beta')}
-\sum_{j=0}^{\min(r,t)} \binom{t}{j} \binom{n - t}{r - j} p^{n - t - r + 2j} (1 - p)^{t + r - 2j}.
-\]</span></p>
+<p>donde <span class="math inline">\(B(x; a,b) = \int_0^x t^{a-1} (1-t)^{b-1} dt\)</span> es la función beta incompleta, <span class="math inline">\(p\)</span> es la probabilidad con la que se hace la pregunta alternativa e <span class="math inline">\(y\)</span> es la cantidad depersonas que responden que apuestan.</p>
+<p>Para resolver la integral, utilice el método de sustitución y hágalo en términos de <span class="math inline">\(\lambda_W\)</span>. No es tan terrible como parece.</p>
+</div>
+</div>
+<ol start="7" type="1">
+<li>Grafique el <em>posterior</em> para diferentes valores de <span class="math inline">\(p\)</span> y concluya.</li>
+<li>¿Qué pasaría si el porcentaje de alumnos que apuesta fuera diferente al <span class="math inline">\(40\%\)</span>? Analice los resultados en función de diferentes niveles de <span class="math inline">\(p\)</span> y <span class="math inline">\(\pi_a\)</span>.</li>
+<li>Escriba una función de R que le permita realizar la inferencia (en forma aproximada) con un <em>prior</em> beta no necesariamente uniforme.</li>
+</ol>
+<p>Para el método propuesto por Greenberg:</p>
+<ol start="10" type="1">
+<li>¿Cuál es la probabilidad <span class="math inline">\(\lambda_G\)</span> de que un estudiante responda que apuesta? ¿y de que responda que no apuesta?</li>
+<li>Escriba una función de R que le permita realizar la inferencia (en forma aproximada) con un <em>prior</em> beta no necesariamente uniforme.</li>
+</ol>
+<p>Para terminar, es hora de comparar todos los escenarios.</p>
+<ol start="12" type="1">
+<li>Utilizando R, simule la obtención de una muestra para el caso en que los estudiantes no mienten, mienten con tres niveles de mentira <span class="math inline">\(\mu\)</span> (bajo, alto y medio), se utiliza el método de Werner y se utiliza el método de Greenberg. Compare los resultados de las inferencias en cada caso.</li>
+<li>Realice ahora 1000 simulaciones y analice los resultados.</li>
+</ol>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
