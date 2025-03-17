@@ -20,16 +20,16 @@ captions[["argentina_campeon"]] <- "El festejo de los campeones del mundo"
 
 ## Repaso de probabilidad
 
-El objetivo de los ejercicios de esta unidad es refrescar y consolidar los conocimientos 
-relacionados con el cálculo de probabilidades y la manipulación de distribuciones de 
+El objetivo de los ejercicios de esta unidad es refrescar y consolidar los conocimientos
+relacionados con el cálculo de probabilidades y la manipulación de distribuciones de
 probabilidad.
 
 1.  📌 **¡Argentina campeón!**
 
-    De las siguientes expresiones cual(es) se corresponde(n) con el enunciado 
-    "la probabilidad de que Argentina gane la copa del mundo dado que es 18 de Diciembre 
+    De las siguientes expresiones cual(es) se corresponde(n) con el enunciado
+    "la probabilidad de que Argentina gane la copa del mundo dado que es 18 de Diciembre
     de 2022"?
-    
+
     i. $P(\text{18 de Diciembre de 2022} \mid \text{Argentina campeón})$.
     i. $P(\text{Argentina campeón})$.
     i. $P(\text{Argentina campeón}, \text{18 de Diciembre de 2022}) / P(\text{18 de Diciembre de 2022})$.
@@ -64,24 +64,24 @@ probabilidad.
 
 1.  📌 **Amigarse con la función de densidad (I)**
 
-    Suponga $X \sim \text{Uniforme}(a, b)$. Su soporte es $\mathcal{S} = [a, b]$ 
-    y su función de densidad de probabilidad es $p(x) = 1 / (b - a)$ para todo 
+    Suponga $X \sim \text{Uniforme}(a, b)$. Su soporte es $\mathcal{S} = [a, b]$
+    y su función de densidad de probabilidad es $p(x) = 1 / (b - a)$ para todo
     $x \in \mathcal{S}$.
-    
+
     i. Pruebe que $p(x)$ es una función de densidad de probabilidad válida.
     i. Encuentre la media y la varianza de $X$.
     <!-- @Reich2020 -->
 
 1.  📌 **Amigarse con la función de densidad (II)**
 
-    Sea $X$ una variable aleatoria con soporte $X \in \mathcal{S} = [1, \infty)$. 
-    Encuentre la constante $c$, en función de $\theta$, que haga que 
+    Sea $X$ una variable aleatoria con soporte $X \in \mathcal{S} = [1, \infty)$.
+    Encuentre la constante $c$, en función de $\theta$, que haga que
     $p(x) = c \exp(-x / \theta)$ sea una función de densidad de probabilidad válida.
     <!-- @Reich2020 -->
 
 1.  📌 **En búsqueda de la distribución deseada**
 
-    Según personas expertas en un problema determinado, se indica que el valor de un 
+    Según personas expertas en un problema determinado, se indica que el valor de un
     parámetro  debe ser positivo y su distribución _a priori_ debe tener media igual a 5 y
     varianza igual a 3. Encuentre una distribución que satisfaga estas condiciones.
     <!-- @Reich2020 -->
@@ -90,7 +90,7 @@ probabilidad.
 
     Sean $X_1$ y $X_2$ dos variables aleatorias con función de probabilidad conjunta dada
     por la siguiente tabla:
-    
+
     <center>
     <div style="width:50%" class="table-practica">
 
@@ -103,7 +103,7 @@ probabilidad.
     </div>
     </center>
 
-    donde la celda de la primer fila y primer columna se lee $P(X_1=0, X_2=0)=0.15$ 
+    donde la celda de la primer fila y primer columna se lee $P(X_1=0, X_2=0)=0.15$
 
     i. Obtenga la distribución marginal de $X_1$.
     i. Obtenga la distribución marginal de $X_2$.
@@ -113,8 +113,8 @@ probabilidad.
 
 1.  **Distribuciones marginales y condicionales de una normal**
 
-    Sean $X_1$ y $X_2$ tales que el vector $(X_1, X_2)$ sigue una distribución normal 
-    bivariada con $\mathbb{E}(X_1) = \mathbb{E}(X_2) = 0$, 
+    Sean $X_1$ y $X_2$ tales que el vector $(X_1, X_2)$ sigue una distribución normal
+    bivariada con $\mathbb{E}(X_1) = \mathbb{E}(X_2) = 0$,
     $\mathbb{V}(X_1) = \mathbb{V}(X_2) = 1$ y  $\text{cor}(X_1, X_2) = \rho$
 
     i. Encuentre la distribución marginal de $X_1$.
@@ -123,25 +123,25 @@ probabilidad.
 
 1.  📌 **De bolas, pesos y distribuciones de probabilidad**
 
-    Suponga una urna $S$ contiene un 40% de bolas verdes y un 60% de bolas rojas, y otra
-    urna $E$ contiene un 60% de bolas verdes y un 40% de bolas rojas.
-    Una persona arroja una moneda de un peso argentino y selecciona una bola de una de 
-    las dos urnas dependiendo de si la moneda en sol o escudo. 
-    Si la moneda cae en sol, saca una bola de la urna $S$ y si la moneda cae en escudo, 
-    saca una bola de la urna $E$.  
-    
+    Suponga una urna $S$ contiene un 30% de bolas verdes y un 70% de bolas rojas, y otra
+    urna $E$ contiene un 45% de bolas verdes y un 55% de bolas rojas.
+    Una persona arroja una moneda de un peso argentino y selecciona una bola de una de
+    las dos urnas dependiendo de si la moneda en sol o escudo.
+    Si la moneda cae en sol, saca una bola de la urna $S$ y si la moneda cae en escudo,
+    saca una bola de la urna $E$.
+
     Considere las siguientes variables aleatorias:
 
     $$
     \begin{aligned}
-    X &= 
+    X &=
         \begin{cases}
         1 & \text{Si la moneda cae en sol} \\
         0 & \text{Si la moneda cae en escudo}
         \end{cases}
     \\
     \\
-    Y &= 
+    Y &=
         \begin{cases}
         1 & \text{Si la bola es verde} \\
         0 & \text{Si la bola es roja}
@@ -152,7 +152,7 @@ probabilidad.
     i. Encuentre la distribución conjunta de $X$ e $Y$ en una tabla.
     i. Encuentre $\mathbb{E}(Y)$. ¿Cuál es la probabilidad de que la bola sea verde?
     i. Encuentre $\mathbb{V}(Y \mid X = 0)$, $\mathbb{V}(Y \mid X = 1)$ Y $\mathbb{V}(Y)$.
-    Considerando a la varianza como una medida de incertidumbre, explique de manera 
+    Considerando a la varianza como una medida de incertidumbre, explique de manera
     intuitiva por que algunas variancias son mas grandes que otras.
     i. Suponga que observa que la bola es verde. ¿Cuál es la probabilidad de que la moneda
     haya caido en escudo?
@@ -169,16 +169,16 @@ probabilidad.
 1.  **Luces de giro**
 
     Las luces de giro en los automóviles se utilizan para indicar que se va a realizar
-    alguna acción determinada. La acción depende del escenario donde se conduzca 
-    (urbano, ruta, rotonda, etc.) y la luz que se encienda (izquierda o derecha). 
-    En el uso urbano, se debe colocar la luz de giro correspondiente para indicar que se 
+    alguna acción determinada. La acción depende del escenario donde se conduzca
+    (urbano, ruta, rotonda, etc.) y la luz que se encienda (izquierda o derecha).
+    En el uso urbano, se debe colocar la luz de giro correspondiente para indicar que se
     va a girar en un sentido determinado. Sin embargo, esto no siempre se realiza.
     Muchas veces sucede que un vehículo no muestra luz de giro, y sin embargo, gira.
-    Aunque menos frecuente, también se da que el vehículo coloca la luz de giro, pero no 
+    Aunque menos frecuente, también se da que el vehículo coloca la luz de giro, pero no
     gira.  Un estudio reveló un vehículo gira en una de cada diez intersecciones que cruza,
-    que la probabilidad de colocar la luz de giro cuando se va a doblar es de 0.87 y que 
+    que la probabilidad de colocar la luz de giro cuando se va a doblar es de 0.87 y que
     la probabilidad de que se coloque la luz de giro cuando no se va a doblar es de 0.04.
-    Si observa que un vehículo coloca la luz de giro, ¿cuál es la probabilidad de que 
+    Si observa que un vehículo coloca la luz de giro, ¿cuál es la probabilidad de que
     efectivamente doble?
 
 1.  **Problema del cumpleaños**
@@ -200,11 +200,11 @@ probabilidad.
     ```
 
 
-1.  🧩 **Problema de concordancia de de Montmort** 
+1.  🧩 **Problema de concordancia de de Montmort**
 
     Considere un mazo de $n$ cartas bien mezcladas, etiquetadas con números de 1 a $n$.
     Se seleccionan las cartas de a una y se la da vuelta, diciendo en voz alta el número
-    de cartas dadas vueltas desde 1 a $n$. Para ganar el juego tiene que coincidir el 
+    de cartas dadas vueltas desde 1 a $n$. Para ganar el juego tiene que coincidir el
     número que se dice en voz alta con el número de la carta que se está dando vuelta --
     por ejemplo, si la séptima carta dada vuelta contiene el número 7.
     ¿Cuál es la probabilidad de ganar? ¿Depende de $n$?
@@ -213,9 +213,9 @@ probabilidad.
 
 1.  🧩 **Problema de los dos sobres**
 
-    Supongamos que te presentan dos sobres con dinero. Un sobre contiene el doble de 
+    Supongamos que te presentan dos sobres con dinero. Un sobre contiene el doble de
     dinero que el otro, pero a simple vista son indistinguibles. Se te pide que escojas
-    uno de los sobres. Antes de abrirlo se te ofrece la posibilidad de cambiarlo por el 
+    uno de los sobres. Antes de abrirlo se te ofrece la posibilidad de cambiarlo por el
     otro. ¿Cambiarías el sobre? ¿Por qué?
 
     <!-- https://es.wikipedia.org/wiki/Paradoja_de_los_dos_sobres -->
