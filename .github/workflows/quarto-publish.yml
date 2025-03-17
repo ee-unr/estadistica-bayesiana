@@ -38,6 +38,7 @@ jobs:
         with:
           install-quarto: false
           packages: |
+            any::bayesplot@1.11.1
             any::dplyr@1.1.4
             any::ggdist@3.3.2
             any::ggplot2@3.5.1
