@@ -167,19 +167,19 @@ Finalmente, la probabilidad de interés $p(u\mid n_A,N)$ es
 . . .
 
 $$
-p(u\mid n_A,N) = \frac{p(n_A\mid u,N)p(u)}{p(n_A\mid N)}
+p(u\mid n_A,N) = \frac{\color{#00008B}{p(n_A\mid u,N)p(u)}}{p(n_A\mid N)}
 $$
 
 . . .
 
 $$
-p(u\mid n_A,N) = {N \choose n_A} \left( \frac{u}{10} \right)^{n_A} \left( 1 - \frac{u}{10} \right)^{N-n_A} \frac{1}{11} \frac{1}{p(n_A\mid N)}
+p(u\mid n_A,N) = \color{#00008B}{{N \choose n_A} \left( \frac{u}{10} \right)^{n_A} \left( 1 - \frac{u}{10} \right)^{N-n_A} \frac{1}{11}} \frac{1}{p(n_A\mid N)}
 $$
 
 . . .
 
 - $N$ es una cantidad fija
-- $n_N$ es 3, otra cantidad fija: lo que observamos al realizar el experimento
+- $n_A$ es 3, otra cantidad fija: lo que observamos al realizar el experimento
 - $u$ es la cantidad desconocida
 
 . . .
