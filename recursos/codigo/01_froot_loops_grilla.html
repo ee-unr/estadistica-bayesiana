@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>02 - ¡Ostras! ¡Estoy haciendo inferencia bayesiana! – Estadística Bayesiana</title>
+<title>01 - Liberen al Tucán Sam – Estadística Bayesiana</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -188,7 +188,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/codigo/index.html">Código</a></li><li class="breadcrumb-item"><a href="../../recursos/codigo/02_ostras.html">02 - ¡Ostras! ¡Estoy haciendo inferencia bayesiana!</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/codigo/index.html">Código</a></li><li class="breadcrumb-item"><a href="../../recursos/codigo/01_froot_loops_grilla.html">01 - Liberen al Tucán Sam</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -213,8 +213,8 @@ window.Quarto = {
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/codigo/02_ostras.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">02 - ¡Ostras! ¡Estoy haciendo inferencia bayesiana!</span></a>
+  <a href="../../recursos/codigo/01_froot_loops_grilla.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">01 - Liberen al Tucán Sam</span></a>
   </div>
 </li>
       </ul>
@@ -269,9 +269,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/codigo/index.html">Código</a></li><li class="breadcrumb-item"><a href="../../recursos/codigo/02_ostras.html">02 - ¡Ostras! ¡Estoy haciendo inferencia bayesiana!</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/codigo/index.html">Código</a></li><li class="breadcrumb-item"><a href="../../recursos/codigo/01_froot_loops_grilla.html">01 - Liberen al Tucán Sam</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">02 - ¡Ostras! ¡Estoy haciendo inferencia bayesiana!</h1>
+<h1 class="title">01 - Liberen al Tucán Sam</h1>
 </div>
 
 
@@ -288,198 +288,150 @@ window.Quarto = {
 </header>
 
 
-<p>El siguiente programa muestra diferentes alternativas para obtener la densidad de la distribución <em>a posteriori</em> en el ejercicio ¡Ostras! ¡Estoy haciendo inferencia bayesiana! de la Práctica 1.</p>
-<p>Tener presente:</p>
-<p><span class="math display">\[
-\begin{aligned}
-p(\boldsymbol{y} \mid \lambda) &amp;= \prod_{i=1}^n p(y_i \mid \lambda) \\
-p(\boldsymbol{y} \mid \lambda) &amp;= \prod_{i=1}^n {\frac{e^{-\lambda}\lambda^{y_i}}{y_i!}} \\
-&amp; = \frac{e^{-n\lambda}\lambda^{\sum_i y_i}}{\prod_{i=1}^{n}{y_i!}} \\
-\log p(\boldsymbol{y} \mid \lambda) &amp;= \sum_{i=1}^{n} p(y_i \mid \lambda)
-\end{aligned}
-\]</span></p>
+<p>En este recurso se muestra como usar R para resolver el ejercicio de los Froot Loops hecho durante la primera clase.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Valores observados de "Y"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">64</span>, <span class="dv">13</span>, <span class="dv">33</span>, <span class="dv">18</span>, <span class="dv">30</span>, <span class="dv">20</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Altura de la densidad a priori uniforme</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>prior <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span> <span class="sc">/</span> <span class="dv">100</span>, <span class="dv">400</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Grilla con los valorse de lambda</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>lambda_grid <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="at">length.out =</span> <span class="dv">400</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Opción 1</strong>: Replicar la fórmula de la función de verosimilitud en una función de R</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>f_likelihood <span class="ot">&lt;-</span> <span class="cf">function</span>(lambda, y_vector) {</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(y_vector)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  y_suma <span class="ot">&lt;-</span> <span class="fu">sum</span>(y_vector)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  denominador <span class="ot">&lt;-</span> <span class="fu">prod</span>(<span class="fu">factorial</span>(y_vector))</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  (<span class="fu">exp</span>(<span class="sc">-</span> n <span class="sc">*</span> lambda) <span class="sc">*</span> lambda <span class="sc">^</span> y_suma) <span class="sc">/</span> denominador</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>likelihood <span class="ot">&lt;-</span> <span class="fu">f_likelihood</span>(lambda_grid, y)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>posterior_ <span class="ot">&lt;-</span> prior <span class="sc">*</span> likelihood</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>posterior_</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En base al <em>prior</em> elicitado grupalmente en clase:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Determinar grilla de puntos</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pi_grid <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">11</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pi_grid)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  [1]  0.000000e+00 8.341450e-313 7.104056e-260 3.488800e-229 1.344921e-207
-  [6] 5.316241e-191 1.468223e-177 2.693061e-166 1.258167e-156 3.562976e-148
- [11] 1.105533e-140 5.733178e-134 6.787109e-128 2.324156e-122 2.767353e-117
- [16] 1.325696e-112 2.873971e-108 3.104267e-104 1.809183e-100  6.081954e-97
- [21]  1.247863e-93  1.639788e-90  1.438521e-87  8.732918e-85  3.785569e-82
- [26]  1.204418e-79  2.881624e-77  5.297329e-75  7.627146e-73  8.749872e-71
- [31]  8.122076e-69  6.185727e-67  3.914092e-65  2.081334e-63  9.397953e-62
- [36]  3.637672e-60  1.217538e-58  3.551973e-57  9.098475e-56  2.060222e-54
- [41]  4.149713e-53  7.478107e-52  1.212173e-50  1.776239e-49  2.363842e-48
- [46]  2.869426e-47  3.189974e-46  3.260149e-45  3.073864e-44  2.682700e-43
- [51]  2.173984e-42  1.640637e-41  1.156224e-40  7.629166e-40  4.724840e-39
- [56]  2.752848e-38  1.512230e-37  7.848722e-37  3.856409e-36  1.797148e-35
- [61]  7.957451e-35  3.353418e-34  1.347173e-33  5.167090e-33  1.894912e-32
- [66]  6.653603e-32  2.239884e-31  7.238448e-31  2.248240e-30  6.719236e-30
- [71]  1.934454e-29  5.370553e-29  1.439272e-28  3.726947e-28  9.333742e-28
- [76]  2.262769e-27  5.314719e-27  1.210418e-26  2.675170e-26  5.741957e-26
- [81]  1.197791e-25  2.430089e-25  4.798220e-25  9.226574e-25  1.728934e-24
- [86]  3.159075e-24  5.631721e-24  9.800977e-24  1.666033e-23  2.767673e-23
- [91]  4.495581e-23  7.143525e-23  1.110973e-22  1.691846e-22  2.523943e-22
- [96]  3.690191e-22  5.289958e-22  7.438185e-22  1.026279e-21  1.389998e-21
-[101]  1.848737e-21  2.415490e-21  3.101393e-21  3.914514e-21  4.858608e-21
-[106]  5.931961e-21  7.126440e-21  8.426877e-21  9.810887e-21  1.124921e-20
-[111]  1.270659e-20  1.414317e-20  1.551637e-20  1.678304e-20  1.790181e-20
-[116]  1.883539e-20  1.955269e-20  2.003058e-20  2.025504e-20  2.022183e-20
-[121]  1.993649e-20  1.941370e-20  1.867617e-20  1.775307e-20  1.667820e-20
-[126]  1.548806e-20  1.421993e-20  1.291006e-20  1.159221e-20  1.029641e-20
-[131]  9.048144e-21  7.867903e-21  6.771014e-21  5.767820e-21  4.864064e-21
-[136]  4.061454e-21  3.358320e-21  2.750318e-21  2.231130e-21  1.793113e-21
-[141]  1.427871e-21  1.126747e-21  8.812014e-22  6.831092e-22  5.249581e-22
-[146]  3.999734e-22  3.021764e-22  2.263932e-22  1.682243e-22  1.239895e-22
-[151]  9.065646e-23  6.576228e-23  4.733305e-23  3.380696e-23  2.396323e-23
-[156]  1.685873e-23  1.177299e-23  8.161536e-24  5.617212e-24  3.838602e-24
-[161]  2.604758e-24  1.755262e-24  1.174720e-24  7.808739e-25  5.156059e-25
-[166]  3.382054e-25  2.203960e-25  1.426992e-25  9.180523e-26  5.869137e-26
-[171]  3.728846e-26  2.354505e-26  1.477683e-26  9.218273e-27  5.716563e-27
-[176]  3.524253e-27  2.160105e-27  1.316397e-27  7.976853e-28  4.806581e-28
-[181]  2.880237e-28  1.716462e-28  1.017374e-28  5.997816e-29  3.517201e-29
-[186]  2.051719e-29  1.190639e-29  6.873967e-30  3.948428e-30  2.256596e-30
-[191]  1.283274e-30  7.261782e-31  4.089292e-31  2.291691e-31  1.278170e-31
-[196]  7.095239e-32  3.920239e-32  2.155985e-32  1.180285e-32  6.432150e-33
-[201]  3.489582e-33  1.884768e-33  1.013513e-33  5.426324e-34  2.892720e-34
-[206]  1.535499e-34  8.116204e-35  4.272035e-35  2.239301e-35  1.168970e-35
-[211]  6.077494e-36  3.146971e-36  1.623022e-36  8.337508e-37  4.266228e-37
-[216]  2.174523e-37           Inf           Inf           Inf           Inf
-[221]           Inf           Inf           Inf           Inf           Inf
-[226]           Inf           Inf           Inf           Inf           Inf
-[231]           Inf           Inf           Inf           Inf           Inf
-[236]           Inf           Inf           Inf           Inf           Inf
-[241]           Inf           Inf           Inf           Inf           Inf
-[246]           Inf           Inf           Inf           Inf           Inf
-[251]           Inf           Inf           Inf           Inf           Inf
-[256]           Inf           Inf           Inf           Inf           Inf
-[261]           Inf           Inf           Inf           Inf           Inf
-[266]           Inf           Inf           Inf           Inf           Inf
-[271]           Inf           Inf           Inf           Inf           Inf
-[276]           Inf           Inf           Inf           Inf           Inf
-[281]           Inf           Inf           Inf           Inf           Inf
-[286]           Inf           Inf           Inf           Inf           Inf
-[291]           Inf           Inf           Inf           Inf           Inf
-[296]           Inf           Inf           Inf           Inf           Inf
-[301]           Inf           Inf           Inf           Inf           Inf
-[306]           Inf           Inf           Inf           Inf           Inf
-[311]           Inf           Inf           Inf           Inf           Inf
-[316]           Inf           Inf           Inf           Inf           Inf
-[321]           Inf           Inf           Inf           Inf           Inf
-[326]           Inf           Inf           Inf           Inf           Inf
-[331]           Inf           Inf           Inf           Inf           Inf
-[336]           Inf           Inf           Inf           Inf           Inf
-[341]           Inf           Inf           Inf           Inf           Inf
-[346]           Inf           Inf           Inf           Inf           Inf
-[351]           Inf           Inf           Inf           Inf           Inf
-[356]           Inf           Inf           Inf           Inf           Inf
-[361]           Inf           Inf           Inf           Inf           Inf
-[366]           Inf           Inf           Inf           Inf           Inf
-[371]           Inf           Inf           Inf           Inf           Inf
-[376]           Inf           Inf           Inf           Inf           Inf
-[381]           Inf           Inf           Inf           Inf           Inf
-[386]           Inf           Inf           Inf           Inf           Inf
-[391]           Inf           Inf           Inf           Inf           Inf
-[396]           Inf           Inf           Inf           Inf           Inf</code></pre>
+<pre><code> [1] 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0</code></pre>
 </div>
-</div>
-<p>La densidad a posteriori no normalizada resulta <code>Inf</code> en algunos casos. Esto indica que el computo no es estable. Veamos otras alternativas.</p>
-<p><strong>Opción 2</strong>: Utilizar la funcion <code>dpois</code> de R para evaluar la función de masa de probabilidad en cada observación y luego obtener la función de verosimilitud multiplicando estos resultados.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>f_likelihood <span class="ot">&lt;-</span> <span class="cf">function</span>(lambda, y_vector) {</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  output <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">length</span>(lambda))</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(output)) {</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    output[i] <span class="ot">&lt;-</span> <span class="fu">prod</span>(<span class="fu">dpois</span>(y_vector, lambda[i]))</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  output</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>likelihood <span class="ot">&lt;-</span> <span class="fu">f_likelihood</span>(lambda_grid, y)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>posterior_ <span class="ot">&lt;-</span> prior <span class="sc">*</span> likelihood</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>area <span class="ot">&lt;-</span> <span class="fu">integrate</span>(f_likelihood, <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">100</span>, <span class="at">y_vector =</span> y)<span class="sc">$</span>value</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>posterior <span class="ot">&lt;-</span> posterior_ <span class="sc">/</span> area</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">grupo =</span> <span class="fu">factor</span>(</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"prior"</span>, <span class="st">"likelihood"</span>, <span class="st">"posterior"</span>), <span class="at">each =</span> <span class="dv">400</span>), </span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"prior"</span>, <span class="st">"likelihood"</span>, <span class="st">"posterior"</span>),</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">ordered =</span> <span class="cn">TRUE</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">lambda =</span> <span class="fu">rep</span>(lambda_grid, <span class="dv">3</span>),</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">valor =</span> <span class="fu">c</span>(prior, likelihood, posterior)</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df) <span class="sc">+</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> lambda, <span class="at">y =</span> valor)) <span class="sc">+</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> grupo, <span class="at">scales =</span> <span class="st">"free_y"</span>) </span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Especificar prior</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Tenemos $1000 y los dividimos en los diferentes valores de "pi"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>prior_ <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">50</span>, <span class="dv">150</span>, <span class="dv">600</span>, <span class="dv">150</span>, <span class="dv">50</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>prior <span class="ot">&lt;-</span> prior_ <span class="sc">/</span> <span class="fu">sum</span>(prior_)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Recolectar datos</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>cantidad_de_cereales <span class="ot">&lt;-</span> <span class="dv">29</span> <span class="co"># n</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>cantidad_de_cereales_amarillos <span class="ot">&lt;-</span> <span class="dv">7</span> <span class="co"># y</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular verosimilitud para cada valor de "pi" en la grilla</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>likelihood <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  cantidad_de_cereales_amarillos,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  cantidad_de_cereales,</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  pi_grid</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtener posterior</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>posterior_ <span class="ot">&lt;-</span> prior <span class="sc">*</span> likelihood</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>posterior <span class="ot">&lt;-</span> posterior_ <span class="sc">/</span> <span class="fu">sum</span>(posterior_) <span class="co"># normalización</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar prior</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>plt_prior <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> pi_grid, <span class="at">y =</span> prior) <span class="sc">|&gt;</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">xend =</span> x, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">yend =</span> y), <span class="at">linewidth =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), <span class="at">size =</span> <span class="fl">2.4</span>) <span class="sc">+</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> pi_grid) <span class="sc">+</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">expression</span>(pi),</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">expression</span>(p <span class="sc">~</span> <span class="st">"("</span> <span class="sc">~</span> pi <span class="sc">~</span> <span class="st">")"</span>),</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribución a priori"</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar verosimilitud</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>plt_likelihood <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> pi_grid, <span class="at">y =</span> likelihood) <span class="sc">|&gt;</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">xend =</span> x, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">yend =</span> y), <span class="at">linewidth =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), <span class="at">size =</span> <span class="fl">2.4</span>) <span class="sc">+</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> pi_grid) <span class="sc">+</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">expression</span>(pi),</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">expression</span>(p <span class="sc">~</span> <span class="st">"(y | "</span> <span class="sc">~</span> pi <span class="sc">~</span> <span class="st">")"</span>),</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Función de verosimilitud"</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar posterior</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>plt_posterior <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> pi_grid, <span class="at">y =</span> posterior) <span class="sc">|&gt;</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">xend =</span> x, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">yend =</span> y), <span class="at">linewidth =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), <span class="at">size =</span> <span class="fl">2.4</span>) <span class="sc">+</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> pi_grid) <span class="sc">+</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">expression</span>(pi),</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">expression</span>(p <span class="sc">~</span> <span class="st">"("</span> <span class="sc">~</span> pi <span class="sc">~</span> <span class="st">" | y)"</span>),</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribución a posteriori"</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Concatenar graficos</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>plt_prior <span class="sc">|</span> plt_likelihood <span class="sc">|</span> plt_posterior</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="02_ostras_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1152"></p>
+<p><img src="01_froot_loops_grilla_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1152"></p>
 </figure>
 </div>
 </div>
 </div>
-<p><strong>Opción 2</strong>: Utilizar la funcion <code>dpois</code> de R, pero hacer cuentas en escalas logaritmica</p>
+<p>En base a un <em>prior</em> beta:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>f_likelihood <span class="ot">&lt;-</span> <span class="cf">function</span>(lambda, y_vector) {</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  output <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">length</span>(lambda))</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(output)) {</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># El producto se transforma en suma</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    output[i] <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">dpois</span>(y_vector, lambda[i], <span class="at">log =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Volver a la escala original</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">exp</span>(output)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>} </span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>likelihood <span class="ot">&lt;-</span> <span class="fu">f_likelihood</span>(lambda_grid, y)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>posterior_ <span class="ot">&lt;-</span> prior <span class="sc">*</span> likelihood</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>area <span class="ot">&lt;-</span> <span class="fu">integrate</span>(f_likelihood, <span class="at">lower =</span> <span class="dv">0</span>, <span class="at">upper =</span> <span class="dv">100</span>, <span class="at">y_vector =</span> y)<span class="sc">$</span>value</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>posterior <span class="ot">&lt;-</span> posterior_ <span class="sc">/</span> area</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">grupo =</span> <span class="fu">factor</span>(</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"prior"</span>, <span class="st">"likelihood"</span>, <span class="st">"posterior"</span>), <span class="at">each =</span> <span class="dv">400</span>), </span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"prior"</span>, <span class="st">"likelihood"</span>, <span class="st">"posterior"</span>),</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">ordered =</span> <span class="cn">TRUE</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">lambda =</span> <span class="fu">rep</span>(lambda_grid, <span class="dv">3</span>),</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">valor =</span> <span class="fu">c</span>(prior, likelihood, posterior)</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df) <span class="sc">+</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> lambda, <span class="at">y =</span> valor)) <span class="sc">+</span></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> grupo, <span class="at">scales =</span> <span class="st">"free_y"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Determinar grilla de puntos</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>pi_grid <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">200</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtener prior</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>prior_ <span class="ot">&lt;-</span> <span class="fu">dbeta</span>(pi_grid, <span class="dv">3</span>, <span class="dv">7</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>prior <span class="ot">&lt;-</span> prior_ <span class="sc">/</span> <span class="fu">sum</span>(prior_)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular verosimilitud para cada valor de "pi"</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>likelihood <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  cantidad_de_cereales_amarillos,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  cantidad_de_cereales,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  pi_grid</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtener posterior</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>posterior_ <span class="ot">&lt;-</span> prior <span class="sc">*</span> likelihood</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>posterior <span class="ot">&lt;-</span> posterior_ <span class="sc">/</span> <span class="fu">sum</span>(posterior_)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar prior</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>plt_prior <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> pi_grid, <span class="at">y =</span> prior) <span class="sc">|&gt;</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">expression</span>(pi),</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">expression</span>(p <span class="sc">~</span> <span class="st">"("</span> <span class="sc">~</span> pi <span class="sc">~</span> <span class="st">")"</span>),</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribución a priori"</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar verosimilitud</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>plt_likelihood <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> pi_grid, <span class="at">y =</span> likelihood) <span class="sc">|&gt;</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">expression</span>(pi),</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">expression</span>(p <span class="sc">~</span> <span class="st">"(y | "</span> <span class="sc">~</span> pi <span class="sc">~</span> <span class="st">")"</span>),</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Función de verosimilitud"</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar posterior</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>plt_posterior <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> pi_grid, <span class="at">y =</span> posterior) <span class="sc">|&gt;</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">expression</span>(pi),</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">expression</span>(p <span class="sc">~</span> <span class="st">"("</span> <span class="sc">~</span> pi <span class="sc">~</span> <span class="st">" | y)"</span>), </span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribución a posteriori"</span></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Concatenar graficos</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>plt_prior <span class="sc">|</span> plt_likelihood <span class="sc">|</span> plt_posterior</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="02_ostras_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1152"></p>
+<p><img src="01_froot_loops_grilla_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1152"></p>
 </figure>
 </div>
 </div>
 </div>
+<p><strong>Preguntas</strong></p>
+<ul>
+<li>¿Qué pasa con el <em>prior</em> si incrementamos el <span class="math inline">\(n\)</span>?</li>
+<li>¿Qué pasa con el <em>posterior</em> si incrementamos el <span class="math inline">\(n\)</span>?</li>
+</ul>
 
 
 
