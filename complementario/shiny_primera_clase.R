@@ -302,7 +302,7 @@ server <- function(input, output, session) {
     ggplot(df, aes(x = theta, y = likelihood)) +
       geom_segment(aes(x = theta, xend = theta, y = 0, yend = likelihood), color = "#21dbbc", linewidth = 0.8) +
       geom_point(aes(x = theta, y = likelihood), color = "#21dbbc", size = 2.4) +
-      labs(x = "π (Theta)", y = "") +
+      labs(x = "π (pi)", y = "") +
       scale_x_continuous(breaks = priorValues()$theta) +
       scale_y_continuous(limits = c(0,1.05)) +
       ggtitle("Verosimilitud") +
@@ -315,7 +315,7 @@ server <- function(input, output, session) {
     ggplot(df, aes(x = theta, y = likelihood)) +
       geom_segment(aes(x = theta, xend = theta, y = 0, yend = likelihood), color = "#21dbbc", linewidth = 0.8) +
       geom_point(aes(x = theta, y = likelihood), color = "#21dbbc", size = 2.4) +
-      labs(x = "π (Theta)", y = "") +
+      labs(x = "π (pi)", y = "") +
       scale_x_continuous(breaks = priorValues()$theta) +
       scale_y_continuous(limits = c(0,1.05)) +
       ggtitle("Verosimilitud") +
@@ -329,7 +329,7 @@ server <- function(input, output, session) {
     ggplot(df, aes(x = theta, y = posterior)) +
       geom_segment(aes(x = theta, xend = theta, y = 0, yend = posterior), color = "#FF729F", linewidth = 0.8) +
       geom_point(aes(x = theta, y = posterior), color = "#FF729F", size = 2.4) +
-      labs(x = "π (Theta)", y = "") +
+      labs(x = "π (pi)", y = "") +
       scale_x_continuous(breaks = priorValues()$theta) +
       scale_y_continuous(limits = c(0,1.05)) +
       ggtitle("Creencia final") +
