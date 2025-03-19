@@ -164,7 +164,7 @@ server <- function(input, output, session) {
     datatable(
       df,
       editable = list(target = "column", disable = list(columns = 1)),
-      colnames = c("θ", "p(θ)"),
+      colnames = c("π", "p(π)"),
       options = list(dom = "t", ordering = FALSE, paging = FALSE)
     )
   })
@@ -197,14 +197,14 @@ server <- function(input, output, session) {
   output$tableB2 <- renderDT({
     df <- priorValues()
     df$theta <- sprintf("%.3f", df$theta)
-    datatable(df, colnames = c("θ", "p(θ)"),
+    datatable(df, colnames = c("π", "p(π)"),
               options = list(dom = 't', ordering = FALSE, paging = FALSE))
   })
   
   output$tableB3 <- renderDT({
     df <- priorValues()
     df$theta <- sprintf("%.3f", df$theta)
-    datatable(df, colnames = c("θ", "p(θ)"),
+    datatable(df, colnames = c("π", "p(π)"),
               options = list(dom = 't', ordering = FALSE, paging = FALSE))
   })
   
@@ -224,14 +224,14 @@ server <- function(input, output, session) {
   output$tableD <- renderDT({
     df <- likelihood_values()[, c("theta", "likelihood")]
     df$theta <- sprintf("%.3f", df$theta)
-    datatable(df, colnames = c("θ", "p(y|θ)"),
+    datatable(df, colnames = c("π", "p(y|π)"),
               options = list(dom = 't', ordering = FALSE, paging = FALSE))
   })
   
   output$tableD2 <- renderDT({
     df <- likelihood_values()[, c("theta", "likelihood")]
     df$theta <- sprintf("%.3f", df$theta)
-    datatable(df, colnames = c("θ", "p(y|θ)"),
+    datatable(df, colnames = c("π", "p(y|π)"),
               options = list(dom = 't', ordering = FALSE, paging = FALSE))
   })
   
@@ -251,7 +251,7 @@ server <- function(input, output, session) {
   output$tableF <- renderDT({
     df <- posterior_values()[, c("theta", "posterior_", "posterior")]
     df$theta <- sprintf("%.3f", df$theta)
-    datatable(df, colnames = c("θ", "p(θ) × p(y|θ)", "p(θ|y)"),
+    datatable(df, colnames = c("π", "p(π) × p(y|π)", "p(π|y)"),
               options = list(dom = 't', ordering = FALSE, paging = FALSE))
   })
   
@@ -259,11 +259,11 @@ server <- function(input, output, session) {
   output$plotA <- renderPlot({
     df <- priorValues()
     ggplot(df) +
-      geom_segment(aes(x = theta, xend = theta, y = 0, yend = prior), color = "blue", linewidth = 0.8) +
-      geom_point(aes(x = theta, y = prior), color = "blue", size = 2.4) +
-      labs(x = "θ", y = "") +
+      geom_segment(aes(x = theta, xend = theta, y = 0, yend = prior), color = "#56CBF9", linewidth = 0.8) +
+      geom_point(aes(x = theta, y = prior), color = "#56CBF9", size = 2.4) +
+      labs(x = "π", y = "") +
       scale_x_continuous(breaks = priorValues()$theta) +
-      scale_y_continuous(limits = c(0,0.6)) +
+      scale_y_continuous(limits = c(0,1.05)) +
       ggtitle("Creencia inicial") +
       theme_minimal() +
       theme(plot.title = element_text(hjust = 0.5))
@@ -273,11 +273,11 @@ server <- function(input, output, session) {
   output$plotA2 <- renderPlot({
     df <- priorValues()
     ggplot(df) +
-      geom_segment(aes(x = theta, xend = theta, y = 0, yend = prior), color = "blue", linewidth = 0.8) +
-      geom_point(aes(x = theta, y = prior), color = "blue", size = 2.4) +
-      labs(x = "θ", y = "") +
+      geom_segment(aes(x = theta, xend = theta, y = 0, yend = prior), color = "#56CBF9", linewidth = 0.8) +
+      geom_point(aes(x = theta, y = prior), color = "#56CBF9", size = 2.4) +
+      labs(x = "π", y = "") +
       scale_x_continuous(breaks = priorValues()$theta) +
-      scale_y_continuous(limits = c(0,0.6)) +
+      scale_y_continuous(limits = c(0,1.05)) +
       ggtitle("Creencia inicial") +
       theme_minimal() +
       theme(plot.title = element_text(hjust = 0.5))
@@ -286,11 +286,11 @@ server <- function(input, output, session) {
   output$plotA3 <- renderPlot({
     df <- priorValues()
     ggplot(df) +
-      geom_segment(aes(x = theta, xend = theta, y = 0, yend = prior), color = "blue", linewidth = 0.8) +
-      geom_point(aes(x = theta, y = prior), color = "blue", size = 2.4) +
-      labs(x = "θ", y = "") +
+      geom_segment(aes(x = theta, xend = theta, y = 0, yend = prior), color = "#56CBF9", linewidth = 0.8) +
+      geom_point(aes(x = theta, y = prior), color = "#56CBF9", size = 2.4) +
+      labs(x = "π", y = "") +
       scale_x_continuous(breaks = priorValues()$theta) +
-      scale_y_continuous(limits = c(0,0.6)) +
+      scale_y_continuous(limits = c(0,1.05)) +
       ggtitle("Creencia inicial") +
       theme_minimal() +
       theme(plot.title = element_text(hjust = 0.5))
@@ -300,11 +300,11 @@ server <- function(input, output, session) {
   output$plotC <- renderPlot({
     df <- likelihood_values()
     ggplot(df, aes(x = theta, y = likelihood)) +
-      geom_segment(aes(x = theta, xend = theta, y = 0, yend = likelihood), color = "red", linewidth = 0.8) +
-      geom_point(aes(x = theta, y = likelihood), color = "red", size = 2.4) +
-      labs(x = "θ (Theta)", y = "") +
+      geom_segment(aes(x = theta, xend = theta, y = 0, yend = likelihood), color = "#21dbbc", linewidth = 0.8) +
+      geom_point(aes(x = theta, y = likelihood), color = "#21dbbc", size = 2.4) +
+      labs(x = "π (Theta)", y = "") +
       scale_x_continuous(breaks = priorValues()$theta) +
-      scale_y_continuous(limits = c(0,0.6)) +
+      scale_y_continuous(limits = c(0,1.05)) +
       ggtitle("Verosimilitud") +
       theme_minimal() +
       theme(plot.title = element_text(hjust = 0.5))
@@ -313,11 +313,11 @@ server <- function(input, output, session) {
   output$plotC2 <- renderPlot({
     df <- likelihood_values()
     ggplot(df, aes(x = theta, y = likelihood)) +
-      geom_segment(aes(x = theta, xend = theta, y = 0, yend = likelihood), color = "red", linewidth = 0.8) +
-      geom_point(aes(x = theta, y = likelihood), color = "red", size = 2.4) +
-      labs(x = "θ (Theta)", y = "") +
+      geom_segment(aes(x = theta, xend = theta, y = 0, yend = likelihood), color = "#21dbbc", linewidth = 0.8) +
+      geom_point(aes(x = theta, y = likelihood), color = "#21dbbc", size = 2.4) +
+      labs(x = "π (Theta)", y = "") +
       scale_x_continuous(breaks = priorValues()$theta) +
-      scale_y_continuous(limits = c(0,0.6)) +
+      scale_y_continuous(limits = c(0,1.05)) +
       ggtitle("Verosimilitud") +
       theme_minimal() +
       theme(plot.title = element_text(hjust = 0.5))
@@ -327,11 +327,11 @@ server <- function(input, output, session) {
   output$plotE <- renderPlot({
     df <- posterior_values()
     ggplot(df, aes(x = theta, y = posterior)) +
-      geom_segment(aes(x = theta, xend = theta, y = 0, yend = posterior), color = "purple", linewidth = 0.8) +
-      geom_point(aes(x = theta, y = posterior), color = "purple", size = 2.4) +
-      labs(x = "θ (Theta)", y = "") +
+      geom_segment(aes(x = theta, xend = theta, y = 0, yend = posterior), color = "#FF729F", linewidth = 0.8) +
+      geom_point(aes(x = theta, y = posterior), color = "#FF729F", size = 2.4) +
+      labs(x = "π (Theta)", y = "") +
       scale_x_continuous(breaks = priorValues()$theta) +
-      scale_y_continuous(limits = c(0,0.6)) +
+      scale_y_continuous(limits = c(0,1.05)) +
       ggtitle("Creencia final") +
       theme_minimal() +
       theme(plot.title = element_text(hjust = 0.5))
