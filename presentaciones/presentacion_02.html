@@ -485,18 +485,18 @@ p(n_A\mid N) &amp; = &amp; \sum_u p(u,n_A\mid N) \\
 <p>Finalmente, la probabilidad de interés <span class="math inline">\(p(u\mid n_A,N)\)</span> es</p>
 <div class="fragment">
 <p><span class="math display">\[
-p(u\mid n_A,N) = \frac{p(n_A\mid u,N)p(u)}{p(n_A\mid N)}
+p(u\mid n_A,N) = \frac{\color{#00008B}{p(n_A\mid u,N)p(u)}}{p(n_A\mid N)}
 \]</span></p>
 </div>
 <div class="fragment">
 <p><span class="math display">\[
-p(u\mid n_A,N) = {N \choose n_A} \left( \frac{u}{10} \right)^{n_A} \left( 1 - \frac{u}{10} \right)^{N-n_A} \frac{1}{11} \frac{1}{p(n_A\mid N)}
+p(u\mid n_A,N) = \color{#00008B}{{N \choose n_A} \left( \frac{u}{10} \right)^{n_A} \left( 1 - \frac{u}{10} \right)^{N-n_A} \frac{1}{11}} \frac{1}{p(n_A\mid N)}
 \]</span></p>
 </div>
 <div class="fragment">
 <ul>
 <li class="fragment"><span class="math inline">\(N\)</span> es una cantidad fija</li>
-<li class="fragment"><span class="math inline">\(n_N\)</span> es 3, otra cantidad fija: lo que observamos al realizar el experimento</li>
+<li class="fragment"><span class="math inline">\(n_A\)</span> es 3, otra cantidad fija: lo que observamos al realizar el experimento</li>
 <li class="fragment"><span class="math inline">\(u\)</span> es la cantidad desconocida</li>
 </ul>
 </div>
