@@ -1,9 +1,9 @@
 ---
-title: "01 - Los ositos de Pagani"
+title: "01 - Liberen al Tucán Sam"
 ---
 
-Este _script_ fue utilizado en la primer clase de práctica en el laboratorio para
-mostrar como resolver el ejercicio de los ositos utilizando código.
+En este recurso se muestra como usar R para resolver el ejercicio de los Froot Loops hecho durante
+la primera clase.
 
 ```{r}
 library(ggplot2)
@@ -20,18 +20,18 @@ pi_grid <- seq(0, 1, length.out = 11)
 print(pi_grid)
 
 # Especificar prior
-# Tenemos $100 y los dividimos en los diferentes valores de "pi"
-prior_ <- c(0, 5, 20, 50, 20, 5, 0, 0, 0, 0, 0)
+# Tenemos $1000 y los dividimos en los diferentes valores de "pi"
+prior_ <- c(0, 50, 150, 600, 150, 50, 0, 0, 0, 0, 0)
 prior <- prior_ / sum(prior_)
 
 # Recolectar datos
-cantidad_de_gomitas <- 10 # n
-cantidad_de_gomitas_amarillas <- 6 # y
+cantidad_de_cereales <- 29 # n
+cantidad_de_cereales_amarillos <- 7 # y
 
 # Calcular verosimilitud para cada valor de "pi" en la grilla
 likelihood <- dbinom(
-  cantidad_de_gomitas_amarillas, 
-  cantidad_de_gomitas, 
+  cantidad_de_cereales_amarillos,
+  cantidad_de_cereales,
   pi_grid
 )
 
@@ -39,15 +39,15 @@ likelihood <- dbinom(
 posterior_ <- prior * likelihood
 posterior <- posterior_ / sum(posterior_) # normalización
 
-# Graficar prior 
+# Graficar prior
 plt_prior <- data.frame(x = pi_grid, y = prior) |>
   ggplot() +
   geom_segment(aes(x = x, xend = x, y = 0, yend = y), linewidth = 0.8) +
   geom_point(aes(x = x, y = y), size = 2.4) +
   scale_x_continuous(breaks = pi_grid) +
   labs(
-    x = expression(pi), 
-    y = expression(p ~ "(" ~ pi ~ ")"), 
+    x = expression(pi),
+    y = expression(p ~ "(" ~ pi ~ ")"),
     title = "Distribución a priori"
   )
 
@@ -58,8 +58,8 @@ plt_likelihood <- data.frame(x = pi_grid, y = likelihood) |>
   geom_point(aes(x = x, y = y), size = 2.4) +
   scale_x_continuous(breaks = pi_grid) +
   labs(
-    x = expression(pi), 
-    y = expression(p ~ "(y | " ~ pi ~ ")"), 
+    x = expression(pi),
+    y = expression(p ~ "(y | " ~ pi ~ ")"),
     title = "Función de verosimilitud"
   )
 
@@ -70,8 +70,8 @@ plt_posterior <- data.frame(x = pi_grid, y = posterior) |>
   geom_point(aes(x = x, y = y), size = 2.4) +
   scale_x_continuous(breaks = pi_grid) +
   labs(
-    x = expression(pi), 
-    y = expression(p ~ "(" ~ pi ~ " | y)"), 
+    x = expression(pi),
+    y = expression(p ~ "(" ~ pi ~ " | y)"),
     title = "Distribución a posteriori"
   )
 
@@ -85,7 +85,7 @@ En base a un _prior_ beta:
 #| fig-align: center
 #| fig-width: 12
 # Determinar grilla de puntos
-pi_grid <- seq(0, 1, length.out = 100)
+pi_grid <- seq(0, 1, length.out = 200)
 
 # Obtener prior
 prior_ <- dbeta(pi_grid, 3, 7)
@@ -93,22 +93,22 @@ prior <- prior_ / sum(prior_)
 
 # Calcular verosimilitud para cada valor de "pi"
 likelihood <- dbinom(
-  cantidad_de_gomitas_amarillas, 
-  cantidad_de_gomitas, 
+  cantidad_de_cereales_amarillos,
+  cantidad_de_cereales,
   pi_grid
 )
 
-# Obtener posterior 
+# Obtener posterior
 posterior_ <- prior * likelihood
 posterior <- posterior_ / sum(posterior_)
 
-# Graficar prior 
+# Graficar prior
 plt_prior <- data.frame(x = pi_grid, y = prior) |>
   ggplot() +
   geom_line(aes(x = x, y = y)) +
   labs(
-    x = expression(pi), 
-    y = expression(p ~ "(" ~ pi ~ ")"), 
+    x = expression(pi),
+    y = expression(p ~ "(" ~ pi ~ ")"),
     title = "Distribución a priori"
   )
 
@@ -117,8 +117,8 @@ plt_likelihood <- data.frame(x = pi_grid, y = likelihood) |>
   ggplot() +
   geom_line(aes(x = x, y = y)) +
   labs(
-    x = expression(pi), 
-    y = expression(p ~ "(y | " ~ pi ~ ")"), 
+    x = expression(pi),
+    y = expression(p ~ "(y | " ~ pi ~ ")"),
     title = "Función de verosimilitud"
   )
 
@@ -127,7 +127,7 @@ plt_posterior <- data.frame(x = pi_grid, y = posterior) |>
   ggplot() +
   geom_line(aes(x = x, y = y)) +
   labs(
-    x = expression(pi), 
+    x = expression(pi),
     y = expression(p ~ "(" ~ pi ~ " | y)"), 
     title = "Distribución a posteriori"
   )
