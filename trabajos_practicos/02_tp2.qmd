@@ -1,5 +1,5 @@
 ---
-title: "TP2: Metropolis-Hastings [WIP]"
+title: "TP2: El Dibu de la vida"
 practica: "Trabajo Práctico 2"
 ---
 
@@ -10,12 +10,7 @@ library(dplyr)
 library(ggplot2)
 library(patchwork)
 
-colores <- c(
-    "#644296",
-    "#F08533",
-    "#3B78B0",
-    "#D1352C"
-)
+colores <- c("#644296","#F08533", "#3B78B0", "#D1352C")
 
 semilla <- strsplit("metropolis hastings", "")[[1]] |>
     match(c(letters), nomatch = 0) |>
@@ -24,257 +19,219 @@ semilla <- strsplit("metropolis hastings", "")[[1]] |>
 set.seed(semilla)
 ```
 
-## Metropolis-Hastings
+## Introducción
 
-El algoritmo de Metropolis-Hastings (MH) permite generar muestras (pseudo-)aleatorias a 
-partir de una distribución de probabilidad $P$ que no necesariamente pertence a una 
-familia de distribuciones conocida. El único requisito es que se pueda evaluar la función
-de densidad (o de masa de probabilidad) $p^*(\boldsymbol{\theta})$ en cualquier valor de 
-$\boldsymbol{\theta}$, incluso cuando $p^*(\boldsymbol{\theta})$ sea impropia 
-(es decir, incluso aunque sea desconocida la constante de normalización que hace que la integral en
-el soporte de la función sea igual a uno).
+El ozono (O₃) es un gas cuya molécula está formada por tres átomos de oxígeno y se encuentra tanto
+en la atmósfera como en la superficie terrestre. Seguramente, lo han escuchado nombrar en
+relación con la capa de ozono, una región de la estratófera que se encuentra unos 15-30 kilómetros
+sobre la superficie terrestre, donde abunda el ozono, y que filtra los rayos ultravioletas del sol.
 
-Resúmen del algoritmo:
+La capa de ozono permite que exista la vida en la Tierra tal como la conocemos y que una escapada de
+verano a la isla no se convierta en un viaje solo de ida. En otras palabras, la capa de ozono es
+como un Dibu Martínez de la vida: ataja los rayos ultravioletas que, si lograran pasar, más de una
+vida arruinarían.
 
-ESCRIBIR
+Pero no todo lo que brilla es oro. A nivel del suelo, el ozono se convierte en un contaminante
+atmosférico dañino tanto para la salud humana como para el medio ambiente. Puede deteriorar la
+función pulmonar, desencadenar ataques de asma, causar irritación en los ojos, la nariz y la
+garganta, e incluso dañar la vegetación. Entonces, ¿todo mal con el ozono?
 
-<!-- NOTA: Por ahora no lo incluyo porque creo que extiende el TP de manera innecesaria -->
+Quien se planteó esa pregunta fue Brian Tarkington, del _California Primate Research Center_ de la
+Universidad de California en Davis. Preocupado por la presencia de ozono en el _smog_ californiano,
+decidió llevar a cabo un estudio para evaluar el efecto del ozono en el crecimiento de ratas.
+Tomó un grupo de 46 ratas jóvenes y de la misma edad, las pesó, las dividió aleatoriamente en 2
+grupos de igual tamaño y las dejó en 2 ambientes distintos, el primero rico en ozono y el segundo
+libre del mismo. Luego de 7 días las pesó nuevamente y registró la diferencia entre los pesos.
 
-<!-- 
+El archivo `tarkington.csv` contiene, para cada una de las ratas, el diferencial de peso en gramos y
+el grupo al que pertenece. Interesa conocer si la exposición prolongada a un ambiente contaminado
+con ozono se asocia a un deterioro en el desarrollo de las ratas, es decir, a un menor incremento de
+peso.
+
+## Modelización estadística
+
+La estadística ofrece una amplia variedad de técnicas para dar respuesta a la inquietud de
+Tarkington. En el contexto de esta materia, naturalmente, abordaremos el problema mediante el uso
+modelos bayesianos.
+
+Y dado que el entusiasmo en esta materia es lo que sobra, aprovecharemos la oportunidad para
+utilizar no uno, sino dos modelos, sutilmente distintos. Esto nos permitirá no solo evaluar el
+efecto del ozono en el crecimiento de las ratas, sino también profundizar en esos pequeños
+detalles que hacen que la inferencia estadística sea tan interesante.
+
+### Modelo normal
+
+El primer modelo que proponemos es el clásico caballito de batalla de innumerables análisis
+estadísticos: el viejo y confiable modelo normal. Aquí, el cambio en el peso de las ratas en cada
+grupo se modela mediante una distribución normal, permitiendo medias y varianzas específicas para
+cada grupo.
+
+$$
+\begin{aligned}
+Y_{O, i} &\sim \text{Normal}(\mu_O, \sigma_O^2) & i = 1, \dots, N_O \\
+Y_{C, j} &\sim \text{Normal}(\mu_C, \sigma_C^2) & j = 1, \dots, N_C \\
+\mu_O, \mu_C &\sim \text{Normal}(0, 5^2) \\
+\sigma_O, \sigma_C & \sim \text{Gamma}(\alpha=6, \beta=2)
+\end{aligned}
+$$
+donde $Y_{O, i}$ representa el cambio en el peso de la $i$-ésima rata en el grupo expuesto al
+ozono e $Y_{C, j}$ representa el cambio en el peso de la $j$-ésima rata en el grupo control.
+
+### Modelo T de Student
+
+El segundo modelo se parece demasiado al primero. La única —y, en principio, sutil— diferencia es
+que, en lugar de modelar la variable respuesta en cada grupo con una distribución normal,
+utilizamos una T de Student con 3 grados de libertad.
+
+$$
+\begin{aligned}
+Y_{O, i} &\sim \text{Student-T}(\mu_O, \sigma_O^2, \nu=3) & i = 1, \dots, N_O \\
+Y_{C, i} &\sim \text{Student-T}(\mu_C, \sigma_C^2, \nu=3) & j = 1, \dots, N_C \\
+\mu_O, \mu_C &\sim \text{Normal}(0, 5^2) \\
+\sigma_O, \sigma_C & \sim \text{Gamma}(\alpha=6, \beta=2)
+\end{aligned}
+$$
+
+## Un _deep dive_ bien profundo en Metropolis-Hastings
+
+Además de brindarle una respuesta al de pobre Brian Tarkington, que hace décadas que espera que
+alguien le ayude a resolver su problema, otro objetivo de este trabajo práctico es profundizar en el
+uso de Metropolis-Hastings (MH) como algoritmo para hacer inferencia bayesiana.
+
+El algoritmo de Metropolis-Hastings permite generar muestras (pseudo-)aleatorias a partir de una
+distribución de probabilidad $P$ que no necesariamente pertence a una familia de distribuciones
+conocida. El único requisito es que se pueda evaluar la función de densidad (o de masa de
+probabilidad) $p^*(\boldsymbol{\theta})$ en cualquier valor de $\boldsymbol{\theta}$,
+incluso cuando $p^*(\boldsymbol{\theta})$ sea impropia (es decir, incluso aunque sea desconocida la
+constante de normalización que hace que la integral en el soporte de la función sea igual a uno).
 
 
-1.  Escriba una función que implemente el algoritmo de Metropolis-Hastings para tomar 
-    muestras de una distribución de probabilidad unidimensional a partir de su función de 
-    densidad. Separe en funciones cada uno de los pasos del procedimiento. 
-    Otorgue flexibilidad al algoritmo permitiendo elegir entre un punto de inicio arbitrario
-    o al azar y utilizar distribuciones de propuesta de transición arbitrarias 
-    (por defecto, se utiliza una distribución normal estándar).
+::: {.callout-tip}
+## Algoritmo de Metropolis-Hastings
 
-1.  Utilice la función implementada en el punto anterior para obtener muestras de una 
-    distribución normal de parámetros $\mu=5$ y $\sigma=3$. 
-    ¿Obtiene una representación fiel de la distribución objetivo? 
+Se desea generar una muestra de valores $\{y^{(1)}, y^{(2)}, \cdots, y^{(n)} \}$ a partir
+de una distribución de probabilidad $P$ con función de densidad $p$.
 
--->
+1. Seleccionar un punto inicial $y^{(1)}$.
 
-## Metropolis-Hastings en espacios paramétricos acotados
+1. Para cada $t\in \{1, \cdots, n\}$, repetir:
 
-* La distribución normal es conveniente para proponer saltos.
-* La distribución normal presenta desventajas cuando el espacio paramétrico es acotado.
-  * Se realizarán propuestas que caen fuera del espacio parámetrico.
-* Soluciones posibles:
-  * Utilizar distribuciones cuyo espacio parámetrico sea acotado e igual al de la distribución objetivo.
-    * Dificultad: No es sencillo encontrar parametrizaciones adecuadas en la media para todas ellas.
-  * Utilizar transfomación de variables para muestrear en un espacio paramétrico no acotado, lo que permite utilizar siempre la distribución normal.
-    * Dificultad: Se necesita la función de densidad objetivo en el nuevo espacio paramétrico, es decir, en el espacio de la variable transformada. 
-    Esto implica el cálculo del determinante del jacobiano de la transormación.
-    * Ventaja: El procedimiento es sencillo para las transformaciones de variables más utilizadas. 
-    Además, este proceso puede ser automatizado mediante sistemas de diferenciación automática (simbólica) existentes.
-    * Imágen Homero^3?
-  
-### Transformación de variables aleatorias
+  i.  **Realizar propuesta**  
+    Obtener un valor aleatorio $y'$ de una variable $Y'$ cuya distribución está
+    dada por la distribución de propuesta $Q$, centrada en el valor de la última muestra obtenida:
+    $$
+    Y' \sim Q(y^{(t)})
+    $$
+
+  i.  **Calcular la probabilidad de aceptación**  
+    Calcular el cociente entre la función de densidad en el punto propuesto y en el punto
+    actual, ponderando por la densidad de la distribución de propuesta. La probabilidad de
+    aceptación es igual a este cociente si es menor a 1, caso contrario es igual a 1.
+    $$
+    \alpha = \min \left\{ 1, \frac{p(y')q(y^{(t)} \mid y')}{p(y)q(y' \mid y^{(t)})} \right\}
+    $$
+
+  i.  **Seleccionar el nuevo valor**  
+    Generar un valor aleatorio $u$ de una distribución $\mathcal{U}(0, 1)$ y determinar
+    $y^{(t + 1)}$ de la siguiente manera:
+    $$
+    y^{(t + 1)} = \left\{
+    \begin{array}{ll}
+    y' & \text{si} \quad u \le \alpha \\
+    y^{(t)} & \text{si} \quad u > \alpha
+    \end{array}\right.
+    $$
+:::
+
+### Metropolis-Hastings en espacios paramétricos acotados
+
+La distribución normal suele ser una elección conveniente a la hora de proponer saltos,
+pero presenta desventajas cuando el espacio paramétrico es acotado: inevitablemente,
+algunas propuestas caerán fuera del dominio y rechazaremos más que de costumbre.
+
+Para abordar este problema, existen dos estrategias principales. Una opción es utilizar
+distribuciones cuyo soporte coincida con el espacio objetivo. Sin embargo, encontrar
+parametrizaciones basadas en la media para todas ellas no es trivial.
+
+La otra alternativa, más general, consiste en aplicar una transformación de variables para
+trabajar en un espacio no acotado, permitiendo así seguir utilizando una distribución de propuesta
+normal. Esta estrategia requiere conocer la densidad objetivo en el nuevo espacio, lo que implica
+calcular el determinante del jacobiano de la transformación. A su favor, muchas de las
+transformaciones más utilizadas permiten un cálculo sencillo, y este proceso puede automatizarse 
+con herramientas de diferenciación automática existentes.
+
+::: {.callout-tip}
+## Transformación de variables aleatorias
 
 Sean $X$ e $Y = g(X)$ variables aleatorias continuas, donde $g$ es una función uno a uno
-y $X$ tiene función de densidad $f_X(x)$. Luego, la función de densidad de $Y$ es:
+y $X$ tiene función de densidad $f_X(x)$ conocida. Luego, la función de densidad de $Y$ es:
 $$
 f_Y(y) = f_X(g^{-1}(y)) \left\lvert \frac{d}{dy}g^{-1}(y) \right\rvert
 $$
 
-Por ejemplo, en el caso de la función $g(x) = \log(x)$, se tiene:
+donde $\left\lvert \frac{d}{dy}g^{-1}(y) \right\rvert$ es el determinante del jacobiano de la
+transformación. Por ejemplo, en el caso de la función $g(x) = \text{logit}(x)$, se tiene:
 $$
 \begin{aligned}
-g : \mathbb{R}^+ \to \mathbb{R} & = \log(x) \\
-g^{-1} : \mathbb{R} \to \mathbb{R}^+ &= \exp(x)
+g : (0, 1) \to \mathbb{R} & = \text{logit}(x) = \log\left(\frac{x}{1 - x}\right) \\
+g^{-1} : \mathbb{R} \to (0, 1) &= \text{expit}(x) =  \frac{1}{1 + \exp(-x)}
 \end{aligned}
 $$
 
 y luego:
 $$
-f_Y(y) = f_X(\exp(y)) \exp(y)
+f_Y(y) = f_X(\text{expit}(y)) \cdot \text{expit}(y) \cdot ( 1 - \text{expit}(y))
 $$
+:::
 
-### Transformacion de v.a. Gamma
 
-Sea $X \sim \text{Gamma}(\alpha=2, \beta=2)$ e $Y = \log(X)$. 
-Se tiene que:
-$$
-f_Y = f_X(\exp(y)) \exp(y)
-$$
+### Metropolis-Hastings en escala logarítmica
 
-donde $f_X$ es la función de densidad de una variable aleatoria $\text{Gamma}(\alpha=2, \beta=2)$.
+Sin importar cuán moderna y potente sea nuestra computadora, siempre tendremos que lidiar con el
+talón de Aquiles del cálculo computacional: los problemas de subdesbordamiento y sobredesbordamiento
+(conocidos como _underflow_ y _overflow_ en inglés). Por ejemplo, si intentamos multiplicar
+100 números del orden de `0.0001` en R, la computadora podría interpretar el resultado como 0,
+aunque matemáticamente esto no sea cierto.
 
-La distribución de $Y = log(X)$ puede visualizarse mediante:
+El _underflow_ es un problema frecuente en el cómputo estadístico. Un caso típico ocurre al evaluar
+funciones de verosimilitud, donde se multiplican densidades correspondientes a cada observación.
+Dado que estas densidades suelen ser valores muy pequeños, es común enfrentarse a un
+subdesbordamiento. Este riesgo aumenta con la cantidad de observaciones y la dimensionalidad de la
+distribución objetivo.
 
-* La evaluación de la función de densidad $f_Y$ en una grilla de valores de $y$.
-* La transformación de muestras aleatorias: se obtienen muestras de $X$ a las que luego
-se les calcula el logaritmo.
+El problema se agrava al utilizar algoritmos como Metropolis-Hastings, ya que la densidad objetivo
+se evalúa miles de veces en diferentes puntos del espacio paramétrico.
+Además, en inferencia bayesiana, esta función suele involucrar la multiplicación de una gran
+cantidad de números pequeños, lo que incrementa aún más las chances de que el cómputo resulte
+en un _underflow_.
+
+Si nuestro algoritmo de muestreo encuentra un problema de _underflow_, pueden ocurrir dos situaciones:
+
+* Se genera un error que detiene la ejecución del programa.
+* Se ignora la propuesta problemática y se realiza una nueva, pero nuestro programa ya no sigue la
+cadena de Markov deseada.
+
+Entonces, ¿cómo solucionamos este problema?
+La respuesta es sencilla: realizar todos los cálculos en escala logarítmica.
 
 ```{r}
-#| echo: false
-#| fig-align: center
-#| fig-width: 12
-#| fig-height: 5
-#| fig-cap: leyenda...
-
-x_grid <- seq(0, 5.5, length.out = 200)
-x_pdf <- dgamma(x_grid, shape = 2, rate = 2)
-
-y_grid <- log(x_grid)
-y_pdf <- dgamma(exp(y_grid), shape = 2, rate = 2) * exp(y_grid)
-
-p1 <- data.frame(x = x_grid, densidad = x_pdf) |>
-  ggplot() +
-  geom_line(
-    aes(x = x, y = densidad),
-    color = "grey30",
-    linewidth = 1.5,
-  ) +
-  labs(x = "X", y = "Densidad") +
-  lims(x = c(0, 5.5), y = c(0, 0.8)) +
-  theme_bw()
-
-p2 <- data.frame(x = y_grid, densidad = y_pdf) |>
-  ggplot() +
-  geom_line(
-    aes(x = x, y = densidad),
-    color = "grey30",
-    linewidth = 1.5,
-  ) +
-  labs(x = "Y = log(X)", y = "Densidad") +
-  lims(y = c(0, 0.8)) +
-  theme_bw()
-
-p1 | p2
-```
-
-```{r}
-#| echo: false
-#| fig-align: center
-#| fig-width: 12
-#| fig-height: 5
-#| fig-cap: otra leyenda...
-
-x_rvs <- rgamma(5000, shape = 2, rate = 2)
-y_rvs <- log(x_rvs)
-
-p1_hist <- ggplot() +
-  geom_histogram(
-    aes(x = x, y = after_stat(density)),
-    bins = 50,
-    fill = colores[2],
-    color = NA,
-    alpha = 0.7,
-    data = data.frame(x = x_rvs)
-  ) + 
-  geom_line(
-    aes(x = x, y = densidad),
-    color = "grey30",
-    size = 1.5,
-    data = data.frame(x = x_grid, densidad = x_pdf)
-  ) +
-  labs(x = "X", y = "Densidad") +
-  lims(x = c(0, 5.5), y = c(0, 0.8)) +
-  theme_bw()
-
-p2_hist <- ggplot() +
-  geom_histogram(
-    aes(x = x, y = after_stat(density)),
-    bins = 50,
-    fill = colores[2],
-    color = NA,
-    alpha = 0.7,
-    data = data.frame(x = y_rvs)
-  ) + 
-  geom_line(
-    aes(x = x, y = densidad),
-    color = "grey30",
-    size = 1.5,
-    data = data.frame(x = y_grid, densidad = y_pdf)
-  ) +
-  labs(x = "Y = log(X)", y = "Densidad") +
-  lims(y = c(0, 0.8)) +
-  theme_bw()
-
-p1_hist | p2_hist
-```
-
-### Obtención de muestras de v.a. Gamma con Metropolis-Hastings 
-
-1. Implementar la función de densidad de $Y = \log(X)$
-1. Obtener muestras de $Y$.
-1. Transformar muestras $x_i = \exp(y_i)$.
-
-## Metropolis-Hastings en $\mathbb{R}^p$
-
-<!-- NO SE SI PONDRÍA ESTA SECCIÓN -->
-
-Como veremos en esta sección del trabajo práctico, la verdadera utilidad del algoritmo de
-Metropolis-Hastings se aprecia cuando se obtienen muestras de distribuciones en más de 
-una dimensión, incluso cuando no se conoce la constante de normalización. 
-Paradójicamente, los ejemplos trabajados a continuación también serán los que nos 
-permitirán advertir sus limitaciones y motivarán la búsqueda de mejores alternativas.
-
-* Extensión a espacios paramétricos multidimensionales.
-* Utilización de transformaciones 
-  * Ergo, siempre se muestrea en $\mathbb{R}^p$ y por lo tanto se pueden realizar
-  propuestas con una normal multivariada.
-
-Que elegancia la de Francia. Solo se necesitan unas pocas modificaciones para que nuestra descripción
-inicial del algoritmo de Metropolis-Hastings pueda ser utilizado para obtener muestras de cualquier
-distribución, sin distinción de dimensionalidad y soporte... Pero, la vida es más compleja de 
-lo que parece.
-
-## Metropolis-Hastings en escala logarítmica
-
-Sin importar cuan moderna y potente sea nuestra computadora, aún tenemos que convivir con 
-el Talón de Aquiles del cómputo informático: los problemas de subdesorbamiento y sobredesbordamiento
-(_underflow_ y _overflow_ en inglés). 
-Si intentamos multiplicar 100 números en el orden de `0.0001` en R, nos encontraremos que para
-la computadora esto es igual a 0, aunque no sea cierto.
-
-El problema del _underflow_ se presenta todo el tiempo en el cómputo estadístico.
-Por ejemplo, para evaluar una función de verosimilitud se multiplican tantas densidades como 
-observaciones se está tabajando. Dado que estos números suelen ser muy pequeños, no es raro
-encontrarse con un subdesbordamiento.
-Cuando mayor sea la cantidad de observaciones y la dimensionalidad de la distribución objetivo, 
-mayor es el riesgo de encontrarse con un problema de _underflow_.
-
-El riesgo de _underflow_ se incrementa aún más cuando usamos algoritmos del estilo de 
-Metrpolis-Hastings no solo porque la densidad objetivo se evalúa miles de veces en diferentes 
-puntos del espacio paramétrico, sino que también puede estar dada por la multiplicación de muchos números pequeños
-como sucede cuando se realiza inferencia bayesiana.
-
-Si nuestro algoritmo de muestreo se encuentra con un problema de _underflow_, podrían suceder dos cosas:
-
-* Se obtiene un error que detiene la ejecución del programa.
-* Se realiza una nueva propuesta, ignorando la propuesta problemática, pero se "rompe" la cadena de Markov.
-
-¿Y qué hacemos? ¿Cuál es la solución? ... Hacer todos los cálculos en escala logarítmica.
-
-TODO: Esribir MH en escala logarítmica.
-
-
-```{r}
-metropolis_hastings <- function(logp, x, n, sigma = NULL, mensajes = FALSE) {
-  # ------------------------------------------------------------------------ #
-  # Algortimo de Metropolis Hastings en escala logaritmica                   #
-  #                                                                          #
-  # Parámetros                                                               # 
-  # ------------------------------------------------------------------------ #  
-  # | logp     | Función de densidad objetivo, normalizada o sin normalizar, | 
+metropolis_hastings <- function(logp, x, n, sigma = NULL) {
+  # Algortimo de Metropolis Hastings en escala logarítmica
+  #
+  # Parámetros
+  #  ------------------------------------------------------------------------
+  # | logp     | Función de densidad objetivo, normalizada o sin normalizar, |
   # |          | en escala logarítmica.                                      |
   # | x        | Posición inicial del algoritmo.                             |
   # | n        | Cantidad de muestras a obtener.                             |
   # | sigma    | Matriz de varianzas y covarianzas para la distribución de   |
   # |          | propuesta. Por defecto, es NULL y usa la matriz identidad.  |
-  # | mensajes | Indica si se imprimen mensajes con información del          |
-  # |          | algoritmo en cada paso. Por defecto, es FALSE.              |
-  # ------------------------------------------------------------------------ # 
-  #                                                                          #
-  # Salida                                                                   #
-  # ------------------------------------------------------------------------ #
+  #  ------------------------------------------------------------------------
+  #
+  # Salida
+  #  ------------------------------------------------------------------------
   # | muestras | Matriz con las muestras obtenidas.                          |
-  # ------------------------------------------------------------------------ #
-  
+  #  ------------------------------------------------------------------------
 
   # Obtener dimensionalidad de la distribución objetivo a partir del punto inicial
   p <- length(x)
@@ -314,11 +271,6 @@ metropolis_hastings <- function(logp, x, n, sigma = NULL, mensajes = FALSE) {
 
     aceptar <- log_u < log_alpha
 
-    if (mensajes) {
-      estado <- if (aceptar) "ACEPTAR" else "RECHAZAR"
-      log_step_info(i, estado, logp_actual, logp_propuesta, logq_actual, logq_propuesta, log_alpha, log_u)
-    }
-
     # Determinar siguiente paso en base al criterio de selección
     if (aceptar) {
       muestras[i + 1, ] <- muestra_propuesta
@@ -326,44 +278,41 @@ metropolis_hastings <- function(logp, x, n, sigma = NULL, mensajes = FALSE) {
       muestras[i + 1, ] <- muestra_actual
     }
   }
-  # Devolver un vector si se trata de una distrbución univariada
+  # Convertir 'muestras' a vector si se trata de una distrbución univariada
   if (p == 1) {
     muestras <- as.vector(muestras)
   }
-  return(muestras)
-}
 
-# Función auxiliar
-log_step_info <- function(
-  i, estado, logp_actual, logp_propuesta, logq_actual, logq_propuesta, log_alpha, log_u
-) {
-  cat(
-    "Paso", i, estado,
-    "\n---------------\n",
-    "  logp actual:", logp_actual, "\n",
-    "  logp propuesta:", logp_propuesta, "\n",
-    "  logq actual:", logq_actual, "\n",
-    "  logq propuesta:", logq_propuesta, "\n",
-    "  log_alpha", log_alpha, "\n",
-    "  log_u", log_u, "\n"
-  )
+  return(muestras)
 }
 ```
 
-## Ejemplo: Los Colapinto de Bayes
+## Ahora sí, a trabajar
 
-La función `metropolis_hastings()` es una herramienta poderosa que, en teoría, permite obtener 
-muestras de cualquier distribución _a posteriori_ que se pueda implementar en R en escala logarítmica.
-Pero, ¿de qué sirve tener una herramienta tan potente si no está claro cómo usarla?
+**ESCRIBIR BIEN!**
 
-Como bien dice el refrán, la práctica hace al maestro. 
+Después de larguísimo preambulo, llega la hora de trabajar.
+
+La función `metropolis_hastings()` es una herramienta poderosa que, en teoría, permite obtener
+muestras de cualquier distribución _a posteriori_ que se pueda implementar en R en escala
+logarítmica. Pero, ¿de qué sirve tener una herramienta tan potente si no está claro cómo usarla?
+
+Como bien dice el refrán, la práctica hace al maestro.
 Y quienes conocen de primera mano la verdad de estas palabras son los pilotos de Fórmula 1.
-Por ejemplo, antes de cada Gran Premio, Franco Colapinto corre entre 
+Por ejemplo, antes de cada Gran Premio, Franco Colapinto corre entre
 400 y 500 vueltas en el circuito... ¡pero en un simulador!
 
-De esta manera, en preparación a la aplicación final en este trabajo, nuestro Gran Premio, 
-vamos a utilizar el algoritmo de Metropolis-Hastings en escala logarítmica, 
+De esta manera, en preparación a la aplicación final en este trabajo, nuestro Gran Premio,
+vamos a utilizar el algoritmo de Metropolis-Hastings en escala logarítmica,
 con transformación de variables, en un escenario más sencilo.
+
+### 1. Precalentamos: ensayos con la distribución Gamma
+
+1. Implementar la función de densidad de $Y = \log(X)$
+1. Obtener muestras de $Y$.
+1. Transformar muestras $x_i = \exp(y_i)$.
+
+### 2. Me fui mundial: múltiples dimensiones, transformaciones y escala logarítmica
 
 Dado el siguiente modelo:
 $$
@@ -376,70 +325,28 @@ $$
 
 con $i = 1, \dots, N$.
 
-  1. Implemente en R una función que permita calcular la densidad a _posteriori_ en escala 
-  logarítmica. Esta función tendrá `y`, `mu` y `sigma` como parámetros de entrada.
-  1. Utilice los valores de $y_i$ en el archivo `precalentamiento-mh.csv` para obtener muestras 
-  del _posterior_ de $\boldsymbol{\theta} = \{\mu, \sigma\}$. Utilice dos cadenas de Markov.
-  Evalúe mezcla y convergencia de manera gráfica.
+1. Implemente en R una función que permita calcular la densidad a _posteriori_ en escala
+logarítmica. Esta función tendrá `y`, `mu` y `sigma` como parámetros de entrada.
+1. Utilice los valores de $y_i$ en el archivo `precalentamiento-mh.txt` para obtener muestras
+del _posterior_ de $\boldsymbol{\theta} = \{\mu, \sigma\}$. Utilice dos cadenas de Markov.
+Evalúe mezcla y convergencia de manera gráfica.
 
-## Aplicación: Ozono, te quiero (no tan) cerca.
+### 3. Última parada: ¿qué le decimos a Brian?
 
-El ozono (O₃) es un gas cuya molécula está formada por tres átomos de oxígeno y se encuentra
-tanto en la atmósfera como en la superficie terrestre.
+1. Explorar los datos. ¿Encuentra datos atípicos?
+¿Qué consecuencias tendrían en la comparación de los incrementos medios de peso?
+1. Comparación de medias. Se quiere saber si la exposición al ozono se asocia a menor ganancia de peso.
+Utilice el modelo normal. Luego utilice el modelo basado en la distribución T de Student.
+En ambos casos:
+  1. Escriba la función de densidad en escala logaritmica.
+  1. Obtenga muestras, utilizando 2 cadenas de Markov. Utilice medidsa de diagnóstico numéricas y gráficas
+      para determinar la fiabilidad de las muestras obtenidas.
+  1. Concluir en términos del problema (que calculen alguna probabilidad).
+      ¿Se llega a la misma conclusión con ambos modelos? ¿Por qué?
 
-Seguramente, lo han escuchado en relación con la capa de ozono, 
-una región de la estratófera que se encuentra unos 15-30 kilómetros sobre la superficie terrestre,
-donde abunda el ozono, y que filtra los rayos ultravioletas del sol. 
 
-Esta capa permite que exista la vida tal como la conocemos y que una escapada a la isla
-no se convierta en un viaje solo de ida. 
-En otras palabras, la capa de ozono es como un Dibu Martinez de la vida, 
-atajando rayos ultravioletas que, de pasar, tan tristes nos harían.
+¿Cuántos parámetros hay que estimar en cada modelo?
 
-Pero no todo lo que brilla es oro. 
-A nivel del suelo, el ozono es un contaminante atmosférico, 
-es perjudicial para la salud humana y ambiental. 
-Puede deteriorar la función pulmonar, generar ataques de asma, irritación ocular, nasal y de garganta, 
-y dañar la vegetación.
+Para una media y una varianza dada, ¿en qué se diferencia la distribución normal de la distribución
+T de Student?
 
-En ese sentido, los científicos Doksum and Sievers (FALTAN NOMBRES) llevaron a cabo un estudio
-para evaluar el efecto del ozono en el incremento de peso en ratas. Tomaron un grupo de
-46 ratas de la misma edad, las pesaron, las dividieron aleatoriamente en 2 grupos de igual tamaño y las dejaron
-en dos ambientes distintos, el primero rico en ozono y el segundo libre de ozono. 
-Luego de 7 días pesaron a las ratas nuevamente. 
-
-El archivo X contiene la ganancia de peso, en gramos, para cada una de las ratas, y el grupo
-al que pertenecen.
-
-1.  Explorar los datos. ¿Encuentra datos atípicos? ¿Qué consecuencias tendrían en la comparación de los incrementos medios de peso?
-1.  Comparación de medias. Se quiere saber si la exposición al ozono se asocia a menor ganancia de peso.
-    Utilice el modelo normal. Luego utilice el modelo basado en la distribución T de Student.
-    En ambos casos:
-
-    1. Escriba la función de densidad en escala logaritmica.
-    1. Obtenga muestras, utilizando 2 cadenas de Markov. Utilice medidsa de diagnóstico numéricas y gráficas
-    para determinar la fiabilidad de las muestras obtenidas.
-    1. Concluir en términos del problema (que calculen alguna probabilidad). 
-    ¿Se llega a la misma conclusión con ambos modelos? ¿Por qué?
-
-### Modelo normal
-
-$$
-\begin{aligned}
-Y_{O, i} &\sim \text{Normal}(\mu_O, \sigma_O^2) \\
-Y_{C, i} &\sim \text{Normal}(\mu_C, \sigma_C^2) \\
-\mu_O, \mu_C &\sim \text{Normal}(0, 5^2) \\
-\sigma_O, \sigma_C & \sim \text{Gamma}(\alpha=6, \beta=2)
-\end{aligned}
-$$
-
-### Modelo robusto
-
-$$
-\begin{aligned}
-Y_{O, i} &\sim \text{Student-T}(\mu_O, \sigma_O^2, \nu=3) \\
-Y_{C, i} &\sim \text{Student-T}(\mu_C, \sigma_C^2, \nu=3) \\
-\mu_O, \mu_C &\sim \text{Normal}(0, 5^2) \\
-\sigma_O, \sigma_C & \sim \text{Gamma}(\alpha=6, \beta=2)
-\end{aligned}
-$$
