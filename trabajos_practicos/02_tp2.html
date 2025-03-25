@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>TP2: Metropolis-Hastings – Estadística Bayesiana</title>
+<title>TP2: El Dibu de la vida – Estadística Bayesiana</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -210,7 +244,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">TP2: Metropolis-Hastings</h1>
+<h1 class="title">TP2: El Dibu de la vida</h1>
 </div>
 
 
@@ -227,208 +261,289 @@ window.Quarto = {
 </header>
 
 
-<section id="metropolis-hastings-en-1d" class="level1">
-<h1>Metropolis-Hastings en 1D</h1>
-<p>El algoritmo de Metropolis-Hastings (MH) permite generar muestras (pseudo-)aleatorias a partir de una distribución de probabilidad <span class="math inline">\(P\)</span> que no necesariamente pertence a una familia de distribuciones conocida. El único requisito es que se pueda evaluar la función de densidad (o de masa de probabilidad) <span class="math inline">\(p^*(\theta)\)</span> en cualquier valor de <span class="math inline">\(\theta\)</span>, incluso cuando <span class="math inline">\(p^*(\theta)\)</span> sea impropia (es decir, incluso aunque sea desconocida la constante de normalización que hace que la integral en el soporte de la función sea igual a uno).</p>
+<section id="introducción" class="level2">
+<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
+<p>El ozono (O₃) es un gas cuya molécula está formada por tres átomos de oxígeno y se encuentra tanto en la atmósfera como en la superficie terrestre. Seguramente, lo han escuchado nombrar por su papel en la capa de ozono, una región de la estratófera que se encuentra entre unos 15 y 30 kilómetros sobre la superficie terrestre, donde se concentra este gas y filtra los rayos ultravioletas del sol.</p>
+<p>La capa de ozono permite que exista la vida en la Tierra tal como la conocemos y que una escapada de verano a la isla no termine siendo solo un viaje de ida. En otras palabras, la capa de ozono es como un Dibu Martínez de la vida: evita que el sol nos clave un golazo de radiación y nos deje, literalmente, fritos.</p>
+<p>Pero no todo lo que brilla es oro. A nivel del suelo, el ozono se convierte en un contaminante atmosférico dañino tanto para la salud humana como para el medio ambiente. Puede deteriorar la función pulmonar, desencadenar ataques de asma, causar irritación en los ojos, la nariz y la garganta, e incluso dañar la vegetación. Entonces, ¿todo mal con el ozono?</p>
+<p>Quien se planteó esa pregunta fue Brian Tarkington, del <em>California Primate Research Center</em> de la Universidad de California en Davis. Preocupado por la presencia de ozono en el <em>smog</em> californiano y las posibles consecuencias en la salud humana, decidió llevar a cabo un estudio para evaluar el efecto del ozono en el crecimiento de ratas. Tomó un grupo de 46 ratas jóvenes y de la misma edad, las pesó, las dividió aleatoriamente en 2 grupos de igual tamaño y las dejó en 2 ambientes distintos, el primero rico en ozono y el segundo libre del mismo. Luego de 7 días las pesó nuevamente y registró la diferencia entre los pesos.</p>
+<p>El archivo <code>tarkington.csv</code> contiene, para cada una de las ratas, el diferencial de peso en gramos y el grupo al que pertenece. Interesa conocer si la exposición prolongada a un ambiente contaminado con ozono se asocia a un deterioro en el desarrollo de las ratas, es decir, a un menor incremento de peso.</p>
+</section>
+<section id="modelización-estadística" class="level2">
+<h2 class="anchored" data-anchor-id="modelización-estadística">Modelización estadística</h2>
+<p>La estadística ofrece una amplia variedad de técnicas para dar respuesta a la inquietud de Tarkington. En el contexto de esta materia, naturalmente, abordaremos el problema mediante el uso modelos bayesianos.</p>
+<p>Y dado que el entusiasmo en esta materia es lo que sobra, aprovecharemos la oportunidad para utilizar no uno, sino dos modelos, sutilmente distintos. Esto nos permitirá no solo evaluar el efecto del ozono en el crecimiento de las ratas, sino también profundizar en esos pequeños detalles que hacen que la inferencia estadística sea tan interesante.</p>
+<section id="modelo-normal" class="level3">
+<h3 class="anchored" data-anchor-id="modelo-normal">Modelo normal</h3>
+<p>El primer modelo que proponemos es el clásico caballito de batalla de innumerables análisis estadísticos: el viejo y confiable modelo normal. Aquí, el cambio en el peso de las ratas en cada grupo se modela mediante una distribución normal, permitiendo medias y varianzas específicas para cada grupo.</p>
+<p><span class="math display">\[
+\begin{aligned}
+Y_{O, i} &amp;\sim \text{Normal}(\mu_O, \sigma_O^2) &amp; i = 1, \dots, N_O \\
+Y_{C, j} &amp;\sim \text{Normal}(\mu_C, \sigma_C^2) &amp; j = 1, \dots, N_C \\
+\mu_O, \mu_C &amp;\sim \text{Normal}(0, 5^2) \\
+\sigma_O, \sigma_C &amp; \sim \text{Gamma}(\alpha=6, \beta=2)
+\end{aligned}
+\]</span> donde <span class="math inline">\(Y_{O, i}\)</span> representa el cambio en el peso de la <span class="math inline">\(i\)</span>-ésima rata en el grupo expuesto al ozono e <span class="math inline">\(Y_{C, j}\)</span> representa el cambio en el peso de la <span class="math inline">\(j\)</span>-ésima rata en el grupo control.</p>
+</section>
+<section id="modelo-t-de-student" class="level3">
+<h3 class="anchored" data-anchor-id="modelo-t-de-student">Modelo T de Student</h3>
+<p>El segundo modelo se parece demasiado al primero. La única —y, en principio, sutil— diferencia es que, en lugar de modelar la variable respuesta en cada grupo con una distribución normal, utilizamos una T de Student con 3 grados de libertad.</p>
+<p><span class="math display">\[
+\begin{aligned}
+Y_{O, i} &amp;\sim \text{Student-T}(\mu_O, \sigma_O^2, \nu=3) &amp; i = 1, \dots, N_O \\
+Y_{C, i} &amp;\sim \text{Student-T}(\mu_C, \sigma_C^2, \nu=3) &amp; j = 1, \dots, N_C \\
+\mu_O, \mu_C &amp;\sim \text{Normal}(0, 5^2) \\
+\sigma_O, \sigma_C &amp; \sim \text{Gamma}(\alpha=6, \beta=2)
+\end{aligned}
+\]</span></p>
+</section>
+</section>
+<section id="un-deep-dive-bien-profundo-en-metropolis-hastings" class="level2">
+<h2 class="anchored" data-anchor-id="un-deep-dive-bien-profundo-en-metropolis-hastings">Un <em>deep dive</em> bien profundo en Metropolis-Hastings</h2>
+<p>Además de brindarle una respuesta al pobre de Brian Tarkington, que hace décadas que espera que alguien le ayude a resolver su problema, el objetivo principal de este trabajo práctico es profundizar en el uso de Metropolis-Hastings (MH) como algoritmo de inferencia bayesiana.</p>
+<p>El algoritmo de Metropolis-Hastings permite generar muestras (pseudo-)aleatorias a partir de una distribución de probabilidad <span class="math inline">\(P\)</span> que no necesariamente pertence a una familia de distribuciones conocida. El único requisito es que se pueda evaluar la función de densidad (o de masa de probabilidad) <span class="math inline">\(p^*(\boldsymbol{\theta})\)</span> en cualquier valor de <span class="math inline">\(\boldsymbol{\theta}\)</span>, incluso cuando <span class="math inline">\(p^*(\boldsymbol{\theta})\)</span> sea impropia (es decir, incluso aunque sea desconocida la constante de normalización que hace que la integral en el soporte de la función sea igual a uno).</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Algoritmo de Metropolis-Hastings
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se desea generar una muestra de valores <span class="math inline">\(\{y^{(1)}, y^{(2)}, \cdots, y^{(n)} \}\)</span> a partir de una distribución de probabilidad <span class="math inline">\(P\)</span> con función de densidad <span class="math inline">\(p\)</span>.</p>
 <ol type="1">
-<li>Escriba una función que implemente el algoritmo de Metropolis-Hastings para tomar muestras de una distribución de probabilidad unidimensional a partir de su función de densidad. Separe en funciones cada uno de los pasos del procedimiento. Otorgue flexibilidad al algoritmo permitiendo elegir entre un punto de inicio arbitrario o al azar y utilizar distribuciones de propuesta de transición arbitrarias (por defecto, se utiliza una distribución normal estándar).</li>
+<li><p>Seleccionar un punto inicial <span class="math inline">\(y^{(1)}\)</span>.</p></li>
+<li><p>Para cada <span class="math inline">\(t\in \{1, \cdots, n\}\)</span>, repetir:</p></li>
 </ol>
-<section id="distribución-de-kumaraswamy" class="level2">
-<h2 class="anchored" data-anchor-id="distribución-de-kumaraswamy">Distribución de Kumaraswamy</h2>
-<p>La distribución de Kumaraswamy es una distribución de probabilidad continua que se utiliza para modelar variables aleatorias con soporte en el intervalo <span class="math inline">\((0, 1)\)</span>. Si bien graficamente la forma de su función de densidad puede hacernos recordar a la distribución beta, vale mencionar que la distribución de Kumaraswamy resulta en una expresión matemática cuyo cómputo es más sencillo:</p>
-<p><span class="math display">\[
-\begin{array}{lr}
-p(x \mid a, b) = a b x ^ {a - 1} (1 - x ^ a)^{b - 1} &amp; \text{con } a, b &gt; 0
-\end{array}
+<ol type="i">
+<li><p><strong>Realizar propuesta</strong><br>
+Obtener un valor aleatorio <span class="math inline">\(y'\)</span> de una variable <span class="math inline">\(Y'\)</span> cuya distribución está dada por la distribución de propuesta <span class="math inline">\(Q\)</span>, centrada en el valor de la última muestra obtenida: <span class="math display">\[
+    Y' \sim Q(y^{(t)})
+    \]</span></p></li>
+<li><p><strong>Calcular la probabilidad de aceptación</strong><br>
+Calcular el cociente entre la función de densidad en el punto propuesto y en el punto actual, ponderando por la densidad de la distribución de propuesta. La probabilidad de aceptación es igual a este cociente si es menor a 1, caso contrario es igual a 1. <span class="math display">\[
+    \alpha = \min \left\{ 1, \frac{p(y')q(y^{(t)} \mid y')}{p(y)q(y' \mid y^{(t)})} \right\}
+    \]</span></p></li>
+<li><p><strong>Seleccionar el nuevo valor</strong><br>
+Generar un valor aleatorio <span class="math inline">\(u\)</span> de una distribución <span class="math inline">\(\mathcal{U}(0, 1)\)</span> y determinar <span class="math inline">\(y^{(t + 1)}\)</span> de la siguiente manera: <span class="math display">\[
+    y^{(t + 1)} = \left\{
+    \begin{array}{ll}
+    y' &amp; \text{si} \quad u \le \alpha \\
+    y^{(t)} &amp; \text{si} \quad u &gt; \alpha
+    \end{array}\right.
+    \]</span></p></li>
+</ol>
+</div>
+</div>
+<section id="metropolis-hastings-en-espacios-paramétricos-acotados" class="level3">
+<h3 class="anchored" data-anchor-id="metropolis-hastings-en-espacios-paramétricos-acotados">Metropolis-Hastings en espacios paramétricos acotados</h3>
+<p>La distribución normal suele ser una elección conveniente a la hora de proponer saltos, pero presenta desventajas cuando el espacio paramétrico es acotado: inevitablemente, algunas propuestas caerán fuera del dominio y rechazaremos más que de costumbre.</p>
+<p>Para abordar este problema, existen dos estrategias principales. Una opción es utilizar distribuciones cuyo soporte coincida con el espacio objetivo. Sin embargo, encontrar parametrizaciones basadas en la media para todas ellas no es trivial.</p>
+<p>La otra alternativa, más general, consiste en aplicar una transformación de variables para trabajar en un espacio no acotado, permitiendo así seguir utilizando una distribución de propuesta normal. Esta estrategia requiere conocer la densidad objetivo en el nuevo espacio, lo que implica calcular el determinante del jacobiano de la transformación. A su favor, muchas de las transformaciones más utilizadas permiten un cálculo sencillo, y este proceso puede automatizarse con herramientas de diferenciación automática existentes.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Transformación de variables aleatorias
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sean <span class="math inline">\(X\)</span> e <span class="math inline">\(Y = g(X)\)</span> variables aleatorias continuas, donde <span class="math inline">\(g\)</span> es una función uno a uno y <span class="math inline">\(X\)</span> tiene función de densidad <span class="math inline">\(f_X(x)\)</span> conocida. Luego, la función de densidad de <span class="math inline">\(Y\)</span> es: <span class="math display">\[
+f_Y(y) = f_X(g^{-1}(y)) \left\lvert \frac{d}{dy}g^{-1}(y) \right\rvert
 \]</span></p>
-<ol start="2" type="1">
-<li><p>Grafique la función de densidad de la distribución de Kumaraswamy para 5 combinaciones de los parámetros <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> que crea convenientes. Concluya sobre la utilidad que puede tener en la estadística bayesiana.</p></li>
-<li><p>Utilizando la función construida en el punto <strong>1</strong>, obtenga 5000 muestras de una distribución de Kumaraswamy con parámetros <span class="math inline">\(a=6\)</span> y <span class="math inline">\(b=2\)</span>. Utilice una distribución de propuesta beta. Tenga en cuenta que la misma se puede parametrizar según media <span class="math inline">\(\mu = \alpha / (\alpha + \beta)\)</span> y concentración <span class="math inline">\(\kappa = \alpha + \beta\)</span>.</p>
-<p>Compare las cadenas obtenidas al utilizar tres grados de concentración distintos en la distribución de propuesta. Calcule la tasa de aceptación. Compare utilizando histogramas y funciones de autocorrelación (puede utilizar la función <code>acf</code> o escribir una función propia). Para elegir el punto inicial del algoritmo de MH, obtenga un valor aleatorio de una distribución conocida que sea conveniente.</p></li>
-<li><p>Utilizando cada una de las cadenas anteriores, compute la media de la distribución y los percentiles 5 y 95 de <span class="math inline">\(X\)</span> y de <span class="math inline">\(\mathrm{logit}(X)\)</span>.</p></li>
-</ol>
-<!-- 5.  Considere un experimento binomial a partir del cual se quiere determinar la 
-    probabilidad de éxito $\theta$. Se realiza el experimento y se obtienen 8 éxitos en 
-    13 intentos. Obtenga la distribución _a posteriori_ de $\theta$ si la creencia 
-    _a priori_ viene dada por
-
-    $$
-    p(\theta) = 2 \theta \qquad \theta \in (0, 1)
-    $$
-
-    Obtenga muestras utilizando 6 cadenas independientes que partan de diferentes puntos
-    inciales. Estudie gráficamente la convergencia y, en caso de ser necesario, descarte 
-    muetras iniciales. Además, estime el tamaño efectivo de muestra 
-    ($ESS$ o $N_{\mathrm{eff}}$) y el MCSE de la media _a posteriori_ de la probabilidad 
-    de éxito. Concluya sobre la bondad de la aproximación obtenida de la distribución 
-    _a posteriori_ y su media. -->
+<p>donde <span class="math inline">\(\left\lvert \frac{d}{dy}g^{-1}(y) \right\rvert\)</span> es el determinante del jacobiano de la transformación. Por ejemplo, en el caso de la función <span class="math inline">\(g(u) = \text{logit}(u)\)</span>, se tiene: <span class="math display">\[
+\begin{aligned}
+g : (0, 1) \to \mathbb{R} &amp; = \text{logit}(u) = \log\left(\frac{u}{1 - u}\right) \\
+g^{-1} : \mathbb{R} \to (0, 1) &amp;= \text{expit}(u) =  \frac{1}{1 + \exp(-u)}
+\end{aligned}
+\]</span></p>
+<p>y luego, utilizando <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> definidas al principio: <span class="math display">\[
+f_Y(y) = f_X(\text{expit}(y)) \cdot \text{expit}(y) \cdot ( 1 - \text{expit}(y))
+\]</span></p>
+</div>
+</div>
 </section>
-<section id="metropolis-hastings-en-2d" class="level2">
-<h2 class="anchored" data-anchor-id="metropolis-hastings-en-2d">Metropolis-Hastings en 2D</h2>
-<p>Como veremos en esta sección del trabajo práctico, la verdadera utilidad del algoritmo de Metropolis-Hastings se aprecia cuando se obtienen muestras de distribuciones en más de una dimensión, incluso cuando no se conoce la constante de normalización. Paradójicamente, los ejemplos trabajados a continuación también serán los que nos permitirán advertir sus limitaciones y motivarán la búsqueda de mejores alternativas.</p>
-<section id="normal-multivariada" class="level3">
-<h3 class="anchored" data-anchor-id="normal-multivariada">Normal multivariada</h3>
-<p>La distribución normal multivariada es la generalización de la distribución normal univariada a múltiples dimensiones (o mejor dicho, el caso en una dimensión es un caso particular de la distribución en múltiples dimensiones). La función de densidad de la distribución normal en <span class="math inline">\(k\)</span> dimensiones es:</p>
-<p><span class="math display">\[
-p(\boldsymbol{x} \mid \boldsymbol{\mu}, \boldsymbol{\Sigma}) =
-    \frac{1}{(2\pi)^{k/2} |\boldsymbol{\Sigma}|^{1/2}}
-    \exp\left(-\frac{1}{2} (\boldsymbol{x} - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1} (\boldsymbol{x} - \boldsymbol{\mu})\right)
+<section id="metropolis-hastings-en-escala-logarítmica" class="level3">
+<h3 class="anchored" data-anchor-id="metropolis-hastings-en-escala-logarítmica">Metropolis-Hastings en escala logarítmica</h3>
+<p>Sin importar cuán moderna y potente sea nuestra computadora, siempre tendremos que lidiar con el talón de Aquiles del cálculo computacional: los problemas de subdesbordamiento y sobredesbordamiento (conocidos como <em>underflow</em> y <em>overflow</em> en inglés). Por ejemplo, si intentamos multiplicar 100 números del orden de <code>0.0001</code> en R, la computadora podría interpretar el resultado como 0, aunque matemáticamente esto no sea cierto.</p>
+<p>El <em>underflow</em> es un problema frecuente en el cómputo estadístico. Un caso típico es el que se da al evaluar funciones de verosimilitud, donde se multiplican densidades correspondientes a cada observación. Dado que estas densidades suelen ser valores muy pequeños, es común enfrentarse a un problema de subdesbordamiento. Este riesgo aumenta con la cantidad de observaciones y la dimensionalidad de la distribución objetivo.</p>
+<p>El problema se agrava al utilizar algoritmos como Metropolis-Hastings, ya que la densidad objetivo se evalúa miles de veces en diferentes puntos del espacio paramétrico. Además, en inferencia bayesiana, esta función suele involucrar una función de verosimilitud, que puede implicar una multiplicación de gran cantidad de números pequeños, lo que incrementa aún más las chances de que el cómputo resulte en un <em>underflow</em>.</p>
+<p>Si nuestro algoritmo de muestreo encuentra un problema de <em>underflow</em>, pueden ocurrir dos situaciones:</p>
+<ul>
+<li>Se genera un error que detiene la ejecución del programa.</li>
+<li>Se ignora la propuesta problemática y se realiza una nueva, pero nuestro programa ya no sigue la cadena de Markov deseada.</li>
+</ul>
+<p>Entonces, ¿cómo solucionamos este problema? La respuesta es sencilla: realizar todos los cálculos en escala logarítmica. Las multiplicaciones se vuelven sumas y el cómputo se estabiliza.</p>
+<div id="lst-mh-log" class="listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-mh-log-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Listado&nbsp;1: Implementación del algoritmo de Metropolis-Hastings en escala logarítmica.
+</figcaption>
+<div aria-describedby="lst-mh-log-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>metropolis_hastings_log <span class="ot">&lt;-</span> <span class="cf">function</span>(logp, x, n, <span class="at">sigma =</span> <span class="cn">NULL</span>) {</span>
+<span id="cb1-2"><a href="#cb1-2"></a>  <span class="co"># Algortimo de Metropolis Hastings en escala logarítmica</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>  <span class="co">#</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>  <span class="co"># Parámetros</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>  <span class="co">#  ------------------------------------------------------------------------</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>  <span class="co"># | logp     | Función de densidad objetivo, normalizada o sin normalizar, |</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>  <span class="co"># |          | en escala logarítmica.                                      |</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>  <span class="co"># | x        | Posición inicial del algoritmo.                             |</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>  <span class="co"># | n        | Cantidad de muestras a obtener.                             |</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>  <span class="co"># | sigma    | Matriz de varianzas y covarianzas para la distribución de   |</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>  <span class="co"># |          | propuesta. Por defecto, es NULL y usa la matriz identidad.  |</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>  <span class="co">#  ------------------------------------------------------------------------</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>  <span class="co">#</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>  <span class="co"># Salida</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a>  <span class="co">#  ------------------------------------------------------------------------</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a>  <span class="co"># | muestras | Matriz con las muestras obtenidas.                          |</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a>  <span class="co">#  ------------------------------------------------------------------------</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a></span>
+<span id="cb1-19"><a href="#cb1-19"></a>  <span class="co"># Obtener dimensionalidad de la distribución objetivo a partir del punto inicial</span></span>
+<span id="cb1-20"><a href="#cb1-20"></a>  p <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="cb1-21"><a href="#cb1-21"></a></span>
+<span id="cb1-22"><a href="#cb1-22"></a>  <span class="co"># Inicializar matriz donde se guardan las muestras</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a>  muestras <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> n, <span class="at">ncol =</span> p)</span>
+<span id="cb1-24"><a href="#cb1-24"></a></span>
+<span id="cb1-25"><a href="#cb1-25"></a>  <span class="co"># Usar matriz diagonal unitaria para la distribución de propuesta cuando no se especifica</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a>  <span class="cf">if</span> (<span class="fu">is.null</span>(sigma)) {</span>
+<span id="cb1-27"><a href="#cb1-27"></a>    sigma <span class="ot">&lt;-</span> <span class="fu">diag</span>(p)</span>
+<span id="cb1-28"><a href="#cb1-28"></a>  }</span>
+<span id="cb1-29"><a href="#cb1-29"></a></span>
+<span id="cb1-30"><a href="#cb1-30"></a>  <span class="co"># Almacenar el punto inicial en la matriz de muestras</span></span>
+<span id="cb1-31"><a href="#cb1-31"></a>  muestras[<span class="dv">1</span>, ] <span class="ot">&lt;-</span> x</span>
+<span id="cb1-32"><a href="#cb1-32"></a></span>
+<span id="cb1-33"><a href="#cb1-33"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(n <span class="sc">-</span> <span class="dv">1</span>)) {</span>
+<span id="cb1-34"><a href="#cb1-34"></a>    <span class="co"># Obtener el valor de la muestra actual</span></span>
+<span id="cb1-35"><a href="#cb1-35"></a>    muestra_actual <span class="ot">&lt;-</span> muestras[i, ]</span>
+<span id="cb1-36"><a href="#cb1-36"></a></span>
+<span id="cb1-37"><a href="#cb1-37"></a>    <span class="co"># Proponer un nuevo valor</span></span>
+<span id="cb1-38"><a href="#cb1-38"></a>    muestra_propuesta <span class="ot">&lt;-</span> mvtnorm<span class="sc">::</span><span class="fu">rmvnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> muestra_actual, <span class="at">sigma =</span> sigma)</span>
+<span id="cb1-39"><a href="#cb1-39"></a></span>
+<span id="cb1-40"><a href="#cb1-40"></a>    <span class="co"># Evaluar la log densidad en el valor actual y en el propuesto</span></span>
+<span id="cb1-41"><a href="#cb1-41"></a>    logp_propuesta <span class="ot">&lt;-</span> <span class="fu">logp</span>(muestra_propuesta)</span>
+<span id="cb1-42"><a href="#cb1-42"></a>    logp_actual <span class="ot">&lt;-</span> <span class="fu">logp</span>(muestra_actual)</span>
+<span id="cb1-43"><a href="#cb1-43"></a></span>
+<span id="cb1-44"><a href="#cb1-44"></a>    <span class="co"># Log densidad al pasar de muestra_propuesta a muestra_actual y viceversa</span></span>
+<span id="cb1-45"><a href="#cb1-45"></a>    <span class="co"># Pregunta: ¿Es necesario este paso?</span></span>
+<span id="cb1-46"><a href="#cb1-46"></a>    logq_actual <span class="ot">&lt;-</span> mvtnorm<span class="sc">::</span><span class="fu">dmvnorm</span>(muestra_actual, <span class="at">mean =</span> muestra_propuesta, <span class="at">sigma =</span> sigma, <span class="at">log =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-47"><a href="#cb1-47"></a>    logq_propuesta <span class="ot">&lt;-</span> mvtnorm<span class="sc">::</span><span class="fu">dmvnorm</span>(muestra_propuesta, <span class="at">mean =</span> muestra_actual, <span class="at">sigma =</span> sigma, <span class="at">log =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-48"><a href="#cb1-48"></a></span>
+<span id="cb1-49"><a href="#cb1-49"></a>    <span class="co"># Calcular log probabilidad de aceptación</span></span>
+<span id="cb1-50"><a href="#cb1-50"></a>    log_alpha <span class="ot">&lt;-</span> (logp_propuesta <span class="sc">+</span> logq_actual) <span class="sc">-</span> (logp_actual <span class="sc">+</span> logq_propuesta)</span>
+<span id="cb1-51"><a href="#cb1-51"></a></span>
+<span id="cb1-52"><a href="#cb1-52"></a>    <span class="co"># Simular aceptación o rechazo</span></span>
+<span id="cb1-53"><a href="#cb1-53"></a>    log_u <span class="ot">&lt;-</span> <span class="fu">log</span>(<span class="fu">runif</span>(<span class="dv">1</span>))</span>
+<span id="cb1-54"><a href="#cb1-54"></a></span>
+<span id="cb1-55"><a href="#cb1-55"></a>    aceptar <span class="ot">&lt;-</span> log_u <span class="sc">&lt;</span> log_alpha</span>
+<span id="cb1-56"><a href="#cb1-56"></a></span>
+<span id="cb1-57"><a href="#cb1-57"></a>    <span class="co"># Determinar siguiente paso en base al criterio de selección</span></span>
+<span id="cb1-58"><a href="#cb1-58"></a>    <span class="cf">if</span> (aceptar) {</span>
+<span id="cb1-59"><a href="#cb1-59"></a>      muestras[i <span class="sc">+</span> <span class="dv">1</span>, ] <span class="ot">&lt;-</span> muestra_propuesta</span>
+<span id="cb1-60"><a href="#cb1-60"></a>    } <span class="cf">else</span> {</span>
+<span id="cb1-61"><a href="#cb1-61"></a>      muestras[i <span class="sc">+</span> <span class="dv">1</span>, ] <span class="ot">&lt;-</span> muestra_actual</span>
+<span id="cb1-62"><a href="#cb1-62"></a>    }</span>
+<span id="cb1-63"><a href="#cb1-63"></a>  }</span>
+<span id="cb1-64"><a href="#cb1-64"></a>  <span class="co"># Convertir 'muestras' a vector si se trata de una distrbución univariada</span></span>
+<span id="cb1-65"><a href="#cb1-65"></a>  <span class="cf">if</span> (p <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb1-66"><a href="#cb1-66"></a>    muestras <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(muestras)</span>
+<span id="cb1-67"><a href="#cb1-67"></a>  }</span>
+<span id="cb1-68"><a href="#cb1-68"></a></span>
+<span id="cb1-69"><a href="#cb1-69"></a>  <span class="fu">return</span>(muestras)</span>
+<span id="cb1-70"><a href="#cb1-70"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</figure>
+</div>
+</section>
+</section>
+<section id="ahora-sí-cerebro-a-la-obra" class="level2">
+<h2 class="anchored" data-anchor-id="ahora-sí-cerebro-a-la-obra">Ahora sí, cerebro a la obra</h2>
+<p>La función <code>metropolis_hastings_log()</code> es una herramienta poderosa que, en teoría, permite obtener muestras de cualquier distribución <em>a posteriori</em> que se pueda implementar en R en escala logarítmica. Pero, ¿de qué sirve tener una herramienta tan potente si no está nada claro cómo dominarla?</p>
+<p>A esta altura, intentar usar <code>metropolis_hastings_log()</code> para muestrear del <em>posterior</em> en los modelos propuestos inicialmente resultaría muy dificultoso. Sería como pasar de manejar un Golcito por las calles del pueblo a subirse a un Fórmula 1 en el medio de un Gran Premio.</p>
+<p>Como bien dice el refrán, la práctica hace al maestro. Y quienes conocen de primera mano la verdad de estas palabras son, casualmente, los pilotos de Fórmula 1. No solo acumulan experiencia tras años de competencia en categorías menores, desde el karting hasta la Fórmula 2, sino que también, antes de cada Gran Premio, dan entre 400 y 500 vueltas al circuito… ¡pero en un simulador!</p>
+<p>De este modo, en preparación para la aplicación final en este trabajo —nuestro propio Gran Premio— comenzaremos utilizando el algoritmo de Metropolis-Hastings en escenarios simples y controlados, aumentando gradualmente la complejidad. Esto nos permitirá practicar su uso con transformación de variables, en escala logarítmica y en <em>posteriors</em> de múltiples dimensiones. Y al final, como en toda buena carrera, llegará el Gran Premio.</p>
+<section id="en-el-simulador-ensayos-con-la-distribución-gamma" class="level3">
+<h3 class="anchored" data-anchor-id="en-el-simulador-ensayos-con-la-distribución-gamma">1. En el simulador: ensayos con la distribución Gamma</h3>
+<p>El objetivo de esta sección es familiarizarnos con el uso de transformaciones para obtener muestras de distribuciones con soporte acotado. Inicialmente, utilizaremos la función <code>metropolis_hastings()</code> desarrollada en la práctica de la materia, que opera en escala original. Luego, utilizaremos la función <code>metropolis_hastings_log()</code> incluida más arriba, que trabaja en escala logarítmica.</p>
+<p>Sea <span class="math inline">\(X \sim \text{Gamma}(\alpha = 3, \beta = 8)\)</span>.</p>
+<ol type="1">
+<li>Obtenga y grafique la función de densidad de <span class="math inline">\(Y = \log(X)\)</span>.</li>
+<li>Utilice Metropolis-Hastings para obtener 10000 muestras de <span class="math inline">\(X\)</span>. Para ello, obtenga muestras de <span class="math inline">\(Y\)</span> utilizando una propuesta normal con <span class="math inline">\(\sigma = 0.2\)</span> y realice la transformación correspondiente para obtener las muestras de <span class="math inline">\(X\)</span>. Para evaluar la bondad del método, calcule el tamaño de muestra efectivo, visualice la trayectoria de la cadena con un <em>traceplot</em> y compare la distribución empírica con la función de densidad teórica utilizando un histograma.</li>
+<li>Implemente la función de densidad de <span class="math inline">\(Y\)</span> en escala logarítmica y utilice <code>metropolis_hastings_log()</code> para obtener muestras de <span class="math inline">\(X\)</span>. Calcule el tamaño efectivo de muestra efectivo y compárelo con el obtenido anteriormente. Finalmente, obtenga un histograma de las muestras y compárelo con la densidad empírica y con el histograma obtenido en el punto anterior.</li>
+</ol>
+</section>
+<section id="free-practice-múltiples-dimensiones" class="level3">
+<h3 class="anchored" data-anchor-id="free-practice-múltiples-dimensiones">2. <em>Free practice</em>: múltiples dimensiones</h3>
+<p>Al cómputo en escala logarítmica y el uso de transformaciones de variables, en esta etapa se le agrega que la distribución objetivo tiene múltiples dimensiones y debe ser obtenida mediante el uso de la regla de Bayes.</p>
+<p>Dado el siguiente modelo: <span class="math display">\[
+\begin{aligned}
+Y_i &amp; \sim \text{Normal}(\mu, \sigma^2) \\
+\mu &amp; \sim \text{Normal}(0, 1^2) \\
+\sigma &amp; \sim \text{Gamma}(\alpha=2, \beta=2) \\
+\end{aligned}
 \]</span></p>
-<p>donde <span class="math inline">\(\boldsymbol{\mu}\)</span> es el vector de medias y <span class="math inline">\(\boldsymbol{\Sigma}\)</span> la matriz de covarianza.</p>
+<p>con <span class="math inline">\(i = 1, \dots, N\)</span>.</p>
+<ol start="4" type="1">
+<li>Implemente en R una función que permita calcular la densidad a <em>posteriori</em> en escala logarítmica, sin incluir la constante de normalización. Esta función tendrá 2 parámetros de entrada, uno para el vector de parámetros y otro para el vector de valores observados.</li>
+<li>Utilice los valores de <span class="math inline">\(y_i\)</span> en el archivo <code>precalentamiento-mh.txt</code> y la función <code>metropolis_hastings_log()</code> para obtener muestras del <em>posterior</em> de <span class="math inline">\(\boldsymbol{\theta} = \{\mu, \sigma\}\)</span>. Corra dos cadenas de Markov. Calcule el tamaño efectivo de muestra y evalúe mezcla y convergencia de manera gráfica.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Evaluación parcial de funciones
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En las líneas 41 y 42 del <a href="#lst-mh-log" class="quarto-xref">Listado&nbsp;1</a> se puede ver que la función <code>logp</code> que se pasa a <code>metropolis_hastings_log()</code> debe funcionar correctamente al ser llamada con un único argumento, que es el vector de parámetros. Pero la función que implementamos en el punto 4 tiene 2 argumentos, uno para el vector de parámetros y otro para el vector de datos… ¿cómo hacemos?</p>
+<p>La función <code>partial()</code>, de la librería <code>purrr</code>, permite pre-llenar argumentos de una función. Toma como entrada una función, los argumentos con sus valores a pre-llenar, y devuelve una nueva función que hace lo mismo que la función original, pero con valores de argumentos ya especificados.</p>
+<p>En nuestro caso, podríamos hacer:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb2-2"><a href="#cb2-2"></a>logp <span class="ot">&lt;-</span> <span class="fu">partial</span>(log_posterior, <span class="at">y =</span> datos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Luego, la función <code>logp()</code> puede ser llamada solamente pasando el vector de parámetros. El valor de <code>y</code> será el que se pasó originalmente a la función <code>partial()</code>.</p>
+</div>
+</div>
+</section>
+<section id="el-gran-prix-qué-le-decimos-a-brian" class="level3">
+<h3 class="anchored" data-anchor-id="el-gran-prix-qué-le-decimos-a-brian">3. El Gran Prix: ¿qué le decimos a Brian?</h3>
+<p>A esta altura del partido (o de la carrera mejor dicho) ya estamos ‘retequecontra’ preparados para trabajar con los modelos presentados inicialmente y dar respuesta a la pregunta sobre el efecto del ozono en desarrollo de las ratas de Brian Tarkington. Llegó la hora de realizar el análisis estadístico.</p>
 <ol start="6" type="1">
-<li><p>Escriba una función que implemente el algoritmo de Metropolis-Hastings para tomar muestras de una función de probabilidad bivariada dada. Separe en funciones cada una de los pasos del algoritmo. La probabilidad de salto será normal bivariada de matriz de covarianza variable (utilizar para ello la función <code>rmvnorm</code> del paquete <code>{mvtnorm}</code>). Otorgue flexibilidad al algoritmo haciendo que reciba como argumento la matriz de covarianza de la probabilidad de transición.</p></li>
-<li><p>Utilice la función escrita en el punto anterior para obtenga muestras de una distribución normal bivariada con media <span class="math inline">\(\boldsymbol{\mu}^*\)</span> y matriz de covarianza <span class="math inline">\(\boldsymbol{\Sigma}^*\)</span>. Determine una matriz de covarianza que crea conveniente para la distribución de propuesta. Justifique su decisión y valide la bondad del método mediante el uso de <em>traceplots</em> y las estadísticas que crea adecuadas.</p>
-<p><span class="math display">\[
-\begin{array}{lr}
-    \boldsymbol{\mu}^* = \begin{bmatrix} 0.4 \\ 0.75 \end{bmatrix}
-    &amp; \boldsymbol{\Sigma}^* = \begin{bmatrix} 1.35 &amp; 0.4 \\ 0.4 &amp; 2.4 \end{bmatrix}
-\end{array}
-\]</span></p></li>
-<li><p>Estime las siguientes probabilidades utilizando las muestras obtenidas:</p>
+<li>Realice un análisis exploratorio de los datos y describa sus hallazgos.</li>
+<li>Para una media y una varianza dada, ¿en qué se diferencia la distribución normal de la distribución T de Student con 3 grados de libertad?</li>
+<li>Tanto para el modelo normal como para el basado en la T de Student:
 <ol type="i">
-<li><span class="math inline">\(\mathrm{Pr}(X_1 &gt; 1, X_2 &lt; 0)\)</span></li>
-<li><span class="math inline">\(\mathrm{Pr}(X_1 &gt; 1, X_2 &gt; 2)\)</span></li>
-<li><span class="math inline">\(\mathrm{Pr}(X_1 &gt; 0.4, X_2 &gt; 0.75)\)</span></li>
-</ol>
-<p>Luego, calcule esas mismas probabilidades mediante algún método que crea conveniente (función de distribución, integración manual, integración numérica, monte carlo, etc.), y compare los resultados con los obtenidos en base a las muestras seleccionadas con MH y concluya.</p></li>
-</ol>
-</section>
-<section id="función-de-rosenbrock" class="level3">
-<h3 class="anchored" data-anchor-id="función-de-rosenbrock">Función de Rosenbrock</h3>
-<p>La <a href="https://es.wikipedia.org/wiki/Funci%C3%B3n_de_Rosenbrock">función de Rosenbrock</a>, a veces llamada el “valle de Rosenbrock”, y comunmente conocida como la “banana de Rosenbrock” 🍌, es una función matemática utilizada frecuentemente como un problema de optimización y prueba para algoritmos de optimización numérica.</p>
-<p>La función está definida por: <span class="math display">\[
-f(x, y) = (a - x) ^ 2 + b(y - x^2) ^ 2
-\]</span></p>
-<p>y cuenta con un mínimo global en <span class="math inline">\((x, y) = (a, a^2)\)</span>, que satisface <span class="math inline">\(f(a, a^2) = 0\)</span>.</p>
-<p>Debido a su forma peculiar, la función de Rosenbrock presenta desafíos particulares para los algoritmos de optimización, ya que tiene un valle largo y estrecho en el que la convergencia puede ser lenta.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="imgs/rosenbrock2.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>Función de Rosenbrock</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Esta forma de banana popularizada por Rosenbrock es también muy conocida en el campo de la estadística bayesiana, ya que en ciertos escenarios, la densidad del <em>posterior</em> toma una forma que definitivamente se asemeja a la banana de Rosenbrock. Un ejemplo de este fenómeno es la función <span class="math inline">\(p^*\)</span>:</p>
-<p><span class="math display">\[
-p^*(x_1, x_2 \mid a, b) = \exp \left\{-\left[(a - x_1) ^ 2 + b(x_2 - x_1^2) ^ 2\right] \right\}
-\]</span></p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02_tp2_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption>Función de densidad de la que se desean obtener muestras con <span class="math inline">\(a = 0.5\)</span> y <span class="math inline">\(b = 5\)</span></figcaption>
-</figure>
-</div>
-</div>
-</div>
-<ol start="9" type="1">
-<li><p>Obtenga muestras de la distribución <em>a posteriori</em> determinada por <span class="math inline">\(p^*\)</span> con <span class="math inline">\(a=0.5\)</span> y <span class="math inline">\(b=5\)</span> utlizando la función implementada en el punto <strong>6</strong>. Utilice tres matrices de covarianza distintas para la distribución de propuesta. En al menos dos de los casos, compare las trayectorias seguidas por las cadenas en el proceso de muestreo. Y en todos los casos, calcule la probabilidad de aceptación y muestre la función de autocorrelación.</p></li>
-<li><p>Utilizando el conjunto de muestras que crea mas conveniente, estime las siguientes probabilidades:</p>
-<ol type="i">
-<li><span class="math inline">\(\mathrm{Pr}(0 &lt; X_1 &lt; 1, 0 &lt; X_2 &lt; 1)\)</span></li>
-<li><span class="math inline">\(\mathrm{Pr}(-1 &lt; X_1 &lt; 0, 0 &lt; X_2 &lt; 1)\)</span></li>
-<li><span class="math inline">\(\mathrm{Pr}(1 &lt; X_1 &lt; 2, 2 &lt; X_2 &lt; 3)\)</span></li>
+<li>Escriba la función de densidad <em>a posteriori</em> en escala logarítmica, sin considerar la constante de normalización. De ser necesario, realice las transformaciones de variables que crea conveniente.</li>
+<li>Implemente la función anterior en R.</li>
+<li>Use <code>metropolis_hastings_log()</code> para obtener muestras del <em>posterior</em>. Utilice 4 cadenas de 5000 muestras cada una. Evalúe mezcla y convergencia mediante medidas numéricas y gráficas. Visualice las distribuciones <em>a posteriori</em> marginales.</li>
+<li>Concluya en términos del problema.</li>
 </ol></li>
-<li><p>Finalmente, calcule las mismas probabilidades utilizando un método de su elección (integración manual, integración numérica, método de la grilla, etc.), compare los resultados y concluya sobre lo observado en este experimento en particular y sobre la utilidad del algoritmo de Metropolis-Hastings en general.</p></li>
+<li>¿Llega a la misma conclusión con ambos modelos? ¿Por qué?</li>
 </ol>
-<!--
-# Apéndice (para mover a teoría)
-
-::: {.callout-tip}
-## Algoritmo de Metropolis Hastings
-
-Se desea generar una muestra de valores $\{y^{(1)}, y^{(2)}, \cdots, y^{(n)} \}$ a partir
-de una distribución de probabilidad $P$ con función de densidad $p$.
-
-1. Seleccionar un punto inicial $y^{(1)}$.
-
-1. Para cada $t\in \{1, \cdots, n\}$, repetir:
-
-    i.  **Proponer un nuevo valor**
-    
-        Obtener un valor aleatorio $y'$ de una variable $Y'$ cuya distribución está
-        dada por la distribución de propuesta $Q$ y el valor de la última muestra 
-        obtenida:
-    
-        $$
-        Y' \sim Q(y^{(t)})
-        $$
-    
-    i.  **Calcular la probabilidad de aceptación**
-
-        Calcular el cociente entre la función de densidad en el punto propuesto y en el
-        punto actual. La probabilidad de aceptación es igual a este cociente si es menor 
-        a 1, caso contrario es igual a 1.
-
-        $$
-        \alpha = \min \left\{ 1, \frac{p(y')}{p(y)} \right\}
-        $$
-
-    i.  **Seleccionar el nuevo valor**
-
-        Generar un valor aleatorio $u$ de una distribución $\mathcal{U}(0, 1)$ y determinar
-        $y^{(t + 1)}$ de la siguiente manera:
-
-        $$
-        y^{(t + 1)} = \left\{
-        \begin{array}{ll}
-        y' & \text{si} \quad u \le \alpha \\
-        y^{(t)} & \text{si} \quad u > \alpha
-        \end{array}\right.
-        $$
-
-**Notas**
-
-El cálculo del cociente en la determinación de la probabilidad de aceptación es
-en realidad:
-
-$$
-\frac{p(y')q(y^{(t)} \mid y')}{p(y)q(y' \mid y^{(t)})}
-$$
-
-donde $q$ es la función de densidad de la distribución de propuesta.
-
-Esta se simplifica a la expresión utilizada en el algoritmo cuando $q$ es una función 
-simétrica alrededor de su media.
-:::
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+T de Student no centrada y escalada
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La función <code>dt()</code> de R permite evaluar la función de densidad de una distribución T de Student estándar, con media 0 y desvío 1. Para evaluar la función de densidad con media y desvío arbitrario se puede utilizar la siguiente función de R:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>scaled_t_density <span class="ot">&lt;-</span> <span class="cf">function</span>(x, df, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>) {</span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">dt</span>((x <span class="sc">-</span> mean) <span class="sc">/</span> sd, df) <span class="sc">/</span> sd</span>
+<span id="cb3-3"><a href="#cb3-3"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
 
 
-::: {.callout-tip}
-## _Effective sample size_ (ESS)
-
-El número efectivo de muestras $N_{eff}$ es el número de muestras independientes que tienen el mismo _poder de estimación_ que $S$ muestras correlacionadas.
-
-Este valor puede aproximarse por:
-
-$$N_{eff} = \frac{S}{1 + 2 \sum_{k=1}^\infty ACF(k)}$$
-
-Notar que la suma infinita del denominador empieza en $k=1$ (y no en $k=0$, donde $ACF(0)=1$). Además, en la práctica, una regla para truncar la $ACF$ es hacerlo a partir del primer $k$ valor donde $ACF(k)<0.05$ [@Kruschke2014, p. 184].
-:::
-
-::: {.callout-tip}
-## _Montecarlo standard error_ (MCSE)
-
-Por el Teorema Central del Límite sabemos que, si $\bar{X}_N$ es el promedio de $N$ observaciones 
-independientes e idénticamente distribuidas, entonces $\sqrt{N}(\bar{X}_N-\mu)$ converge en distribución 
-a $\mathcal{N}(0,\sigma^2)$ cuando $N$ tiende a infinito, donde $\mu$ es la media de la distribución
-de las $X_i$ y $\sigma$ es su desvío estándar. Si $\sigma$ se estima por $\hat{\sigma}$, el término 
-$\frac{\sigma}{\sqrt{N}}$ se conoce como error estándar.
-
-Cuando se realiza integración por Montecarlo y se estima $\mathbb{E}({X})$ con $N_{eff}$ muestras dependientes
-que se comportan como $N$ muestras independientes, el error estándar se aproxima por:
-$$
-MCSE = \frac{\hat{\sigma}}{\sqrt{N_{eff}}}
-$$
-:::
-
--->
-
-
-</section>
 </section>
 </section>
 
@@ -580,125 +695,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         return "";
       }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
