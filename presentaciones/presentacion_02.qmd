@@ -675,7 +675,7 @@ $$
 
 $$p(y\mid \pi, N) = {N \choose y }\pi^y (1-\pi)^{N-y} = p(y\mid \pi)$$
 
-## _Posterior_
+## _Posterior_ {.smaller}
 
 $$p(\pi\mid y) = \frac{p(y\mid \pi)p(\pi)}{p(y)}$$
 
@@ -685,7 +685,7 @@ $$p(\pi\mid y) = \frac{{N \choose y }\pi^y (1-\pi)^{N-y}  \frac{\pi^{a-1} (1-\pi
 
 . . .
 
-La integral en el denominador suele ser un problema. Con dos parámetros es una integral doble, con tres parámetros, una triple, etc. Esta integral puede ser intratable _intractable_ (no tener solución exacta, analítica, cerrada). No hay vaca vestida de uniforme que nos salve.
+La integral en el denominador suele ser un problema. Con dos parámetros es una integral doble, con tres parámetros, una triple, etc. Esta integral puede ser intratable (_intractable_) (no tener solución exacta, analítica, cerrada). No hay vaca vestida de uniforme que nos salve.
 
 ## {.smaller}
 
@@ -804,7 +804,7 @@ p1 <- posterior %>%
 p2 <- posterior %>%
   ggplot() +
   geom_line(aes(x=x,y=likelihood/sum(likelihood)),size=1,col="#21dbbc") +
-  scale_y_continuous(name = expression("P("*pi*")")) +
+  scale_y_continuous(name = expression("P("*y*"|"*pi*")")) +
   scale_x_continuous(expression(pi)) +
   theme(axis.text.y = element_blank())
 
