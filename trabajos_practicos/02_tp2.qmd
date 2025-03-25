@@ -1,6 +1,10 @@
 ---
 title: "TP2: El Dibu de la vida"
 practica: "Trabajo Práctico 2"
+format:
+  html:
+    code-line-numbers: true
+    crossrefs-hover: false
 ---
 
 ```{r}
@@ -216,8 +220,9 @@ Entonces, ¿cómo solucionamos este problema?
 La respuesta es sencilla: realizar todos los cálculos en escala logarítmica. Las multiplicaciones
 se vuelven sumas y el cómputo se estabiliza.
 
+:::{#lst-mh-log lst-cap="Implementación del algoritmo de Metropolis-Hastings en escala logarítmica."}
 ```{r}
-metropolis_hastings <- function(logp, x, n, sigma = NULL) {
+metropolis_hastings_log <- function(logp, x, n, sigma = NULL) {
   # Algortimo de Metropolis Hastings en escala logarítmica
   #
   # Parámetros
@@ -288,17 +293,19 @@ metropolis_hastings <- function(logp, x, n, sigma = NULL) {
   return(muestras)
 }
 ```
+:::
+
 
 ## Ahora sí, cerebro a la obra
 
-La función `metropolis_hastings()` es una herramienta poderosa que, en teoría, permite obtener
+La función `metropolis_hastings_log()` es una herramienta poderosa que, en teoría, permite obtener
 muestras de cualquier distribución _a posteriori_ que se pueda implementar en R en escala
 logarítmica. Pero, ¿de qué sirve tener una herramienta tan potente si no está claro cómo dominar
 a la bestia?
 
-A esta altura, intentar usar `metropolis_hastings()` para muestrear del _posterior_ en los modelos
-propuestos inicialmente resultaría muy dificultoso. Sería como pasar de manejar un Golcito por las
-calles del pueblo a subirse a un Fórmula 1 en pleno Gran Premio.
+A esta altura, intentar usar `metropolis_hastings_log()` para muestrear del _posterior_ en los
+modelos propuestos inicialmente resultaría muy dificultoso. Sería como pasar de manejar un Golcito
+por las calles del pueblo a subirse a un Fórmula 1 en pleno Gran Premio.
 
 Como bien dice el refrán, la práctica hace al maestro. Y quienes conocen de primera mano la verdad
 de estas palabras son, casualmente, los pilotos de Fórmula 1. No solo acumulan experiencia tras
@@ -313,15 +320,29 @@ Y al final, como en toda buena carrera, llegará el Gran Premio.
 
 ### 1. En el simulador: ensayos con la distribución Gamma
 
-WIP
+El objetivo de esta sección es familiarizarnos con el uso de transformaciones para obtener muestras
+de distribuciones con soporte acotado. Inicialmente, utilizaremos la función `metropolis_hastings()`
+desarrollada en la práctica de la materia, que opera en escala original. Luego, utilizaremos la
+función `metropolis_hastings_log()` incluida más arriba, que trabaja en escala logarítmica.
 
-1. Implementar la función de densidad de $Y = \log(X)$
-1. Obtener muestras de $Y$.
-1. Transformar muestras $x_i = \exp(y_i)$.
+Sea $X \sim \text{Gamma}(\alpha = 3, \beta = 8)$,
 
-### 2. _Free practice_: múltiples dimensiones, transformaciones y escala logarítmica
+1. Obtenga y grafique la función de densidad de $Y = \log(X)$.
+2. Utilice Metropolis-Hastings para obtener muestras de $X$. Para ello, obtenga muestras de $Y$
+utilizando una propuesta normal con $\sigma = 0.2$ y realice la transformación correspondiente para
+obtener las muestras de $X$. Para evaluar la bondad del método, calcule el tamaño de muestra
+efectivo, visualice la trayectoria de la cadena con un _traceplot_ y compare la distribución
+empírica con la función de densidad teórica utilizando un histograma.
+3. Implemente la función de densidad de $Y$ en escala logarítmica y utilice
+`metropolis_hastings_log()` para obtener muestras de $X$. Calcule el tamaño efectivo de muestra
+y compárelo con el obtenido anteriormente. Finalmente, obtenga un histograma de las muestras
+y compárelo con la densidad empírica y con el histograma obtenido en el punto anterior.
 
-WIP
+### 2. _Free practice_: múltiples dimensiones
+
+Al computo en escala logarítmica y el uso de transformaciones de variables, en esta etapa se le
+agrega que la distribución objetivo tiene múltiples dimensiones y debe ser obtenida mediante el
+uso de la regla de Bayes.
 
 Dado el siguiente modelo:
 $$
@@ -334,11 +355,36 @@ $$
 
 con $i = 1, \dots, N$.
 
-1. Implemente en R una función que permita calcular la densidad a _posteriori_ en escala
-logarítmica. Esta función tendrá `y`, `mu` y `sigma` como parámetros de entrada.
-1. Utilice los valores de $y_i$ en el archivo `precalentamiento-mh.txt` para obtener muestras
-del _posterior_ de $\boldsymbol{\theta} = \{\mu, \sigma\}$. Utilice dos cadenas de Markov.
-Evalúe mezcla y convergencia de manera gráfica.
+4. Implemente en R una función que permita calcular la densidad a _posteriori_ en escala
+logarítmica, sin normalizar. Esta función tendrá 2 parámetros de entrada, uno para el vector de
+parámetros y otro para el vector de valores observados.
+5. Utilice los valores de $y_i$ en el archivo `precalentamiento-mh.txt` y la función
+`metropolis_hastings_log()` para obtener muestras del _posterior_ de
+$\boldsymbol{\theta} = \{\mu, \sigma\}$. Utilice dos cadenas de Markov. Calcule el tamaño efectivo
+de muestra y evalúe mezcla y convergencia de manera gráfica.
+
+::: {.callout-tip}
+## Evaluación parcial de funciones
+
+En las líneas 41 y 42 del @lst-mh-log se puede ver que la función `logp` que se pasa a
+`metropolis_hastings_log()` debe funcionar al ser llamada con un único argumento, que es el vector
+de parámetros. Pero la función que implementamos en el punto 4 tiene 2 argumentos, uno para
+el vector de parámetros y otro para el vector de datos... ¿cómo hacemos?
+
+La función `partial()` de la librería `purrr` permite pre-llenar argumentos de una función.
+Toma como entrada una función, los argumentos a pre-llenar, y devuelve una nueva función que hace
+lo mismo que la función original, pero con valores de argumentos ya especificados.
+
+En nuestro caso, podríamos hacer:
+```r
+library(purrr)
+logp <- partial(log_posterior, y = datos)
+```
+
+Luego, la función `logp()` puede ser llamada solamente pasando el vector de parámetros.
+El valor de `y` será el que se pasó originalmente a la función `partial()`.
+
+:::
 
 ### 3. El Gran Prix: ¿qué le decimos a Brian?
 
