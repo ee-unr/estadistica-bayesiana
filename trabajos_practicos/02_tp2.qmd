@@ -7,22 +7,6 @@ format:
     crossrefs-hover: false
 ---
 
-```{r}
-#| echo: false
-#| include: false
-library(dplyr)
-library(ggplot2)
-library(patchwork)
-
-colores <- c("#644296","#F08533", "#3B78B0", "#D1352C")
-
-semilla <- strsplit("metropolis hastings", "")[[1]] |>
-    match(c(letters), nomatch = 0) |>
-    sum()
-
-set.seed(semilla)
-```
-
 ## Introducción
 
 El ozono (O₃) es un gas cuya molécula está formada por tres átomos de oxígeno y se encuentra tanto
@@ -300,17 +284,17 @@ metropolis_hastings_log <- function(logp, x, n, sigma = NULL) {
 
 La función `metropolis_hastings_log()` es una herramienta poderosa que, en teoría, permite obtener
 muestras de cualquier distribución _a posteriori_ que se pueda implementar en R en escala
-logarítmica. Pero, ¿de qué sirve tener una herramienta tan potente si no está claro cómo dominar
-a la bestia?
+logarítmica. Pero, ¿de qué sirve tener una herramienta tan potente si no está nada claro cómo 
+dominarla?
 
 A esta altura, intentar usar `metropolis_hastings_log()` para muestrear del _posterior_ en los
 modelos propuestos inicialmente resultaría muy dificultoso. Sería como pasar de manejar un Golcito
-por las calles del pueblo a subirse a un Fórmula 1 en pleno Gran Premio.
+por las calles del pueblo a subirse a un Fórmula 1 en el medio de un Gran Premio.
 
 Como bien dice el refrán, la práctica hace al maestro. Y quienes conocen de primera mano la verdad
 de estas palabras son, casualmente, los pilotos de Fórmula 1. No solo acumulan experiencia tras
 años de competencia en categorías menores, desde el karting hasta la Fórmula 2, sino que también,
-antes de cada Gran Premio, corren entre 400 y 500 vueltas en el circuito... ¡pero en un simulador!
+antes de cada Gran Premio, dan entre 400 y 500 vueltas al circuito... ¡pero en un simulador!
 
 De este modo, en preparación para la aplicación final en este trabajo —nuestro propio Gran Premio—
 comenzaremos utilizando el algoritmo de Metropolis-Hastings en escenarios simples y controlados,
@@ -325,22 +309,22 @@ de distribuciones con soporte acotado. Inicialmente, utilizaremos la función `m
 desarrollada en la práctica de la materia, que opera en escala original. Luego, utilizaremos la
 función `metropolis_hastings_log()` incluida más arriba, que trabaja en escala logarítmica.
 
-Sea $X \sim \text{Gamma}(\alpha = 3, \beta = 8)$,
+Sea $X \sim \text{Gamma}(\alpha = 3, \beta = 8)$.
 
 1. Obtenga y grafique la función de densidad de $Y = \log(X)$.
-2. Utilice Metropolis-Hastings para obtener muestras de $X$. Para ello, obtenga muestras de $Y$
-utilizando una propuesta normal con $\sigma = 0.2$ y realice la transformación correspondiente para
-obtener las muestras de $X$. Para evaluar la bondad del método, calcule el tamaño de muestra
+2. Utilice Metropolis-Hastings para obtener 10000 muestras de $X$. Para ello, obtenga muestras de
+$Y$ utilizando una propuesta normal con $\sigma = 0.2$ y realice la transformación correspondiente
+para obtener las muestras de $X$. Para evaluar la bondad del método, calcule el tamaño de muestra
 efectivo, visualice la trayectoria de la cadena con un _traceplot_ y compare la distribución
 empírica con la función de densidad teórica utilizando un histograma.
 3. Implemente la función de densidad de $Y$ en escala logarítmica y utilice
 `metropolis_hastings_log()` para obtener muestras de $X$. Calcule el tamaño efectivo de muestra
-y compárelo con el obtenido anteriormente. Finalmente, obtenga un histograma de las muestras
-y compárelo con la densidad empírica y con el histograma obtenido en el punto anterior.
+efectivo y compárelo con el obtenido anteriormente. Finalmente, obtenga un histograma de las
+muestras y compárelo con la densidad empírica y con el histograma obtenido en el punto anterior.
 
 ### 2. _Free practice_: múltiples dimensiones
 
-Al computo en escala logarítmica y el uso de transformaciones de variables, en esta etapa se le
+Al cómputo en escala logarítmica y el uso de transformaciones de variables, en esta etapa se le
 agrega que la distribución objetivo tiene múltiples dimensiones y debe ser obtenida mediante el
 uso de la regla de Bayes.
 
@@ -356,24 +340,24 @@ $$
 con $i = 1, \dots, N$.
 
 4. Implemente en R una función que permita calcular la densidad a _posteriori_ en escala
-logarítmica, sin normalizar. Esta función tendrá 2 parámetros de entrada, uno para el vector de
-parámetros y otro para el vector de valores observados.
+logarítmica, sin incluir la constante de normalización. Esta función tendrá 2 parámetros de entrada,
+uno para el vector de parámetros y otro para el vector de valores observados.
 5. Utilice los valores de $y_i$ en el archivo `precalentamiento-mh.txt` y la función
 `metropolis_hastings_log()` para obtener muestras del _posterior_ de
-$\boldsymbol{\theta} = \{\mu, \sigma\}$. Utilice dos cadenas de Markov. Calcule el tamaño efectivo
+$\boldsymbol{\theta} = \{\mu, \sigma\}$. Corra dos cadenas de Markov. Calcule el tamaño efectivo
 de muestra y evalúe mezcla y convergencia de manera gráfica.
 
 ::: {.callout-tip}
 ## Evaluación parcial de funciones
 
 En las líneas 41 y 42 del @lst-mh-log se puede ver que la función `logp` que se pasa a
-`metropolis_hastings_log()` debe funcionar al ser llamada con un único argumento, que es el vector
-de parámetros. Pero la función que implementamos en el punto 4 tiene 2 argumentos, uno para
-el vector de parámetros y otro para el vector de datos... ¿cómo hacemos?
+`metropolis_hastings_log()` debe funcionar correctamente al ser llamada con un único argumento,
+que es el vector de parámetros. Pero la función que implementamos en el punto 4 tiene 2 argumentos,
+uno para el vector de parámetros y otro para el vector de datos... ¿cómo hacemos?
 
-La función `partial()` de la librería `purrr` permite pre-llenar argumentos de una función.
-Toma como entrada una función, los argumentos a pre-llenar, y devuelve una nueva función que hace
-lo mismo que la función original, pero con valores de argumentos ya especificados.
+La función `partial()`, de la librería `purrr`, permite pre-llenar argumentos de una función.
+Toma como entrada una función, los argumentos con sus valores a pre-llenar, y devuelve una nueva
+función que hace lo mismo que la función original, pero con valores de argumentos ya especificados.
 
 En nuestro caso, podríamos hacer:
 ```r
@@ -383,27 +367,39 @@ logp <- partial(log_posterior, y = datos)
 
 Luego, la función `logp()` puede ser llamada solamente pasando el vector de parámetros.
 El valor de `y` será el que se pasó originalmente a la función `partial()`.
-
 :::
 
 ### 3. El Gran Prix: ¿qué le decimos a Brian?
 
-WIP
+A esta altura del partido (o de la carrera mejor dicho) ya estamos 'retequecontra' preparados para
+trabajar con los modelos presentados inicialmente y dar respuesta a la pregunta sobre el efecto del
+ozono en desarrollo de las ratas de Brian Tarkington. Llegó la hora de realizar el análisis
+estadístico.
 
-1. Explorar los datos. ¿Encuentra datos atípicos?
-¿Qué consecuencias tendrían en la comparación de los incrementos medios de peso?
-1. Comparación de medias. Se quiere saber si la exposición al ozono se asocia a menor ganancia de peso.
-Utilice el modelo normal. Luego utilice el modelo basado en la distribución T de Student.
-En ambos casos:
-  1. Escriba la función de densidad en escala logaritmica.
-  1. Obtenga muestras, utilizando 2 cadenas de Markov. Utilice medidsa de diagnóstico numéricas y gráficas
-      para determinar la fiabilidad de las muestras obtenidas.
-  1. Concluir en términos del problema (que calculen alguna probabilidad).
-      ¿Se llega a la misma conclusión con ambos modelos? ¿Por qué?
+6. Realice un análisis exploratorio de los datos y describa sus hallazgos.
+7. Para una media y una varianza dada, ¿en qué se diferencia la distribución normal de la
+distribución T de Student con 3 grados de libertad?
+8. Tanto para el modelo normal como para el basado en la T de Student:
+    i. Escriba la función de densidad _a posteriori_ en escala logarítmica, sin considerar la
+    constante de normalización. De ser necesario, realice las transformaciones de variables que crea
+    conveniente.
+    i. Implemente la función anterior en R.
+    i. Use `metropolis_hastings_log()` para obtener muestras del _posterior_.
+    Utilice 4 cadenas de 5000 muestras cada una. Evalúe mezcla y convergencia mediante medidas
+    numéricas y gráficas. Visualice las distribuciones _a posteriori_ marginales.
+    i. Concluya en términos del problema.
+9. ¿Llega a la misma conclusión con ambos modelos? ¿Por qué?
 
+::: {.callout-tip}
+## T de Student no centrada y escalada
 
-¿Cuántos parámetros hay que estimar en cada modelo?
+La función `dt()` de R permite evaluar la función de densidad de una distribución T de Student
+estándar, con media 0 y desvío 1. Para evaluar la función de densidad con media y desvío arbitrario
+se puede utilizar la siguiente función de R:
 
-Para una media y una varianza dada, ¿en qué se diferencia la distribución normal de la distribución
-T de Student?
-
+```r
+scaled_t_density <- function(x, df, mean = 0, sd = 1) {
+  dt((x - mean) / sd, df) / sd
+}
+```
+:::
