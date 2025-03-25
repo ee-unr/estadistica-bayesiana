@@ -22,14 +22,14 @@ set.seed(semilla)
 ## Introducción
 
 El ozono (O₃) es un gas cuya molécula está formada por tres átomos de oxígeno y se encuentra tanto
-en la atmósfera como en la superficie terrestre. Seguramente, lo han escuchado nombrar en
-relación con la capa de ozono, una región de la estratófera que se encuentra unos 15-30 kilómetros
-sobre la superficie terrestre, donde abunda el ozono, y que filtra los rayos ultravioletas del sol.
+en la atmósfera como en la superficie terrestre. Seguramente, lo han escuchado nombrar por su papel
+en la capa de ozono, una región de la estratófera que se encuentra entre unos 15 y 30 kilómetros
+sobre la superficie terrestre, donde se concentra este gas y filtra los rayos ultravioletas del sol.
 
 La capa de ozono permite que exista la vida en la Tierra tal como la conocemos y que una escapada de
-verano a la isla no se convierta en un viaje solo de ida. En otras palabras, la capa de ozono es
-como un Dibu Martínez de la vida: ataja los rayos ultravioletas que, si lograran pasar, más de una
-vida arruinarían.
+verano a la isla no termine siendo solo un viaje de ida. En otras palabras, la capa de ozono es
+como un Dibu Martínez de la vida: evita que el sol nos clave un golazo de radiación y nos deje,
+literalmente, fritos.
 
 Pero no todo lo que brilla es oro. A nivel del suelo, el ozono se convierte en un contaminante
 atmosférico dañino tanto para la salud humana como para el medio ambiente. Puede deteriorar la
@@ -37,11 +37,12 @@ función pulmonar, desencadenar ataques de asma, causar irritación en los ojos,
 garganta, e incluso dañar la vegetación. Entonces, ¿todo mal con el ozono?
 
 Quien se planteó esa pregunta fue Brian Tarkington, del _California Primate Research Center_ de la
-Universidad de California en Davis. Preocupado por la presencia de ozono en el _smog_ californiano,
-decidió llevar a cabo un estudio para evaluar el efecto del ozono en el crecimiento de ratas.
-Tomó un grupo de 46 ratas jóvenes y de la misma edad, las pesó, las dividió aleatoriamente en 2
-grupos de igual tamaño y las dejó en 2 ambientes distintos, el primero rico en ozono y el segundo
-libre del mismo. Luego de 7 días las pesó nuevamente y registró la diferencia entre los pesos.
+Universidad de California en Davis. Preocupado por la presencia de ozono en el _smog_ californiano
+y las posibles consecuencias en la salud humana, decidió llevar a cabo un estudio para evaluar el
+efecto del ozono en el crecimiento de ratas. Tomó un grupo de 46 ratas jóvenes y de la misma edad,
+las pesó, las dividió aleatoriamente en 2 grupos de igual tamaño y las dejó en 2 ambientes
+distintos, el primero rico en ozono y el segundo libre del mismo. Luego de 7 días las pesó
+nuevamente y registró la diferencia entre los pesos.
 
 El archivo `tarkington.csv` contiene, para cada una de las ratas, el diferencial de peso en gramos y
 el grupo al que pertenece. Interesa conocer si la exposición prolongada a un ambiente contaminado
@@ -94,9 +95,9 @@ $$
 
 ## Un _deep dive_ bien profundo en Metropolis-Hastings
 
-Además de brindarle una respuesta al de pobre Brian Tarkington, que hace décadas que espera que
-alguien le ayude a resolver su problema, otro objetivo de este trabajo práctico es profundizar en el
-uso de Metropolis-Hastings (MH) como algoritmo para hacer inferencia bayesiana.
+Además de brindarle una respuesta al pobre de Brian Tarkington, que hace décadas que espera que
+alguien le ayude a resolver su problema, el objetivo principal de este trabajo práctico es
+profundizar en el uso de Metropolis-Hastings (MH) como algoritmo de inferencia bayesiana.
 
 El algoritmo de Metropolis-Hastings permite generar muestras (pseudo-)aleatorias a partir de una
 distribución de probabilidad $P$ que no necesariamente pertence a una familia de distribuciones
@@ -170,15 +171,15 @@ f_Y(y) = f_X(g^{-1}(y)) \left\lvert \frac{d}{dy}g^{-1}(y) \right\rvert
 $$
 
 donde $\left\lvert \frac{d}{dy}g^{-1}(y) \right\rvert$ es el determinante del jacobiano de la
-transformación. Por ejemplo, en el caso de la función $g(x) = \text{logit}(x)$, se tiene:
+transformación. Por ejemplo, en el caso de la función $g(u) = \text{logit}(u)$, se tiene:
 $$
 \begin{aligned}
-g : (0, 1) \to \mathbb{R} & = \text{logit}(x) = \log\left(\frac{x}{1 - x}\right) \\
-g^{-1} : \mathbb{R} \to (0, 1) &= \text{expit}(x) =  \frac{1}{1 + \exp(-x)}
+g : (0, 1) \to \mathbb{R} & = \text{logit}(u) = \log\left(\frac{u}{1 - u}\right) \\
+g^{-1} : \mathbb{R} \to (0, 1) &= \text{expit}(u) =  \frac{1}{1 + \exp(-u)}
 \end{aligned}
 $$
 
-y luego:
+y luego, utilizando $X$ e $Y$ definidas al principio:
 $$
 f_Y(y) = f_X(\text{expit}(y)) \cdot \text{expit}(y) \cdot ( 1 - \text{expit}(y))
 $$
@@ -193,17 +194,17 @@ talón de Aquiles del cálculo computacional: los problemas de subdesbordamiento
 100 números del orden de `0.0001` en R, la computadora podría interpretar el resultado como 0,
 aunque matemáticamente esto no sea cierto.
 
-El _underflow_ es un problema frecuente en el cómputo estadístico. Un caso típico ocurre al evaluar
-funciones de verosimilitud, donde se multiplican densidades correspondientes a cada observación.
-Dado que estas densidades suelen ser valores muy pequeños, es común enfrentarse a un
-subdesbordamiento. Este riesgo aumenta con la cantidad de observaciones y la dimensionalidad de la
-distribución objetivo.
+El _underflow_ es un problema frecuente en el cómputo estadístico. Un caso típico es el que se da
+al evaluar funciones de verosimilitud, donde se multiplican densidades correspondientes a cada
+observación. Dado que estas densidades suelen ser valores muy pequeños, es común enfrentarse a un
+problema de subdesbordamiento. Este riesgo aumenta con la cantidad de observaciones y la
+dimensionalidad de la distribución objetivo.
 
 El problema se agrava al utilizar algoritmos como Metropolis-Hastings, ya que la densidad objetivo
 se evalúa miles de veces en diferentes puntos del espacio paramétrico.
-Además, en inferencia bayesiana, esta función suele involucrar la multiplicación de una gran
-cantidad de números pequeños, lo que incrementa aún más las chances de que el cómputo resulte
-en un _underflow_.
+Además, en inferencia bayesiana, esta función suele involucrar una función de verosimilitud, que
+puede implicar una multiplicación de gran cantidad de números pequeños, lo que incrementa aún más
+las chances de que el cómputo resulte en un _underflow_.
 
 Si nuestro algoritmo de muestreo encuentra un problema de _underflow_, pueden ocurrir dos situaciones:
 
@@ -212,7 +213,8 @@ Si nuestro algoritmo de muestreo encuentra un problema de _underflow_, pueden oc
 cadena de Markov deseada.
 
 Entonces, ¿cómo solucionamos este problema?
-La respuesta es sencilla: realizar todos los cálculos en escala logarítmica.
+La respuesta es sencilla: realizar todos los cálculos en escala logarítmica. Las multiplicaciones
+se vuelven sumas y el cómputo se estabiliza.
 
 ```{r}
 metropolis_hastings <- function(logp, x, n, sigma = NULL) {
@@ -287,32 +289,39 @@ metropolis_hastings <- function(logp, x, n, sigma = NULL) {
 }
 ```
 
-## Ahora sí, a trabajar
-
-**ESCRIBIR BIEN!**
-
-Después de larguísimo preambulo, llega la hora de trabajar.
+## Ahora sí, cerebro a la obra
 
 La función `metropolis_hastings()` es una herramienta poderosa que, en teoría, permite obtener
 muestras de cualquier distribución _a posteriori_ que se pueda implementar en R en escala
-logarítmica. Pero, ¿de qué sirve tener una herramienta tan potente si no está claro cómo usarla?
+logarítmica. Pero, ¿de qué sirve tener una herramienta tan potente si no está claro cómo dominar
+a la bestia?
 
-Como bien dice el refrán, la práctica hace al maestro.
-Y quienes conocen de primera mano la verdad de estas palabras son los pilotos de Fórmula 1.
-Por ejemplo, antes de cada Gran Premio, Franco Colapinto corre entre
-400 y 500 vueltas en el circuito... ¡pero en un simulador!
+A esta altura, intentar usar `metropolis_hastings()` para muestrear del _posterior_ en los modelos
+propuestos inicialmente resultaría muy dificultoso. Sería como pasar de manejar un Golcito por las
+calles del pueblo a subirse a un Fórmula 1 en pleno Gran Premio.
 
-De esta manera, en preparación a la aplicación final en este trabajo, nuestro Gran Premio,
-vamos a utilizar el algoritmo de Metropolis-Hastings en escala logarítmica,
-con transformación de variables, en un escenario más sencilo.
+Como bien dice el refrán, la práctica hace al maestro. Y quienes conocen de primera mano la verdad
+de estas palabras son, casualmente, los pilotos de Fórmula 1. No solo acumulan experiencia tras
+años de competencia en categorías menores, desde el karting hasta la Fórmula 2, sino que también,
+antes de cada Gran Premio, corren entre 400 y 500 vueltas en el circuito... ¡pero en un simulador!
 
-### 1. Precalentamos: ensayos con la distribución Gamma
+De este modo, en preparación para la aplicación final en este trabajo —nuestro propio Gran Premio—
+comenzaremos utilizando el algoritmo de Metropolis-Hastings en escenarios simples y controlados,
+aumentando gradualmente la complejidad. Esto nos permitirá practicar su uso con transformación de
+variables, en escala logarítmica y en _posteriors_ de múltiples dimensiones.
+Y al final, como en toda buena carrera, llegará el Gran Premio.
+
+### 1. En el simulador: ensayos con la distribución Gamma
+
+WIP
 
 1. Implementar la función de densidad de $Y = \log(X)$
 1. Obtener muestras de $Y$.
 1. Transformar muestras $x_i = \exp(y_i)$.
 
-### 2. Me fui mundial: múltiples dimensiones, transformaciones y escala logarítmica
+### 2. _Free practice_: múltiples dimensiones, transformaciones y escala logarítmica
+
+WIP
 
 Dado el siguiente modelo:
 $$
@@ -331,7 +340,9 @@ logarítmica. Esta función tendrá `y`, `mu` y `sigma` como parámetros de entr
 del _posterior_ de $\boldsymbol{\theta} = \{\mu, \sigma\}$. Utilice dos cadenas de Markov.
 Evalúe mezcla y convergencia de manera gráfica.
 
-### 3. Última parada: ¿qué le decimos a Brian?
+### 3. El Gran Prix: ¿qué le decimos a Brian?
+
+WIP
 
 1. Explorar los datos. ¿Encuentra datos atípicos?
 ¿Qué consecuencias tendrían en la comparación de los incrementos medios de peso?
