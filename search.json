@@ -2335,7 +2335,7 @@
     "href": "presentaciones/presentacion_02.html#posterior",
     "title": "Estadística Bayesiana",
     "section": "Posterior",
-    "text": "Posterior\n\\[p(\\pi\\mid y) = \\frac{p(y\\mid \\pi)p(\\pi)}{p(y)}\\]\n\n\\[p(\\pi\\mid y) = \\frac{{N \\choose y }\\pi^y (1-\\pi)^{N-y}  \\frac{\\pi^{a-1} (1-\\pi)^{b-1}}{B(a,b)}}{\\int p(y\\mid\\pi) p(\\pi) d \\pi}\\]\n\n\nLa integral en el denominador suele ser un problema. Con dos parámetros es una integral doble, con tres parámetros, una triple, etc. Esta integral puede ser intratable intractable (no tener solución exacta, analítica, cerrada). No hay vaca vestida de uniforme que nos salve."
+    "text": "Posterior\n\\[p(\\pi\\mid y) = \\frac{p(y\\mid \\pi)p(\\pi)}{p(y)}\\]\n\n\\[p(\\pi\\mid y) = \\frac{{N \\choose y }\\pi^y (1-\\pi)^{N-y}  \\frac{\\pi^{a-1} (1-\\pi)^{b-1}}{B(a,b)}}{\\int p(y\\mid\\pi) p(\\pi) d \\pi}\\]\n\n\nLa integral en el denominador suele ser un problema. Con dos parámetros es una integral doble, con tres parámetros, una triple, etc. Esta integral puede ser intratable (intractable) (no tener solución exacta, analítica, cerrada). No hay vaca vestida de uniforme que nos salve."
   },
   {
     "objectID": "presentaciones/presentacion_02.html#section-30",
