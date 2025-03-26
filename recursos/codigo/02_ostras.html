@@ -295,8 +295,16 @@ window.Quarto = {
 
 
 <p>El siguiente programa muestra diferentes alternativas para obtener la densidad de la distribución <em>a posteriori</em> en el ejercicio ¡Ostras! ¡Estoy haciendo inferencia bayesiana! de la Práctica 1.</p>
-<p>Tener presente:</p>
-<p><span class="math display">\[
+<p>Para graficar la densidad <em>a posteriori</em> de <span class="math inline">\(\lambda\)</span> basta con ver que: <span class="math display">\[
+\begin{array}{lr}
+p(\lambda \mid \boldsymbol{y})
+  \propto p(\lambda) p(\boldsymbol{y} \mid \lambda)
+  \propto p(\boldsymbol{y} \mid \lambda),
+&amp; \lambda \in (0, 100)
+\end{array}
+\]</span></p>
+<p>por ser el <em>prior</em> sobre <span class="math inline">\(\lambda\)</span> uniforme. Es decir, la forma del <em>posterior</em> queda completamente determinada por la forma de la función de verosimilitud.</p>
+<p>Tener presente: <span class="math display">\[
 \begin{aligned}
 p(\boldsymbol{y} \mid \lambda) &amp;= \prod_{i=1}^n p(y_i \mid \lambda) \\
 p(\boldsymbol{y} \mid \lambda) &amp;= \prod_{i=1}^n {\frac{e^{-\lambda}\lambda^{y_i}}{y_i!}} \\
@@ -326,7 +334,7 @@ p(\boldsymbol{y} \mid \lambda) &amp;= \prod_{i=1}^n {\frac{e^{-\lambda}\lambda^{
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>likelihood <span class="ot">&lt;-</span> <span class="fu">f_likelihood</span>(lambda_grid, y)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>posterior_ <span class="ot">&lt;-</span> prior <span class="sc">*</span> likelihood</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>posterior_ <span class="ot">&lt;-</span> prior <span class="sc">*</span> likelihood <span class="co"># ¿Es necesario multiplicar por 'prior'?</span></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>posterior_</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [1]  0.000000e+00 8.341450e-313 7.104056e-260 3.488800e-229 1.344921e-207
@@ -438,12 +446,13 @@ p(\boldsymbol{y} \mid \lambda) &amp;= \prod_{i=1}^n {\frac{e^{-\lambda}\lambda^{
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df) <span class="sc">+</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> lambda, <span class="at">y =</span> valor)) <span class="sc">+</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> grupo, <span class="at">scales =</span> <span class="st">"free_y"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> lambda, <span class="at">y =</span> valor), <span class="at">color =</span> <span class="st">"#3B78B0"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> grupo, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="02_ostras_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1152"></p>
+<p><img src="02_ostras_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="3000"></p>
 </figure>
 </div>
 </div>
@@ -476,12 +485,13 @@ p(\boldsymbol{y} \mid \lambda) &amp;= \prod_{i=1}^n {\frac{e^{-\lambda}\lambda^{
 <span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df) <span class="sc">+</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> lambda, <span class="at">y =</span> valor)) <span class="sc">+</span></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> grupo, <span class="at">scales =</span> <span class="st">"free_y"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> lambda, <span class="at">y =</span> valor), <span class="at">color =</span> <span class="st">"#3B78B0"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> grupo, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="02_ostras_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1152"></p>
+<p><img src="02_ostras_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="3000"></p>
 </figure>
 </div>
 </div>
