@@ -6,8 +6,20 @@ El siguiente programa muestra diferentes alternativas para obtener la densidad d
 distribución _a posteriori_ en el ejercicio ¡Ostras! ¡Estoy haciendo inferencia bayesiana!
 de la Práctica 1.
 
-Tener presente:
+Para graficar la densidad _a posteriori_ de $\lambda$ basta con ver que:
+$$
+\begin{array}{lr}
+p(\lambda \mid \boldsymbol{y})
+  \propto p(\lambda) p(\boldsymbol{y} \mid \lambda)
+  \propto p(\boldsymbol{y} \mid \lambda),
+& \lambda \in (0, 100)
+\end{array}
+$$
 
+por ser el _prior_ sobre $\lambda$ uniforme. Es decir, la forma del _posterior_ queda completamente
+determinada por la forma de la función de verosimilitud.
+
+Tener presente:
 $$
 \begin{aligned}
 p(\boldsymbol{y} \mid \lambda) &= \prod_{i=1}^n p(y_i \mid \lambda) \\
@@ -41,7 +53,7 @@ f_likelihood <- function(lambda, y_vector) {
 }
 
 likelihood <- f_likelihood(lambda_grid, y)
-posterior_ <- prior * likelihood
+posterior_ <- prior * likelihood # ¿Es necesario multiplicar por 'prior'?
 posterior_
 ```
 
@@ -53,7 +65,9 @@ en cada observación y luego obtener la función de verosimilitud multiplicando 
 
 ```{r}
 #| fig-align: center
-#| fig-width: 12
+#| fig-height: 3.75
+#| fig-width: 10
+#| fig-dpi: 300
 f_likelihood <- function(lambda, y_vector) {
   output <- numeric(length(lambda))
   for (i in seq_along(output)) {
@@ -78,15 +92,18 @@ df <- data.frame(
 )
 
 ggplot(df) +
-  geom_line(aes(x = lambda, y = valor)) +
-  facet_wrap(~ grupo, scales = "free_y")
+  geom_line(aes(x = lambda, y = valor), color = "#3B78B0", linewidth = 1) +
+  facet_wrap(~ grupo, scales = "free_y") +
+  theme_bw()
 ```
 
 **Opción 3**: Utilizar la funcion `dpois` de R, pero hacer cuentas en escalas logaritmica.
 
 ```{r}
 #| fig-align: center
-#| fig-width: 12
+#| fig-height: 3.75
+#| fig-width: 10
+#| fig-dpi: 300
 f_likelihood <- function(lambda, y_vector) {
   output <- numeric(length(lambda))
   for (i in seq_along(output)) {
@@ -113,7 +130,8 @@ df <- data.frame(
 )
 
 ggplot(df) +
-  geom_line(aes(x = lambda, y = valor)) +
-  facet_wrap(~ grupo, scales = "free_y")
+  geom_line(aes(x = lambda, y = valor), color = "#3B78B0", linewidth = 1) +
+  facet_wrap(~ grupo, scales = "free_y") +
+  theme_bw()
 ```
 
