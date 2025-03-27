@@ -126,7 +126,7 @@ probabilidad.
     Suponga una urna $S$ contiene un 30% de bolas verdes y un 70% de bolas rojas, y otra
     urna $E$ contiene un 45% de bolas verdes y un 55% de bolas rojas.
     Una persona arroja una moneda de un peso argentino y selecciona una bola de una de
-    las dos urnas dependiendo de si la moneda en sol o escudo.
+    las dos urnas dependiendo de si la moneda cae en sol o escudo.
     Si la moneda cae en sol, saca una bola de la urna $S$ y si la moneda cae en escudo,
     saca una bola de la urna $E$.
 
