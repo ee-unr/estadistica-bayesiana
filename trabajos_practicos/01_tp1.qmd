@@ -1,33 +1,15 @@
 ---
-title: "TP1: The Multiarmed Bandit"
-practica: "Trabajo Práctico 1"
+title: "¿La gloria es el dinero?"
+practica: "Trabajo Práctico 1: ¿La gloria es el dinero?"
 ---
 
-```{r}
-#| echo: false
-#| include: false
-
-is_html <- knitr::is_html_output()
-options("knitr.graphics.error" = FALSE)
-captions <- list()
-captions[["slotmachines2"]] <- "Tres maquinitas con diferentes probabilidades de ganar"
-```
-
-
-# Introducción
-
-<!--
-Algunas fuentes:
-https://www.conicet.gov.ar/apuestas-online-en-la-adolescencia-y-juventud-una-mirada-desde-lo-biologico-y-lo-social/
-https://www.clarin.com/sociedad/nuevo-informe-apuestas-online-afecta-4-10-jovenes-pais-alertan-graves-consecuencias_0_X81rrMQMoH.html?srsltid=AfmBOooKGSu0al0XwGV8oIFnbptb7s64b2KXjCV5vgLquI8FmHxR1yd8
-https://ugc.production.linktr.ee/cd2596a8-1dce-4f38-b151-a217d61227f1_informe-resultados-apostar-no-es-un-juego-2024-final-IMPRENTA-v2.pdf
--->
+## Introducción
 
 La idea de convertir unos pocos pesos en una fortuna con un solo clic tiene algo de magia,
 de esa que seduce con la promesa de éxito instantáneo. Masivo. ¿Qué puede salir mal?
 Total... "Está todo bajo control, yo decido cuándo frenar".
 El problema es que, a veces de manera silenciosa, el juego compulsivo puede desencadenar problemas
-de largo plazo en la salud mental y el funcionamiento social del individuo
+de largo plazo en la salud mental y el funcionamiento social de los individuos.
 
 Las apuestas en línea han ganado una creciente popularidad entre los adolescentes, impulsadas por
 la accesibilidad de plataformas digitales y la constante exposición a la publicidad en redes
@@ -71,7 +53,7 @@ Partiendo de la premisa de que una forma de incrementar la cooperación de los e
  sin temor a ser identificados. En la técnica de respuesta aleatorizada, se introduce una cuota de
  azar con el objetivo de preservar la privacidad de la persona que responde.
 
-Nos centraremos en el problema de querer realizar inferencias sobre $\pi_A$ la proporción de
+Nos centraremos en el problema de querer realizar inferencias sobre $\pi_A$, la proporción de
 estudiantes de una escuela que participan de apuestas deportivas en línea.
 
 Estudiaremos dos técnicas de respuesta aleatorizada. En lugar de de responder directamente a la
@@ -89,9 +71,9 @@ aleatorio, de que el encuestado responda a la pregunta
 _"¿Participaste alguna vez en apuestas deportivas en línea?"_ mientras que $(1-p)$ es la
 probabilidad de que responda a la otra pregunta.
 
-# Técnicas de respuesta aleatorizada
+## Técnicas de respuesta aleatorizada
 
-## Warner
+### Warner
 
 Un mecanismo aleatorio selecciona la pregunta que se le presenta a la persona que responde.
 Con probabilidad $p$ se le pregunta si es cierto que alguna vez participó en apuestas deportivas en
@@ -100,8 +82,7 @@ en apuestas deportivas en línea ($Q_2$). Es decir, en general, con probabilidad
 si pertenece a una categoría $A$, mientras que con probabilidad $(1-p)$ se le pregunta si
 pertenece a la categoría $A^c$ (el complemento de $A$).
 
-
-## Greenberg y otros
+### Greenberg y otros
 
 Un mecanismo aleatorio selecciona la pregunta que se le presenta a la persona que responde.
 Con probabilidad $p$ se le pregunta si es cierto que alguna vez participó en apuestas deportivas en
@@ -116,13 +97,15 @@ En el primer caso, se conoce de antemano $\pi_B$
 (como en el caso presentado, en que $\pi_B = \frac{7}{12}$). Mientras que en el segundo caso,
 no se conoce $\pi_B$. Nos limitaremos al estudio de la primera situación.
 
-# Actividades
+## Actividades
 
 Para todo lo que sigue, tenga en consideración lo siguiente:
 
 - Se toma una muestra al azar con reemplazo de tamaño $n=100$ de una población de tamaño $N=1000$.
-- Para nuestros estudios comparativos, supondremos que el porcentaje de alumnos que apuesta (lo que se quisiera estimar) es 40%.
-- Cuando se les pregunta directamente si han hecho alguna vez apuestas, los estudiantes mienten con probabilidad $\mu$.
+- Para nuestros estudios comparativos, supondremos que el porcentaje de alumnos que apuesta
+(lo que se quisiera estimar) es 40%.
+- Cuando se les pregunta directamente si han hecho alguna vez apuestas, los estudiantes que sí han
+apostado alguna vez mienten con probabilidad $\mu$.
 - Si se utilizan técnicas de respuesta aleatorizada, los estudiantes no mienten.
 
 Comenzaremos realizando un estudio de simulación para estudiar el efecto de la mentira en las
@@ -131,11 +114,11 @@ estimaciones. En esta primera aproximación, consideraremos que se realiza la pr
 1. Proponga un modelo bayesiano que, a partir de encuestar a $n$ estudiantes, permita estimar $\pi_a$.
 Explique la elección de la función de verosimilitud y el _prior_ e indique cómse obtiene el _posterior_.
 2. Utilizando R, simule la obtención de una muestra para el caso en que los estudiantes no mienten y
-para el caso en que los estudiantes mienten con tres niveles de mentira $\mu$bajo, alto y medio.
+para el caso en que los estudiantes mienten con tres niveles de mentira $\mu$ bajo, medio y alto.
 Compare los resultados de la inferencia.
 3. Realice ahora 1000 simulaciones y compare los resultados de las inferencias.
 
-Considere ahora el caso del método propuesto por Werner:
+Considere ahora el caso del método propuesto por Warner:
 
 4. Según este método, ¿cuál es la probabilidad (llamémosla $\lambda_W$) de que un estudiante
 responda que apuesta? ¿cuál es la probabilidad de que un estudiante responda queno apuesta?
@@ -149,10 +132,10 @@ Escriba el _posterior_ dejando el denominador de la Regla de Bayes expresado com
 Luego, muestre que:
 
 $$
-Z = \frac{B(1-p;y+1,n-y+1) - B(p;y+1,n-y+1)}{1-2p}
+Z = \frac{B(1 - p; y + 1, n - y + 1) - B(p; y + 1, n - y + 1)}{1 - 2p}
 $$
 
-donde $B(x; a,b) = \int_0^x t^{a-1} (1-t)^{b-1} dt$ es la función beta incompleta,
+donde $B(x; a, b) = \int_0^x t^{a - 1} (1 - t)^{b - 1} dt$ es la función beta incompleta,
 $p$ es la probabilidad con la que se hace la pregunta alternativa e $y$ es la cantidad depersonas
 que responden que apuestan.
 
@@ -176,6 +159,14 @@ _prior_ beta no necesariamente uniforme.
 Para terminar, es hora de comparar todos los escenarios.
 
 12. Utilizando R, simule la obtención de una muestra para el caso en que los estudiantes no mienten,
-mienten con tres niveles de mentira $\mu$ (bajo, alto y medio), se utiliza el método de Werner y se
+mienten con tres niveles de mentira $\mu$ (bajo, medio y alto), se utiliza el método de Werner y se
 utiliza el método de Greenberg. Compare los resultados de las inferencias en cada caso.
 13. Realice ahora 1000 simulaciones y analice los resultados.
+
+
+<!--
+Algunas fuentes:
+https://www.conicet.gov.ar/apuestas-online-en-la-adolescencia-y-juventud-una-mirada-desde-lo-biologico-y-lo-social/
+https://www.clarin.com/sociedad/nuevo-informe-apuestas-online-afecta-4-10-jovenes-pais-alertan-graves-consecuencias_0_X81rrMQMoH.html?srsltid=AfmBOooKGSu0al0XwGV8oIFnbptb7s64b2KXjCV5vgLquI8FmHxR1yd8
+https://ugc.production.linktr.ee/cd2596a8-1dce-4f38-b151-a217d61227f1_informe-resultados-apostar-no-es-un-juego-2024-final-IMPRENTA-v2.pdf
+-->

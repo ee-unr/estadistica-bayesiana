@@ -1,6 +1,6 @@
 ---
-title: "TP2: El Dibu de la vida"
-practica: "Trabajo Práctico 2"
+title: "El Dibu de la vida"
+practica: "Trabajo Práctico 2: El Dibu de la vida"
 format:
   html:
     code-line-numbers: true
