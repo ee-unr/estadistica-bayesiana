@@ -205,7 +205,7 @@ La respuesta es sencilla: realizar todos los cálculos en escala logarítmica. L
 se vuelven sumas y el cómputo se estabiliza.
 
 :::{#lst-mh-log lst-cap="Implementación del algoritmo de Metropolis-Hastings en escala logarítmica."}
-```{r}
+```r
 metropolis_hastings_log <- function(logp, x, n, sigma = NULL) {
   # Algortimo de Metropolis Hastings en escala logarítmica
   #
@@ -250,12 +250,15 @@ metropolis_hastings_log <- function(logp, x, n, sigma = NULL) {
     logp_actual <- logp(muestra_actual)
 
     # Log densidad al pasar de muestra_propuesta a muestra_actual y viceversa
-    # Pregunta: ¿Es necesario este paso?
-    logq_actual <- mvtnorm::dmvnorm(muestra_actual, mean = muestra_propuesta, sigma = sigma, log = TRUE)
-    logq_propuesta <- mvtnorm::dmvnorm(muestra_propuesta, mean = muestra_actual, sigma = sigma, log = TRUE)
+    logq_actual <- mvtnorm::dmvnorm(                                          # <1>
+      muestra_actual, mean = muestra_propuesta, sigma = sigma, log = TRUE     # <1>
+    )                                                                         # <1>
+    logq_propuesta <- mvtnorm::dmvnorm(                                       # <1>
+      muestra_propuesta, mean = muestra_actual, sigma = sigma, log = TRUE     # <1>
+    )                                                                         # <1>
 
     # Calcular log probabilidad de aceptación
-    log_alpha <- (logp_propuesta + logq_actual) - (logp_actual + logq_propuesta)
+    log_alpha <- ... # <2>
 
     # Simular aceptación o rechazo
     log_u <- log(runif(1))
@@ -277,6 +280,10 @@ metropolis_hastings_log <- function(logp, x, n, sigma = NULL) {
   return(muestras)
 }
 ```
+
+1. ¿Es necesario este paso?
+2. ¿Cómo se calcula la log probabilidad de aceptación?
+
 :::
 
 
@@ -284,7 +291,7 @@ metropolis_hastings_log <- function(logp, x, n, sigma = NULL) {
 
 La función `metropolis_hastings_log()` es una herramienta poderosa que, en teoría, permite obtener
 muestras de cualquier distribución _a posteriori_ que se pueda implementar en R en escala
-logarítmica. Pero, ¿de qué sirve tener una herramienta tan potente si no está nada claro cómo 
+logarítmica. Pero, ¿de qué sirve tener una herramienta tan potente si no está nada claro cómo
 dominarla?
 
 A esta altura, intentar usar `metropolis_hastings_log()` para muestrear del _posterior_ en los
