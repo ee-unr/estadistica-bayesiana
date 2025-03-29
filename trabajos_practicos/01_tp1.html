@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>TP1: The Multiarmed Bandit – Estadística Bayesiana</title>
+<title>¿La gloria es el dinero? – Estadística Bayesiana</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -154,7 +154,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../trabajos_practicos/01_tp1.html">TP 1</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../trabajos_practicos/01_tp1.html">TP 1: ¿La gloria es el dinero?</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -177,19 +177,19 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../trabajos_practicos/01_tp1.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">TP 1</span></a>
+ <span class="menu-text">TP 1: ¿La gloria es el dinero?</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../trabajos_practicos/02_tp2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">TP 2</span></a>
+ <span class="menu-text">TP 2: El Dibu de la vida</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../trabajos_practicos/03_tp3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">TP 3</span></a>
+ <span class="menu-text">TP 3: Una masacre estadística</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -210,7 +210,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">TP1: The Multiarmed Bandit</h1>
+<h1 class="title">¿La gloria es el dinero?</h1>
 </div>
 
 
@@ -227,53 +227,47 @@ window.Quarto = {
 </header>
 
 
-<section id="introducción" class="level1">
-<h1>Introducción</h1>
-<!--
-Algunas fuentes:
-https://www.conicet.gov.ar/apuestas-online-en-la-adolescencia-y-juventud-una-mirada-desde-lo-biologico-y-lo-social/
-https://www.clarin.com/sociedad/nuevo-informe-apuestas-online-afecta-4-10-jovenes-pais-alertan-graves-consecuencias_0_X81rrMQMoH.html?srsltid=AfmBOooKGSu0al0XwGV8oIFnbptb7s64b2KXjCV5vgLquI8FmHxR1yd8
-https://ugc.production.linktr.ee/cd2596a8-1dce-4f38-b151-a217d61227f1_informe-resultados-apostar-no-es-un-juego-2024-final-IMPRENTA-v2.pdf
--->
-<p>La idea de convertir unos pocos pesos en una fortuna con un solo clic tiene algo de magia, de esa que seduce con la promesa de éxito instantáneo. Masivo. ¿Qué puede salir mal? Total… “Está todo bajo control, yo decido cuándo frenar”. El problema es que, a veces de manera silenciosa, el juego compulsivo puede desencadenar problemas de largo plazo en la salud mental y el funcionamiento social del individuo</p>
+<section id="introducción" class="level2">
+<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
+<p>La idea de convertir unos pocos pesos en una fortuna con un solo clic tiene algo de magia, de esa que seduce con la promesa de éxito instantáneo. Masivo. ¿Qué puede salir mal? Total… “Está todo bajo control, yo decido cuándo frenar”. El problema es que, a veces de manera silenciosa, el juego compulsivo puede desencadenar problemas de largo plazo en la salud mental y el funcionamiento social de los individuos.</p>
 <p>Las apuestas en línea han ganado una creciente popularidad entre los adolescentes, impulsadas por la accesibilidad de plataformas digitales y la constante exposición a la publicidad en redes sociales y eventos deportivos. A esto se suma que se trata de una actividad escasamente regulada por el Estado y a la que cualquier persona puede acceder con relativa facilidad.</p>
 <p>Estas apuestas pueden dividirse en dos grandes categorías: los casinos virtuales, que incluyen juegos como ruleta o blackjack, y las apuestas deportivas, donde los jóvenes apuestan sobre el resultado de eventos deportivos, a menudo influenciados por pronósticos y estrategias compartidas en comunidades en línea. Ambas modalidades presentan riesgos relevantes, ya que la facilidad para depositar dinero y la sensación de control pueden llevar a un espiral de pérdidas y nuevas apuestas en busca de recuperar lo perdido.</p>
 <p>La sensación de ganar y perder plata genera adrenalina. La adolescencia, una etapa crucial de desarrollo de los seres humanos, es especialmente susceptible a la promesa del dinero fácil y a la gratificación instantánea que pueden otorgar los juegos de apuestas, debido a la inmadurez de las áreas cerebrales encargadas del control de impulsos, lo que incrementa la vulnerabilidad a comportamientos adictivos. A esto se suman factores sociales como la presión de grupo y la búsqueda de aceptación, donde ganar una apuesta se convierte en una forma de demostrar conocimiento y obtener reputación entre pares.</p>
 <p>La ilusión de ganar dinero rápido, junto con la normalización de las apuestas a través de la publicidad, crea un cóctel peligroso que atrapa a los jóvenes en un ciclo de riesgo y compulsión. A esto se suma la aparición de gurúes financieros y esquemas piramidales que prometen riqueza rápida, donde quienes no participan son vistos como ingenuos o fracasados. Esta presión social y la promesa de ganancias fáciles refuerzan la participación en un entorno cada vez más riesgoso y manipulador.</p>
 <p>Como si todo esto fuera poco, indagar en un grupo sobre temas sensibles puede resultar complejo. Muchas personas, por vergüenza, miedo al juicio social o simplemente por desconfianza, optan por no responder con sinceridad a ciertas preguntas, por ejemplo en el marco de una encuesta. En el caso de las apuestas, admitir la frecuencia con la que se participa, las cantidades apostadas o las pérdidas sufridas puede generar resistencia a contestar con la verdad. Algunas personas evitan responder, mientras que otras pueden proporcionar respuestas erróneas de manera deliberada. Este fenómeno, conocido como sesgo de respuesta, representa un desafío para quienes buscan obtener datos fiables en encuestas y estudios sobre este tema.</p>
 <p>Partiendo de la premisa de que una forma de incrementar la cooperación de los encuestados es garantizar la protección de información sensible, una posible forma de mitigar este sesgo es la técnica de respuesta aleatorizada, que permite que los encuestados respondan de manera más sincera sin temor a ser identificados. En la técnica de respuesta aleatorizada, se introduce una cuota de azar con el objetivo de preservar la privacidad de la persona que responde.</p>
-<p>Nos centraremos en el problema de querer realizar inferencias sobre <span class="math inline">\(\pi_A\)</span> la proporción de estudiantes de una escuela que participan de apuestas deportivas en línea.</p>
+<p>Nos centraremos en el problema de querer realizar inferencias sobre <span class="math inline">\(\pi_A\)</span>, la proporción de estudiantes de una escuela que participan de apuestas deportivas en línea.</p>
 <p>Estudiaremos dos técnicas de respuesta aleatorizada. En lugar de de responder directamente a la pregunta <em>“¿Participaste alguna vez en apuestas deportivas en línea?”</em>, se le pide al encuestado que utilice un mecanismo aleatorio, como arrojar una moneda. Dependiendo del resultado de este mecanismo, el encuestado sigue ciertas instrucciones para responder. En las variantes que estudiaremos, por ejemplo, si sale cara, el estudiante contesta a la pregunta <em>“¿Participaste alguna vez en apuestas deportivas en línea?”</em> mientras que si sale cruz, responde a otra pregunta. Así, como el investigador no conoce el resultado del mecanismo aleatorio no puede saber a qué pregunta está respondiendo el encuestado. No obstante, a partir de los resultados obtenidos para toda la muestra, pueden obtenerse conclusiones válidas.</p>
 <p>En el caso más general, diremos que <span class="math inline">\(p\)</span> es la probabilidad (conocida), debida al mecanismo aleatorio, de que el encuestado responda a la pregunta <em>“¿Participaste alguna vez en apuestas deportivas en línea?”</em> mientras que <span class="math inline">\((1-p)\)</span> es la probabilidad de que responda a la otra pregunta.</p>
 </section>
-<section id="técnicas-de-respuesta-aleatorizada" class="level1">
-<h1>Técnicas de respuesta aleatorizada</h1>
-<section id="warner" class="level2">
-<h2 class="anchored" data-anchor-id="warner">Warner</h2>
+<section id="técnicas-de-respuesta-aleatorizada" class="level2">
+<h2 class="anchored" data-anchor-id="técnicas-de-respuesta-aleatorizada">Técnicas de respuesta aleatorizada</h2>
+<section id="warner" class="level3">
+<h3 class="anchored" data-anchor-id="warner">Warner</h3>
 <p>Un mecanismo aleatorio selecciona la pregunta que se le presenta a la persona que responde. Con probabilidad <span class="math inline">\(p\)</span> se le pregunta si es cierto que alguna vez participó en apuestas deportivas en línea (<span class="math inline">\(Q_1\)</span>), mientras que con probabilidad <span class="math inline">\((1-p)\)</span> se le pregunta si es cierto que nunca participó en apuestas deportivas en línea (<span class="math inline">\(Q_2\)</span>). Es decir, en general, con probabilidad <span class="math inline">\(p\)</span> se le pregunta si pertenece a una categoría <span class="math inline">\(A\)</span>, mientras que con probabilidad <span class="math inline">\((1-p)\)</span> se le pregunta si pertenece a la categoría <span class="math inline">\(A^c\)</span> (el complemento de <span class="math inline">\(A\)</span>).</p>
 </section>
-<section id="greenberg-y-otros" class="level2">
-<h2 class="anchored" data-anchor-id="greenberg-y-otros">Greenberg y otros</h2>
+<section id="greenberg-y-otros" class="level3">
+<h3 class="anchored" data-anchor-id="greenberg-y-otros">Greenberg y otros</h3>
 <p>Un mecanismo aleatorio selecciona la pregunta que se le presenta a la persona que responde. Con probabilidad <span class="math inline">\(p\)</span> se le pregunta si es cierto que alguna vez participó en apuestas deportivas en línea (<span class="math inline">\(Q_1\)</span>), mientras que con probabilidad <span class="math inline">\((1-p)\)</span> se le pregunta si nació en un mes de 31 días (<span class="math inline">\(Q_2\)</span>). Es decir, en general, con probabilidad <span class="math inline">\(p\)</span> se le pregunta si pertenece a una categoría <span class="math inline">\(A\)</span>, mientras que con probabilidad <span class="math inline">\((1-p)\)</span> se le pregunta si pertenece a una categoría <span class="math inline">\(B\)</span> (no controversial o no polémica).</p>
 <p>Existen dos versiones de esta modalidad, en relación al conocimiento o desconocimiento de <span class="math inline">\(\pi_B\)</span>, la proporción de elementos en la población que pertenece a la categoría <span class="math inline">\(B\)</span>. En el primer caso, se conoce de antemano <span class="math inline">\(\pi_B\)</span> (como en el caso presentado, en que <span class="math inline">\(\pi_B = \frac{7}{12}\)</span>). Mientras que en el segundo caso, no se conoce <span class="math inline">\(\pi_B\)</span>. Nos limitaremos al estudio de la primera situación.</p>
 </section>
 </section>
-<section id="actividades" class="level1">
-<h1>Actividades</h1>
+<section id="actividades" class="level2">
+<h2 class="anchored" data-anchor-id="actividades">Actividades</h2>
 <p>Para todo lo que sigue, tenga en consideración lo siguiente:</p>
 <ul>
 <li>Se toma una muestra al azar con reemplazo de tamaño <span class="math inline">\(n=100\)</span> de una población de tamaño <span class="math inline">\(N=1000\)</span>.</li>
 <li>Para nuestros estudios comparativos, supondremos que el porcentaje de alumnos que apuesta (lo que se quisiera estimar) es 40%.</li>
-<li>Cuando se les pregunta directamente si han hecho alguna vez apuestas, los estudiantes mienten con probabilidad <span class="math inline">\(\mu\)</span>.</li>
+<li>Cuando se les pregunta directamente si han hecho alguna vez apuestas, los estudiantes que sí han apostado alguna vez mienten con probabilidad <span class="math inline">\(\mu\)</span>.</li>
 <li>Si se utilizan técnicas de respuesta aleatorizada, los estudiantes no mienten.</li>
 </ul>
 <p>Comenzaremos realizando un estudio de simulación para estudiar el efecto de la mentira en las estimaciones. En esta primera aproximación, consideraremos que se realiza la pregunta directa.</p>
 <ol type="1">
 <li>Proponga un modelo bayesiano que, a partir de encuestar a <span class="math inline">\(n\)</span> estudiantes, permita estimar <span class="math inline">\(\pi_a\)</span>. Explique la elección de la función de verosimilitud y el <em>prior</em> e indique cómse obtiene el <em>posterior</em>.</li>
-<li>Utilizando R, simule la obtención de una muestra para el caso en que los estudiantes no mienten y para el caso en que los estudiantes mienten con tres niveles de mentira <span class="math inline">\(\mu\)</span>bajo, alto y medio. Compare los resultados de la inferencia.</li>
+<li>Utilizando R, simule la obtención de una muestra para el caso en que los estudiantes no mienten y para el caso en que los estudiantes mienten con tres niveles de mentira <span class="math inline">\(\mu\)</span> bajo, medio y alto. Compare los resultados de la inferencia.</li>
 <li>Realice ahora 1000 simulaciones y compare los resultados de las inferencias.</li>
 </ol>
-<p>Considere ahora el caso del método propuesto por Werner:</p>
+<p>Considere ahora el caso del método propuesto por Warner:</p>
 <ol start="4" type="1">
 <li>Según este método, ¿cuál es la probabilidad (llamémosla <span class="math inline">\(\lambda_W\)</span>) de que un estudiante responda que apuesta? ¿cuál es la probabilidad de que un estudiante responda queno apuesta?</li>
 <li>A partir de lo anterior, proponga un modelo razonable sobre cómo se generan los datos.</li>
@@ -291,9 +285,9 @@ Ayuda
 <div class="callout-body-container callout-body">
 <p>Escriba el <em>posterior</em> dejando el denominador de la Regla de Bayes expresado como <span class="math inline">\(Z\)</span>. Luego, muestre que:</p>
 <p><span class="math display">\[
-Z = \frac{B(1-p;y+1,n-y+1) - B(p;y+1,n-y+1)}{1-2p}
+Z = \frac{B(1 - p; y + 1, n - y + 1) - B(p; y + 1, n - y + 1)}{1 - 2p}
 \]</span></p>
-<p>donde <span class="math inline">\(B(x; a,b) = \int_0^x t^{a-1} (1-t)^{b-1} dt\)</span> es la función beta incompleta, <span class="math inline">\(p\)</span> es la probabilidad con la que se hace la pregunta alternativa e <span class="math inline">\(y\)</span> es la cantidad depersonas que responden que apuestan.</p>
+<p>donde <span class="math inline">\(B(x; a, b) = \int_0^x t^{a - 1} (1 - t)^{b - 1} dt\)</span> es la función beta incompleta, <span class="math inline">\(p\)</span> es la probabilidad con la que se hace la pregunta alternativa e <span class="math inline">\(y\)</span> es la cantidad depersonas que responden que apuestan.</p>
 <p>Para resolver la integral, utilice el método de sustitución y hágalo en términos de <span class="math inline">\(\lambda_W\)</span>. No es tan terrible como parece.</p>
 </div>
 </div>
@@ -309,9 +303,15 @@ Z = \frac{B(1-p;y+1,n-y+1) - B(p;y+1,n-y+1)}{1-2p}
 </ol>
 <p>Para terminar, es hora de comparar todos los escenarios.</p>
 <ol start="12" type="1">
-<li>Utilizando R, simule la obtención de una muestra para el caso en que los estudiantes no mienten, mienten con tres niveles de mentira <span class="math inline">\(\mu\)</span> (bajo, alto y medio), se utiliza el método de Werner y se utiliza el método de Greenberg. Compare los resultados de las inferencias en cada caso.</li>
+<li>Utilizando R, simule la obtención de una muestra para el caso en que los estudiantes no mienten, mienten con tres niveles de mentira <span class="math inline">\(\mu\)</span> (bajo, medio y alto), se utiliza el método de Werner y se utiliza el método de Greenberg. Compare los resultados de las inferencias en cada caso.</li>
 <li>Realice ahora 1000 simulaciones y analice los resultados.</li>
 </ol>
+<!--
+Algunas fuentes:
+https://www.conicet.gov.ar/apuestas-online-en-la-adolescencia-y-juventud-una-mirada-desde-lo-biologico-y-lo-social/
+https://www.clarin.com/sociedad/nuevo-informe-apuestas-online-afecta-4-10-jovenes-pais-alertan-graves-consecuencias_0_X81rrMQMoH.html?srsltid=AfmBOooKGSu0al0XwGV8oIFnbptb7s64b2KXjCV5vgLquI8FmHxR1yd8
+https://ugc.production.linktr.ee/cd2596a8-1dce-4f38-b151-a217d61227f1_informe-resultados-apostar-no-es-un-juego-2024-final-IMPRENTA-v2.pdf
+-->
 
 
 </section>
@@ -744,8 +744,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../trabajos_practicos/02_tp2.html" class="pagination-link" aria-label="TP 2">
-        <span class="nav-page-text">TP 2</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../trabajos_practicos/02_tp2.html" class="pagination-link" aria-label="TP 2: El Dibu de la vida">
+        <span class="nav-page-text">TP 2: El Dibu de la vida</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
