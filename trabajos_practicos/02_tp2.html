@@ -384,78 +384,89 @@ f_Y(y) = f_X(\text{expit}(y)) \cdot \text{expit}(y) \cdot ( 1 - \text{expit}(y))
 Listado&nbsp;1: Implementación del algoritmo de Metropolis-Hastings en escala logarítmica.
 </figcaption>
 <div aria-describedby="lst-mh-log-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>metropolis_hastings_log <span class="ot">&lt;-</span> <span class="cf">function</span>(logp, x, n, <span class="at">sigma =</span> <span class="cn">NULL</span>) {</span>
-<span id="cb1-2"><a href="#cb1-2"></a>  <span class="co"># Algortimo de Metropolis Hastings en escala logarítmica</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a>  <span class="co">#</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a>  <span class="co"># Parámetros</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>  <span class="co">#  ------------------------------------------------------------------------</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a>  <span class="co"># | logp     | Función de densidad objetivo, normalizada o sin normalizar, |</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a>  <span class="co"># |          | en escala logarítmica.                                      |</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a>  <span class="co"># | x        | Posición inicial del algoritmo.                             |</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a>  <span class="co"># | n        | Cantidad de muestras a obtener.                             |</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a>  <span class="co"># | sigma    | Matriz de varianzas y covarianzas para la distribución de   |</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a>  <span class="co"># |          | propuesta. Por defecto, es NULL y usa la matriz identidad.  |</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a>  <span class="co">#  ------------------------------------------------------------------------</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a>  <span class="co">#</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a>  <span class="co"># Salida</span></span>
-<span id="cb1-15"><a href="#cb1-15"></a>  <span class="co">#  ------------------------------------------------------------------------</span></span>
-<span id="cb1-16"><a href="#cb1-16"></a>  <span class="co"># | muestras | Matriz con las muestras obtenidas.                          |</span></span>
-<span id="cb1-17"><a href="#cb1-17"></a>  <span class="co">#  ------------------------------------------------------------------------</span></span>
-<span id="cb1-18"><a href="#cb1-18"></a></span>
-<span id="cb1-19"><a href="#cb1-19"></a>  <span class="co"># Obtener dimensionalidad de la distribución objetivo a partir del punto inicial</span></span>
-<span id="cb1-20"><a href="#cb1-20"></a>  p <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
-<span id="cb1-21"><a href="#cb1-21"></a></span>
-<span id="cb1-22"><a href="#cb1-22"></a>  <span class="co"># Inicializar matriz donde se guardan las muestras</span></span>
-<span id="cb1-23"><a href="#cb1-23"></a>  muestras <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> n, <span class="at">ncol =</span> p)</span>
-<span id="cb1-24"><a href="#cb1-24"></a></span>
-<span id="cb1-25"><a href="#cb1-25"></a>  <span class="co"># Usar matriz diagonal unitaria para la distribución de propuesta cuando no se especifica</span></span>
-<span id="cb1-26"><a href="#cb1-26"></a>  <span class="cf">if</span> (<span class="fu">is.null</span>(sigma)) {</span>
-<span id="cb1-27"><a href="#cb1-27"></a>    sigma <span class="ot">&lt;-</span> <span class="fu">diag</span>(p)</span>
-<span id="cb1-28"><a href="#cb1-28"></a>  }</span>
-<span id="cb1-29"><a href="#cb1-29"></a></span>
-<span id="cb1-30"><a href="#cb1-30"></a>  <span class="co"># Almacenar el punto inicial en la matriz de muestras</span></span>
-<span id="cb1-31"><a href="#cb1-31"></a>  muestras[<span class="dv">1</span>, ] <span class="ot">&lt;-</span> x</span>
-<span id="cb1-32"><a href="#cb1-32"></a></span>
-<span id="cb1-33"><a href="#cb1-33"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(n <span class="sc">-</span> <span class="dv">1</span>)) {</span>
-<span id="cb1-34"><a href="#cb1-34"></a>    <span class="co"># Obtener el valor de la muestra actual</span></span>
-<span id="cb1-35"><a href="#cb1-35"></a>    muestra_actual <span class="ot">&lt;-</span> muestras[i, ]</span>
-<span id="cb1-36"><a href="#cb1-36"></a></span>
-<span id="cb1-37"><a href="#cb1-37"></a>    <span class="co"># Proponer un nuevo valor</span></span>
-<span id="cb1-38"><a href="#cb1-38"></a>    muestra_propuesta <span class="ot">&lt;-</span> mvtnorm<span class="sc">::</span><span class="fu">rmvnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> muestra_actual, <span class="at">sigma =</span> sigma)</span>
-<span id="cb1-39"><a href="#cb1-39"></a></span>
-<span id="cb1-40"><a href="#cb1-40"></a>    <span class="co"># Evaluar la log densidad en el valor actual y en el propuesto</span></span>
-<span id="cb1-41"><a href="#cb1-41"></a>    logp_propuesta <span class="ot">&lt;-</span> <span class="fu">logp</span>(muestra_propuesta)</span>
-<span id="cb1-42"><a href="#cb1-42"></a>    logp_actual <span class="ot">&lt;-</span> <span class="fu">logp</span>(muestra_actual)</span>
-<span id="cb1-43"><a href="#cb1-43"></a></span>
-<span id="cb1-44"><a href="#cb1-44"></a>    <span class="co"># Log densidad al pasar de muestra_propuesta a muestra_actual y viceversa</span></span>
-<span id="cb1-45"><a href="#cb1-45"></a>    <span class="co"># Pregunta: ¿Es necesario este paso?</span></span>
-<span id="cb1-46"><a href="#cb1-46"></a>    logq_actual <span class="ot">&lt;-</span> mvtnorm<span class="sc">::</span><span class="fu">dmvnorm</span>(muestra_actual, <span class="at">mean =</span> muestra_propuesta, <span class="at">sigma =</span> sigma, <span class="at">log =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-47"><a href="#cb1-47"></a>    logq_propuesta <span class="ot">&lt;-</span> mvtnorm<span class="sc">::</span><span class="fu">dmvnorm</span>(muestra_propuesta, <span class="at">mean =</span> muestra_actual, <span class="at">sigma =</span> sigma, <span class="at">log =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-48"><a href="#cb1-48"></a></span>
-<span id="cb1-49"><a href="#cb1-49"></a>    <span class="co"># Calcular log probabilidad de aceptación</span></span>
-<span id="cb1-50"><a href="#cb1-50"></a>    log_alpha <span class="ot">&lt;-</span> (logp_propuesta <span class="sc">+</span> logq_actual) <span class="sc">-</span> (logp_actual <span class="sc">+</span> logq_propuesta)</span>
-<span id="cb1-51"><a href="#cb1-51"></a></span>
-<span id="cb1-52"><a href="#cb1-52"></a>    <span class="co"># Simular aceptación o rechazo</span></span>
-<span id="cb1-53"><a href="#cb1-53"></a>    log_u <span class="ot">&lt;-</span> <span class="fu">log</span>(<span class="fu">runif</span>(<span class="dv">1</span>))</span>
-<span id="cb1-54"><a href="#cb1-54"></a></span>
-<span id="cb1-55"><a href="#cb1-55"></a>    aceptar <span class="ot">&lt;-</span> log_u <span class="sc">&lt;</span> log_alpha</span>
-<span id="cb1-56"><a href="#cb1-56"></a></span>
-<span id="cb1-57"><a href="#cb1-57"></a>    <span class="co"># Determinar siguiente paso en base al criterio de selección</span></span>
-<span id="cb1-58"><a href="#cb1-58"></a>    <span class="cf">if</span> (aceptar) {</span>
-<span id="cb1-59"><a href="#cb1-59"></a>      muestras[i <span class="sc">+</span> <span class="dv">1</span>, ] <span class="ot">&lt;-</span> muestra_propuesta</span>
-<span id="cb1-60"><a href="#cb1-60"></a>    } <span class="cf">else</span> {</span>
-<span id="cb1-61"><a href="#cb1-61"></a>      muestras[i <span class="sc">+</span> <span class="dv">1</span>, ] <span class="ot">&lt;-</span> muestra_actual</span>
-<span id="cb1-62"><a href="#cb1-62"></a>    }</span>
-<span id="cb1-63"><a href="#cb1-63"></a>  }</span>
-<span id="cb1-64"><a href="#cb1-64"></a>  <span class="co"># Convertir 'muestras' a vector si se trata de una distrbución univariada</span></span>
-<span id="cb1-65"><a href="#cb1-65"></a>  <span class="cf">if</span> (p <span class="sc">==</span> <span class="dv">1</span>) {</span>
-<span id="cb1-66"><a href="#cb1-66"></a>    muestras <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(muestras)</span>
-<span id="cb1-67"><a href="#cb1-67"></a>  }</span>
-<span id="cb1-68"><a href="#cb1-68"></a></span>
-<span id="cb1-69"><a href="#cb1-69"></a>  <span class="fu">return</span>(muestras)</span>
-<span id="cb1-70"><a href="#cb1-70"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="annotated-cell-1"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1"></a>metropolis_hastings_log <span class="ot">&lt;-</span> <span class="cf">function</span>(logp, x, n, <span class="at">sigma =</span> <span class="cn">NULL</span>) {</span>
+<span id="annotated-cell-1-2"><a href="#annotated-cell-1-2"></a>  <span class="co"># Algortimo de Metropolis Hastings en escala logarítmica</span></span>
+<span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a>  <span class="co">#</span></span>
+<span id="annotated-cell-1-4"><a href="#annotated-cell-1-4"></a>  <span class="co"># Parámetros</span></span>
+<span id="annotated-cell-1-5"><a href="#annotated-cell-1-5"></a>  <span class="co">#  ------------------------------------------------------------------------</span></span>
+<span id="annotated-cell-1-6"><a href="#annotated-cell-1-6"></a>  <span class="co"># | logp     | Función de densidad objetivo, normalizada o sin normalizar, |</span></span>
+<span id="annotated-cell-1-7"><a href="#annotated-cell-1-7"></a>  <span class="co"># |          | en escala logarítmica.                                      |</span></span>
+<span id="annotated-cell-1-8"><a href="#annotated-cell-1-8"></a>  <span class="co"># | x        | Posición inicial del algoritmo.                             |</span></span>
+<span id="annotated-cell-1-9"><a href="#annotated-cell-1-9"></a>  <span class="co"># | n        | Cantidad de muestras a obtener.                             |</span></span>
+<span id="annotated-cell-1-10"><a href="#annotated-cell-1-10"></a>  <span class="co"># | sigma    | Matriz de varianzas y covarianzas para la distribución de   |</span></span>
+<span id="annotated-cell-1-11"><a href="#annotated-cell-1-11"></a>  <span class="co"># |          | propuesta. Por defecto, es NULL y usa la matriz identidad.  |</span></span>
+<span id="annotated-cell-1-12"><a href="#annotated-cell-1-12"></a>  <span class="co">#  ------------------------------------------------------------------------</span></span>
+<span id="annotated-cell-1-13"><a href="#annotated-cell-1-13"></a>  <span class="co">#</span></span>
+<span id="annotated-cell-1-14"><a href="#annotated-cell-1-14"></a>  <span class="co"># Salida</span></span>
+<span id="annotated-cell-1-15"><a href="#annotated-cell-1-15"></a>  <span class="co">#  ------------------------------------------------------------------------</span></span>
+<span id="annotated-cell-1-16"><a href="#annotated-cell-1-16"></a>  <span class="co"># | muestras | Matriz con las muestras obtenidas.                          |</span></span>
+<span id="annotated-cell-1-17"><a href="#annotated-cell-1-17"></a>  <span class="co">#  ------------------------------------------------------------------------</span></span>
+<span id="annotated-cell-1-18"><a href="#annotated-cell-1-18"></a></span>
+<span id="annotated-cell-1-19"><a href="#annotated-cell-1-19"></a>  <span class="co"># Obtener dimensionalidad de la distribución objetivo a partir del punto inicial</span></span>
+<span id="annotated-cell-1-20"><a href="#annotated-cell-1-20"></a>  p <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="annotated-cell-1-21"><a href="#annotated-cell-1-21"></a></span>
+<span id="annotated-cell-1-22"><a href="#annotated-cell-1-22"></a>  <span class="co"># Inicializar matriz donde se guardan las muestras</span></span>
+<span id="annotated-cell-1-23"><a href="#annotated-cell-1-23"></a>  muestras <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> n, <span class="at">ncol =</span> p)</span>
+<span id="annotated-cell-1-24"><a href="#annotated-cell-1-24"></a></span>
+<span id="annotated-cell-1-25"><a href="#annotated-cell-1-25"></a>  <span class="co"># Usar matriz diagonal unitaria para la distribución de propuesta cuando no se especifica</span></span>
+<span id="annotated-cell-1-26"><a href="#annotated-cell-1-26"></a>  <span class="cf">if</span> (<span class="fu">is.null</span>(sigma)) {</span>
+<span id="annotated-cell-1-27"><a href="#annotated-cell-1-27"></a>    sigma <span class="ot">&lt;-</span> <span class="fu">diag</span>(p)</span>
+<span id="annotated-cell-1-28"><a href="#annotated-cell-1-28"></a>  }</span>
+<span id="annotated-cell-1-29"><a href="#annotated-cell-1-29"></a></span>
+<span id="annotated-cell-1-30"><a href="#annotated-cell-1-30"></a>  <span class="co"># Almacenar el punto inicial en la matriz de muestras</span></span>
+<span id="annotated-cell-1-31"><a href="#annotated-cell-1-31"></a>  muestras[<span class="dv">1</span>, ] <span class="ot">&lt;-</span> x</span>
+<span id="annotated-cell-1-32"><a href="#annotated-cell-1-32"></a></span>
+<span id="annotated-cell-1-33"><a href="#annotated-cell-1-33"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(n <span class="sc">-</span> <span class="dv">1</span>)) {</span>
+<span id="annotated-cell-1-34"><a href="#annotated-cell-1-34"></a>    <span class="co"># Obtener el valor de la muestra actual</span></span>
+<span id="annotated-cell-1-35"><a href="#annotated-cell-1-35"></a>    muestra_actual <span class="ot">&lt;-</span> muestras[i, ]</span>
+<span id="annotated-cell-1-36"><a href="#annotated-cell-1-36"></a></span>
+<span id="annotated-cell-1-37"><a href="#annotated-cell-1-37"></a>    <span class="co"># Proponer un nuevo valor</span></span>
+<span id="annotated-cell-1-38"><a href="#annotated-cell-1-38"></a>    muestra_propuesta <span class="ot">&lt;-</span> mvtnorm<span class="sc">::</span><span class="fu">rmvnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> muestra_actual, <span class="at">sigma =</span> sigma)</span>
+<span id="annotated-cell-1-39"><a href="#annotated-cell-1-39"></a></span>
+<span id="annotated-cell-1-40"><a href="#annotated-cell-1-40"></a>    <span class="co"># Evaluar la log densidad en el valor actual y en el propuesto</span></span>
+<span id="annotated-cell-1-41"><a href="#annotated-cell-1-41"></a>    logp_propuesta <span class="ot">&lt;-</span> <span class="fu">logp</span>(muestra_propuesta)</span>
+<span id="annotated-cell-1-42"><a href="#annotated-cell-1-42"></a>    logp_actual <span class="ot">&lt;-</span> <span class="fu">logp</span>(muestra_actual)</span>
+<span id="annotated-cell-1-43"><a href="#annotated-cell-1-43"></a></span>
+<span id="annotated-cell-1-44"><a href="#annotated-cell-1-44"></a>    <span class="co"># Log densidad al pasar de muestra_propuesta a muestra_actual y viceversa</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-45" class="code-annotation-target"><a href="#annotated-cell-1-45"></a>    logq_actual <span class="ot">&lt;-</span> mvtnorm<span class="sc">::</span><span class="fu">dmvnorm</span>(</span>
+<span id="annotated-cell-1-46"><a href="#annotated-cell-1-46"></a>      muestra_actual, <span class="at">mean =</span> muestra_propuesta, <span class="at">sigma =</span> sigma, <span class="at">log =</span> <span class="cn">TRUE</span></span>
+<span id="annotated-cell-1-47"><a href="#annotated-cell-1-47"></a>    )</span>
+<span id="annotated-cell-1-48"><a href="#annotated-cell-1-48"></a>    logq_propuesta <span class="ot">&lt;-</span> mvtnorm<span class="sc">::</span><span class="fu">dmvnorm</span>(</span>
+<span id="annotated-cell-1-49"><a href="#annotated-cell-1-49"></a>      muestra_propuesta, <span class="at">mean =</span> muestra_actual, <span class="at">sigma =</span> sigma, <span class="at">log =</span> <span class="cn">TRUE</span></span>
+<span id="annotated-cell-1-50"><a href="#annotated-cell-1-50"></a>    )</span>
+<span id="annotated-cell-1-51"><a href="#annotated-cell-1-51"></a></span>
+<span id="annotated-cell-1-52"><a href="#annotated-cell-1-52"></a>    <span class="co"># Calcular log probabilidad de aceptación</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-1-53" class="code-annotation-target"><a href="#annotated-cell-1-53"></a>    log_alpha <span class="ot">&lt;-</span> ...</span>
+<span id="annotated-cell-1-54"><a href="#annotated-cell-1-54"></a></span>
+<span id="annotated-cell-1-55"><a href="#annotated-cell-1-55"></a>    <span class="co"># Simular aceptación o rechazo</span></span>
+<span id="annotated-cell-1-56"><a href="#annotated-cell-1-56"></a>    log_u <span class="ot">&lt;-</span> <span class="fu">log</span>(<span class="fu">runif</span>(<span class="dv">1</span>))</span>
+<span id="annotated-cell-1-57"><a href="#annotated-cell-1-57"></a></span>
+<span id="annotated-cell-1-58"><a href="#annotated-cell-1-58"></a>    aceptar <span class="ot">&lt;-</span> log_u <span class="sc">&lt;</span> log_alpha</span>
+<span id="annotated-cell-1-59"><a href="#annotated-cell-1-59"></a></span>
+<span id="annotated-cell-1-60"><a href="#annotated-cell-1-60"></a>    <span class="co"># Determinar siguiente paso en base al criterio de selección</span></span>
+<span id="annotated-cell-1-61"><a href="#annotated-cell-1-61"></a>    <span class="cf">if</span> (aceptar) {</span>
+<span id="annotated-cell-1-62"><a href="#annotated-cell-1-62"></a>      muestras[i <span class="sc">+</span> <span class="dv">1</span>, ] <span class="ot">&lt;-</span> muestra_propuesta</span>
+<span id="annotated-cell-1-63"><a href="#annotated-cell-1-63"></a>    } <span class="cf">else</span> {</span>
+<span id="annotated-cell-1-64"><a href="#annotated-cell-1-64"></a>      muestras[i <span class="sc">+</span> <span class="dv">1</span>, ] <span class="ot">&lt;-</span> muestra_actual</span>
+<span id="annotated-cell-1-65"><a href="#annotated-cell-1-65"></a>    }</span>
+<span id="annotated-cell-1-66"><a href="#annotated-cell-1-66"></a>  }</span>
+<span id="annotated-cell-1-67"><a href="#annotated-cell-1-67"></a>  <span class="co"># Convertir 'muestras' a vector si se trata de una distrbución univariada</span></span>
+<span id="annotated-cell-1-68"><a href="#annotated-cell-1-68"></a>  <span class="cf">if</span> (p <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="annotated-cell-1-69"><a href="#annotated-cell-1-69"></a>    muestras <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(muestras)</span>
+<span id="annotated-cell-1-70"><a href="#annotated-cell-1-70"></a>  }</span>
+<span id="annotated-cell-1-71"><a href="#annotated-cell-1-71"></a></span>
+<span id="annotated-cell-1-72"><a href="#annotated-cell-1-72"></a>  <span class="fu">return</span>(muestras)</span>
+<span id="annotated-cell-1-73"><a href="#annotated-cell-1-73"></a>}</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="45,46,47,48,49,50" data-code-annotation="1">¿Es necesario este paso?</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="53" data-code-annotation="2">¿Cómo se calcula la log probabilidad de aceptación?</span>
+</dd>
+</dl>
 </div>
 </figure>
 </div>
@@ -505,8 +516,8 @@ Evaluación parcial de funciones
 <p>En las líneas 41 y 42 del <a href="#lst-mh-log" class="quarto-xref">Listado&nbsp;1</a> se puede ver que la función <code>logp</code> que se pasa a <code>metropolis_hastings_log()</code> debe funcionar correctamente al ser llamada con un único argumento, que es el vector de parámetros. Pero la función que implementamos en el punto 4 tiene 2 argumentos, uno para el vector de parámetros y otro para el vector de datos… ¿cómo hacemos?</p>
 <p>La función <code>partial()</code>, de la librería <code>purrr</code>, permite pre-llenar argumentos de una función. Toma como entrada una función, los argumentos con sus valores a pre-llenar, y devuelve una nueva función que hace lo mismo que la función original, pero con valores de argumentos ya especificados.</p>
 <p>En nuestro caso, podríamos hacer:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(purrr)</span>
-<span id="cb2-2"><a href="#cb2-2"></a>logp <span class="ot">&lt;-</span> <span class="fu">partial</span>(log_posterior, <span class="at">y =</span> datos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb1-2"><a href="#cb1-2"></a>logp <span class="ot">&lt;-</span> <span class="fu">partial</span>(log_posterior, <span class="at">y =</span> datos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Luego, la función <code>logp()</code> puede ser llamada solamente pasando el vector de parámetros. El valor de <code>y</code> será el que se pasó originalmente a la función <code>partial()</code>.</p>
 </div>
 </div>
@@ -537,9 +548,9 @@ T de Student no centrada y escalada
 </div>
 <div class="callout-body-container callout-body">
 <p>La función <code>dt()</code> de R permite evaluar la función de densidad de una distribución T de Student estándar, con media 0 y desvío 1. Para evaluar la función de densidad con media y desvío arbitrario se puede utilizar la siguiente función de R:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>scaled_t_density <span class="ot">&lt;-</span> <span class="cf">function</span>(x, df, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>) {</span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">dt</span>((x <span class="sc">-</span> mean) <span class="sc">/</span> sd, df) <span class="sc">/</span> sd</span>
-<span id="cb3-3"><a href="#cb3-3"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>scaled_t_density <span class="ot">&lt;-</span> <span class="cf">function</span>(x, df, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>) {</span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">dt</span>((x <span class="sc">-</span> mean) <span class="sc">/</span> sd, df) <span class="sc">/</span> sd</span>
+<span id="cb2-3"><a href="#cb2-3"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 
