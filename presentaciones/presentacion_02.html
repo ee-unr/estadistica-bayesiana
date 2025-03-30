@@ -818,7 +818,7 @@ p(\pi\mid y) = \frac{\pi^{(y+a)-1}(1-\pi)^{(N-y+b)-1}}{B(y+a,N-y+b)}
 <div class="fragment">
 <p><span class="math display">\[
 \begin{align*}
-    Y \mid\pi &amp; \sim  \text{Binoimal}(N,\pi)\\
+    Y \mid\pi &amp; \sim  \text{Binomial}(N,\pi)\\
     \pi &amp; \sim  \text{Beta}(a,b)
 \end{align*}
 \]</span></p>
@@ -904,7 +904,7 @@ p(\pi\mid y) = \frac{\pi^{(y+a)-1}(1-\pi)^{(N-y+b)-1}}{B(y+a,N-y+b)}
 \mathbb{E}[{p(\pi\mid y)}] &amp; = \frac{y+a}{a+b+N} \\
 &amp; = \frac{y}{a+b+N} + \frac{a}{a+b+N} \\
 &amp; = \frac{N}{a+b+N}\frac{y}{N} + \frac{a+b}{a+b+N} \frac{a}{a+b} \\
-&amp; = \frac{N}{a+b+N}\frac{y}{N} + \frac{a+b}{a+b+N} \mathbb{E}{[P(\pi)]}
+&amp; = \frac{N}{a+b+N}\frac{y}{N} + \frac{a+b}{a+b+N} \mathbb{E}{[p(\pi)]}
 \end{align*}
 \]</span></p>
 </section>
@@ -994,7 +994,7 @@ p(\tilde{y}\mid y) = \int p(\tilde{y}\mid\pi) p(\pi\mid y) d\pi
 <p>Para el caso binomial que venimos estudiando, consideramos una realización más (tirar el globo terráqueo y agarrarlo). ¿Cuál es la probabilidad de obtener <span class="math inline">\(A\)</span> (agua)?</p>
 <p><span class="math display">\[
 \begin{align*}
-P(\tilde{y} = 1\mid y) &amp; = \int_0^1 \pi \vphantom{\tilde{y}}p(\pi\mid x) d \pi = \mathbb{E}[{p(\pi\mid x)}] \\
+p(\tilde{y} = 1\mid y) &amp; = \int_0^1 \pi \vphantom{\tilde{y}}p(\pi\mid x) d \pi = \mathbb{E}[{p(\pi\mid x)}] \\
 &amp; = \frac{y+a}{y+a+N-y+b} = \frac{y+a}{N+a+b} \\
 \end{align*}
 \]</span></p>

@@ -573,11 +573,19 @@ P(\mu \mid \mathbf{y}) &amp; \propto e^{\frac{2\mu(\theta\sigma^2+ \bar{y}n\tau^
 <p>¿Qué son <span class="math inline">\(\theta_n\)</span> y <span class="math inline">\(\tau_n^2\)</span>?</p>
 </div>
 </section>
-<section id="section-9" class="slide level2">
+<section id="section-9" class="slide level2 smaller">
 <h2></h2>
 
+<img data-src="presentacion_03_files/figure-revealjs/plot-normal-normal-1.png" width="960" class="r-stretch"><div class="fragment">
+<p>¿Parámetros de la verosimilitud?</p>
+</div>
+</section>
+<section id="section-10" class="slide level2">
+<h2></h2>
+<p>Otro modo de verlo</p>
+
 <img data-src="presentacion_03_files/figure-revealjs/normal-ejemplo-1-1.png" class="quarto-figure quarto-figure-center r-stretch" width="1728"></section>
-<section id="section-10" class="slide level2 smaller">
+<section id="section-11" class="slide level2 smaller">
 <h2></h2>
 <p>¿Puedo representar los datos en el gráfico de la izquierda?</p>
 <div class="fragment">
@@ -602,17 +610,17 @@ P(\mu \mid \mathbf{y}) &amp; \propto e^{\frac{2\mu(\theta\sigma^2+ \bar{y}n\tau^
 </div>
 </div>
 </section>
-<section id="section-11" class="slide level2">
+<section id="section-12" class="slide level2">
 <h2></h2>
 <p>¿Qué estamos viendo?</p>
 
 <img data-src="presentacion_03_files/figure-revealjs/normal-ejemplo-2-1.png" width="960" class="r-stretch"></section>
-<section id="section-12" class="slide level2 smaller">
+<section id="section-13" class="slide level2 smaller">
 <h2></h2>
 <p><em>A posteriori</em> (luego de observar los datos)… ¿qué ocurre con la plausibilidad de los valores de <span class="math inline">\(\mu\)</span>?</p>
 
 <img data-src="presentacion_03_files/figure-revealjs/normal-ejemplo-3-1.png" width="960" class="r-stretch"></section>
-<section id="section-13" class="slide level2">
+<section id="section-14" class="slide level2">
 <h2></h2>
 <p>¿Media y varianza de la normal de la izquierda?</p>
 <div class="fragment">
@@ -623,7 +631,7 @@ P(\mu \mid \mathbf{y}) &amp; \propto e^{\frac{2\mu(\theta\sigma^2+ \bar{y}n\tau^
 <p><span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span></p>
 </div>
 </section>
-<section id="compromiso" class="slide level2 smaller scrollable">
+<section id="compromiso" class="slide level2 smaller">
 <h2>Compromiso</h2>
 <p><span class="math display">\[
 \small{
@@ -638,7 +646,9 @@ P(\mu \mid \mathbf{y}) &amp; \propto e^{\frac{2\mu(\theta\sigma^2+ \bar{y}n\tau^
 <div class="fragment">
 <p>Representa un balance (promedio ponderado o <em>combinación convexa</em>) entre la media muestral y la media esperada <em>a priori</em>.</p>
 </div>
-<div class="fragment">
+</section>
+<section id="compromiso-1" class="slide level2 smaller">
+<h2>Compromiso</h2>
 <p><span class="math display">\[
 \small{
   \mathbb{V}[p(\mu\mid \mathbf{y})] = \tau_n^2 = \frac{\tau^2\sigma^2}{n\tau^2+\sigma^2}
@@ -654,15 +664,16 @@ P(\mu \mid \mathbf{y}) &amp; \propto e^{\frac{2\mu(\theta\sigma^2+ \bar{y}n\tau^
   \frac{1}{\mathbb{V}[p(\mu\mid \mathbf{y})]} =  \frac{n}{\sigma^2} + \frac{1}{\tau^2}
 }
 \]</span></p>
+<div class="fragment">
 <p>La precisión <em>a posteriori</em> es la suma de las precisiones del <em>prior</em> y la muestra.</p>
 </div>
 </section>
-<section id="section-14" class="slide level2">
+<section id="section-15" class="slide level2">
 <h2></h2>
 <h3 id="distribución-predictiva-a-posteriori">Distribución predictiva <em>a posteriori</em></h3>
 <p><span class="math display">\[p(\tilde{y}\mid \mathbf{y}) = \int p(\tilde{y}\mid \mu) p(\mu\mid \mathbf{y})d\mu\]</span> El integrando es el producto de dos normales: una normal bivariada. Por lo tanto toda la integral es una distribución marginal de una normal: otra normal.</p>
 </section>
-<section id="section-15" class="slide level2">
+<section id="section-16" class="slide level2">
 <h2></h2>
 <p>Demostración poco formal…</p>
 <p><em>A posteriori</em> vale <span class="math display">\[
@@ -675,7 +686,7 @@ y-\mu \mid \mu &amp; \sim &amp; \mathcal{N}(0,\sigma^2) \\
 <p>Resulta</p>
 <p><span class="math display">\[p(\tilde{y}\mid \mathbf{y}) = \mathcal{N}(\mu_n,\sigma^2 + \tau_n^2)\]</span></p>
 </section>
-<section id="section-16" class="slide level2">
+<section id="section-17" class="slide level2">
 <h2></h2>
 <p>La varianza predictiva <span class="math inline">\(\sigma^2 + \tau_n^2\)</span> es una medida de la incertidumbre <em>a posteriori</em> respecto a una observación nueva <span class="math inline">\(\tilde{y}\)</span>.</p>
 <div class="fragment">
@@ -685,7 +696,7 @@ y-\mu \mid \mu &amp; \sim &amp; \mathcal{N}(0,\sigma^2) \\
 <p>En otras palabras, si supiéramos que <span class="math inline">\(\mu = 2\)</span>, toda la variabilidad provendría de <span class="math inline">\(\sigma\)</span>, ¡pero no sabemos cuánto vale <span class="math inline">\(\mu\)</span>! Puede ser <span class="math inline">\(2\)</span> o <span class="math inline">\(1.98\)</span> o <span class="math inline">\(1.43\)</span>… Por lo que hay una componente adicional de varianza.</p>
 </div>
 </section>
-<section id="section-17" class="slide level2 smaller">
+<section id="section-18" class="slide level2 smaller">
 <h2></h2>
 <p>No se entendió nada. <em>Simular para creer</em>.</p>
 <div class="fragment">
@@ -716,7 +727,7 @@ y-\mu \mid \mu &amp; \sim &amp; \mathcal{N}(0,\sigma^2) \\
 <p>¿Qué va a pasar en cada caso si construimos la distribución de <span class="math inline">\(\tilde{y}\)</span>?</p>
 </div>
 </section>
-<section id="section-18" class="slide level2">
+<section id="section-19" class="slide level2">
 <h2></h2>
 
 <img data-src="presentacion_03_files/figure-revealjs/predictive-distribution-1.png" class="quarto-figure quarto-figure-center r-stretch" width="1152"><p>La distribución predictiva contiene la variabilidad inherente al fenómeno en estudio (<span class="math inline">\(\sigma\)</span>) y la incertidumbre en el parámetro <span class="math inline">\(\mu\)</span>.</p>
@@ -730,7 +741,7 @@ y-\mu \mid \mu &amp; \sim &amp; \mathcal{N}(0,\sigma^2) \\
 <p>¿Cómo asignamos una credibilidad <em>a priori</em> para <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma\)</span>? ¡Con una distribución en dos dimensiones!</p>
 </div>
 </section>
-<section id="section-19" class="slide level2 smaller">
+<section id="section-20" class="slide level2 smaller">
 <h2></h2>
 <p>El modelo es</p>
 <p><span class="math display">\[
@@ -749,7 +760,7 @@ p(\mu,\sigma^2 \mid \theta, \tau, \alpha, \beta ) =
 \]</span></p>
 <p>Si anticipamos que la normal-gamma-inversa es conjugada de la normal (para los parámetros <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span>), ¿qué podemos decir de la distribución <em>a posteriori</em> (conjunta) de <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span></p>
 </section>
-<section id="section-20" class="slide level2 smaller">
+<section id="section-21" class="slide level2 smaller">
 <h2></h2>
 <p>Efectivamente, se puede probar que:</p>
 <p><span class="math display">\[
@@ -767,7 +778,7 @@ p(\mu,\sigma^2 \mid \theta, \tau, \alpha, \beta ) =
 \]</span></p>
 <p>¿Parámetros desconocidos en la verosimilitud? ¿Dimensión del espacio de parámetros? ¿Constantes de ajuste del <em>prior</em>? ¿Forma del <em>posterior</em>?</p>
 </section>
-<section id="section-21" class="slide level2">
+<section id="section-22" class="slide level2">
 <h2></h2>
 <p>Reflexionemos…</p>
 <p><span class="math display">\[
@@ -779,11 +790,11 @@ p(\mu,\sigma^2 \mid \theta, \tau, \alpha, \beta ) =
 \]</span></p>
 <p>¿Parámetros desconocidos en la verosimilitud? ¿Dimensión y característica del espacio de parámetros? ¿Constantes de ajuste del <em>prior</em>? ¿Forma del <em>posterior</em>? ¿Qué son <span class="math inline">\(\theta_n\)</span> y <span class="math inline">\(\tau_n^2\)</span>?</p>
 </section>
-<section id="section-22" class="slide level2">
+<section id="section-23" class="slide level2">
 <h2></h2>
 
 <img data-src="presentacion_03_files/figure-revealjs/ngi-ejemplo-1-1.png" width="960" class="r-stretch"></section>
-<section id="section-23" class="slide level2 smaller">
+<section id="section-24" class="slide level2 smaller">
 <h2></h2>
 <p>¿Puedo representar los datos en el gráfico de la izquierda?</p>
 <div class="fragment">
@@ -808,17 +819,17 @@ p(\mu,\sigma^2 \mid \theta, \tau, \alpha, \beta ) =
 </div>
 </div>
 </section>
-<section id="section-24" class="slide level2">
+<section id="section-25" class="slide level2">
 <h2></h2>
 <p>¿Qué estamos viendo?</p>
 
 <img data-src="presentacion_03_files/figure-revealjs/ngi-ejemplo-2-1.png" width="960" class="r-stretch"></section>
-<section id="section-25" class="slide level2 smaller">
+<section id="section-26" class="slide level2 smaller">
 <h2></h2>
 <p><em>A posteriori</em> (luego de observar los datos)… ¿qué ocurre con la plausibilidad de los valores de <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span>?</p>
 
 <img data-src="presentacion_03_files/figure-revealjs/ngi-ejemplo-3-1.png" width="960" class="r-stretch"></section>
-<section id="section-26" class="slide level2">
+<section id="section-27" class="slide level2">
 <h2></h2>
 <p>¿Parámetros de la distribución de la izquierda?</p>
 <div class="fragment">
