@@ -246,13 +246,13 @@ posterior <- data %>%
 p1 <- posterior %>%
   ggplot() +
   geom_segment(aes(x=u,xend=u,y=0,yend=prior),size=1,col="#56CBF9") +
-  scale_y_continuous(limits = c(0,0.3),name = "P(u)") +
+  scale_y_continuous(limits = c(0,0.3),name = "p(u)") +
   scale_x_continuous("u",breaks=0:10)
 
 p2 <- posterior %>%
   ggplot() +
   geom_segment(aes(x=u,xend=u,y=0,yend=posterior),size=1,col="#FF729F") +
-  scale_y_continuous(limits = c(0,0.3),name = expression("P(u|"*n[A]*",N)")) +
+  scale_y_continuous(limits = c(0,0.3),name = expression("p(u|"*n[A]*",N)")) +
   scale_x_continuous("u",breaks=0:10)
 
 p1+p2
@@ -392,13 +392,13 @@ expand.grid(N_a = 0:35,
 p1 <- posterior %>%
   ggplot() +
   geom_segment(aes(x=N_a,xend=N_a,y=0,yend=prior),size=1,col="#56CBF9") +
-  scale_y_continuous(limits = c(0,0.3),name = expression("P("*N[a]*")")) +
+  scale_y_continuous(limits = c(0,0.3),name = expression("p("*N[a]*")")) +
   scale_x_continuous(expression(N[a]),breaks=0:35,labels=ifelse(0:35 %% 5 == 0, 0:35, ""))
 
 p2 <- posterior %>%
   ggplot() +
   geom_segment(aes(x=N_a,xend=N_a,y=0,yend=posterior),size=1,col="#FF729F") +
-  scale_y_continuous(limits = c(0,0.3),name = expression("P("*N[a]*"|"*n[i]*")")) +
+  scale_y_continuous(limits = c(0,0.3),name = expression("p("*N[a]*"|"*n[i]*")")) +
   scale_x_continuous(expression(N[a]),breaks=0:35,labels=ifelse(0:35 %% 5 == 0, 0:35, ""))
 
 p1 + p2
@@ -602,7 +602,7 @@ dv$beta <- paste0("a = ", dv$a, ", b = ", dv$b )
 dv |>
   ggplot() +
   geom_line(aes(x=x,y=p,col=beta,group=beta),size=1) +
-  scale_y_continuous(name = expression("P("*pi[a]*")")) +
+  scale_y_continuous(name = expression("p("*pi[a]*")")) +
   xlab(expression(pi[a])) +
   theme(legend.title = element_blank())
 ```
@@ -629,7 +629,7 @@ dv$beta <- paste0("a = ", dv$a, ", b = ", dv$b )
 dv |>
   ggplot() +
   geom_line(aes(x=x,y=p,col=beta,group=beta),size=1) +
-  scale_y_continuous(name = expression("P("*pi[a]*")")) +
+  scale_y_continuous(name = expression("p("*pi[a]*")")) +
   xlab(expression(pi[a])) +
   theme(legend.title = element_blank())
 ```
@@ -656,7 +656,7 @@ dv$beta <- paste0("a = ", dv$a, ", b = ", dv$b )
 dv |>
   ggplot() +
   geom_line(aes(x=x,y=p,col=beta,group=beta),size=1) +
-  scale_y_continuous(name = expression("P("*pi[a]*")")) +
+  scale_y_continuous(name = expression("p("*pi[a]*")")) +
   xlab(expression(pi[a])) +
   theme(legend.title = element_blank())
 ```
@@ -765,7 +765,7 @@ la distribución _a posteriori_ también es $\mathcal{F}$
 
 $$
 \begin{align*}
-    Y \mid\pi & \sim  \text{Binoimal}(N,\pi)\\
+    Y \mid\pi & \sim  \text{Binomial}(N,\pi)\\
     \pi & \sim  \text{Beta}(a,b)
 \end{align*}
 $$
@@ -797,21 +797,21 @@ posterior <- data.frame(x=seq(0,1,0.01)) |>
 p1 <- posterior %>%
   ggplot() +
   geom_line(aes(x=x,y=prior/sum(prior)),size=1,col="#56CBF9") +
-  scale_y_continuous(name = expression("P("*pi*")")) +
+  scale_y_continuous(name = expression("p("*pi*")")) +
   scale_x_continuous(expression(pi)) +
   theme(axis.text.y = element_blank())
 
 p2 <- posterior %>%
   ggplot() +
   geom_line(aes(x=x,y=likelihood/sum(likelihood)),size=1,col="#21dbbc") +
-  scale_y_continuous(name = expression("P("*y*"|"*pi*")")) +
+  scale_y_continuous(name = expression("p("*y*"|"*pi*")")) +
   scale_x_continuous(expression(pi)) +
   theme(axis.text.y = element_blank())
 
 p3 <- posterior %>%
   ggplot() +
   geom_line(aes(x=x,y=posterior/sum(posterior)),size=1,col="#FF729F") +
-  scale_y_continuous(name = expression("P("*pi*"|"*y*")")) +
+  scale_y_continuous(name = expression("p("*pi*"|"*y*")")) +
   scale_x_continuous(expression(pi)) +
   theme(axis.text.y = element_blank())
 
@@ -998,7 +998,7 @@ $$
 \mathbb{E}[{p(\pi\mid y)}] & = \frac{y+a}{a+b+N} \\
 & = \frac{y}{a+b+N} + \frac{a}{a+b+N} \\
 & = \frac{N}{a+b+N}\frac{y}{N} + \frac{a+b}{a+b+N} \frac{a}{a+b} \\
-& = \frac{N}{a+b+N}\frac{y}{N} + \frac{a+b}{a+b+N} \mathbb{E}{[P(\pi)]}
+& = \frac{N}{a+b+N}\frac{y}{N} + \frac{a+b}{a+b+N} \mathbb{E}{[p(\pi)]}
 \end{align*}
 $$
 
@@ -1286,7 +1286,7 @@ Para el caso binomial que venimos estudiando, consideramos una realización más
 
 $$
 \begin{align*}
-P(\tilde{y} = 1\mid y) & = \int_0^1 \pi \vphantom{\tilde{y}}p(\pi\mid x) d \pi = \mathbb{E}[{p(\pi\mid x)}] \\
+p(\tilde{y} = 1\mid y) & = \int_0^1 \pi \vphantom{\tilde{y}}p(\pi\mid x) d \pi = \mathbb{E}[{p(\pi\mid x)}] \\
 & = \frac{y+a}{y+a+N-y+b} = \frac{y+a}{N+a+b} \\
 \end{align*}
 $$
