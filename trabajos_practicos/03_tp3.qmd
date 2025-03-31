@@ -1,19 +1,109 @@
 ---
-title: "TP3: ..."
+title: "TP3: El Interestelar de Bayes"
 practica: "Trabajo Práctico 3"
 ---
 
 ## Idea
 
-* Estimar gravedad en un planeta desconocido a partir de una pelota que cae
-* Estimar gravedad en un planeta desconocido a partir de una pelota que se lanza para arriba y cae
-* Estimar gravedad en un planeta desconocido, a partir de una pelota que se lanza hacia arriba, cae
-e información de otros 2 planetas cuya gravedad es conocida (Tierra y Marte)
-    * Acá se espera que se usen _priors_ informativos.
-* Comparar inferencias entre los dos puntos anteriores para este nuevo planeta.
-* Hay que mapear los modelos físicos a modelos lineales
-    * Hay que reflejar información sobre planetas conocidos en distribuciones _a priori_.
+### Historia
 
+Mi punteo:
+
+* Situación similar al comienzo de una escena de una película donde uno se recupera de una caída
+o fuerte golpe en la cabeza.
+* Recostado sobre una superficie nada cómoda, dura y pedregosa.
+* Atinas a palpar tu cuerpo como quien busca comprobar signos de algún daño y encontrar la confianza
+que te permita reafirmar lo trivial: que sos quien sos y que esto no es un sueño.
+* Piernas, torso, brazos. Todo en su lugar. Aunque es extraña la sensación al tacto.
+* Abrís los ojos, y en el proceso de llevar la mirada a tus manos no solo te percatas que llevas
+puesto un casco y que solo ves a través de un vidrio, que se parece una pecera, sino que también
+llevas puesto un traje que te recuerda a los pilotos del Moto GP, o más precisamente, a un astronauta.
+* ¿Dónde estoy? ¿Qué pasó? ¿Qué hago acá? ¿Por qué llevo puesto todo esot? son algunas de las tantas
+preguntas que invaden tu cabeza.
+* El intento que realizas por componerte y ponerte de pie es exitoso.
+* Te percatas que calor que sentis dentro de ese casco que llevas puesto, combinado con la humedad
+propia del encierro, resulta muy poco placentero.
+* Se te ocurre quitartelo.
+* Pero resistis a tus impulsos.
+* Este paisaje extraño, rocoso, arcilloso, que solo te hace pensar en el color del ladrillo,
+la rasposidad del ladrillo, ¿qué es?, ¡¿dónde estoy?!
+* Te aterra la remota posibilidad de que te encuentres en un planeta que no sea el planeta Tierra.
+De que el intento de sacarte el casco te regale, además se un sorbo de aire nuevo, las últimas
+imágenes de lo que sería tu cortísima vida.
+* Caminas, sin rumbo fijo. Aquello en el horizonte, parece una piedra desde la cuál se puede ver.
+No es nada. Seguís. Perdés la cuenta de cuanto andaste. Todo sigue igual.
+* En un momento, observas lo que parece una tienda. Con los debidos cuidados, ingresas.
+No hay nadie. Te consuela saber que al menos encontras un lugar donde tu vista puede tomarse un
+descanso de ese oxidado terracota que todo lo invade allá afuera.
+* Es tanto el cansancio que cargas, que no podes evitar caer dormido.
+* Al despertar es imposible saber si fueron 10 minutos, 1 hora, o 1 día entero. Solo sabes
+que afuera todo sigue igual.
+* Recordas que llevas puesto un casco, y que quitartelo podría quitarte la vida.
+* Buscas ayuda. Observas lo que hay en la tienda. Es lo que parece una estación científica.
+Herramientas, aparentes instrumentos de medición.
+* En esa búsqueda encontrás una camara de alta resolución. También una computadora portatil.
+Ambos totalmente invadidos por el polvo reinante en el aire, pero afortunadamente funcionan y tienen
+batería.
+* Te preguntas una y otra vez como podrías utilizarlos para pedir ayuda, o al menos darte cuenta
+si sacarte el casco es una jugada segura.
+* ¿Internet? No, gracias. No va a ser tan fácil.
+* ... ACÁ ME FALTA SEGUIR DESARROLLANDO LA HISTORIA
+* ...
+* Sabes que la gravedad en la tierra y en marte son distintas
+* Te acordas de las clases de física. Podrías hacer un experimento para estimar la gravedad.
+* Si se parece a la de la Tierra, tranquilamente podes haber caido en La Rioja.
+* Si se parece a la de Marte, que ganas que esto sea solo un sueño.
+* Buscas una piedra cuyo tamaño se le parezca a una pelota de tenis, te vas a la roca gigante del
+principio, dispones la cámara, te subis a la cima de la roca, y tiras la piedra.
+De acá sale un conjunto de datos.
+* Te acordas que también podes estimar la gravedad no solo dejando caer la piedra, sino que podes
+arrojarla para arriba, y seguir la trayectoria.
+* Entonces realizas un segundo experimento. Parado en la superficie, arrojas la piedra para arriba,
+siguiendo una trayectoria vertical. Haces el seguimiento del tiempo y posición.
+* Volves a la tienda, y en un trabajo muy arduo de análisis de video, para el cual te armaste
+una escala a partir de tu altura, y donde luego registraste la altura de la piedra cada 0.1s,
+armaste dos conjuntos de datos, uno para cuando dejaste caer la piedra y otro para cuando la tiraste
+para arriba y luego la dejaste caer.
+* Con todos estos datos, es hora de hacer el análisis estadístico.
+
+
+Lo que me dio GPT.
+
+La conciencia regresa de golpe, como si emergieras de un sueño profundo y sin sueños. La sensación áspera y fría bajo tu cuerpo te alerta: no estás en tu cama. No estás en ningún lugar familiar.
+
+Te incorporás apenas, con un gemido. Todo duele. No un dolor agudo, sino esa punzada sorda que deja un golpe fuerte. Instintivamente, pasás las manos por tu cuerpo. Piernas, torso, brazos. Todo parece estar en su lugar, pero hay algo extraño. La textura de tus manos es ajena, como si no fueran tuyas.
+
+Abrís los ojos. El movimiento es torpe, pesado. La primera imagen que ves no es la de tus manos desnudas, sino la de un reflejo en un vidrio. Un casco. Un casco que te envuelve la cabeza como una pecera. Y el traje… grueso, ajustado, con una estructura que te recuerda a los de los pilotos del MotoGP, pero más robusto. Como un astronauta.
+
+El pánico comienza a reptar por tu pecho. ¿Dónde estás? ¿Qué pasó? ¿Por qué llevás puesto esto? Miles de preguntas nublan tu mente mientras intentás ponerte de pie. Lo lográs, aunque con dificultad. El calor dentro del casco es sofocante, y la humedad que se acumula en su interior hace que cada respiración sea incómoda. Lo primero que pensás es en quitártelo.
+
+Pero resistís. Algo en tu instinto te dice que no es una buena idea.
+
+Observás el paisaje que te rodea. Es árido, rocoso, teñido de un tono arcilloso que te recuerda al ladrillo, tanto en color como en textura. Nada se mueve. No hay árboles, ni agua, ni señales de vida. Un escalofrío te recorre la espalda cuando una posibilidad terrible se instala en tu mente: ¿Y si no estás en la Tierra?
+
+El pensamiento es aterrador. No tanto por la idea en sí, sino por lo que implica. Si estás en otro planeta, sacarte el casco no solo te dará un respiro de aire fresco, sino que podría ser lo último que hagas en tu vida.
+
+Sin otro plan, empezás a caminar. No sabés hacia dónde, pero moverte parece mejor que quedarte quieto. A la distancia, una formación rocosa sobresale del suelo. Cuando llegás y te subís, la vista no cambia. Más polvo, más rocas, más vacío. Perdés la cuenta de cuánto tiempo estuviste caminando cuando, finalmente, algo diferente aparece en tu campo de visión.
+
+Una tienda.
+
+Acelerás el paso. Con precaución, entrás. No hay nadie. Pero al menos es un refugio del monótono paisaje de afuera. Te desplomás sobre el suelo, agotado. Los párpados pesan. Y aunque querés mantenerte alerta, el sueño te vence.
+
+No sabés cuánto tiempo pasó cuando despertás. Todo sigue igual allá afuera. Recordás el casco, la sensación de encierro, la incertidumbre. Necesitás respuestas.
+
+Explorás el lugar. No es una simple tienda, sino algo parecido a una estación científica. Hay herramientas, instrumentos de medición. En tu búsqueda, encontrás una cámara de alta resolución y una computadora portátil, ambas cubiertas de polvo, pero milagrosamente funcionales.
+
+La pregunta persiste: ¿dónde estás? Necesitás una forma de comprobarlo antes de hacer algo imprudente.
+
+Entonces, una idea cruza tu mente. Recordás las clases de física. La gravedad de la Tierra y la de Marte son distintas. Si pudieras medir la aceleración gravitatoria, podrías saber si estás en un desierto remoto o en otro planeta.
+
+Buscás una piedra del tamaño de una pelota de tenis. Regresás a la roca en la que te habías subido antes. Colocás la cámara en una posición fija, escalás hasta la cima y dejás caer la piedra mientras grabás el experimento.
+
+Después, repetís la prueba, pero esta vez arrojás la piedra hacia arriba, siguiendo una trayectoria vertical.
+
+Volvés a la tienda. Ahora viene la parte difícil: analizar los datos. Usás tu altura como referencia para crear una escala en el video. Luego, registrás la posición de la piedra cada 0.1 segundos. Dos conjuntos de datos quedan listos para el análisis.
+
+Si la aceleración resultante se parece a la de la Tierra, tal vez solo te perdiste en un rincón olvidado del mundo. Si se parece a la de Marte… mejor que esto sea un sueño del que pronto vas a despertar.
 
 ## Algunas cosas a considerar
 
@@ -26,10 +116,23 @@ $$
 * $x_f$ posición final
 * $v_0$ velocidad inicial
 * $a$ aceleración, que se tomará como igual a la debida a la gravedad. Es decir, $a = g = -9.81m/s^2$.
-
+* $t$ es el tiempo transcurrido
 
 Cuando hablemos de una bola que cae, tendremos
 
 $$
 x_f = \frac{1}{2} g t^2 + x_0
 $$
+
+
+## Que hacer
+
+* Estimar gravedad en un planeta desconocido a partir de una pelota que cae
+* Estimar gravedad en un planeta desconocido a partir de una pelota que se lanza para arriba y cae
+* Estimar gravedad en un planeta desconocido, a partir de una pelota que se lanza hacia arriba, cae
+e información de otros 2 planetas cuya gravedad es conocida (Tierra y Marte)
+    * Acá se espera que se usen _priors_ informativos.
+* Comparar inferencias entre los dos puntos anteriores para este nuevo planeta.
+* Hay que mapear los modelos físicos a modelos lineales
+    * Hay que reflejar información sobre planetas conocidos en distribuciones _a priori_.
+* Si es posible, ver si se puede calcular la P(Tierra | datos) y P(Marte | datos).
