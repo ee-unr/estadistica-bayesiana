@@ -570,30 +570,29 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
 
 1.  💻 📌 **Puede fallar...**
 
-    Cansada de los experimentos de arrojar una moneda cientos de veces al aire, una 
+    Cansada de los experimentos de arrojar una moneda cientos de veces al aire, una
     estudiante diseña un sistema de reconocimiento de imágenes que determina si salió cara
     o ceca y registra el resultado.
 
     Lógicamente, el sistema diseñado no es perfecto sino que presenta una tasa de error.
-    En particular, la probabilidad de que clasificar mal es de 0.2 (20\% de las veces que 
+    En particular, la probabilidad de que clasificar mal es de 0.2 (20\% de las veces que
     sale cara, el sistema dice ceca, y viceversa).
 
     Se arroja la moneda 250 veces y el sistema detecta 140 caras,
 
-    i. ¿Cuál es la distribución _a posteriori_ de $\theta$, la probabilidad de obtener cara?
-    i. ¿Qué ocurre a medida que la probabilidad de clasificar mal varía? 
+    i. ¿Cuál es la distribución _a posteriori_ de $\theta$, la probabilidad de _obtener_ cara?
+    i. ¿Qué ocurre a medida que la probabilidad de clasificar mal varía?
     <!-- http://allendowney.github.io/ThinkBayes2/chap04html -->
 
     ::: {.callout-tip collapse="true"}
-    
+
     ## Ayuda
-    
+
     Considerar:
 
-    * $\theta$: probabilidad de obtener cara.
-    * $\pi$: probabilidad de mala clasificación.
-
-    y 
+    * $\theta$ la probabilidad de obtener cara (es decir, que la moneda caiga en cara)
+    * $\pi$ es la probabilidad de observar cara
+    * $p$ es la probabilidad de falla
 
     $$
     \begin{aligned}
@@ -605,44 +604,65 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
         \end{cases} \\
     X &=
         \begin{cases}
-        1 & \text{Si se registra cara} \\
-        0 & \text{Si se registra ceca}
+        1 & \text{Si se clasifica bien} \\
+        0 & \text{Si se clasifica mal}
+        \end{cases} \\
+    Z &=
+        \begin{cases}
+        1 & \text{Si se observa cara} \\
+        0 & \text{Si se obserca ceca}
         \end{cases}
     \end{aligned}
     $$
 
-    Obtener $P(Y = 1)$ en base a la distribución conjunta de $X$ e $Y$ y luego realizar la
-    inferencia utilizando esa probabilidad como probabilidad de éxito en  vez de $\theta$.
+    Obtener $\pi$ en base a la distribución conjunta de $X$ e $Y$ y luego realizar la
+    inferencia con un modelo binomial para $T = \sum_{i=1}^{250}{Z_i}$ utilizando $\pi$ como
+    probabilidad de éxito en vez de $\theta$.
+
+    El parámetro $\pi$ quedará determinado en función de $\theta$, y luego la verosimilitud para
+    $\theta$ se puede obtener a partir de la verosimilitud para el valor $\pi = f(\theta)$
+    $$
+    p_\theta(T = t \mid \theta) = p_\pi(T = t \mid \pi)
+    $$
+
+    donde $p_\pi$ es la función de masa de probabilidad de una binomial. Luego,
+
+    $$
+    \begin{aligned}
+    p_\theta(\theta \mid T = t) &\propto p_\theta(T = t \mid \theta) p_\theta(\theta) \\
+    &= p_\theta(T = t \mid \theta)
+    \end{aligned}
+    $$
 
     :::
-    
+
 1.  **¡Saludos a los cubos con puntos! (...) Serán dados**
 
     Dos dados de seis caras son arrojados. Se sabe que la suma de los dos puntajes obtenidos
     es 9. ¿Cuál es la distribución _a posteriori_ de los puntajes de los dados?
     <!-- @Barber2012 -->
-    
+
     ::: {.callout-tip collapse="true"}
 
     ## Ayuda
-    
-    Estamos tratando de hacer inferencias sobre $D_1$ y $D_2$, los valores de cada 
-    uno de los datos. 
+
+    Estamos tratando de hacer inferencias sobre $D_1$ y $D_2$, los valores de cada
+    uno de los datos.
     Definir la distribución a priori no es complicado (es una distribución sobre $D_1$ y $D_2$).
-    
-    El truco está en determinar la verosimilitud de cada par ($D_1, D_2$) luego de haber 
+
+    El truco está en determinar la verosimilitud de cada par ($D_1, D_2$) luego de haber
     observado un 9.
-    
+
     ¿Cuál es la probabilidad de observar 9 en la suma de los dos dado que ...?
-    
+
     $D_1 = 1$ y $D_2 = 1 -$ la probabilidad de observar 9 es 0
-    
+
     $D_1 = 1$ y $D_2 = 2 -$ la probabilidad de observar 9 es 0
-    
+
     $D_1 = 4$ y $D_2 = 5 -$ la probabilidad de observar 9 es 1
-    
+
     $D_1 = 5$ y $D_2 = 4 -$ la probabilidad de observar 9 es 1
-    
+
     :::
 
 
