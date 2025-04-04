@@ -61,7 +61,7 @@ p1 <- ggplot(dv) +
   geom_line(aes(x=x,y=prior),col="#56CBF9",size=1) +
   geom_ribbon(aes(x=x,ymin=0,ymax=prior),fill = "#56CBF9", alpha=0.6) +
   xlab(expression(mu)) +
-  ylab(expression("P("*mu*")")) +
+  ylab(expression("p("*mu*")")) +
   geom_point(data=tibble(x=c(0,2.1,3.2),y=c(0,0,0)),
              aes(x=x,y=y),
              inherit.aes = F,
@@ -75,8 +75,9 @@ dv2 <- tibble(mu=c(0,2.1,3.2), x=list(dv$x),prob=dnorm(mu,mu_prior,sigma_prior))
 
 p2 <- ggplot() +
   geom_line(data=dv2,aes(x=x,y=y,group=mu,alpha=prob),size=1.1, col = "#56CBF9") +
-  theme(axis.text.y = element_blank(),
-        axis.title.y = element_blank())
+  xlab("y") +
+  ylab(expression("¿p(y)?")) +
+  theme(axis.text.y = element_blank())
 
 # posibles distribuciones a priori
 
@@ -86,9 +87,9 @@ p3 <- tibble(mu=rnorm(100,mu_prior,sigma_prior),
   unnest(cols = c(x,y)) %>%
   ggplot() +
   geom_line(aes(x=x,y=y,group=mu),col = "#56CBF9",alpha=0.2,size=0.8) +
-  theme(axis.text.y = element_blank(),
-        axis.ticks.y = element_blank(),
-        axis.title.y = element_blank())
+  xlab("y") +
+  ylab(expression("¿p(y)?")) +
+  theme(axis.text.y = element_blank())
 
 # ========== Distribución a posteriori ==============
 
@@ -106,9 +107,9 @@ p4 <- tibble(mu=rnorm(50,
              aes(x=x,y=y),
              size=2,
              alpha=0.6) +
-  theme(axis.text.y = element_blank(),
-        axis.ticks.y = element_blank(),
-        axis.title.y = element_blank())
+    xlab("y") +
+  ylab(expression("¿p(y)?")) +
+  theme(axis.text.y = element_blank())
 
 
 # posterior
@@ -116,8 +117,42 @@ p5 <- ggplot(dv) +
   geom_line(aes(x=x,y=posterior_posterior),col="#FF729F",size=1) +
   geom_ribbon(aes(x=x,ymin=0,ymax=posterior_posterior),fill = "#FF729F", alpha=0.6) +
   xlab(expression(mu)) +
-  ylab(expression("P("*mu*"|y)"))
+  ylab(expression("p("*mu*"|y)"))
 ```
+
+
+```{r}
+#| echo: false
+#| include: false
+
+plot_bayes <- function(data){
+  data %>%
+    pivot_longer(cols = c(prior,likelihood,starts_with("posterior"))) %>%
+    arrange(name,x) %>%
+    separate(name,into = c("facet","color"),sep="_") %>%
+    mutate(color = ifelse(is.na(color),facet,color)) %>%
+    mutate(alpha = as.factor(paste0(facet,color))) %>% 
+    mutate(color = factor(color,
+                          levels = c("prior","likelihood","posterior"),
+                          labels = c("prior","likelihood","posterior")),
+           facet = factor(facet,
+                          levels = c("prior","likelihood","posterior"),
+                          labels = c("prior","likelihood","posterior"))) %>%
+    ggplot() +
+    geom_line(aes(x=x,y=value,col=color,group=color,alpha=alpha),size=1) +
+    geom_ribbon(aes(x=x,ymin=0,ymax=value,fill=color,group=color,alpha=alpha)) + 
+    scale_color_manual(values = c("#56CBF9","#21dbbc","#FF729F")) +
+    scale_fill_manual(values = c("#56CBF9","#21dbbc","#FF729F")) +
+    scale_alpha_manual(values = c(0.6,0.2,0.7,0.2,0.6)) +
+    facet_wrap(.~facet) +
+    ylab("credibilidad") +
+    xlab("parámetro") +
+    theme(axis.text.y = element_blank(),
+          axis.ticks.y = element_blank(),
+          axis.text.x = element_blank())
+}
+```
+
 
 ## Gamma-Poisson
 
@@ -325,7 +360,79 @@ $$
 
 ¿Qué son $\theta_n$ y $\tau_n^2$?
 
+## {.smaller}
+
+```{r plot-normal-normal}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 18
+  #| fig-height: 6
+  #| fig-align: center
+  #| cache: true
+
+mu_prior <- 2
+sigma_prior <- 1
+muestra <- rnorm(10,1.5,1)
+y_bar <- mean(muestra)
+n <- length(muestra)
+sigma <- 2
+sigma_likelihood <- sigma/sqrt(n)
+
+posterior_posterior_mu <- (
+  mu_prior * (sigma^2 / (n * sigma_prior ^ 2 + sigma ^ 2)) 
+  + y_bar * (n * sigma_prior^2 / (n * sigma_prior^2 + sigma ^ 2))
+)
+posterior_posterior_sigma <- sqrt(sigma_prior^2 * sigma^2 / (n * sigma_prior^2 + sigma^2))
+
+dv <- tibble(
+  x = seq(-2, 6, length.out = 500), 
+  prior = dnorm(x, mu_prior, sigma_prior),
+  likelihood = dnorm(x, y_bar, sigma_likelihood),
+  posterior_posterior = dnorm(x, posterior_posterior_mu, posterior_posterior_sigma)
+) %>%
+  mutate(
+    prior = prior,
+    likelihood = likelihood,
+    posterior_posterior = posterior_posterior,
+    posterior_likelihood = likelihood,
+    posterior_prior = prior
+  )
+
+
+
+pA <- dv %>%
+  ggplot() +
+  geom_line(aes(x=x,y=prior/sum(prior)),size=1,col="#56CBF9") +
+  scale_y_continuous(name = expression("p("*mu*")")) +
+  scale_x_continuous(expression(mu)) +
+  theme(axis.text.y = element_blank())
+
+pB <- dv %>%
+  ggplot() +
+  geom_line(aes(x=x,y=likelihood/sum(likelihood)),size=1,col="#21dbbc") +
+  scale_y_continuous(name = expression("p("*y*"|"*mu*")")) +
+  scale_x_continuous(expression(mu)) +
+  theme(axis.text.y = element_blank())
+
+pC <- dv %>%
+  ggplot() +
+  geom_line(aes(x=x,y=posterior_posterior/sum(posterior_posterior)),size=1,col="#FF729F") +
+  geom_line(aes(x=x,y=prior/sum(prior)),size=1,alpha=0.5,col="#56CBF9") +
+  geom_line(aes(x=x,y=likelihood/sum(likelihood)),size=1,alpha=0.5,col="#21dbbc") +
+  scale_y_continuous(name = expression("p("*mu*"|"*y*")")) +
+  scale_x_continuous(expression(mu)) +
+  theme(axis.text.y = element_blank())
+
+pA + pB + pC
+```
+
+. . .
+
+¿Parámetros de la verosimilitud?
+
 ##
+
+Otro modo de verlo
 
 ```{r normal-ejemplo-1}
 #| warning: false
@@ -416,7 +523,7 @@ $\theta_n$ y $\tau_n^2$
 $\mu$ y $\sigma^2$
 :::
 
-## Compromiso {.smaller .scrollable}
+## Compromiso {.smaller}
 
 $$
 \small{
@@ -434,7 +541,7 @@ $$
 
 Representa un balance (promedio ponderado o _combinación convexa_) entre la media muestral y la media esperada _a priori_.
 
-. . .
+## Compromiso {.smaller}
 
 $$
 \small{
@@ -453,6 +560,8 @@ $$
   \frac{1}{\mathbb{V}[p(\mu\mid \mathbf{y})]} =  \frac{n}{\sigma^2} + \frac{1}{\tau^2}
 }
 $$
+
+. . .
 
 La precisión _a posteriori_ es la suma de las precisiones del _prior_ y la muestra.
 
