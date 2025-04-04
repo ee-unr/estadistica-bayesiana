@@ -619,7 +619,7 @@ Ayuda
 <p>Lógicamente, el sistema diseñado no es perfecto sino que presenta una tasa de error. En particular, la probabilidad de que clasificar mal es de 0.2 (20% de las veces que sale cara, el sistema dice ceca, y viceversa).</p>
 <p>Se arroja la moneda 250 veces y el sistema detecta 140 caras,</p>
 <ol type="i">
-<li>¿Cuál es la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span>, la probabilidad de obtener cara?</li>
+<li>¿Cuál es la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span>, la probabilidad de <em>obtener</em> cara?</li>
 <li>¿Qué ocurre a medida que la probabilidad de clasificar mal varía? <!-- http://allendowney.github.io/ThinkBayes2/chap04html --></li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -636,10 +636,10 @@ Ayuda
 <div class="callout-body-container callout-body">
 <p>Considerar:</p>
 <ul>
-<li><span class="math inline">\(\theta\)</span>: probabilidad de obtener cara.</li>
-<li><span class="math inline">\(\pi\)</span>: probabilidad de mala clasificación.</li>
+<li><span class="math inline">\(\theta\)</span> la probabilidad de obtener cara (es decir, que la moneda caiga en cara)</li>
+<li><span class="math inline">\(\pi\)</span> es la probabilidad de observar cara</li>
+<li><span class="math inline">\(p\)</span> es la probabilidad de falla</li>
 </ul>
-<p>y</p>
 <p><span class="math display">\[
 \begin{aligned}
 \theta &amp;\sim \text{Beta}(1, 1) \\
@@ -650,12 +650,27 @@ Y &amp;=
     \end{cases} \\
 X &amp;=
     \begin{cases}
-    1 &amp; \text{Si se registra cara} \\
-    0 &amp; \text{Si se registra ceca}
+    1 &amp; \text{Si se clasifica bien} \\
+    0 &amp; \text{Si se clasifica mal}
+    \end{cases} \\
+Z &amp;=
+    \begin{cases}
+    1 &amp; \text{Si se observa cara} \\
+    0 &amp; \text{Si se obserca ceca}
     \end{cases}
 \end{aligned}
 \]</span></p>
-<p>Obtener <span class="math inline">\(P(Y = 1)\)</span> en base a la distribución conjunta de <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> y luego realizar la inferencia utilizando esa probabilidad como probabilidad de éxito en vez de <span class="math inline">\(\theta\)</span>.</p>
+<p>Obtener <span class="math inline">\(\pi\)</span> en base a la distribución conjunta de <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> y luego realizar la inferencia con un modelo binomial para <span class="math inline">\(T = \sum_{i=1}^{250}{Z_i}\)</span> utilizando <span class="math inline">\(\pi\)</span> como probabilidad de éxito en vez de <span class="math inline">\(\theta\)</span>.</p>
+<p>El parámetro <span class="math inline">\(\pi\)</span> quedará determinado en función de <span class="math inline">\(\theta\)</span>, y luego la verosimilitud para <span class="math inline">\(\theta\)</span> se puede obtener a partir de la verosimilitud para el valor <span class="math inline">\(\pi = f(\theta)\)</span> <span class="math display">\[
+p_\theta(T = t \mid \theta) = p_\pi(T = t \mid \pi)
+\]</span></p>
+<p>donde <span class="math inline">\(p_\pi\)</span> es la función de masa de probabilidad de una binomial. Luego,</p>
+<p><span class="math display">\[
+\begin{aligned}
+p_\theta(\theta \mid T = t) &amp;\propto p_\theta(T = t \mid \theta) p_\theta(\theta) \\
+&amp;= p_\theta(T = t \mid \theta)
+\end{aligned}
+\]</span></p>
 </div>
 </div>
 </div></li>
