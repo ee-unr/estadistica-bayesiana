@@ -8,13 +8,17 @@ la primera clase.
 ```{r}
 library(ggplot2)
 library(patchwork)
+
+colores <- c("#f08533", "#3b78b0", "#d1352c")
 ```
 
 En base al _prior_ elicitado grupalmente en clase:
 
 ```{r}
 #| fig-align: center
-#| fig-width: 12
+#| fig-height: 3.75
+#| fig-width: 10
+#| fig-dpi: 300
 # Determinar grilla de puntos
 pi_grid <- seq(0, 1, length.out = 11)
 print(pi_grid)
@@ -42,38 +46,44 @@ posterior <- posterior_ / sum(posterior_) # normalización
 # Graficar prior
 plt_prior <- data.frame(x = pi_grid, y = prior) |>
   ggplot() +
-  geom_segment(aes(x = x, xend = x, y = 0, yend = y), linewidth = 0.8) +
-  geom_point(aes(x = x, y = y), size = 2.4) +
+  geom_segment(aes(x = x, xend = x, y = 0, yend = y), color = colores[1], linewidth = 0.8) +
+  geom_point(aes(x = x, y = y), , color = colores[1], size = 2.4) +
   scale_x_continuous(breaks = pi_grid) +
   labs(
     x = expression(pi),
     y = expression(p ~ "(" ~ pi ~ ")"),
     title = "Distribución a priori"
-  )
+  ) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank())
 
 # Graficar verosimilitud
 plt_likelihood <- data.frame(x = pi_grid, y = likelihood) |>
   ggplot() +
-  geom_segment(aes(x = x, xend = x, y = 0, yend = y), linewidth = 0.8) +
-  geom_point(aes(x = x, y = y), size = 2.4) +
+  geom_segment(aes(x = x, xend = x, y = 0, yend = y), color = colores[2], linewidth = 0.8) +
+  geom_point(aes(x = x, y = y), , color = colores[2], size = 2.4) +
   scale_x_continuous(breaks = pi_grid) +
   labs(
     x = expression(pi),
     y = expression(p ~ "(y | " ~ pi ~ ")"),
     title = "Función de verosimilitud"
-  )
+  ) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank())
 
 # Graficar posterior
 plt_posterior <- data.frame(x = pi_grid, y = posterior) |>
   ggplot() +
-  geom_segment(aes(x = x, xend = x, y = 0, yend = y), linewidth = 0.8) +
-  geom_point(aes(x = x, y = y), size = 2.4) +
+  geom_segment(aes(x = x, xend = x, y = 0, yend = y), color = colores[3], linewidth = 0.8) +
+  geom_point(aes(x = x, y = y), , color = colores[3], size = 2.4) +
   scale_x_continuous(breaks = pi_grid) +
   labs(
     x = expression(pi),
     y = expression(p ~ "(" ~ pi ~ " | y)"),
     title = "Distribución a posteriori"
-  )
+  ) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank())
 
 # Concatenar graficos
 plt_prior | plt_likelihood | plt_posterior
@@ -83,7 +93,9 @@ En base a un _prior_ beta:
 
 ```{r}
 #| fig-align: center
-#| fig-width: 12
+#| fig-height: 3.75
+#| fig-width: 10
+#| fig-dpi: 300
 # Determinar grilla de puntos
 pi_grid <- seq(0, 1, length.out = 200)
 
@@ -105,32 +117,38 @@ posterior <- posterior_ / sum(posterior_)
 # Graficar prior
 plt_prior <- data.frame(x = pi_grid, y = prior) |>
   ggplot() +
-  geom_line(aes(x = x, y = y)) +
+  geom_line(aes(x = x, y = y), color = colores[1], linewidth = 1) +
   labs(
     x = expression(pi),
     y = expression(p ~ "(" ~ pi ~ ")"),
     title = "Distribución a priori"
-  )
+  ) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank())
 
 # Graficar verosimilitud
 plt_likelihood <- data.frame(x = pi_grid, y = likelihood) |>
   ggplot() +
-  geom_line(aes(x = x, y = y)) +
+  geom_line(aes(x = x, y = y), color = colores[2], linewidth = 1) +
   labs(
     x = expression(pi),
     y = expression(p ~ "(y | " ~ pi ~ ")"),
     title = "Función de verosimilitud"
-  )
+  ) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank())
 
 # Graficar posterior
 plt_posterior <- data.frame(x = pi_grid, y = posterior) |>
   ggplot() +
-  geom_line(aes(x = x, y = y)) +
+  geom_line(aes(x = x, y = y), color = colores[3], linewidth = 1) +
   labs(
     x = expression(pi),
     y = expression(p ~ "(" ~ pi ~ " | y)"), 
     title = "Distribución a posteriori"
-  )
+  ) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank())
 
 # Concatenar graficos
 plt_prior | plt_likelihood | plt_posterior
