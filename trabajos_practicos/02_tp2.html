@@ -263,7 +263,7 @@ window.Quarto = {
 
 <section id="introducción" class="level2">
 <h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
-<p>El ozono (O₃) es un gas cuya molécula está formada por tres átomos de oxígeno y se encuentra tanto en la atmósfera como en la superficie terrestre. Seguramente, lo han escuchado nombrar por su papel en la capa de ozono, una región de la estratófera que se encuentra entre unos 15 y 30 kilómetros sobre la superficie terrestre, donde se concentra este gas y filtra los rayos ultravioletas del sol.</p>
+<p>El ozono (O₃) es un gas que se encuentra tanto en la atmósfera como en la superficie terrestre y cuya molécula está formada por tres átomos de oxígeno. Seguramente, lo han escuchado nombrar por su papel en la capa de ozono, una región de la estratófera que se encuentra entre unos 15 y 30 kilómetros sobre la superficie terrestre, donde se concentra este gas y filtra los rayos ultravioletas del sol.</p>
 <p>La capa de ozono permite que exista la vida en la Tierra tal como la conocemos y que una escapada de verano a la isla no termine siendo solo un viaje de ida. En otras palabras, la capa de ozono es como un Dibu Martínez de la vida: evita que el sol nos clave un golazo de radiación y nos deje, literalmente, fritos.</p>
 <p>Pero no todo lo que brilla es oro. A nivel del suelo, el ozono se convierte en un contaminante atmosférico dañino tanto para la salud humana como para el medio ambiente. Puede deteriorar la función pulmonar, desencadenar ataques de asma, causar irritación en los ojos, la nariz y la garganta, e incluso dañar la vegetación. Entonces, ¿todo mal con el ozono?</p>
 <p>Quien se planteó esa pregunta fue Brian Tarkington, del <em>California Primate Research Center</em> de la Universidad de California en Davis. Preocupado por la presencia de ozono en el <em>smog</em> californiano y las posibles consecuencias en la salud humana, decidió llevar a cabo un estudio para evaluar el efecto del ozono en el crecimiento de ratas. Tomó un grupo de 46 ratas jóvenes y de la misma edad, las pesó, las dividió aleatoriamente en 2 grupos de igual tamaño y las dejó en 2 ambientes distintos, el primero rico en ozono y el segundo libre del mismo. Luego de 7 días las pesó nuevamente y registró la diferencia entre los pesos.</p>
@@ -271,7 +271,7 @@ window.Quarto = {
 </section>
 <section id="modelización-estadística" class="level2">
 <h2 class="anchored" data-anchor-id="modelización-estadística">Modelización estadística</h2>
-<p>La estadística ofrece una amplia variedad de técnicas para dar respuesta a la inquietud de Tarkington. En el contexto de esta materia, naturalmente, abordaremos el problema mediante el uso modelos bayesianos.</p>
+<p>La Estadística ofrece una amplia variedad de técnicas para dar respuesta a la inquietud de Tarkington. En el contexto de esta materia, naturalmente, abordaremos el problema mediante el uso modelos bayesianos.</p>
 <p>Y dado que el entusiasmo en esta materia es lo que sobra, aprovecharemos la oportunidad para utilizar no uno, sino dos modelos, sutilmente distintos. Esto nos permitirá no solo evaluar el efecto del ozono en el crecimiento de las ratas, sino también profundizar en esos pequeños detalles que hacen que la inferencia estadística sea tan interesante.</p>
 <section id="modelo-normal" class="level3">
 <h3 class="anchored" data-anchor-id="modelo-normal">Modelo normal</h3>
@@ -353,12 +353,12 @@ Transformación de variables aleatorias
 </div>
 <div class="callout-body-container callout-body">
 <p>Sean <span class="math inline">\(X\)</span> e <span class="math inline">\(Y = g(X)\)</span> variables aleatorias continuas, donde <span class="math inline">\(g\)</span> es una función uno a uno y <span class="math inline">\(X\)</span> tiene función de densidad <span class="math inline">\(f_X(x)\)</span> conocida. Luego, la función de densidad de <span class="math inline">\(Y\)</span> es: <span class="math display">\[
-f_Y(y) = f_X(g^{-1}(y)) \left\lvert \frac{d}{dy}g^{-1}(y) \right\rvert
+f_Y(y) = f_X\left(g^{-1}(y)\right) \left\lvert \frac{d}{dy}g^{-1}(y) \right\rvert
 \]</span></p>
 <p>donde <span class="math inline">\(\left\lvert \frac{d}{dy}g^{-1}(y) \right\rvert\)</span> es el determinante del jacobiano de la transformación. Por ejemplo, en el caso de la función <span class="math inline">\(g(u) = \text{logit}(u)\)</span>, se tiene: <span class="math display">\[
 \begin{aligned}
-g : (0, 1) \to \mathbb{R} &amp; = \text{logit}(u) = \log\left(\frac{u}{1 - u}\right) \\
-g^{-1} : \mathbb{R} \to (0, 1) &amp;= \text{expit}(u) =  \frac{1}{1 + \exp(-u)}
+g : (0, 1) \to \mathbb{R} &amp; \quad g(u)= \text{logit}(u) = \log\left(\frac{u}{1 - u}\right) \\
+g^{-1} : \mathbb{R} \to (0, 1) &amp; \quad g(v)= \text{expit}(v) =  \frac{1}{1 + \exp(-v)}
 \end{aligned}
 \]</span></p>
 <p>y luego, utilizando <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> definidas al principio: <span class="math display">\[
@@ -370,7 +370,7 @@ f_Y(y) = f_X(\text{expit}(y)) \cdot \text{expit}(y) \cdot ( 1 - \text{expit}(y))
 <section id="metropolis-hastings-en-escala-logarítmica" class="level3">
 <h3 class="anchored" data-anchor-id="metropolis-hastings-en-escala-logarítmica">Metropolis-Hastings en escala logarítmica</h3>
 <p>Sin importar cuán moderna y potente sea nuestra computadora, siempre tendremos que lidiar con el talón de Aquiles del cálculo computacional: los problemas de subdesbordamiento y sobredesbordamiento (conocidos como <em>underflow</em> y <em>overflow</em> en inglés). Por ejemplo, si intentamos multiplicar 100 números del orden de <code>0.0001</code> en R, la computadora podría interpretar el resultado como 0, aunque matemáticamente esto no sea cierto.</p>
-<p>El <em>underflow</em> es un problema frecuente en el cómputo estadístico. Un caso típico es el que se da al evaluar funciones de verosimilitud, donde se multiplican densidades correspondientes a cada observación. Dado que estas densidades suelen ser valores muy pequeños, es común enfrentarse a un problema de subdesbordamiento. Este riesgo aumenta con la cantidad de observaciones y la dimensionalidad de la distribución objetivo.</p>
+<p>El <em>underflow</em> es un problema frecuente en el cómputo estadístico. Un caso típico es el que se da al evaluar funciones de verosimilitud, donde se multiplican densidades correspondientes a cada observación. Dado que estas densidades suelen ser valores muy pequeños, es común enfrentarse a un problema de subdesbordamiento. Este riesgo aumenta con la cantidad de observaciones y el número de dimensiones de la distribución objetivo.</p>
 <p>El problema se agrava al utilizar algoritmos como Metropolis-Hastings, ya que la densidad objetivo se evalúa miles de veces en diferentes puntos del espacio paramétrico. Además, en inferencia bayesiana, esta función suele involucrar una función de verosimilitud, que puede implicar una multiplicación de gran cantidad de números pequeños, lo que incrementa aún más las chances de que el cómputo resulte en un <em>underflow</em>.</p>
 <p>Si nuestro algoritmo de muestreo encuentra un problema de <em>underflow</em>, pueden ocurrir dos situaciones:</p>
 <ul>
