@@ -185,10 +185,10 @@ $\mathrm{Gamma}(s, r)$ en R es `dgamma(x, shape = s, scale = 1/r)`
 
 El modelo propuesto es
 $$
-\begin{align*}
-    Y_i \mid \lambda & \sim  Po(\lambda)\\
-    \lambda & \sim  \mathrm{Gamma}(s, r)
-\end{align*}
+\begin{aligned}
+  Y_i \mid \lambda & \sim  Po(\lambda)\\
+  \lambda & \sim  \mathrm{Gamma}(s, r)
+\end{aligned}
 $$
 
 El _likelihood_ es Poisson:
@@ -260,10 +260,10 @@ Interesa realizar una inferencia sobre el valor de $\mu$
 El modelo propuesto es:
 $$
 \small{
-  \begin{align*}
+  \begin{aligned}
       y_i \mid \mu & \sim  \mathcal{N}(\mu,\sigma^2)\\
       \mu & \sim \mathcal{N}(\theta,\tau^2)
-  \end{align*}
+  \end{aligned}
 }
 $$
 
@@ -298,23 +298,23 @@ $$p(\mu\mid \mathbf{y}) \propto p(\mathbf{y}\mid\mu) p(\mu)$$
 $$p(\mu \mid \mathbf{y}) \propto   e^{-\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}} \frac{1}{\sqrt{2\pi\tau}} e^{-\frac{(\mu-\theta)^2}{2\tau^2}}$$
 
 $$
-\begin{align*}
+\begin{aligned}
 p(\mu \mid \mathbf{y}) & \propto  e^{-\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}} e^{-\frac{(\mu-\theta)^2}{2\tau^2}} \\
 &  \propto  e^{-\left[\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}+\frac{(\mu-\theta)^2}{2\tau^2}\right]} \\
 & \propto e^{-\left[ \frac{\bar{y}^2 - 2\bar{y} \mu + \mu^2}{2\sigma^2/n} + \frac{\mu^2 - 2\mu\theta^2 + \theta^2}{2\tau^2} \right]} \\
 & \propto e^{\left[ \frac{ 2\bar{y} \mu - \mu^2}{2\sigma^2/n} + \frac{-\mu^2 + 2\mu\theta^2}{2\tau^2} \right]} \\
 & \propto e^{\left[ \frac{(2\bar{y} \mu - \mu^2)n\tau^2 + (-\mu^2 + 2\mu\theta^2)\sigma^2}{2\sigma^2\tau^2} \right]}
-\end{align*}
+\end{aligned}
 $$
 
 ##
 
 $$
-    \begin{align*}
+    \begin{aligned}
 P(\mu \mid \mathbf{y}) & \propto e^{\frac{2\mu(\theta\sigma^2+ \bar{y}n\tau^2)-\mu^2(n\tau^2+\sigma^2)}{2\tau^2\sigma^2}} \\
 & \propto e^{\frac{-\mu^2 + 2\mu \left( \frac{\theta\sigma^2 + \bar{y}n\tau^2}{n\tau^2 + \sigma^2} \right)}{2\tau^2\sigma^2/(n\tau^2 + \sigma^2)}} e^{-\left(\frac{\theta\sigma^2 + \bar{y}n\tau^2}{n\tau^2 + \sigma^2}\right)^2} \\
 & \propto e^{-\frac{\left(\mu -  \frac{\theta\sigma^2 + \bar{y}n\tau^2}{n\tau^2 + \sigma^2} \right)^2}{2\tau^2\sigma^2/(n\tau^2+\sigma^2)}}
-    \end{align*}
+    \end{aligned}
 $$
 $$p(\mu\mid\mathbf{y}) = K^* e^{-\frac{\left(\mu -  \frac{\theta\sigma^2 + \bar{y}n\tau^2}{n\tau^2 + \sigma^2} \right)^2}{2\tau^2\sigma^2/(n\tau^2+\sigma^2)}}$$
 
@@ -325,21 +325,21 @@ Por lo tanto, resulta que la distribución _a posteriori_ es normal de parámetr
 . . .
 
 $$
-\begin{align*}
+\begin{aligned}
 \mu\mid \mathbf{y} & \sim  \mathcal{N}\left( \frac{\theta\sigma^2 + \bar{y}n\tau^2}{n\tau^2 + \sigma^2},\frac{\tau^2\sigma^2}{n\tau^2+\sigma^2} \right) \\
 & \sim \mathcal{N}\left( \theta_n,\tau_n^2 \right)
-\end{align*}
+\end{aligned}
 $$
 
 ##
 
 Reflexionemos...
 $$
-\begin{align*}
+\begin{aligned}
     y_i\mid\mu & \sim  \mathcal{N}(\mu,\sigma^2) \\
     \mu & \sim  \mathcal{N}(\theta,\tau^2) \\
     \mu \mid \mathbf{y} & \sim \mathcal{N}(\theta_n,\tau_n^2)
-\end{align*}
+\end{aligned}
 $$
 
 ¿Parámetros desconocidos en la verosimilitud? 
@@ -716,10 +716,10 @@ E interesa realizar una inferencia sobre el valor de $\mu$ y el valor de $\sigma
 El modelo es
 
 $$
-\begin{align*}
+\begin{aligned}
     Y_i\mid\mu,\sigma^2 & \sim  \mathcal{N}(\mu,\sigma^2) \\
     \mu,\sigma^2 & \sim  \mathcal{N}GI(\theta,\tau,\alpha,\beta)
-\end{align*}
+\end{aligned}
 $$
 
 $\mu$ y $\sigma^2$ tienen **distribución conjunta** normal-gamma-inversa:
@@ -739,9 +739,9 @@ Si anticipamos que la normal-gamma-inversa es conjugada de la normal (para los p
 Efectivamente, se puede probar que:
 
 $$
-\begin{align*}
+\begin{aligned}
 \mu,\sigma^2 \mid \mathbf{y} & \sim  \mathcal{N}GI(\theta_n,\tau_n,\alpha_n,\beta_n)
-\end{align*}
+\end{aligned}
 $$
 con
 
@@ -870,11 +870,11 @@ p5 <- tibble(sigma2,
 Reflexionemos...
 
 $$
-\begin{align*}
+\begin{aligned}
     Y_i \mid\mu & \sim  \mathcal{N}(\mu,\sigma^2) \\
     \mu & \sim  \mathcal{N}(\theta,\tau^2) \\
     \mu \mid \mathbf{y} & \sim \mathcal{N}(\theta_n,\tau_n^2)
-\end{align*}
+\end{aligned}
 $$
 
 ¿Parámetros desconocidos en la verosimilitud? ¿Dimensión y característica del espacio de parámetros? ¿Constantes de ajuste del _prior_? ¿Forma del _posterior_? ¿Qué son $\theta_n$ y $\tau_n^2$?

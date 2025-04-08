@@ -240,11 +240,11 @@ Podemos considerar una grilla de valores del parámetro (o los parámetros), com
 
 ::: {layout-ncol=2}
 Queremos realizar inferencias sobre la media y la varianza de una normal. Para eso proponemos el siguiente modelo:
-$$    
-\begin{align*}
+$$
+\begin{aligned}
     y_i\mid\mu,\sigma^2 & \sim  \mathcal{N}(\mu,\sigma^2) \\
     \mu,\sigma^2 & \sim  \frac{1}{K} \frac{e^{-\sigma^2}}{\eta} e^{-\frac{(\mu - \xi)^2}{2\psi^2}}
-\end{align*}
+\end{aligned}
 $$
 (¿Cuáles son las constantes que ajustan el _prior_?)
 

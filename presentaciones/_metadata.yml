@@ -8,3 +8,20 @@ format:
     slide-number: true
     fig-cap-location: top
     theme: [default, style_presentaciones.scss]
+  beamer:
+    slide-level: 2
+    pdf-engine: xelatex
+    # incremental: true
+    footer: "Estadística Bayesiana -- 2025"
+    header-includes:
+    - \usepackage{xcolor}
+    - \definecolor{bteal}{HTML}{1F7A8C}
+    - \definecolor{bpink}{HTML}{EB8A90}
+    - \definecolor{bpurple}{HTML}{683257}
+    - \definecolor{bdarkblue}{HTML}{00008B}
+    include-in-header:
+      text: |
+        \usepackage{fancyvrb} % para controlar tamaño de fuente y espaciado en verbatim
+        \fvset{
+          fontsize=\fontsize{7}{9}\selectfont
+        }
