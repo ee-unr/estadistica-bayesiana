@@ -9,8 +9,8 @@ format:
 
 ## Introducción
 
-El ozono (O₃) es un gas cuya molécula está formada por tres átomos de oxígeno y se encuentra tanto
-en la atmósfera como en la superficie terrestre. Seguramente, lo han escuchado nombrar por su papel
+El ozono (O₃) es un gas que se encuentra tanto en la atmósfera como en la superficie terrestre
+y cuya molécula está formada por tres átomos de oxígeno. Seguramente, lo han escuchado nombrar por su papel
 en la capa de ozono, una región de la estratófera que se encuentra entre unos 15 y 30 kilómetros
 sobre la superficie terrestre, donde se concentra este gas y filtra los rayos ultravioletas del sol.
 
@@ -39,7 +39,7 @@ peso.
 
 ## Modelización estadística
 
-La estadística ofrece una amplia variedad de técnicas para dar respuesta a la inquietud de
+La Estadística ofrece una amplia variedad de técnicas para dar respuesta a la inquietud de
 Tarkington. En el contexto de esta materia, naturalmente, abordaremos el problema mediante el uso
 modelos bayesianos.
 
@@ -155,15 +155,15 @@ con herramientas de diferenciación automática existentes.
 Sean $X$ e $Y = g(X)$ variables aleatorias continuas, donde $g$ es una función uno a uno
 y $X$ tiene función de densidad $f_X(x)$ conocida. Luego, la función de densidad de $Y$ es:
 $$
-f_Y(y) = f_X(g^{-1}(y)) \left\lvert \frac{d}{dy}g^{-1}(y) \right\rvert
+f_Y(y) = f_X\left(g^{-1}(y)\right) \left\lvert \frac{d}{dy}g^{-1}(y) \right\rvert
 $$
 
 donde $\left\lvert \frac{d}{dy}g^{-1}(y) \right\rvert$ es el determinante del jacobiano de la
 transformación. Por ejemplo, en el caso de la función $g(u) = \text{logit}(u)$, se tiene:
 $$
 \begin{aligned}
-g : (0, 1) \to \mathbb{R} & = \text{logit}(u) = \log\left(\frac{u}{1 - u}\right) \\
-g^{-1} : \mathbb{R} \to (0, 1) &= \text{expit}(u) =  \frac{1}{1 + \exp(-u)}
+g : (0, 1) \to \mathbb{R} & \quad g(u)= \text{logit}(u) = \log\left(\frac{u}{1 - u}\right) \\
+g^{-1} : \mathbb{R} \to (0, 1) & \quad g(v)= \text{expit}(v) =  \frac{1}{1 + \exp(-v)}
 \end{aligned}
 $$
 
@@ -185,8 +185,8 @@ aunque matemáticamente esto no sea cierto.
 El _underflow_ es un problema frecuente en el cómputo estadístico. Un caso típico es el que se da
 al evaluar funciones de verosimilitud, donde se multiplican densidades correspondientes a cada
 observación. Dado que estas densidades suelen ser valores muy pequeños, es común enfrentarse a un
-problema de subdesbordamiento. Este riesgo aumenta con la cantidad de observaciones y la
-dimensionalidad de la distribución objetivo.
+problema de subdesbordamiento. Este riesgo aumenta con la cantidad de observaciones y el
+número de dimensiones de la distribución objetivo.
 
 El problema se agrava al utilizar algoritmos como Metropolis-Hastings, ya que la densidad objetivo
 se evalúa miles de veces en diferentes puntos del espacio paramétrico.
