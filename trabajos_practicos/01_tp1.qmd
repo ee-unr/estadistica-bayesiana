@@ -149,7 +149,7 @@ Compare los resultados de la inferencia.
 Considere ahora el caso del método propuesto por Warner:
 
 4. Según este método, ¿cuál es la probabilidad (llamémosla $\lambda_W$) de que un estudiante
-responda que apuesta? ¿cuál es la probabilidad de que un estudiante responda queno apuesta?
+responda afirmativamente? ¿cuál es la probabilidad de que un estudiante responda por la contraria?
 5. A partir de lo anterior, proponga un modelo razonable sobre cómo se generan los datos.
 6. Considere un _prior_ uniforme y halle el _posterior_ exacto.
 
@@ -179,8 +179,8 @@ _prior_ beta no necesariamente uniforme.
 
 Para el método propuesto por Greenberg:
 
-10. ¿Cuál es la probabilidad $\lambda_G$ de que un estudiante responda que apuesta?
-¿y de que responda que no apuesta?
+10. ¿Cuál es la probabilidad $\lambda_G$ de que un estudiante responda que sí?
+¿y de que responda que no?
 11. Escriba una función de R que le permita realizar la inferencia (en forma aproximada) con un
 _prior_ beta no necesariamente uniforme.
 
