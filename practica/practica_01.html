@@ -656,16 +656,15 @@ X &amp;=
 Z &amp;=
     \begin{cases}
     1 &amp; \text{Si se observa cara} \\
-    0 &amp; \text{Si se obserca ceca}
+    0 &amp; \text{Si se observa ceca}
     \end{cases}
 \end{aligned}
 \]</span></p>
-<p>Obtener <span class="math inline">\(\pi\)</span> en base a la distribución conjunta de <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> y luego realizar la inferencia con un modelo binomial para <span class="math inline">\(T = \sum_{i=1}^{250}{Z_i}\)</span> utilizando <span class="math inline">\(\pi\)</span> como probabilidad de éxito en vez de <span class="math inline">\(\theta\)</span>.</p>
+<p>Obtener <span class="math inline">\(\pi\)</span> en base a la distribución conjunta de <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> y luego realizar la inferencia con un modelo binomial para <span class="math inline">\(T = \sum_{i=1}^{250}{Z_i}\)</span> utilizando <span class="math inline">\(\pi\)</span> como probabilidad de éxito.</p>
 <p>El parámetro <span class="math inline">\(\pi\)</span> quedará determinado en función de <span class="math inline">\(\theta\)</span>, y luego la verosimilitud para <span class="math inline">\(\theta\)</span> se puede obtener a partir de la verosimilitud para el valor <span class="math inline">\(\pi = f(\theta)\)</span> <span class="math display">\[
-p_\theta(T = t \mid \theta) = p_\pi(T = t \mid \pi)
+p_\theta(T = t \mid \theta) = p_\pi(T = t \mid \pi) = p_\pi(T = t \mid f(\theta))
 \]</span></p>
-<p>donde <span class="math inline">\(p_\pi\)</span> es la función de masa de probabilidad de una binomial. Luego,</p>
-<p><span class="math display">\[
+<p>donde <span class="math inline">\(p_\pi\)</span> es la función de masa de probabilidad de una binomial. Luego, <span class="math display">\[
 \begin{aligned}
 p_\theta(\theta \mid T = t) &amp;\propto p_\theta(T = t \mid \theta) p_\theta(\theta) \\
 &amp;= p_\theta(T = t \mid \theta)
@@ -688,7 +687,7 @@ Ayuda
 </div>
 <div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Estamos tratando de hacer inferencias sobre <span class="math inline">\(D_1\)</span> y <span class="math inline">\(D_2\)</span>, los valores de cada uno de los datos. Definir la distribución a priori no es complicado (es una distribución sobre <span class="math inline">\(D_1\)</span> y <span class="math inline">\(D_2\)</span>).</p>
+<p>Estamos tratando de hacer inferencias sobre <span class="math inline">\(D_1\)</span> y <span class="math inline">\(D_2\)</span>, los valores de cada uno de los datos. Definir la distribución <em>a priori</em> no es complicado (es una distribución sobre <span class="math inline">\(D_1\)</span> y <span class="math inline">\(D_2\)</span>).</p>
 <p>El truco está en determinar la verosimilitud de cada par (<span class="math inline">\(D_1, D_2\)</span>) luego de haber observado un 9.</p>
 <p>¿Cuál es la probabilidad de observar 9 en la suma de los dos dado que …?</p>
 <p><span class="math inline">\(D_1 = 1\)</span> y <span class="math inline">\(D_2 = 1 -\)</span> la probabilidad de observar 9 es 0</p>
