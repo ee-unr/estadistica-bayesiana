@@ -376,10 +376,10 @@
 <p><span class="math display">\[Y_i \mid \boldsymbol\beta,\sigma \sim \mathcal{N}(\boldsymbol\beta^T \mathbf{x}_i, \sigma^2)\]</span></p>
 <p>o bien decimos</p>
 <p><span class="math display">\[
-\begin{align*}
+\begin{aligned}
     Y_i &amp; \sim  \mathcal{N}(\mu_i, \sigma^2) \\
     \mu_i &amp; = \beta_0 + \beta_1 x_{1_i} + \beta_2 x_{2_i} + \dots + \beta_p x_{p_i}
-\end{align*}
+\end{aligned}
 \]</span></p>
 <p>Y completamos el modelo especificando una distribución <em>a priori</em> <span class="math inline">\(p(\boldsymbol\beta,\sigma)\)</span></p>
 </section>
@@ -493,7 +493,7 @@ Y_1^{(S)} &amp; Y_2^{(S)} &amp; \cdots &amp; Y_{N}^{(S)} \\
 <h2></h2>
 <p>El <em>score</em> predictivo total (para todas las observaciones) es la <em><span style="color:#EB8A90;">log</span>-<u>posterior</u> <span style="color:#1f7a8c;">pointwise</span> <span style="color:#683257;">predictive density</span></em>. A mayor <span class="math inline">\(\mathrm{lppd}\)</span>, mejor es el ajuste del modelo.</p>
 <p><span class="math display">\[
-\mathrm{lppd} =  \color{#1f7a8c}{\sum_{i=1}^{N}} \color{#EB8A90}{\log} \left( \color{#683257}{\int p\left(y_i\mid\theta\right) \underline{p(\theta\mid y)}d\theta} \right)
+\mathrm{lppd} = \color{#1f7a8c}{\sum_{i=1}^{N}} \color{#EB8A90}{\log} \left( \color{#683257}{\int p\left(y_i\mid\theta\right) \underline{p(\theta\mid y)}d\theta} \right)
 \]</span></p>
 <div class="fragment">
 <p>Que podemos estimar a través de muestras del <em>posterior</em></p>

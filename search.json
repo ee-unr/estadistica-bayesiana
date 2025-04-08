@@ -72,7 +72,7 @@
     "href": "presentaciones/presentacion_06.html#section-3",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Aquí asumimos:\n\\[Y_i \\mid \\boldsymbol\\beta,\\sigma \\sim \\mathcal{N}(\\boldsymbol\\beta^T \\mathbf{x}_i, \\sigma^2)\\]\no bien decimos\n\\[\n\\begin{align*}\n    Y_i & \\sim  \\mathcal{N}(\\mu_i, \\sigma^2) \\\\\n    \\mu_i & = \\beta_0 + \\beta_1 x_{1_i} + \\beta_2 x_{2_i} + \\dots + \\beta_p x_{p_i}\n\\end{align*}\n\\]\nY completamos el modelo especificando una distribución a priori \\(p(\\boldsymbol\\beta,\\sigma)\\)"
+    "text": "Aquí asumimos:\n\\[Y_i \\mid \\boldsymbol\\beta,\\sigma \\sim \\mathcal{N}(\\boldsymbol\\beta^T \\mathbf{x}_i, \\sigma^2)\\]\no bien decimos\n\\[\n\\begin{aligned}\n    Y_i & \\sim  \\mathcal{N}(\\mu_i, \\sigma^2) \\\\\n    \\mu_i & = \\beta_0 + \\beta_1 x_{1_i} + \\beta_2 x_{2_i} + \\dots + \\beta_p x_{p_i}\n\\end{aligned}\n\\]\nY completamos el modelo especificando una distribución a priori \\(p(\\boldsymbol\\beta,\\sigma)\\)"
   },
   {
     "objectID": "presentaciones/presentacion_06.html#section-4",
@@ -170,7 +170,7 @@
     "href": "presentaciones/presentacion_06.html#section-16",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "El score predictivo total (para todas las observaciones) es la log-posterior pointwise predictive density. A mayor \\(\\mathrm{lppd}\\), mejor es el ajuste del modelo.\n\\[\n\\mathrm{lppd} =  \\color{#1f7a8c}{\\sum_{i=1}^{N}} \\color{#EB8A90}{\\log} \\left( \\color{#683257}{\\int p\\left(y_i\\mid\\theta\\right) \\underline{p(\\theta\\mid y)}d\\theta} \\right)\n\\]\n\nQue podemos estimar a través de muestras del posterior\n\\[\n\\mathrm{lppd} = \\color{#1f7a8c}{\\sum_{i=1}^{N}} \\color{#EB8A90}{\\log} \\left( \\color{#683257}{\\frac{1}{S} \\sum_{s=1}^{S} p\\left(y_i\\mid\\theta^{(s)}\\right)} \\right)\n\\]"
+    "text": "El score predictivo total (para todas las observaciones) es la log-posterior pointwise predictive density. A mayor \\(\\mathrm{lppd}\\), mejor es el ajuste del modelo.\n\\[\n\\mathrm{lppd} = \\color{#1f7a8c}{\\sum_{i=1}^{N}} \\color{#EB8A90}{\\log} \\left( \\color{#683257}{\\int p\\left(y_i\\mid\\theta\\right) \\underline{p(\\theta\\mid y)}d\\theta} \\right)\n\\]\n\nQue podemos estimar a través de muestras del posterior\n\\[\n\\mathrm{lppd} = \\color{#1f7a8c}{\\sum_{i=1}^{N}} \\color{#EB8A90}{\\log} \\left( \\color{#683257}{\\frac{1}{S} \\sum_{s=1}^{S} p\\left(y_i\\mid\\theta^{(s)}\\right)} \\right)\n\\]"
   },
   {
     "objectID": "presentaciones/presentacion_06.html#section-17",
@@ -219,21 +219,21 @@
     "href": "presentaciones/presentacion_08.html#introducción",
     "title": "Estadística Bayesiana",
     "section": "Introducción",
-    "text": "Introducción\nConsideremos el siguiente modelo: \\[\n\\begin{align*}\n    y\\mid\\pi & \\sim  \\mathrm{Bi}(N_i,\\pi)\\\\\n    \\pi & \\sim  Beta(a,b)\n\\end{align*}\n\\]"
+    "text": "Introducción\nConsideremos el siguiente modelo: \\[\n\\begin{aligned}\n  y\\mid\\pi & \\sim  \\text{Binomial}(N_i,\\pi)\\\\\n  \\pi & \\sim  \\text{Beta}(a,b)\n\\end{aligned}\n\\]"
   },
   {
     "objectID": "presentaciones/presentacion_08.html#section",
     "href": "presentaciones/presentacion_08.html#section",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Sabemos (gracias al TP2) que la función de densidad de la distribución beta se puede expresar en términos de su moda \\(\\omega\\) y su concentración \\(\\kappa\\)\n\\[\n\\begin{align*}\n    y\\mid\\pi & \\sim  \\mathrm{Bi}(N,\\pi)\\\\\n    \\pi & \\sim  Beta(\\omega(\\kappa-2)+1,\\ (1-\\omega)(\\kappa-2)+1)\n\\end{align*}\n\\]\nEl valor de \\(\\pi\\) depende del valor de \\(\\omega\\). Lo sabíamos, después de todo, \\(\\omega\\) y \\(\\kappa\\) son las constantes de ajuste del prior o hiperparámetros. \\(\\kappa\\) refleja el grado de credibilidad a priori sobre los valores de \\(\\pi\\) (alrededor de \\(\\omega\\))."
+    "text": "Sabemos (gracias al TP2) que la función de densidad de la distribución beta se puede expresar en términos de su moda \\(\\omega\\) y su concentración \\(\\kappa\\)\n\\[\n\\begin{aligned}\n  y\\mid\\pi & \\sim  \\text{Binomial}(N,\\pi)\\\\\n  \\pi & \\sim  \\text{Beta}(\\omega(\\kappa-2)+1,\\ (1-\\omega)(\\kappa-2)+1)\n\\end{aligned}\n\\]\nEl valor de \\(\\pi\\) depende del valor de \\(\\omega\\). Lo sabíamos, después de todo, \\(\\omega\\) y \\(\\kappa\\) son las constantes de ajuste del prior o hiperparámetros. \\(\\kappa\\) refleja el grado de credibilidad a priori sobre los valores de \\(\\pi\\) (alrededor de \\(\\omega\\))."
   },
   {
     "objectID": "presentaciones/presentacion_08.html#section-1",
     "href": "presentaciones/presentacion_08.html#section-1",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "¿Qué pasa si \\(\\omega\\) no es fijo sino otro parámetro a estimar?\n\nEn el contexto de una moneda: \\(\\pi\\) es la probabilidad de cara de la moneda y \\(\\omega\\) es el valor de probabilidad de cara al que el fabricante de monedas le apunta en la construcción. \\(\\kappa\\) (fijo y conocido) es una medida de la dispersión que tiene el proceso de fabricación (de lo consistente que es este proceso) o, en otros términos, mide el grado de asociación entre \\(\\pi\\) y \\(\\omega\\).\n\n\n¿Qué necesitamos para \\(\\omega\\)? Digamos que, a priori, \\(\\omega \\sim \\mathrm{Beta}(A_\\omega,B_\\omega)\\)\n\n\n\\[\n\\begin{align*}\n    y\\mid\\pi & \\sim  \\mathrm{Bi}(N,\\pi)\\\\\n    \\pi \\mid \\omega & \\sim  \\mathrm{Beta}(\\omega(\\kappa-2)+1,\\ (1-\\omega)(\\kappa-2)+1) \\\\\n    \\omega & \\sim \\mathrm{Beta}(A_\\omega,B_\\omega)\n\\end{align*}\n\\]\n¿Cuántos parámetros tiene este modelo?"
+    "text": "¿Qué pasa si \\(\\omega\\) no es fijo sino otro parámetro a estimar?\n\nEn el contexto de una moneda: \\(\\pi\\) es la probabilidad de cara de la moneda y \\(\\omega\\) es el valor de probabilidad de cara al que el fabricante de monedas le apunta en la construcción. \\(\\kappa\\) (fijo y conocido) es una medida de la dispersión que tiene el proceso de fabricación (de lo consistente que es este proceso) o, en otros términos, mide el grado de asociación entre \\(\\pi\\) y \\(\\omega\\).\n\n\n¿Qué necesitamos para \\(\\omega\\)? Digamos que, a priori, \\(\\omega \\sim \\mathrm{Beta}(A_\\omega,B_\\omega)\\)\n\n\n\\[\n\\begin{aligned}\n    y\\mid\\pi & \\sim  \\mathrm{Binomial}(N,\\pi)\\\\\n    \\pi \\mid \\omega & \\sim  \\mathrm{Beta}(\\omega(\\kappa-2)+1,\\ (1-\\omega)(\\kappa-2)+1) \\\\\n    \\omega & \\sim \\mathrm{Beta}(A_\\omega,B_\\omega)\n\\end{aligned}\n\\]\n¿Cuántos parámetros tiene este modelo?"
   },
   {
     "objectID": "presentaciones/presentacion_08.html#section-2",
@@ -310,7 +310,7 @@
     "href": "presentaciones/presentacion_08.html#section-15",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "\\[\n\\begin{align*}\n    y_s\\mid\\pi_s & \\sim  \\mathrm{Bi}(N_s,\\pi_s)\\\\\n    \\pi_s \\mid \\omega & \\sim  \\mathrm{Beta}(\\omega(\\kappa-2)+1,\\ (1-\\omega)(\\kappa-2)+1) \\\\\n    \\omega & \\sim \\mathrm{Beta}(A_\\omega,B_\\omega)\n\\end{align*}\n\\]\nSi fijo \\(\\omega\\), los valores de los \\(\\pi_s\\) son independientes: \\(\\pi_1\\) y \\(\\pi_2\\) son independientes dado \\(\\omega\\).\nLa probabilidad a priori que es \\(p(\\pi_1,\\pi_2,\\omega)\\) ahora puede factorizarse como \\(p(\\pi_1,\\pi_2\\mid \\omega) p(\\omega) = p(\\pi_1\\mid \\omega) p(\\pi_2\\mid \\omega) p(\\omega)\\)"
+    "text": "\\[\n\\begin{aligned}\n    y_s\\mid\\pi_s & \\sim  \\mathrm{Binomial}(N_s,\\pi_s)\\\\\n    \\pi_s \\mid \\omega & \\sim  \\mathrm{Beta}(\\omega(\\kappa-2)+1,\\ (1-\\omega)(\\kappa-2)+1) \\\\\n    \\omega & \\sim \\mathrm{Beta}(A_\\omega,B_\\omega)\n\\end{aligned}\n\\]\nSi fijo \\(\\omega\\), los valores de los \\(\\pi_s\\) son independientes: \\(\\pi_1\\) y \\(\\pi_2\\) son independientes dado \\(\\omega\\).\nLa probabilidad a priori que es \\(p(\\pi_1,\\pi_2,\\omega)\\) ahora puede factorizarse como \\(p(\\pi_1,\\pi_2\\mid \\omega) p(\\omega) = p(\\pi_1\\mid \\omega) p(\\pi_2\\mid \\omega) p(\\omega)\\)"
   },
   {
     "objectID": "presentaciones/presentacion_08.html#section-16",
@@ -394,28 +394,28 @@
     "href": "presentaciones/presentacion_08.html#section-35",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Complete pooling\n\\[\n\\begin{align*}\n    Y_i\\mid\\mu_i,\\sigma & \\sim  \\mathcal{N}(\\mu_i,\\sigma^2) \\\\\n    \\mu_i & = \\alpha  \\\\\n    \\alpha & \\sim  P(\\alpha) \\\\\n    \\sigma & \\sim  P(\\sigma)\n\\end{align*}\n\\]\nHay una única media \\(\\alpha\\) común para todos los \\(i\\), independientemente del grupo \\(j\\) al que pertenezcan"
+    "text": "Complete pooling\n\\[\n\\begin{aligned}\n    Y_i\\mid\\mu_i,\\sigma & \\sim  \\mathcal{N}(\\mu_i,\\sigma^2) \\\\\n    \\mu_i & = \\alpha  \\\\\n    \\alpha & \\sim  P(\\alpha) \\\\\n    \\sigma & \\sim  P(\\sigma)\n\\end{aligned}\n\\]\nHay una única media \\(\\alpha\\) común para todos los \\(i\\), independientemente del grupo \\(j\\) al que pertenezcan"
   },
   {
     "objectID": "presentaciones/presentacion_08.html#section-36",
     "href": "presentaciones/presentacion_08.html#section-36",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "No pooling\n\\[\n\\begin{align*}\n    Y_i\\mid\\mu_i,\\sigma & \\sim  \\mathcal{N}(\\mu_i,\\sigma^2)\\\\\n    \\mu_i & = \\alpha_{j[i]}  \\\\\n    \\alpha_j & \\sim  P(\\alpha_j) \\\\\n    \\sigma & \\sim  P(\\sigma)\n\\end{align*}\n\\]\nDecimos que los \\(Y_i\\) tienen distribución de media \\(\\alpha_{j[i]}\\), sin imponer ninguna restricción sobre los \\(\\alpha_j\\). \\(P(\\alpha_j)\\) es una distribución no informativa (muy ancha y chata). Todos los \\(\\alpha_j\\) son independientes. Coincide con la estimación clásica que incluye una variable dummy para cada grupo."
+    "text": "No pooling\n\\[\n\\begin{aligned}\n    Y_i\\mid\\mu_i,\\sigma & \\sim  \\mathcal{N}(\\mu_i,\\sigma^2)\\\\\n    \\mu_i & = \\alpha_{j[i]}  \\\\\n    \\alpha_j & \\sim  P(\\alpha_j) \\\\\n    \\sigma & \\sim  P(\\sigma)\n\\end{aligned}\n\\]\nDecimos que los \\(Y_i\\) tienen distribución de media \\(\\alpha_{j[i]}\\), sin imponer ninguna restricción sobre los \\(\\alpha_j\\). \\(P(\\alpha_j)\\) es una distribución no informativa (muy ancha y chata). Todos los \\(\\alpha_j\\) son independientes. Coincide con la estimación clásica que incluye una variable dummy para cada grupo."
   },
   {
     "objectID": "presentaciones/presentacion_08.html#section-37",
     "href": "presentaciones/presentacion_08.html#section-37",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Podemos mejorar el modelo anterior incorporando un prior que regularice los \\(\\alpha_j\\)\n\\[\\begin{align*}\n    Y_i\\mid\\mu_i,\\sigma & \\sim  \\mathcal{N}(\\mu_i,\\sigma^2) \\\\\n    \\mu_i & = \\alpha_{j[i]}  \\\\\n    \\alpha_j & \\sim  \\mathcal{N}(0,10) \\\\\n    \\sigma & \\sim  P(\\sigma)\n\\end{align*}\\]\n0 y 10 son valores arbitrarios para la media y la varianza de la distribución a priori de los \\(\\alpha_j\\). Los \\(\\alpha_j\\) dejan de poder ser estimados libremente. Hay regularización y tendemos a evitar el overfitting. Hay un partial pooling. Si en lugar de 10 se elige un valor más grande, tendemos a no pooling; si se elige un valor más chico, tendemos a pooling completo"
+    "text": "Podemos mejorar el modelo anterior incorporando un prior que regularice los \\(\\alpha_j\\)\n\\[\n\\begin{aligned}\n    Y_i\\mid\\mu_i,\\sigma & \\sim  \\mathcal{N}(\\mu_i,\\sigma^2) \\\\\n    \\mu_i & = \\alpha_{j[i]}  \\\\\n    \\alpha_j & \\sim  \\mathcal{N}(0,10) \\\\\n    \\sigma & \\sim  P(\\sigma)\n\\end{aligned}\n\\]\n0 y 10 son valores arbitrarios para la media y la varianza de la distribución a priori de los \\(\\alpha_j\\). Los \\(\\alpha_j\\) dejan de poder ser estimados libremente. Hay regularización y tendemos a evitar el overfitting. Hay un partial pooling. Si en lugar de 10 se elige un valor más grande, tendemos a no pooling; si se elige un valor más chico, tendemos a pooling completo"
   },
   {
     "objectID": "presentaciones/presentacion_08.html#section-38",
     "href": "presentaciones/presentacion_08.html#section-38",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Mejor aún, podemos estimar el grado de regularización partir de los datos. ¿Cuánto pooling es necesario? Se estima a partir de los datos…\n\\[\\begin{align*}\n    Y_i\\mid\\mu_i,\\sigma & \\sim  \\mathcal{N}(\\mu_i,\\sigma^2) \\\\\n    \\mu_i & = \\alpha_{j[i]}  \\\\\n    \\alpha_j & \\sim  \\mathcal{N}(\\mu_\\alpha,\\sigma_\\alpha^2) \\\\\n    \\sigma & \\sim  P(\\sigma) \\\\\n    \\mu_\\alpha & \\sim  P(\\mu_\\alpha) \\\\\n    \\sigma_\\alpha & \\sim  P(\\sigma_\\alpha) \\\\\n\\end{align*}\\]"
+    "text": "Mejor aún, podemos estimar el grado de regularización partir de los datos. ¿Cuánto pooling es necesario? Se estima a partir de los datos…\n\\[\n\\begin{aligned}\n    Y_i\\mid\\mu_i,\\sigma & \\sim  \\mathcal{N}(\\mu_i,\\sigma^2) \\\\\n    \\mu_i & = \\alpha_{j[i]}  \\\\\n    \\alpha_j & \\sim  \\mathcal{N}(\\mu_\\alpha,\\sigma_\\alpha^2) \\\\\n    \\sigma & \\sim  P(\\sigma) \\\\\n    \\mu_\\alpha & \\sim  P(\\mu_\\alpha) \\\\\n    \\sigma_\\alpha & \\sim  P(\\sigma_\\alpha) \\\\\n\\end{aligned}\n\\]"
   },
   {
     "objectID": "presentaciones/presentacion_08.html#section-39",
@@ -464,7 +464,7 @@
     "href": "presentaciones/presentacion_08.html#section-46",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "\\[\\begin{align*}\n    Y_i  \\mid \\mu_i,\\sigma & \\sim  \\mathcal{N}(\\mu_i,\\sigma^2) \\\\\n    \\mu_i & = \\alpha_{j[i]} + \\beta_{j[i]} x_i \\\\\n    \\left[\\begin{array}{c}\\alpha_j\\\\\\beta_j\\end{array}\\right] & \\sim \\mathcal{N}\\left(\\left[\\begin{array}{c}\\mu_\\alpha\\\\\\mu_\\beta\\end{array}\\right],\\Sigma\\right)\n\\end{align*}\\]"
+    "text": "\\[\n\\begin{aligned}\n    Y_i  \\mid \\mu_i,\\sigma & \\sim  \\mathcal{N}(\\mu_i,\\sigma^2) \\\\\n    \\mu_i & = \\alpha_{j[i]} + \\beta_{j[i]} x_i \\\\\n    \\left[\\begin{array}{c}\\alpha_j\\\\\\beta_j\\end{array}\\right] & \\sim \\mathcal{N}\\left(\\left[\\begin{array}{c}\\mu_\\alpha\\\\\\mu_\\beta\\end{array}\\right],\\Sigma\\right)\n\\end{aligned}\n\\]"
   },
   {
     "objectID": "presentaciones/presentacion_08.html#section-47",
@@ -485,7 +485,7 @@
     "href": "presentaciones/presentacion_08.html#section-49",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Se modeliza la probabilidad de supervivencia de cada tanque con una regresión logística:\n\\[\\begin{align*}\n    S_i  \\mid p_i & \\sim  Binomial(N_i,p_i) \\\\\n   \\log\\left( \\frac{p_i}{1-p_i} \\right) & = \\alpha_{i} \\\\\n   \\alpha_i & \\sim \\mathcal{N}(\\mu_\\alpha,\\sigma_\\alpha^2)\n\\end{align*}\\]\nObservar que no hay grupos (no hay índice \\(j\\)), simplemente hacemos de los individuos."
+    "text": "Se modeliza la probabilidad de supervivencia de cada tanque con una regresión logística:\n\\[\n\\begin{aligned}\n    S_i  \\mid p_i & \\sim  \\text{Binomial}(N_i,p_i) \\\\\n   \\log\\left( \\frac{p_i}{1-p_i} \\right) & = \\alpha_{i} \\\\\n   \\alpha_i & \\sim \\mathcal{N}(\\mu_\\alpha,\\sigma_\\alpha^2)\n\\end{aligned}\n\\]\nObservar que no hay grupos (no hay índice \\(j\\)), simplemente hacemos de los individuos."
   },
   {
     "objectID": "presentaciones/presentacion_08.html#section-50",
@@ -667,7 +667,7 @@
     "href": "presentaciones/presentacion_05.html#section-7",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Ejemplo\n\n\n\n\n\n\nQueremos realizar inferencias sobre la media y la varianza de una normal. Para eso proponemos el siguiente modelo: \\[    \n\\begin{align*}\n    y_i\\mid\\mu,\\sigma^2 & \\sim  \\mathcal{N}(\\mu,\\sigma^2) \\\\\n    \\mu,\\sigma^2 & \\sim  \\frac{1}{K} \\frac{e^{-\\sigma^2}}{\\eta} e^{-\\frac{(\\mu - \\xi)^2}{2\\psi^2}}\n\\end{align*}\n\\] (¿Cuáles son las constantes que ajustan el prior?)"
+    "text": "Ejemplo\n\n\n\n\n\n\nQueremos realizar inferencias sobre la media y la varianza de una normal. Para eso proponemos el siguiente modelo: \\[\n\\begin{aligned}\n    y_i\\mid\\mu,\\sigma^2 & \\sim  \\mathcal{N}(\\mu,\\sigma^2) \\\\\n    \\mu,\\sigma^2 & \\sim  \\frac{1}{K} \\frac{e^{-\\sigma^2}}{\\eta} e^{-\\frac{(\\mu - \\xi)^2}{2\\psi^2}}\n\\end{aligned}\n\\] (¿Cuáles son las constantes que ajustan el prior?)"
   },
   {
     "objectID": "presentaciones/presentacion_05.html#section-8",
@@ -1424,7 +1424,7 @@
     "href": "teoria/u2_teoria_03.html",
     "title": "Unidad 2 - Distribuciones Conjugadas",
     "section": "",
-    "text": "Instrucciones para guardar como PDF\n\nHacer clic acá\nAbrir la ventana de impresión del navegador con CTRL+P\nSi es necesario, cambiar el “Destino” a “Guardar como PDF”\nCliquear en “Guardar”\nElegir el nombre del archivo de destino\n¡Listo! 🎉",
+    "text": "Descargar presentación en PDF",
     "crumbs": [
       "Teoría",
       "U2 - Distribuciones Conjugadas"
@@ -1435,7 +1435,7 @@
     "href": "teoria/u5_teoria_07.html",
     "title": "Unidad 5 - Modelos Avanzados",
     "section": "",
-    "text": "Instrucciones para guardar como PDF\n\nHacer clic acá\nAbrir la ventana de impresión del navegador con CTRL+P\nSi es necesario, cambiar el “Destino” a “Guardar como PDF”\nCliquear en “Guardar”\nElegir el nombre del archivo de destino\n¡Listo! 🎉",
+    "text": "Descargar presentación en PDF",
     "crumbs": [
       "Teoría",
       "U5 - Modelos Avanzados"
@@ -1446,7 +1446,7 @@
     "href": "teoria/u1_teoria_01.html",
     "title": "Unidad 1 - Introducción",
     "section": "",
-    "text": "Instrucciones para guardar como PDF\n\nHacer clic acá\nAbrir la ventana de impresión del navegador con CTRL+P\nSi es necesario, cambiar el “Destino” a “Guardar como PDF”\nCliquear en “Guardar”\nElegir el nombre del archivo de destino\n¡Listo! 🎉",
+    "text": "Descargar presentación en PDF",
     "crumbs": [
       "Teoría",
       "U1 - Introducción"
@@ -1457,7 +1457,7 @@
     "href": "teoria/u4_teoria_06.html",
     "title": "Unidad 4 - Modelos Lineales",
     "section": "",
-    "text": "Instrucciones para guardar como PDF\n\nHacer clic acá\nAbrir la ventana de impresión del navegador con CTRL+P\nSi es necesario, cambiar el “Destino” a “Guardar como PDF”\nCliquear en “Guardar”\nElegir el nombre del archivo de destino\n¡Listo! 🎉",
+    "text": "Descargar presentación en PDF",
     "crumbs": [
       "Teoría",
       "U4 - Modelos Lineales"
@@ -1482,7 +1482,7 @@
     "href": "teoria/u3_teoria_05.html",
     "title": "Unidad 3 - Métodos Computacionales",
     "section": "",
-    "text": "Instrucciones para guardar como PDF\n\nHacer clic acá\nAbrir la ventana de impresión del navegador con CTRL+P\nSi es necesario, cambiar el “Destino” a “Guardar como PDF”\nCliquear en “Guardar”\nElegir el nombre del archivo de destino\n¡Listo! 🎉",
+    "text": "Descargar presentación en PDF",
     "crumbs": [
       "Teoría",
       "U3 - Métodos Computacionales"
@@ -1493,7 +1493,7 @@
     "href": "teoria/u1_teoria_02.html",
     "title": "Unidad 1 - Inferencia Bayesiana",
     "section": "",
-    "text": "Instrucciones para guardar como PDF\n\nHacer clic acá\nAbrir la ventana de impresión del navegador con CTRL+P\nSi es necesario, cambiar el “Destino” a “Guardar como PDF”\nCliquear en “Guardar”\nElegir el nombre del archivo de destino\n¡Listo! 🎉",
+    "text": "Descargar presentación en PDF",
     "crumbs": [
       "Teoría",
       "U1 - Inferencia Bayesiana"
@@ -1504,7 +1504,7 @@
     "href": "teoria/u2_teoria_04.html",
     "title": "Unidad 2 - Teoría de la Decisión",
     "section": "",
-    "text": "Instrucciones para guardar como PDF\n\nHacer clic acá\nAbrir la ventana de impresión del navegador con CTRL+P\nSi es necesario, cambiar el “Destino” a “Guardar como PDF”\nCliquear en “Guardar”\nElegir el nombre del archivo de destino\n¡Listo! 🎉",
+    "text": "Descargar presentación en PDF",
     "crumbs": [
       "Teoría",
       "U2 - Teoría de la Decisión"
@@ -1515,7 +1515,7 @@
     "href": "teoria/u5_teoria_08.html",
     "title": "Unidad 5 - Modelos Jerárquicos",
     "section": "",
-    "text": "Instrucciones para guardar como PDF\n\nHacer clic acá\nAbrir la ventana de impresión del navegador con CTRL+P\nSi es necesario, cambiar el “Destino” a “Guardar como PDF”\nCliquear en “Guardar”\nElegir el nombre del archivo de destino\n¡Listo! 🎉",
+    "text": "Descargar presentación en PDF",
     "crumbs": [
       "Teoría",
       "U5 - Modelos Jerárquicos"
@@ -1896,7 +1896,7 @@
     "href": "presentaciones/presentacion_03.html#section-1",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "El modelo propuesto es \\[\n\\begin{align*}\n    Y_i \\mid \\lambda & \\sim  Po(\\lambda)\\\\\n    \\lambda & \\sim  \\mathrm{Gamma}(s, r)\n\\end{align*}\n\\]\nEl likelihood es Poisson: \\[p(y_i\\mid \\lambda) = \\frac{\\lambda^{y_i}e^{-\\lambda}}{y_i!} \\rightarrow p(\\mathbf{y}\\mid \\lambda) = \\prod_i \\frac{\\lambda^{y_i}e^{-\\lambda}}{y_i!} = \\frac{\\lambda^{\\sum_i y_i}e^{-n\\lambda}}{\\prod_{i}y_i!}\\]\nEl prior es Gamma: \\[p(\\lambda) = \\frac{r^s}{\\Gamma(s)} \\lambda^{s-1}e^{-r\\lambda}\\]\nInteresa hallar \\(p(\\lambda\\mid \\mathbf{y})\\)"
+    "text": "El modelo propuesto es \\[\n\\begin{aligned}\n  Y_i \\mid \\lambda & \\sim  Po(\\lambda)\\\\\n  \\lambda & \\sim  \\mathrm{Gamma}(s, r)\n\\end{aligned}\n\\]\nEl likelihood es Poisson: \\[p(y_i\\mid \\lambda) = \\frac{\\lambda^{y_i}e^{-\\lambda}}{y_i!} \\rightarrow p(\\mathbf{y}\\mid \\lambda) = \\prod_i \\frac{\\lambda^{y_i}e^{-\\lambda}}{y_i!} = \\frac{\\lambda^{\\sum_i y_i}e^{-n\\lambda}}{\\prod_{i}y_i!}\\]\nEl prior es Gamma: \\[p(\\lambda) = \\frac{r^s}{\\Gamma(s)} \\lambda^{s-1}e^{-r\\lambda}\\]\nInteresa hallar \\(p(\\lambda\\mid \\mathbf{y})\\)"
   },
   {
     "objectID": "presentaciones/presentacion_03.html#section-2",
@@ -1924,35 +1924,35 @@
     "href": "presentaciones/presentacion_03.html#section-4",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "El modelo propuesto es: \\[\n\\small{\n  \\begin{align*}\n      y_i \\mid \\mu & \\sim  \\mathcal{N}(\\mu,\\sigma^2)\\\\\n      \\mu & \\sim \\mathcal{N}(\\theta,\\tau^2)\n  \\end{align*}\n}\n\\]\n\nEl likelihood es normal: \\[\n\\small{\n  \\begin{aligned}\n  p(y_i\\mid \\mu) &= \\frac{1}{\\sqrt{2\\pi\\sigma}} e^{-\\frac{(y_i-\\mu)^2}{2\\sigma^2}} \\rightarrow \\\\\n  p(\\mathbf{y}\\mid \\mu) &= \\left(\\frac{1}{2\\pi\\sigma}\\right)^{n/2}  e^{-\\frac{\\sum_i(y_i-\\mu)^2}{2\\sigma^2}} \\propto e^{-\\frac{(\\bar{y}-\\mu)^2}{2\\sigma^2/n}}\n  \\end{aligned}\n}\n\\]\n\n\nEl prior es normal: \\[\n\\small{\n  p(\\mu) = \\frac{1}{\\sqrt{2\\pi\\tau}} e^{-\\frac{(\\mu-\\theta)^2}{2\\tau^2}}\n}\n\\]\n\n\nInteresa hallar \\(p(\\mu \\mid \\mathbf{y})\\)"
+    "text": "El modelo propuesto es: \\[\n\\small{\n  \\begin{aligned}\n      y_i \\mid \\mu & \\sim  \\mathcal{N}(\\mu,\\sigma^2)\\\\\n      \\mu & \\sim \\mathcal{N}(\\theta,\\tau^2)\n  \\end{aligned}\n}\n\\]\n\nEl likelihood es normal: \\[\n\\small{\n  \\begin{aligned}\n  p(y_i\\mid \\mu) &= \\frac{1}{\\sqrt{2\\pi\\sigma}} e^{-\\frac{(y_i-\\mu)^2}{2\\sigma^2}} \\rightarrow \\\\\n  p(\\mathbf{y}\\mid \\mu) &= \\left(\\frac{1}{2\\pi\\sigma}\\right)^{n/2}  e^{-\\frac{\\sum_i(y_i-\\mu)^2}{2\\sigma^2}} \\propto e^{-\\frac{(\\bar{y}-\\mu)^2}{2\\sigma^2/n}}\n  \\end{aligned}\n}\n\\]\n\n\nEl prior es normal: \\[\n\\small{\n  p(\\mu) = \\frac{1}{\\sqrt{2\\pi\\tau}} e^{-\\frac{(\\mu-\\theta)^2}{2\\tau^2}}\n}\n\\]\n\n\nInteresa hallar \\(p(\\mu \\mid \\mathbf{y})\\)"
   },
   {
     "objectID": "presentaciones/presentacion_03.html#section-5",
     "href": "presentaciones/presentacion_03.html#section-5",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "\\[p(\\mu\\mid \\mathbf{y}) \\propto p(\\mathbf{y}\\mid\\mu) p(\\mu)\\] \\[p(\\mu \\mid \\mathbf{y}) \\propto   e^{-\\frac{(\\bar{y}-\\mu)^2}{2\\sigma^2/n}} \\frac{1}{\\sqrt{2\\pi\\tau}} e^{-\\frac{(\\mu-\\theta)^2}{2\\tau^2}}\\]\n\\[\n\\begin{align*}\np(\\mu \\mid \\mathbf{y}) & \\propto  e^{-\\frac{(\\bar{y}-\\mu)^2}{2\\sigma^2/n}} e^{-\\frac{(\\mu-\\theta)^2}{2\\tau^2}} \\\\\n&  \\propto  e^{-\\left[\\frac{(\\bar{y}-\\mu)^2}{2\\sigma^2/n}+\\frac{(\\mu-\\theta)^2}{2\\tau^2}\\right]} \\\\\n& \\propto e^{-\\left[ \\frac{\\bar{y}^2 - 2\\bar{y} \\mu + \\mu^2}{2\\sigma^2/n} + \\frac{\\mu^2 - 2\\mu\\theta^2 + \\theta^2}{2\\tau^2} \\right]} \\\\\n& \\propto e^{\\left[ \\frac{ 2\\bar{y} \\mu - \\mu^2}{2\\sigma^2/n} + \\frac{-\\mu^2 + 2\\mu\\theta^2}{2\\tau^2} \\right]} \\\\\n& \\propto e^{\\left[ \\frac{(2\\bar{y} \\mu - \\mu^2)n\\tau^2 + (-\\mu^2 + 2\\mu\\theta^2)\\sigma^2}{2\\sigma^2\\tau^2} \\right]}\n\\end{align*}\n\\]"
+    "text": "\\[p(\\mu\\mid \\mathbf{y}) \\propto p(\\mathbf{y}\\mid\\mu) p(\\mu)\\] \\[p(\\mu \\mid \\mathbf{y}) \\propto   e^{-\\frac{(\\bar{y}-\\mu)^2}{2\\sigma^2/n}} \\frac{1}{\\sqrt{2\\pi\\tau}} e^{-\\frac{(\\mu-\\theta)^2}{2\\tau^2}}\\]\n\\[\n\\begin{aligned}\np(\\mu \\mid \\mathbf{y}) & \\propto  e^{-\\frac{(\\bar{y}-\\mu)^2}{2\\sigma^2/n}} e^{-\\frac{(\\mu-\\theta)^2}{2\\tau^2}} \\\\\n&  \\propto  e^{-\\left[\\frac{(\\bar{y}-\\mu)^2}{2\\sigma^2/n}+\\frac{(\\mu-\\theta)^2}{2\\tau^2}\\right]} \\\\\n& \\propto e^{-\\left[ \\frac{\\bar{y}^2 - 2\\bar{y} \\mu + \\mu^2}{2\\sigma^2/n} + \\frac{\\mu^2 - 2\\mu\\theta^2 + \\theta^2}{2\\tau^2} \\right]} \\\\\n& \\propto e^{\\left[ \\frac{ 2\\bar{y} \\mu - \\mu^2}{2\\sigma^2/n} + \\frac{-\\mu^2 + 2\\mu\\theta^2}{2\\tau^2} \\right]} \\\\\n& \\propto e^{\\left[ \\frac{(2\\bar{y} \\mu - \\mu^2)n\\tau^2 + (-\\mu^2 + 2\\mu\\theta^2)\\sigma^2}{2\\sigma^2\\tau^2} \\right]}\n\\end{aligned}\n\\]"
   },
   {
     "objectID": "presentaciones/presentacion_03.html#section-6",
     "href": "presentaciones/presentacion_03.html#section-6",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "\\[\n    \\begin{align*}\nP(\\mu \\mid \\mathbf{y}) & \\propto e^{\\frac{2\\mu(\\theta\\sigma^2+ \\bar{y}n\\tau^2)-\\mu^2(n\\tau^2+\\sigma^2)}{2\\tau^2\\sigma^2}} \\\\\n& \\propto e^{\\frac{-\\mu^2 + 2\\mu \\left( \\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2} \\right)}{2\\tau^2\\sigma^2/(n\\tau^2 + \\sigma^2)}} e^{-\\left(\\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2}\\right)^2} \\\\\n& \\propto e^{-\\frac{\\left(\\mu -  \\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2} \\right)^2}{2\\tau^2\\sigma^2/(n\\tau^2+\\sigma^2)}}\n    \\end{align*}\n\\] \\[p(\\mu\\mid\\mathbf{y}) = K^* e^{-\\frac{\\left(\\mu -  \\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2} \\right)^2}{2\\tau^2\\sigma^2/(n\\tau^2+\\sigma^2)}}\\]"
+    "text": "\\[\n    \\begin{aligned}\nP(\\mu \\mid \\mathbf{y}) & \\propto e^{\\frac{2\\mu(\\theta\\sigma^2+ \\bar{y}n\\tau^2)-\\mu^2(n\\tau^2+\\sigma^2)}{2\\tau^2\\sigma^2}} \\\\\n& \\propto e^{\\frac{-\\mu^2 + 2\\mu \\left( \\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2} \\right)}{2\\tau^2\\sigma^2/(n\\tau^2 + \\sigma^2)}} e^{-\\left(\\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2}\\right)^2} \\\\\n& \\propto e^{-\\frac{\\left(\\mu -  \\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2} \\right)^2}{2\\tau^2\\sigma^2/(n\\tau^2+\\sigma^2)}}\n    \\end{aligned}\n\\] \\[p(\\mu\\mid\\mathbf{y}) = K^* e^{-\\frac{\\left(\\mu -  \\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2} \\right)^2}{2\\tau^2\\sigma^2/(n\\tau^2+\\sigma^2)}}\\]"
   },
   {
     "objectID": "presentaciones/presentacion_03.html#section-7",
     "href": "presentaciones/presentacion_03.html#section-7",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Por lo tanto, resulta que la distribución a posteriori es normal de parámetros \\(\\theta_n\\) y \\(\\tau_n^2\\)\n\n\\[\n\\begin{align*}\n\\mu\\mid \\mathbf{y} & \\sim  \\mathcal{N}\\left( \\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2},\\frac{\\tau^2\\sigma^2}{n\\tau^2+\\sigma^2} \\right) \\\\\n& \\sim \\mathcal{N}\\left( \\theta_n,\\tau_n^2 \\right)\n\\end{align*}\n\\]"
+    "text": "Por lo tanto, resulta que la distribución a posteriori es normal de parámetros \\(\\theta_n\\) y \\(\\tau_n^2\\)\n\n\\[\n\\begin{aligned}\n\\mu\\mid \\mathbf{y} & \\sim  \\mathcal{N}\\left( \\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2},\\frac{\\tau^2\\sigma^2}{n\\tau^2+\\sigma^2} \\right) \\\\\n& \\sim \\mathcal{N}\\left( \\theta_n,\\tau_n^2 \\right)\n\\end{aligned}\n\\]"
   },
   {
     "objectID": "presentaciones/presentacion_03.html#section-8",
     "href": "presentaciones/presentacion_03.html#section-8",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Reflexionemos… \\[\n\\begin{align*}\n    y_i\\mid\\mu & \\sim  \\mathcal{N}(\\mu,\\sigma^2) \\\\\n    \\mu & \\sim  \\mathcal{N}(\\theta,\\tau^2) \\\\\n    \\mu \\mid \\mathbf{y} & \\sim \\mathcal{N}(\\theta_n,\\tau_n^2)\n\\end{align*}\n\\]\n¿Parámetros desconocidos en la verosimilitud?\n\n¿Dimensión y característica del espacio de parámetros?\n\n\n¿Constantes de ajuste del prior?\n\n\n¿Forma del posterior?\n\n\n¿Qué son \\(\\theta_n\\) y \\(\\tau_n^2\\)?"
+    "text": "Reflexionemos… \\[\n\\begin{aligned}\n    y_i\\mid\\mu & \\sim  \\mathcal{N}(\\mu,\\sigma^2) \\\\\n    \\mu & \\sim  \\mathcal{N}(\\theta,\\tau^2) \\\\\n    \\mu \\mid \\mathbf{y} & \\sim \\mathcal{N}(\\theta_n,\\tau_n^2)\n\\end{aligned}\n\\]\n¿Parámetros desconocidos en la verosimilitud?\n\n¿Dimensión y característica del espacio de parámetros?\n\n\n¿Constantes de ajuste del prior?\n\n\n¿Forma del posterior?\n\n\n¿Qué son \\(\\theta_n\\) y \\(\\tau_n^2\\)?"
   },
   {
     "objectID": "presentaciones/presentacion_03.html#section-9",
@@ -2057,21 +2057,21 @@
     "href": "presentaciones/presentacion_03.html#section-20",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "El modelo es\n\\[\n\\begin{align*}\n    Y_i\\mid\\mu,\\sigma^2 & \\sim  \\mathcal{N}(\\mu,\\sigma^2) \\\\\n    \\mu,\\sigma^2 & \\sim  \\mathcal{N}GI(\\theta,\\tau,\\alpha,\\beta)\n\\end{align*}\n\\]\n\\(\\mu\\) y \\(\\sigma^2\\) tienen distribución conjunta normal-gamma-inversa:\n\\[\np(\\mu,\\sigma^2 \\mid \\theta, \\tau, \\alpha, \\beta ) =\n  \\frac{\\sqrt{\\tau}}{\\sqrt{2\\pi\\sigma^2}}\n  \\frac{\\beta^\\alpha}{\\Gamma(\\alpha)}\n  \\left( \\frac{1}{\\sigma^2} \\right)^{\\alpha+1}\n  e^{-\\frac{2\\beta + \\tau(\\mu-\\theta)^2}{2\\sigma^2}}\n\\]\nSi anticipamos que la normal-gamma-inversa es conjugada de la normal (para los parámetros \\(\\mu\\) y \\(\\sigma^2\\)), ¿qué podemos decir de la distribución a posteriori (conjunta) de \\(\\mu\\) y \\(\\sigma^2\\)"
+    "text": "El modelo es\n\\[\n\\begin{aligned}\n    Y_i\\mid\\mu,\\sigma^2 & \\sim  \\mathcal{N}(\\mu,\\sigma^2) \\\\\n    \\mu,\\sigma^2 & \\sim  \\mathcal{N}GI(\\theta,\\tau,\\alpha,\\beta)\n\\end{aligned}\n\\]\n\\(\\mu\\) y \\(\\sigma^2\\) tienen distribución conjunta normal-gamma-inversa:\n\\[\np(\\mu,\\sigma^2 \\mid \\theta, \\tau, \\alpha, \\beta ) =\n  \\frac{\\sqrt{\\tau}}{\\sqrt{2\\pi\\sigma^2}}\n  \\frac{\\beta^\\alpha}{\\Gamma(\\alpha)}\n  \\left( \\frac{1}{\\sigma^2} \\right)^{\\alpha+1}\n  e^{-\\frac{2\\beta + \\tau(\\mu-\\theta)^2}{2\\sigma^2}}\n\\]\nSi anticipamos que la normal-gamma-inversa es conjugada de la normal (para los parámetros \\(\\mu\\) y \\(\\sigma^2\\)), ¿qué podemos decir de la distribución a posteriori (conjunta) de \\(\\mu\\) y \\(\\sigma^2\\)"
   },
   {
     "objectID": "presentaciones/presentacion_03.html#section-21",
     "href": "presentaciones/presentacion_03.html#section-21",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Efectivamente, se puede probar que:\n\\[\n\\begin{align*}\n\\mu,\\sigma^2 \\mid \\mathbf{y} & \\sim  \\mathcal{N}GI(\\theta_n,\\tau_n,\\alpha_n,\\beta_n)\n\\end{align*}\n\\] con\n\\[\n\\begin{cases}\n\\theta_n = \\frac{\\tau\\theta + n \\bar{y}}{\\tau+n}\\\\\n\\tau_n = \\tau + n\\\\\n\\alpha_n = \\alpha + \\frac{n}{2}\\\\\n\\beta_n = \\beta + \\frac{1}{2} \\sum_i (y_i - \\bar{y})^2 + \\frac{n\\tau}{\\tau + n} \\frac{(\\bar{y}-\\theta)^2}{2}\n\\end{cases}\n\\]\n¿Parámetros desconocidos en la verosimilitud? ¿Dimensión del espacio de parámetros? ¿Constantes de ajuste del prior? ¿Forma del posterior?"
+    "text": "Efectivamente, se puede probar que:\n\\[\n\\begin{aligned}\n\\mu,\\sigma^2 \\mid \\mathbf{y} & \\sim  \\mathcal{N}GI(\\theta_n,\\tau_n,\\alpha_n,\\beta_n)\n\\end{aligned}\n\\] con\n\\[\n\\begin{cases}\n\\theta_n = \\frac{\\tau\\theta + n \\bar{y}}{\\tau+n}\\\\\n\\tau_n = \\tau + n\\\\\n\\alpha_n = \\alpha + \\frac{n}{2}\\\\\n\\beta_n = \\beta + \\frac{1}{2} \\sum_i (y_i - \\bar{y})^2 + \\frac{n\\tau}{\\tau + n} \\frac{(\\bar{y}-\\theta)^2}{2}\n\\end{cases}\n\\]\n¿Parámetros desconocidos en la verosimilitud? ¿Dimensión del espacio de parámetros? ¿Constantes de ajuste del prior? ¿Forma del posterior?"
   },
   {
     "objectID": "presentaciones/presentacion_03.html#section-22",
     "href": "presentaciones/presentacion_03.html#section-22",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Reflexionemos…\n\\[\n\\begin{align*}\n    Y_i \\mid\\mu & \\sim  \\mathcal{N}(\\mu,\\sigma^2) \\\\\n    \\mu & \\sim  \\mathcal{N}(\\theta,\\tau^2) \\\\\n    \\mu \\mid \\mathbf{y} & \\sim \\mathcal{N}(\\theta_n,\\tau_n^2)\n\\end{align*}\n\\]\n¿Parámetros desconocidos en la verosimilitud? ¿Dimensión y característica del espacio de parámetros? ¿Constantes de ajuste del prior? ¿Forma del posterior? ¿Qué son \\(\\theta_n\\) y \\(\\tau_n^2\\)?"
+    "text": "Reflexionemos…\n\\[\n\\begin{aligned}\n    Y_i \\mid\\mu & \\sim  \\mathcal{N}(\\mu,\\sigma^2) \\\\\n    \\mu & \\sim  \\mathcal{N}(\\theta,\\tau^2) \\\\\n    \\mu \\mid \\mathbf{y} & \\sim \\mathcal{N}(\\theta_n,\\tau_n^2)\n\\end{aligned}\n\\]\n¿Parámetros desconocidos en la verosimilitud? ¿Dimensión y característica del espacio de parámetros? ¿Constantes de ajuste del prior? ¿Forma del posterior? ¿Qué son \\(\\theta_n\\) y \\(\\tau_n^2\\)?"
   },
   {
     "objectID": "presentaciones/presentacion_03.html#section-24",
@@ -2372,7 +2372,7 @@
     "href": "presentaciones/presentacion_02.html#pequeño-mundo-1",
     "title": "Estadística Bayesiana",
     "section": "Pequeño mundo",
-    "text": "Pequeño mundo\n\nSe desea estimar la proporción de agua que cubre el planeta Tierra. Para ello se arroja hacia arriba un “globo terráqueo antiestrés” y se registra la posición del dedo índice al volver a tomarlo.\nSe arroja el globo 11 veces hacia arriba y se obtiene la siguiente secuencia: \\[TAAATTAATAA\\]\n\n\n\\[\n\\begin{align*}\n    Y \\mid\\pi & \\sim  \\text{Binomial}(N,\\pi)\\\\\n    \\pi & \\sim  \\text{Beta}(a,b)\n\\end{align*}\n\\]"
+    "text": "Pequeño mundo\n\nSe desea estimar la proporción de agua que cubre el planeta Tierra. Para ello se arroja hacia arriba un “globo terráqueo antiestrés” y se registra la posición del dedo índice al volver a tomarlo.\nSe arroja el globo 11 veces hacia arriba y se obtiene la siguiente secuencia: \\[TAAATTAATAA\\]\n\n\n\\[\n\\begin{aligned}\n  Y \\mid\\pi & \\sim \\text{Binomial}(N,\\pi)\\\\\n  \\pi & \\sim  \\text{Beta}(a,b)\n\\end{aligned}\n\\]"
   },
   {
     "objectID": "presentaciones/presentacion_02.html#section-33",
@@ -2449,7 +2449,7 @@
     "href": "presentaciones/presentacion_02.html#section-41",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "La distribución a priori es \\(\\text{Beta}(a,b)\\) y la distribución a posteriori es \\(\\text{Beta}(y+a,N-y+b)\\). La media del es:\n\\[\n\\begin{align*}\n\\mathbb{E}[{p(\\pi\\mid y)}] & = \\frac{y+a}{a+b+N} \\\\\n& = \\frac{y}{a+b+N} + \\frac{a}{a+b+N} \\\\\n& = \\frac{N}{a+b+N}\\frac{y}{N} + \\frac{a+b}{a+b+N} \\frac{a}{a+b} \\\\\n& = \\frac{N}{a+b+N}\\frac{y}{N} + \\frac{a+b}{a+b+N} \\mathbb{E}{[p(\\pi)]}\n\\end{align*}\n\\]"
+    "text": "La distribución a priori es \\(\\text{Beta}(a,b)\\) y la distribución a posteriori es \\(\\text{Beta}(y+a,N-y+b)\\). La media del es:\n\\[\n\\begin{aligned}\n\\mathbb{E}[{p(\\pi\\mid y)}] & = \\frac{y+a}{a+b+N} \\\\\n& = \\frac{y}{a+b+N} + \\frac{a}{a+b+N} \\\\\n& = \\frac{N}{a+b+N}\\frac{y}{N} + \\frac{a+b}{a+b+N} \\frac{a}{a+b} \\\\\n& = \\frac{N}{a+b+N}\\frac{y}{N} + \\frac{a+b}{a+b+N} \\mathbb{E}{[p(\\pi)]}\n\\end{aligned}\n\\]"
   },
   {
     "objectID": "presentaciones/presentacion_02.html#section-42",
@@ -2491,7 +2491,7 @@
     "href": "presentaciones/presentacion_02.html#section-54",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Para el caso binomial que venimos estudiando, consideramos una realización más (tirar el globo terráqueo y agarrarlo). ¿Cuál es la probabilidad de obtener \\(A\\) (agua)?\n\\[\n\\begin{align*}\np(\\tilde{y} = 1\\mid y) & = \\int_0^1 \\pi \\vphantom{\\tilde{y}}p(\\pi\\mid x) d \\pi = \\mathbb{E}[{p(\\pi\\mid x)}] \\\\\n& = \\frac{y+a}{y+a+N-y+b} = \\frac{y+a}{N+a+b} \\\\\n\\end{align*}\n\\]"
+    "text": "Para el caso binomial que venimos estudiando, consideramos una realización más (tirar el globo terráqueo y agarrarlo). ¿Cuál es la probabilidad de obtener \\(A\\) (agua)?\n\\[\n\\begin{aligned}\np(\\tilde{y} = 1\\mid y) & = \\int_0^1 \\pi \\vphantom{\\tilde{y}}p(\\pi\\mid x) d \\pi = \\mathbb{E}[{p(\\pi\\mid x)}] \\\\\n& = \\frac{y+a}{y+a+N-y+b} = \\frac{y+a}{N+a+b} \\\\\n\\end{aligned}\n\\]"
   },
   {
     "objectID": "presentaciones/presentacion_02.html#section-55",
@@ -2561,7 +2561,7 @@
     "href": "presentaciones/presentacion_04.html#section-5",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Por ejemplo:\n\\[L_2 = (\\theta - \\hat{\\theta})^2\\]\n\\[L_1 = |\\theta - \\hat{\\theta}|\\]\n\\[L_{0/1} =\n\\begin{cases}\n0 \\text{ si } \\hat{\\theta} = \\theta  \\\\\n1 \\text{ si } \\hat{\\theta} \\neq \\theta\n\\end{cases}\\]\n\\[L( \\theta, \\hat{\\theta} ) = \\begin{cases} ( \\theta -  \\hat{\\theta} )^2 & \\hat{\\theta} \\lt \\theta \\\\\\\\ c( \\theta -  \\hat{\\theta} )^2 & \\hat{\\theta} \\ge \\theta, \\;\\; 0\\lt c \\lt 1 \\end{cases}\\]"
+    "text": "Por ejemplo:\n\\[L_2 = (\\theta - \\hat{\\theta})^2\\]\n\\[L_1 = |\\theta - \\hat{\\theta}|\\]\n\\[\nL_{0/1} =\n\\begin{cases}\n0 \\text{ si } \\hat{\\theta} = \\theta  \\\\\n1 \\text{ si } \\hat{\\theta} \\neq \\theta\n\\end{cases}\n\\]\n\\[\nL( \\theta, \\hat{\\theta} ) =\n  \\begin{cases}\n    (\\theta -  \\hat{\\theta} )^2 & \\hat{\\theta} &lt; \\theta \\\\ \\\\\n    c( \\theta -  \\hat{\\theta} )^2 & \\hat{\\theta} \\ge \\theta, \\quad 0 &lt; c &lt; 1\n  \\end{cases}\n\\]"
   },
   {
     "objectID": "presentaciones/presentacion_04.html#section-6",
@@ -2575,14 +2575,14 @@
     "href": "presentaciones/presentacion_04.html#section-7",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "El riesgo a posteriori (posterior risk o posterior expected loss) es la pérdida esperada ponderada por los valores de \\(\\theta\\) (y su distribución a posteriori).\n\n\\[R(\\hat{\\theta}) = \\mathbb{E}_{\\theta\\mid y}[L(\\theta,\\hat\\theta)] = \\int L(\\theta,\\hat\\theta) p(\\theta\\mid y) d\\theta\\]\n\n\nEs una función de los posibles valores que puede tomar \\(\\hat\\theta\\).\n\n\nPodemos obtener el \\(\\hat\\theta\\) que minimice \\(R(\\hat\\theta)\\). Es decir, buscamos un valor (un estimador) que minimice la pérdida esperada al usarlo para resumir \\(p(\\theta\\mid y)\\): \\[\\hat{\\theta} = \\underset{\\hat\\theta}{\\mathrm{arg\\,min}}\\left[ R(\\hat\\theta) \\right]\\]"
+    "text": "El riesgo a posteriori (posterior risk o posterior expected loss) es la pérdida esperada ponderada por los valores de \\(\\theta\\) (y su distribución a posteriori).\n\n\\[R(\\hat{\\theta}) = \\mathbb{E}_{\\theta\\mid y}[L(\\theta,\\hat{\\theta})] = \\int L(\\theta,\\hat{\\theta}) p(\\theta\\mid y) d\\theta\\]\n\n\nEs una función de los posibles valores que puede tomar \\(\\hat{\\theta}\\).\n\n\nPodemos obtener el \\(\\hat{\\theta}\\) que minimice \\(R(\\hat{\\theta})\\). Es decir, buscamos un valor (un estimador) que minimice la pérdida esperada al usarlo para resumir \\(p(\\theta\\mid y)\\): \\[\\hat{\\theta} = \\underset{\\hat{\\theta}}{\\mathrm{arg\\,min}}\\left[ R(\\hat{\\theta}) \\right]\\]"
   },
   {
     "objectID": "presentaciones/presentacion_04.html#section-8",
     "href": "presentaciones/presentacion_04.html#section-8",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Simulemos…\n\nSupongamos que \\(\\theta\\mid y \\sim \\mathrm{Beta}(2,9)\\)\n\n\n\n\\(R\\) es una función de \\(\\hat\\theta\\) (los distintos valores que podemos usar para resumir \\(p(\\theta\\mid y)\\))\nPara distintos valores de \\(\\hat\\theta\\) voy a tomar muestras de \\(p(\\theta\\mid y)\\) y calcular la pérdida \\(L\\)\nPara cada valor de \\(\\hat\\theta\\) voy a calcular la pérdida promedio (ya va a estar ponderada por la probabilidad a posteriori de \\(\\theta\\))"
+    "text": "Simulemos…\n\nSupongamos que \\(\\theta\\mid y \\sim \\mathrm{Beta}(2,9)\\)\n\n\n\n\\(R\\) es una función de \\(\\hat{\\theta}\\) (los distintos valores que podemos usar para resumir \\(p(\\theta\\mid y)\\))\nPara distintos valores de \\(\\hat{\\theta}\\) voy a tomar muestras de \\(p(\\theta\\mid y)\\) y calcular la pérdida \\(L\\)\nPara cada valor de \\(\\hat{\\theta}\\) voy a calcular la pérdida promedio (ya va a estar ponderada por la probabilidad a posteriori de \\(\\theta\\))"
   },
   {
     "objectID": "presentaciones/presentacion_04.html#section-9",
@@ -2603,14 +2603,14 @@
     "href": "presentaciones/presentacion_04.html#section-12",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Una prueba más formal para el caso de la media…\n\nSea la pérdida cuadrática \\(L(\\theta,\\hat\\theta)=(\\theta-\\hat\\theta)^2\\), el riesgo (posterior expected loss) es:\n\n\n\\[\n\\mathbb{E}_{\\theta\\mid y}[L(\\theta,\\hat\\theta)] = \\mathbb{E}_{\\theta\\mid y}[\\theta^2] - 2 \\hat{\\theta}\\mathbb{E}_{\\theta\\mid y}[\\theta] + {\\hat{\\theta}}^2\n\\]\n\n\nderivando respecto a \\(\\hat{\\theta}\\) e igualando a cero se obtiene que \\(\\underset{\\hat\\theta}{\\mathrm{arg\\,min}}\\left[ R(\\hat\\theta) \\right] = \\mathbb{E}_{\\theta\\mid y}[\\theta] = \\mathbb{E}[p(\\theta\\mid y)]\\)"
+    "text": "Una prueba más formal para el caso de la media…\n\nSea la pérdida cuadrática \\(L(\\theta, \\hat{\\theta}) = (\\theta - \\hat{\\theta}) ^ 2\\), el riesgo (posterior expected loss) es:\n\n\n\\[\n\\mathbb{E}_{\\theta \\mid y}[L(\\theta, \\hat{\\theta})]\n  = \\mathbb{E}_{\\theta \\mid y}[\\theta^2] - 2 \\hat{\\theta} \\mathbb{E}_{\\theta\\mid y}[\\theta] + {\\hat{\\theta}}^2\n\\]\n\n\nderivando respecto a \\(\\hat{\\theta}\\) e igualando a cero se obtiene que \\(\\underset{\\hat{\\theta}}{\\text{arg min}}\\left[ R(\\hat{\\theta}) \\right] = \\mathbb{E}_{\\theta \\mid y}[\\theta] = \\mathbb{E}[p(\\theta \\mid y)]\\)"
   },
   {
     "objectID": "presentaciones/presentacion_04.html#section-13",
     "href": "presentaciones/presentacion_04.html#section-13",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Una prueba más formal para el caso de la mediana…\n\nSea la pérdida absoluta \\(L(\\theta,\\hat\\theta)=|\\theta-\\hat\\theta|\\), el riesgo (posterior expected loss) es:\n\n\n\\[\n\\mathbb{E}_{\\theta\\mid y}[L(\\theta,\\hat\\theta)] = \\int_{-\\infty}^\\infty |\\theta-\\hat\\theta| p(\\theta\\mid y)d\\theta\n\\]\n\n\n\\[\n\\int_{-\\infty}^\\hat{\\theta} (\\hat\\theta-\\theta) p(\\theta\\mid y)d\\theta + \\int_{\\hat{\\theta}}^\\hat{\\infty} (\\theta-\\hat\\theta) p(\\theta\\mid y)d\\theta\n\\]\n\n\nPara derivar, se utiliza la regla integral de Leibniz:\n\n\n\\[\\frac{d}{d\\hat\\theta}\\int_{-\\infty}^{\\hat\\theta} g(\\hat\\theta,\\theta)d\\theta = g(\\hat\\theta,\\hat\\theta) + \\int_{-\\infty}^\\hat\\theta \\frac{\\partial}{\\partial\\hat\\theta}g(\\hat\\theta,\\theta)d\\theta\\]\n\n\nSe puede probar que \\(\\int_{-\\infty}^\\hat\\theta p(\\theta\\mid y)d\\theta = \\frac{1}{2}\\), por lo que el \\(\\hat\\theta\\) que minimiza la expresión es la mediana."
+    "text": "Una prueba más formal para el caso de la mediana…\n\nSea la pérdida absoluta \\(L(\\theta,\\hat{\\theta})=\\lvert \\theta-\\hat{\\theta} \\rvert\\), el riesgo (posterior expected loss) es:\n\n\n\\[\n\\mathbb{E}_{\\theta \\mid y}[L(\\theta, \\hat{\\theta})] = \\int_{-\\infty}^\\infty \\lvert \\theta-\\hat{\\theta} \\rvert  p(\\theta \\mid y) d\\theta\n\\]\n\n\n\\[\n\\int_{-\\infty}^{\\hat{\\theta}} (\\hat{\\theta} - \\theta) p(\\theta\\mid y)d\\theta + \\int_{\\hat{\\theta}}^\\infty (\\theta-\\hat{\\theta}) p(\\theta\\mid y)d\\theta\n\\]\n\n\nPara derivar, se utiliza la regla integral de Leibniz:\n\n\n\\[\n\\frac{d}{d\\hat{\\theta}} \\int_{-\\infty}^{\\hat{\\theta}} g(\\hat{\\theta}, \\theta)d\\theta\n  = g(\\hat{\\theta},\\hat{\\theta})\n    + \\int_{-\\infty}^{\\hat{\\theta}} \\frac{\\partial}{\\partial\\hat{\\theta}}g(\\hat{\\theta}, \\theta)d\\theta\n\\]\n\n\nSe puede probar que \\(\\int_{-\\infty}^{\\hat{\\theta}} p(\\theta\\mid y)d\\theta = \\frac{1}{2}\\), por lo que el \\(\\hat{\\theta}\\) que minimiza la expresión es la mediana."
   },
   {
     "objectID": "presentaciones/presentacion_04.html#intervalos-de-credibilidad",
@@ -2638,14 +2638,14 @@
     "href": "presentaciones/presentacion_04.html#section-16",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Un nuevo ejemplo del modelo beta–Binomial: partimos de \\(\\mathrm{Beta}(2,2)\\), observamos \\(4\\) caras en \\(6\\) tiradas y nuestra creencia a posteriori pasa a ser \\(Beta(6,4)\\)."
+    "text": "Un nuevo ejemplo del modelo beta–Binomial: partimos de \\(\\text{Beta}(2,2)\\), observamos \\(4\\) caras en \\(6\\) tiradas y nuestra creencia a posteriori pasa a ser \\(\\text{Beta}(6,4)\\)."
   },
   {
     "objectID": "presentaciones/presentacion_04.html#section-17",
     "href": "presentaciones/presentacion_04.html#section-17",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Parámetros\n¿Cuál es la probabilidad a posteriori de que \\(\\pi\\) sea mayor a \\(0.50\\)? ¿y de que sea mayor a ?\n\nmuestras_pi &lt;- rbeta(2000,6,4)\nmean(muestras_pi &gt; 0.5)\nmean(muestras_pi &gt; 0.8)"
+    "text": "Parámetros\n¿Cuál es la probabilidad a posteriori de que \\(\\pi\\) sea mayor a \\(0.50\\)? ¿y de que sea mayor a \\(0.80\\)?\n\nmuestras_pi &lt;- rbeta(2000,6,4)\nmean(muestras_pi &gt; 0.5)\nmean(muestras_pi &gt; 0.8)"
   },
   {
     "objectID": "presentaciones/presentacion_04.html#section-18",

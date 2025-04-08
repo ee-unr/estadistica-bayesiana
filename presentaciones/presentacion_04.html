@@ -452,12 +452,20 @@
 <p>Por ejemplo:</p>
 <p><span class="math display">\[L_2 = (\theta - \hat{\theta})^2\]</span></p>
 <p><span class="math display">\[L_1 = |\theta - \hat{\theta}|\]</span></p>
-<p><span class="math display">\[L_{0/1} =
+<p><span class="math display">\[
+L_{0/1} =
 \begin{cases}
 0 \text{ si } \hat{\theta} = \theta  \\
 1 \text{ si } \hat{\theta} \neq \theta
-\end{cases}\]</span></p>
-<p><span class="math display">\[L( \theta, \hat{\theta} ) = \begin{cases} ( \theta -  \hat{\theta} )^2 &amp; \hat{\theta} \lt \theta \\\\ c( \theta -  \hat{\theta} )^2 &amp; \hat{\theta} \ge \theta, \;\; 0\lt c \lt 1 \end{cases}\]</span></p>
+\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+L( \theta, \hat{\theta} ) =
+  \begin{cases}
+    (\theta -  \hat{\theta} )^2 &amp; \hat{\theta} &lt; \theta \\ \\
+    c( \theta -  \hat{\theta} )^2 &amp; \hat{\theta} \ge \theta, \quad 0 &lt; c &lt; 1
+  \end{cases}
+\]</span></p>
 </section>
 <section id="section-6" class="slide level2">
 <h2></h2>
@@ -473,13 +481,13 @@
 <h2></h2>
 <p>El riesgo <em>a posteriori</em> (<em>posterior risk</em> o <em>posterior expected loss</em>) es la pérdida esperada ponderada por los valores de <span class="math inline">\(\theta\)</span> (y su distribución <em>a posteriori</em>).</p>
 <div class="fragment">
-<p><span class="math display">\[R(\hat{\theta}) = \mathbb{E}_{\theta\mid y}[L(\theta,\hat\theta)] = \int L(\theta,\hat\theta) p(\theta\mid y) d\theta\]</span></p>
+<p><span class="math display">\[R(\hat{\theta}) = \mathbb{E}_{\theta\mid y}[L(\theta,\hat{\theta})] = \int L(\theta,\hat{\theta}) p(\theta\mid y) d\theta\]</span></p>
 </div>
 <div class="fragment">
-<p>Es una función de los posibles valores que puede tomar <span class="math inline">\(\hat\theta\)</span>.</p>
+<p>Es una función de los posibles valores que puede tomar <span class="math inline">\(\hat{\theta}\)</span>.</p>
 </div>
 <div class="fragment">
-<p>Podemos obtener el <span class="math inline">\(\hat\theta\)</span> que minimice <span class="math inline">\(R(\hat\theta)\)</span>. Es decir, buscamos un valor (un estimador) que minimice la pérdida esperada al usarlo para resumir <span class="math inline">\(p(\theta\mid y)\)</span>: <span class="math display">\[\hat{\theta} = \underset{\hat\theta}{\mathrm{arg\,min}}\left[ R(\hat\theta) \right]\]</span></p>
+<p>Podemos obtener el <span class="math inline">\(\hat{\theta}\)</span> que minimice <span class="math inline">\(R(\hat{\theta})\)</span>. Es decir, buscamos un valor (un estimador) que minimice la pérdida esperada al usarlo para resumir <span class="math inline">\(p(\theta\mid y)\)</span>: <span class="math display">\[\hat{\theta} = \underset{\hat{\theta}}{\mathrm{arg\,min}}\left[ R(\hat{\theta}) \right]\]</span></p>
 </div>
 </section>
 <section id="section-8" class="slide level2">
@@ -490,9 +498,9 @@
 </div>
 <div class="fragment">
 <ul>
-<li class="fragment"><span class="math inline">\(R\)</span> es una función de <span class="math inline">\(\hat\theta\)</span> (los distintos valores que podemos usar para resumir <span class="math inline">\(p(\theta\mid y)\)</span>)</li>
-<li class="fragment">Para distintos valores de <span class="math inline">\(\hat\theta\)</span> voy a tomar muestras de <span class="math inline">\(p(\theta\mid y)\)</span> y calcular la pérdida <span class="math inline">\(L\)</span></li>
-<li class="fragment">Para cada valor de <span class="math inline">\(\hat\theta\)</span> voy a calcular la pérdida promedio (ya va a estar ponderada por la probabilidad <em>a posteriori</em> de <span class="math inline">\(\theta\)</span>)</li>
+<li class="fragment"><span class="math inline">\(R\)</span> es una función de <span class="math inline">\(\hat{\theta}\)</span> (los distintos valores que podemos usar para resumir <span class="math inline">\(p(\theta\mid y)\)</span>)</li>
+<li class="fragment">Para distintos valores de <span class="math inline">\(\hat{\theta}\)</span> voy a tomar muestras de <span class="math inline">\(p(\theta\mid y)\)</span> y calcular la pérdida <span class="math inline">\(L\)</span></li>
+<li class="fragment">Para cada valor de <span class="math inline">\(\hat{\theta}\)</span> voy a calcular la pérdida promedio (ya va a estar ponderada por la probabilidad <em>a posteriori</em> de <span class="math inline">\(\theta\)</span>)</li>
 </ul>
 </div>
 </section>
@@ -535,41 +543,46 @@
 <h2></h2>
 <p>Una prueba más formal para el caso de la <strong>media</strong>…</p>
 <div class="fragment">
-<p>Sea la pérdida cuadrática <span class="math inline">\(L(\theta,\hat\theta)=(\theta-\hat\theta)^2\)</span>, el riesgo (<em>posterior expected loss</em>) es:</p>
+<p>Sea la pérdida cuadrática <span class="math inline">\(L(\theta, \hat{\theta}) = (\theta - \hat{\theta}) ^ 2\)</span>, el riesgo (<em>posterior expected loss</em>) es:</p>
 </div>
 <div class="fragment">
 <p><span class="math display">\[
-\mathbb{E}_{\theta\mid y}[L(\theta,\hat\theta)] = \mathbb{E}_{\theta\mid y}[\theta^2] - 2 \hat{\theta}\mathbb{E}_{\theta\mid y}[\theta] + {\hat{\theta}}^2
+\mathbb{E}_{\theta \mid y}[L(\theta, \hat{\theta})]
+  = \mathbb{E}_{\theta \mid y}[\theta^2] - 2 \hat{\theta} \mathbb{E}_{\theta\mid y}[\theta] + {\hat{\theta}}^2
 \]</span></p>
 </div>
 <div class="fragment">
-<p>derivando respecto a <span class="math inline">\(\hat{\theta}\)</span> e igualando a cero se obtiene que <span class="math inline">\(\underset{\hat\theta}{\mathrm{arg\,min}}\left[ R(\hat\theta) \right] = \mathbb{E}_{\theta\mid y}[\theta] = \mathbb{E}[p(\theta\mid y)]\)</span></p>
+<p>derivando respecto a <span class="math inline">\(\hat{\theta}\)</span> e igualando a cero se obtiene que <span class="math inline">\(\underset{\hat{\theta}}{\text{arg min}}\left[ R(\hat{\theta}) \right] = \mathbb{E}_{\theta \mid y}[\theta] = \mathbb{E}[p(\theta \mid y)]\)</span></p>
 </div>
 </section>
 <section id="section-13" class="slide level2 smaller">
 <h2></h2>
 <p>Una prueba más formal para el caso de la <strong>mediana</strong>…</p>
 <div class="fragment">
-<p>Sea la pérdida absoluta <span class="math inline">\(L(\theta,\hat\theta)=|\theta-\hat\theta|\)</span>, el riesgo (<em>posterior expected loss</em>) es:</p>
+<p>Sea la pérdida absoluta <span class="math inline">\(L(\theta,\hat{\theta})=\lvert \theta-\hat{\theta} \rvert\)</span>, el riesgo (<em>posterior expected loss</em>) es:</p>
 </div>
 <div class="fragment">
 <p><span class="math display">\[
-\mathbb{E}_{\theta\mid y}[L(\theta,\hat\theta)] = \int_{-\infty}^\infty |\theta-\hat\theta| p(\theta\mid y)d\theta
+\mathbb{E}_{\theta \mid y}[L(\theta, \hat{\theta})] = \int_{-\infty}^\infty \lvert \theta-\hat{\theta} \rvert  p(\theta \mid y) d\theta
 \]</span></p>
 </div>
 <div class="fragment">
 <p><span class="math display">\[
-\int_{-\infty}^\hat{\theta} (\hat\theta-\theta) p(\theta\mid y)d\theta + \int_{\hat{\theta}}^\hat{\infty} (\theta-\hat\theta) p(\theta\mid y)d\theta
+\int_{-\infty}^{\hat{\theta}} (\hat{\theta} - \theta) p(\theta\mid y)d\theta + \int_{\hat{\theta}}^\infty (\theta-\hat{\theta}) p(\theta\mid y)d\theta
 \]</span></p>
 </div>
 <div class="fragment">
 <p>Para derivar, se utiliza la regla integral de Leibniz:</p>
 </div>
 <div class="fragment">
-<p><span class="math display">\[\frac{d}{d\hat\theta}\int_{-\infty}^{\hat\theta} g(\hat\theta,\theta)d\theta = g(\hat\theta,\hat\theta) + \int_{-\infty}^\hat\theta \frac{\partial}{\partial\hat\theta}g(\hat\theta,\theta)d\theta\]</span></p>
+<p><span class="math display">\[
+\frac{d}{d\hat{\theta}} \int_{-\infty}^{\hat{\theta}} g(\hat{\theta}, \theta)d\theta
+  = g(\hat{\theta},\hat{\theta})
+    + \int_{-\infty}^{\hat{\theta}} \frac{\partial}{\partial\hat{\theta}}g(\hat{\theta}, \theta)d\theta
+\]</span></p>
 </div>
 <div class="fragment">
-<p>Se puede probar que <span class="math inline">\(\int_{-\infty}^\hat\theta p(\theta\mid y)d\theta = \frac{1}{2}\)</span>, por lo que el <span class="math inline">\(\hat\theta\)</span> que minimiza la expresión es la mediana.</p>
+<p>Se puede probar que <span class="math inline">\(\int_{-\infty}^{\hat{\theta}} p(\theta\mid y)d\theta = \frac{1}{2}\)</span>, por lo que el <span class="math inline">\(\hat{\theta}\)</span> que minimiza la expresión es la mediana.</p>
 </div>
 </section>
 <section id="intervalos-de-credibilidad" class="slide level2 smaller">
@@ -614,12 +627,12 @@
 </section>
 <section id="section-16" class="slide level2">
 <h2></h2>
-<p>Un nuevo ejemplo del modelo beta–Binomial: partimos de <span class="math inline">\(\mathrm{Beta}(2,2)\)</span>, observamos <span class="math inline">\(4\)</span> caras en <span class="math inline">\(6\)</span> tiradas y nuestra creencia <em>a posteriori</em> pasa a ser <span class="math inline">\(Beta(6,4)\)</span>.</p>
+<p>Un nuevo ejemplo del modelo beta–Binomial: partimos de <span class="math inline">\(\text{Beta}(2,2)\)</span>, observamos <span class="math inline">\(4\)</span> caras en <span class="math inline">\(6\)</span> tiradas y nuestra creencia <em>a posteriori</em> pasa a ser <span class="math inline">\(\text{Beta}(6,4)\)</span>.</p>
 </section>
 <section id="section-17" class="slide level2">
 <h2></h2>
 <h3 id="parámetros">Parámetros</h3>
-<p>¿Cuál es la probabilidad <em>a posteriori</em> de que <span class="math inline">\(\pi\)</span> sea mayor a <span class="math inline">\(0.50\)</span>? ¿y de que sea mayor a ?</p>
+<p>¿Cuál es la probabilidad <em>a posteriori</em> de que <span class="math inline">\(\pi\)</span> sea mayor a <span class="math inline">\(0.50\)</span>? ¿y de que sea mayor a <span class="math inline">\(0.80\)</span>?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>muestras_pi <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">2000</span>,<span class="dv">6</span>,<span class="dv">4</span>)</span>
 <span id="cb2-2"><a></a><span class="fu">mean</span>(muestras_pi <span class="sc">&gt;</span> <span class="fl">0.5</span>)</span>

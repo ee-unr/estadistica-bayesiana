@@ -430,10 +430,10 @@ p(\lambda \mid s, r) = p(\lambda) = \frac{r^s}{\Gamma(s)} \lambda^{s-1}e^{-r\lam
 <section id="section-1" class="slide level2 smaller">
 <h2></h2>
 <p>El modelo propuesto es <span class="math display">\[
-\begin{align*}
-    Y_i \mid \lambda &amp; \sim  Po(\lambda)\\
-    \lambda &amp; \sim  \mathrm{Gamma}(s, r)
-\end{align*}
+\begin{aligned}
+  Y_i \mid \lambda &amp; \sim  Po(\lambda)\\
+  \lambda &amp; \sim  \mathrm{Gamma}(s, r)
+\end{aligned}
 \]</span></p>
 <p>El <em>likelihood</em> es Poisson: <span class="math display">\[p(y_i\mid \lambda) = \frac{\lambda^{y_i}e^{-\lambda}}{y_i!} \rightarrow p(\mathbf{y}\mid \lambda) = \prod_i \frac{\lambda^{y_i}e^{-\lambda}}{y_i!} = \frac{\lambda^{\sum_i y_i}e^{-n\lambda}}{\prod_{i}y_i!}\]</span></p>
 <p>El <em>prior</em> es Gamma: <span class="math display">\[p(\lambda) = \frac{r^s}{\Gamma(s)} \lambda^{s-1}e^{-r\lambda}\]</span></p>
@@ -488,10 +488,10 @@ p(\lambda\mid \mathbf{y}) = \frac{(n + r )^{\sum_i y_i + s}}{\Gamma(\sum_i y_i +
 <h2></h2>
 <p>El modelo propuesto es: <span class="math display">\[
 \small{
-  \begin{align*}
+  \begin{aligned}
       y_i \mid \mu &amp; \sim  \mathcal{N}(\mu,\sigma^2)\\
       \mu &amp; \sim \mathcal{N}(\theta,\tau^2)
-  \end{align*}
+  \end{aligned}
 }
 \]</span></p>
 <div class="fragment">
@@ -519,23 +519,23 @@ p(\lambda\mid \mathbf{y}) = \frac{(n + r )^{\sum_i y_i + s}}{\Gamma(\sum_i y_i +
 <h2></h2>
 <p><span class="math display">\[p(\mu\mid \mathbf{y}) \propto p(\mathbf{y}\mid\mu) p(\mu)\]</span> <span class="math display">\[p(\mu \mid \mathbf{y}) \propto   e^{-\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}} \frac{1}{\sqrt{2\pi\tau}} e^{-\frac{(\mu-\theta)^2}{2\tau^2}}\]</span></p>
 <p><span class="math display">\[
-\begin{align*}
+\begin{aligned}
 p(\mu \mid \mathbf{y}) &amp; \propto  e^{-\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}} e^{-\frac{(\mu-\theta)^2}{2\tau^2}} \\
 &amp;  \propto  e^{-\left[\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}+\frac{(\mu-\theta)^2}{2\tau^2}\right]} \\
 &amp; \propto e^{-\left[ \frac{\bar{y}^2 - 2\bar{y} \mu + \mu^2}{2\sigma^2/n} + \frac{\mu^2 - 2\mu\theta^2 + \theta^2}{2\tau^2} \right]} \\
 &amp; \propto e^{\left[ \frac{ 2\bar{y} \mu - \mu^2}{2\sigma^2/n} + \frac{-\mu^2 + 2\mu\theta^2}{2\tau^2} \right]} \\
 &amp; \propto e^{\left[ \frac{(2\bar{y} \mu - \mu^2)n\tau^2 + (-\mu^2 + 2\mu\theta^2)\sigma^2}{2\sigma^2\tau^2} \right]}
-\end{align*}
+\end{aligned}
 \]</span></p>
 </section>
 <section id="section-6" class="slide level2">
 <h2></h2>
 <p><span class="math display">\[
-    \begin{align*}
+    \begin{aligned}
 P(\mu \mid \mathbf{y}) &amp; \propto e^{\frac{2\mu(\theta\sigma^2+ \bar{y}n\tau^2)-\mu^2(n\tau^2+\sigma^2)}{2\tau^2\sigma^2}} \\
 &amp; \propto e^{\frac{-\mu^2 + 2\mu \left( \frac{\theta\sigma^2 + \bar{y}n\tau^2}{n\tau^2 + \sigma^2} \right)}{2\tau^2\sigma^2/(n\tau^2 + \sigma^2)}} e^{-\left(\frac{\theta\sigma^2 + \bar{y}n\tau^2}{n\tau^2 + \sigma^2}\right)^2} \\
 &amp; \propto e^{-\frac{\left(\mu -  \frac{\theta\sigma^2 + \bar{y}n\tau^2}{n\tau^2 + \sigma^2} \right)^2}{2\tau^2\sigma^2/(n\tau^2+\sigma^2)}}
-    \end{align*}
+    \end{aligned}
 \]</span> <span class="math display">\[p(\mu\mid\mathbf{y}) = K^* e^{-\frac{\left(\mu -  \frac{\theta\sigma^2 + \bar{y}n\tau^2}{n\tau^2 + \sigma^2} \right)^2}{2\tau^2\sigma^2/(n\tau^2+\sigma^2)}}\]</span></p>
 </section>
 <section id="section-7" class="slide level2">
@@ -543,21 +543,21 @@ P(\mu \mid \mathbf{y}) &amp; \propto e^{\frac{2\mu(\theta\sigma^2+ \bar{y}n\tau^
 <p>Por lo tanto, resulta que la distribución <em>a posteriori</em> es normal de parámetros <span class="math inline">\(\theta_n\)</span> y <span class="math inline">\(\tau_n^2\)</span></p>
 <div class="fragment">
 <p><span class="math display">\[
-\begin{align*}
+\begin{aligned}
 \mu\mid \mathbf{y} &amp; \sim  \mathcal{N}\left( \frac{\theta\sigma^2 + \bar{y}n\tau^2}{n\tau^2 + \sigma^2},\frac{\tau^2\sigma^2}{n\tau^2+\sigma^2} \right) \\
 &amp; \sim \mathcal{N}\left( \theta_n,\tau_n^2 \right)
-\end{align*}
+\end{aligned}
 \]</span></p>
 </div>
 </section>
 <section id="section-8" class="slide level2">
 <h2></h2>
 <p>Reflexionemos… <span class="math display">\[
-\begin{align*}
+\begin{aligned}
     y_i\mid\mu &amp; \sim  \mathcal{N}(\mu,\sigma^2) \\
     \mu &amp; \sim  \mathcal{N}(\theta,\tau^2) \\
     \mu \mid \mathbf{y} &amp; \sim \mathcal{N}(\theta_n,\tau_n^2)
-\end{align*}
+\end{aligned}
 \]</span></p>
 <p>¿Parámetros desconocidos en la verosimilitud?</p>
 <div class="fragment">
@@ -745,10 +745,10 @@ y-\mu \mid \mu &amp; \sim &amp; \mathcal{N}(0,\sigma^2) \\
 <h2></h2>
 <p>El modelo es</p>
 <p><span class="math display">\[
-\begin{align*}
+\begin{aligned}
     Y_i\mid\mu,\sigma^2 &amp; \sim  \mathcal{N}(\mu,\sigma^2) \\
     \mu,\sigma^2 &amp; \sim  \mathcal{N}GI(\theta,\tau,\alpha,\beta)
-\end{align*}
+\end{aligned}
 \]</span></p>
 <p><span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span> tienen <strong>distribución conjunta</strong> normal-gamma-inversa:</p>
 <p><span class="math display">\[
@@ -764,9 +764,9 @@ p(\mu,\sigma^2 \mid \theta, \tau, \alpha, \beta ) =
 <h2></h2>
 <p>Efectivamente, se puede probar que:</p>
 <p><span class="math display">\[
-\begin{align*}
+\begin{aligned}
 \mu,\sigma^2 \mid \mathbf{y} &amp; \sim  \mathcal{N}GI(\theta_n,\tau_n,\alpha_n,\beta_n)
-\end{align*}
+\end{aligned}
 \]</span> con</p>
 <p><span class="math display">\[
 \begin{cases}
@@ -782,11 +782,11 @@ p(\mu,\sigma^2 \mid \theta, \tau, \alpha, \beta ) =
 <h2></h2>
 <p>Reflexionemos…</p>
 <p><span class="math display">\[
-\begin{align*}
+\begin{aligned}
     Y_i \mid\mu &amp; \sim  \mathcal{N}(\mu,\sigma^2) \\
     \mu &amp; \sim  \mathcal{N}(\theta,\tau^2) \\
     \mu \mid \mathbf{y} &amp; \sim \mathcal{N}(\theta_n,\tau_n^2)
-\end{align*}
+\end{aligned}
 \]</span></p>
 <p>¿Parámetros desconocidos en la verosimilitud? ¿Dimensión y característica del espacio de parámetros? ¿Constantes de ajuste del <em>prior</em>? ¿Forma del <em>posterior</em>? ¿Qué son <span class="math inline">\(\theta_n\)</span> y <span class="math inline">\(\tau_n^2\)</span>?</p>
 </section>
