@@ -336,15 +336,16 @@ vida profesional.
     con desvío estándar de 0.25 mensajes.
 
     i. Elija una distribución Gamma que represente adecuadamente lo que se cree acerca de $\lambda$
-    i. ¿Cuál es la probabilidad _a priori_ de que la tasa de mensajes sea mayor a 10?
-    i. ¿Cuántos mensajes se espera que reciba una persona en promedio en una hora?
+    ii. ¿Cuál es la probabilidad _a priori_ de que la tasa de mensajes sea mayor a 10?
+    iii. ¿Cuántos mensajes se espera que reciba una persona en promedio en una hora?
 
     Se sondea a un grupo de seis personas que recibieron 7, 3, 8, 9, 10 y 12 mensajes en la última hora.
 
-    i. Graficar la función de verosimilitud.
-    i. Determinar la distribución _a posteriori_ de $\lambda$.
-    i. ¿Cuál es la probabilidad _a posteriori_ de que la tasa de mensajes sea mayor a 10?
-    i. ¿Cuántos mensajes se espera ahora que reciba una persona en promedio en una hora?
+    iv. Graficar la función de verosimilitud.
+    v. Determinar la distribución _a posteriori_ de $\lambda$.
+    vi. ¿Cuál es la probabilidad _a posteriori_ de que la tasa de mensajes sea mayor a 10?
+    vii. ¿Cuántos mensajes se espera ahora que reciba una persona en promedio en una hora?
+    viii. ¿Cuál es la probabilidad de que una persona reciba mas de 6 mensajes en una hora?
 
 1.  🧩 📌 **Inferencia sobre una distribución Uniforme**
 
