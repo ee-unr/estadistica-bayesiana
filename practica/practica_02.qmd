@@ -23,7 +23,7 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
 captions[["insectos"]] <- paste0(
     "Una gran variedad de insectos<br>",
     htmltools::a(
-        "Imágen de Freepik", 
+        "Imágen de Freepik",
         href="https://www.freepik.es/vector-gratis/errores-dibujos-animados-bebe-insecto-divertido-bicho-feliz-linda-mariquita_10722677.htm"
     )
 )
@@ -34,9 +34,9 @@ captions[["insectos"]] <- paste0(
 
 Esta sección contiene ejercicios para trabajar con modelos basados en distribuciones
 conjugadas. En general, los ejercicios requieren cálculos o derivaciones que se pueden
-realizar a mano. Sin embargo, se promueve fuertemente el uso de la computadora y el 
+realizar a mano. Sin embargo, se promueve fuertemente el uso de la computadora y el
 lenguaje R para verificar los resultados, mostrar soluciones alternativas y ejercitar
-el uso de una herramienta que será de suma utilidad a lo largo de todo el curso y de la 
+el uso de una herramienta que será de suma utilidad a lo largo de todo el curso y de la
 vida profesional.
 
 1.  💻📌 **¿Quién domina el _posterior_?**
@@ -67,7 +67,7 @@ vida profesional.
     ahora el grado de credibilidad de los diferentes valores de $\theta$?
     i. Si, en lugar de eso, se determina que $y=10$ de $n=20$ personas prefieren perros, ¿cómo cambia
     ahora el grado de credibilidad de los diferentes valores de $\theta$?
-    
+
 1.  💻📌 **Pasito a pasito**
 
     Sea $\theta$ la probabilidad de éxito de un evento de interés. Sea $\text{Beta}(2,3)$ la distribución
@@ -77,7 +77,7 @@ vida profesional.
     i. Segunda observación: éxito.
     i. Tercera observación: fracaso.
     i. Cuarta observación: éxito.
-    
+
 1.  💻📌 **Pasitos tras pasitos**
 
     Sea $\theta$ la probabilidad de éxito de un evento de interés. Sea $\text{Beta}(2,3)$ la distribución
@@ -88,12 +88,12 @@ vida profesional.
     i. Segundas observaciones: un éxito.
     i. Terceras observaciones: un éxito.
     i. Cuartas observaciónes: dos éxitos.
-    
+
 1.  💻📌 **Diferentes observaciones, diferentes _posteriors_**
 
-    Una empresa que fabrica zapatillas está diseñando una publicidad para Instagram. 
-    Tres empleados comparten que la creencia _a priori_ para $\pi$, 
-    la probabilidad de que un cliente haga clic en el anuncio cuando lo ve, 
+    Una empresa que fabrica zapatillas está diseñando una publicidad para Instagram.
+    Tres empleados comparten que la creencia _a priori_ para $\pi$,
+    la probabilidad de que un cliente haga clic en el anuncio cuando lo ve,
     puede expresarse con una distribución $\text{Beta}(4, 3)$.
     No obstante, los tres empleados realizan tres experimentos distintos y
     por ende tienen acceso a datos diferentes. El primer empleado prueba el anuncio en una persona, que
@@ -103,7 +103,7 @@ vida profesional.
     i. Describa el entendimiento _a priori_ que los empleados tienen sobre $\pi$.
     i. Especifique la distribución _a posteriori_ de cada uno de los empleados.
     i. Compare las distribuciones _a posteriori_ de cada empleado.
-    
+
 1. 💻📌 **¿Galletitas o masitas?**
 
     La UNR reúne cada año a estudiantes provenientes de diferentes localidades. Cuántas cuadras constituyen
@@ -111,9 +111,9 @@ vida profesional.
     la denominación _galletitas_ versus _masitas_. Un rosarino pone un _prior_ $\text{Beta}(20,2)$ a la proporción
     de personas que dicen _galletitas_, mientras que un oriundo de una localidad del interior dirá que la credibilidad
     _a priori_ es $\text{Beta}(2,8)$.
-    
+
     i. Resuma ambas distribuciones _a priori_ y explique con sus palabras lo que implican.
-    i. Con la información de sus compañeros de curso, actualice ambas distribuciones _a priori_. 
+    i. Con la información de sus compañeros de curso, actualice ambas distribuciones _a priori_.
     ¿Es suficiente esa información para acercar ambas posturas?
 
 1.  💻 📌 **Mi primera huerta**
@@ -122,7 +122,7 @@ vida profesional.
     que promueven el contacto con la naturaleza. Una de las tareas
     consistió en germinar semillas de tomate. Josefina plantó 18
     semillas en su almaciguera. Al cabo de 5 días, 8 de ellas germinaron.
-    Sea $\theta$ la probabilidad de que una semilla de tomate germine 
+    Sea $\theta$ la probabilidad de que una semilla de tomate germine
     y sea $\text{Beta}(1, 1)$ su distribución _a priori_.
 
     i. ¿Qué información implica el _prior_ sobre la probabilidad de germinación?
@@ -146,19 +146,19 @@ vida profesional.
     para Croacia. Elija una distribución Gamma _a priori_ para el número medio de goles por partido
     (es decir, $\lambda_F$ y $\lambda_C$ compartirán la distribución _a priori_). $\lambda_F$ da una idea de
     la capacidad de Francia de hacer goles ($\lambda_C$ lo mismo, pero para Croacia).
-    
-    En función del resultado del partido, obtenga las distribuciones _a posteriori_ de 
+
+    En función del resultado del partido, obtenga las distribuciones _a posteriori_ de
     $\lambda_F$ y $\lambda_C$ y responda utilizando R:
 
-    i. ¿Qué probabilidad hay de que Francia fuera un mejor equipo que Croacia? 
-    i. Si el mismo partido se jugara de nuevo (cosa que los franceses en aquella 
+    i. ¿Qué probabilidad hay de que Francia fuera un mejor equipo que Croacia?
+    i. Si el mismo partido se jugara de nuevo (cosa que los franceses en aquella
     oportunidad no pidieron), ¿cuál es la probabilidad de que Francia ganara de nuevo?
     <!-- http://allendowney.github.io/ThinkBayes2/chap08.html -->
-    
+
     ::: {.callout-tip collapse="true"}
 
     ## Ayuda
-    
+
     Plantee el modelo:
     $$
     \begin{aligned}
@@ -169,13 +169,13 @@ vida profesional.
     $$
 
     utilizando valores razonables para $\alpha$ y $\beta$. Luego obtener el _posterior_
-    y calcular $P(\lambda_F > \lambda_C)$. Para el segundo punto calcular 
+    y calcular $P(\lambda_F > \lambda_C)$. Para el segundo punto calcular
     $P(\tilde{y}_F \mid y_F) > P(\tilde{y}_C \mid y_C)$.
     :::
 
 1.  **Mirá si me va a pasar a mi...**
 
-    Durante el desarrollo de las vacunas contra el COVID-19, un medio anunció para una 
+    Durante el desarrollo de las vacunas contra el COVID-19, un medio anunció para una
     determinada vacuna una eficacia del 100%.
 
     > En la fase 3 de un ensayo en adolescentes de entre 12 y 15 años, la
@@ -185,70 +185,70 @@ vida profesional.
     > de COVID-19 fueron observados en el grupo placebo ($n=1129$) y ninguno
     > en el grupo vacunado ($n=1131$)
 
-    Es de esperar que, en un ensayo más grande, aparezca algún caso de COVID-19 en el 
-    grupo que recibió el tratamiento. 
+    Es de esperar que, en un ensayo más grande, aparezca algún caso de COVID-19 en el
+    grupo que recibió el tratamiento.
     ¿Cómo se estima la probabilidad de algo que aún no ocurrió?
     <!-- http://allendowney.github.io/ThinkBayes2/vaccine2.html -->
-    
+
     ::: {.callout-tip collapse="true"}
 
     ## Ayuda
-    
+
     Sea $Y$ laf cantidad de personas que reciben la vacuna y se contagian COVID-19.
     Plantee un modelo y obtenga el _posterior_ de $\theta_v$, la probabilidad de que una
     persona vacunada se contagie de COVID-19. Luego obtenga la distribución predictiva
     _a posteriori_ utilizando un $N_v$ grande y calcule $P(\tilde{Y} > 0)$.
-    
+
     :::
 
 1.  💻 **La regla del tres**
 
     Una estudiante de Licenciatura en Estadística está releyendo su
     tesina antes de entregarla. Si en 20 páginas encontrase 5 de ellas
-    con al menos un _typo_, sería _razonable_ estimar que la probabilidad de que una 
+    con al menos un _typo_, sería _razonable_ estimar que la probabilidad de que una
     página contenga un _typo_ es $\frac{5}{20} = \frac{1}{4}$.
     ¿Pero qué ocurre si en 20 páginas no encuentra ningún error?
-    
-    Verifcar que, partiendo de un _prior_ uniforme, $\frac{3}{N}$ es una estimación 
-    razonable para $\tau$ (la probabilidad de que una página contenga un _typo_), 
+
+    Verifcar que, partiendo de un _prior_ uniforme, $\frac{3}{N}$ es una estimación
+    razonable para $\tau$ (la probabilidad de que una página contenga un _typo_),
     siendo $N$ el número de páginas. Para ello, grafique la distribución _a posteriori_
-    que se obtiene al haber observado 0 _typos_ en 10 páginas y luego halle 
-    la probabilidad de que $\tau < \frac{3}{N}$ para diferentes valores de 
-    $N$ (10, 100, 1000, 10000). 
+    que se obtiene al haber observado 0 _typos_ en 10 páginas y luego halle
+    la probabilidad de que $\tau < \frac{3}{N}$ para diferentes valores de
+    $N$ (10, 100, 1000, 10000).
     <!-- https://www.johndcook.com/blog/2010/03/30/statistical-rule-of-three/ -->
-    
+
     ::: {.callout-tip collapse="true"}
 
     ## Ayuda
-    
-    Considerar $Y =$ cantidad de páginas con al menos un _typo_ en $N$ páginas. 
-    Asumir que la ocurrencia de _typos_ entre páginas son independientes. 
+
+    Considerar $Y =$ cantidad de páginas con al menos un _typo_ en $N$ páginas.
+    Asumir que la ocurrencia de _typos_ entre páginas son independientes.
     El _prior_ uniforme refiere a la probabilidad de cometer al menos un _typo_ en una
-    página, $\tau$. Para los diferentes valores de $N$, primero encontrar el _posterior_ 
+    página, $\tau$. Para los diferentes valores de $N$, primero encontrar el _posterior_
     de $\tau$ y luego calcular $P(\tau < \frac{3}{N})$. ¿Qué se observa?
-    
+
     :::
 
 1.  **¿Tenés alguien para recomendar?**
 
     Una colega quiere comprar un producto por Internet. Tres vendedores ofrecen el mismo
-    producto al mismo precio. Un vendedor tiene 100% de evaluaciones positivas, con 10 
+    producto al mismo precio. Un vendedor tiene 100% de evaluaciones positivas, con 10
     _reviews_. Otro tiene 96% de evaluaciones positivas, con 50 _reviews_. El último tiene
-    90% de comentarios positivos, con 200 evaluaciones. 
+    90% de comentarios positivos, con 200 evaluaciones.
     ¿Cuál de los tres vendedores le recomendarías?
     <!-- http://allendowney.github.io/ThinkBayes2/chap18html -->
 
 1.  💻📌 **Bichos**
 
     Un biólogo quiere determinar la densidad de un insecto en su región. Su conocimiento _a priori_ del número
-    promedio de insectos por unidad de área ($\text{m}^2$) se puede representar con una distribución Gamma de 
+    promedio de insectos por unidad de área ($\text{m}^2$) se puede representar con una distribución Gamma de
     media 0.50 y desvío estándar 0.25. En una investigación en 20 $\text{m}^2$ de área, se hallan 3, 2, 5, 1 y 2
     insectos en los primeros 5 $\text{m}^2$ y ninguno en la fracción de tierra restante.
-    
+
     i. Halle la distribución _a posteriori_ del número medio de insectos por unidad de área.
     i. Halle la distribución predictiva _a posteriori_ del número de insectos que se espera encontrar en una
     exploración de un área de 10 $\text{m}^2$
-    
+
     ```{r}
     #| echo: false
     #| out-width: 70%
@@ -260,14 +260,14 @@ vida profesional.
     ::: {.callout-tip collapse="true"}
 
     ## Ayuda
-    
+
     i. Una distribución conveniente para la cantidad de bichos por metro cuadrado
-    dado que se sabe que su promedio tiene un _prior_ Gamma es la Poisson. 
+    dado que se sabe que su promedio tiene un _prior_ Gamma es la Poisson.
     A partir de eso es sencillo obtener el _posterior_.
-    ii. Primero resolverlo para 1 metro cuadrado, y luego para 10. Se puede hacer 
+    ii. Primero resolverlo para 1 metro cuadrado, y luego para 10. Se puede hacer
     computacionalmente muestreando $\lambda$ del _posterior_ y obteniendo
-    muestras de la distribución de la respuesta usando los valores muestreados de $\lambda$. 
-    También se puede resolver de manera teórica calculando la integral de la distribución 
+    muestras de la distribución de la respuesta usando los valores muestreados de $\lambda$.
+    También se puede resolver de manera teórica calculando la integral de la distribución
     predictiva _a posteriori_. Para eso tener en cuenta:
     $$
     \begin{aligned}
@@ -275,7 +275,7 @@ vida profesional.
     \int_0^{\infty} x^b e^{-ax} dx &= \frac{\Gamma(b + 1)}{a ^ {b+1}}
     \end{aligned}
     $$
-    y que la función de masa de probabiliad la distribución binomial negativa se puede 
+    y que la función de masa de probabiliad la distribución binomial negativa se puede
     escribir como:
     $$
     \begin{array}{ccc}
@@ -285,16 +285,16 @@ vida profesional.
     \end{array}
     $$
 
-    
+
     :::
 
 1.  📌 **Alter-ego**
 
-    El profesor Caprista y el profesor Evangetto están dando sus primeros cursos de Estadística Bayesiana. 
+    El profesor Caprista y el profesor Evangetto están dando sus primeros cursos de Estadística Bayesiana.
     Sus colegas les dijeron que el puntaje promedio en un examen final, $\mu$, varía normalmente año a año
     con media 8 y desvío estándar 0.4. Y además, que los puntajes individuales de los estudiantes $Y$ varían
     normalmente alrededor de $\mu$ con una desviación estándar de 0.4
-    
+
     i. ¿Cuál es la probabilidad _a priori_ de que un estudiante se saque más de 9 en un examen final?
     i. El profesor Caprista toma el examen final y observa que sus 20 estudiantes obtuvieron una nota
     media de 8.6. Halle la distribución _a posteriori_ de $\mu$.
@@ -310,40 +310,40 @@ vida profesional.
 
     $$
     \begin{array}{lcr}
-    \displaystyle p(x \mid \lambda) = \frac{e^{-\lambda}\lambda^x}{x!} & 
+    \displaystyle p(x \mid \lambda) = \frac{e^{-\lambda}\lambda^x}{x!} &
     \text{con} &
     x \in \{0, 1, 2, \cdots \}
     \end{array}
     $$
 
-    donde $\lambda > 0$ es la cantidad promedio de veces que ocurre el evento de interés 
+    donde $\lambda > 0$ es la cantidad promedio de veces que ocurre el evento de interés
     en un periodo o espacio determinado.
 
     i. Derive el estimador de máxima verosimilitud del parámetro $\lambda$.
-    i. Derive el _posterior_ $p(\lambda \mid \boldsymbol{x})$ suponiendo que el _prior_ sobre 
-    $\lambda$ es $\text{Gamma}(\lambda \mid \alpha, \beta)$ con 
-    $p(\lambda \mid \alpha, \beta)  \propto \lambda^{\alpha - 1}e ^ {-\lambda \beta}$.  
+    i. Derive el _posterior_ $p(\lambda \mid \boldsymbol{x})$ suponiendo que el _prior_ sobre
+    $\lambda$ es $\text{Gamma}(\lambda \mid \alpha, \beta)$ con
+    $p(\lambda \mid \alpha, \beta)  \propto \lambda^{\alpha - 1}e ^ {-\lambda \beta}$.
     Ayuda: El _posterior_ también es una distribución Gamma.
-    i. ¿A qué valor tiende la media a _posteriori_ cuando $\alpha \to 0$ y $\beta \to 0$?  
+    i. ¿A qué valor tiende la media a _posteriori_ cuando $\alpha \to 0$ y $\beta \to 0$?
     Recuerde que la media de una distribución $\text{Gamma}(\alpha, \beta)$ es $\alpha/\beta$.
     <!-- @Murphy2012 -->
-    
-    
+
+
 1.  📌 **El modelo Gamma-Poisson**
 
-    Sea $\lambda$ la tasa de mensajes de WhatsApp que una persona recibe en una hora. 
+    Sea $\lambda$ la tasa de mensajes de WhatsApp que una persona recibe en una hora.
     Suponga inicialmente que se cree que la tasa de mensajes por hora tiene media 5
     con desvío estándar de 0.25 mensajes.
-    
+
     i. Elija una distribución Gamma que represente adecuadamente lo que se cree acerca de $\lambda$
     i. ¿Cuál es la probabilidad _a priori_ de que la tasa de mensajes sea mayor a 10?
     i. ¿Cuántos mensajes se espera que reciba una persona en promedio en una hora?
-    
+
     Se sondea a un grupo de seis personas que recibieron 7, 3, 8, 9, 10 y 12 mensajes en la última hora.
-    
+
     i. Graficar la función de verosimilitud.
     i. Determinar la distribución _a posteriori_ de $\lambda$.
-    i. ¿Cuál es la probabilidad _a posteriori_ de que la tasa de mensajes sea mayor a 10? 
+    i. ¿Cuál es la probabilidad _a posteriori_ de que la tasa de mensajes sea mayor a 10?
     i. ¿Cuántos mensajes se espera ahora que reciba una persona en promedio en una hora?
 
 1.  🧩 📌 **Inferencia sobre una distribución Uniforme**
@@ -362,7 +362,7 @@ vida profesional.
     i. ¿Cuál es el estimador máximo verosímil de $\theta$ (llámelo $\hat{\theta}_{\text{MV}}$)?
     i. ¿Qué probabilidad le asigna el modelo a una nueva observación $x_{n + 1}$
     usando $\hat{\theta}_{\text{MV}}$?
-    i. ¿Observa algún problema con el resultado anterior? Si es así, sugiera una 
+    i. ¿Observa algún problema con el resultado anterior? Si es así, sugiera una
     alternativa mejor.
 
     **Inferencia Bayesiana**
@@ -374,15 +374,15 @@ vida profesional.
     p(x \mid \alpha, m) = \frac{\alpha m^\alpha}{x^{\alpha+1}} \mathbb{I}(x \ge m)
     $$
 
-    Si el _prior_ es una distribución de Pareto, la distribución conjunta de $\theta$ y 
-    $\boldsymbol{X} = (X_1,..., X_n)$ es 
+    Si el _prior_ es una distribución de Pareto, la distribución conjunta de $\theta$ y
+    $\boldsymbol{X} = (X_1,..., X_n)$ es
     $$
-    p(\theta, \boldsymbol{X}) 
-        = \frac{\alpha m^\alpha}{\theta^{n + \alpha + 1}} 
+    p(\theta, \boldsymbol{X})
+        = \frac{\alpha m^\alpha}{\theta^{n + \alpha + 1}}
         \mathbb{I}(\theta \ge \max(M_x, m))
     $$
 
-    donde $M_x = \text{max}(\boldsymbol{X})$. 
+    donde $M_x = \text{max}(\boldsymbol{X})$.
     La evidencia es:
     $$
     \begin{aligned}
@@ -396,13 +396,13 @@ vida profesional.
     \end{aligned}
     $$
 
-    Derive el _posterior_ y muestre que puede ser expresado como una distribución de 
+    Derive el _posterior_ y muestre que puede ser expresado como una distribución de
     Pareto.
     <!-- @Murphy2012 -->
 
 1.  🧩 📌 **Inferencia sobre una distribución Exponencial**
 
-    El tiempo de vida de una máquina en años $X$ es modelado con una distribución 
+    El tiempo de vida de una máquina en años $X$ es modelado con una distribución
     exponencial con parámetro $\theta$ desconocido. La función de densidad es:
     $$
     \begin{array}{lcrr}
@@ -411,10 +411,10 @@ vida profesional.
     $$
 
     i. Muestre que el estimador máximo verosímil (MV) es $\hat{\theta}_\text{MV} = 1/\bar{x}$.
-    i. Suponga que se observan los siguientes tiempos de vida de tres máquinas 
+    i. Suponga que se observan los siguientes tiempos de vida de tres máquinas
     independientes $x_1 = 5$, $x_2 = 6$, $x_3 = 4$.
     ¿Cuál es el valor del estimador MV?
-    i. Una experta del área sugiere que $\theta$ debe tener una distribución _a priori_ 
+    i. Una experta del área sugiere que $\theta$ debe tener una distribución _a priori_
     que también sea exponencial.
     $$
     \begin{aligned}
@@ -428,12 +428,12 @@ vida profesional.
     i. ¿Cuál es el _posterior_ $p(\theta \mid \boldsymbol{x}, \lambda_0)$?
     i. ¿Es la distribución exponencial conjugada con un _likelihood_ exponencial?
     i. Encuentre la media del _posterior_, $\mathbb{E}(\theta \mid \boldsymbol{x}, \lambda_0)$
-    i. Explique por que difieren el estimador MV de la media _a posteriori_. 
+    i. Explique por que difieren el estimador MV de la media _a posteriori_.
     ¿Cuál es más razonable en este ejemplo?
     <!-- @Murphy2012 -->
-       
+
 1.  📌 **Otras distribuciones conjugadas (I)**
-    
+
     Considere el siguiente modelo:
     $$
     \begin{array}{l}
@@ -442,30 +442,30 @@ vida profesional.
     \end{array}
     $$
 
-    donde la función de densidad de la distribución geométrica es 
+    donde la función de densidad de la distribución geométrica es
     $p(y \mid \theta) = \theta (1 - \theta)^{y-1}$ para $y \in {1,2,\dots}$
-    
-    i. ¿Qué debería ocurrir con la distribución _a posteriori_ de $\theta$ para poder 
+
+    i. ¿Qué debería ocurrir con la distribución _a posteriori_ de $\theta$ para poder
     afirmar que la distribución geométrica es conjugada de la beta?
     i. Derive la distribución _a posteriori_ de $\theta$ y concluya.
 
 1.  📌 **Otras distribuciones conjugadas (II)**
 
-    Considere el siguiente modelo:    
+    Considere el siguiente modelo:
     $$
     \begin{aligned}
     Y\mid\theta &\sim \text{BinomialNeg}(\theta, m) \\
     \theta &\sim \text{Beta}(\alpha,\beta)
     \end{aligned}
     $$
-    
+
     donde la función de densidad de la distribución binomial negativa es:
     $$
     p(y \mid \theta, m) = {y+m-1 \choose y} \theta^{m} (1-\theta)^y
     $$
-    
+
     Obtenga la distribución _a posteriori_ de $\theta$.
-    
+
 1.  🧩 **Otras distribuciones conjugadas (III)**
 
     Considere el siguiente modelo:
@@ -474,25 +474,25 @@ vida profesional.
     $$
 
     donde la función de densidad exponencial es $p(y \mid \theta) = \theta e^{-\theta y}$.
-    
-    Elija una distribución _a priori_ conjugada de la verosimilitud propuesta y obtenga 
+
+    Elija una distribución _a priori_ conjugada de la verosimilitud propuesta y obtenga
     la expresión para la distribución de probabilidad _a posteriori_.
     <!-- Nota: Es la parametrizacion de la gamma basada en forma y escala (versus forma y _rate_) -->
 
 ## 💻 Simulaciones
 
-A diferencia de la sección anterior, que requiere resolver los ejercicios a mano y 
-promueve el uso de la computadora y R de manera complementaria, esta sección 
+A diferencia de la sección anterior, que requiere resolver los ejercicios a mano y
+promueve el uso de la computadora y R de manera complementaria, esta sección
 contiene ejercicios que deben ser resueltos mediante técnicas de simulación implementadas
-en R. Es posible que en algunos casos también se pueda obtener una solución analítica. 
-En estos casos, puede resultar de utilidad obtener también una solución a mano para 
-validar el resultado, evaluar el nivel de dificultad y ver que tan intuitivo resultan 
+en R. Es posible que en algunos casos también se pueda obtener una solución analítica.
+En estos casos, puede resultar de utilidad obtener también una solución a mano para
+validar el resultado, evaluar el nivel de dificultad y ver que tan intuitivo resultan
 ambos enfoques.
 
 1.  📌 **Entrada en calor**
 
     Para cada una de las siguientes situaciones, hallar los intervalos centrales de credibilidad.
-    
+
     i. Intervalo del 95\% para $\pi$ siendo $\pi\mid \boldsymbol{y} \sim \text{Beta}(4,5)$.
     i. Intervalo del 60\% para $\pi$ siendo $\pi\mid \boldsymbol{y} \sim \text{Beta}(4,5)$.
     i. Intervalo del 89\% para $\lambda$ siendo $\lambda\mid \boldsymbol{y} \sim \text{Gamma}(1,8)$.
@@ -501,26 +501,26 @@ ambos enfoques.
     i. Intervalo del 99\% para $\pi$ siendo $\mu\mid \boldsymbol{y} \sim \mathcal{N}(-3,1^2)$.
 
 1.  **Propiedades frecuentistas de inferencias bayesianas (!!)**
-    
-    Sea una variable $Y$ tal que $Y \mid \theta \sim \text{Binomial}(n, \theta)$ y 
-    $\theta \sim \text{Beta}(1/2, 1/2)$. Mediante un estudio de simulación calcule la 
-    cobertura empírica del intervalo de credibilidad del 95% con $n \in \{1, 5, 10, 25\}$ 
+
+    Sea una variable $Y$ tal que $Y \mid \theta \sim \text{Binomial}(n, \theta)$ y
+    $\theta \sim \text{Beta}(1/2, 1/2)$. Mediante un estudio de simulación calcule la
+    cobertura empírica del intervalo de credibilidad del 95% con $n \in \{1, 5, 10, 25\}$
     y $\theta \in \{0.05, 0.10, \dots, 0.50 \}$. Describa las propiedades frecuentistas
     del intervalo de credibilidad bayesiano.
     <!-- @Reich2020 -->
 
 1.  📌 **¿Te preguntaste alguna vez cuál es la distribución de un _p-value_?**
 
-    Considere un problema conocido. Se desean comparar dos muestras independientes de 
+    Considere un problema conocido. Se desean comparar dos muestras independientes de
     tamaño 5 utilizando un test t y utilizando el test de Mann-Whitney.
 
     i. Considere el caso en que las dos muestras provienen de poblaciones con igual media
-    y desvío estándar (supongamos normal de media nula y varianza unitaria). 
-    Si se repitiera muchas veces el proceso de tomar las muestras y realizar los tests, 
+    y desvío estándar (supongamos normal de media nula y varianza unitaria).
+    Si se repitiera muchas veces el proceso de tomar las muestras y realizar los tests,
     ¿qué distribución tendrán los _p-values_ obtenidos para cada test?
-    i. Considere ahora el caso en que las dos muestras provienen de poblaciones con 
-    diferente media e igual desvío estándar ($\mathcal{N}(0,1)$ y $\mathcal{N}(1,1)$). 
-    Si se repitiera muchas veces el proceso de tomar las muestras y realizar los tests, 
+    i. Considere ahora el caso en que las dos muestras provienen de poblaciones con
+    diferente media e igual desvío estándar ($\mathcal{N}(0,1)$ y $\mathcal{N}(1,1)$).
+    Si se repitiera muchas veces el proceso de tomar las muestras y realizar los tests,
     ¿qué distribución tendrán los _p-values_ obtenidos para cada test?
 
 ## Elección de distribuciones _a priori_
@@ -531,14 +531,14 @@ de probabilidad como herramienta para reflejar información de un problema deter
 
 1.  📌 **Esbozar la distribución de las siguientes variables**
 
-    i. El número de personas que compran café en el bar de la facultad asumiendo 
+    i. El número de personas que compran café en el bar de la facultad asumiendo
     distribución de Poisson.
     i. El peso de perros adultos en kilogramos asumiendo una distribución Uniforme.
     i. El peso de elefantes adultos en kilogramos asumiendo una distribución Normal.
-    i. El peso de humanos adultos en libras asumiendo una distribución asimétrica hacia 
+    i. El peso de humanos adultos en libras asumiendo una distribución asimétrica hacia
     la derecha.
 
-1.  📌 **Verificar los resultados de manera computacional**  
+1.  📌 **Verificar los resultados de manera computacional**
 
     Para cada uno cada uno de los ejemplos del ejercicio anterior,
     graficar la distribución usando R. Seleccionar los parámetros que
@@ -563,47 +563,47 @@ de probabilidad como herramienta para reflejar información de un problema deter
 
 1.  💻 📌 **Elicitación de _priors_**
 
-    En cada una de la situaciones que se describen debajo, ajustar manualmente los 
+    En cada una de la situaciones que se describen debajo, ajustar manualmente los
     parámetros de una distribución $\text{Beta}$ para que reflejen la información brindada.
-    No siempre existe una única respuesta correcta.  
+    No siempre existe una única respuesta correcta.
 
-    i. Un amigo se postuló para un empleo en LinkedIn y te dijo: "Diría que tengo una 
-    chance del 40% de que me den el trabajo, pero no estoy seguro". 
+    i. Un amigo se postuló para un empleo en LinkedIn y te dijo: "Diría que tengo una
+    chance del 40% de que me den el trabajo, pero no estoy seguro".
     Cuando le preguntamos un poco mas, dijo que estima sus chances entre un 20% y un 60%.
-    i. Un grupo de investigación del CONICET desarrolló una nueva prueba para una 
+    i. Un grupo de investigación del CONICET desarrolló una nueva prueba para una
     enfermedad bastante rara. El grupo espera que esta prueba arroje resultados correctos
     el 80% de las veces, con una varianza de 0.05.
-    i. El primo de un amigo es un apasionado de la pesca, lo practica muy seguido, y se 
+    i. El primo de un amigo es un apasionado de la pesca, lo practica muy seguido, y se
     dice ser muy bueno. Según comenta tu amigo, en el asado de los Jueves el pescador dijo
-    lo siguiente: 
-    
-    > Si tengo que hacer un promedio, 9 de cada 10 veces que salgo, vuelvo con algo. 
+    lo siguiente:
+
+    > Si tengo que hacer un promedio, 9 de cada 10 veces que salgo, vuelvo con algo.
     > Pero últimamente te diría que siempre es 10 de 10. Estoy infalible.
     > La verdad es que soy un crack de la pesca.
-    
-    Ante el descreimiento de algunos de los comensales supo reconocer que no siempre le 
+
+    Ante el descreimiento de algunos de los comensales supo reconocer que no siempre le
     fue tan bien:
-    
+
     > Tuve mis malas rachas, pero nunca menos de 8 pescas de cada 10 salidas.
-    
+
 1.  💻 📌 **Efecto de la parametrización**
-    
-    Sea $\theta$ la probabilidad de éxito en un experimento binomial y sea 
-    $\gamma = \frac{\theta}{1-\theta}$ la chance de éxito. Utilizar simulaciones para 
+
+    Sea $\theta$ la probabilidad de éxito en un experimento binomial y sea
+    $\gamma = \frac{\theta}{1-\theta}$ la chance de éxito. Utilizar simulaciones para
     explorar los efectos de las siguientes elecciones de distribuciones _a priori_
-    
+
     i. Si $\theta \sim \text{Uniforme}(0, 1)$, ¿cuál es el _prior_ inducido para $\gamma$?
     i. Si $\theta \sim \text{Beta}(5, 5)$, ¿cuál es el _prior_ inducido para $\gamma$?
     i. Si $\gamma \sim \text{Uniforme}(0, 100)$, ¿cuál es el _prior_ inducido para $\theta$?
-    i. Si $\gamma \sim \text{Gamma}(1, 1)$, ¿cuál es el _prior_ inducido para $\theta$? 
-    
-    
+    i. Si $\gamma \sim \text{Gamma}(1, 1)$, ¿cuál es el _prior_ inducido para $\theta$?
+
+
 ## Teoría de la Decisión
 
 1.  Dada la distribución _a posteriori_ $p(\theta \mid y)$, probar que el estimador de Bayes
     que minimiza la función de pérdida $L_1$ es la mediana de $p(\theta \mid y)$.
     <!-- https://stats.stackexchange.com/questions/376867/proof-that-posterior-median-is-the-bayes-estimate-of-absolute-loss -->
-    
+
 1.  Suponga que la distribución _a posteriori_ de $\pi$, $p(\pi \mid y)$, es $\text{Beta}(12,4)$.
     Determine mediante simulación el estimador que minimiza la pérdida de Huber:
     $$
@@ -618,16 +618,16 @@ de probabilidad como herramienta para reflejar información de un problema deter
 
 1. ✍️ 📌 **Distribución predictiva a posteriori**
 
-    Considere un modelo $Y \mid \theta \sim \text{Binomial}(\theta, n)$, donde $\theta$ 
-    puede tomar valores discretos $0,\ 0.1,\ 0.2,\ \dots,\ 1$. 
-    Se realizaron inferencias sobre $\theta$ y se obtuvo la distribución _a posteriori_ 
+    Considere un modelo $Y \mid \theta \sim \text{Binomial}(\theta, n)$, donde $\theta$
+    puede tomar valores discretos $0,\ 0.1,\ 0.2,\ \dots,\ 1$.
+    Se realizaron inferencias sobre $\theta$ y se obtuvo la distribución _a posteriori_
     que se muestra en la parte superior de la @fig-ppd.
 
-    Se desea obtener la distribución predictiva _a posteriori_ para el número de éxitos 
-    $\tilde{y}$ en $n=5$ nuevas realizaciones del experimento. 
+    Se desea obtener la distribución predictiva _a posteriori_ para el número de éxitos
+    $\tilde{y}$ en $n=5$ nuevas realizaciones del experimento.
     Cada valor de $\theta$ da lugar a una posible distribución de $\tilde{y}$ de acuerdo a
     la verosimilitud binomial, como se observa en la parte inferior de la @fig-ppd.
-    
+
 ```{r}
 #| warning: false
 #| echo: false
@@ -648,8 +648,8 @@ p1 <- dv |>
   distinct(theta, post) |>
   ggplot() +
   geom_segment(
-    aes(x = theta, xend = theta, y = 0, yend = post), 
-    linewidth = 2, 
+    aes(x = theta, xend = theta, y = 0, yend = post),
+    linewidth = 2,
     lineend = "round"
   ) +
   xlab("θ") +
@@ -664,8 +664,8 @@ p1 <- dv |>
 p2 <- dv |>
   ggplot() +
   geom_segment(
-    aes(x = y, xend = y, y = 0, yend = prob), 
-    linewidth = 1.5, 
+    aes(x = y, xend = y, y = 0, yend = prob),
+    linewidth = 1.5,
     lineend="round"
   ) +
   facet_grid(. ~ paste0("θ = ", theta)) +
@@ -681,7 +681,7 @@ layout <- "
 BBBBBB
 "
 
-p1 + p2 + 
+p1 + p2 +
   plot_layout(design = layout)
 ```
 
@@ -690,7 +690,7 @@ p1 + p2 +
   i. Combine los $p(\tilde{y}\mid\theta)$ ponderando por las probabilidades _a posteriori_ de $\theta$, $p(\theta\mid y)$ para obtener la distribución predictiva _a posteriori_
   i. Compare la varianza de una de las $p(\tilde{y}\mid\theta)$ (por ejemplo, la de $\theta=0.5$) con la varianza de la distribución predictiva _a posteriori_ ¿qué observa?
   i. A partir de $p(\theta\mid y)$ y de la verosimilitud binomial, obtenga muestras de $p(\tilde{y}\mid y)$ y grafique su distribución.
-    
+
 
 <!-- 1.  **To Do** Problema de rankear cinco tratamientos. Se tienen los puntajes de diez tratamientos, ${\theta_1,\theta_2,\dots,\theta_10}$.
     Se dan muestras de las distribuciones _a posteriori_, $p(\theta_i\mid y)$. ¿Cuál de los tratamientos es mejor? -->
