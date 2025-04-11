@@ -461,10 +461,8 @@ x \in \{0, 1, 2, \cdots \}
 <p>donde <span class="math inline">\(\lambda &gt; 0\)</span> es la cantidad promedio de veces que ocurre el evento de interés en un periodo o espacio determinado.</p>
 <ol type="i">
 <li>Derive el estimador de máxima verosimilitud del parámetro <span class="math inline">\(\lambda\)</span>.</li>
-<li>Derive el <em>posterior</em> <span class="math inline">\(p(\lambda \mid \boldsymbol{x})\)</span> suponiendo que el <em>prior</em> sobre <span class="math inline">\(\lambda\)</span> es <span class="math inline">\(\text{Gamma}(\lambda \mid \alpha, \beta)\)</span> con <span class="math inline">\(p(\lambda \mid \alpha, \beta)  \propto \lambda^{\alpha - 1}e ^ {-\lambda \beta}\)</span>.<br>
-Ayuda: El <em>posterior</em> también es una distribución Gamma.</li>
-<li>¿A qué valor tiende la media a <em>posteriori</em> cuando <span class="math inline">\(\alpha \to 0\)</span> y <span class="math inline">\(\beta \to 0\)</span>?<br>
-Recuerde que la media de una distribución <span class="math inline">\(\text{Gamma}(\alpha, \beta)\)</span> es <span class="math inline">\(\alpha/\beta\)</span>. <!-- @Murphy2012 --></li>
+<li>Derive el <em>posterior</em> <span class="math inline">\(p(\lambda \mid \boldsymbol{x})\)</span> suponiendo que el <em>prior</em> sobre <span class="math inline">\(\lambda\)</span> es <span class="math inline">\(\text{Gamma}(\lambda \mid \alpha, \beta)\)</span> con <span class="math inline">\(p(\lambda \mid \alpha, \beta)  \propto \lambda^{\alpha - 1}e ^ {-\lambda \beta}\)</span>. Ayuda: El <em>posterior</em> también es una distribución Gamma.</li>
+<li>¿A qué valor tiende la media a <em>posteriori</em> cuando <span class="math inline">\(\alpha \to 0\)</span> y <span class="math inline">\(\beta \to 0\)</span>? Recuerde que la media de una distribución <span class="math inline">\(\text{Gamma}(\alpha, \beta)\)</span> es <span class="math inline">\(\alpha/\beta\)</span>. <!-- @Murphy2012 --></li>
 </ol></li>
 <li><p>📌 <strong>El modelo Gamma-Poisson</strong></p>
 <p>Sea <span class="math inline">\(\lambda\)</span> la tasa de mensajes de WhatsApp que una persona recibe en una hora. Suponga inicialmente que se cree que la tasa de mensajes por hora tiene media 5 con desvío estándar de 0.25 mensajes.</p>
@@ -474,11 +472,12 @@ Recuerde que la media de una distribución <span class="math inline">\(\text{Gam
 <li>¿Cuántos mensajes se espera que reciba una persona en promedio en una hora?</li>
 </ol>
 <p>Se sondea a un grupo de seis personas que recibieron 7, 3, 8, 9, 10 y 12 mensajes en la última hora.</p>
-<ol type="i">
+<ol start="4" type="i">
 <li>Graficar la función de verosimilitud.</li>
 <li>Determinar la distribución <em>a posteriori</em> de <span class="math inline">\(\lambda\)</span>.</li>
 <li>¿Cuál es la probabilidad <em>a posteriori</em> de que la tasa de mensajes sea mayor a 10?</li>
 <li>¿Cuántos mensajes se espera ahora que reciba una persona en promedio en una hora?</li>
+<li>¿Cuál es la probabilidad de que una persona reciba mas de 6 mensajes en una hora?</li>
 </ol></li>
 <li><p>🧩 📌 <strong>Inferencia sobre una distribución Uniforme</strong></p>
 <p>Considere una distribución <span class="math inline">\(\text{Uniforme}(0, \theta)\)</span>. La función de densidad de probabilidad es</p>
@@ -547,8 +546,7 @@ Y \mid \theta \sim \text{Geométrica}(\theta) \\
 <li>Derive la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span> y concluya.</li>
 </ol></li>
 <li><p>📌 <strong>Otras distribuciones conjugadas (II)</strong></p>
-<p>Considere el siguiente modelo:<br>
-<span class="math display">\[
+<p>Considere el siguiente modelo: <span class="math display">\[
 \begin{aligned}
 Y\mid\theta &amp;\sim \text{BinomialNeg}(\theta, m) \\
 \theta &amp;\sim \text{Beta}(\alpha,\beta)
