@@ -48,23 +48,19 @@ plot_bayes <- function(data){
           axis.ticks.y = element_blank(),
           axis.text.x = element_blank())
 }
-```
 
-
-```{r ejemplo-urna}
-#| echo: false
-#| include: false
+# ejemplo urna
 data <- crossing(u=0:10,nN = 0:10)
 N <- 10
 
 data <- data %>%
   mutate(prior = 1/11,
          likelihood = choose(10,nN)*(u/10)^nN*(1-u/10)^(N-nN),
-         joint = prior*likelihood) 
+         joint = prior*likelihood)
 ```
 
-
 ## El problema de las urnas
+
 
 > Se cuenta con 11 urnas etiquetadas según $u = 0,1,\dots,10$, que contienen diez bolas cada una. La urna $u$ contiene $u$ bolas azules y $10-u$ bolas blancas. Fede elige una urna $u$ al azar y extrae con reposición $N$ bolas, obteniendo $n_A$ azules y $N-n_A$ blancas. Nico, el amigo de Fede, observa atentamente. Si después de $N=10$ extracciones resulta $n_A = 3$, ¿cuál es la probabilidad de que la urna que Fede está usando sea la $u$?
 
@@ -166,15 +162,39 @@ Finalmente, la probabilidad de interés $p(u\mid n_A,N)$ es
 
 . . .
 
+::: {.content-visible when-format="html"}
+
 $$
 p(u\mid n_A,N) = \frac{\color{#00008B}{p(n_A\mid u,N)p(u)}}{p(n_A\mid N)}
 $$
 
+:::
+
+::: {.content-visible when-format="pdf"}
+
+$$
+p(u\mid n_A,N) = \frac{\textcolor{bdarkblue}{p(n_A\mid u,N)p(u)}}{p(n_A\mid N)}
+$$
+
+:::
+
 . . .
+
+::: {.content-visible when-format="html"}
 
 $$
 p(u\mid n_A,N) = \color{#00008B}{{N \choose n_A} \left( \frac{u}{10} \right)^{n_A} \left( 1 - \frac{u}{10} \right)^{N-n_A} \frac{1}{11}} \frac{1}{p(n_A\mid N)}
 $$
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+$$
+p(u\mid n_A,N) = \textcolor{bdarkblue}{{N \choose n_A} \left( \frac{u}{10} \right)^{n_A} \left( 1 - \frac{u}{10} \right)^{N-n_A} \frac{1}{11}} \frac{1}{p(n_A\mid N)}
+$$
+
+:::
 
 . . .
 
@@ -764,10 +784,10 @@ la distribución _a posteriori_ también es $\mathcal{F}$
 . . .
 
 $$
-\begin{align*}
-    Y \mid\pi & \sim  \text{Binomial}(N,\pi)\\
-    \pi & \sim  \text{Beta}(a,b)
-\end{align*}
+\begin{aligned}
+  Y \mid\pi & \sim \text{Binomial}(N,\pi)\\
+  \pi & \sim  \text{Beta}(a,b)
+\end{aligned}
 $$
 
 ##
@@ -994,12 +1014,12 @@ $$\mathbb{E}({X}) = \frac{a}{a+b}$$
 La distribución _a priori_ es $\text{Beta}(a,b)$ y la distribución _a posteriori_ es $\text{Beta}(y+a,N-y+b)$. \pause La media del \textit{posterior} es:
 
 $$
-\begin{align*}
+\begin{aligned}
 \mathbb{E}[{p(\pi\mid y)}] & = \frac{y+a}{a+b+N} \\
 & = \frac{y}{a+b+N} + \frac{a}{a+b+N} \\
 & = \frac{N}{a+b+N}\frac{y}{N} + \frac{a+b}{a+b+N} \frac{a}{a+b} \\
 & = \frac{N}{a+b+N}\frac{y}{N} + \frac{a+b}{a+b+N} \mathbb{E}{[p(\pi)]}
-\end{align*}
+\end{aligned}
 $$
 
 
@@ -1285,10 +1305,10 @@ se hace una ponderación para los distintos valores de $\pi$ ($\pi$ varía en la
 Para el caso binomial que venimos estudiando, consideramos una realización más (tirar el globo terráqueo y agarrarlo). ¿Cuál es la probabilidad de obtener $A$ (agua)?
 
 $$
-\begin{align*}
+\begin{aligned}
 p(\tilde{y} = 1\mid y) & = \int_0^1 \pi \vphantom{\tilde{y}}p(\pi\mid x) d \pi = \mathbb{E}[{p(\pi\mid x)}] \\
 & = \frac{y+a}{y+a+N-y+b} = \frac{y+a}{N+a+b} \\
-\end{align*}
+\end{aligned}
 $$
 
 ##

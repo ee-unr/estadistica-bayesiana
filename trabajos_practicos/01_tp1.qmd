@@ -140,7 +140,7 @@ Comenzaremos realizando un estudio de simulación para estudiar el efecto de la 
 estimaciones. En esta primera aproximación, consideraremos que se realiza la pregunta directa.
 
 1. Proponga un modelo bayesiano que, a partir de encuestar a $n$ estudiantes, permita estimar $\pi_a$.
-Explique la elección de la función de verosimilitud y el _prior_ e indique cómse obtiene el _posterior_.
+Explique la elección de la función de verosimilitud y el _prior_ e indique cómo se obtiene el _posterior_.
 2. Utilizando R, simule la obtención de una muestra para el caso en que los estudiantes no mienten y
 para el caso en que los estudiantes mienten con tres niveles de mentira $\mu$ bajo, medio y alto.
 Compare los resultados de la inferencia.
@@ -149,7 +149,7 @@ Compare los resultados de la inferencia.
 Considere ahora el caso del método propuesto por Warner:
 
 4. Según este método, ¿cuál es la probabilidad (llamémosla $\lambda_W$) de que un estudiante
-responda que apuesta? ¿cuál es la probabilidad de que un estudiante responda queno apuesta?
+responda afirmativamente? ¿cuál es la probabilidad de que un estudiante responda por la contraria?
 5. A partir de lo anterior, proponga un modelo razonable sobre cómo se generan los datos.
 6. Considere un _prior_ uniforme y halle el _posterior_ exacto.
 
@@ -183,8 +183,8 @@ _prior_ beta no necesariamente uniforme.
 
 Para el método propuesto por Greenberg:
 
-10. ¿Cuál es la probabilidad $\lambda_G$ de que un estudiante responda que apuesta?
-¿y de que responda que no apuesta?
+10. ¿Cuál es la probabilidad $\lambda_G$ de que un estudiante responda que sí?
+¿y de que responda que no?
 11. Escriba una función de R que le permita realizar la inferencia (en forma aproximada) con un
 _prior_ beta no necesariamente uniforme.
 

@@ -131,7 +131,7 @@ csl: chicago-author-date.csl
 
 format:
   html:
-    theme: 
+    theme:
       - styles.scss
     toc: false
     lang: es

@@ -614,23 +614,22 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     Z &=
         \begin{cases}
         1 & \text{Si se observa cara} \\
-        0 & \text{Si se obserca ceca}
+        0 & \text{Si se observa ceca}
         \end{cases}
     \end{aligned}
     $$
 
     Obtener $\pi$ en base a la distribución conjunta de $X$ e $Y$ y luego realizar la
     inferencia con un modelo binomial para $T = \sum_{i=1}^{250}{Z_i}$ utilizando $\pi$ como
-    probabilidad de éxito en vez de $\theta$.
+    probabilidad de éxito.
 
     El parámetro $\pi$ quedará determinado en función de $\theta$, y luego la verosimilitud para
     $\theta$ se puede obtener a partir de la verosimilitud para el valor $\pi = f(\theta)$
     $$
-    p_\theta(T = t \mid \theta) = p_\pi(T = t \mid \pi)
+    p_\theta(T = t \mid \theta) = p_\pi(T = t \mid \pi) = p_\pi(T = t \mid f(\theta))
     $$
 
     donde $p_\pi$ es la función de masa de probabilidad de una binomial. Luego,
-
     $$
     \begin{aligned}
     p_\theta(\theta \mid T = t) &\propto p_\theta(T = t \mid \theta) p_\theta(\theta) \\
@@ -652,7 +651,7 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
 
     Estamos tratando de hacer inferencias sobre $D_1$ y $D_2$, los valores de cada
     uno de los datos.
-    Definir la distribución a priori no es complicado (es una distribución sobre $D_1$ y $D_2$).
+    Definir la distribución _a priori_ no es complicado (es una distribución sobre $D_1$ y $D_2$).
 
     El truco está en determinar la verosimilitud de cada par ($D_1, D_2$) luego de haber
     observado un 9.
