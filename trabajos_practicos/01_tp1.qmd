@@ -156,18 +156,22 @@ responda que apuesta? ¿cuál es la probabilidad de que un estudiante responda q
 ::: {.callout-tip}
 ## Ayuda
 
-Escriba el _posterior_ dejando el denominador de la Regla de Bayes expresado como $Z$.
-Luego, muestre que:
+Escriba el _posterior_ dejando la constante de normalización expresada como $Z$. Es decir,
+escriba
+$$
+p(\pi_a | y) = \frac{N(\pi_a)}{Z}
+$$
+Naturalmente, $Z$ es una integral. Muestre que el resultado de esa integral es:
 
 $$
 Z = \frac{B(1 - p; y + 1, n - y + 1) - B(p; y + 1, n - y + 1)}{1 - 2p}
 $$
 
 donde $B(x; a, b) = \int_0^x t^{a - 1} (1 - t)^{b - 1} dt$ es la función beta incompleta,
-$p$ es la probabilidad con la que se hace la pregunta alternativa e $y$ es la cantidad depersonas
+$p$ es la probabilidad con la que se le pregunta si apuesta e $y$ es la cantidad de personas
 que responden que apuestan.
 
-Para resolver la integral, utilice el método de sustitución y hágalo en términos de $\lambda_W$.
+Para resolver la integral de $Z$, utilice el método de sustitución y hágalo en términos de $\lambda_W$.
 No es tan terrible como parece.
 :::
 
