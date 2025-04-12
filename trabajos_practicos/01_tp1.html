@@ -303,12 +303,13 @@ Ayuda
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Escriba el <em>posterior</em> dejando el denominador de la Regla de Bayes expresado como <span class="math inline">\(Z\)</span>. Luego, muestre que:</p>
-<p><span class="math display">\[
-Z = \frac{B(1 - p; y + 1, n - y + 1) - B(p; y + 1, n - y + 1)}{1 - 2p}
+<p>Escriba el <em>posterior</em> dejando la constante de normalización expresada como <span class="math inline">\(Z\)</span>. Es decir, escriba <span class="math display">\[
+p(\pi_a | y) = \frac{N(\pi_a)}{Z}
 \]</span></p>
-<p>donde <span class="math inline">\(B(x; a, b) = \int_0^x t^{a - 1} (1 - t)^{b - 1} dt\)</span> es la función beta incompleta, <span class="math inline">\(p\)</span> es la probabilidad con la que se hace la pregunta alternativa e <span class="math inline">\(y\)</span> es la cantidad depersonas que responden que apuestan.</p>
-<p>Para resolver la integral, utilice el método de sustitución y hágalo en términos de <span class="math inline">\(\lambda_W\)</span>. No es tan terrible como parece.</p>
+<p>Naturalmente, <span class="math inline">\(Z\)</span> es una integral. Muestre que el resultado de esa integral es: <span class="math display">\[
+Z = \frac{B(1 - p; y + 1, n - y + 1) - B(p; y + 1, n - y + 1)}{1 - 2p}
+\]</span> donde <span class="math inline">\(B(x; a, b) = \int_0^x t^{a - 1} (1 - t)^{b - 1} dt\)</span> es la función beta incompleta, <span class="math inline">\(p\)</span> es la probabilidad con la que se le pregunta si apuesta e <span class="math inline">\(y\)</span> es la cantidad de personas que responden que apuestan.</p>
+<p>Para resolver la integral de <span class="math inline">\(Z\)</span>, utilice el método de sustitución y hágalo en términos de <span class="math inline">\(\lambda_W\)</span>. No es tan terrible como parece.</p>
 </div>
 </div>
 <ol start="7" type="1">
