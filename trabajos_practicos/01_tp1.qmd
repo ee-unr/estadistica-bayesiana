@@ -161,12 +161,11 @@ escriba
 $$
 p(\pi_a | y) = \frac{N(\pi_a)}{Z}
 $$
-Naturalmente, $Z$ es una integral. Muestre que el resultado de esa integral es:
 
+Naturalmente, $Z$ es una integral. Muestre que el resultado de esa integral es:
 $$
 Z = \frac{B(1 - p; y + 1, n - y + 1) - B(p; y + 1, n - y + 1)}{1 - 2p}
 $$
-
 donde $B(x; a, b) = \int_0^x t^{a - 1} (1 - t)^{b - 1} dt$ es la función beta incompleta,
 $p$ es la probabilidad con la que se le pregunta si apuesta e $y$ es la cantidad de personas
 que responden que apuestan.
