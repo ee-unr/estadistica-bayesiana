@@ -308,14 +308,14 @@ p(\pi_a | y) = \frac{N(\pi_a)}{Z}
 \]</span></p>
 <p>Naturalmente, <span class="math inline">\(Z\)</span> es una integral. Muestre que el resultado de esa integral es: <span class="math display">\[
 Z = \frac{B(1 - p; y + 1, n - y + 1) - B(p; y + 1, n - y + 1)}{1 - 2p}
-\]</span> donde <span class="math inline">\(B(x; a, b) = \int_0^x t^{a - 1} (1 - t)^{b - 1} dt\)</span> es la función beta incompleta, <span class="math inline">\(p\)</span> es la probabilidad con la que se le pregunta si apuesta e <span class="math inline">\(y\)</span> es la cantidad de personas que responden que apuestan.</p>
+\]</span> donde <span class="math inline">\(B(x; a, b) = \int_0^x t^{a - 1} (1 - t)^{b - 1} dt\)</span> es la función beta incompleta, <span class="math inline">\(p\)</span> es la probabilidad con la que se le pregunta si apuesta e <span class="math inline">\(y\)</span> es la cantidad de personas que responden afirmativamente.</p>
 <p>Para resolver la integral de <span class="math inline">\(Z\)</span>, utilice el método de sustitución y hágalo en términos de <span class="math inline">\(\lambda_W\)</span>. No es tan terrible como parece.</p>
 </div>
 </div>
 <ol start="7" type="1">
-<li>Grafique el <em>posterior</em> para diferentes valores de <span class="math inline">\(p\)</span> y concluya.</li>
+<li>Grafique el <em>posterior</em> para diferentes valores de <span class="math inline">\(p\)</span> y concluya. Si quiere evaluar el comportamiento a través de múltiples muestras, puede hacerlo replicando el proceso generador de los datos que planteó en el ítem 5 (no hace falta obtener la muestra aleatoria simple cada vez).</li>
 <li>¿Qué pasaría si el porcentaje de alumnos que apuesta fuera diferente al <span class="math inline">\(40\%\)</span>? Analice los resultados en función de diferentes niveles de <span class="math inline">\(p\)</span> y <span class="math inline">\(\pi_a\)</span>.</li>
-<li>Escriba una función de R que le permita realizar la inferencia (en forma aproximada) con un <em>prior</em> beta no necesariamente uniforme.</li>
+<li>Escriba una función de R que le permita realizar la inferencia (en forma aproximada) con un <em>prior</em> beta no necesariamente uniforme. Para eso, utilice una grilla de valores de <span class="math inline">\(\pi_a\)</span></li>
 </ol>
 <p>Para el método propuesto por Greenberg:</p>
 <ol start="10" type="1">
@@ -324,7 +324,7 @@ Z = \frac{B(1 - p; y + 1, n - y + 1) - B(p; y + 1, n - y + 1)}{1 - 2p}
 </ol>
 <p>Para terminar, es hora de comparar todos los escenarios.</p>
 <ol start="12" type="1">
-<li>Utilizando R, simule la obtención de una muestra para el caso en que los estudiantes no mienten, mienten con tres niveles de mentira <span class="math inline">\(\mu\)</span> (bajo, medio y alto), se utiliza el método de Werner y se utiliza el método de Greenberg. Compare los resultados de las inferencias en cada caso.</li>
+<li>Utilizando R, simule la obtención de una muestra para el caso en que los estudiantes no mienten, mienten con tres niveles de mentira <span class="math inline">\(\mu\)</span> (bajo, medio y alto), se utiliza el método de Werner (<span class="math inline">\(p = 0.3\)</span>) y se utiliza el método de Greenberg. Compare los resultados de las inferencias en cada caso.</li>
 <li>Realice ahora 1000 simulaciones y analice los resultados.</li>
 </ol>
 <!--
