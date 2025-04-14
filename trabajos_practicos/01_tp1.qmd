@@ -167,18 +167,19 @@ $$
 Z = \frac{B(1 - p; y + 1, n - y + 1) - B(p; y + 1, n - y + 1)}{1 - 2p}
 $$
 donde $B(x; a, b) = \int_0^x t^{a - 1} (1 - t)^{b - 1} dt$ es la función beta incompleta,
-$p$ es la probabilidad con la que se le pregunta si apuesta e $y$ es la cantidad de personas
-que responden que apuestan.
+$p$ es la probabilidad con la que se le pregunta si apuesta e $y$ es la cantidad de personas que responden afirmativamente.
 
 Para resolver la integral de $Z$, utilice el método de sustitución y hágalo en términos de $\lambda_W$.
 No es tan terrible como parece.
 :::
 
-7. Grafique el _posterior_ para diferentes valores de $p$ y concluya.
+7. Grafique el _posterior_ para diferentes valores de $p$ y concluya. Si quiere evaluar
+el comportamiento a través de múltiples muestras, puede hacerlo replicando el 
+proceso generador de los datos que planteó en el ítem 5 (no hace falta obtener la muestra aleatoria simple cada vez).
 8. ¿Qué pasaría si el porcentaje de alumnos que apuesta fuera diferente al $40\%$?
 Analice los resultados en función de diferentes niveles de $p$ y $\pi_a$.
 9. Escriba una función de R que le permita realizar la inferencia (en forma aproximada) con un
-_prior_ beta no necesariamente uniforme.
+_prior_ beta no necesariamente uniforme. Para eso, utilice una grilla de valores de $\pi_a$
 
 Para el método propuesto por Greenberg:
 
@@ -190,7 +191,7 @@ _prior_ beta no necesariamente uniforme.
 Para terminar, es hora de comparar todos los escenarios.
 
 12. Utilizando R, simule la obtención de una muestra para el caso en que los estudiantes no mienten,
-mienten con tres niveles de mentira $\mu$ (bajo, medio y alto), se utiliza el método de Werner y se
+mienten con tres niveles de mentira $\mu$ (bajo, medio y alto), se utiliza el método de Werner ($p = 0.3$) y se
 utiliza el método de Greenberg. Compare los resultados de las inferencias en cada caso.
 13. Realice ahora 1000 simulaciones y analice los resultados.
 
