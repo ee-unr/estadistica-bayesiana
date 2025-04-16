@@ -117,7 +117,7 @@ Tomar muestras de una distribución de probabilidad $p(x)$ implica obtener valor
 
 . . .
 
-En estadística bayesiana tenemos $p(\theta \mid y ) \propto p(y\mid\theta) p(\theta)$ por lo que en general llegamos a $p^*(\theta \mid y) = \frac{1}{Z} p(\theta\mid y)$
+En estadística bayesiana tenemos $p(\theta \mid y ) \propto p(y\mid\theta) p(\theta)$ por lo que en general llegamos a $p^*(\theta \mid y) = Z\ p(\theta\mid y)$
 
 . . .
 
@@ -158,11 +158,11 @@ p1+p2
 
 ## Grid approximation {.smaller}
 
-Una solución puede ser discretizar la variable. Esta solución vale incluso si no conocemos $Z$. Conocemos $p^*(x) = \frac{1}{Z} p(x)$ (izquierda) y pasamos a una discreta $\tilde{p}^*(x) = \frac{1}{\tilde{Z}} \tilde{p}(x)$ (centro).
+Una solución puede ser discretizar la variable. Esta solución vale incluso si no conocemos $Z$. Conocemos $p^*(x) = Z \ p(x)$ (izquierda) y pasamos a una discreta $\tilde{p}^*(x) = \tilde{Z}\ \tilde{p}(x)$ (centro).
 
 . . .
 
-Evaluando $\tilde{p}$ en **todos los posibles $x_i$ de la grilla** podemos calcular $Z=\sum_{i} \tilde{p}^*(x_i)$. Luego tomamos muestras de $\tilde{p}(x)$ (derecha).
+Evaluando $\tilde{p}^*$ en **todos los posibles $x_i$ de la grilla** podemos calcular $\tilde{Z}=\sum_{i} \tilde{p}^*(x_i)$. Luego tomamos muestras de $\tilde{p}(x)$ (derecha).
 
 ```{r gridapproximation}
 #| warning: false
@@ -213,7 +213,7 @@ En código:
 prob <- function(x) return(exp(0.4*(x-0.4)^2 - 0.08*x^4)) # sabemos evaluar p
 x <- seq(-4.5, 4.5, 0.5)
 p_ <- prob(x) # ~p*
-Z <- sum(p_)
+Z_rulito <- sum(p_) # ~Z
 p_rulito <- p_/Z # ~p
 sample(x, replace = TRUE, prob = p_rulito)
 ```
@@ -345,7 +345,7 @@ Idea general:
 1.    Generar una secuencia de iteraciones: $\{x^{(1)},x^{(2)},\dots,x^{(S)}\}$
 1.    En general, para obtener $x^{(i+1)}$ usamos $x^{(i)}$
 
--    En nuestro caso tenemos $p(\theta) \propto p(y\mid\theta)p(\theta) = p^*(\theta\mid y)$ (_unnormalized posterior_)
+-    En nuestro caso tenemos $p(\theta\mid y) \propto p(y\mid\theta)p(\theta) = p^*(\theta\mid y)$ (_unnormalized posterior_)
 -    ¿Qué necesitamos? Poder evaluar el _prior_ y poder evaluar el _likelihood_ para cualquier valor de $\theta$
 
 ## Metropolis-Hastings (MH) {style="font-size: 0.60em; text-align: left"}
@@ -370,11 +370,11 @@ $q(\theta'\mid\theta)$ se llama distribución de proposición o de salto propues
 
 . . .
 
-Puede probarse que para cualquier $q(\theta'\mid\theta)$, cuando $s\to \infty$ la distribución de probabilidad de la secuencia $\left\{\theta^{(s)} \right\}_{s=1}^S$ tiende a $p(\theta)$. No sabemos nada sobre la rapidez con la que lo hace.
+Puede probarse que para cualquier $q(\theta'\mid\theta)$, cuando $s\to \infty$ la distribución de probabilidad de la secuencia $\left\{\theta^{(s)} \right\}_{s=1}^S$ tiende a $f(\theta)$. No sabemos nada sobre la rapidez con la que lo hace.
 
 . . .
 
-En infinitos pasos, cualquier cadena dará muestras de la distribución $p(\theta)$, en la práctica hay que tener algunos cuidados.
+En infinitos pasos, cualquier cadena dará muestras de la distribución $f(\theta)$, en la práctica hay que tener algunos cuidados.
 
 ##
 
