@@ -462,7 +462,7 @@
 <p>Tomar muestras de una distribución de probabilidad <span class="math inline">\(p(x)\)</span> implica obtener valores que provienen, con mayor frecuencia, de regiones donde <span class="math inline">\(p(x)\)</span> es grande.</p>
 <p>¿Por qué es difícil tomar muestras de una distribución de probabilidad?</p>
 <div class="fragment">
-<p>En estadística bayesiana tenemos <span class="math inline">\(p(\theta \mid y ) \propto p(y\mid\theta) p(\theta)\)</span> por lo que en general llegamos a <span class="math inline">\(p^*(\theta \mid y) = \frac{1}{Z} p(\theta\mid y)\)</span></p>
+<p>En estadística bayesiana tenemos <span class="math inline">\(p(\theta \mid y ) \propto p(y\mid\theta) p(\theta)\)</span> por lo que en general llegamos a <span class="math inline">\(p^*(\theta \mid y) = Z\ p(\theta\mid y)\)</span></p>
 </div>
 <div class="fragment">
 <ul>
@@ -479,9 +479,9 @@
 <img data-src="presentacion_05_files/figure-revealjs/discretesampling-1.png" class="quarto-figure quarto-figure-center r-stretch" width="1728"></section>
 <section id="grid-approximation" class="slide level2 smaller">
 <h2>Grid approximation</h2>
-<p>Una solución puede ser discretizar la variable. Esta solución vale incluso si no conocemos <span class="math inline">\(Z\)</span>. Conocemos <span class="math inline">\(p^*(x) = \frac{1}{Z} p(x)\)</span> (izquierda) y pasamos a una discreta <span class="math inline">\(\tilde{p}^*(x) = \frac{1}{\tilde{Z}} \tilde{p}(x)\)</span> (centro).</p>
+<p>Una solución puede ser discretizar la variable. Esta solución vale incluso si no conocemos <span class="math inline">\(Z\)</span>. Conocemos <span class="math inline">\(p^*(x) = Z \ p(x)\)</span> (izquierda) y pasamos a una discreta <span class="math inline">\(\tilde{p}^*(x) = \tilde{Z}\ \tilde{p}(x)\)</span> (centro).</p>
 <div class="fragment">
-<p>Evaluando <span class="math inline">\(\tilde{p}\)</span> en <strong>todos los posibles <span class="math inline">\(x_i\)</span> de la grilla</strong> podemos calcular <span class="math inline">\(Z=\sum_{i} \tilde{p}^*(x_i)\)</span>. Luego tomamos muestras de <span class="math inline">\(\tilde{p}(x)\)</span> (derecha).</p>
+<p>Evaluando <span class="math inline">\(\tilde{p}^*\)</span> en <strong>todos los posibles <span class="math inline">\(x_i\)</span> de la grilla</strong> podemos calcular <span class="math inline">\(\tilde{Z}=\sum_{i} \tilde{p}^*(x_i)\)</span>. Luego tomamos muestras de <span class="math inline">\(\tilde{p}(x)\)</span> (derecha).</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -500,7 +500,7 @@
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>prob <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">return</span>(<span class="fu">exp</span>(<span class="fl">0.4</span><span class="sc">*</span>(x<span class="fl">-0.4</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> <span class="fl">0.08</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">4</span>)) <span class="co"># sabemos evaluar p</span></span>
 <span id="cb1-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">4.5</span>, <span class="fl">4.5</span>, <span class="fl">0.5</span>)</span>
 <span id="cb1-3"><a></a>p_ <span class="ot">&lt;-</span> <span class="fu">prob</span>(x) <span class="co"># ~p*</span></span>
-<span id="cb1-4"><a></a>Z <span class="ot">&lt;-</span> <span class="fu">sum</span>(p_)</span>
+<span id="cb1-4"><a></a>Z_rulito <span class="ot">&lt;-</span> <span class="fu">sum</span>(p_) <span class="co"># ~Z</span></span>
 <span id="cb1-5"><a></a>p_rulito <span class="ot">&lt;-</span> p_<span class="sc">/</span>Z <span class="co"># ~p</span></span>
 <span id="cb1-6"><a></a><span class="fu">sample</span>(x, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> p_rulito)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -574,7 +574,7 @@
 <li class="fragment">En general, para obtener <span class="math inline">\(x^{(i+1)}\)</span> usamos <span class="math inline">\(x^{(i)}\)</span></li>
 </ol>
 <ul>
-<li class="fragment">En nuestro caso tenemos <span class="math inline">\(p(\theta) \propto p(y\mid\theta)p(\theta) = p^*(\theta\mid y)\)</span> (<em>unnormalized posterior</em>)</li>
+<li class="fragment">En nuestro caso tenemos <span class="math inline">\(p(\theta\mid y) \propto p(y\mid\theta)p(\theta) = p^*(\theta\mid y)\)</span> (<em>unnormalized posterior</em>)</li>
 <li class="fragment">¿Qué necesitamos? Poder evaluar el <em>prior</em> y poder evaluar el <em>likelihood</em> para cualquier valor de <span class="math inline">\(\theta\)</span></li>
 </ul>
 </div>
@@ -600,10 +600,10 @@
 <h2></h2>
 <p><span class="math inline">\(q(\theta'\mid\theta)\)</span> se llama distribución de proposición o de salto propuesto. Todo lo que necesitamos saber es dónde estamos <span class="math inline">\(f(\theta)\)</span> y hacia donde queremos ir <span class="math inline">\(f(\theta')\)</span>.</p>
 <div class="fragment">
-<p>Puede probarse que para cualquier <span class="math inline">\(q(\theta'\mid\theta)\)</span>, cuando <span class="math inline">\(s\to \infty\)</span> la distribución de probabilidad de la secuencia <span class="math inline">\(\left\{\theta^{(s)} \right\}_{s=1}^S\)</span> tiende a <span class="math inline">\(p(\theta)\)</span>. No sabemos nada sobre la rapidez con la que lo hace.</p>
+<p>Puede probarse que para cualquier <span class="math inline">\(q(\theta'\mid\theta)\)</span>, cuando <span class="math inline">\(s\to \infty\)</span> la distribución de probabilidad de la secuencia <span class="math inline">\(\left\{\theta^{(s)} \right\}_{s=1}^S\)</span> tiende a <span class="math inline">\(f(\theta)\)</span>. No sabemos nada sobre la rapidez con la que lo hace.</p>
 </div>
 <div class="fragment">
-<p>En infinitos pasos, cualquier cadena dará muestras de la distribución <span class="math inline">\(p(\theta)\)</span>, en la práctica hay que tener algunos cuidados.</p>
+<p>En infinitos pasos, cualquier cadena dará muestras de la distribución <span class="math inline">\(f(\theta)\)</span>, en la práctica hay que tener algunos cuidados.</p>
 </div>
 </section>
 <section id="section-11" class="slide level2">
