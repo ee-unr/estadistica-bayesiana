@@ -5,8 +5,8 @@ title: "06 -  Los puntos uniformes"
 Se explica como obtener muestras de una distribución uniforme en un círculo. Esto sirve
 de puntapié inicial para hacer el ejercicio **Los puntos uniformes** de la Práctica 3.
 
-El programa muestrea los puntos en coordenadas polares. Primero se muestrean los ángulos y 
-luego las distancias al origen. Finalmente se convierten estos puntos al sistema de 
+El programa muestrea los puntos en coordenadas polares. Primero se muestrean los ángulos y
+luego las distancias al origen. Finalmente se convierten estos puntos al sistema de
 coordenadas del plano cartesiano y se grafican.
 
 ```{r}
