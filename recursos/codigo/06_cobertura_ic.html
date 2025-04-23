@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>distribuciones – Estadística Bayesiana</title>
+<title>06 - Propiedades frecuentistas de inferencias bayesianas – Estadística Bayesiana</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -29,7 +63,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../recursos/software/04_instalar_rstan.html" rel="prev">
+<link href="../../recursos/software/index.html" rel="next">
+<link href="../../recursos/codigo/05_likelihood_poisson.html" rel="prev">
 <link href="../../utils/imgs/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -68,35 +103,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -153,7 +159,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/distribuciones/distribuciones.html">Distribuciones</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/codigo/index.html">Código</a></li><li class="breadcrumb-item"><a href="../../recursos/codigo/06_cobertura_ic.html">06 - Propiedades frecuentistas de inferencias bayesianas</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -171,11 +177,11 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../../recursos/codigo/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Código</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Alternar sección">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../recursos/codigo/01_froot_loops_grilla.html" class="sidebar-item-text sidebar-link">
@@ -208,7 +214,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/codigo/06_cobertura_ic.html" class="sidebar-item-text sidebar-link">
+  <a href="../../recursos/codigo/06_cobertura_ic.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">06 - Propiedades frecuentistas de inferencias bayesianas</span></a>
   </div>
 </li>
@@ -251,7 +257,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/distribuciones/distribuciones.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../recursos/distribuciones/distribuciones.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Distribuciones</span></a>
   </div>
 </li>
@@ -264,201 +270,131 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/codigo/index.html">Código</a></li><li class="breadcrumb-item"><a href="../../recursos/codigo/06_cobertura_ic.html">06 - Propiedades frecuentistas de inferencias bayesianas</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">06 - Propiedades frecuentistas de inferencias bayesianas</h1>
+</div>
 
 
 
-<section id="distribuciones-de-probabilidad" class="level1">
-<h1>Distribuciones de probabilidad</h1>
-<section id="normal" class="level2">
-<h2 class="anchored" data-anchor-id="normal">Normal</h2>
-<p><span class="math display">\[
-X \sim \text{Normal}(\mu, \sigma)
-\]</span></p>
-<p><span class="math display">\[
-p(x \mid \mu, \sigma) = \frac{1}{\sqrt{2\pi} \sigma}e^{-\frac{(x - \mu) ^ 2}{2\sigma^2}}
-\]</span></p>
-<p><span class="math display">\[
-P(X \le x) = \int_{-\infty}^{x}{p(x | \mu, \sigma) dx}
-\]</span></p>
-<p>o también</p>
-<p><span class="math display">\[
-P(X \le x) = \frac{1}{2} \left[1 + \text{erf}\left(\frac{x - \mu}{\sigma\sqrt{2}} \right) \right]
-\]</span></p>
-<p>con</p>
-<p><span class="math display">\[
-\text{erf}(x) = \frac{2}{\sqrt{\pi}}\int_0^{x} {e^{-t^2}dt}
-\]</span></p>
-<ul>
-<li><span class="math inline">\(X \in \mathbb{R}\)</span></li>
-<li><span class="math inline">\(\mu \in \mathbb{R}\)</span></li>
-<li><span class="math inline">\(\sigma &gt; 0\)</span></li>
-<li><span class="math inline">\(\mathbb{E}(X) = \mu\)</span></li>
-<li><span class="math inline">\(\mathbb{V}(X) = \sigma^2\)</span></li>
-</ul>
-</section>
-<section id="t-student" class="level2">
-<h2 class="anchored" data-anchor-id="t-student">T-Student</h2>
-<p><span class="math display">\[
-X \sim \text{StudentT}(\nu)
-\]</span></p>
-<p><span class="math display">\[
-p(x \mid \nu) =
-    \frac{\Gamma(\frac{\nu + 1}{2})}{\Gamma(\frac{\nu}{2})}
-    \left(\frac{1}{\pi\nu}\right) ^ {\frac{1}{2}}
-    \left[1 + \frac{x^2}{\nu}\right]^{-\frac{\nu + 1}{2}}
-\]</span></p>
-<p><span class="math display">\[
-P(X \le x) = \frac{1}{2} + x \Gamma\left(\frac{\nu + 1}{2}\right)
-             \frac{{}_2F_1\left(\frac{1}{2}, \frac{v + 1}{2}, \frac{3}{2}, \frac{-x^2}{\nu} \right)}
-             {\sqrt{\pi \nu} \Gamma(\frac{\nu}{2})}
-\]</span></p>
-<p>donde <span class="math inline">\({}_2F_1\)</span> es la <a href="https://es.wikipedia.org/wiki/Funci%C3%B3n_hipergeom%C3%A9trica">función hipergeométrica</a>.</p>
-<ul>
-<li><span class="math inline">\(X \in \mathbb{R}\)</span></li>
-<li><span class="math inline">\(\nu &gt; 0\)</span></li>
-<li><span class="math inline">\(\mathbb{E}(X) = 0\)</span> si <span class="math inline">\(\nu &gt; 1\)</span></li>
-<li><span class="math inline">\(\mathbb{V}(X) = \nu / (\nu - 2)\)</span> si <span class="math inline">\(\nu &gt; 2\)</span></li>
-</ul>
-</section>
-<section id="gamma" class="level2">
-<h2 class="anchored" data-anchor-id="gamma">Gamma</h2>
-<section id="parametrización-1" class="level3">
-<h3 class="anchored" data-anchor-id="parametrización-1">Parametrización 1</h3>
-<p><span class="math display">\[
-X \sim \text{Gamma}(k, \theta)
-\]</span></p>
-<p><span class="math display">\[
-p(x \mid k, \theta) = \frac{1}{\Gamma(k)\theta^k}x^{k-1}e^{-\frac{x}{\theta}}
-\]</span></p>
-<p><span class="math display">\[
-P(X \le x) = \frac{1}{\Gamma(k)} \gamma \left(k, \frac{x}{\theta}\right)
-\]</span></p>
-<ul>
-<li><span class="math inline">\(X &gt; 0\)</span></li>
-<li><span class="math inline">\(k &gt; 0\)</span></li>
-<li><span class="math inline">\(\theta &gt; 0\)</span></li>
-<li><span class="math inline">\(\mathbb{E}(X) = k\theta\)</span></li>
-<li><span class="math inline">\(\mathbb{V}(X) = k\theta^2\)</span></li>
-</ul>
-</section>
-<section id="parametrización-2" class="level3">
-<h3 class="anchored" data-anchor-id="parametrización-2">Parametrización 2</h3>
-<p><span class="math display">\[
-X \sim \text{Gamma}(\alpha, \beta)
-\]</span></p>
-<p><span class="math display">\[
-p(x | \alpha, \beta) = \frac{1}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x}\beta^\alpha
-\]</span></p>
-<p><span class="math display">\[
-P(X \le x) = \frac{1}{\Gamma(\alpha)} \gamma(\alpha, \beta x)
-\]</span></p>
-<ul>
-<li><span class="math inline">\(X &gt; 0\)</span></li>
-<li><span class="math inline">\(\alpha &gt; 0\)</span></li>
-<li><span class="math inline">\(\beta &gt; 0\)</span></li>
-<li><span class="math inline">\(\mathbb{E}(X) = \alpha/\beta\)</span></li>
-<li><span class="math inline">\(\mathbb{V}(X) = \alpha/\beta^2\)</span></li>
-</ul>
-</section>
-</section>
-<section id="exponencial" class="level2">
-<h2 class="anchored" data-anchor-id="exponencial">Exponencial</h2>
-<p><span class="math display">\[
-X \sim \text{Exponencial}(\lambda)
-\]</span></p>
-<p><span class="math display">\[
-p(x \mid \lambda) = \lambda e^{-\lambda x}
-\]</span></p>
-<p><span class="math display">\[
-P(X \le x) = 1 - e^{-\lambda x}
-\]</span></p>
-<ul>
-<li><span class="math inline">\(X &gt; 0\)</span></li>
-<li><span class="math inline">\(\lambda &gt; 0\)</span></li>
-<li><span class="math inline">\(\mathbb{E}(X) = 1 / \lambda\)</span></li>
-<li><span class="math inline">\(\mathbb{V}(X) = 1 / \lambda ^ 2\)</span></li>
-</ul>
-<p>Es un caso particular de <span class="math inline">\(\text{Gamma}(\alpha, \beta)\)</span> con <span class="math inline">\(\alpha = 1\)</span> y <span class="math inline">\(\beta = \lambda\)</span></p>
-</section>
-<section id="beta" class="level2">
-<h2 class="anchored" data-anchor-id="beta">Beta</h2>
-<p><span class="math display">\[
-X \sim \text{Beta}(a, b)
-\]</span></p>
-<p><span class="math display">\[
-p(x \mid a, b) = \frac{x^{a-1} (1-x)^{b-1}}{B(a, b)}
-\]</span></p>
-<p><span class="math display">\[
-B(a, b) = \int_0^1 x^{a-1} (1-x)^{b-1} dx = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}
-\]</span></p>
-<p><span class="math display">\[
-\Gamma(x) = \int_0^\infty u^{x-1} e^{-u} du
-\]</span></p>
-<ul>
-<li><span class="math inline">\(X \in (0, 1)\)</span></li>
-<li><span class="math inline">\(\displaystyle \mathbb{E}(X) = \frac{a}{a + b}\)</span></li>
-<li><span class="math inline">\(\displaystyle \mathbb{V}(X) = \frac{ab}{(a + b) ^ 2 (a + b + 1)}\)</span></li>
-</ul>
-</section>
-<section id="binomial" class="level2">
-<h2 class="anchored" data-anchor-id="binomial">Binomial</h2>
-<p><span class="math display">\[
-X \sim \text{Binomial}(\theta, n)
-\]</span></p>
-<p><span class="math display">\[
-p(x \mid \theta, n) = {n \choose x} \theta^x (1 - \theta)^{(n - x)}
-\]</span></p>
-<p><span class="math display">\[
-P(X \le x) = \sum_{i = 0} ^ {x} {n \choose i} \theta^i (1 - \theta)^{(n - i)}
-\]</span></p>
-<ul>
-<li><span class="math inline">\(X \in \{0, 1, 2, \cdots, n\}\)</span></li>
-<li><span class="math inline">\(\theta \in [0, 1]\)</span></li>
-<li><span class="math inline">\(n \in \{0, 1, 2, \cdots \}\)</span></li>
-<li><span class="math inline">\(\mathbb{E}(X) = n \theta\)</span></li>
-<li><span class="math inline">\(\mathbb{V}(X) = n \theta (1 - \theta)\)</span></li>
-</ul>
-</section>
-<section id="poisson" class="level2">
-<h2 class="anchored" data-anchor-id="poisson">Poisson</h2>
-<p><span class="math display">\[
-X \sim \text{Poisson}(\lambda)
-\]</span></p>
-<p><span class="math display">\[
-p(x \mid \lambda) = \frac{\lambda^x e^{-\lambda}}{x!}
-\]</span></p>
-<p><span class="math display">\[
-P(X \le x) = e^{-\lambda} \sum_{i = 0} ^ {x} \frac{\lambda^i}{i!}
-\]</span></p>
-<ul>
-<li><span class="math inline">\(X \in \{0, 1, 2, \cdots\}\)</span></li>
-<li><span class="math inline">\(\lambda &gt; 0\)</span></li>
-<li><span class="math inline">\(\mathbb{E}(X) = \lambda\)</span></li>
-<li><span class="math inline">\(\mathbb{V}(X) = \lambda\)</span></li>
-</ul>
-</section>
-<section id="binomial-negativa" class="level2">
-<h2 class="anchored" data-anchor-id="binomial-negativa">Binomial Negativa</h2>
-<p><span class="math display">\[
-X \sim \text{BinomialNegativa}(r, p)
-\]</span></p>
-<p><span class="math display">\[
-p(x \mid k, p)= \binom{x + r - 1}{x}(1 - p)^x p^r
-\]</span></p>
-<ul>
-<li><span class="math inline">\(X \in \{0, 1, 2, \cdots \}\)</span></li>
-<li><span class="math inline">\(r \in \{1, 2, 3, \cdots \}\)</span></li>
-<li><span class="math inline">\(p \in [0, 1]\)</span></li>
-<li><span class="math inline">\(\mathbb{E}(X) = r(1 - p) / p\)</span></li>
-<li><span class="math inline">\(\mathbb{V}(X) = r(1 - p) / p^2\)</span></li>
-</ul>
-<!-- 
-## Student T
--->
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
-</section>
-</section>
+</header>
+
+
+<p>El siguiente programa sirve para responder al ejercicio <strong>Propiedades frecuentistas de inferencias bayesianas</strong> de la Práctica 2.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir cantidad de repeticiones</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>reps_n <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir valores de 'n'</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>n_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">25</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir valores de 'theta'</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>theta_vector <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.05</span>, <span class="fl">0.5</span>, <span class="at">by =</span> <span class="fl">0.05</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir hiperparámetros del prior</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>a_prior <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>b_prior <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear matriz para almacenar las coberturas empíricas</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>coberturas <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">nrow =</span> <span class="fu">length</span>(n_vector),</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">ncol =</span> <span class="fu">length</span>(theta_vector)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(n_vector)) {</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> <span class="fu">seq_along</span>(theta_vector)) {</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        n <span class="ot">&lt;-</span> n_vector[i]</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        theta <span class="ot">&lt;-</span> theta_vector[j]</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        y_rvs <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(reps_n, n, theta)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        a_posterior <span class="ot">&lt;-</span> a_prior <span class="sc">+</span> y_rvs</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        b_posterior <span class="ot">&lt;-</span> b_prior <span class="sc">+</span> (n <span class="sc">-</span> y_rvs)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        ic_lower <span class="ot">&lt;-</span> <span class="fu">qbeta</span>(<span class="fl">0.025</span>, a_posterior, b_posterior)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        ic_upper <span class="ot">&lt;-</span> <span class="fu">qbeta</span>(<span class="fl">0.975</span>, a_posterior, b_posterior)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        cobertura <span class="ot">&lt;-</span> <span class="fu">mean</span>(theta <span class="sc">&gt;</span> ic_lower <span class="sc">&amp;</span> theta <span class="sc">&lt;</span> ic_upper)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        <span class="fu">cat</span>(<span class="st">"n="</span>, n, <span class="st">"theta="</span>, theta, <span class="st">"cobertura="</span>, cobertura, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        coberturas[i, j] <span class="ot">&lt;-</span> cobertura</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>n= 1 theta= 0.05 cobertura= 0.9523 
+n= 1 theta= 0.1 cobertura= 0.9007 
+n= 1 theta= 0.15 cobertura= 1 
+n= 1 theta= 0.2 cobertura= 1 
+n= 1 theta= 0.25 cobertura= 1 
+n= 1 theta= 0.3 cobertura= 1 
+n= 1 theta= 0.35 cobertura= 1 
+n= 1 theta= 0.4 cobertura= 1 
+n= 1 theta= 0.45 cobertura= 1 
+n= 1 theta= 0.5 cobertura= 1 
+n= 5 theta= 0.05 cobertura= 0.9766 
+n= 5 theta= 0.1 cobertura= 0.9901 
+n= 5 theta= 0.15 cobertura= 0.9744 
+n= 5 theta= 0.2 cobertura= 0.9383 
+n= 5 theta= 0.25 cobertura= 0.9834 
+n= 5 theta= 0.3 cobertura= 0.968 
+n= 5 theta= 0.35 cobertura= 0.9464 
+n= 5 theta= 0.4 cobertura= 0.9074 
+n= 5 theta= 0.45 cobertura= 0.9296 
+n= 5 theta= 0.5 cobertura= 0.9381 
+n= 10 theta= 0.05 cobertura= 0.9893 
+n= 10 theta= 0.1 cobertura= 0.9863 
+n= 10 theta= 0.15 cobertura= 0.9517 
+n= 10 theta= 0.2 cobertura= 0.9678 
+n= 10 theta= 0.25 cobertura= 0.9273 
+n= 10 theta= 0.3 cobertura= 0.926 
+n= 10 theta= 0.35 cobertura= 0.9642 
+n= 10 theta= 0.4 cobertura= 0.9428 
+n= 10 theta= 0.45 cobertura= 0.9503 
+n= 10 theta= 0.5 cobertura= 0.9781 
+n= 25 theta= 0.05 cobertura= 0.9643 
+n= 25 theta= 0.1 cobertura= 0.8903 
+n= 25 theta= 0.15 cobertura= 0.9551 
+n= 25 theta= 0.2 cobertura= 0.9534 
+n= 25 theta= 0.25 cobertura= 0.9376 
+n= 25 theta= 0.3 cobertura= 0.9471 
+n= 25 theta= 0.35 cobertura= 0.9419 
+n= 25 theta= 0.4 cobertura= 0.9414 
+n= 25 theta= 0.45 cobertura= 0.9553 
+n= 25 theta= 0.5 cobertura= 0.9602 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear combinaciones entre los valores de 'n' y 'theta'</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">expand.grid</span>(n_vector, theta_vector))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Asignar nombres de columnas mas claros</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(datos) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"theta"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Transformar matriz en vector y guardar como columna del data frame</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>cobertura <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(coberturas)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar con ggplot2</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> theta, <span class="at">y =</span> cobertura)) <span class="sc">+</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.95</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> <span class="fu">as.factor</span>(n))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="06_cobertura_ic_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -883,11 +819,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../recursos/software/04_instalar_rstan.html" class="pagination-link" aria-label="Instalar RStan">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Instalar RStan</span>
+      <a href="../../recursos/codigo/05_likelihood_poisson.html" class="pagination-link" aria-label="05 - Función de verosimilitud Poisson">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">05 - Función de verosimilitud Poisson</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../recursos/software/index.html" class="pagination-link" aria-label="Instalación de software">
+        <span class="nav-page-text">Instalación de software</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>distribuciones – Estadística Bayesiana</title>
+<title>05 - Función de verosimilitud Poisson – Estadística Bayesiana</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -29,7 +63,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../recursos/software/04_instalar_rstan.html" rel="prev">
+<link href="../../recursos/codigo/06_cobertura_ic.html" rel="next">
+<link href="../../recursos/codigo/04_diferentes_posteriors.html" rel="prev">
 <link href="../../utils/imgs/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -153,7 +188,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/distribuciones/distribuciones.html">Distribuciones</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/codigo/index.html">Código</a></li><li class="breadcrumb-item"><a href="../../recursos/codigo/05_likelihood_poisson.html">05 - Función de verosimilitud Poisson</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -171,11 +206,11 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../../recursos/codigo/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Código</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Alternar sección">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../recursos/codigo/01_froot_loops_grilla.html" class="sidebar-item-text sidebar-link">
@@ -202,7 +237,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/codigo/05_likelihood_poisson.html" class="sidebar-item-text sidebar-link">
+  <a href="../../recursos/codigo/05_likelihood_poisson.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">05 - Función de verosimilitud Poisson</span></a>
   </div>
 </li>
@@ -251,7 +286,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/distribuciones/distribuciones.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../recursos/distribuciones/distribuciones.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Distribuciones</span></a>
   </div>
 </li>
@@ -264,201 +299,104 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/codigo/index.html">Código</a></li><li class="breadcrumb-item"><a href="../../recursos/codigo/05_likelihood_poisson.html">05 - Función de verosimilitud Poisson</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">05 - Función de verosimilitud Poisson</h1>
+</div>
 
 
 
-<section id="distribuciones-de-probabilidad" class="level1">
-<h1>Distribuciones de probabilidad</h1>
-<section id="normal" class="level2">
-<h2 class="anchored" data-anchor-id="normal">Normal</h2>
-<p><span class="math display">\[
-X \sim \text{Normal}(\mu, \sigma)
-\]</span></p>
-<p><span class="math display">\[
-p(x \mid \mu, \sigma) = \frac{1}{\sqrt{2\pi} \sigma}e^{-\frac{(x - \mu) ^ 2}{2\sigma^2}}
-\]</span></p>
-<p><span class="math display">\[
-P(X \le x) = \int_{-\infty}^{x}{p(x | \mu, \sigma) dx}
-\]</span></p>
-<p>o también</p>
-<p><span class="math display">\[
-P(X \le x) = \frac{1}{2} \left[1 + \text{erf}\left(\frac{x - \mu}{\sigma\sqrt{2}} \right) \right]
-\]</span></p>
-<p>con</p>
-<p><span class="math display">\[
-\text{erf}(x) = \frac{2}{\sqrt{\pi}}\int_0^{x} {e^{-t^2}dt}
-\]</span></p>
-<ul>
-<li><span class="math inline">\(X \in \mathbb{R}\)</span></li>
-<li><span class="math inline">\(\mu \in \mathbb{R}\)</span></li>
-<li><span class="math inline">\(\sigma &gt; 0\)</span></li>
-<li><span class="math inline">\(\mathbb{E}(X) = \mu\)</span></li>
-<li><span class="math inline">\(\mathbb{V}(X) = \sigma^2\)</span></li>
-</ul>
-</section>
-<section id="t-student" class="level2">
-<h2 class="anchored" data-anchor-id="t-student">T-Student</h2>
-<p><span class="math display">\[
-X \sim \text{StudentT}(\nu)
-\]</span></p>
-<p><span class="math display">\[
-p(x \mid \nu) =
-    \frac{\Gamma(\frac{\nu + 1}{2})}{\Gamma(\frac{\nu}{2})}
-    \left(\frac{1}{\pi\nu}\right) ^ {\frac{1}{2}}
-    \left[1 + \frac{x^2}{\nu}\right]^{-\frac{\nu + 1}{2}}
-\]</span></p>
-<p><span class="math display">\[
-P(X \le x) = \frac{1}{2} + x \Gamma\left(\frac{\nu + 1}{2}\right)
-             \frac{{}_2F_1\left(\frac{1}{2}, \frac{v + 1}{2}, \frac{3}{2}, \frac{-x^2}{\nu} \right)}
-             {\sqrt{\pi \nu} \Gamma(\frac{\nu}{2})}
-\]</span></p>
-<p>donde <span class="math inline">\({}_2F_1\)</span> es la <a href="https://es.wikipedia.org/wiki/Funci%C3%B3n_hipergeom%C3%A9trica">función hipergeométrica</a>.</p>
-<ul>
-<li><span class="math inline">\(X \in \mathbb{R}\)</span></li>
-<li><span class="math inline">\(\nu &gt; 0\)</span></li>
-<li><span class="math inline">\(\mathbb{E}(X) = 0\)</span> si <span class="math inline">\(\nu &gt; 1\)</span></li>
-<li><span class="math inline">\(\mathbb{V}(X) = \nu / (\nu - 2)\)</span> si <span class="math inline">\(\nu &gt; 2\)</span></li>
-</ul>
-</section>
-<section id="gamma" class="level2">
-<h2 class="anchored" data-anchor-id="gamma">Gamma</h2>
-<section id="parametrización-1" class="level3">
-<h3 class="anchored" data-anchor-id="parametrización-1">Parametrización 1</h3>
-<p><span class="math display">\[
-X \sim \text{Gamma}(k, \theta)
-\]</span></p>
-<p><span class="math display">\[
-p(x \mid k, \theta) = \frac{1}{\Gamma(k)\theta^k}x^{k-1}e^{-\frac{x}{\theta}}
-\]</span></p>
-<p><span class="math display">\[
-P(X \le x) = \frac{1}{\Gamma(k)} \gamma \left(k, \frac{x}{\theta}\right)
-\]</span></p>
-<ul>
-<li><span class="math inline">\(X &gt; 0\)</span></li>
-<li><span class="math inline">\(k &gt; 0\)</span></li>
-<li><span class="math inline">\(\theta &gt; 0\)</span></li>
-<li><span class="math inline">\(\mathbb{E}(X) = k\theta\)</span></li>
-<li><span class="math inline">\(\mathbb{V}(X) = k\theta^2\)</span></li>
-</ul>
-</section>
-<section id="parametrización-2" class="level3">
-<h3 class="anchored" data-anchor-id="parametrización-2">Parametrización 2</h3>
-<p><span class="math display">\[
-X \sim \text{Gamma}(\alpha, \beta)
-\]</span></p>
-<p><span class="math display">\[
-p(x | \alpha, \beta) = \frac{1}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x}\beta^\alpha
-\]</span></p>
-<p><span class="math display">\[
-P(X \le x) = \frac{1}{\Gamma(\alpha)} \gamma(\alpha, \beta x)
-\]</span></p>
-<ul>
-<li><span class="math inline">\(X &gt; 0\)</span></li>
-<li><span class="math inline">\(\alpha &gt; 0\)</span></li>
-<li><span class="math inline">\(\beta &gt; 0\)</span></li>
-<li><span class="math inline">\(\mathbb{E}(X) = \alpha/\beta\)</span></li>
-<li><span class="math inline">\(\mathbb{V}(X) = \alpha/\beta^2\)</span></li>
-</ul>
-</section>
-</section>
-<section id="exponencial" class="level2">
-<h2 class="anchored" data-anchor-id="exponencial">Exponencial</h2>
-<p><span class="math display">\[
-X \sim \text{Exponencial}(\lambda)
-\]</span></p>
-<p><span class="math display">\[
-p(x \mid \lambda) = \lambda e^{-\lambda x}
-\]</span></p>
-<p><span class="math display">\[
-P(X \le x) = 1 - e^{-\lambda x}
-\]</span></p>
-<ul>
-<li><span class="math inline">\(X &gt; 0\)</span></li>
-<li><span class="math inline">\(\lambda &gt; 0\)</span></li>
-<li><span class="math inline">\(\mathbb{E}(X) = 1 / \lambda\)</span></li>
-<li><span class="math inline">\(\mathbb{V}(X) = 1 / \lambda ^ 2\)</span></li>
-</ul>
-<p>Es un caso particular de <span class="math inline">\(\text{Gamma}(\alpha, \beta)\)</span> con <span class="math inline">\(\alpha = 1\)</span> y <span class="math inline">\(\beta = \lambda\)</span></p>
-</section>
-<section id="beta" class="level2">
-<h2 class="anchored" data-anchor-id="beta">Beta</h2>
-<p><span class="math display">\[
-X \sim \text{Beta}(a, b)
-\]</span></p>
-<p><span class="math display">\[
-p(x \mid a, b) = \frac{x^{a-1} (1-x)^{b-1}}{B(a, b)}
-\]</span></p>
-<p><span class="math display">\[
-B(a, b) = \int_0^1 x^{a-1} (1-x)^{b-1} dx = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}
-\]</span></p>
-<p><span class="math display">\[
-\Gamma(x) = \int_0^\infty u^{x-1} e^{-u} du
-\]</span></p>
-<ul>
-<li><span class="math inline">\(X \in (0, 1)\)</span></li>
-<li><span class="math inline">\(\displaystyle \mathbb{E}(X) = \frac{a}{a + b}\)</span></li>
-<li><span class="math inline">\(\displaystyle \mathbb{V}(X) = \frac{ab}{(a + b) ^ 2 (a + b + 1)}\)</span></li>
-</ul>
-</section>
-<section id="binomial" class="level2">
-<h2 class="anchored" data-anchor-id="binomial">Binomial</h2>
-<p><span class="math display">\[
-X \sim \text{Binomial}(\theta, n)
-\]</span></p>
-<p><span class="math display">\[
-p(x \mid \theta, n) = {n \choose x} \theta^x (1 - \theta)^{(n - x)}
-\]</span></p>
-<p><span class="math display">\[
-P(X \le x) = \sum_{i = 0} ^ {x} {n \choose i} \theta^i (1 - \theta)^{(n - i)}
-\]</span></p>
-<ul>
-<li><span class="math inline">\(X \in \{0, 1, 2, \cdots, n\}\)</span></li>
-<li><span class="math inline">\(\theta \in [0, 1]\)</span></li>
-<li><span class="math inline">\(n \in \{0, 1, 2, \cdots \}\)</span></li>
-<li><span class="math inline">\(\mathbb{E}(X) = n \theta\)</span></li>
-<li><span class="math inline">\(\mathbb{V}(X) = n \theta (1 - \theta)\)</span></li>
-</ul>
-</section>
-<section id="poisson" class="level2">
-<h2 class="anchored" data-anchor-id="poisson">Poisson</h2>
-<p><span class="math display">\[
-X \sim \text{Poisson}(\lambda)
-\]</span></p>
-<p><span class="math display">\[
-p(x \mid \lambda) = \frac{\lambda^x e^{-\lambda}}{x!}
-\]</span></p>
-<p><span class="math display">\[
-P(X \le x) = e^{-\lambda} \sum_{i = 0} ^ {x} \frac{\lambda^i}{i!}
-\]</span></p>
-<ul>
-<li><span class="math inline">\(X \in \{0, 1, 2, \cdots\}\)</span></li>
-<li><span class="math inline">\(\lambda &gt; 0\)</span></li>
-<li><span class="math inline">\(\mathbb{E}(X) = \lambda\)</span></li>
-<li><span class="math inline">\(\mathbb{V}(X) = \lambda\)</span></li>
-</ul>
-</section>
-<section id="binomial-negativa" class="level2">
-<h2 class="anchored" data-anchor-id="binomial-negativa">Binomial Negativa</h2>
-<p><span class="math display">\[
-X \sim \text{BinomialNegativa}(r, p)
-\]</span></p>
-<p><span class="math display">\[
-p(x \mid k, p)= \binom{x + r - 1}{x}(1 - p)^x p^r
-\]</span></p>
-<ul>
-<li><span class="math inline">\(X \in \{0, 1, 2, \cdots \}\)</span></li>
-<li><span class="math inline">\(r \in \{1, 2, 3, \cdots \}\)</span></li>
-<li><span class="math inline">\(p \in [0, 1]\)</span></li>
-<li><span class="math inline">\(\mathbb{E}(X) = r(1 - p) / p\)</span></li>
-<li><span class="math inline">\(\mathbb{V}(X) = r(1 - p) / p^2\)</span></li>
-</ul>
-<!-- 
-## Student T
--->
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
-</section>
-</section>
+</header>
+
+
+<p>Este programa grafica la función de verosimilitud cuando se obtiene una muestra de <span class="math inline">\(n\)</span> realizaciones independientes de una distribución Poisson. Se utiliza en el ejercicio <strong>El modelo Gamma-Poisson</strong> de la Práctica 2.</p>
+<p><span class="math display">\[
+\begin{array}{lcc}
+X \sim \text{Poisson}(\lambda), &amp; \lambda &gt; 0, &amp; X \in \{0, 1, 2, \cdots \}
+\end{array}
+\]</span></p>
+<p><span class="math display">\[
+p(x \mid \lambda) = \frac{e^{-\lambda} \lambda^x}{x!}
+\]</span></p>
+<p><span class="math display">\[
+\ell(\theta \mid x_1, x_2, \cdots, x_n) = p(\mathbf{x} \mid \theta)
+    = \prod_{i=1}^{n} p(x_i \mid \lambda)
+    = \prod_{i=1}^{n} \frac{e^{-\lambda} \lambda^{x_i}}{x_i!}
+    = \frac{e^{- n \lambda} \lambda^{\sum_i x_i}}{\prod_i x_i!}
+\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Cantidad de mensajes observados</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>mensajes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">12</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Opción 1</strong>: Escribir la función de verosimilitud analíticamente</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(mensajes)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>total <span class="ot">&lt;-</span> <span class="fu">sum</span>(mensajes)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>producto_factoriales <span class="ot">&lt;-</span> <span class="fu">prod</span>(<span class="fu">factorial</span>(mensajes))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Grilla de valores para 'lambda'</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Teoréticamente, el soporte del parámetro es (0, infty). Lo acotamos en 20.</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="at">length.out =</span> <span class="dv">200</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Cálculo de la verosimilitud</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>verosimilitud <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="sc">-</span>n <span class="sc">*</span> lambda) <span class="sc">*</span> lambda <span class="sc">^</span> total <span class="sc">/</span> producto_factoriales</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualización de la verosimilitud para los valores de lambda en la grilla</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">x =</span> lambda, <span class="at">y =</span> verosimilitud) <span class="sc">|&gt;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="fu">expression</span>(lambda), <span class="at">y =</span> <span class="fu">expression</span>(<span class="st">"p(y | "</span> <span class="sc">~</span> lambda <span class="sc">~</span> <span class="st">")"</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="05_likelihood_poisson_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Opción 2</strong>: Utilizar <code>dpois</code></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a>mensajes_matriz <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rep</span>(mensajes, <span class="dv">200</span>), <span class="at">nrow =</span> <span class="dv">200</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-2" class="code-annotation-target"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a>pmf <span class="ot">&lt;-</span> <span class="fu">dpois</span>(mensajes_matriz, lambda)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-3-3" class="code-annotation-target"><a href="#annotated-cell-3-3" aria-hidden="true" tabindex="-1"></a>verosimilitud <span class="ot">&lt;-</span> <span class="fu">apply</span>(pmf, <span class="dv">1</span>, prod)</span>
+<span id="annotated-cell-3-4"><a href="#annotated-cell-3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-3-5"><a href="#annotated-cell-3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">x =</span> lambda, <span class="at">y =</span> verosimilitud) <span class="sc">|&gt;</span></span>
+<span id="annotated-cell-3-6"><a href="#annotated-cell-3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="annotated-cell-3-7"><a href="#annotated-cell-3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="annotated-cell-3-8"><a href="#annotated-cell-3-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="fu">expression</span>(lambda), <span class="at">y =</span> <span class="fu">expression</span>(<span class="st">"p(y | "</span> <span class="sc">~</span> lambda <span class="sc">~</span> <span class="st">")"</span>))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="2" data-code-annotation="1">Evaluar la función de masa de probabilidad de la distribución Poisson en cada uno de los valores observados utilizando una grilla de valores de <span class="math inline">\(\lambda\)</span>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="3" data-code-annotation="2">Para cada valor de <span class="math inline">\(\lambda\)</span>, multiplicar todas las evaluaciones realizadas.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="05_likelihood_poisson_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -883,11 +821,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../recursos/software/04_instalar_rstan.html" class="pagination-link" aria-label="Instalar RStan">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Instalar RStan</span>
+      <a href="../../recursos/codigo/04_diferentes_posteriors.html" class="pagination-link" aria-label="04 - Diferentes observaciones, diferentes posteriors">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">04 - Diferentes observaciones, diferentes posteriors</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../recursos/codigo/06_cobertura_ic.html" class="pagination-link" aria-label="06 - Propiedades frecuentistas de inferencias bayesianas">
+        <span class="nav-page-text">06 - Propiedades frecuentistas de inferencias bayesianas</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
