@@ -176,7 +176,7 @@ programa.
 
 1.  **Los puntos uniformes**
 
-    Se seleccionan dos puntos de manera uniforme e independiente dentro de un círculo. 
+    Se seleccionan dos puntos de manera uniforme e independiente dentro de un círculo.
     ¿Cuál es la probabilidad de que la distancia entre dos puntos sea menor al radio?
 
     i.  Resuelva el problema utilizando R.
@@ -185,17 +185,48 @@ programa.
     ::: {.callout-tip collapse="true"}
 
     ## Ayuda
-    
-    TO DO Algo sobre como simular de una uniforme en 2d
-    
+
+    Una forma de simular puntos con distribución uniforme dentro de un círculo de radio $r$ es la
+    siguiente:
+
+    1. Elegir un ángulo $\theta$ al azar, uniformemente en $[0, 2\pi)$.
+    2. Elegir una distancia $\delta$ al centro del círculo, de manera adecuada para garantizar
+    uniformidad en el área.
+
+    Finalmente, se convierten las coordenadas polares a cartesianas con:
+    $$
+    \begin{aligned}
+    x &= \delta \times \cos(\theta) \\
+    y &= \delta \times \sin(\theta)
+    \end{aligned}
+    $$
+
+    **Nota** : Para que los puntos queden uniformemente distribuidos en el área del círculo,
+    $\delta$ no debe elegirse uniformemente en $[0, r]$, sino como $\delta = r \times \sqrt{U}$,
+    donde $U \sim \text{Uniforme}(0, 1)$.
+
+    ```r
+    # Cantidad de puntos
+    n <- 1000
+
+    # Radio del circulo
+    radio <- 3
+
+    # Ángulo del punto
+    theta <- runif(n, 0, 2 * pi)
+
+    # Distancia al centro de coordenadas
+    delta <- radio * sqrt(runif(n, 0, 1))
+    ```
+
     :::
 
 1.  **Sobre el histórico 7 a 1 del 2014**
 
-    En la Copa del Mundo de la FIFA 2014, Alemania jugó contra Brasil en la semifinal. 
+    En la Copa del Mundo de la FIFA 2014, Alemania jugó contra Brasil en la semifinal.
     Los alemanes hicieron el primer gol a los 11 minutos y el segundo a los 23.
-    Asuma que el tiempo entre goles sigue una distribución exponencial. 
-    Elija una distribución _a priori_ para el tiempo entre goles (puede ser conjugada o 
+    Asuma que el tiempo entre goles sigue una distribución exponencial.
+    Elija una distribución _a priori_ para el tiempo entre goles (puede ser conjugada o
     no). En ese momento del partido,
 
     i. ¿Cuál es la distribución _a posteriori_ del tiempo entre goles de Alemania?
@@ -217,7 +248,7 @@ programa.
     <!-- Modern Data Science with R -->
 
 1.  🧩 **¡Qué casualidad!**
-    
+
     Dos personas se conocen en la fila de embarque para un vuelo en un avión Airbus A330-300. 
     Considere que el Airbus A330-300 tiene 30 filas de 2-4-2 asientos.
 
