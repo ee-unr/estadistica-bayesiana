@@ -613,7 +613,7 @@ inferencia estadística bayesiana: el algoritmo de Metropolis-Hastings.
     probabilidad:
 
     i. $\text{Beta}(\alpha=4, \beta=8)$.
-    i. $\text{Gamma}(k = 3, \theta = 2)$.
+    i. $\text{Gamma}(\alpha = 3, \beta = 0.5)$.
     i. $\frac{1}{2}\text{Beta}(\alpha=10, \beta=3) + \frac{1}{2}\text{Beta}(\alpha=3, \beta=10)$.
 
     Realice un análisis similar al realizado en el Ejercicio 1.
