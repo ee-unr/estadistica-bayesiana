@@ -49,8 +49,13 @@ verosimilitud <- exp(-n * lambda) * lambda ^ total / producto_factoriales
 # Visualización de la verosimilitud para los valores de lambda en la grilla
 data.frame(x = lambda, y = verosimilitud) |>
     ggplot() +
-    geom_line(aes(x = x, y = y), linewidth = 1) +
-    labs(x = expression(lambda), y = expression("p(y | " ~ lambda ~ ")"))
+    geom_line(aes(x = x, y = y), linewidth = 1, color = "#3b78b0") +
+    labs(x = expression(lambda), y = expression("p(y | " ~ lambda ~ ")")) +
+    theme_bw() +
+    theme(
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+    )
 ```
 
 **Opción 2**: Utilizar `dpois`
@@ -64,8 +69,13 @@ verosimilitud <- apply(pmf, 1, prod)                                            
 
 data.frame(x = lambda, y = verosimilitud) |>
     ggplot() +
-    geom_line(aes(x = x, y = y), linewidth = 1) +
-    labs(x = expression(lambda), y = expression("p(y | " ~ lambda ~ ")"))
+    geom_line(aes(x = x, y = y), linewidth = 1, color = "#3b78b0") +
+    labs(x = expression(lambda), y = expression("p(y | " ~ lambda ~ ")")) +
+    theme_bw() +
+    theme(
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+    )
 ```
 
 
