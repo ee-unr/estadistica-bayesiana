@@ -107,7 +107,7 @@ Teniendo muestras de $p(x)$ es fácil estimar las integrales $\mathbb{E}[\phi(x)
 
 . . .
 
-Para algunas distribuciones de probabilidad es fácil obtener muestras. Pero no siempre existe una función `rbinom`, `rbeta`, `rnorm`, `rpoiss`, etc.
+Para algunas distribuciones de probabilidad es fácil obtener muestras. Pero no siempre existe una función `rbinom`, `rbeta`, `rnorm`, `rpois`, etc.
 
 ## {.smaller}
 
