@@ -2400,7 +2400,7 @@
     "href": "presentaciones/presentacion_05.html#section-2",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Teniendo muestras de \\(p(x)\\) es fácil estimar las integrales \\(\\mathbb{E}[\\phi(x)] = \\int \\phi(x) p(x) d x\\) por lo que nos centraremos en el problema de cómo obtener muestras de \\(p(x)\\).\n\nPara algunas distribuciones de probabilidad es fácil obtener muestras. Pero no siempre existe una función rbinom, rbeta, rnorm, rpoiss, etc."
+    "text": "Teniendo muestras de \\(p(x)\\) es fácil estimar las integrales \\(\\mathbb{E}[\\phi(x)] = \\int \\phi(x) p(x) d x\\) por lo que nos centraremos en el problema de cómo obtener muestras de \\(p(x)\\).\n\nPara algunas distribuciones de probabilidad es fácil obtener muestras. Pero no siempre existe una función rbinom, rbeta, rnorm, rpois, etc."
   },
   {
     "objectID": "presentaciones/presentacion_05.html#section-3",
