@@ -1,8 +1,8 @@
 ---
-title: "08 - Bolas infinitas"
+title: "09 - Bolas infinitas"
 ---
 
-El siguiente programa sirve para responder al ejercicio **Bolas infinitas** 
+El siguiente programa sirve para responder al ejercicio **Bolas infinitas**
 de la Práctica 3.
 
 ```{r}
@@ -21,8 +21,8 @@ urna <- c("azul", "amarillo")
 for (i in seq_len(10000)) {
     # Seleccionar uno de los elementos de la urna
     muestra <- sample(urna, 1)
-    
-    # Agregar otro elemento igual al extraido
+
+# Agregar otro elemento igual al extraido
     urna <- c(urna, muestra)
 
     # Cada 500 iteraciones imprimir la proporción de bolas azules
@@ -37,14 +37,14 @@ mean(urna == "azul")
 
 **Parte 2**
 
-Se ejecutan 10000 pasos de este proceso diez veces.
+Se ejecutan 1000 pasos de este proceso diez veces.
 
 ```{r}
 #| fig-width: 7
 #| fig-align: center
 
 # Crear vector vacío que contendrá las proporciones de azules a medida que
-# se realizan pasos del experimento. 
+# se realizan pasos del experimento.
 proporciones <- numeric(0)
 
 # Realizar 10 iteraciones independientes (utilizando 10 bolsas independientes)
@@ -56,10 +56,10 @@ for (j in 1:10) {
     }
     # Calcular la proporción de azules conforme se avanza en el experimento
     proporcion <- cumsum(urna == "azul") / seq_along(urna)
-    
+
     # Descartar el primer valor, que siempre es 0.5
     proporcion <- proporcion[2:length(proporcion)]
-    
+
     # Guardar el vector producido en el vector 'proporciones'
     proporciones <- c(proporciones, proporcion)
 }
@@ -75,7 +75,11 @@ datos <- data.frame(
 )
 
 ggplot(datos) +
-    geom_line(aes(x = x, y = y, color = prueba))
+    geom_line(aes(x = x, y = y, color = prueba)) +
+    theme_bw() +
+    theme(
+        panel.grid.minor = element_blank()
+    )
 ```
 
 

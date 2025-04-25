@@ -1,5 +1,5 @@
 ---
-title: "09 - Aproximación de grilla en 2 dimensiones"
+title: "10 - Aproximación de grilla en 2 dimensiones"
 ---
 
 El siguiente programa muestra como se puede resolver en R el ejercicio
@@ -9,8 +9,8 @@ El siguiente programa muestra como se puede resolver en R el ejercicio
 #| warning: false
 #| fig-width: 7
 #| fig-align: center
-#| fig-cap: Distribución a posteriori evaluada en una grilla de 50×50 puntos.<br>
-#|    El punto indica los valores de $\alpha$ y $\beta$ utilizados para generar los 
+#| fig-cap: Distribución _a posteriori_ evaluada en una grilla de 50×50 puntos.<br>
+#|    El punto indica los valores de $\alpha$ y $\beta$ utilizados para generar los
 #|    datos.
 library(dplyr)
 library(ggplot2)
@@ -47,7 +47,7 @@ for (i in seq_along(likelihood)) {
 }
 # Calcular el posterior en cada punto
 posterior <- (
-    likelihood 
+    likelihood
     * dnorm(grid_df$a, mean = 0, sd = 1.5) # alpha ~ Normal(0, 1.5)
     * dnorm(grid_df$b, mean = 0, sd = 2)   # beta ~ Normal(0, 2)
 )
@@ -66,7 +66,7 @@ ggplot(grid_df, aes(x = a, y = b)) +
     geom_point(x = alpha, y = beta, color = "black", fill = "red", size = 3, pch = 21) +
     labs(x = expression(alpha), y = expression(beta)) +
     viridis::scale_fill_viridis() +
-    theme(legend.position = "none") +
+    guides(fill = guide_colourbar(barheight = unit(4.2, "in"))) +
     scale_x_continuous(expand = c(0, 0)) +
     scale_y_continuous(expand = c(0, 0))
 ```
@@ -80,9 +80,14 @@ posterior_a_df <- grid_df |>
     summarise(p = sum(posterior))
 
 ggplot(posterior_a_df) +
-    geom_segment(aes(x = a, xend = a, y = 0, yend = p)) +
-    geom_point(aes(x = a, y = p)) +
-    labs(x = expression(alpha), y = expression("p(" ~ alpha ~ " | y)"))
+    geom_segment(aes(x = a, xend = a, y = 0, yend = p), color = "#d1352c") +
+    geom_point(aes(x = a, y = p), color = "#d1352c") +
+    labs(x = expression(alpha), y = expression("p(" ~ alpha ~ " | y)")) +
+    theme_bw() +
+    theme(
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+    )
 ```
 
 
@@ -95,9 +100,14 @@ posterior_b_df <- grid_df |>
     summarise(p = sum(posterior))
 
 ggplot(posterior_b_df) +
-    geom_segment(aes(x = b, xend = b, y = 0, yend = p)) +
-    geom_point(aes(x = b, y = p)) +
-    labs(x = expression(beta), y = expression("p(" ~ beta ~ " | y)"))
+    geom_segment(aes(x = b, xend = b, y = 0, yend = p), color = "#d1352c") +
+    geom_point(aes(x = b, y = p), color = "#d1352c") +
+    labs(x = expression(beta), y = expression("p(" ~ beta ~ " | y)")) +
+    theme_bw() +
+    theme(
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+    )
 ```
 
 
