@@ -324,7 +324,7 @@ Obtener un valor aleatorio <span class="math inline">\(y'\)</span> de una variab
     \]</span></p></li>
 <li><p><strong>Calcular la probabilidad de aceptación</strong><br>
 Calcular el cociente entre la función de densidad en el punto propuesto y en el punto actual, ponderando por la densidad de la distribución de propuesta. La probabilidad de aceptación es igual a este cociente si es menor a 1, caso contrario es igual a 1. <span class="math display">\[
-    \alpha = \min \left\{ 1, \frac{p(y')q(y^{(t)} \mid y')}{p(y)q(y' \mid y^{(t)})} \right\}
+    \alpha = \min \left\{ 1, \frac{p(y')q(y^{(t)} \mid y')}{p(y^{(t)})q(y' \mid y^{(t)})} \right\}
     \]</span></p></li>
 <li><p><strong>Seleccionar el nuevo valor</strong><br>
 Generar un valor aleatorio <span class="math inline">\(u\)</span> de una distribución <span class="math inline">\(\mathcal{U}(0, 1)\)</span> y determinar <span class="math inline">\(y^{(t + 1)}\)</span> de la siguiente manera: <span class="math display">\[
