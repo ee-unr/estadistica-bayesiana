@@ -94,7 +94,6 @@ probabilidad) $p^*(\boldsymbol{\theta})$ en cualquier valor de $\boldsymbol{\the
 incluso cuando $p^*(\boldsymbol{\theta})$ sea impropia (es decir, incluso aunque sea desconocida la
 constante de normalización que hace que la integral en el soporte de la función sea igual a uno).
 
-
 ::: {.callout-tip}
 ## Algoritmo de Metropolis-Hastings
 
@@ -117,7 +116,7 @@ de una distribución de probabilidad $P$ con función de densidad $p$.
     actual, ponderando por la densidad de la distribución de propuesta. La probabilidad de
     aceptación es igual a este cociente si es menor a 1, caso contrario es igual a 1.
     $$
-    \alpha = \min \left\{ 1, \frac{p(y')q(y^{(t)} \mid y')}{p(y)q(y' \mid y^{(t)})} \right\}
+    \alpha = \min \left\{ 1, \frac{p(y')q(y^{(t)} \mid y')}{p(y^{(t)})q(y' \mid y^{(t)})} \right\}
     $$
 
   i.  **Seleccionar el nuevo valor**  
