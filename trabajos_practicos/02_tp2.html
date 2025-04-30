@@ -275,7 +275,7 @@ window.Quarto = {
 <p>Y dado que el entusiasmo en esta materia es lo que sobra, aprovecharemos la oportunidad para utilizar no uno, sino dos modelos, sutilmente distintos. Esto nos permitirá no solo evaluar el efecto del ozono en el crecimiento de las ratas, sino también profundizar en esos pequeños detalles que hacen que la inferencia estadística sea tan interesante.</p>
 <section id="modelo-normal" class="level3">
 <h3 class="anchored" data-anchor-id="modelo-normal">Modelo normal</h3>
-<p>El primer modelo que proponemos es el clásico caballito de batalla de innumerables análisis estadísticos: el viejo y confiable modelo normal. Aquí, el cambio en el peso de las ratas en cada grupo se modela mediante una distribución normal, permitiendo medias y varianzas específicas para cada grupo.</p>
+<p>El primer modelo que proponemos es el clásico caballito de batalla de innumerables análisis estadísticos: el viejo y confiable modelo normal. Aquí, el cambio en el peso de las ratas en cada grupo se modeliza mediante una distribución normal, permitiendo medias y varianzas específicas para cada grupo.</p>
 <p><span class="math display">\[
 \begin{aligned}
 Y_{O, i} &amp;\sim \text{Normal}(\mu_O, \sigma_O^2) &amp; i = 1, \dots, N_O \\
@@ -287,7 +287,7 @@ Y_{C, j} &amp;\sim \text{Normal}(\mu_C, \sigma_C^2) &amp; j = 1, \dots, N_C \\
 </section>
 <section id="modelo-t-de-student" class="level3">
 <h3 class="anchored" data-anchor-id="modelo-t-de-student">Modelo T de Student</h3>
-<p>El segundo modelo se parece demasiado al primero. La única —y, en principio, sutil— diferencia es que, en lugar de modelar la variable respuesta en cada grupo con una distribución normal, utilizamos una T de Student con 3 grados de libertad.</p>
+<p>El segundo modelo se parece demasiado al primero. La única —y, en principio, sutil— diferencia es que, en lugar de modelizar la variable respuesta en cada grupo con una distribución normal, utilizamos una T de Student con 3 grados de libertad.</p>
 <p><span class="math display">\[
 \begin{aligned}
 Y_{O, i} &amp;\sim \text{Student-T}(\mu_O, \sigma_O^2, \nu=3) &amp; i = 1, \dots, N_O \\
