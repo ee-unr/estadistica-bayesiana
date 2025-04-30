@@ -52,7 +52,7 @@ detalles que hacen que la inferencia estadística sea tan interesante.
 
 El primer modelo que proponemos es el clásico caballito de batalla de innumerables análisis
 estadísticos: el viejo y confiable modelo normal. Aquí, el cambio en el peso de las ratas en cada
-grupo se modela mediante una distribución normal, permitiendo medias y varianzas específicas para
+grupo se modeliza mediante una distribución normal, permitiendo medias y varianzas específicas para
 cada grupo.
 
 $$
