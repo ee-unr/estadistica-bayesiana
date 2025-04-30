@@ -481,7 +481,7 @@ Listado&nbsp;1: Implementación del algoritmo de Metropolis-Hastings en escala l
 <section id="en-el-simulador-ensayos-con-la-distribución-gamma" class="level3">
 <h3 class="anchored" data-anchor-id="en-el-simulador-ensayos-con-la-distribución-gamma">1. En el simulador: ensayos con la distribución Gamma</h3>
 <p>El objetivo de esta sección es familiarizarnos con el uso de transformaciones para obtener muestras de distribuciones con soporte acotado. Inicialmente, utilizaremos la función <code>metropolis_hastings()</code> desarrollada en la práctica de la materia, que opera en escala original. Luego, utilizaremos la función <code>metropolis_hastings_log()</code> incluida más arriba, que trabaja en escala logarítmica.</p>
-<p>Sea <span class="math inline">\(X \sim \text{Gamma}(\alpha = 3, \beta = 8)\)</span>.</p>
+<p>Sea <span class="math inline">\(X \sim \text{Gamma}(\alpha = 3, \beta = 2)\)</span>.</p>
 <ol type="1">
 <li>Obtenga y grafique la función de densidad de <span class="math inline">\(Y = \log(X)\)</span>.</li>
 <li>Utilice Metropolis-Hastings para obtener 10000 muestras de <span class="math inline">\(X\)</span>. Para ello, obtenga muestras de <span class="math inline">\(Y\)</span> utilizando una propuesta normal con <span class="math inline">\(\sigma = 0.2\)</span> y realice la transformación correspondiente para obtener las muestras de <span class="math inline">\(X\)</span>. Para evaluar la bondad del método, calcule el tamaño de muestra efectivo, visualice la trayectoria de la cadena con un <em>traceplot</em> y compare la distribución empírica con la función de densidad teórica utilizando un histograma.</li>
