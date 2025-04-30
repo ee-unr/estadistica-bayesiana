@@ -69,7 +69,7 @@ ozono e $Y_{C, j}$ representa el cambio en el peso de la $j$-ésima rata en el g
 ### Modelo T de Student
 
 El segundo modelo se parece demasiado al primero. La única —y, en principio, sutil— diferencia es
-que, en lugar de modelar la variable respuesta en cada grupo con una distribución normal,
+que, en lugar de modelizar la variable respuesta en cada grupo con una distribución normal,
 utilizamos una T de Student con 3 grados de libertad.
 
 $$
