@@ -315,7 +315,7 @@ de distribuciones con soporte acotado. Inicialmente, utilizaremos la función `m
 desarrollada en la práctica de la materia, que opera en escala original. Luego, utilizaremos la
 función `metropolis_hastings_log()` incluida más arriba, que trabaja en escala logarítmica.
 
-Sea $X \sim \text{Gamma}(\alpha = 3, \beta = 8)$.
+Sea $X \sim \text{Gamma}(\alpha = 3, \beta = 2)$.
 
 1. Obtenga y grafique la función de densidad de $Y = \log(X)$.
 2. Utilice Metropolis-Hastings para obtener 10000 muestras de $X$. Para ello, obtenga muestras de
