@@ -296,8 +296,8 @@ cat(
 )
 ```
 
-En el _traceplot_, las cadenas no se mezclan, se mueven lentamente y no parecen converger a ninguna
-distribución objetivo, lo que indica una alta autocorrelación.
+En el _traceplot_, las cadenas se mueven lentamente, lo que indica una alta autocorrelación.
+Además, no se mezclan y tampoco parecen converger a ninguna distribución objetivo.
 El valor de $\hat{R}$ es considerablemente mayor a 1, lo que también señala falta de convergencia y
 resulta consistente con lo observado en el _traceplot_. Además, el tamaño efectivo de muestra en
 cada cadena es muy bajo, y en consecuencia, el tamaño efectivo de muestra total también lo es,
