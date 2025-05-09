@@ -326,7 +326,7 @@ empírica con la función de densidad teórica utilizando un histograma.
 3. Implemente la función de densidad de $Y$ en escala logarítmica y utilice
 `metropolis_hastings_log()` para obtener muestras de $X$. Calcule el tamaño efectivo de muestra
 efectivo y compárelo con el obtenido anteriormente. Finalmente, obtenga un histograma de las
-muestras y compárelo con la densidad empírica y con el histograma obtenido en el punto anterior.
+muestras y compárelo con la densidad teórica y con el histograma obtenido en el punto anterior.
 
 ### 2. _Free practice_: múltiples dimensiones
 
