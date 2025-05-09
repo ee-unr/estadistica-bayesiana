@@ -63,7 +63,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../recursos/software/index.html" rel="next">
+<link href="../../recursos/codigo/12_rwmh_2d.html" rel="next">
 <link href="../../recursos/codigo/10_grid_2d.html" rel="prev">
 <link href="../../utils/imgs/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
@@ -277,6 +277,24 @@ window.Quarto = {
  <span class="menu-text">11 - Metropolis-Hastings en 1 dimensión</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/12_rwmh_2d.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12 - Metropolis-Hastings en 2 dimensiones</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/13_hmc_gaussian_2d.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">13 - Hamiltonian Monte Carlo para normal bivariada</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/14_medidas_diagnostico_mcmc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">14 - Medidas de diagnóstico MCMC</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -395,7 +413,7 @@ window.Quarto = {
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(plt)</span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>graficar_traza <span class="ot">&lt;-</span> plot_trace <span class="ot">&lt;-</span> <span class="cf">function</span>(x_muestras) {</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>graficar_traza <span class="ot">&lt;-</span> <span class="cf">function</span>(x_muestras) {</span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generar un _traceplot_ para una cadena de Markov.</span></span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    plt <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">seq_along</span>(x_muestras), <span class="at">y =</span> x_muestras) <span class="sc">|&gt;</span></span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ggplot</span>() <span class="sc">+</span></span>
@@ -1160,8 +1178,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../recursos/software/index.html" class="pagination-link" aria-label="Instalación de software">
-        <span class="nav-page-text">Instalación de software</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../recursos/codigo/12_rwmh_2d.html" class="pagination-link" aria-label="12 - Metropolis-Hastings en 2 dimensiones">
+        <span class="nav-page-text">12 - Metropolis-Hastings en 2 dimensiones</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
