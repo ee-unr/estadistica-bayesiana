@@ -42,7 +42,7 @@ graficar_distribucion <- function(x_muestras, x_grid, p_grid) {
     return(plt)
 }
 
-graficar_traza <- plot_trace <- function(x_muestras) {
+graficar_traza <- function(x_muestras) {
     # Generar un _traceplot_ para una cadena de Markov.
     plt <- data.frame(x = seq_along(x_muestras), y = x_muestras) |>
         ggplot() +
