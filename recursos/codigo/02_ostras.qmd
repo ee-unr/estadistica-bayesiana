@@ -32,6 +32,8 @@ $$
 ```{r}
 library(ggplot2)
 
+colores <- c("#f08533", "#3b78b0", "#d1352c")
+
 # Valores observados de "Y"
 y <- c(64, 13, 33, 18, 30, 20)
 
@@ -92,9 +94,16 @@ df <- data.frame(
 )
 
 ggplot(df) +
-  geom_line(aes(x = lambda, y = valor), color = "#3B78B0", linewidth = 1) +
+  geom_line(aes(x = lambda, y = valor, color = grupo), linewidth = 1) +
+  scale_color_manual(values = colores) +
+  labs(x = expression(lambda), y = NULL) +
   facet_wrap(~ grupo, scales = "free_y") +
-  theme_bw()
+  theme_bw() +
+    theme(
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        legend.position = "none"
+    )
 ```
 
 **Opción 3**: Utilizar la funcion `dpois` de R, pero hacer cuentas en escalas logaritmica.
@@ -130,8 +139,18 @@ df <- data.frame(
 )
 
 ggplot(df) +
-  geom_line(aes(x = lambda, y = valor), color = "#3B78B0", linewidth = 1) +
+  geom_line(aes(x = lambda, y = valor, color = grupo), linewidth = 1) +
+  scale_color_manual(values = colores) +
+  labs(x = expression(lambda), y = NULL) +
   facet_wrap(~ grupo, scales = "free_y") +
-  theme_bw()
+  theme_bw() +
+    theme(
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        legend.position = "none"
+    )
 ```
 
+**Pregunta**
+
+* ¿Qué explica que los valores del eje vertical para el _likelihood_ sean tan distintos del resto?

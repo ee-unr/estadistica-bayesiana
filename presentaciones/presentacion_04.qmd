@@ -80,13 +80,21 @@ $$L_2 = (\theta - \hat{\theta})^2$$
 
 $$L_1 = |\theta - \hat{\theta}|$$
 
-$$L_{0/1} = 
+$$
+L_{0/1} =
 \begin{cases}
 0 \text{ si } \hat{\theta} = \theta  \\
 1 \text{ si } \hat{\theta} \neq \theta
-\end{cases}$$
+\end{cases}
+$$
 
-$$L( \theta, \hat{\theta} ) = \begin{cases} ( \theta -  \hat{\theta} )^2 & \hat{\theta} \lt \theta \\\\ c( \theta -  \hat{\theta} )^2 & \hat{\theta} \ge \theta, \;\; 0\lt c \lt 1 \end{cases}$$
+$$
+L( \theta, \hat{\theta} ) =
+  \begin{cases}
+    (\theta -  \hat{\theta} )^2 & \hat{\theta} < \theta \\ \\
+    c( \theta -  \hat{\theta} )^2 & \hat{\theta} \ge \theta, \quad 0 < c < 1
+  \end{cases}
+$$
 
 ##
 
@@ -107,16 +115,16 @@ _a posteriori_).
 
 . . .
 
-$$R(\hat{\theta}) = \mathbb{E}_{\theta\mid y}[L(\theta,\hat\theta)] = \int L(\theta,\hat\theta) p(\theta\mid y) d\theta$$
+$$R(\hat{\theta}) = \mathbb{E}_{\theta\mid y}[L(\theta,\hat{\theta})] = \int L(\theta,\hat{\theta}) p(\theta\mid y) d\theta$$
 
 . . .
 
-Es una función de los posibles valores que puede tomar $\hat\theta$.
+Es una función de los posibles valores que puede tomar $\hat{\theta}$.
 
 . . .
 
-Podemos obtener el $\hat\theta$ que minimice $R(\hat\theta)$. Es decir, buscamos un valor (un estimador) que minimice la pérdida esperada al usarlo para resumir $p(\theta\mid y)$:
-$$\hat{\theta} = \underset{\hat\theta}{\mathrm{arg\,min}}\left[ R(\hat\theta) \right]$$
+Podemos obtener el $\hat{\theta}$ que minimice $R(\hat{\theta})$. Es decir, buscamos un valor (un estimador) que minimice la pérdida esperada al usarlo para resumir $p(\theta\mid y)$:
+$$\hat{\theta} = \underset{\hat{\theta}}{\mathrm{arg\,min}}\left[ R(\hat{\theta}) \right]$$
 
 ##
 
@@ -128,9 +136,9 @@ Supongamos que $\theta\mid y \sim \mathrm{Beta}(2,9)$
 
 . . .
 
--   $R$ es una función de $\hat\theta$ (los distintos valores que podemos usar para resumir $p(\theta\mid y)$)
--   Para distintos valores de $\hat\theta$ voy a tomar muestras de $p(\theta\mid y)$ y calcular la pérdida $L$
--   Para cada valor de $\hat\theta$ voy a calcular la pérdida promedio (ya va a estar ponderada por la probabilidad _a posteriori_ de $\theta$)
+-   $R$ es una función de $\hat{\theta}$ (los distintos valores que podemos usar para resumir $p(\theta\mid y)$)
+-   Para distintos valores de $\hat{\theta}$ voy a tomar muestras de $p(\theta\mid y)$ y calcular la pérdida $L$
+-   Para cada valor de $\hat{\theta}$ voy a calcular la pérdida promedio (ya va a estar ponderada por la probabilidad _a posteriori_ de $\theta$)
 
 ##
 
@@ -263,17 +271,18 @@ Una prueba más formal para el caso de la **media**...
 
 . . .
 
-Sea la pérdida cuadrática $L(\theta,\hat\theta)=(\theta-\hat\theta)^2$, el riesgo (_posterior expected loss_) es:
+Sea la pérdida cuadrática $L(\theta, \hat{\theta}) = (\theta - \hat{\theta}) ^ 2$, el riesgo (_posterior expected loss_) es:
 
 . . .
 
 $$
-\mathbb{E}_{\theta\mid y}[L(\theta,\hat\theta)] = \mathbb{E}_{\theta\mid y}[\theta^2] - 2 \hat{\theta}\mathbb{E}_{\theta\mid y}[\theta] + {\hat{\theta}}^2
+\mathbb{E}_{\theta \mid y}[L(\theta, \hat{\theta})]
+  = \mathbb{E}_{\theta \mid y}[\theta^2] - 2 \hat{\theta} \mathbb{E}_{\theta\mid y}[\theta] + {\hat{\theta}}^2
 $$
 
 . . .
 
-derivando respecto a $\hat{\theta}$ e igualando a cero se obtiene que $\underset{\hat\theta}{\mathrm{arg\,min}}\left[ R(\hat\theta) \right] = \mathbb{E}_{\theta\mid y}[\theta] = \mathbb{E}[p(\theta\mid y)]$ 
+derivando respecto a $\hat{\theta}$ e igualando a cero se obtiene que $\underset{\hat{\theta}}{\text{arg min}}\left[ R(\hat{\theta}) \right] = \mathbb{E}_{\theta \mid y}[\theta] = \mathbb{E}[p(\theta \mid y)]$
 
 ## {.smaller}
 
@@ -281,18 +290,18 @@ Una prueba más formal para el caso de la **mediana**...
 
 . . .
 
-Sea la pérdida absoluta $L(\theta,\hat\theta)=|\theta-\hat\theta|$, el riesgo (_posterior expected loss_) es:
+Sea la pérdida absoluta $L(\theta,\hat{\theta})=\lvert \theta-\hat{\theta} \rvert$, el riesgo (_posterior expected loss_) es:
 
 . . .
 
 $$
-\mathbb{E}_{\theta\mid y}[L(\theta,\hat\theta)] = \int_{-\infty}^\infty |\theta-\hat\theta| p(\theta\mid y)d\theta
+\mathbb{E}_{\theta \mid y}[L(\theta, \hat{\theta})] = \int_{-\infty}^\infty \lvert \theta-\hat{\theta} \rvert  p(\theta \mid y) d\theta
 $$
 
 . . .
 
 $$
-\int_{-\infty}^\hat{\theta} (\hat\theta-\theta) p(\theta\mid y)d\theta + \int_{\hat{\theta}}^\hat{\infty} (\theta-\hat\theta) p(\theta\mid y)d\theta
+\int_{-\infty}^{\hat{\theta}} (\hat{\theta} - \theta) p(\theta\mid y)d\theta + \int_{\hat{\theta}}^\infty (\theta-\hat{\theta}) p(\theta\mid y)d\theta
 $$
 
 . . .
@@ -301,11 +310,16 @@ Para derivar, se utiliza la regla integral de Leibniz:
 
 . . .
 
-$$\frac{d}{d\hat\theta}\int_{-\infty}^{\hat\theta} g(\hat\theta,\theta)d\theta = g(\hat\theta,\hat\theta) + \int_{-\infty}^\hat\theta \frac{\partial}{\partial\hat\theta}g(\hat\theta,\theta)d\theta$$
+$$
+\frac{d}{d\hat{\theta}} \int_{-\infty}^{\hat{\theta}} g(\hat{\theta}, \theta)d\theta
+  = g(\hat{\theta},\hat{\theta})
+    + \int_{-\infty}^{\hat{\theta}} \frac{\partial}{\partial\hat{\theta}}g(\hat{\theta}, \theta)d\theta
+$$
 
 . . .
 
-Se puede probar que $\int_{-\infty}^\hat\theta p(\theta\mid y)d\theta = \frac{1}{2}$, por lo que el $\hat\theta$ que minimiza la expresión es la mediana.
+Se puede probar que $\int_{-\infty}^{\hat{\theta}} p(\theta\mid y)d\theta = \frac{1}{2}$,
+por lo que el $\hat{\theta}$ que minimiza la expresión es la mediana.
 
 ## Intervalos de Credibilidad {.smaller}
 
@@ -387,13 +401,13 @@ Para interpretar los resultados de la inferencia bayesiana podemos simplemente r
     
 ##
 
-Un nuevo ejemplo del modelo beta--Binomial: partimos de $\mathrm{Beta}(2,2)$, observamos $4$ caras en $6$ tiradas y nuestra creencia _a posteriori_ pasa a ser $Beta(6,4)$.
+Un nuevo ejemplo del modelo beta--Binomial: partimos de $\text{Beta}(2,2)$, observamos $4$ caras en $6$ tiradas y nuestra creencia _a posteriori_ pasa a ser $\text{Beta}(6,4)$.
     
 ##
 
 ### Parámetros
 
-¿Cuál es la probabilidad _a posteriori_ de que $\pi$ sea mayor a $0.50$? ¿y de que sea mayor a \num{0.80}?
+¿Cuál es la probabilidad _a posteriori_ de que $\pi$ sea mayor a $0.50$? ¿y de que sea mayor a $0.80$?
 
 
 ```{r sim_parametros}

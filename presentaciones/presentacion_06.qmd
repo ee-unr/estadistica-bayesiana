@@ -137,10 +137,10 @@ $$Y_i \mid \boldsymbol\beta,\sigma \sim \mathcal{N}(\boldsymbol\beta^T \mathbf{x
 o bien decimos
 
 $$
-\begin{align*}
+\begin{aligned}
     Y_i & \sim  \mathcal{N}(\mu_i, \sigma^2) \\
     \mu_i & = \beta_0 + \beta_1 x_{1_i} + \beta_2 x_{2_i} + \dots + \beta_p x_{p_i}
-\end{align*}
+\end{aligned}
 $$
 
 Y completamos el modelo especificando una distribución _a priori_ $p(\boldsymbol\beta,\sigma)$
@@ -643,17 +643,43 @@ $$\int p\left(y_i\mid\theta\right) p(\theta\mid y) d\theta \approx \frac{1}{S}\s
 
 El _score_ predictivo total (para todas las observaciones) es la _<span style="color:#EB8A90;">log</span>-[posterior]{.underline} <span style="color:#1f7a8c;">pointwise</span> <span style="color:#683257;">predictive density</span>_. A mayor $\mathrm{lppd}$, mejor es el ajuste del modelo.
 
+::: {.content-visible when-format="html"}
+
 $$
-\mathrm{lppd} =  \color{#1f7a8c}{\sum_{i=1}^{N}} \color{#EB8A90}{\log} \left( \color{#683257}{\int p\left(y_i\mid\theta\right) \underline{p(\theta\mid y)}d\theta} \right)
+\mathrm{lppd} = \color{#1f7a8c}{\sum_{i=1}^{N}} \color{#EB8A90}{\log} \left( \color{#683257}{\int p\left(y_i\mid\theta\right) \underline{p(\theta\mid y)}d\theta} \right)
 $$
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+$$
+\mathrm{lppd} = \textcolor{bteal}{\sum_{i=1}^{N}} \textcolor{bpink}{\log} \left( \textcolor{bpurple}{\int p\left(y_i\mid\theta\right) \underline{p(\theta\mid y)}d\theta} \right)
+$$
+
+:::
+
 
 . . .
 
 Que podemos estimar a través de muestras del _posterior_
 
+::: {.content-visible when-format="html"}
+
 $$
 \mathrm{lppd} = \color{#1f7a8c}{\sum_{i=1}^{N}} \color{#EB8A90}{\log} \left( \color{#683257}{\frac{1}{S} \sum_{s=1}^{S} p\left(y_i\mid\theta^{(s)}\right)} \right)
 $$
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+$$
+\mathrm{lppd} = \textcolor{bteal}{\sum_{i=1}^{N}} \textcolor{bpink}{\log} \left( \textcolor{bpurple}{\frac{1}{S} \sum_{s=1}^{S} p\left(y_i\mid\theta^{(s)}\right)} \right)
+$$
+
+:::
+
 
 ## 
 

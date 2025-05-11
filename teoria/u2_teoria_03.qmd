@@ -13,22 +13,14 @@ file_name <- paste0(
     ".html"
 )
 iframe_source <- file.path("..", "presentaciones", file_name)
-anchor_source <- paste0(iframe_source, "?print-pdf")
 ```
 
 <iframe 
-    height="600" 
-    width="100%" 
+    height="600"
+    width="100%"
     src=`r iframe_source`
     style="border: 3px solid #dee2e6"
     >
 </iframe>
 
-**Instrucciones para guardar como PDF**
-
-* Hacer <a href=`r anchor_source` target="_blank">clic acá</a>
-* Abrir la ventana de impresión del navegador con CTRL+P
-* Si es necesario, cambiar el "Destino" a "Guardar como PDF"
-* Cliquear en "Guardar"
-* Elegir el nombre del archivo de destino
-* ¡Listo! 🎉
+[Descargar presentación en PDF](../presentaciones/presentacion_03.pdf)

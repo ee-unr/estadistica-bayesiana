@@ -9,8 +9,8 @@ format:
 
 ## Introducción
 
-El ozono (O₃) es un gas cuya molécula está formada por tres átomos de oxígeno y se encuentra tanto
-en la atmósfera como en la superficie terrestre. Seguramente, lo han escuchado nombrar por su papel
+El ozono (O₃) es un gas que se encuentra tanto en la atmósfera como en la superficie terrestre
+y cuya molécula está formada por tres átomos de oxígeno. Seguramente, lo han escuchado nombrar por su papel
 en la capa de ozono, una región de la estratófera que se encuentra entre unos 15 y 30 kilómetros
 sobre la superficie terrestre, donde se concentra este gas y filtra los rayos ultravioletas del sol.
 
@@ -39,7 +39,7 @@ peso.
 
 ## Modelización estadística
 
-La estadística ofrece una amplia variedad de técnicas para dar respuesta a la inquietud de
+La Estadística ofrece una amplia variedad de técnicas para dar respuesta a la inquietud de
 Tarkington. En el contexto de esta materia, naturalmente, abordaremos el problema mediante el uso
 modelos bayesianos.
 
@@ -52,7 +52,7 @@ detalles que hacen que la inferencia estadística sea tan interesante.
 
 El primer modelo que proponemos es el clásico caballito de batalla de innumerables análisis
 estadísticos: el viejo y confiable modelo normal. Aquí, el cambio en el peso de las ratas en cada
-grupo se modela mediante una distribución normal, permitiendo medias y varianzas específicas para
+grupo se modeliza mediante una distribución normal, permitiendo medias y varianzas específicas para
 cada grupo.
 
 $$
@@ -69,7 +69,7 @@ ozono e $Y_{C, j}$ representa el cambio en el peso de la $j$-ésima rata en el g
 ### Modelo T de Student
 
 El segundo modelo se parece demasiado al primero. La única —y, en principio, sutil— diferencia es
-que, en lugar de modelar la variable respuesta en cada grupo con una distribución normal,
+que, en lugar de modelizar la variable respuesta en cada grupo con una distribución normal,
 utilizamos una T de Student con 3 grados de libertad.
 
 $$
@@ -94,7 +94,6 @@ probabilidad) $p^*(\boldsymbol{\theta})$ en cualquier valor de $\boldsymbol{\the
 incluso cuando $p^*(\boldsymbol{\theta})$ sea impropia (es decir, incluso aunque sea desconocida la
 constante de normalización que hace que la integral en el soporte de la función sea igual a uno).
 
-
 ::: {.callout-tip}
 ## Algoritmo de Metropolis-Hastings
 
@@ -117,7 +116,7 @@ de una distribución de probabilidad $P$ con función de densidad $p$.
     actual, ponderando por la densidad de la distribución de propuesta. La probabilidad de
     aceptación es igual a este cociente si es menor a 1, caso contrario es igual a 1.
     $$
-    \alpha = \min \left\{ 1, \frac{p(y')q(y^{(t)} \mid y')}{p(y)q(y' \mid y^{(t)})} \right\}
+    \alpha = \min \left\{ 1, \frac{p(y')q(y^{(t)} \mid y')}{p(y^{(t)})q(y' \mid y^{(t)})} \right\}
     $$
 
   i.  **Seleccionar el nuevo valor**  
@@ -155,15 +154,15 @@ con herramientas de diferenciación automática existentes.
 Sean $X$ e $Y = g(X)$ variables aleatorias continuas, donde $g$ es una función uno a uno
 y $X$ tiene función de densidad $f_X(x)$ conocida. Luego, la función de densidad de $Y$ es:
 $$
-f_Y(y) = f_X(g^{-1}(y)) \left\lvert \frac{d}{dy}g^{-1}(y) \right\rvert
+f_Y(y) = f_X\left(g^{-1}(y)\right) \left\lvert \frac{d}{dy}g^{-1}(y) \right\rvert
 $$
 
 donde $\left\lvert \frac{d}{dy}g^{-1}(y) \right\rvert$ es el determinante del jacobiano de la
 transformación. Por ejemplo, en el caso de la función $g(u) = \text{logit}(u)$, se tiene:
 $$
 \begin{aligned}
-g : (0, 1) \to \mathbb{R} & = \text{logit}(u) = \log\left(\frac{u}{1 - u}\right) \\
-g^{-1} : \mathbb{R} \to (0, 1) &= \text{expit}(u) =  \frac{1}{1 + \exp(-u)}
+g : (0, 1) \to \mathbb{R} & \quad g(u)= \text{logit}(u) = \log\left(\frac{u}{1 - u}\right) \\
+g^{-1} : \mathbb{R} \to (0, 1) & \quad g(v)= \text{expit}(v) =  \frac{1}{1 + \exp(-v)}
 \end{aligned}
 $$
 
@@ -185,8 +184,8 @@ aunque matemáticamente esto no sea cierto.
 El _underflow_ es un problema frecuente en el cómputo estadístico. Un caso típico es el que se da
 al evaluar funciones de verosimilitud, donde se multiplican densidades correspondientes a cada
 observación. Dado que estas densidades suelen ser valores muy pequeños, es común enfrentarse a un
-problema de subdesbordamiento. Este riesgo aumenta con la cantidad de observaciones y la
-dimensionalidad de la distribución objetivo.
+problema de subdesbordamiento. Este riesgo aumenta con la cantidad de observaciones y el
+número de dimensiones de la distribución objetivo.
 
 El problema se agrava al utilizar algoritmos como Metropolis-Hastings, ya que la densidad objetivo
 se evalúa miles de veces en diferentes puntos del espacio paramétrico.
@@ -316,7 +315,7 @@ de distribuciones con soporte acotado. Inicialmente, utilizaremos la función `m
 desarrollada en la práctica de la materia, que opera en escala original. Luego, utilizaremos la
 función `metropolis_hastings_log()` incluida más arriba, que trabaja en escala logarítmica.
 
-Sea $X \sim \text{Gamma}(\alpha = 3, \beta = 8)$.
+Sea $X \sim \text{Gamma}(\alpha = 3, \beta = 2)$.
 
 1. Obtenga y grafique la función de densidad de $Y = \log(X)$.
 2. Utilice Metropolis-Hastings para obtener 10000 muestras de $X$. Para ello, obtenga muestras de
@@ -327,7 +326,7 @@ empírica con la función de densidad teórica utilizando un histograma.
 3. Implemente la función de densidad de $Y$ en escala logarítmica y utilice
 `metropolis_hastings_log()` para obtener muestras de $X$. Calcule el tamaño efectivo de muestra
 efectivo y compárelo con el obtenido anteriormente. Finalmente, obtenga un histograma de las
-muestras y compárelo con la densidad empírica y con el histograma obtenido en el punto anterior.
+muestras y compárelo con la densidad teórica y con el histograma obtenido en el punto anterior.
 
 ### 2. _Free practice_: múltiples dimensiones
 

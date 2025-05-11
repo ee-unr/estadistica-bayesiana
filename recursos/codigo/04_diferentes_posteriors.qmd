@@ -1,5 +1,5 @@
 ---
-title: "03 - Diferentes observaciones, diferentes posteriors"
+title: "04 - Diferentes observaciones, diferentes posteriors"
 ---
 
 Este programa obtiene la distribución _a posteriori_ para los diferentes trabajadores
@@ -10,20 +10,46 @@ del ejercicio **Diferentes observaciones, diferentes _posteriors_** de la Práct
 #| fig-align: center
 library(ggplot2)
 
+colores <- c("#f08533", "#3b78b0", "#d1352c")
+
 # Crear grilla para los valores de "pi"
 grid_n <- 200
 pi_grid <- seq(0, 1, length.out = grid_n)
 
+# Hiperparámetros del prior
+a_prior <- 4
+b_prior <- 3
+
+# Cantidad de éxitos y ensayos para cada trabajador
+y_1 <- 0
+N_1 <- 1
+
+y_2 <- 3
+N_2 <- 10
+
+y_3 <- 20
+N_3 <- 100
+
+# Hiperparámetros del posterior, para cada trabajador
+a_posterior_1 <- a_prior + y_1
+b_posterior_1 <- b_prior + N_1 - y_1
+
+a_posterior_2 <- a_prior + y_2
+b_posterior_2 <- b_prior + N_2 - y_2
+
+a_posterior_3 <- a_prior + y_3
+b_posterior_3 <- b_prior + N_3 - y_3
+
 # Evaluar la funcion de densidad del posterior de cada trabajador
 # en cada uno de los puntos de "pi_grid"
-posterior1 <- dbeta(pi_grid, 4, 4)
-posterior2 <- dbeta(pi_grid, 7, 10)
-posterior3 <- dbeta(pi_grid, 24, 83)
+posterior_1 <- dbeta(pi_grid, a_posterior_1, b_posterior_1)
+posterior_2 <- dbeta(pi_grid, a_posterior_2, b_posterior_2)
+posterior_3 <- dbeta(pi_grid, a_posterior_3, b_posterior_3)
 
 # Crear un data.frame, necesario para trabajar con ggplot2
 datos <- data.frame(
     p = rep(pi_grid, times = 3),
-    posterior = c(posterior1, posterior2, posterior3),
+    posterior = c(posterior_1, posterior_2, posterior_3),
     trabajador = rep(c("T1", "T2", "T3"), each = grid_n)
 )
 
@@ -33,7 +59,14 @@ datos <- data.frame(
 # * Los colores se mapean a cada uno de los valores de "trabajador"
 # * Las areas tienen un color de relleno distinto para cada valor en "trabajador"
 ggplot(datos, aes(x = p, y = posterior, color = trabajador)) +
-    geom_line() + 
+    geom_line() +
     geom_area(aes(fill = trabajador), alpha = 0.4, position = "identity") +
-    labs(x = expression(pi), y = expression("p(" ~ pi ~ "| y)"))
+    scale_color_manual(values = colores) +
+    scale_fill_manual(values = colores) +
+    labs(x = expression(pi), y = expression("p(" ~ pi ~ "| y)")) +
+    theme_bw() +
+    theme(
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+    )
 ```

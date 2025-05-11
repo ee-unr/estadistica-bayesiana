@@ -1,8 +1,8 @@
 ---
-title: "05 - Propiedades frecuentistas de inferencias bayesianas"
+title: "06 - Propiedades frecuentistas de inferencias bayesianas"
 ---
 
-El siguiente programa sirve para responder al ejercicio **Propiedades frecuentistas de 
+El siguiente programa sirve para responder al ejercicio **Propiedades frecuentistas de
 inferencias bayesianas** de la Práctica 2.
 
 ```{r}
@@ -57,8 +57,13 @@ datos$cobertura <- as.vector(coberturas)
 
 # Graficar con ggplot2
 ggplot(datos, aes(x = theta, y = cobertura)) +
-    geom_line() +
-    geom_point() +
+    geom_line(color = "#3b78b0") +
+    geom_point(color = "#3b78b0") +
     geom_hline(yintercept = 0.95, linetype = "dashed") +
-    facet_wrap(~ as.factor(n))
+    labs(x = expression(theta)) +
+    facet_wrap(~ n, labeller = label_both) +
+    theme_bw() +
+    theme(
+        panel.grid.minor = element_blank()
+    )
 ```

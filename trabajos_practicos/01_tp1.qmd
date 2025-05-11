@@ -3,11 +3,23 @@ title: "¿La gloria es el dinero?"
 practica: "Trabajo Práctico 1: ¿La gloria es el dinero?"
 ---
 
+```{r}
+#| echo: false
+#| include: false
+
+is_html <- knitr::is_html_output()
+options("knitr.graphics.error" = FALSE)
+captions <- list()
+captions[["apuesta"]] <- "Tanto los casinos virtuales como las apuestas deportivas se han vuelto más populares en los últimos años"
+captions[["aleatorizada"]] <- "En la técnica de respuesta aleatorizada, se introduce una cuota de
+ azar al momento de que el encuestado responda"
+```
+
 ## Introducción
 
 La idea de convertir unos pocos pesos en una fortuna con un solo clic tiene algo de magia,
 de esa que seduce con la promesa de éxito instantáneo. Masivo. ¿Qué puede salir mal?
-Total... "Está todo bajo control, yo decido cuándo frenar".
+Total... _"Está todo bajo control, yo decido cuándo frenar"_.
 El problema es que, a veces de manera silenciosa, el juego compulsivo puede desencadenar problemas
 de largo plazo en la salud mental y el funcionamiento social de los individuos.
 
@@ -22,6 +34,14 @@ resultado de eventos deportivos, a menudo influenciados por pronósticos y estra
 en comunidades en línea. Ambas modalidades presentan riesgos relevantes, ya que la facilidad para
 depositar dinero y la sensación de control pueden llevar a un espiral de pérdidas y nuevas apuestas
 en busca de recuperar lo perdido.
+
+```{r}
+#| echo: false
+#| out-width: 70%
+#| fig-align: center
+#| fig-cap: !expr captions[["apuesta"]]
+if (is_html) knitr::include_graphics(file.path("imgs", "apuesta.png"))
+```
 
 La sensación de ganar y perder plata genera adrenalina. La adolescencia, una etapa crucial de
 desarrollo de los seres humanos, es especialmente susceptible a la promesa del dinero fácil y a la
@@ -52,6 +72,14 @@ Partiendo de la premisa de que una forma de incrementar la cooperación de los e
  técnica de respuesta aleatorizada, que permite que los encuestados respondan de manera más sincera
  sin temor a ser identificados. En la técnica de respuesta aleatorizada, se introduce una cuota de
  azar con el objetivo de preservar la privacidad de la persona que responde.
+ 
+```{r}
+#| echo: false
+#| out-width: 70%
+#| fig-align: center
+#| fig-cap: !expr captions[["aleatorizada"]]
+if (is_html) knitr::include_graphics(file.path("imgs", "aleatorizada.png"))
+```
 
 Nos centraremos en el problema de querer realizar inferencias sobre $\pi_A$, la proporción de
 estudiantes de una escuela que participan de apuestas deportivas en línea.
@@ -112,7 +140,7 @@ Comenzaremos realizando un estudio de simulación para estudiar el efecto de la 
 estimaciones. En esta primera aproximación, consideraremos que se realiza la pregunta directa.
 
 1. Proponga un modelo bayesiano que, a partir de encuestar a $n$ estudiantes, permita estimar $\pi_a$.
-Explique la elección de la función de verosimilitud y el _prior_ e indique cómse obtiene el _posterior_.
+Explique la elección de la función de verosimilitud y el _prior_ e indique cómo se obtiene el _posterior_.
 2. Utilizando R, simule la obtención de una muestra para el caso en que los estudiantes no mienten y
 para el caso en que los estudiantes mienten con tres niveles de mentira $\mu$ bajo, medio y alto.
 Compare los resultados de la inferencia.
@@ -121,45 +149,49 @@ Compare los resultados de la inferencia.
 Considere ahora el caso del método propuesto por Warner:
 
 4. Según este método, ¿cuál es la probabilidad (llamémosla $\lambda_W$) de que un estudiante
-responda que apuesta? ¿cuál es la probabilidad de que un estudiante responda queno apuesta?
+responda afirmativamente? ¿cuál es la probabilidad de que un estudiante responda por la contraria?
 5. A partir de lo anterior, proponga un modelo razonable sobre cómo se generan los datos.
 6. Considere un _prior_ uniforme y halle el _posterior_ exacto.
 
 ::: {.callout-tip}
 ## Ayuda
 
-Escriba el _posterior_ dejando el denominador de la Regla de Bayes expresado como $Z$.
-Luego, muestre que:
+Escriba el _posterior_ dejando la constante de normalización expresada como $Z$. Es decir,
+escriba
+$$
+p(\pi_a | y) = \frac{N(\pi_a)}{Z}
+$$
 
+Naturalmente, $Z$ es una integral. Muestre que el resultado de esa integral es:
 $$
 Z = \frac{B(1 - p; y + 1, n - y + 1) - B(p; y + 1, n - y + 1)}{1 - 2p}
 $$
-
 donde $B(x; a, b) = \int_0^x t^{a - 1} (1 - t)^{b - 1} dt$ es la función beta incompleta,
-$p$ es la probabilidad con la que se hace la pregunta alternativa e $y$ es la cantidad depersonas
-que responden que apuestan.
+$p$ es la probabilidad con la que se le pregunta si apuesta e $y$ es la cantidad de personas que responden afirmativamente.
 
-Para resolver la integral, utilice el método de sustitución y hágalo en términos de $\lambda_W$.
+Para resolver la integral de $Z$, utilice el método de sustitución y hágalo en términos de $\lambda_W$.
 No es tan terrible como parece.
 :::
 
-7. Grafique el _posterior_ para diferentes valores de $p$ y concluya.
+7. Grafique el _posterior_ para diferentes valores de $p$ y concluya. Si quiere evaluar
+el comportamiento a través de múltiples muestras, puede hacerlo replicando el 
+proceso generador de los datos que planteó en el ítem 5 (no hace falta obtener la muestra aleatoria simple cada vez).
 8. ¿Qué pasaría si el porcentaje de alumnos que apuesta fuera diferente al $40\%$?
 Analice los resultados en función de diferentes niveles de $p$ y $\pi_a$.
 9. Escriba una función de R que le permita realizar la inferencia (en forma aproximada) con un
-_prior_ beta no necesariamente uniforme.
+_prior_ beta no necesariamente uniforme. Para eso, utilice una grilla de valores de $\pi_a$
 
 Para el método propuesto por Greenberg:
 
-10. ¿Cuál es la probabilidad $\lambda_G$ de que un estudiante responda que apuesta?
-¿y de que responda que no apuesta?
+10. ¿Cuál es la probabilidad $\lambda_G$ de que un estudiante responda que sí?
+¿y de que responda que no?
 11. Escriba una función de R que le permita realizar la inferencia (en forma aproximada) con un
 _prior_ beta no necesariamente uniforme.
 
 Para terminar, es hora de comparar todos los escenarios.
 
 12. Utilizando R, simule la obtención de una muestra para el caso en que los estudiantes no mienten,
-mienten con tres niveles de mentira $\mu$ (bajo, medio y alto), se utiliza el método de Werner y se
+mienten con tres niveles de mentira $\mu$ (bajo, medio y alto), se utiliza el método de Werner ($p = 0.3$) y se
 utiliza el método de Greenberg. Compare los resultados de las inferencias en cada caso.
 13. Realice ahora 1000 simulaciones y analice los resultados.
 

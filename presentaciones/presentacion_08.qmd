@@ -20,10 +20,10 @@ theme_set(theme_bw() +
 
 Consideremos el siguiente modelo:
 $$
-\begin{align*}
-    y\mid\pi & \sim  \mathrm{Bi}(N_i,\pi)\\
-    \pi & \sim  Beta(a,b)
-\end{align*}
+\begin{aligned}
+  y\mid\pi & \sim  \text{Binomial}(N_i,\pi)\\
+  \pi & \sim  \text{Beta}(a,b)
+\end{aligned}
 $$
 
 ## {.smaller}
@@ -31,10 +31,10 @@ $$
 Sabemos (gracias al TP2) que la función de densidad de la distribución beta se puede expresar en términos de su moda $\omega$ y su concentración $\kappa$
 
 $$
-\begin{align*}
-    y\mid\pi & \sim  \mathrm{Bi}(N,\pi)\\
-    \pi & \sim  Beta(\omega(\kappa-2)+1,\ (1-\omega)(\kappa-2)+1)
-\end{align*}
+\begin{aligned}
+  y\mid\pi & \sim  \text{Binomial}(N,\pi)\\
+  \pi & \sim  \text{Beta}(\omega(\kappa-2)+1,\ (1-\omega)(\kappa-2)+1)
+\end{aligned}
 $$
 
 El valor de $\pi$ depende del valor de $\omega$. Lo sabíamos, después de todo, $\omega$ y $\kappa$ son las _constantes de ajuste del prior_ o _hiperparámetros_. $\kappa$ refleja el grado de credibilidad _a priori_ sobre los valores de $\pi$ (alrededor de $\omega$).
@@ -54,11 +54,11 @@ En el contexto de una moneda: $\pi$ es la probabilidad de cara de la moneda y $\
 . . .
 
 $$
-\begin{align*}
-    y\mid\pi & \sim  \mathrm{Bi}(N,\pi)\\
+\begin{aligned}
+    y\mid\pi & \sim  \mathrm{Binomial}(N,\pi)\\
     \pi \mid \omega & \sim  \mathrm{Beta}(\omega(\kappa-2)+1,\ (1-\omega)(\kappa-2)+1) \\
     \omega & \sim \mathrm{Beta}(A_\omega,B_\omega)
-\end{align*}
+\end{aligned}
 $$
 
 ¿Cuántos parámetros tiene este modelo?
@@ -290,11 +290,11 @@ Consideremos por simplicidad que se tienen dos sujetos...
 ## {.smaller}
 
 $$
-\begin{align*}
-    y_s\mid\pi_s & \sim  \mathrm{Bi}(N_s,\pi_s)\\
+\begin{aligned}
+    y_s\mid\pi_s & \sim  \mathrm{Binomial}(N_s,\pi_s)\\
     \pi_s \mid \omega & \sim  \mathrm{Beta}(\omega(\kappa-2)+1,\ (1-\omega)(\kappa-2)+1) \\
     \omega & \sim \mathrm{Beta}(A_\omega,B_\omega)
-\end{align*}
+\end{aligned}
 $$
 
 Si fijo $\omega$, los valores de los $\pi_s$ son independientes: $\pi_1$ y $\pi_2$ son independientes dado $\omega$. 
@@ -677,12 +677,12 @@ ggplot() +
 ### Complete pooling {.smaller}
 
 $$
-\begin{align*}
+\begin{aligned}
     Y_i\mid\mu_i,\sigma & \sim  \mathcal{N}(\mu_i,\sigma^2) \\
     \mu_i & = \alpha  \\
     \alpha & \sim  P(\alpha) \\
     \sigma & \sim  P(\sigma)
-\end{align*}
+\end{aligned}
 $$
 
 Hay una única media $\alpha$ común para todos los $i$, independientemente del grupo $j$ al que pertenezcan
@@ -692,12 +692,12 @@ Hay una única media $\alpha$ común para todos los $i$, independientemente del 
 ### No pooling  {.smaller}
 
 $$
-\begin{align*}
+\begin{aligned}
     Y_i\mid\mu_i,\sigma & \sim  \mathcal{N}(\mu_i,\sigma^2)\\
     \mu_i & = \alpha_{j[i]}  \\
     \alpha_j & \sim  P(\alpha_j) \\
     \sigma & \sim  P(\sigma)
-\end{align*}
+\end{aligned}
 $$
 
 Decimos que los $Y_i$ tienen distribución de media $\alpha_{j[i]}$, sin imponer ninguna restricción sobre los $\alpha_j$. $P(\alpha_j)$ es una distribución no informativa (muy ancha y chata). Todos los $\alpha_j$ son independientes. Coincide con la estimación clásica que incluye una variable _dummy_ para cada grupo.
@@ -707,12 +707,14 @@ Decimos que los $Y_i$ tienen distribución de media $\alpha_{j[i]}$, sin imponer
 Podemos mejorar el modelo anterior incorporando un prior que regularice los $\alpha_j$
 
 \pause
-\begin{align*}
+$$
+\begin{aligned}
     Y_i\mid\mu_i,\sigma & \sim  \mathcal{N}(\mu_i,\sigma^2) \\
     \mu_i & = \alpha_{j[i]}  \\
     \alpha_j & \sim  \mathcal{N}(0,10) \\
     \sigma & \sim  P(\sigma)
-\end{align*}
+\end{aligned}
+$$
 
 0 y 10 son valores arbitrarios para la media y la varianza de la distribución _a priori_ de los $\alpha_j$. Los $\alpha_j$ dejan de poder ser estimados libremente. Hay _regularización_ y tendemos a evitar el _overfitting_. Hay un _partial pooling_. Si en lugar de 10 se elige un valor más grande, tendemos a _no pooling_; si se elige un valor más chico, tendemos a _pooling completo_
 
@@ -720,14 +722,16 @@ Podemos mejorar el modelo anterior incorporando un prior que regularice los $\al
 
 Mejor aún, podemos estimar el grado de regularización partir de los datos. ¿Cuánto _pooling_ es necesario? Se estima a partir de los datos...
 
-\begin{align*}
+$$
+\begin{aligned}
     Y_i\mid\mu_i,\sigma & \sim  \mathcal{N}(\mu_i,\sigma^2) \\
     \mu_i & = \alpha_{j[i]}  \\
     \alpha_j & \sim  \mathcal{N}(\mu_\alpha,\sigma_\alpha^2) \\
     \sigma & \sim  P(\sigma) \\
     \mu_\alpha & \sim  P(\mu_\alpha) \\
     \sigma_\alpha & \sim  P(\sigma_\alpha) \\
-\end{align*}
+\end{aligned}
+$$
 
 ##
 
@@ -824,11 +828,13 @@ ggplot() +
 
 ##
 
-\begin{align*}
+$$
+\begin{aligned}
     Y_i  \mid \mu_i,\sigma & \sim  \mathcal{N}(\mu_i,\sigma^2) \\
     \mu_i & = \alpha_{j[i]} + \beta_{j[i]} x_i \\
     \left[\begin{array}{c}\alpha_j\\\beta_j\end{array}\right] & \sim \mathcal{N}\left(\left[\begin{array}{c}\mu_\alpha\\\mu_\beta\end{array}\right],\Sigma\right)
-\end{align*}
+\end{aligned}
+$$
 
 ## {.smaller}
 
@@ -861,11 +867,13 @@ No es solo para modelos lineales... Se tienen 60 tanques con ranitas de la espec
 
 Se modeliza la probabilidad de supervivencia de cada tanque con una regresión logística:
 
-\begin{align*}
-    S_i  \mid p_i & \sim  Binomial(N_i,p_i) \\
+$$
+\begin{aligned}
+    S_i  \mid p_i & \sim  \text{Binomial}(N_i,p_i) \\
    \log\left( \frac{p_i}{1-p_i} \right) & = \alpha_{i} \\
    \alpha_i & \sim \mathcal{N}(\mu_\alpha,\sigma_\alpha^2)
-\end{align*}
+\end{aligned}
+$$
 
 Observar que no hay grupos (no hay índice $j$), simplemente hacemos \textit{pooling} de los individuos. 
 

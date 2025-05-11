@@ -1,12 +1,12 @@
 ---
-title: "06 -  Los puntos uniformes"
+title: "07 - Los puntos uniformes"
 ---
 
 Se explica como obtener muestras de una distribución uniforme en un círculo. Esto sirve
 de puntapié inicial para hacer el ejercicio **Los puntos uniformes** de la Práctica 3.
 
-El programa muestrea los puntos en coordenadas polares. Primero se muestrean los ángulos y 
-luego las distancias al origen. Finalmente se convierten estos puntos al sistema de 
+El programa muestrea los puntos en coordenadas polares. Primero se muestrean los ángulos y
+luego las distancias al origen. Finalmente se convierten estos puntos al sistema de
 coordenadas del plano cartesiano y se grafican.
 
 ```{r}
@@ -43,7 +43,12 @@ data.frame(x = x, y = y) |>
     geom_path(
         aes(x = x, y = y),
         linewidth = 1.25,
-        color = "#0984C0",
+        color = "#3b78b0",
         data = data.frame(x = x_circulo, y = y_circulo)
+    ) +
+    theme_bw() +
+    theme(
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
     )
 ```

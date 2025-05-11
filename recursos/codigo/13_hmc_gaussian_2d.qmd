@@ -9,7 +9,7 @@ execute:
 Esta sección muestra una implementación de Hamiltonian Monte Carlo para obtener muestras
 de una distribución $\mathcal{N}(\mathbf{0}, \pmb{\Sigma})$ con:
 $$
-\pmb{\Sigma} = 
+\pmb{\Sigma} =
     \begin{bmatrix}
     1 & \rho \\
     \rho & 1
@@ -65,8 +65,8 @@ leapfrog <- function(p, q, neg_dlogp, path_length, step_size) {
   }
   q <- q + step_size * p
   p <- p - step_size * neg_dlogp(q) / 2
-  
-  # Flip del momentum 
+
+  # Flip del momentum
   return(list(q = q, p = -p, leap_q = leap_q, leap_p = leap_p))
 }
 
@@ -80,42 +80,42 @@ ltail <- function(l) {
 }
 
 hmc <- function(
-    neg_logp, 
-    neg_dlogp, 
-    n_samples, 
-    initial_position, 
-    path_length = 1, 
+    neg_logp,
+    neg_dlogp,
+    n_samples,
+    initial_position,
+    path_length = 1,
     step_size = 0.01
 ) {
-  
+
   leap_p <- list()
   leap_q <- list()
   samples <- list(initial_position)
   n_dimensions <- length(initial_position)
-  
+
   # Se generan momentums a partir de una MVN(0, 1)
   # Es de dimension (n_samples, n_dimensions)
   momentum <- rmvnorm(n_samples, rep(0, n_dimensions), diag(n_dimensions))
-  
+
   for (i in seq_len(n_samples)) {
     # Obtener posicion y momentum
     p_current <- momentum[i, ]
     q_current <- ltail(samples)
-    
+
     # Integrar para obtener una nueva posición y momentum
     integration <- leapfrog(
       p_current, q_current, neg_dlogp, path_length, step_size
     )
-    
+
     p_new <- integration$p
     q_new <- integration$q
     leap_p <- lappend(leap_p, integration$leap_p)
     leap_q <- lappend(leap_q, integration$leap_q)
-    
+
     # Criterio de aceptacion de Metropolis
     current_logp <- neg_logp(q_current) - dmvnorm(p_current, log = TRUE)
     new_logp <- neg_logp(q_new) - dmvnorm(p_new, log = TRUE)
-    
+
     sample_new <- if(log(runif(1)) < current_logp - new_logp) {
       q_new
     } else {
@@ -126,7 +126,7 @@ hmc <- function(
   samples <- as.data.frame(do.call(rbind, samples))
   leap_p <- as.data.frame(do.call(rbind, lapply(leap_p, function(x) do.call(rbind, x))))
   leap_q <- as.data.frame(do.call(rbind, lapply(leap_q, function(x) do.call(rbind, x))))
-  
+
   colnames(samples) <- c("x", "y")
   colnames(leap_p) <- c("p0", "p1")
   colnames(leap_q) <- c("q0", "q1")
@@ -157,20 +157,20 @@ plt <- df_basis |>
   stat_contour(aes(x = x1, y = x2, z = f), col = "white", bins = 5) +
   viridis::scale_fill_viridis() +
   theme(
-    legend.position = "none", 
+    legend.position = "none",
     plot.title = element_text(hjust = 0.5, size = 18)
   )
 
-plt + 
-  geom_path(aes(x = q0, y = q1), linewidth = 1, data = df_leap) + 
+plt +
+  geom_path(aes(x = q0, y = q1), linewidth = 1, data = df_leap) +
   geom_quiver(
-    aes(x = q0, y = q1, u = p0, v = p1), 
+    aes(x = q0, y = q1, u = p0, v = p1),
     linewidth = 1,
     vecsize = 600,
     data = df_leap[seq(1, nrow(df_leap), by = 30), ]
   ) +
   geom_point(
-    aes(x = x, y = y), 
+    aes(x = x, y = y),
     color = "red",
     size = 2,
     data = df_samples
@@ -202,16 +202,16 @@ plt <- df_basis |>
   stat_contour(aes(x = x1, y = x2, z = f), col = "white", bins = 5) +
   viridis::scale_fill_viridis() +
   theme(
-    legend.position = "none", 
+    legend.position = "none",
     plot.title = element_text(hjust = 0.5, size = 18)
   )
 
 plt +
   geom_point(
-    aes(x = x, y = y), 
-    size = 2, 
-    alpha = 0.7, 
-    color = "red", 
+    aes(x = x, y = y),
+    size = 2,
+    alpha = 0.7,
+    color = "red",
     data = df_samples
   ) +
   labs(x = "x", y = "y") +
@@ -243,16 +243,16 @@ plt <- df_basis |>
   stat_contour(aes(x = x1, y = x2, z = f), col = "white", bins = 5) +
   viridis::scale_fill_viridis() +
   theme(
-    legend.position = "none", 
+    legend.position = "none",
     plot.title = element_text(hjust = 0.5, size = 18)
   )
 
 plt +
   geom_point(
-    aes(x = x, y = y), 
-    size = 2, 
-    alpha = 0.7, 
-    color = "red", 
+    aes(x = x, y = y),
+    size = 2,
+    alpha = 0.7,
+    color = "red",
     data = df_samples
   ) +
   labs(x = "x", y = "y") +

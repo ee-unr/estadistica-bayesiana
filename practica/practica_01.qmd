@@ -234,7 +234,11 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     estaba en la escena del crimen. Esto es la probabilidad de que la primera 
     persona tuviera sangre 0 y la segunda AB más la probabilidad de que la 
     primera persona tuviera sangre AB y la segunda sangre 0: 
-    $(60 / 100) \cdot (1 / 100) + (1 / 100) \cdot (60 / 100) = 0.012$.
+    $(60 / 100) \cdot (1 / 100) + (1 / 100) \cdot (60 / 100) = 0.012$. Para las personas
+    que buscan una explicación más formal, esto es un experimento multinomial con tres
+    resultados posibles ($x_1$: grupo 0, $x_2$: grupo AB, $x_3$: otro grupo), 
+    la probabilidad de observar $x_1 = 1$, $x_2 = 1$ y $x_3 = 0$ en $N = 2$ intentos (muestras)
+    $\frac{2!}{1!1!0!} p_1^{1} p_2^{1} p_3^{0}$.
     
     Para pensarlo intuitivamente: supongamos que hay 200 personas en un pueblo. 
     120 personas (Guido y 119 más) tienen sangre 0, 2 personas tienen sangre AB y 
@@ -364,9 +368,9 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     13\% rojo y 13\% marrón.
 
     Un amigo tiene dos bolsas de M&M y nos dice que una bolsa es de 1994 y la otra es de 
-    1996, pero no nos dice cuál es cuál.
-    Nos da un M&M de cada bolsa: uno es amarillo y el otro es verde (ambos posiblemente estén vencidos).
-    ¿Cuál es la probabilidad de que el amarillo venga de la bolsa de 1994?
+    1996, pero no nos dice cuál es cuál. Selecciona una primera bolsa y toma un M&M, luego toma la otra bolsa
+    y saca un segundo M&M. El primero resulta amarillo y el otro, verde (ambos posiblemente estén vencidos).
+    ¿Cuál es la probabilidad de que la primera bolsa sea la de 1994?
     
 1.  💻 **La Gran Estafa**
 
@@ -610,23 +614,22 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     Z &=
         \begin{cases}
         1 & \text{Si se observa cara} \\
-        0 & \text{Si se obserca ceca}
+        0 & \text{Si se observa ceca}
         \end{cases}
     \end{aligned}
     $$
 
     Obtener $\pi$ en base a la distribución conjunta de $X$ e $Y$ y luego realizar la
     inferencia con un modelo binomial para $T = \sum_{i=1}^{250}{Z_i}$ utilizando $\pi$ como
-    probabilidad de éxito en vez de $\theta$.
+    probabilidad de éxito.
 
     El parámetro $\pi$ quedará determinado en función de $\theta$, y luego la verosimilitud para
     $\theta$ se puede obtener a partir de la verosimilitud para el valor $\pi = f(\theta)$
     $$
-    p_\theta(T = t \mid \theta) = p_\pi(T = t \mid \pi)
+    p_\theta(T = t \mid \theta) = p_\pi(T = t \mid \pi) = p_\pi(T = t \mid f(\theta))
     $$
 
     donde $p_\pi$ es la función de masa de probabilidad de una binomial. Luego,
-
     $$
     \begin{aligned}
     p_\theta(\theta \mid T = t) &\propto p_\theta(T = t \mid \theta) p_\theta(\theta) \\
@@ -648,7 +651,7 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
 
     Estamos tratando de hacer inferencias sobre $D_1$ y $D_2$, los valores de cada
     uno de los datos.
-    Definir la distribución a priori no es complicado (es una distribución sobre $D_1$ y $D_2$).
+    Definir la distribución _a priori_ no es complicado (es una distribución sobre $D_1$ y $D_2$).
 
     El truco está en determinar la verosimilitud de cada par ($D_1, D_2$) luego de haber
     observado un 9.
