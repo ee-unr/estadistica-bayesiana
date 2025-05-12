@@ -117,7 +117,7 @@ puede extraer?
 Finalmente, se desea utilizar el modelo construido para realizar predicciones en el Planeta X.
 
 10. ¿Cuánto tiempo tardaría en caer la pelota de tenis si se la lanza para arriba con una velocidad
-inicial igual a $A$? ¿Y si la velocidad inicial es $B$?
+inicial igual a $6 \text{ m}/{s}$? ¿Y si la velocidad inicial es $12 \text{ m}/{s}$?
 11. ¿Difieren las incertidumbres en las predicciones anteriores? ¿Por qué?
 
 ::: {.callout-tip}
@@ -129,7 +129,6 @@ Al trabajar con Stan:
 * Verifique la bondad de las muestras obtenidas mediante medidas de diagnóstico numéricas y
 gráficas que crea conveniente.
 
-Además, cuando sea necesario, considere que la velocidad inicial es $X$ (TBD).
+Además, cuando sea necesario, considere que la velocidad inicial es $8 \text{ m}/{s}$.
 
 :::
-
