@@ -1,138 +1,135 @@
 ---
-title: "TP3: El Interestelar de Bayes"
+title: "TP3: El bayesiano interestelar"
 practica: "Trabajo Práctico 3"
 ---
 
-## Idea
+## Introducción
 
-### Historia
+En este Trabajo Práctico te pondrás en la piel de un científico que fue convocado por la
+Agencia de Investigación Espacial para una misión espacial muy importante: medir directamente la
+gravedad en un planeta recién descubierto, el Planeta X.
+Aunque suene insólito, tu principal herramienta para esta tarea será una simple
+pelota de tenis. Eso sí, también tendrás a mano algunos "chiches" tecnológicos que te harán la
+vida más fácil, como la nave espacial de última generación _The Bayesian_ para transportarte por
+el espacio y una cámara especializada capaz de seguir bastante bien el movimiento de los objetos.
 
-Mi punteo:
+Una vez que llegues al Planeta X, habrá que moverse rápido: solo tendrás la oportunidad de
+hacer dos lanzamientos con la pelota. En el primero, la dejarás caer libremente desde la
+cubierta superior de la nave, dejando que la gravedad del planeta actúe sobre ella. En el segundo,
+la lanzarás verticalmente hacia arriba, con la mayor precisión técnica posible,
+mientras un sistema de registro capta toda su trayectoria al detalle.
 
-* Situación similar al comienzo de una escena de una película donde uno se recupera de una caída
-o fuerte golpe en la cabeza.
-* Recostado sobre una superficie nada cómoda, dura y pedregosa.
-* Atinas a palpar tu cuerpo como quien busca comprobar signos de algún daño y encontrar la confianza
-que te permita reafirmar lo trivial: que sos quien sos y que esto no es un sueño.
-* Piernas, torso, brazos. Todo en su lugar. Aunque es extraña la sensación al tacto.
-* Abrís los ojos, y en el proceso de llevar la mirada a tus manos no solo te percatas que llevas
-puesto un casco y que solo ves a través de un vidrio, que se parece una pecera, sino que también
-llevas puesto un traje que te recuerda a los pilotos del Moto GP, o más precisamente, a un astronauta.
-* ¿Dónde estoy? ¿Qué pasó? ¿Qué hago acá? ¿Por qué llevo puesto todo esot? son algunas de las tantas
-preguntas que invaden tu cabeza.
-* El intento que realizas por componerte y ponerte de pie es exitoso.
-* Te percatas que calor que sentis dentro de ese casco que llevas puesto, combinado con la humedad
-propia del encierro, resulta muy poco placentero.
-* Se te ocurre quitartelo.
-* Pero resistis a tus impulsos.
-* Este paisaje extraño, rocoso, arcilloso, que solo te hace pensar en el color del ladrillo,
-la rasposidad del ladrillo, ¿qué es?, ¡¿dónde estoy?!
-* Te aterra la remota posibilidad de que te encuentres en un planeta que no sea el planeta Tierra.
-De que el intento de sacarte el casco te regale, además se un sorbo de aire nuevo, las últimas
-imágenes de lo que sería tu cortísima vida.
-* Caminas, sin rumbo fijo. Aquello en el horizonte, parece una piedra desde la cuál se puede ver.
-No es nada. Seguís. Perdés la cuenta de cuanto andaste. Todo sigue igual.
-* En un momento, observas lo que parece una tienda. Con los debidos cuidados, ingresas.
-No hay nadie. Te consuela saber que al menos encontras un lugar donde tu vista puede tomarse un
-descanso de ese oxidado terracota que todo lo invade allá afuera.
-* Es tanto el cansancio que cargas, que no podes evitar caer dormido.
-* Al despertar es imposible saber si fueron 10 minutos, 1 hora, o 1 día entero. Solo sabes
-que afuera todo sigue igual.
-* Recordas que llevas puesto un casco, y que quitartelo podría quitarte la vida.
-* Buscas ayuda. Observas lo que hay en la tienda. Es lo que parece una estación científica.
-Herramientas, aparentes instrumentos de medición.
-* En esa búsqueda encontrás una camara de alta resolución. También una computadora portatil.
-Ambos totalmente invadidos por el polvo reinante en el aire, pero afortunadamente funcionan y tienen
-batería.
-* Te preguntas una y otra vez como podrías utilizarlos para pedir ayuda, o al menos darte cuenta
-si sacarte el casco es una jugada segura.
-* ¿Internet? No, gracias. No va a ser tan fácil.
-* ... ACÁ ME FALTA SEGUIR DESARROLLANDO LA HISTORIA
-* ...
-* Sabes que la gravedad en la tierra y en marte son distintas
-* Te acordas de las clases de física. Podrías hacer un experimento para estimar la gravedad.
-* Si se parece a la de la Tierra, tranquilamente podes haber caido en La Rioja.
-* Si se parece a la de Marte, que ganas que esto sea solo un sueño.
-* Buscas una piedra cuyo tamaño se le parezca a una pelota de tenis, te vas a la roca gigante del
-principio, dispones la cámara, te subis a la cima de la roca, y tiras la piedra.
-De acá sale un conjunto de datos.
-* Te acordas que también podes estimar la gravedad no solo dejando caer la piedra, sino que podes
-arrojarla para arriba, y seguir la trayectoria.
-* Entonces realizas un segundo experimento. Parado en la superficie, arrojas la piedra para arriba,
-siguiendo una trayectoria vertical. Haces el seguimiento del tiempo y posición.
-* Volves a la tienda, y en un trabajo muy arduo de análisis de video, para el cual te armaste
-una escala a partir de tu altura, y donde luego registraste la altura de la piedra cada 0.1s,
-armaste dos conjuntos de datos, uno para cuando dejaste caer la piedra y otro para cuando la tiraste
-para arriba y luego la dejaste caer.
-* Con todos estos datos, es hora de hacer el análisis estadístico.
+Para encarar semejante misión, pasarás por un proceso de entrenamiento especializado.
+Gracias a un programa de preparación bastante exigente, desarrollarás la capacidad de lanzar
+la pelota siempre con la misma velocidad inicial, sin importar las condiciones gravitatorias del
+entorno.
 
+Para familiarizarte con el procedimiento y los instrumentos, primero harás una serie
+de pruebas en la Tierra. Después, como paso intermedio antes de ir al desconocido Planeta X,
+realizarás una parada en Marte. Como ya se conocen sus características gravitatorias y se lo
+considera un entorno seguro, ahí repetirás los mismos procedimientos de lanzamiento y registro,
+sumando datos que pueden llegar a ser muy valiosos.
 
-Lo que me dio GPT.
+Finalmente, emprenderás el largo trayecto hacia el misterioso Planeta X.
+A pesar de la natural incertidumbre y quizás un poco de la tensión que siempre genera enfrentarse a
+lo desconocido, podrás realizar los dos lanzamientos previstos con total éxito.
 
-La conciencia regresa de golpe, como si emergieras de un sueño profundo y sin sueños. La sensación áspera y fría bajo tu cuerpo te alerta: no estás en tu cama. No estás en ningún lugar familiar.
+Ya de regreso en las oficinas de la Agencia de Investigación Espacial, llegará el momento decisivo:
+analizar todos los datos recolectados. Tu misión será, entonces, develar el enigma de la intensidad
+gravitatoria del nuevo Planeta X, una respuesta que, sin dudas, la comunidad científica y el público
+en general esperan con gran expectativa.
 
-Te incorporás apenas, con un gemido. Todo duele. No un dolor agudo, sino esa punzada sorda que deja un golpe fuerte. Instintivamente, pasás las manos por tu cuerpo. Piernas, torso, brazos. Todo parece estar en su lugar, pero hay algo extraño. La textura de tus manos es ajena, como si no fueran tuyas.
+## Datos
 
-Abrís los ojos. El movimiento es torpe, pesado. La primera imagen que ves no es la de tus manos desnudas, sino la de un reflejo en un vidrio. Un casco. Un casco que te envuelve la cabeza como una pecera. Y el traje… grueso, ajustado, con una estructura que te recuerda a los de los pilotos del MotoGP, pero más robusto. Como un astronauta.
+Los datos recolectados durante los experimentos se encuentran almacenados en archivos de formato
+CSV. Cada archivo corresponde a un experimento específico en un planeta determinado.
+El archivo `planetax-1.csv` contiene el tiempo y la posición de la pelota de tenis en cada instante
+para el experimento donde se la deja caer desde la cubierta de la nave espacial, mientras que
+`planetax-2.csv` tiene los datos del experimento en el que se lanza la pelota hacia arriba.
 
-El pánico comienza a reptar por tu pecho. ¿Dónde estás? ¿Qué pasó? ¿Por qué llevás puesto esto? Miles de preguntas nublan tu mente mientras intentás ponerte de pie. Lo lográs, aunque con dificultad. El calor dentro del casco es sofocante, y la humedad que se acumula en su interior hace que cada respiración sea incómoda. Lo primero que pensás es en quitártelo.
+Además, también se cuenta con los archivos `tierra-1.csv`, `tierra-2.csv`, `marte-1.csv` y
+`marte-2.csv`, con  los registros obtenidos en la Tierra y en Marte.
 
-Pero resistís. Algo en tu instinto te dice que no es una buena idea.
+## Ecuaciones cinemáticas
 
-Observás el paisaje que te rodea. Es árido, rocoso, teñido de un tono arcilloso que te recuerda al ladrillo, tanto en color como en textura. Nada se mueve. No hay árboles, ni agua, ni señales de vida. Un escalofrío te recorre la espalda cuando una posibilidad terrible se instala en tu mente: ¿Y si no estás en la Tierra?
-
-El pensamiento es aterrador. No tanto por la idea en sí, sino por lo que implica. Si estás en otro planeta, sacarte el casco no solo te dará un respiro de aire fresco, sino que podría ser lo último que hagas en tu vida.
-
-Sin otro plan, empezás a caminar. No sabés hacia dónde, pero moverte parece mejor que quedarte quieto. A la distancia, una formación rocosa sobresale del suelo. Cuando llegás y te subís, la vista no cambia. Más polvo, más rocas, más vacío. Perdés la cuenta de cuánto tiempo estuviste caminando cuando, finalmente, algo diferente aparece en tu campo de visión.
-
-Una tienda.
-
-Acelerás el paso. Con precaución, entrás. No hay nadie. Pero al menos es un refugio del monótono paisaje de afuera. Te desplomás sobre el suelo, agotado. Los párpados pesan. Y aunque querés mantenerte alerta, el sueño te vence.
-
-No sabés cuánto tiempo pasó cuando despertás. Todo sigue igual allá afuera. Recordás el casco, la sensación de encierro, la incertidumbre. Necesitás respuestas.
-
-Explorás el lugar. No es una simple tienda, sino algo parecido a una estación científica. Hay herramientas, instrumentos de medición. En tu búsqueda, encontrás una cámara de alta resolución y una computadora portátil, ambas cubiertas de polvo, pero milagrosamente funcionales.
-
-La pregunta persiste: ¿dónde estás? Necesitás una forma de comprobarlo antes de hacer algo imprudente.
-
-Entonces, una idea cruza tu mente. Recordás las clases de física. La gravedad de la Tierra y la de Marte son distintas. Si pudieras medir la aceleración gravitatoria, podrías saber si estás en un desierto remoto o en otro planeta.
-
-Buscás una piedra del tamaño de una pelota de tenis. Regresás a la roca en la que te habías subido antes. Colocás la cámara en una posición fija, escalás hasta la cima y dejás caer la piedra mientras grabás el experimento.
-
-Después, repetís la prueba, pero esta vez arrojás la piedra hacia arriba, siguiendo una trayectoria vertical.
-
-Volvés a la tienda. Ahora viene la parte difícil: analizar los datos. Usás tu altura como referencia para crear una escala en el video. Luego, registrás la posición de la piedra cada 0.1 segundos. Dos conjuntos de datos quedan listos para el análisis.
-
-Si la aceleración resultante se parece a la de la Tierra, tal vez solo te perdiste en un rincón olvidado del mundo. Si se parece a la de Marte… mejor que esto sea un sueño del que pronto vas a despertar.
-
-## Algunas cosas a considerar
-
-
+La modelización estadística de este Trabajo Práctico se basará en la ecuación fundamental de la
+cinemática para un objeto que se mueve con aceleración constante.
+Esta ecuación relaciona la posición del objeto con el tiempo, la aceleración, la velocidad inicial
+y la posición inicial:
 $$
 x_f = \frac{1}{2} a t^2 + v_0 t + x_0
+$$ {#eq-cinematica}
+
+Donde las variables se definen de la siguiente manera:
+
+* $x_f$: posición vertical final de la pelota después de un tiempo $t$ (en metros).
+* $t$: tiempo transcurrido desde el inicio de la observación (en segundos).
+* $a$: aceleración constante  que experimenta la pelota (en metros por segundo al cuadrado).
+En este contexto, $a$ representa la aceleración debida a la gravedad en la ubicación del experimento.
+* $v_0$: velocidad inicial de la pelota al comienzo del intervalo de tiempo $t$ (en metros por segundo).
+* $x_0$: posición vertical inicial de la pelota en $t=0$ (en metros).
+
+Esta ecuación será la base para construir los modelos estadísticos que permitirán inferir la
+gravedad en el Planeta X, nuestro principal objetivo.
+
+## Modelos lineales
+
+El modelo de regresión lineal normal suele presentarse de la siguiente manera:
+$$
+\begin{aligned}
+Y_i \mid \mu_i, \sigma &\sim \text{Normal}(\mu_i, \sigma^2) & i = 1, \cdots, N \\\\
+\mu_i = &\beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \cdots + \beta_p X_{pi}
+\end{aligned}
 $$
 
-* $x_0$ posición inicial
-* $x_f$ posición final
-* $v_0$ velocidad inicial
-* $a$ aceleración, que se tomará como igual a la debida a la gravedad. Es decir, $a = g = -9.81m/s^2$.
-* $t$ es el tiempo transcurrido
+1. Explique cómo se relacionan las variables y los parámetros del modelo lineal normal con las
+variables definidas en la ecuación @eq-cinematica.
+2. Plantee el o los modelos lineales normales a utilizar para analizar los datos de los experimentos
+realizados en el Planeta X, sin incluir por ahora las distribuciones _a priori_.
+Si decide proponer más de un modelo, justifique por qué y explique en qué se diferencian.
 
-Cuando hablemos de una bola que cae, tendremos
+En una primera aproximación, se propone utilizar distribuciones _a priori_ no informativas
+(uniformes) para todos los parámetros del modelo.
 
-$$
-x_f = \frac{1}{2} g t^2 + x_0
-$$
+3. Para ambos experimentos, obtenga muestras del _posterior_ utlizando Stan y presente las
+distribuciones _a posteriori_ marginales de una forma que crea conveniente.
+4. Compare las inferencias y analice si los resultados obtenidos para la aceleración gravitacional
+con ambos experimentos son consistentes. ¿Hay algún experimento que permita estimar la gravedad del
+planeta con menor incertidumbre?
+5. Realice pruebas predictivas _a posteriori_ y concluya.
 
+A continuación, se propone incorporar toda la información relevante disponible para la elección de
+las distribuciones _a priori_. Esto incluye los datos obtenidos en los experimentos realizados en
+la Tierra y Marte, así como las posibles relaciones entre las variables del modelo y los valores
+observados.
 
-## Que hacer
+6. Visualice los datos obtenidos en los experimentos en la Tierra y Marte, junto a los datos
+del Planeta X. ¿Cómo podría utilizar los datos de la Tierra y Marte para determinar distribuciones
+_a priori_ más informativas?
+7. Especifique el o los modelos lineales normales con los _priors_ actualizados, justificando sus
+elecciones.
+8. Realice pruebas predictivas _a priori_ para evaluar la razonabilidad del _prior_ elegido.
+8. Compare la distribución _a posteriori_ de la gravedad obtenidas con los datos de ambos
+experimentos y con lo _posteriors_ obtenidos a partir de _priors_ uniformes. ¿Qué conclusiones
+puede extraer?
+9. Realice pruebas predictivas _a posteriori_ y concluya.
 
-* Estimar gravedad en un planeta desconocido a partir de una pelota que cae
-* Estimar gravedad en un planeta desconocido a partir de una pelota que se lanza para arriba y cae
-* Estimar gravedad en un planeta desconocido, a partir de una pelota que se lanza hacia arriba, cae
-e información de otros 2 planetas cuya gravedad es conocida (Tierra y Marte)
-    * Acá se espera que se usen _priors_ informativos.
-* Comparar inferencias entre los dos puntos anteriores para este nuevo planeta.
-* Hay que mapear los modelos físicos a modelos lineales
-    * Hay que reflejar información sobre planetas conocidos en distribuciones _a priori_.
-* Si es posible, ver si se puede calcular la P(Tierra | datos) y P(Marte | datos).
+Finalmente, se desea utilizar el modelo construido para realizar predicciones en el Planeta X.
+
+10. ¿Cuánto tiempo tardaría en caer la pelota de tenis si se la lanza para arriba con una velocidad
+inicial igual a $A$? ¿Y si la velocidad inicial es $B$?
+11. ¿Difieren las incertidumbres en las predicciones anteriores? ¿Por qué?
+
+::: {.callout-tip}
+## Información relevante
+
+Al trabajar con Stan:
+
+* Utilice 4 cadenas de 1000 muestras cada una.
+* Verifique la bondad de las muestras obtenidas mediante medidas de diagnóstico numéricas y
+gráficas que crea conveniente.
+
+Además, cuando sea necesario, considere que la velocidad inicial es $X$ (TBD).
+
+:::
+
