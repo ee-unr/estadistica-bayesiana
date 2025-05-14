@@ -5,7 +5,7 @@ execute:
   warning: false
 ---
 
-En este programa se muestra código de `R` que se puede utilizar con el ejercicio 
+En este programa se muestra código de `R` que se puede utilizar con el ejercicio
 **Intención de voto** de la Práctica 5.
 
 La variable respuesta $Y$ se define:
@@ -24,13 +24,13 @@ Se trabaja con los siguientes dos modelos:
 
 $$
 \begin{array}{lc}
-    \mathcal{M}_1 & 
+    \mathcal{M}_1 &
     \begin{aligned}
     Y_i \mid \pi_i &\sim \text{Bernoulli}(\pi_i) \\
     \text{logit}(\pi_i) &= \beta_0 + \beta_1 \text{edad}_i \\
     \end{aligned} \\
     \\
-    \mathcal{M}_2 & 
+    \mathcal{M}_2 &
     \begin{aligned}
     Y_i \mid \pi_i &\sim \text{Bernoulli}(\pi_i) \\
     \text{logit}(\pi_i) &= \beta_{0, j[i]} + \beta_{1, j[i]} \text{edad}_i \\
@@ -74,10 +74,10 @@ head(datos)
 ```
 
 
-Tenemos 373 observaciones y 3 variables: `voto`, `edad` y `partido`. 
+Tenemos 373 observaciones y 3 variables: `voto`, `edad` y `partido`.
 La primera es binaria, la segunda es numérica y la tercera es categórica.
 
-La variable respuesta es `voto`. Veamos cuantas personas votan por cada candidato. 
+La variable respuesta es `voto`. Veamos cuantas personas votan por cada candidato.
 
 ```{r}
 #| results: hold
@@ -87,7 +87,7 @@ prop.table(table(datos$voto))   # Frecuencias relativas
 
 La mayor parte de las personas, el 57.6%, dicen votar por el candidato A.
 
-Por otro lado, tenemos las variables explicativas. Una de ellas es el partido político 
+Por otro lado, tenemos las variables explicativas. Una de ellas es el partido político
 con el que se identifica la persona que responde (`partido`). Veamos su distribución:
 
 ```{r}
@@ -99,7 +99,7 @@ prop.table(table(datos$partido))
 El grupo mayoritario es el de las personas que se identifican con el partido azul (47.2%),
 luego le sigue el partido verde (31.1%) y finalmente el partido rojo (21.7%).
 
-Para comenzar a entender la asociación entre el `partido` y `voto`, podemos explorar la 
+Para comenzar a entender la asociación entre el `partido` y `voto`, podemos explorar la
 distribución condicional de `voto` para los diferentes niveles de la variable `partido`.
 
 Un primer intento es el siguiente, basado como hasta ahora en `table()` y `prop.table()`:
@@ -111,9 +111,9 @@ prop.table(table(datos$partido, datos$voto))
 ```
 
 Pero esto nos devuelve la distribución conjunta. Para obtener la condicional debemos usar
-el argumento `margin` de `prop.table()` que indica el margen por el cual normalizar los 
+el argumento `margin` de `prop.table()` que indica el margen por el cual normalizar los
 conteos.
-Usamos `margin = 1` porque queremos dividir los conteos de la tabla por los totales de 
+Usamos `margin = 1` porque queremos dividir los conteos de la tabla por los totales de
 las filas.
 
 ```{r}
@@ -121,12 +121,12 @@ prop.table(table(datos$partido, datos$voto), margin = 1)
 ```
 
 La tabla permite concluir que la gran mayoría de las personas del partido azul (90.3%)
-votan por el candidato A; la gran mayoría de las personas del partido rojo (93.8%) votan 
+votan por el candidato A; la gran mayoría de las personas del partido rojo (93.8%) votan
 por el cantidado B; y las personas del partido verde distribuyen sus votos de manera
 similar entre los candidatos.
 
 
-Finalmente, podemos echar un vistazo a la distribución de `edad` y su asociación con 
+Finalmente, podemos echar un vistazo a la distribución de `edad` y su asociación con
 `voto`.
 
 ```{r}
@@ -157,7 +157,7 @@ La implementación del primer modelo en Stan esta la siguiente:
 
 ```{stan}
 #| echo: true
-#| eval: false 
+#| eval: false
 #| file: stan/elecciones/modelo_1.stan
 #| output.var: modelo_1
 ```
@@ -189,13 +189,13 @@ del _posterior_ (los mismos que la función `stan()` usada en otros recursos).
 print(stan_fit, pars = c("a", "b"))
 ```
 
-El resumen muestra que los tamaños de muestra efectivos se encuentran cercanos a 800 y 
-la estadística R-hat es igual a 1 para los dos parámetros del modelo. 
+El resumen muestra que los tamaños de muestra efectivos se encuentran cercanos a 800 y
+la estadística R-hat es igual a 1 para los dos parámetros del modelo.
 
 Antes de seguir analizando el _posterior_, construyamos un _traceplot_ para evaluar
-también gráficamente la convergencia y mezcla de las cadenas. 
+también gráficamente la convergencia y mezcla de las cadenas.
 
-La función `spread_draws()` de `{tidybayes}` toma objeto que se obtiene al muestrear el 
+La función `spread_draws()` de `{tidybayes}` toma objeto que se obtiene al muestrear el
 _posterior_ y el nombre de los parámetros de interés y devuelve un `data.frame` con tantas
 filas como cantidad de muestras se hayan obtenido.
 
@@ -217,13 +217,13 @@ head(df_draws_long)
 #| fig-width: 8
 ggplot(df_draws_long) +
   geom_line(aes(x = .iteration, y = value, color = as.factor(.chain)), alpha = 0.7) +
-  scale_color_manual(name = "Cadena", values = colores[1:4]) + 
+  scale_color_manual(name = "Cadena", values = colores[1:4]) +
   labs(x = "Iteración", y = "Valor") +
   facet_wrap(~ param,  ncol = 1, scales = "free_y") +
   theme_bw()
 ```
 
-Se puede observar un patrón similar al de un ruido blanco en todos los casos. 
+Se puede observar un patrón similar al de un ruido blanco en todos los casos.
 Las cadenas recorren rangos similares y no presentan tendencias o estancamientos.
 
 El siguiente paso es echar un vistazo a las distribuciones _a posteriori_ marginales.
@@ -244,11 +244,11 @@ ggplot(df_draws_long) +
 mean(df_draws$b < 0)
 ```
 
-Un dato a resaltar es la asociación negativa entre la edad del votante y la probabilidad 
-de votar por el candidato A. En otras palabras, a mayor edad de la persona, menor la 
+Un dato a resaltar es la asociación negativa entre la edad del votante y la probabilidad
+de votar por el candidato A. En otras palabras, a mayor edad de la persona, menor la
 preferencia por el candidato A.
 
-Una forma de interpretar los resultados de manera más amigable es realizar cálculos en 
+Una forma de interpretar los resultados de manera más amigable es realizar cálculos en
 términos de probabilidades. Para eso, se utiliza la inversa de la función de enlace:
 
 $$
@@ -270,8 +270,8 @@ al candidato A para, por ejemplo, una persona de 18 años:
 #| fig-height: 4
 eta_18 <- df_draws$a + df_draws$b * 18  # <1>
 pi_18 <- expit(eta_18)                  # <2>
-data.frame(x = pi_18) |> 
-  ggplot() + 
+data.frame(x = pi_18) |>
+  ggplot() +
   geom_histogram(aes(x = x), fill = colores[3], bins = 30) +
   labs(x = "P(Voto = Candidato A | Edad = 18)", y = NULL) +
   theme_bw() +
@@ -289,15 +289,15 @@ Y también podemos hacer lo mismo para una persona de 50 años.
 #| fig-height: 4
 eta_50 <- df_draws$a + df_draws$b * 50
 pi_50 <- expit(eta_50)
-data.frame(x = pi_50) |> 
-  ggplot() + 
+data.frame(x = pi_50) |>
+  ggplot() +
   geom_histogram(aes(x = x), fill = colores[3], bins = 30) +
   labs(x = "P(Voto = Candidato A | Edad = 50)", y = NULL) +
   theme_bw() +
   theme(axis.ticks.y = element_blank(), axis.text.y = element_blank())
 ```
 
-También puede ser de interés visualizar la relación entre la edad 
+También puede ser de interés visualizar la relación entre la edad
 (variable explicativa numérica) y el predictor lineal. Debajo construimos el predictor
 lineal determinado por cada muestra del _posterior_ para edades entre 18 y 95 años.
 
@@ -338,7 +338,7 @@ df_lines |>
   theme_bw()
 ```
 
-También es posible visualizar la media e intervalos de credibilidad utilizando 
+También es posible visualizar la media e intervalos de credibilidad utilizando
 `stat_lineribbon()` de `{ggdist}`. Los intervalos que se muestran son del 50%, 80% y 95%.
 
 ```{r}
@@ -347,7 +347,7 @@ También es posible visualizar la media e intervalos de credibilidad utilizando
 #| fig-height: 4
 df_lines |>
   ggplot(aes(x = edad, y = eta)) +
-  stat_lineribbon(aes(fill_ramp = after_stat(level)), fill = colores[3], color = "grey20") + 
+  stat_lineribbon(aes(fill_ramp = after_stat(level)), fill = colores[3], color = "grey20") +
   labs(x = "Edad", y = "Predictor lineal") +
   theme_bw() +
   theme(legend.position = "none")
@@ -368,16 +368,16 @@ df_lines |>
 
 df_lines |>
   ggplot(aes(x = edad, y = expit(eta))) +
-  stat_lineribbon(aes(fill_ramp = after_stat(level)), fill = colores[3], color = "grey20") + 
+  stat_lineribbon(aes(fill_ramp = after_stat(level)), fill = colores[3], color = "grey20") +
   labs(x = "Edad", y = "P(Voto = Candidato A)") +
   theme_bw() +
   theme(legend.position = "none")
 ```
 
-La edad se asocia negativamente con la probabilidad de votar por el candidato A. 
+La edad se asocia negativamente con la probabilidad de votar por el candidato A.
 Si analizamos los extremos podemos ver que:
 
-* Las personas de 18 años tienen una probabilidad de entre el 60% y el 80% de votar por el 
+* Las personas de 18 años tienen una probabilidad de entre el 60% y el 80% de votar por el
 candidato A.
 * Las personas de 95 años tienen una probabilidad de entre el 25% y el 50% de votar por el
 candidato A.
@@ -388,12 +388,12 @@ La implementación del primer modelo en Stan esta la siguiente:
 
 ```{stan}
 #| echo: true
-#| eval: false 
+#| eval: false
 #| file: stan/elecciones/modelo_2.stan
 #| output.var: modelo_2
 ```
 
-La principal diferencia con el modelo 1 es que ahora los parámetros son vectores, ya que 
+La principal diferencia con el modelo 1 es que ahora los parámetros son vectores, ya que
 se tienen tantos interceptos y pendientes como partidos políticos.
 
 ```{r}
@@ -421,7 +421,7 @@ En este segundo modelo tenemos que los tamaños de muestra efectivo son sustanci
 mayores que en el primer modelo (entre 2000 y 2500) y que nuevamente los R-hat son iguales
 a 1.
 
-A la hora de usar `spread_draws` hay que tener en cuenta que los parámetros están 
+A la hora de usar `spread_draws` hay que tener en cuenta que los parámetros están
 indexados por `partido_idx`.
 
 ```{r}
@@ -455,7 +455,7 @@ ggplot(df_draws_long) +
     aes(x = .iteration, y = value, color = as.factor(.chain)),
     alpha = 0.7
   ) +
-  scale_color_manual(name = "Cadena", values = colores[1:4]) + 
+  scale_color_manual(name = "Cadena", values = colores[1:4]) +
   labs(x = "Iteración", y = "Valor") +
   facet_wrap(vars(parametro, partido), nrow = 6, scales = "free", labeller = label_both) +
   theme_bw()
@@ -480,11 +480,11 @@ df_draws_long |>
   theme(axis.ticks.y = element_blank(), axis.text.y = element_blank())
 ```
 
-Los interceptos no parecen ser distintos, y la pendiente del partido azul parece ser 
-mayor que la del resto. Sin embargo, para llegar a estas conclusiones es necesario 
+Los interceptos no parecen ser distintos, y la pendiente del partido azul parece ser
+mayor que la del resto. Sin embargo, para llegar a estas conclusiones es necesario
 utilizar las distribuciones conjuntas, lo cual haremos hacia el final de este recurso.
 
-A partir del modelo 2, se obtienen diferentes predictores lineales según el partido que 
+A partir del modelo 2, se obtienen diferentes predictores lineales según el partido que
 podemos visualizar a continuación:
 
 ```{r}
@@ -521,14 +521,14 @@ df_lines |>
   filter(draw <= 50) |>
   ggplot() +
   geom_line(aes(x = edad, y = eta, group = draw), color = "grey20", alpha = 0.7) +
-  labs(x = "Edad", y = "Predictor lineal") + 
+  labs(x = "Edad", y = "Predictor lineal") +
   facet_wrap(~ partido, ncol = 3, labeller = label_both) +
   theme_bw()
 ```
 
-En la visualización debajo graficamos cómo evoluciona la probabilidad de votar por el 
-candidato A según la edad y la identificación política. 
-Para eso, seleccionamos algunas muestras del posterior y trazamos las curvas que estas 
+En la visualización debajo graficamos cómo evoluciona la probabilidad de votar por el
+candidato A según la edad y la identificación política.
+Para eso, seleccionamos algunas muestras del posterior y trazamos las curvas que estas
 implican. Los colores identifican a los partidos.
 
 ```{r}
@@ -539,12 +539,12 @@ df_lines |>
   ggplot() +
   geom_line(aes(x = edad, y = expit(eta), group = interaction(draw, partido), color = partido)) +
   scale_color_manual(values = c("#3498db", "#e74c3c","#2ecc71")) +
-  labs(x = "Edad", y = "P(Voto = Candidato A)") + 
+  labs(x = "Edad", y = "P(Voto = Candidato A)") +
   theme_bw() +
   theme(legend.position = "none")
 ```
 
-De manera análoga, podemos obtener una visualización usando todas las muestras del 
+De manera análoga, podemos obtener una visualización usando todas las muestras del
 _posterior_ en base a `stat_linerribon()`.
 
 ```{r}
@@ -552,27 +552,27 @@ _posterior_ en base a `stat_linerribon()`.
 #| fig-width: 7
 df_lines |>
   ggplot(aes(x = edad, y = expit(eta), fill = partido)) +
-  stat_lineribbon(aes(fill_ramp = after_stat(level)), color = "grey20") + 
+  stat_lineribbon(aes(fill_ramp = after_stat(level)), color = "grey20") +
   scale_fill_manual(values = c("#3498db", "#e74c3c","#2ecc71")) +
   labs(x = "Edad", y = "P(Voto = Candidato A)") +
   theme_bw() +
   theme(legend.position = "none")
 ```
 
-Según nuestro modelo de regresión logística, la probabilidad media de votar por el 
-candidato A para los del partido azul es siempre elevada (superior a 0.8), sin importar la edad. 
-Además, cuanto mayor es la persona, más cercana a 1 es la probabilidad media de votar por 
+Según nuestro modelo de regresión logística, la probabilidad media de votar por el
+candidato A para los del partido azul es siempre elevada (superior a 0.8), sin importar la edad.
+Además, cuanto mayor es la persona, más cercana a 1 es la probabilidad media de votar por
 el candidato A.
 
-Por otro lado, si bien los del partido rojo tienen una probabilidad no nula de votar por el 
+Por otro lado, si bien los del partido rojo tienen una probabilidad no nula de votar por el
 candidato A cuando son jóvenes, ésta tiende a cero rápidamente cuando se incrementa la edad.s
-También podemos notar una alta variabilidad en la probabilidad de votar al candidato A para los jóvenes del partido rojo. 
-Esto refleja una gran incertidumbre al estimar esta probabilidad y se debe a la pequeña cantidad de personas del partido rojo en ese rango de edad, además de que solo 5 de los 97 del partido rojo en el conjunto 
+También podemos notar una alta variabilidad en la probabilidad de votar al candidato A para los jóvenes del partido rojo.
+Esto refleja una gran incertidumbre al estimar esta probabilidad y se debe a la pequeña cantidad de personas del partido rojo en ese rango de edad, además de que solo 5 de los 97 del partido rojo en el conjunto
 de datos votan por el candidato A.
 
 Finalmente, la probabilidad media de votar por el candidato A para los del partido verde
-es de alrededor de 0.7 para los más jóvenes y disminuye hacia 0.2 a medida que envejecen. 
-Dado que la dispersión de las líneas es similar a lo largo de todas las edades, 
+es de alrededor de 0.7 para los más jóvenes y disminuye hacia 0.2 a medida que envejecen.
+Dado que la dispersión de las líneas es similar a lo largo de todas las edades,
 podemos concluir que nuestra incertidumbre en esta estimación es similar para todos los grupos de edad.
 
 ---
