@@ -1,0 +1,173 @@
+---
+title: "TP3: El Interestelar de Bayes"
+practica: "Trabajo Práctico 3"
+---
+
+### Historia
+
+La conciencia regresa de golpe, como si emergieras de un sueño profundo y pesado.
+Bajo tu cuerpo, una superficie áspera y fría. Un alerta inmediato: no es tu cama.
+No estás en ningún lugar familiar.
+
+Te incorporás apenas con un quejido y cada músculo prostesta.
+Un dolor sordo, como el recuerdo de un golpe brutal, te invade.
+Instintivamente, pasás las manos por tu cuerpo. Piernas, torso, brazos.
+Todo parece estar en su lugar, pero la textura de tus manos es ajena, como si no fueran tuyas.
+
+Abrís los ojos. El movimiento es torpe, pesado.
+La primera imagen no es la de tus manos desnudas, sino un reflejo en un cristal curvo.
+Es un casco. Un casco que te envuelve la cabeza como una pecera.
+Y el traje… grueso, ajustado, robusto. Sofocante. Como el de un astronauta.
+
+El pánico te trepa por el pecho. ¿Dónde estás? ¿Qué pasó? ¿Por qué llevás esto puesto?
+Miles de preguntas te asaltan mientras intentás ponerte de pie. Lo lográs, a duras penas.
+El calor dentro del casco es agobiante.
+Tu propia respiración empaña el visor y vuelve el aire denso, casi irrespirable.
+Lo primero que pensás es en quitártelo.
+
+Pero te contenés. Un instinto primario te advierte que no es buena idea.
+
+Observás el paisaje que te rodea.
+Es árido, rocoso, de un tono arcilloso que recuerda al ladrillo, tanto en color como en textura.
+Nada se mueve. No hay árboles, ni agua, ni el menor rastro de vida.
+Un escalofrío te eriza la piel cuando una posibilidad terrible se abre paso en tu mente:
+¿Y si no estás en la Tierra? ¿Y si esto es otro planeta, como Marte?
+
+El pensamiento es aterrador.
+Si estás en otro planeta, sacarte el casco no solo te dará un respiro de aire fresco, sino que
+podría ser lo último que hagas en tu vida.
+
+Sin un plan mejor, empezás a caminar. No sabés hacia dónde, pero moverse parece la única opción.
+A la distancia, una formación rocosa sobresale del suelo.
+Cuando llegás y trepás con algo de esfuerzo, la vista no cambia demasiado.
+Más polvo, más rocas, más vacío.
+Caminás sin rumbo, perdiendo la noción del tiempo, hasta que algo rompe la monotonía del paisaje.
+
+Una tienda.
+
+Apurás el tranco. Entrás con cautela. Nadie.
+Al fin un respiro del paisaje desolador que hay allá afuera.
+Te desplomás sobre el suelo, exhausto.
+Los párpados te pesan una tonelada y, aunque intentás mantenerte alerta, el sueño te vence.
+
+No sabés ni cuánto tiempo dormiste cuando despertás. El exterior sigue igual de inhóspito.
+Recordás el casco, el encierro, la incertidumbre. Necesitás respuestas.
+
+Explorás el lugar. No es una simple tienda de campaña, sino algo más parecido a una pequeña
+estación científica.
+Hay herramientas, instrumentos de medición extraños.
+Pero ni rastros de comida, ni señales de que alguien haya estado aquí recientemente.
+Revisando el lugar, das con una cámara de alta resolución y una _notebook_.
+Están cubiertas de polvo, pero, increíblemente, funcionan.
+
+La pregunta persiste, martillando tu cabeza: ¿dónde estás?
+Necesitás una forma de saberlo antes de cometer una imprudencia.
+
+Entonces, una idea te ilumina.
+La gravedad varía de forma notable entre los planetas del sistema solar.
+La de la Tierra y la de Marte son bien distintas.
+Si pudieras medirla de alguna forma, sabrías si estás en un desierto perdido a la buena de nadie o,
+efectivamente, en otro planeta.
+
+Un eco de las viejas clases de física resuena en tu cabeza: las ecuaciones de cinemática,
+aquellas que describen el movimiento de los cuerpos. Y en ellas, la gravedad es una constante clave.
+
+Primero, recordás la más simple, la que describe el movimiento en caída libre bajo influencia de la
+gravedad, partiendo del reposo:
+$$
+x_f = \frac{1}{2} a t^2 + x_0
+$$
+
+Y luego, con un poco más de esfuerzo, la forma general que incluye una velocidad inicial:
+$$
+x_f = \frac{1}{2} a t^2 + v_0 t + x_0
+$$
+
+donde las variables son:
+
+* $x_0$: posición inicial del objeto.
+* $x_f$: posición final del objeto transcurrido un tiempo $t$.
+* $v_0$: velocidad inicial del objeto.
+* $a$: aceleración. En este contexto, es la aceleración debida a la gravedad del lugar.
+* $t$: tiempo transcurrido.
+
+Una chispa de entusiasmo te recorre, espantando parte del miedo.
+Buscás una piedra que quepa bien en tu mano y volvés sobre tus pasos hacia la formación rocosa que
+habías divisado antes.
+Acomodás la cámara en un punto fijo, buscando un buen ángulo que capture toda la caída de la piedra
+con claridad. Apretás REC y te dirigís a la roca.
+Trepas a la cima. Dudás un segundo: ¿la dejás caer o la lanzás?
+Optás por lo simple: extendés el brazo que sostiene la piedra y, a la cuenta de tres, la soltás.
+La piedra impacta el suelo. Corrés de vuelta a la cámara para chequear la grabación.
+En medio de tanta confusión, por fin una buena: la grabación salió perfecta.
+
+Con la moral un poco más alta, decidís que no perdés nada intentando el otro experimento.
+Pulsás REC otra vez, trepás la roca lo más rápido que te permite el traje y, esta vez, lanzás la
+piedra con fuerza hacia arriba, intentando que suba más o menos un metro.
+La piedra sube, baja y cae. Bajás vos también y revisás la cámara: otro éxito.
+
+De vuelta en la tienda. Sentís que lo más crítico ya pasó, pero falta el paso clave: analizar los datos.
+Usás tu propia altura como referencia para calibrar las distancias en el video y así estimar la
+altura de la roca desde donde hiciste los lanzamientos.
+Con paciencia, revisás los videos cuadro por cuadro y anotás la posición de la piedra,
+en ambas caídas, cada décima de segundo.
+
+Dos conjuntos de datos quedan listos para el análisis.
+
+Si la aceleración resultante se parece a la de la Tierra, tal vez solo te perdiste en un rincón olvidado del mundo.
+Si se parece a la de Marte… mejor que esto sea un sueño del que pronto vas a despertar.
+
+
+```{R}
+library(ggplot2)
+
+# Caida libre
+
+altura_inicial <- 4.7 # metros
+
+g_tierra <- -9.81
+g_tierra <- -3.73
+t <- seq(0, 0.9, by = 0.1) # tiempo en segundos
+x_t <- 0.5 * g_tierra * t^2 + altura_inicial
+
+e_t <- c(0, -0.075, 0.025, -0.125, 0.05, 0.075, -0.15, 0.08, -0.17, 0.12)
+
+df_caida <- data.frame(t = t, x_t = x_t, y_t = x_t + e_t)
+ggplot(df_caida) +
+    geom_point(aes(x = t, y = x_t)) +
+    geom_point(aes(x = t, y = y_t), color = "red")
+
+
+# Arrojar hacia arriba
+t <- seq(0, 1.4, by = 0.1) # tiempo en segundos
+altura_inicial <- 4.7 # metros
+velocidad_inicial <- 4.5 # metros / segundo
+x_t <- 0.5 * g_tierra * t ^ 2 + velocidad_inicial * t + altura_inicial
+
+# Agrego ruido a mano. Si lo hago al azar, la roca podría bajar y luego subir
+e_t <- c(
+    0,
+    0.1,
+    -0.02,
+    -0.1,
+    -0.04,
+    -0.05,
+    -0.075,
+    0.01,
+    -0.1,
+    0.08,
+    0.12,
+    0,
+    -0.15,
+    0.13,
+    0.05
+)
+
+df_lanzamiento <- data.frame(t = t, x_t = x_t, y_t = x_t + e_t)
+
+ggplot(df_lanzamiento) +
+    geom_point(aes(x = t, y = x_t)) +
+    geom_point(aes(x = t, y = y_t), color = "red")
+
+```
+
