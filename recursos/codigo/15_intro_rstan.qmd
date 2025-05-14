@@ -1,5 +1,5 @@
 ---
-title: "10 - Introducción a RStan"
+title: "15 - Introducción a RStan"
 ---
 
 A continuación se presenta una introducción a Stan, a través de su interfaz con R: `{rstan}`
@@ -14,13 +14,13 @@ La programación probabilística es una herramienta para describir modelos estad
   - Está desarrollado sobre C++
   - Los programas de Stan definen un modelo probabilístico (datos + parámetros) y realizan inferencias sobre él
   - _Open source_
-  
+
 ¿Qué es RStan?
 
   - RStan es una interfaz de Stan en R
   - Permite compilar y ejecutar modelos de Stan directamente en R
   - Además, incluye la clase `stanfit` y funciones para operar con ella
-  
+
 ## Pasos a seguir
 
   1. Escribir un programa en Stan (archivo `.stan` o `string` en una variable)
@@ -35,7 +35,7 @@ Estructura de un modelo en Stan
 
 modelo <- "
 data {
- 
+
 }
 transformed data {
 
@@ -69,8 +69,8 @@ y <- 4
 
 model_beta1_stan <- "
 data {
-  int N;     
-  int Y; 
+  int N;
+  int Y;
 }
 parameters {
   real<lower=0, upper=1> pi;
@@ -89,9 +89,9 @@ model_beta1 <- stan_model(model_code = model_beta1_stan)
 
 data_list <- list(Y=y, N=N)
 
-model_beta1_fit <- sampling(object=model_beta1, 
-                            data=data_list, 
-                            chains = 3, 
+model_beta1_fit <- sampling(object=model_beta1,
+                            data=data_list,
+                            chains = 3,
                             iter = 2000,
                             warmup = 100)
 
@@ -171,7 +171,7 @@ df_of_draws <- as.data.frame(model_beta1_fit,pars="pi")
 #usando el paquete tidybayes + ggdist
 model_beta1_fit |>
   spread_draws(pi) |>
-  ggplot(aes(x=pi)) + 
+  ggplot(aes(x=pi)) +
   stat_histinterval()
 ```
 
