@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>14 - Regresión lineal con {RStan} – Estadística Bayesiana</title>
+<title>16 - Regresión lineal con {RStan} – Estadística Bayesiana</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -188,7 +188,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/codigo/index.html">Código</a></li><li class="breadcrumb-item"><a href="../../recursos/codigo/16_regresion_lineal_rstan.html">14 - Regresión lineal con <code>{RStan}</code></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/codigo/index.html">Código</a></li><li class="breadcrumb-item"><a href="../../recursos/codigo/16_regresion_lineal_rstan.html">16 - Regresión lineal con <code>{RStan}</code></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -304,7 +304,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../recursos/codigo/16_regresion_lineal_rstan.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">14 - Regresión lineal con <code>{RStan}</code></span></a>
+ <span class="menu-text">16 - Regresión lineal con <code>{RStan}</code></span></a>
   </div>
 </li>
       </ul>
@@ -359,9 +359,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/codigo/index.html">Código</a></li><li class="breadcrumb-item"><a href="../../recursos/codigo/16_regresion_lineal_rstan.html">14 - Regresión lineal con <code>{RStan}</code></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/codigo/index.html">Código</a></li><li class="breadcrumb-item"><a href="../../recursos/codigo/16_regresion_lineal_rstan.html">16 - Regresión lineal con <code>{RStan}</code></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">14 - Regresión lineal con <code>{RStan}</code></h1>
+<h1 class="title">16 - Regresión lineal con <code>{RStan}</code></h1>
 </div>
 
 
@@ -453,8 +453,8 @@ window.Quarto = {
 <pre><code>
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 1).
 Chain 1: 
-Chain 1: Gradient evaluation took 1.2e-05 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.12 seconds.
+Chain 1: Gradient evaluation took 1e-05 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.1 seconds.
 Chain 1: Adjust your expectations accordingly!
 Chain 1: 
 Chain 1: 
@@ -2466,8 +2466,8 @@ Chain 1:
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 2).
 Chain 2: 
-Chain 2: Gradient evaluation took 5e-06 seconds
-Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.05 seconds.
+Chain 2: Gradient evaluation took 4e-06 seconds
+Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
 Chain 2: Adjust your expectations accordingly!
 Chain 2: 
 Chain 2: 
@@ -4472,15 +4472,15 @@ Chain 2: Iteration: 1998 / 2000 [ 99%]  (Sampling)
 Chain 2: Iteration: 1999 / 2000 [ 99%]  (Sampling)
 Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 2: 
-Chain 2:  Elapsed Time: 0.039 seconds (Warm-up)
-Chain 2:                0.039 seconds (Sampling)
-Chain 2:                0.078 seconds (Total)
+Chain 2:  Elapsed Time: 0.038 seconds (Warm-up)
+Chain 2:                0.035 seconds (Sampling)
+Chain 2:                0.073 seconds (Total)
 Chain 2: 
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 3).
 Chain 3: 
-Chain 3: Gradient evaluation took 3e-06 seconds
-Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.
+Chain 3: Gradient evaluation took 4e-06 seconds
+Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
 Chain 3: Adjust your expectations accordingly!
 Chain 3: 
 Chain 3: 
@@ -6485,15 +6485,15 @@ Chain 3: Iteration: 1998 / 2000 [ 99%]  (Sampling)
 Chain 3: Iteration: 1999 / 2000 [ 99%]  (Sampling)
 Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 3: 
-Chain 3:  Elapsed Time: 0.051 seconds (Warm-up)
+Chain 3:  Elapsed Time: 0.039 seconds (Warm-up)
 Chain 3:                0.035 seconds (Sampling)
-Chain 3:                0.086 seconds (Total)
+Chain 3:                0.074 seconds (Total)
 Chain 3: 
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 4).
 Chain 4: 
-Chain 4: Gradient evaluation took 4e-06 seconds
-Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
+Chain 4: Gradient evaluation took 3e-06 seconds
+Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.
 Chain 4: Adjust your expectations accordingly!
 Chain 4: 
 Chain 4: 
@@ -8498,9 +8498,9 @@ Chain 4: Iteration: 1998 / 2000 [ 99%]  (Sampling)
 Chain 4: Iteration: 1999 / 2000 [ 99%]  (Sampling)
 Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 4: 
-Chain 4:  Elapsed Time: 0.049 seconds (Warm-up)
-Chain 4:                0.038 seconds (Sampling)
-Chain 4:                0.087 seconds (Total)
+Chain 4:  Elapsed Time: 0.038 seconds (Warm-up)
+Chain 4:                0.035 seconds (Sampling)
+Chain 4:                0.073 seconds (Total)
 Chain 4: </code></pre>
 </div>
 </div>
@@ -8518,7 +8518,7 @@ beta1   0.29    0.00 0.04   0.21   0.26   0.29   0.31   0.37  1482    1
 sigma   1.20    0.00 0.13   0.98   1.11   1.19   1.28   1.48  1932    1
 lp__  -34.57    0.04 1.29 -37.92 -35.14 -34.24 -33.64 -33.13  1210    1
 
-Samples were drawn using NUTS(diag_e) at Wed May 21 11:17:11 2025.
+Samples were drawn using NUTS(diag_e) at Wed May 21 12:24:06 2025.
 For each parameter, n_eff is a crude measure of effective sample size,
 and Rhat is the potential scale reduction factor on split chains (at 
 convergence, Rhat=1).</code></pre>
@@ -8530,12 +8530,12 @@ convergence, Rhat=1).</code></pre>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_draws_1)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     beta0     beta1     sigma      lp__
-1 5.868152 0.2284795 1.2820049 -35.65002
-2 5.702197 0.2618678 1.0917051 -33.52848
-3 5.223243 0.3034108 1.1549826 -33.12978
-4 4.978928 0.3444954 0.9722214 -37.33767
-5 4.756652 0.3424234 1.2575343 -34.29626
-6 4.773764 0.3139272 1.0322909 -37.42921</code></pre>
+1 5.664569 0.2656227 1.4243423 -35.05672
+2 5.231160 0.2840565 1.2251330 -34.33021
+3 6.332623 0.1897857 1.2811023 -37.32180
+4 5.744793 0.2662879 0.9562341 -35.49000
+5 6.178411 0.2147906 1.4011887 -36.14733
+6 5.172749 0.3310178 1.1458679 -34.67515</code></pre>
 </div>
 </div>
 <p>Lo siguiente es un enfoque posible, aunque bastante manual, para graficar los <em>posteriors</em> marginales de los parámetros del modelo.</p>
@@ -8793,7 +8793,7 @@ beta1   0.29    0.00 0.04   0.21   0.26   0.29   0.31   0.36  1631    1
 sigma   1.20    0.00 0.12   0.99   1.11   1.19   1.27   1.47  1810    1
 lp__  -34.82    0.03 1.24 -37.88 -35.41 -34.50 -33.88 -33.37  1421    1
 
-Samples were drawn using NUTS(diag_e) at Wed May 21 11:18:06 2025.
+Samples were drawn using NUTS(diag_e) at Wed May 21 12:25:06 2025.
 For each parameter, n_eff is a crude measure of effective sample size,
 and Rhat is the potential scale reduction factor on split chains (at 
 convergence, Rhat=1).</code></pre>
