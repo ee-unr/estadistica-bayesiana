@@ -5,7 +5,7 @@ execute:
     warning: false
 ---
 
-El siguiente programa muestra el código necesario para con `R` los ejercicios 
+El siguiente programa muestra el código necesario para con `R` los ejercicios
 **Mi primer regresión bayesiana** y **Mejorando mi regresión bayesiana** de la Práctica 4.
 
 En primer lugar, se cargan librerías necesarias.
@@ -46,7 +46,7 @@ uniformes. El programa de Stan para implementar el modelo es el siguiente:
 
 ```{stan}
 #| echo: true
-#| eval: false 
+#| eval: false
 #| file: stan/regresion_lineal/01_modelo.stan
 #| output.var: modelo_01
 ```
@@ -56,42 +56,45 @@ _posterior_ utilizando la función `stan()`.
 
 ```{r}
 stan_data <- list(
-    N = nrow(df_sales), # Cantidad de observaciones
-    x = df_sales$x,     # Publicidad
-    y = df_sales$y      # Ventas
+  N = nrow(df_sales), # Cantidad de observaciones
+  x = df_sales$x,     # Publicidad
+  y = df_sales$y      # Ventas
 )
 
-ruta_modelo <- here::here(
+ruta_modelo_1 <- here::here(
   "recursos", "codigo", "stan", "regresion_lineal", "01_modelo.stan"
 )
 
-stan_model <- stan( 
-    file = ruta_modelo, # Ubicación del archivo con el codigo del modelo en Stan
-    chains = 4,         # Cantidad de cadenas
-    data = stan_data,   # Datos
-    refresh = 0,        # No mostrar mensajes del sampler
-    seed = 121195       # Para que el resultado sea reproducible
+# Pasamos la ubicación del archivo con el codigo del modelo en Stan
+modelo_1 <- stan_model(file = ruta_modelo_1)
+
+modelo_1_fit <- sampling(
+  modelo_1,             # El modelo
+  data = stan_data,     # Datos
+  chains = 4,           # Cantidad de cadenas
+  seed = 1211,          # Para que el resultado sea reproducible
+  refresh = 1,          # Mostrar mensajes del sampler (1: si, 0: no)
 )
 ```
 
 Al imprimir el objeto que devuelve `stan()` se puede encontrar un resumen del _posterior_,
-incluyendo medidas de diagnóstico como el tamaño de muestra efectivo y 
+incluyendo medidas de diagnóstico como el tamaño de muestra efectivo y
 $\hat{R}$.
 
 ```{r}
-stan_model
+modelo_1_fit
 ```
 
-Para continuar explorando el _posterior_ y calcular cantidades de interés, conviene 
-trabajar con las muestras en un `data.frame`. Para ello resulta fundamental la 
+Para continuar explorando el _posterior_ y calcular cantidades de interés, conviene
+trabajar con las muestras en un `data.frame`. Para ello resulta fundamental la
 función `extract()` que extrae las muestras del _posterior_ y las devuelve en una lista.
 
 ```{r}
-df_draws_1 <- as.data.frame(extract(stan_model))
+df_draws_1 <- as.data.frame(extract(modelo_1_fit))
 head(df_draws_1)
 ```
 
-Lo siguiente es un enfoque posible, aunque bastante manual, para graficar los _posteriors_ 
+Lo siguiente es un enfoque posible, aunque bastante manual, para graficar los _posteriors_
 marginales de los parámetros del modelo.
 
 ```{r}
@@ -107,7 +110,7 @@ ggplot(df_draws_long_1) +
   labs(x = "Valor", y = "Densidad")
 ```
 
-Un primer paso en el análisis de un modelo lineal simple es visualizar la recta de 
+Un primer paso en el análisis de un modelo lineal simple es visualizar la recta de
 regresión estimada.
 
 ```{r}
@@ -119,19 +122,19 @@ intercept_mean <- mean(df_draws_1$beta0)
 slope_mean <- mean(df_draws_1$beta1)
 
 # Utilizar estos dos valores para graficar la media de la recta de regresión
-ggplot(df_sales) + 
+ggplot(df_sales) +
   geom_point(aes(x = x, y = y), alpha = 0.6, size = 2) +
   geom_abline(
-    intercept = intercept_mean, 
-    slope = slope_mean, 
-    linewidth = 1, 
+    intercept = intercept_mean,
+    slope = slope_mean,
+    linewidth = 1,
     color = "red"
   ) +
   labs(x = "Publicidad ($)", y = "Ventas ($)")
 ```
 
-Pero no hay que olvidar que estamos trabajando con un modelo bayesiano. 
-Por lo tanto, más que visualizar una recta basada en la media de las distribuciones 
+Pero no hay que olvidar que estamos trabajando con un modelo bayesiano.
+Por lo tanto, más que visualizar una recta basada en la media de las distribuciones
 marginales, es mejor visualizar las rectas asociadas a muestras del _posterior_.
 Esto también brinda una idea de la variabilidad en la estimación de la recta.
 
@@ -145,20 +148,20 @@ ggplot(df_sales) +
     aes(intercept = beta0, slope = beta1),
     alpha = 0.3,
     color = "gray30",
-    data = df_draws_1[sample(nrow(df_draws_1), 40), ] # <1> 
+    data = df_draws_1[sample(nrow(df_draws_1), 40), ] # <1>
   ) +
   geom_abline(
-    intercept = intercept_mean, 
-    slope = slope_mean, 
-    linewidth = 1, 
+    intercept = intercept_mean,
+    slope = slope_mean,
+    linewidth = 1,
     color = "red"
   ) +
   labs(x = "Publicidad ($)", y = "Ventas ($)")
 ```
 
 
-1.  Se utiliza `sample(nrow(df_draws_1), 40)` para seleccionar 40 muestras del _posterior_ 
-al azar. La figura resultaría muy difícil de leer si se intenta visualizar las rectas 
+1.  Se utiliza `sample(nrow(df_draws_1), 40)` para seleccionar 40 muestras del _posterior_
+al azar. La figura resultaría muy difícil de leer si se intenta visualizar las rectas
 asociadas a muchas más muestras.
 
 También es posible utilizar todas las muestras del _posterior_ para obtener bandas
@@ -167,20 +170,20 @@ condicional de $\mu_i$ para valores de $\text{ventas}_i$ en una grilla que cubre
 de valores observados. A partir de esas muestras, se calculan intervalos de credibilidad.
 
 ```{r}
-x_grid <- seq(4, 20, length.out = 100) # <1> 
-mu_matrix <- matrix(nrow = 4000, ncol = 100) # <2> 
+x_grid <- seq(4, 20, length.out = 100) # <1>
+mu_matrix <- matrix(nrow = 4000, ncol = 100) # <2>
 
 for (i in seq_along(x_grid)) {
-    mu_matrix[, i] <- df_draws_1$beta0 + df_draws_1$beta1 * x_grid[i] # <3> 
+    mu_matrix[, i] <- df_draws_1$beta0 + df_draws_1$beta1 * x_grid[i] # <3>
 }
 
-mu_mean <- apply(mu_matrix, 2, mean) # <4> 
-mu_qts <- t(apply(mu_matrix, 2, function(x) quantile(x, c(0.025, 0.975)))) # <5> 
-mu_qts2 <- t(apply(mu_matrix, 2, function(x) quantile(x, c(0.25, 0.75))))  # <6> 
+mu_mean <- apply(mu_matrix, 2, mean) # <4>
+mu_qts <- t(apply(mu_matrix, 2, function(x) quantile(x, c(0.025, 0.975)))) # <5>
+mu_qts2 <- t(apply(mu_matrix, 2, function(x) quantile(x, c(0.25, 0.75))))  # <6>
 
 # Finalmente, se lamacenan los valores calculados en un data frame
 data_mu <- data.frame(
-  x = x_grid, 
+  x = x_grid,
   y = mu_mean,
   lower_95 = mu_qts[, 1],
   upper_95 = mu_qts[, 2],
@@ -196,9 +199,9 @@ head(data_mu)
 como cantidad de valores en la grilla. Acá almacenamos los valores de $\mu_i$.
 3.  Para cada valor de la grilla, se obtiene la distribución condicional de $\mu_i$.
 4.  Se calcula la media _a posteriori_ de $\mu_i$ para cada valor en la grilla.
-5.  Se calculan los percentiles de $\mu_i$ que se corresponden con un intervalo de colas 
+5.  Se calculan los percentiles de $\mu_i$ que se corresponden con un intervalo de colas
 iguales del 95%.
-6.  Se calculan los percentiles de $\mu_i$ que se corresponden con un intervalo de colas 
+6.  Se calculan los percentiles de $\mu_i$ que se corresponden con un intervalo de colas
 iguales del 50%.
 
 Las bandas de credibilidad se construyen usando `geom_ribbon` de `{ggplot2}`.
@@ -222,14 +225,14 @@ ggplot(df_sales) +
   ) +
   geom_point(aes(x = x, y = y), alpha = 0.6, size = 2) +
   geom_line(
-    aes(x, y), 
+    aes(x, y),
     color = "firebrick",
     data = data_mu
   ) +
   labs(x = "Publicidad ($)", y = "Ventas ($)")
 ```
 
-Finalmente, se muestra como visualizar la distribución condicional de $\mu_i$ para un 
+Finalmente, se muestra como visualizar la distribución condicional de $\mu_i$ para un
 valor particular de la variable predictora $\text{ventas}$.
 
 ```{r}
@@ -237,8 +240,8 @@ valor particular de la variable predictora $\text{ventas}$.
 #| fig-width: 7
 publicidad <- 15
 mu <- df_draws_1$beta0 + df_draws_1$beta1 * publicidad
-data.frame(mu = mu) |> 
-    ggplot() + 
+data.frame(mu = mu) |>
+    ggplot() +
     geom_histogram(aes(mu, y = after_stat(density)), bins = 40) +
     labs(
         x = expression(mu[i] ~ " | " ~ publicidad[i] ~ " = 15"),
@@ -263,7 +266,7 @@ y el programa de Stan que lo implementa es el siguiente
 
 ```{stan}
 #| echo: true
-#| eval: false 
+#| eval: false
 #| file: stan/regresion_lineal/02_modelo_con_priors.stan
 #| output.var: modelo_02
 ```
@@ -277,15 +280,17 @@ stan_data <- list(
     N = nrow(df_sales),          # Cantidad de observaciones
     x = df_sales$x,              # Publicidad
     y = df_sales$y,              # Ventas
-    beta0_mu = mean(df_sales$y)  # Media del prior del intercepto  
+    beta0_mu = mean(df_sales$y)  # Media del prior del intercepto
 )
 
-ruta_modelo <- here::here(
+ruta_modelo_2 <- here::here(
     "recursos", "codigo", "stan", "regresion_lineal", "02_modelo_con_priors.stan"
 )
 
-stan_model <- stan( 
-    file = ruta_modelo, # Ubicación del archivo con el codigo del modelo en Stan
+modelo_2 <- stan_model(file = ruta_modelo_2)
+
+modelo_2_fit <- sampling(
+    modelo_2,
     chains = 4,         # Cantidad de cadenas
     data = stan_data,   # Datos
     refresh = 0,        # No mostrar mensajes del sampler
@@ -296,14 +301,14 @@ stan_model <- stan(
 Se puede ver el resumen del _posterior_
 
 ```{r}
-stan_model
+modelo_2_fit
 ```
 
 y también se podrían crear visualizaciones como las anteriores utilizando el mismo código.
 
 Se recomienda echar un vistazo a las funciones disponibles en la librería `{bayesplot}`
 [aquí](https://mc-stan.org/bayesplot/reference/index.html). Por ejemplo, `mcmc_trace()`,
-que permite obtener un _traceplot_ que sirve para evaluar la convergencia y mezcla de 
+que permite obtener un _traceplot_ que sirve para evaluar la convergencia y mezcla de
 las cadenas.
 
 ```{r}
@@ -311,7 +316,7 @@ las cadenas.
 #| fig-width: 7
 library(bayesplot)
 mcmc_trace(
-  stan_model, 
+  modelo_2_fit,
   pars = c("beta0", "beta1", "sigma"),
   facet_args = list(nrow = 3)
 )
