@@ -73,7 +73,7 @@ modelo_1_fit <- sampling(
   data = stan_data,     # Datos
   chains = 4,           # Cantidad de cadenas
   seed = 1211,          # Para que el resultado sea reproducible
-  refresh = 1,          # Mostrar mensajes del sampler (1: si, 0: no)
+  refresh = 0,          # Mostrar mensajes del sampler (1: si, 0: no)
 )
 ```
 
