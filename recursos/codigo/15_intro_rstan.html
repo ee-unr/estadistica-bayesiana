@@ -482,8 +482,8 @@ rstan_options(threads_per_chain = 1)</code></pre>
 <pre><code>
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 1).
 Chain 1: 
-Chain 1: Gradient evaluation took 5e-06 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.05 seconds.
+Chain 1: Gradient evaluation took 6e-06 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.06 seconds.
 Chain 1: Adjust your expectations accordingly!
 Chain 1: 
 Chain 1: 
@@ -509,8 +509,8 @@ Chain 1: Iteration: 1900 / 2000 [ 95%]  (Sampling)
 Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 1: 
 Chain 1:  Elapsed Time: 0 seconds (Warm-up)
-Chain 1:                0.007 seconds (Sampling)
-Chain 1:                0.007 seconds (Total)
+Chain 1:                0.008 seconds (Sampling)
+Chain 1:                0.008 seconds (Total)
 Chain 1: 
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 2).
@@ -542,8 +542,8 @@ Chain 2: Iteration: 1900 / 2000 [ 95%]  (Sampling)
 Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 2: 
 Chain 2:  Elapsed Time: 0 seconds (Warm-up)
-Chain 2:                0.007 seconds (Sampling)
-Chain 2:                0.007 seconds (Total)
+Chain 2:                0.008 seconds (Sampling)
+Chain 2:                0.008 seconds (Total)
 Chain 2: 
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 3).
@@ -585,11 +585,11 @@ Chain 3: </code></pre>
 3 chains, each with iter=2000; warmup=100; thin=1; 
 post-warmup draws per chain=1900, total post-warmup draws=5700.
 
-       mean se_mean   sd  2.5%    25%    50%    75%  97.5% n_eff Rhat
-pi     0.25    0.00 0.09   0.1   0.18   0.24   0.30   0.44  2157    1
-lp__ -14.03    0.01 0.75 -16.2 -14.20 -13.75 -13.55 -13.50  2585    1
+       mean se_mean   sd   2.5%    25%    50%    75%  97.5% n_eff Rhat
+pi     0.25    0.00 0.09   0.10   0.19   0.25   0.31   0.44  2094    1
+lp__ -14.02    0.01 0.74 -16.09 -14.19 -13.73 -13.55 -13.50  2743    1
 
-Samples were drawn using NUTS(diag_e) at Wed May 21 12:22:27 2025.
+Samples were drawn using NUTS(diag_e) at Wed May 21 12:23:33 2025.
 For each parameter, n_eff is a crude measure of effective sample size,
 and Rhat is the potential scale reduction factor on split chains (at 
 convergence, Rhat=1).</code></pre>
@@ -607,7 +607,7 @@ convergence, Rhat=1).</code></pre>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(list_of_draws)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 1
- $ pi: num [1:5700(1d)] 0.125 0.436 0.219 0.367 0.21 ...
+ $ pi: num [1:5700(1d)] 0.189 0.126 0.319 0.315 0.253 ...
   ..- attr(*, "dimnames")=List of 1
   .. ..$ iterations: NULL</code></pre>
 </div>
@@ -617,11 +617,11 @@ convergence, Rhat=1).</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(list_of_draws<span class="sc">$</span>pi)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1245632 0.4359932 0.2194719 0.3666079 0.2101025 0.2583191</code></pre>
+<pre><code>[1] 0.1886926 0.1263485 0.3187052 0.3148776 0.2527653 0.2509770</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(list_of_draws<span class="sc">$</span>pi<span class="sc">&lt;</span><span class="fl">0.6</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9998246</code></pre>
+<pre><code>[1] 1</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
