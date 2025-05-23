@@ -2,7 +2,7 @@
 title: "TP3: El bayesiano interestelar"
 practica: "Trabajo Práctico 3"
 ---
-`
+
 ## Introducción
 
 En este Trabajo Práctico te pondrás en la piel de un científico que fue convocado por la
@@ -10,50 +10,50 @@ Agencia de Investigación Espacial para una misión espacial muy importante: med
 gravedad en un planeta recién descubierto, el Planeta X.
 Aunque suene insólito, tu principal herramienta para esta tarea será una simple
 pelota de tenis. Eso sí, también tendrás a mano algunos "chiches" tecnológicos que te harán la
-vida más fácil, como la nave espacial de última generación _The Bayesian_ para transportarte por
-el espacio y una cámara especializada capaz de seguir bastante bien el movimiento de los objetos.
+vida más fácil, como la nave espacial de última generación _The Bayesian_, una imponente
+estructura de 10 metros de alto y 80 de largo diseñada para transportarte por el espacio, y una
+cámara especializada capaz de seguir bastante bien el movimiento de los objetos.
 
-Una vez que llegues al Planeta X, habrá que moverse rápido: solo tendrás la oportunidad de
-hacer dos lanzamientos con la pelota. En el primero, la dejarás caer libremente desde la
-cubierta superior de la nave, dejando que la gravedad del planeta actúe sobre ella. En el segundo,
-la lanzarás verticalmente hacia arriba, con la mayor precisión técnica posible,
-mientras un sistema de registro capta toda su trayectoria al detalle.
+Una vez que llegues al Planeta X, habrá que moverse rápido ya que solo tendrás la oportunidad de
+hacer un único intento con la pelota. En el mismo, la lanzarás verticalmente hacia arriba, con la
+mayor precisión técnica posible, mientras un sistema de registro capta toda su trayectoria al
+detalle hasta que toque el suelo.
 
 Para encarar semejante misión, pasarás por un proceso de entrenamiento especializado.
 Gracias a un programa de preparación bastante exigente, desarrollarás la capacidad de lanzar
-la pelota siempre con la misma velocidad inicial, sin importar las condiciones gravitatorias del
-entorno.
+la pelota siempre con la misma velocidad inicial (aproximadamente 8 metros por segundo), sin
+importar las condiciones gravitatorias del entorno.
 
 Para familiarizarte con el procedimiento y los instrumentos, primero harás una serie
 de pruebas en la Tierra. Después, como paso intermedio antes de ir al desconocido Planeta X,
 realizarás una parada en Marte. Como ya se conocen sus características gravitatorias y se lo
-considera un entorno seguro, ahí repetirás los mismos procedimientos de lanzamiento y registro,
+considera un entorno seguro, ahí repetirás el mismo procedimiento de lanzamiento y registro,
 sumando datos que pueden llegar a ser muy valiosos.
 
 Finalmente, emprenderás el largo trayecto hacia el misterioso Planeta X.
 A pesar de la natural incertidumbre y quizás un poco de la tensión que siempre genera enfrentarse a
-lo desconocido, podrás realizar los dos lanzamientos previstos con total éxito.
+lo desconocido, podrás realizar el lanzamiento previsto con total éxito.
 
 Ya de regreso en las oficinas de la Agencia de Investigación Espacial, llegará el momento decisivo:
 analizar todos los datos recolectados. Tu misión será, entonces, develar el enigma de la intensidad
 gravitatoria del nuevo Planeta X, una respuesta que, sin dudas, la comunidad científica y el público
 en general esperan con gran expectativa.
-
+F
 ## Datos
 
-Los datos recolectados durante los experimentos se encuentran almacenados en archivos de formato
-CSV. Cada archivo corresponde a un experimento específico en un planeta determinado.
-El archivo `planetax-1.csv` contiene el tiempo y la posición de la pelota de tenis en cada instante
-para el experimento donde se la deja caer desde la cubierta de la nave espacial, mientras que
-`planetax-2.csv` tiene los datos del experimento en el que se lanza la pelota hacia arriba.
+Los datos obtenidos durante los experimentos están organizados en archivos de formato CSV, cada uno
+representando un experimento en un planeta específico. El archivo `tp3_planetax.csv` contiene los
+registros de tiempo y posición de la pelota de tenis durante el experimento en el Planeta X.
+Por su parte, los archivos `tp3_marte.csv` y `tp3_tierra.csv` almacenan los datos recolectados en
+Marte y la Tierra, respectivamente.
 
-Además, también se cuenta con los archivos `tierra-1.csv`, `tierra-2.csv`, `marte-1.csv` y
-`marte-2.csv`, con  los registros obtenidos en la Tierra y en Marte.
+1. Visualice los datos obtenidos en el experimento realizado en el Planeta X. ¿Tienen sentido
+las mediciones obtenidas?
 
 ## Ecuaciones cinemáticas
 
-La modelización estadística de este Trabajo Práctico se basará en la ecuación fundamental de la
-cinemática para un objeto que se mueve con aceleración constante.
+La modelización estadística de este Trabajo se basará en la ecuación fundamental de la cinemática
+para un objeto que se mueve con aceleración constante.
 Esta ecuación relaciona la posición del objeto con el tiempo, la aceleración, la velocidad inicial
 y la posición inicial:
 $$
@@ -82,21 +82,19 @@ Y_i \mid \mu_i, \sigma &\sim \text{Normal}(\mu_i, \sigma^2) & i = 1, \cdots, N \
 \end{aligned}
 $$
 
-1. Explique cómo se relacionan las variables y los parámetros del modelo lineal normal con las
-variables definidas en la ecuación @eq-cinematica.
-2. Plantee el o los modelos lineales normales a utilizar para analizar los datos de los experimentos
-realizados en el Planeta X, sin incluir por ahora las distribuciones _a priori_.
-Si decide proponer más de un modelo, justifique por qué y explique en qué se diferencian.
+2. Explique cómo se relacionan las variables y los parámetros del modelo lineal normal con las
+variables definidas en la @eq-cinematica.
+3. Plantee el modelo lineal normal a utilizar para analizar los datos del experimento realizado en
+el Planeta X, sin incluir por ahora las distribuciones _a priori_.
 
 En una primera aproximación, se propone utilizar distribuciones _a priori_ no informativas
 (uniformes) para todos los parámetros del modelo.
 
-3. Para ambos experimentos, obtenga muestras del _posterior_ utlizando Stan y presente las
-distribuciones _a posteriori_ marginales de una forma que crea conveniente.
-4. Compare las inferencias y analice si los resultados obtenidos para la aceleración gravitacional
-con ambos experimentos son consistentes. ¿Hay algún experimento que permita estimar la gravedad del
-planeta con menor incertidumbre?
-5. Realice pruebas predictivas _a posteriori_ y concluya.
+4. Implemente el modelo en Stan, obtenga muestras del _posterior_, presente las distribuciones
+_a posteriori_ marginales e interprete el resultado en términos del problema.
+5. Visualice la curva de regresión junto a el o los intervalos de credibilidad que crea conveniente.
+Además, también elabore un gráfico que le permita visualizar la distribución predictiva
+_a posteriori_ para diferentes valores de $t$.
 
 A continuación, se propone incorporar toda la información relevante disponible para la elección de
 las distribuciones _a priori_. Esto incluye los datos obtenidos en los experimentos realizados en
@@ -104,21 +102,21 @@ la Tierra y Marte, así como las posibles relaciones entre las variables del mod
 observados.
 
 6. Visualice los datos obtenidos en los experimentos en la Tierra y Marte, junto a los datos
-del Planeta X. ¿Cómo podría utilizar los datos de la Tierra y Marte para determinar distribuciones
-_a priori_ más informativas?
-7. Especifique el o los modelos lineales normales con los _priors_ actualizados, justificando sus
-elecciones.
+del Planeta X. ¿Cómo podría utilizar los datos de los otros planetas para determinar distribuciones
+_a priori_ más informativas? ¿Y los datos conocidos del experimento?
+7. Especifique e implemente en Stan el model lineal normal con los _priors_ actualizados,
+justificando sus elecciones.
 8. Realice pruebas predictivas _a priori_ para evaluar la razonabilidad del _prior_ elegido.
-8. Compare la distribución _a posteriori_ de la gravedad obtenidas con los datos de ambos
-experimentos y con lo _posteriors_ obtenidos a partir de _priors_ uniformes. ¿Qué conclusiones
-puede extraer?
-9. Realice pruebas predictivas _a posteriori_ y concluya.
+9. Obtenga muestras del _posterior_ y compare los resultados con los del primer modelo.
+¿Qué puede concluir acerca de la gravedad del Planeta X? Sugerencia: reproduzca y/o actualice
+las visualizaciones realizadas para el primer modelo.
 
-Finalmente, se desea utilizar el modelo construido para realizar predicciones en el Planeta X.
+Finalmente, utilizando ambos modelos responda:
 
-10. ¿Cuánto tiempo tardaría en caer la pelota de tenis si se la lanza para arriba con una velocidad
-inicial igual a $6 \text{ m}/{s}$? ¿Y si la velocidad inicial es $12 \text{ m}/{s}$?
-11. ¿Difieren las incertidumbres en las predicciones anteriores? ¿Por qué?
+10. ¿Cuánto tiempo tardaría en caer la pelota de tenis si se repite el lanzamiento pero utilizando
+una velocidad inicial de $6 \text{ m}/{s}$? ¿Y si la velocidad inicial es $12 \text{ m}/{s}$?
+¿Con qué modelo se obtienen resultados más precisos? ¿Por qué?
+
 
 ::: {.callout-tip}
 ## Información relevante
@@ -128,7 +126,5 @@ Al trabajar con Stan:
 * Utilice 4 cadenas de 1000 muestras cada una.
 * Verifique la bondad de las muestras obtenidas mediante medidas de diagnóstico numéricas y
 gráficas que crea conveniente.
-
-Además, cuando sea necesario, considere que la velocidad inicial es $8 \text{ m}/{s}$.
 
 :::
