@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>TP3: WIP – Estadística Bayesiana</title>
+<title>TP3: El bayesiano interestelar – Estadística Bayesiana</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -125,7 +154,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../trabajos_practicos/03_tp3.html">TP 3: Una masacre estadística</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../trabajos_practicos/03_tp3.html">TP 3: El bayesiano interestelar</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -160,7 +189,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../trabajos_practicos/03_tp3.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">TP 3: Una masacre estadística</span></a>
+ <span class="menu-text">TP 3: El bayesiano interestelar</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -181,7 +210,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">TP3: WIP</h1>
+<h1 class="title">TP3: El bayesiano interestelar</h1>
 </div>
 
 
@@ -198,8 +227,82 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="introducción" class="level2">
+<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
+<p>En este Trabajo Práctico te pondrás en la piel de un científico que fue convocado por la Agencia de Investigación Espacial para una misión espacial muy importante: medir directamente la gravedad en un planeta recién descubierto, el Planeta X. Aunque suene insólito, tu principal herramienta para esta tarea será una simple pelota de tenis. Eso sí, también tendrás a mano algunos “chiches” tecnológicos que te harán la vida más fácil, como la nave espacial de última generación <em>The Bayesian</em>, una imponente estructura de 10 metros de alto y 80 de largo diseñada para transportarte por el espacio, y una cámara especializada capaz de seguir bastante bien el movimiento de los objetos.</p>
+<p>Una vez que llegues al Planeta X, habrá que moverse rápido ya que solo tendrás la oportunidad de hacer un único intento con la pelota. En el mismo, la lanzarás verticalmente hacia arriba, con la mayor precisión técnica posible, mientras un sistema de registro capta toda su trayectoria al detalle hasta que toque el suelo.</p>
+<p>Para encarar semejante misión, pasarás por un proceso de entrenamiento especializado. Gracias a un programa de preparación bastante exigente, desarrollarás la capacidad de lanzar la pelota siempre con la misma velocidad inicial (aproximadamente 8 metros por segundo), sin importar las condiciones gravitatorias del entorno.</p>
+<p>Para familiarizarte con el procedimiento y los instrumentos, primero harás una serie de pruebas en la Tierra. Después, como paso intermedio antes de ir al desconocido Planeta X, realizarás una parada en Marte. Como ya se conocen sus características gravitatorias y se lo considera un entorno seguro, ahí repetirás el mismo procedimiento de lanzamiento y registro, sumando datos que pueden llegar a ser muy valiosos.</p>
+<p>Finalmente, emprenderás el largo trayecto hacia el misterioso Planeta X. A pesar de la natural incertidumbre y quizás un poco de la tensión que siempre genera enfrentarse a lo desconocido, podrás realizar el lanzamiento previsto con total éxito.</p>
+<p>Ya de regreso en las oficinas de la Agencia de Investigación Espacial, llegará el momento decisivo: analizar todos los datos recolectados. Tu misión será, entonces, develar el enigma de la intensidad gravitatoria del nuevo Planeta X, una respuesta que, sin dudas, la comunidad científica y el público en general esperan con gran expectativa. F ## Datos</p>
+<p>Los datos obtenidos durante los experimentos están organizados en archivos de formato CSV, cada uno representando un experimento en un planeta específico. El archivo <code>tp3_planetax.csv</code> contiene los registros de tiempo y posición de la pelota de tenis durante el experimento en el Planeta X. Por su parte, los archivos <code>tp3_marte.csv</code> y <code>tp3_tierra.csv</code> almacenan los datos recolectados en Marte y la Tierra, respectivamente.</p>
+<ol type="1">
+<li>Visualice los datos obtenidos en el experimento realizado en el Planeta X. ¿Tienen sentido las mediciones obtenidas?</li>
+</ol>
+</section>
+<section id="ecuaciones-cinemáticas" class="level2">
+<h2 class="anchored" data-anchor-id="ecuaciones-cinemáticas">Ecuaciones cinemáticas</h2>
+<p>La modelización estadística de este Trabajo se basará en la ecuación fundamental de la cinemática para un objeto que se mueve con aceleración constante. Esta ecuación relaciona la posición del objeto con el tiempo, la aceleración, la velocidad inicial y la posición inicial: <span id="eq-cinematica"><span class="math display">\[
+x_f = \frac{1}{2} a t^2 + v_0 t + x_0
+\tag{1}\]</span></span></p>
+<p>Donde las variables se definen de la siguiente manera:</p>
+<ul>
+<li><span class="math inline">\(x_f\)</span>: posición vertical final de la pelota después de un tiempo <span class="math inline">\(t\)</span> (en metros).</li>
+<li><span class="math inline">\(t\)</span>: tiempo transcurrido desde el inicio de la observación (en segundos).</li>
+<li><span class="math inline">\(a\)</span>: aceleración constante que experimenta la pelota (en metros por segundo al cuadrado). En este contexto, <span class="math inline">\(a\)</span> representa la aceleración debida a la gravedad en la ubicación del experimento.</li>
+<li><span class="math inline">\(v_0\)</span>: velocidad inicial de la pelota al comienzo del intervalo de tiempo <span class="math inline">\(t\)</span> (en metros por segundo).</li>
+<li><span class="math inline">\(x_0\)</span>: posición vertical inicial de la pelota en <span class="math inline">\(t=0\)</span> (en metros).</li>
+</ul>
+<p>Esta ecuación será la base para construir los modelos estadísticos que permitirán inferir la gravedad en el Planeta X, nuestro principal objetivo.</p>
+</section>
+<section id="modelos-lineales" class="level2">
+<h2 class="anchored" data-anchor-id="modelos-lineales">Modelos lineales</h2>
+<p>El modelo de regresión lineal normal suele presentarse de la siguiente manera: <span class="math display">\[
+\begin{aligned}
+Y_i \mid \mu_i, \sigma &amp;\sim \text{Normal}(\mu_i, \sigma^2) &amp; i = 1, \cdots, N \\\\
+\mu_i = &amp;\beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \cdots + \beta_p X_{pi}
+\end{aligned}
+\]</span></p>
+<ol start="2" type="1">
+<li>Explique cómo se relacionan las variables y los parámetros del modelo lineal normal con las variables definidas en la <a href="#eq-cinematica" class="quarto-xref">Ecuación&nbsp;1</a>.</li>
+<li>Plantee el modelo lineal normal a utilizar para analizar los datos del experimento realizado en el Planeta X, sin incluir por ahora las distribuciones <em>a priori</em>.</li>
+</ol>
+<p>En una primera aproximación, se propone utilizar distribuciones <em>a priori</em> no informativas (uniformes) para todos los parámetros del modelo.</p>
+<ol start="4" type="1">
+<li>Implemente el modelo en Stan, obtenga muestras del <em>posterior</em>, presente las distribuciones <em>a posteriori</em> marginales e interprete el resultado en términos del problema.</li>
+<li>Visualice la curva de regresión junto a el o los intervalos de credibilidad que crea conveniente. Además, también elabore un gráfico que le permita visualizar la distribución predictiva <em>a posteriori</em> para diferentes valores de <span class="math inline">\(t\)</span>.</li>
+</ol>
+<p>A continuación, se propone incorporar toda la información relevante disponible para la elección de las distribuciones <em>a priori</em>. Esto incluye los datos obtenidos en los experimentos realizados en la Tierra y Marte, así como las posibles relaciones entre las variables del modelo y los valores observados.</p>
+<ol start="6" type="1">
+<li>Visualice los datos obtenidos en los experimentos en la Tierra y Marte, junto a los datos del Planeta X. ¿Cómo podría utilizar los datos de los otros planetas para determinar distribuciones <em>a priori</em> más informativas? ¿Y los datos conocidos del experimento?</li>
+<li>Especifique e implemente en Stan el model lineal normal con los <em>priors</em> actualizados, justificando sus elecciones.</li>
+<li>Realice pruebas predictivas <em>a priori</em> para evaluar la razonabilidad del <em>prior</em> elegido.</li>
+<li>Obtenga muestras del <em>posterior</em> y compare los resultados con los del primer modelo. ¿Qué puede concluir acerca de la gravedad del Planeta X? Sugerencia: reproduzca y/o actualice las visualizaciones realizadas para el primer modelo.</li>
+</ol>
+<p>Finalmente, utilizando ambos modelos responda:</p>
+<ol start="10" type="1">
+<li>¿Cuánto tiempo tardaría en caer la pelota de tenis si se repite el lanzamiento pero utilizando una velocidad inicial de <span class="math inline">\(6 \text{ m}/{s}\)</span>? ¿Y si la velocidad inicial es <span class="math inline">\(12 \text{ m}/{s}\)</span>? ¿Con qué modelo se obtienen resultados más precisos? ¿Por qué?</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Información relevante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Al trabajar con Stan:</p>
+<ul>
+<li>Utilice 4 cadenas de 1000 muestras cada una.</li>
+<li>Verifique la bondad de las muestras obtenidas mediante medidas de diagnóstico numéricas y gráficas que crea conveniente.</li>
+</ul>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
