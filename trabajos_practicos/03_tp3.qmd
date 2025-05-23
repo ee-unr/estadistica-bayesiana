@@ -2,7 +2,7 @@
 title: "TP3: El bayesiano interestelar"
 practica: "Trabajo Práctico 3"
 ---
-
+`
 ## Introducción
 
 En este Trabajo Práctico te pondrás en la piel de un científico que fue convocado por la
