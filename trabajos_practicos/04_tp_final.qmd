@@ -5,33 +5,37 @@ practica: "Trabajo Práctico Final"
 
 ## Introducción
 
-La obesidad y el exceso de grasa corporal se han convertido en problemas de salud pública
-de primer orden. 
+La obesidad y el exceso de grasa corporal se han convertido en problemas de salud pública de primer
+orden.
 
-Los métodos más precisos para medir la grasa corporal (como la DXA o la pletismografía) son costosos, 
-requieren equipos especiales y casi siempre se limitan a los grandes centros urbanos.
+Los métodos más precisos para medir la grasa corporal como la absorciometría de rayos X de doble
+energía (DXA) o la pletismografía son costosos, requieren equipos especiales y casi siempre se
+limitan a los grandes centros urbanos.
 
-En el otro extremo, índices simples como el índice de masa corporal (IMC) o la relación cintura‑cadera
-son baratos pero ofrecen una estimación indirecta y a veces poco fiable de la grasa corporal real.
+En el otro extremo, índices simples como el índice de masa corporal (IMC) o la relación
+cintura‑cadera son baratos pero ofrecen una estimación indirecta y a veces poco fiable de la grasa
+corporal real.
 
-¿Podemos encontrar una forma de, a partir de un reducido número de mediciones antropométricas, prediga 
-con suficiente precisión el porcentaje de grasa corporal de un sujeto?
-
+¿Podemos encontrar una forma de, a partir de un reducido número de mediciones antropométricas,
+precedir con suficiente precisión el porcentaje de grasa corporal de un sujeto?
 
 ## El objetivo
 
-El conjunto de datos `bodyfat.csv` contiene observaciones de ~250 adultos junto con:
+El conjunto de datos `bodyfat.csv` contiene observaciones de aproximadamente 250 adultos junto con:
 
     - `BodyFat` (%): porcentaje de grasa corporal medido por densitometría hidrostatica (variable respuesta).
     - `Density` (g/cc): densidad corporal estimada por desplazamiento de agua.
     - `Age`, `Weight`, `Height`
-    - Circunferencias (cm): `Neck`, `Chest`, `Abdomen`, `Hip`, `Thigh`, `Knee`, `Ankle`, `Biceps`, `Forearm`, `Wrist`
+    - Circunferencias (cm): `Neck`, `Chest`, `Abdomen`, `Hip`, `Thigh`, `Knee`, `Ankle`, `Biceps`,
+    `Forearm`, `Wrist`
 
-Su misión es construir y comparar modelos de regresión que prevean `BodyFat` usando solo mediciones que pueda tomar fácilmente un nutricionista o un preparador físico con una cinta métrica y una balanza.
+Su misión es construir y comparar modelos de regresión que prevean `BodyFat` usando solo mediciones
+que pueda tomar fácilmente un nutricionista o un preparador físico con una cinta métrica y una
+balanza.
 
 Se sugiere abordar, entre otros, los siguientes interrogantes:
 
-    - ¿Qué subconjunto mínimo de circunferencias mantiene el error de predicción 
+    - ¿Qué subconjunto mínimo de circunferencias mantiene el error de predicción
     por debajo de un umbral clínicamente aceptable (por ejemplo, $\pm 3\%$)?
 
     - ¿Existen transformaciones (logaritmos, relaciones, índices) que mejoren la capacidad predictiva?
@@ -41,12 +45,12 @@ Se sugiere abordar, entre otros, los siguientes interrogantes:
 
     - ¿Cómo influyen variables demográficas como la edad?
 
-Para ello, se recomienda que se tengan en consideración las siguientes pautas generales 
+Para ello, se recomienda que se tengan en consideración las siguientes pautas generales
 que hacen a un análisis bayesiano:
 
 * Análisis exploratorio de datos
 * Propuesta y ajuste de modelos
-    - Descripción matemática 
+    - Descripción matemática
     - Elicitación de los _priors_
     - Pruebas predictivas _a priori_
     - Ajuste del modelo
