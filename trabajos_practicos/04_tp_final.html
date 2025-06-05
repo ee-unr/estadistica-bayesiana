@@ -200,20 +200,21 @@ ul.task-list li input[type="checkbox"] {
 <section id="introducción" class="level2">
 <h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
 <p>La obesidad y el exceso de grasa corporal se han convertido en problemas de salud pública de primer orden.</p>
-<p>Los métodos más precisos para medir la grasa corporal (como la DXA o la pletismografía) son costosos, requieren equipos especiales y casi siempre se limitan a los grandes centros urbanos.</p>
+<p>Los métodos más precisos para medir la grasa corporal como la absorciometría de rayos X de doble energía (DXA) o la pletismografía son costosos, requieren equipos especiales y casi siempre se limitan a los grandes centros urbanos.</p>
 <p>En el otro extremo, índices simples como el índice de masa corporal (IMC) o la relación cintura‑cadera son baratos pero ofrecen una estimación indirecta y a veces poco fiable de la grasa corporal real.</p>
-<p>¿Podemos encontrar una forma de, a partir de un reducido número de mediciones antropométricas, prediga con suficiente precisión el porcentaje de grasa corporal de un sujeto?</p>
+<p>¿Podemos encontrar una forma de, a partir de un reducido número de mediciones antropométricas, precedir con suficiente precisión el porcentaje de grasa corporal de un sujeto?</p>
 </section>
 <section id="el-objetivo" class="level2">
 <h2 class="anchored" data-anchor-id="el-objetivo">El objetivo</h2>
-<p>El conjunto de datos <code>bodyfat.csv</code> contiene observaciones de ~250 adultos junto con:</p>
+<p>El conjunto de datos <code>bodyfat.csv</code> contiene observaciones de aproximadamente 250 adultos junto con:</p>
 <pre><code>- `BodyFat` (%): porcentaje de grasa corporal medido por densitometría hidrostatica (variable respuesta).
 - `Density` (g/cc): densidad corporal estimada por desplazamiento de agua.
 - `Age`, `Weight`, `Height`
-- Circunferencias (cm): `Neck`, `Chest`, `Abdomen`, `Hip`, `Thigh`, `Knee`, `Ankle`, `Biceps`, `Forearm`, `Wrist`</code></pre>
+- Circunferencias (cm): `Neck`, `Chest`, `Abdomen`, `Hip`, `Thigh`, `Knee`, `Ankle`, `Biceps`,
+`Forearm`, `Wrist`</code></pre>
 <p>Su misión es construir y comparar modelos de regresión que prevean <code>BodyFat</code> usando solo mediciones que pueda tomar fácilmente un nutricionista o un preparador físico con una cinta métrica y una balanza.</p>
 <p>Se sugiere abordar, entre otros, los siguientes interrogantes:</p>
-<pre><code>- ¿Qué subconjunto mínimo de circunferencias mantiene el error de predicción 
+<pre><code>- ¿Qué subconjunto mínimo de circunferencias mantiene el error de predicción
 por debajo de un umbral clínicamente aceptable (por ejemplo, $\pm 3\%$)?
 
 - ¿Existen transformaciones (logaritmos, relaciones, índices) que mejoren la capacidad predictiva?
