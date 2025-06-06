@@ -68,6 +68,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -207,22 +236,21 @@ ul.task-list li input[type="checkbox"] {
 <section id="el-objetivo" class="level2">
 <h2 class="anchored" data-anchor-id="el-objetivo">El objetivo</h2>
 <p>El conjunto de datos <code>bodyfat.csv</code> contiene observaciones de aproximadamente 250 adultos junto con:</p>
-<pre><code>- `BodyFat` (%): porcentaje de grasa corporal medido por densitometría hidrostatica (variable respuesta).
-- `Density` (g/cc): densidad corporal estimada por desplazamiento de agua.
-- `Age`, `Weight`, `Height`
-- Circunferencias (cm): `Neck`, `Chest`, `Abdomen`, `Hip`, `Thigh`, `Knee`, `Ankle`, `Biceps`,
-`Forearm`, `Wrist`</code></pre>
+<ul>
+<li><code>BodyFat</code> (%): porcentaje de grasa corporal medido por densitometría hidrostatica (variable respuesta).</li>
+<li><code>Density</code> (g/cc): densidad corporal estimada por desplazamiento de agua.</li>
+<li><code>Age</code>, <code>Weight</code>, <code>Height</code><br>
+</li>
+<li>Circunferencias (cm): <code>Neck</code>, <code>Chest</code>, <code>Abdomen</code>, <code>Hip</code>, <code>Thigh</code>, <code>Knee</code>, <code>Ankle</code>, <code>Biceps</code>, <code>Forearm</code>, <code>Wrist</code>.</li>
+</ul>
 <p>Su misión es construir y comparar modelos de regresión que prevean <code>BodyFat</code> usando solo mediciones que pueda tomar fácilmente un nutricionista o un preparador físico con una cinta métrica y una balanza.</p>
 <p>Se sugiere abordar, entre otros, los siguientes interrogantes:</p>
-<pre><code>- ¿Qué subconjunto mínimo de circunferencias mantiene el error de predicción
-por debajo de un umbral clínicamente aceptable (por ejemplo, $\pm 3\%$)?
-
-- ¿Existen transformaciones (logaritmos, relaciones, índices) que mejoren la capacidad predictiva?
-
-- ¿Cuánto aporta la información adicional de la densidad corporal (`Density`) frente
-a las mediciones puramente antropométricas?
-
-- ¿Cómo influyen variables demográficas como la edad?</code></pre>
+<ul>
+<li>¿Qué subconjunto mínimo de circunferencias mantiene el error de predicción por debajo de un umbral clínicamente aceptable (por ejemplo, <span class="math inline">\(\pm 3\%\)</span>)?</li>
+<li>¿Existen transformaciones (logaritmos, relaciones, índices) que mejoren la capacidad predictiva?</li>
+<li>¿Cuánto aporta la información adicional de la densidad corporal (<code>Density</code>) frente a las mediciones puramente antropométricas?</li>
+<li>¿Cómo influyen variables demográficas como la edad?</li>
+</ul>
 <p>Para ello, se recomienda que se tengan en consideración las siguientes pautas generales que hacen a un análisis bayesiano:</p>
 <ul>
 <li>Análisis exploratorio de datos</li>
