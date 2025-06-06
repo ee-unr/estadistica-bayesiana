@@ -30,7 +30,8 @@ df_sales <- read_csv(
 # Explorar los datos
 ggplot(df_sales) +
   geom_point(aes(x = x, y = y), alpha = 0.6, size = 2) +
-  labs(x = "Publicidad ($)", y = "Ventas ($)")
+  labs(x = "Publicidad ($)", y = "Ventas ($)") +
+  theme_bw()
 ```
 
 Se crea el siguiente modelo de regresión lineal bayesiana:
@@ -44,7 +45,7 @@ $$
 donde los parámetros $\beta_0$, $\beta_1$ y $\sigma$ siguen distribuciones _a priori_
 uniformes. El programa de Stan para implementar el modelo es el siguiente:
 
-```{stan}
+```{stan filename="stan/regresion_lineal/01_modelo.stan"}
 #| echo: true
 #| eval: false
 #| file: stan/regresion_lineal/01_modelo.stan
@@ -73,7 +74,7 @@ modelo_1_fit <- sampling(
   data = stan_data,     # Datos
   chains = 4,           # Cantidad de cadenas
   seed = 1211,          # Para que el resultado sea reproducible
-  refresh = 0,          # Mostrar mensajes del sampler (1: si, 0: no)
+  refresh = 0,          # Cada cuantos pasos mostrar mensajes del sampler (0: nunca)
 )
 ```
 
@@ -82,7 +83,7 @@ incluyendo medidas de diagnóstico como el tamaño de muestra efectivo y
 $\hat{R}$.
 
 ```{r}
-modelo_1_fit
+print(modelo_1_fit, pars = c("beta0", "beta1", "sigma"))
 ```
 
 Para continuar explorando el _posterior_ y calcular cantidades de interés, conviene
@@ -90,7 +91,7 @@ trabajar con las muestras en un `data.frame`. Para ello resulta fundamental la
 función `extract()` que extrae las muestras del _posterior_ y las devuelve en una lista.
 
 ```{r}
-df_draws_1 <- as.data.frame(extract(modelo_1_fit))
+df_draws_1 <- as.data.frame(extract(modelo_1_fit, pars = c("beta0", "beta1", "sigma")))
 head(df_draws_1)
 ```
 
@@ -107,11 +108,12 @@ df_draws_long_1 <- df_draws_1 |>
 ggplot(df_draws_long_1) +
   geom_histogram(aes(x = value, y = after_stat(density)), bins = 40) +
   facet_wrap(~ parametro, scales = "free") +
-  labs(x = "Valor", y = "Densidad")
+  labs(x = "Valor", y = "Densidad") +
+  theme_bw()
 ```
 
-Un primer paso en el análisis de un modelo lineal simple es visualizar la recta de
-regresión estimada.
+Un primer paso en el análisis de un modelo lineal simple es visualizar la recta de regresión 
+estimada.
 
 ```{r}
 #| fig-align: center
@@ -130,7 +132,8 @@ ggplot(df_sales) +
     linewidth = 1,
     color = "red"
   ) +
-  labs(x = "Publicidad ($)", y = "Ventas ($)")
+  labs(x = "Publicidad ($)", y = "Ventas ($)") +
+  theme_bw()
 ```
 
 Pero no hay que olvidar que estamos trabajando con un modelo bayesiano.
@@ -156,7 +159,8 @@ ggplot(df_sales) +
     linewidth = 1,
     color = "red"
   ) +
-  labs(x = "Publicidad ($)", y = "Ventas ($)")
+  labs(x = "Publicidad ($)", y = "Ventas ($)") +
+  theme_bw()
 ```
 
 
@@ -229,11 +233,12 @@ ggplot(df_sales) +
     color = "firebrick",
     data = data_mu
   ) +
-  labs(x = "Publicidad ($)", y = "Ventas ($)")
+  labs(x = "Publicidad ($)", y = "Ventas ($)") +
+  theme_bw()
 ```
 
-Finalmente, se muestra como visualizar la distribución condicional de $\mu_i$ para un
-valor particular de la variable predictora $\text{ventas}$.
+También se puede visualizar la distribución condicional de $\mu_i$ para un valor particular de la
+variable predictora $\text{ventas}$.
 
 ```{r}
 #| fig-align: center
@@ -241,17 +246,37 @@ valor particular de la variable predictora $\text{ventas}$.
 publicidad <- 15
 mu <- df_draws_1$beta0 + df_draws_1$beta1 * publicidad
 data.frame(mu = mu) |>
-    ggplot() +
-    geom_histogram(aes(mu, y = after_stat(density)), bins = 40) +
-    labs(
-        x = expression(mu[i] ~ " | " ~ publicidad[i] ~ " = 15"),
-        y = "Densidad"
-    )
+  ggplot() +
+  geom_histogram(aes(mu, y = after_stat(density)), bins = 40) +
+  labs(
+      x = expression(mu[i] ~ " | " ~ publicidad[i] ~ " = 15"),
+      y = "Densidad"
+  ) +
+  theme_bw()
+```
+
+Finalmente, se utiliza la función `ppc_intervals()` de la librería `{bayesplot}` para visualizar
+intervalos de credibilidad de la distribución predictiva _a posteriori_ para cada una de las
+observaciones. Para ello, primero se debe extraer `y_rep` del objeto `modelo_1_fit`.
+
+```{r}
+#| fig-align: center
+#| fig-width: 7
+y_pp <- extract(modelo_1_fit, pars = "y_rep")$y_rep
+bayesplot::ppc_intervals(
+  y = df_sales$y,
+  yrep = y_pp,
+  x = df_sales$x,
+  prob = 0.5,
+  prob_outer = 0.95
+) +
+  labs(x = "Publicidad ($)", y = "Ventas ($)") +
+  theme_bw()
 ```
 
 
 Ahora se muestra como utilizar distribuciones _a priori_ no uniformes para los parámetros
-del modelo. El modelo se describe:
+del modelo. El mismo se describe:
 $$
 \begin{aligned}
 \text{ventas}_i &\sim \text{Normal}(\mu_i, \sigma^2) \\
@@ -264,7 +289,7 @@ $$
 
 y el programa de Stan que lo implementa es el siguiente
 
-```{stan}
+```{stan filename="stan/regresion_lineal/02_modelo_con_priors.stan}
 #| echo: true
 #| eval: false
 #| file: stan/regresion_lineal/02_modelo_con_priors.stan
@@ -277,10 +302,10 @@ $\beta_0$.
 
 ```{r}
 stan_data <- list(
-    N = nrow(df_sales),          # Cantidad de observaciones
-    x = df_sales$x,              # Publicidad
-    y = df_sales$y,              # Ventas
-    beta0_mu = mean(df_sales$y)  # Media del prior del intercepto
+  N = nrow(df_sales),          # Cantidad de observaciones
+  x = df_sales$x,              # Publicidad
+  y = df_sales$y,              # Ventas
+  beta0_mu = mean(df_sales$y)  # Media del prior del intercepto
 )
 
 ruta_modelo_2 <- here::here(
@@ -290,18 +315,17 @@ ruta_modelo_2 <- here::here(
 modelo_2 <- stan_model(file = ruta_modelo_2)
 
 modelo_2_fit <- sampling(
-    modelo_2,
-    chains = 4,         # Cantidad de cadenas
-    data = stan_data,   # Datos
-    refresh = 0,        # No mostrar mensajes del sampler
-    seed = 121195       # Para que el resultado sea reproducible
+  modelo_2,
+  chains = 4,         # Cantidad de cadenas
+  data = stan_data,   # Datos
+  refresh = 0,        # No mostrar mensajes del sampler
+  seed = 121195       # Para que el resultado sea reproducible
 )
 ```
 
-Se puede ver el resumen del _posterior_
-
+Se puede ver el resumen del _posterior_:
 ```{r}
-modelo_2_fit
+print(modelo_2_fit, pars = c("beta0", "beta1", "sigma"))
 ```
 
 y también se podrían crear visualizaciones como las anteriores utilizando el mismo código.
@@ -314,10 +338,37 @@ las cadenas.
 ```{r}
 #| fig-align: center
 #| fig-width: 7
-library(bayesplot)
-mcmc_trace(
+bayesplot::mcmc_trace(
   modelo_2_fit,
   pars = c("beta0", "beta1", "sigma"),
   facet_args = list(nrow = 3)
 )
+```
+
+También hay funciones que permiten calcular el $\hat{R}$ y estimar el tamaño efectivo de muestra
+$N_{\text{eff}}$ (como proporción de la cantidad de muestras).
+```{r}
+bayesplot::rhat(modelo_2_fit, pars = c("beta0", "beta1", "sigma"))
+```
+
+```{r}
+bayesplot::neff_ratio(modelo_2_fit, pars = c("beta0", "beta1", "sigma"))
+```
+
+Por último, también podemos visualizar intervalos de la predictiva _a posteriori_ para cada
+observación:
+
+```{r}
+#| fig-align: center
+#| fig-width: 7
+y_pp <- extract(modelo_2_fit, pars = "y_rep")$y_rep
+bayesplot::ppc_intervals(
+  y = df_sales$y,
+  yrep = y_pp,
+  x = df_sales$x,
+  prob = 0.5,
+  prob_outer = 0.95
+) +
+  labs(x = "Publicidad ($)", y = "Ventas ($)") +
+  theme_bw()
 ```
