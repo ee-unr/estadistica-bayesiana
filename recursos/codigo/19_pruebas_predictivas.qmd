@@ -1,0 +1,204 @@
+---
+title: "Pruebas predictivas en regresión lineal simple"
+---
+
+```{r}
+library(bayesplot)
+library(dplyr)
+library(ggplot2)
+library(rstan)
+```
+
+## Generación de datos
+
+```{r}
+set.seed(1234)
+N <- 50
+x <- runif(N, 0, 10)
+
+beta_0 <- 2
+beta_1 <- 1.5
+sigma <- 1
+
+y <- beta_0 + beta_1 * x + rnorm(N, 0, sigma)
+datos <- data.frame(x, y)
+ggplot(datos) +
+  geom_point(aes(x = x, y = y ))
+```
+
+## Obtención de muestras _a priori_
+
+```{r}
+n_muestras <- 1000
+n_grilla <- 100
+
+prior_beta_0 <- rnorm(n_muestras, 0, 5)
+prior_beta_1 <- rnorm(n_muestras, 0, 2)
+prior_sigma <- abs(rnorm(n_muestras, 0, 10))
+
+x_grid <- seq(min(x), max(x), length.out = n_grilla)
+
+mu_prior <- matrix(nrow = n_muestras, ncol = n_grilla)
+y_prior_pred <- matrix(nrow = n_muestras, ncol = n_grilla)
+
+for (j in seq_len(n_grilla)) {
+  mu <- prior_beta_0 + prior_beta_1 * x_grid[j]
+  mu_prior[, j] <- mu
+  y_prior_pred[, j] <- rnorm(n_muestras, mu, prior_sigma)
+}
+```
+
+## Visualización de rectas de regresión _a priori_
+
+```{r}
+df_mu_prior <- data.frame(
+  x = rep(x_grid, each = 50),
+  mu = as.vector(mu_prior[sample(seq_len(n_muestras), 50), ]),
+  muestra = rep(1:50, n_grilla)
+)
+
+df_mu_prior_media <- data.frame(
+  x = x_grid,
+  mu = apply(mu_prior, 2, mean)
+)
+
+ggplot(datos) +
+  geom_point(aes(x = x, y = y)) +
+  geom_line(aes(x = x, y = mu, group = muestra), alpha = 0.5, data = df_mu_prior) +
+  geom_line(aes(x = x, y = mu), color = "red", data = df_mu_prior_media)
+```
+
+## Visualización de bandas de regresión _a priori_
+
+```{r}
+df_mu_prior_50_ci <- apply(mu_prior, 2, quantile, probs = c(0.25, 0.75)) |>
+  t()|>
+  as.data.frame() |>
+  mutate(x = x_grid) |>
+  rename(li = `25%` , ls = `75%`)
+
+df_mu_prior_95_ci <- apply(mu_prior, 2, quantile, probs = c(0.025, 0.975)) |>
+  t()|>
+  as.data.frame() |>
+  mutate(x = x_grid) |>
+  rename(li = `2.5%` , ls = `97.5%`)
+
+ggplot(datos) +
+  geom_ribbon(
+    aes(x = x, ymin = li, ymax = ls),
+    alpha = 0.3,
+    data = df_mu_prior_50_ci
+  ) +
+  geom_ribbon(
+    aes(x = x, ymin = li, ymax = ls),
+    alpha = 0.3,
+    data = df_mu_prior_95_ci
+  ) +
+  geom_point(aes(x = x, y = y), alpha = 0.7)
+```
+
+## Visualización de bandas de predicción _a priori_
+
+```{r}
+df_y_prior_50_ci <- apply(y_prior_pred, 2, quantile, probs = c(0.25, 0.75)) |>
+  t()|>
+  as.data.frame() |>
+  mutate(x = x_grid) |>
+  rename(li = `25%` , ls = `75%`)
+
+df_y_prior_95_ci <- apply(y_prior_pred, 2, quantile, probs = c(0.025, 0.975)) |>
+  t()|>
+  as.data.frame() |>
+  mutate(x = x_grid) |>
+  rename(li = `2.5%` , ls = `97.5%`)
+
+ggplot(datos) +
+  geom_ribbon(
+    aes(x = x, ymin = li, ymax = ls),
+    alpha = 0.3,
+    data = df_y_prior_50_ci
+  ) +
+  geom_ribbon(
+    aes(x = x, ymin = li, ymax = ls),
+    alpha = 0.3,
+    data = df_y_prior_95_ci
+  ) +
+  geom_point(aes(x = x, y = y), alpha = 0.7)
+```
+
+
+## Uso de `ppc_intervals` de bayesplot _a priori_
+
+Se visualizan intervalos de credibilidad predictivos _a priori_ para las diferentes observaciones.
+
+```{r}
+y_prior_pred_obs <- matrix(nrow = n_muestras, ncol = nrow(datos))
+
+for (j in seq_len(nrow(datos))) {
+  mu <- prior_beta_0 + prior_beta_1 * datos$x[j]
+  y_prior_pred_obs[, j] <- rnorm(n_muestras, mu, prior_sigma)
+}
+
+ppc_intervals(y = datos$y, yrep = y_prior_pred_obs, x = datos$x)
+```
+
+## Uso de `ppc_dens_overlay` de bayesplot a priori
+
+```{r}
+ppc_dens_overlay(datos$y, y_prior_pred_obs[1:100, ])
+```
+
+## Especificación del modelo en Stan
+
+```{r}
+codigo_stan <- "
+data {
+  int<lower=0> N;
+  vector[N] x;
+  vector[N] y;
+}
+parameters {
+  real beta_0;
+  real beta_1;
+  real<lower=0> sigma;
+}
+model {
+  beta_0 ~ normal(0, 5);
+  beta_1 ~ normal(0, 2);
+  sigma ~ normal(0, 10);
+  y ~ normal(beta_0 + beta_1 * x, sigma);
+}
+generated quantities {
+  vector[N] y_rep;
+  for (n in 1:N) {
+    y_rep[n] = normal_rng(beta_0 + beta_1 * x[n], sigma);
+  }
+}
+"
+```
+
+## Ajuste del modelo
+
+```{r}
+stan_data <- list(N = N, x = datos$x, y = datos$y)
+modelo <- stan_model(model_code = codigo_stan)
+fit <- sampling(modelo, data = stan_data, seed = 123, chains = 2, refresh = 0)
+```
+
+## Uso de `ppc_intervals` de bayesplot _a posteriori_
+
+```{r}
+y_rep <- as.matrix(fit, pars = "y_rep")
+ppc_intervals(datos$y, y_rep, datos$x)
+```
+
+## Uso de `ppc_dens_overlay` de bayesplot _a posteriori_
+
+```{r}
+ppc_dens_overlay(y, y_rep[1:50,])
+```
+
+---
+
+**Nota** Para visualizar rectas de regresión e intervalos de predicción _a posteriori_ ver los
+otros recursos relacionados a Stan.
