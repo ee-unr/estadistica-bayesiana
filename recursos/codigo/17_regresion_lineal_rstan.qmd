@@ -289,7 +289,7 @@ $$
 
 y el programa de Stan que lo implementa es el siguiente
 
-```{stan filename="stan/regresion_lineal/02_modelo_con_priors.stan}
+```{stan filename="stan/regresion_lineal/02_modelo_con_priors.stan"}
 #| echo: true
 #| eval: false
 #| file: stan/regresion_lineal/02_modelo_con_priors.stan
