@@ -8,19 +8,19 @@ parameters {
   real beta1;           // Pendiente
   real<lower=0> sigma;  // Desvío estándar del error
 }
+transformed parameters {
+  vector[N] mu;         // Predictor lineal
+  mu = beta0 + beta1 * temp9am;
+}
 model {
-  beta0 ~ normal(15, 8);
-  beta1 ~ normal(0, 3);
-  sigma ~ normal(0, 12);
-  temp3pm ~ normal(beta0 + beta1 * temp9am, sigma);
+  beta0 ~ normal(17.5, 6.25);
+  beta1 ~ normal(0, 10);
+  sigma ~ normal(0, 15);
+  temp3pm ~ normal(mu, sigma);
 }
 generated quantities {
-  vector[N] mu;
   vector[N] y_rep;
   vector[N] log_likelihood;
-  
-  // Calcular 'mu'
-  mu = beta0 + beta1 * temp9am;
 
   for (i in 1:N) {
     // Obtención de muestras de la distribución predictiva a posteriori

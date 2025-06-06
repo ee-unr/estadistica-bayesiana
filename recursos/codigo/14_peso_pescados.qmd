@@ -1,5 +1,5 @@
 ---
-title: "11 - El peso de los pescados"
+title: "14 - El peso de los pescados"
 execute:
   warning: false
   fig-align: center
@@ -17,7 +17,7 @@ library(ggplot2)
 library(tidybayes)
 
 url <- paste0(
-  "https://raw.githubusercontent.com/estadisticaunr/",
+  "https://raw.githubusercontent.com/ee-unr/",
   "estadistica-bayesiana/main/datos/fish-market-posterior.csv"
 )
 
@@ -73,7 +73,7 @@ $\mu$ depende de $\beta_0$ y $\beta_1$ y por lo tanto tiene una distribución _a
 #| fig-cap: Distribución del peso promedio para un pescado de 30 cm.
 Largo <- 30
 
-df_posterior$log_Peso_30_prom <- df_posterior$intercepto + df_posterior$pendiente * log(Largo) # <1> 
+df_posterior$log_Peso_30_prom <- df_posterior$intercepto + df_posterior$pendiente * log(Largo) # <1>
 df_posterior$Peso_30_prom <- exp(df_posterior$log_Peso_30_prom) # <2>
 
 ggplot(df_posterior) +
@@ -89,8 +89,8 @@ ggplot(df_posterior) +
 ```{r}
 #| fig-cap: Distribución predictiva _a posteriori_.
 df_posterior$log_Peso_30 <- rnorm(
-  n = nrow(df_posterior), 
-  mean = df_posterior$log_Peso_30_prom, 
+  n = nrow(df_posterior),
+  mean = df_posterior$log_Peso_30_prom,
   sd = df_posterior$sigma
 )
 
@@ -119,10 +119,10 @@ dim(log_peso_prom)
 ```{r}
 #| fig-cap: Algunas rectas de regresión posibles _a posteriori_
 
-log_peso_prom_new <- 
-  as.data.frame(t(log_peso_prom[200:299,])) |> # <1> 
-  setNames(paste0("rep", 1:100)) |> # <2> 
-  cbind(log_largo) |> # <3> 
+log_peso_prom_new <-
+  as.data.frame(t(log_peso_prom[200:299,])) |> # <1>
+  setNames(paste0("rep", 1:100)) |> # <2>
+  cbind(log_largo) |> # <3>
   tidyr::pivot_longer(cols = -log_largo, names_to = "rep", values_to = "value") # <4>
 
 ggplot(log_peso_prom_new) +
@@ -144,12 +144,12 @@ ggplot(log_peso_prom_new) +
 ```
 
 ```{r}
-log_peso_prom_new_group <- 
+log_peso_prom_new_group <-
   log_peso_prom_new |>
     group_by(log_largo) |>
     summarise(q05 = quantile(value,0.05),
               mean = mean(value),
-              q95 = quantile(value,0.95)) 
+              q95 = quantile(value,0.95))
 ```
 
 
@@ -206,18 +206,18 @@ pred_log_peso <- function(x, posterior) {
 
 log_peso <- sapply(log_largo, pred_log_peso, df_posterior)
 
-log_peso_new <- 
-  as.data.frame(t(log_peso[500:699, ])) |> 
+log_peso_new <-
+  as.data.frame(t(log_peso[500:699, ])) |>
   setNames(paste0("rep", 1:200)) |>
   cbind(log_largo) |>
   tidyr::pivot_longer(cols = -log_largo, names_to = "rep", values_to = "value")
 
-log_peso_new_group <- 
+log_peso_new_group <-
   log_peso_new |>
   group_by(log_largo) |>
   summarise(q05 = quantile(value,0.05),
             mean = mean(value),
-            q95 = quantile(value,0.95)) 
+            q95 = quantile(value,0.95))
 ```
 
 ```{r}

@@ -1,5 +1,5 @@
 ---
-title: "14 - Medidas de diagnóstico MCMC"
+title: "15 - Medidas de diagnóstico MCMC"
 format:
   html:
     toc: true

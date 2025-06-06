@@ -1,18 +1,21 @@
 data {
   int<lower=0> N;             // Cantidad de observaciones
   array[N] int location_idx;  // Índice de la ciudad
+  vector[N] temp9am;          // Temperatura a las 9 am (predictor)
   vector[N] temp3pm;          // Temperatura a las 3 pm (respuesta)
 }
 parameters {
   vector[2] beta0;      // Interceptos
+  vector[2] beta1;      // Pendientes
   real<lower=0> sigma;  // Desvío estándar del error
 }
 transformed parameters {
   vector[N] mu;         // Predictor lineal
-  mu = beta0[location_idx];
+  mu = beta0[location_idx] + beta1[location_idx] .* temp9am;
 }
 model {
   beta0 ~ normal(17.5, 6.25);
+  beta1 ~ normal(0, 10);
   sigma ~ normal(0, 15);
   temp3pm ~ normal(mu, sigma);
 }

@@ -1,5 +1,5 @@
 ---
-title: "15 - Introducción a RStan"
+title: "16 - Introducción a RStan"
 ---
 
 A continuación se presenta una introducción a Stan, a través de su interfaz con R: `{rstan}`
