@@ -1,5 +1,5 @@
 ---
-title: "16 - Regresión logística con `{RStan}`"
+title: "20 - Regresión logística con `{RStan}`"
 execute:
   message: false
   warning: false
@@ -155,7 +155,7 @@ A mayor edad, menor proporción de personas votan por el candidato A.
 
 La implementación del primer modelo en Stan esta la siguiente:
 
-```{stan}
+```{stan filename="stan/elecciones/modelo_1.stan"}
 #| echo: true
 #| eval: false
 #| file: stan/elecciones/modelo_1.stan
@@ -386,7 +386,7 @@ candidato A.
 
 La implementación del primer modelo en Stan esta la siguiente:
 
-```{stan}
+```{stan filename="stan/elecciones/modelo_2.stan"}
 #| echo: true
 #| eval: false
 #| file: stan/elecciones/modelo_2.stan

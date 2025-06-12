@@ -1,5 +1,5 @@
 ---
-title: "Pruebas predictivas en regresión lineal simple"
+title: "19 - Pruebas predictivas en regresión lineal simple"
 ---
 
 ```{r}
