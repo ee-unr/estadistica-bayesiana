@@ -322,7 +322,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../recursos/codigo/19_pruebas_predictivas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Pruebas predictivas en regresión lineal simple</span></a>
+ <span class="menu-text">19 - Pruebas predictivas en regresión lineal simple</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/20_regresion_logistica_rstan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">20 - Regresión logística con <code>{RStan}</code></span></a>
   </div>
 </li>
       </ul>
@@ -498,7 +504,7 @@ beta0 5.45    0.01 0.49 4.52 5.12 5.46 5.77  6.40  1288    1
 beta1 0.29    0.00 0.04 0.21 0.26 0.29 0.31  0.36  1307    1
 sigma 1.21    0.00 0.12 0.99 1.12 1.19 1.28  1.48  1755    1
 
-Samples were drawn using NUTS(diag_e) at Fri Jun  6 03:01:49 2025.
+Samples were drawn using NUTS(diag_e) at Thu Jun 12 22:51:51 2025.
 For each parameter, n_eff is a crude measure of effective sample size,
 and Rhat is the potential scale reduction factor on split chains (at 
 convergence, Rhat=1).</code></pre>
@@ -510,12 +516,12 @@ convergence, Rhat=1).</code></pre>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_draws_1)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     beta0     beta1    sigma
-1 5.698158 0.2761324 1.286389
-2 5.539910 0.3099684 1.405865
-3 5.844643 0.2407159 1.113443
-4 5.686039 0.2735848 1.093325
-5 6.258219 0.2276661 1.134464
-6 5.732186 0.2614193 1.299954</code></pre>
+1 5.778072 0.2742644 1.383950
+2 5.845044 0.2217190 1.476740
+3 5.745932 0.2736212 1.319527
+4 5.483745 0.2623577 1.335966
+5 5.646768 0.2485603 1.180145
+6 5.256127 0.2939936 1.198690</code></pre>
 </div>
 </div>
 <p>Lo siguiente es un enfoque posible, aunque bastante manual, para graficar los <em>posteriors</em> marginales de los parámetros del modelo.</p>
@@ -810,7 +816,7 @@ beta0 5.43    0.01 0.47 4.50 5.11 5.42 5.73  6.34  1389    1
 beta1 0.29    0.00 0.04 0.21 0.26 0.29 0.32  0.36  1426    1
 sigma 1.20    0.00 0.13 0.98 1.11 1.19 1.28  1.48  1807    1
 
-Samples were drawn using NUTS(diag_e) at Fri Jun  6 03:02:45 2025.
+Samples were drawn using NUTS(diag_e) at Thu Jun 12 22:52:48 2025.
 For each parameter, n_eff is a crude measure of effective sample size,
 and Rhat is the potential scale reduction factor on split chains (at 
 convergence, Rhat=1).</code></pre>
