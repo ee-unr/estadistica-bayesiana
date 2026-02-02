@@ -6,9 +6,9 @@ title: Condiciones de aprobación
 
 -   📝 **Parcial** -- escrito e individual, se aprueba con 6, hay una instancia de recuperación;
 
--   💻💻💻 **Trabajos prácticos cortos** -- grupales (hasta tres personas), se hacen por fuera del horario de clase, se entrega informe;
+-   💻💻💻 **Trabajos prácticos cortos** -- grupales (hasta tres personas), se hacen por fuera del horario de clase, sin informe, defensa grupal, escrita y presencial (en clase), con material de soporte;
 
--   📈 **Trabajo práctico final** -- realización grupal, presentación oral individual y defensa.
+-   📈 **Trabajo práctico final** -- realización grupal, se entrega presentación, defensa oral.
 
 # Condiciones de aprobación
 

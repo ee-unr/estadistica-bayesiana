@@ -42,6 +42,8 @@ website:
           file: info/bibliografia.qmd
         - text: Calendario
           file: info/calendario.qmd
+        - text: Uso de IA
+          file: info/ia.qmd
     - title: Teoría
       style: docked
       search: false
