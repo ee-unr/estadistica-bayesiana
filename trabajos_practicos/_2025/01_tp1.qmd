@@ -1,6 +1,6 @@
 ---
-title: "TP1 2026 (WIP)"
-practica: "TP1 2026 (WIP)"
+title: "¿La gloria es el dinero?"
+practica: "Trabajo Práctico 1: ¿La gloria es el dinero?"
 ---
 
 ```{r}
