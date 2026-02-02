@@ -17,23 +17,21 @@ captions[["aleatorizada"]] <- "En la técnica de respuesta aleatorizada, se intr
 
 ## Introducción
 
-La idea de convertir unos pocos pesos en una fortuna con un solo clic tiene algo de magia,
-de esa que seduce con la promesa de éxito instantáneo. Masivo. ¿Qué puede salir mal?
-Total... _"Está todo bajo control, yo decido cuándo frenar"_.
-El problema es que, a veces de manera silenciosa, el juego compulsivo puede desencadenar problemas
-de largo plazo en la salud mental y el funcionamiento social de los individuos.
+La ciudad costera de Puerto Bruma vive su temporada de fútbol con estadios llenos y 
+un clásico que paraliza todo: los Albatros del Muelle contra los Búhos de la Ribera.
 
-Las apuestas en línea han ganado una creciente popularidad entre los adolescentes, impulsadas por
-la accesibilidad de plataformas digitales y la constante exposición a la publicidad en redes
-sociales y eventos deportivos. A esto se suma que se trata de una actividad escasamente regulada
-por el Estado y a la que cualquier persona puede acceder con relativa facilidad.
+Luego de incidentes aislados y mucha presión mediática, el Ministerio de Convivencia Pública 
+implementó un sistema de IA llamado Centinela Delta para gestionar el derecho de admisión en los estadios:
+el Templo de la Almeja (localía de los Albatros) y el Fortín de la Bruma (localía de los Búhos).
 
-Estas apuestas pueden dividirse en dos grandes categorías: los casinos virtuales, que incluyen
-juegos como ruleta o blackjack, y las apuestas deportivas, donde los jóvenes apuestan sobre el
-resultado de eventos deportivos, a menudo influenciados por pronósticos y estrategias compartidas
-en comunidades en línea. Ambas modalidades presentan riesgos relevantes, ya que la facilidad para
-depositar dinero y la sensación de control pueden llevar a un espiral de pérdidas y nuevas apuestas
-en busca de recuperar lo perdido.
+Para cada persona que intenta ingresar, Centinela Delta asigna un Score de Riesgo $S\in(0,100)$ y se instruyó
+a la policía y al gobierno que consideren que $S$ es la probabilidad estimada de que la persona cometa
+un incidente en la cancha.
+
+La regla de decisión es simple:
+
+    - Si $S>T$ (umbral fijo $T$), se prohíbe el acceso del simpatizante, es decir, predicción: "violento"
+    - SI $S\leq T$, se permite el acceso, es decir, predicción: "pacífico"
 
 ```{r}
 #| echo: false
@@ -43,35 +41,30 @@ en busca de recuperar lo perdido.
 if (is_html) knitr::include_graphics(file.path("imgs", "apuesta.png"))
 ```
 
-La sensación de ganar y perder plata genera adrenalina. La adolescencia, una etapa crucial de
-desarrollo de los seres humanos, es especialmente susceptible a la promesa del dinero fácil y a la
-gratificación instantánea que pueden otorgar los juegos de apuestas, debido a la inmadurez de las
-áreas cerebrales encargadas del control de impulsos, lo que incrementa la vulnerabilidad a
-comportamientos adictivos. A esto se suman factores sociales como la presión de grupo y la búsqueda
-de aceptación, donde ganar una apuesta se convierte en una forma de demostrar conocimiento y obtener
-reputación entre pares.
+La empresa proveedora, NebulaGuard Analytics, sostiene que su score está perfectamente calibrado:
+"un _score_ del 80% es una probabilidad del 80%, sin importar el color de la camiseta".
 
-La ilusión de ganar dinero rápido, junto con la normalización de las apuestas a través de la
-publicidad, crea un cóctel peligroso que atrapa a los jóvenes en un ciclo de riesgo y compulsión.
-A esto se suma la aparición de gurúes financieros y esquemas piramidales que prometen riqueza
-rápida, donde quienes no participan son vistos como ingenuos o fracasados. Esta presión social y
-la promesa de ganancias fáciles refuerzan la participación en un entorno cada vez más riesgoso y
-manipulador.
+Tras unos meses del sistema funcionando, la ONG Gradas en Paz presenta una denuncia ante
+la Defensoría del Pueblo. Su argumento es:
 
-Como si todo esto fuera poco, indagar en un grupo sobre temas sensibles puede resultar complejo.
-Muchas personas, por vergüenza, miedo al juicio social o simplemente por desconfianza, optan por no
-responder con sinceridad a ciertas preguntas, por ejemplo en el marco de una encuesta. En el caso de
- las apuestas, admitir la frecuencia con la que se participa, las cantidades apostadas o las
- pérdidas sufridas puede generar resistencia a contestar con la verdad. Algunas personas evitan
- responder, mientras que otras pueden proporcionar respuestas erróneas de manera deliberada.
- Este fenómeno, conocido como sesgo de respuesta, representa un desafío para quienes buscan
- obtener datos fiables en encuestas y estudios sobre este tema.
+> “Históricamente hubo mayor vigilancia y controles alrededor del Fortín de la Bruma. 
+Eso hizo que, incluso entre gente pacífica, los hinchas de Lobos tengan más registros, 
+más ‘señales’ y más fricción con el sistema."
 
-Partiendo de la premisa de que una forma de incrementar la cooperación de los encuestados es
- garantizar la protección de información sensible, una posible forma de mitigar este sesgo es la
- técnica de respuesta aleatorizada, que permite que los encuestados respondan de manera más sincera
- sin temor a ser identificados. En la técnica de respuesta aleatorizada, se introduce una cuota de
- azar con el objetivo de preservar la privacidad de la persona que responde.
+La denuncia es contra el sistema, en términos estadísticos
+
+> "A nuestros hinchas pacíficos (inocentes) de los Búhos les prohíben entrar más seguido que a 
+los pacíficos del Albatros."
+
+Nos pondremos en el rol de consultores de ciencia de datos contratados por la Defensoría del Pueblo para
+auditar el sistema. Nos entregan un dataset anonimizado de la temporada anterior para realizar el análisis.
+
+Los objetivos son:
+
+    - Estimar con estadística Bayesiana si hay evidencia de disparidad en los errores (más allá del ruido).
+    - Explicar el resultado en términos comprensibles para un organismo público.
+    - Conectar el resultado con el “trade-off” de fairness: calibración vs igualdad de tasas de error.
+    - Estudiar mediante simulación la posibilidad de generar un sistema más justo.
  
 ```{r}
 #| echo: false
@@ -81,49 +74,6 @@ Partiendo de la premisa de que una forma de incrementar la cooperación de los e
 if (is_html) knitr::include_graphics(file.path("imgs", "aleatorizada.png"))
 ```
 
-Nos centraremos en el problema de querer realizar inferencias sobre $\pi_A$, la proporción de
-estudiantes de una escuela que participan de apuestas deportivas en línea.
-
-Estudiaremos dos técnicas de respuesta aleatorizada. En lugar de de responder directamente a la
-pregunta _"¿Participaste alguna vez en apuestas deportivas en línea?"_, se le pide al encuestado
-que utilice un mecanismo aleatorio, como arrojar una moneda. Dependiendo del resultado de este
-mecanismo, el encuestado sigue ciertas instrucciones para responder. En las variantes que
-estudiaremos, por ejemplo, si sale cara, el estudiante contesta a la pregunta
-_"¿Participaste alguna vez en apuestas deportivas en línea?"_ mientras que si sale cruz, responde a
-otra pregunta. Así, como el investigador no conoce el resultado del mecanismo aleatorio no puede
-saber a qué pregunta está respondiendo el encuestado. No obstante, a partir de los resultados
-obtenidos para toda la muestra, pueden obtenerse conclusiones válidas.
-
-En el caso más general, diremos que $p$ es la probabilidad (conocida), debida al mecanismo
-aleatorio, de que el encuestado responda a la pregunta
-_"¿Participaste alguna vez en apuestas deportivas en línea?"_ mientras que $(1-p)$ es la
-probabilidad de que responda a la otra pregunta.
-
-## Técnicas de respuesta aleatorizada
-
-### Warner
-
-Un mecanismo aleatorio selecciona la pregunta que se le presenta a la persona que responde.
-Con probabilidad $p$ se le pregunta si es cierto que alguna vez participó en apuestas deportivas en
-línea ($Q_1$), mientras que con probabilidad $(1-p)$ se le pregunta si es cierto que nunca participó
-en apuestas deportivas en línea ($Q_2$). Es decir, en general, con probabilidad $p$ se le pregunta
-si pertenece a una categoría $A$, mientras que con probabilidad $(1-p)$ se le pregunta si
-pertenece a la categoría $A^c$ (el complemento de $A$).
-
-### Greenberg y otros
-
-Un mecanismo aleatorio selecciona la pregunta que se le presenta a la persona que responde.
-Con probabilidad $p$ se le pregunta si es cierto que alguna vez participó en apuestas deportivas en
-línea ($Q_1$), mientras que con probabilidad $(1-p)$ se le pregunta si nació en un mes de 31 días
-($Q_2$). Es decir, en general, con probabilidad $p$ se le pregunta si pertenece a una categoría $A$,
-mientras que con probabilidad $(1-p)$ se le pregunta si pertenece a una categoría $B$
-(no controversial o no polémica).
-
-Existen dos versiones de esta modalidad, en relación al conocimiento o desconocimiento de $\pi_B$,
-la proporción de elementos en la población que pertenece a la categoría $B$.
-En el primer caso, se conoce de antemano $\pi_B$
-(como en el caso presentado, en que $\pi_B = \frac{7}{12}$). Mientras que en el segundo caso,
-no se conoce $\pi_B$. Nos limitaremos al estudio de la primera situación.
 
 ## Actividades
 
