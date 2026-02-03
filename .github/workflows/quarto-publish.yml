@@ -42,7 +42,7 @@ jobs:
             any::bayesplot@1.15.0
             any::dplyr@1.2.0
             any::ggdist@3.3.3
-            any::ggplot2@3.5.1
+            any::ggplot2@3.5.2
             any::ggquiver@0.3.3
             any::googlesheets4@1.1.2
             any::here@1.0.2
