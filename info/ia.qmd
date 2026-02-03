@@ -1,0 +1,49 @@
+---
+title: Uso de Inteligencia Artificial
+---
+
+# Política de uso de la inteligencia artificial
+
+Las herramientas de inteligencia artificial (IA) pueden ser un buen apoyo para el
+aprendizaje en esta y otras materias, siempre que se utilicen de forma adecuada.
+Cuando se emplean de manera permanente como atajo y se delegan en ellas los procesos
+cognitivos necesarios para avanzar en la materia, la IA puede perjudicar el proceso
+de aprendizaje. Por este motivo, se presentan los siguientes lineamientos.
+
+El criterio general para esta materia es simple: la IA puede utilizarse como
+asistente de aprendizaje, pero no como reemplazo del trabajo intelectual que se
+espera del quienes cursan.
+
+El uso de IA se trata de la misma manera que la colaboración con otras personas.
+Se permite discutir ideas, pedir explicaciones y contrastar interpretaciones, tanto
+con compañeros y compañeras como con asistentes basados en IA. Se pueden
+utilizar estas herramientas para comprender conceptos, explorar ideas, destrabar
+confusiones y buscar explicaciones alternativas. Asimismo, se alienta a compartir
+con el equipo docente respuestas erróneas obtenidas mediante IA o a discutir
+aspectos que generen confusión. Sin embargo, no está permitido copiar ni presentar
+como propio contenido generado por una IA, del mismo modo que no es aceptable
+presentar como propio el trabajo de otra persona.
+
+En esta materia se han modificado muchas actividades en las que la IA podía
+utilizarse para obtener directamente el producto entregable de la tarea (por ejemplo,
+informes de trabajos prácticos). Esto reduce la posibilidad de presentar producciones
+realizadas con IA. No obstante, el riesgo de utilizar estas herramientas sin una
+comprensión real de los contenidos sigue estando presente. Por lo tanto, todas
+las entregas deben reflejar exclusivamente la comprensión propia de los estudiantes.
+
+Para evitar confusiones, se proponen las siguientes heurísticas prácticas:
+
+    - No copiar ni pegar contenido generado por una IA en el trabajo propio. La interacción
+    con la herramienta debe utilizarse como instancia de aprendizaje, y luego el trabajo debe
+    redactarse con palabras propias.
+    - No tener simultáneamente abierta la entrega y la herramienta de IA. Se recomienda
+    primero consultar, reflexionar y aclarar ideas, y luego cerrar la herramienta y redactar
+    la entrega.
+    - Evitar asistentes integrados que escriban directamente en documentos o código,
+    más allá de un corrector gramatical básico.
+
+La distinción clave es si la IA contribuye a la comprensión o si está realizando
+el trabajo intelectual que se espera que realice el estudiantado
+(_¿quién está pensando: la IA o la persona que cursa?_).
+En caso de duda, una regla orientadora es preguntarse:
+_¿podría explicarse y defenderse con palabras propias todo lo que se está entregando?_
