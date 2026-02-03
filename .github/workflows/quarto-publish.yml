@@ -14,7 +14,7 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2   
         with:
-          version: 1.5.57
+          version: 1.7.32
           tinytex: true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -22,8 +22,8 @@ jobs:
       - name: Generate es_AR locale # Lo usamos en el calendario
         shell: bash
         run: |
-          sudo apt-get update 
-          sudo apt-get install tzdata locales -y 
+          sudo apt-get update
+          sudo apt-get install tzdata locales -y
           sudo locale-gen es_AR.UTF-8
           locale -a
 
@@ -39,32 +39,32 @@ jobs:
           cache-version: 3
           install-quarto: false
           packages: |
-            any::bayesplot@1.11.1
-            any::dplyr@1.1.4
-            any::ggdist@3.3.2
+            any::bayesplot@1.15.0
+            any::dplyr@1.2.0
+            any::ggdist@3.3.3
             any::ggplot2@3.5.1
             any::ggquiver@0.3.3
-            any::googlesheets4@1.1.1
-            any::here@1.0.1
+            any::googlesheets4@1.1.2
+            any::here@1.0.2
             any::kableExtra@1.4.0
-            any::knitr@1.48
+            any::knitr@1.51
             any::latex2exp@0.9.6
-            any::loo@2.8.0
-            any::mvtnorm@1.3.1
-            any::patchwork@1.3.0
-            any::purrr@1.0.2
+            any::loo@2.9.0
+            any::mvtnorm@1.3.3
+            any::patchwork@1.3.2
+            any::purrr@1.2.1
             any::readr@2.1.5
             any::rstan@2.32.6
-            any::stringr@1.5.1
+            any::stringr@1.6.0
             any::tidybayes@3.0.7
-            any::tidyr@1.3.1
+            any::tidyr@1.3.2
             any::viridis@0.6.5
 
       - name: Render Webpage
         shell: bash
         run: quarto render
 
-      - name: Publish to GitHub 
+      - name: Publish to GitHub
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
