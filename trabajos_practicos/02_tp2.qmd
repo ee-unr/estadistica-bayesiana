@@ -17,6 +17,8 @@ practica: "Trabajo Práctico 2"
     - Bajo el supuesto de poblaciones normales.
     - Bajo el supuesto de población gamma (?).
 
+**NO** quisiera que tengamos que implementar MH en escala logaritmica nuevamente.
+
 ## Secciones
 
 Múltiples cadenas, $N_\text{eff}$ y $\hat{R}$ se van a pedir siempre.
@@ -42,7 +44,9 @@ Múltiples cadenas, $N_\text{eff}$ y $\hat{R}$ se van a pedir siempre.
 ### Aplicación
 
 - Comparar varianzas de dos poblaciones
+    - Los tamaños de muestra no deben ser altos.
     - ¿Que asuman igualdad de medias para simplificar?
+    - ¿Que asuman medias conocidas para simplificar?
 - Primer intento
     - Asumiendo poblaciones normales y utilizando priors uniformes.
     - El resultado es idéntico al de la teoría clásica, el posterior incluso tiene forma cerrada.
@@ -53,10 +57,12 @@ Múltiples cadenas, $N_\text{eff}$ y $\hat{R}$ se van a pedir siempre.
     - Asumiendo poblaciones gamma. No estoy seguro si los priors deben ser uniformes.
     - No conozco un resultado análogo en la teoría clásica.
     - El posterior no va a tener forma cerrada.
+Quisiera que bajo el supuesto de normalidad familia normal,
+que es lo que uno haría por defecto bajo teoría clásica,
+se rechaza la hipótesis de igualdad de varianzas.
+Mientras que si se usa una distribución más adecuada para la variable respuesta,
+no se rechaza la hipótesis nula.
 
-El chiste debe ser que asumiendo una familia normal, que es lo que uno haría más directamente
-bajo teoría clásica, se rechaza la hipótesis de igualdad de varianzas. Mientras que si se usa
-una distribución más adecuada para la variable respuesta, no se rechaza la hipótesis.
-
-Sugiero que "normal = rechazo" y "no normal = no rechazo" porque me parece que al revés va a ser
-más complicado de lograr, incluso con datos simulados.
+Sugiero que "normal = rechazo" y "no normal = no rechazo"
+porque me parece que al revés va a ser más complicado de lograr,
+incluso con datos simulados.
