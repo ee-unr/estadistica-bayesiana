@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ce09eeede7149db31c72c0fc7ee50bb9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-f98c5a868f02a47b347a75723e335e9d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -571,7 +571,7 @@ candidato A candidato B
 </div>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode stan code-with-copy"><code class="sourceCode stan"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> {</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">1</span>&gt; N;             <span class="co">// Cantidad de observaciones</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>, <span class="kw">upper</span>=<span class="dv">1</span>&gt; y[N]; <span class="co">// Vector de respuesta (0 y 1)</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">array</span>[N] <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>, <span class="kw">upper</span>=<span class="dv">1</span>&gt; y; <span class="co">// Vector de respuesta (0 y 1)</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vector</span>[N] x;</span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="kw">parameters</span> {</span>
@@ -619,7 +619,7 @@ post-warmup draws per chain=1000, total post-warmup draws=4000.
 a  1.19    0.01 0.34  0.55  0.95  1.19  1.43  1.84   770    1
 b -0.02    0.00 0.01 -0.03 -0.02 -0.02 -0.01 -0.01   782    1
 
-Samples were drawn using NUTS(diag_e) at Tue Feb  3 20:48:45 2026.
+Samples were drawn using NUTS(diag_e) at Tue Mar 10 03:24:58 2026.
 For each parameter, n_eff is a crude measure of effective sample size,
 and Rhat is the potential scale reduction factor on split chains (at 
 convergence, Rhat=1).</code></pre>
@@ -867,8 +867,8 @@ convergence, Rhat=1).</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode stan code-with-copy"><code class="sourceCode stan"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> {</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">1</span>&gt; N;             <span class="co">// Cantidad de observaciones</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>, <span class="kw">upper</span>=<span class="dv">1</span>&gt; y[N]; <span class="co">// Vector de respuesta (0 y 1)</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> partido_idx[N];         <span class="co">// Índice del partido</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">array</span>[N] <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>, <span class="kw">upper</span>=<span class="dv">1</span>&gt; y; <span class="co">// Vector de respuesta (0 y 1)</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">array</span>[N] <span class="dt">int</span> partido_idx;         <span class="co">// Índice del partido</span></span>
 <span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vector</span>[N] x;</span>
 <span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="kw">parameters</span> {</span>
@@ -915,7 +915,7 @@ b[1]  0.01    0.00 0.02 -0.02  0.00  0.01  0.02  0.04  2378    1
 b[2] -0.09    0.00 0.04 -0.19 -0.12 -0.09 -0.06 -0.02  2305    1
 b[3] -0.03    0.00 0.01 -0.06 -0.04 -0.03 -0.03 -0.01  1976    1
 
-Samples were drawn using NUTS(diag_e) at Tue Feb  3 20:49:51 2026.
+Samples were drawn using NUTS(diag_e) at Tue Mar 10 03:26:03 2026.
 For each parameter, n_eff is a crude measure of effective sample size,
 and Rhat is the potential scale reduction factor on split chains (at 
 convergence, Rhat=1).</code></pre>
