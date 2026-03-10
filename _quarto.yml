@@ -3,6 +3,8 @@ project:
   preview:
     port: 4200
   output-dir: _site
+  resources:
+    - "complementario/app.html"
 
 website:
   title: "Estadística Bayesiana"
