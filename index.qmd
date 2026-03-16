@@ -73,7 +73,7 @@ course-logo: utils/imgs/logo.png
 
 ### Francisco Ovando
 
-* {{< fa envelope >}} &nbsp; [correo@fcecon.unr.edu.ar](mailto:correo@fcecon.unr.edu.ar)
+* {{< fa envelope >}} &nbsp; [franovando714@gmail.com](mailto:franovando714@gmail.com)
 * 
 
 :::

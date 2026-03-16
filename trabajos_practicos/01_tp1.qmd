@@ -30,8 +30,8 @@ un incidente en la cancha.
 
 La regla de decisión es simple:
 
-    - Si $S>T$ (umbral fijo $T$), se prohíbe el acceso del simpatizante, es decir, predicción: "violento"
-    - SI $S\leq T$, se permite el acceso, es decir, predicción: "pacífico"
+- Si $S>T$ (umbral fijo $T$), se prohíbe el acceso del simpatizante, es decir, predicción: "violento"
+- SI $S\leq T$, se permite el acceso, es decir, predicción: "pacífico"
 
 ```{r}
 #| echo: false
@@ -53,7 +53,7 @@ más ‘señales’ y más fricción con el sistema."
 
 La denuncia es contra el sistema, en términos estadísticos
 
-> "A nuestros hinchas pacíficos (inocentes) de los Búhos les prohíben entrar más seguido que a 
+> "A los hinchas pacíficos (inocentes) de los Búhos les prohíben entrar más seguido que a 
 los pacíficos del Albatros."
 
 Nos pondremos en el rol de consultores de ciencia de datos contratados por la Defensoría del Pueblo para
@@ -61,10 +61,10 @@ auditar el sistema. Nos entregan un dataset anonimizado de la temporada anterior
 
 Los objetivos son:
 
-    - Estimar con estadística Bayesiana si hay evidencia de disparidad en los errores (más allá del ruido).
-    - Explicar el resultado en términos comprensibles para un organismo público.
-    - Conectar el resultado con el “trade-off” de fairness: calibración vs igualdad de tasas de error.
-    - Estudiar mediante simulación la posibilidad de generar un sistema más justo.
+- Estimar con estadística Bayesiana si hay evidencia de disparidad en los errores (más allá del ruido).
+- Explicar el resultado en términos comprensibles para un organismo público.
+- Conectar el resultado con el “trade-off” de fairness: calibración vs igualdad de tasas de error.
+- Estudiar mediante simulación la posibilidad de generar un sistema más justo.
  
 ```{r}
 #| echo: false
@@ -76,6 +76,8 @@ if (is_html) knitr::include_graphics(file.path("imgs", "aleatorizada.png"))
 
 
 ## Actividades
+
+### Entrada en calor
 
 Para todo lo que sigue, tenga en consideración lo siguiente:
 

@@ -33,17 +33,17 @@ las entregas deben reflejar exclusivamente la comprensión propia de los estudia
 
 Para evitar confusiones, se proponen las siguientes heurísticas prácticas:
 
-    - No copiar ni pegar contenido generado por una IA en el trabajo propio. La interacción
-    con la herramienta debe utilizarse como instancia de aprendizaje, y luego el trabajo debe
-    redactarse con palabras propias.
-    - No tener simultáneamente abierta la entrega y la herramienta de IA. Se recomienda
-    primero consultar, reflexionar y aclarar ideas, y luego cerrar la herramienta y redactar
-    la entrega.
-    - Evitar asistentes integrados que escriban directamente en documentos o código,
-    más allá de un corrector gramatical básico.
+- No copiar ni pegar contenido generado por una IA en el trabajo propio. La interacción
+con la herramienta debe utilizarse como instancia de aprendizaje, y luego el trabajo debe
+redactarse con palabras propias.
+- No tener simultáneamente abierta la entrega y la herramienta de IA. Se recomienda
+primero consultar, reflexionar y aclarar ideas, y luego cerrar la herramienta y redactar
+la entrega.
+- Evitar asistentes integrados que escriban directamente en documentos o código,
+más allá de un corrector gramatical básico.
 
 La distinción clave es si la IA contribuye a la comprensión o si está realizando
-el trabajo intelectual que se espera que realice el estudiantado
+el trabajo intelectual que se espera que realicen quienes toman el curso
 (_¿quién está pensando: la IA o la persona que cursa?_).
 En caso de duda, una regla orientadora es preguntarse:
 _¿podría explicarse y defenderse con palabras propias todo lo que se está entregando?_
