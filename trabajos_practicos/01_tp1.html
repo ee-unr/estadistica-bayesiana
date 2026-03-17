@@ -234,8 +234,10 @@ window.Quarto = {
 <p>Luego de incidentes aislados y mucha presión mediática, el Ministerio de Convivencia Pública implementó un sistema de IA llamado Centinela Delta para gestionar el derecho de admisión en los estadios: el Templo de la Almeja (localía de los Albatros) y el Fortín de la Bruma (localía de los Búhos).</p>
 <p>Para cada persona que intenta ingresar, Centinela Delta asigna un Score de Riesgo <span class="math inline">\(S\in(0,100)\)</span> y se instruyó a la policía y al gobierno que consideren que <span class="math inline">\(S\)</span> es la probabilidad estimada de que la persona cometa un incidente en la cancha.</p>
 <p>La regla de decisión es simple:</p>
-<pre><code>- Si $S&gt;T$ (umbral fijo $T$), se prohíbe el acceso del simpatizante, es decir, predicción: "violento"
-- SI $S\leq T$, se permite el acceso, es decir, predicción: "pacífico"</code></pre>
+<ul>
+<li>Si <span class="math inline">\(S&gt;T\)</span> (umbral fijo <span class="math inline">\(T\)</span>), se prohíbe el acceso del simpatizante, es decir, predicción: “violento”</li>
+<li>SI <span class="math inline">\(S\leq T\)</span>, se permite el acceso, es decir, predicción: “pacífico”</li>
+</ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -253,14 +255,16 @@ window.Quarto = {
 </blockquote>
 <p>La denuncia es contra el sistema, en términos estadísticos</p>
 <blockquote class="blockquote">
-<p>“A nuestros hinchas pacíficos (inocentes) de los Búhos les prohíben entrar más seguido que a los pacíficos del Albatros.”</p>
+<p>“A los hinchas pacíficos (inocentes) de los Búhos les prohíben entrar más seguido que a los pacíficos del Albatros.”</p>
 </blockquote>
 <p>Nos pondremos en el rol de consultores de ciencia de datos contratados por la Defensoría del Pueblo para auditar el sistema. Nos entregan un dataset anonimizado de la temporada anterior para realizar el análisis.</p>
 <p>Los objetivos son:</p>
-<pre><code>- Estimar con estadística Bayesiana si hay evidencia de disparidad en los errores (más allá del ruido).
-- Explicar el resultado en términos comprensibles para un organismo público.
-- Conectar el resultado con el “trade-off” de fairness: calibración vs igualdad de tasas de error.
-- Estudiar mediante simulación la posibilidad de generar un sistema más justo.</code></pre>
+<ul>
+<li>Estimar con estadística Bayesiana si hay evidencia de disparidad en los errores (más allá del ruido).</li>
+<li>Explicar el resultado en términos comprensibles para un organismo público.</li>
+<li>Conectar el resultado con el “trade-off” de fairness: calibración vs igualdad de tasas de error.</li>
+<li>Estudiar mediante simulación la posibilidad de generar un sistema más justo.</li>
+</ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -274,6 +278,8 @@ window.Quarto = {
 </section>
 <section id="actividades" class="level2">
 <h2 class="anchored" data-anchor-id="actividades">Actividades</h2>
+<section id="entrada-en-calor" class="level3">
+<h3 class="anchored" data-anchor-id="entrada-en-calor">Entrada en calor</h3>
 <p>Para todo lo que sigue, tenga en consideración lo siguiente:</p>
 <ul>
 <li>Se toma una muestra al azar con reemplazo de tamaño <span class="math inline">\(n=100\)</span> de una población de tamaño <span class="math inline">\(N=1000\)</span>.</li>
@@ -335,6 +341,7 @@ https://ugc.production.linktr.ee/cd2596a8-1dce-4f38-b151-a217d61227f1_informe-re
 -->
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
