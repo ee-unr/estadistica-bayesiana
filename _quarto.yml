@@ -105,7 +105,7 @@ website:
       header: Recursos
       collapse-level: 1
       contents:
-        - text: Código
+        - text: Ejemplos de código
           file: recursos/codigo/index.qmd
           contents:
             - auto: recursos/codigo/*.qmd

@@ -1,8 +1,8 @@
 ---
-title: "01 - Liberen al Tucán Sam"
+title: "01 - #DóndeEstánLasMelbas"
 ---
 
-En este recurso se muestra como usar R para resolver el ejercicio de los Froot Loops hecho durante
+En este recurso se muestra como usar R para resolver el ejercicio de **#DóndeEstánLasMelbas** hecho durante
 la primera clase.
 
 ```{r}
@@ -25,17 +25,17 @@ print(pi_grid)
 
 # Especificar prior
 # Tenemos $1000 y los dividimos en los diferentes valores de "pi"
-prior_ <- c(0, 50, 150, 600, 150, 50, 0, 0, 0, 0, 0)
+prior_ <- c(10, 190, 300, 200, 150, 100, 30, 20, 0, 0, 0)
 prior <- prior_ / sum(prior_)
 
 # Recolectar datos
-cantidad_de_cereales <- 29 # n
-cantidad_de_cereales_amarillos <- 7 # y
+cantidad_de_galletitas <- 13 # n
+cantidad_de_melbas <- 1      # y
 
 # Calcular verosimilitud para cada valor de "pi" en la grilla
 likelihood <- dbinom(
-  cantidad_de_cereales_amarillos,
-  cantidad_de_cereales,
+  cantidad_de_melbas,
+  cantidad_de_galletitas,
   pi_grid
 )
 
@@ -48,6 +48,7 @@ plt_prior <- data.frame(x = pi_grid, y = prior) |>
   ggplot() +
   geom_segment(aes(x = x, xend = x, y = 0, yend = y), color = colores[1], linewidth = 0.8) +
   geom_point(aes(x = x, y = y), , color = colores[1], size = 2.4) +
+  scale_y_continuous(breaks = c(0, 0.1, 0.2, 0.3, 0.4, 0.5), limits = c(0, 0.52)) +
   scale_x_continuous(breaks = pi_grid) +
   labs(
     x = expression(pi),
@@ -62,6 +63,7 @@ plt_likelihood <- data.frame(x = pi_grid, y = likelihood) |>
   ggplot() +
   geom_segment(aes(x = x, xend = x, y = 0, yend = y), color = colores[2], linewidth = 0.8) +
   geom_point(aes(x = x, y = y), , color = colores[2], size = 2.4) +
+  scale_y_continuous(breaks = c(0, 0.1, 0.2, 0.3, 0.4, 0.5), limits = c(0, 0.52)) +
   scale_x_continuous(breaks = pi_grid) +
   labs(
     x = expression(pi),
@@ -76,6 +78,7 @@ plt_posterior <- data.frame(x = pi_grid, y = posterior) |>
   ggplot() +
   geom_segment(aes(x = x, xend = x, y = 0, yend = y), color = colores[3], linewidth = 0.8) +
   geom_point(aes(x = x, y = y), , color = colores[3], size = 2.4) +
+  scale_y_continuous(breaks = c(0, 0.1, 0.2, 0.3, 0.4, 0.5), limits = c(0, 0.52)) +
   scale_x_continuous(breaks = pi_grid) +
   labs(
     x = expression(pi),
@@ -105,8 +108,8 @@ prior <- prior_ / sum(prior_)
 
 # Calcular verosimilitud para cada valor de "pi"
 likelihood <- dbinom(
-  cantidad_de_cereales_amarillos,
-  cantidad_de_cereales,
+  cantidad_de_melbas,
+  cantidad_de_galletitas,
   pi_grid
 )
 
@@ -144,7 +147,7 @@ plt_posterior <- data.frame(x = pi_grid, y = posterior) |>
   geom_line(aes(x = x, y = y), color = colores[3], linewidth = 1) +
   labs(
     x = expression(pi),
-    y = expression(p ~ "(" ~ pi ~ " | y)"), 
+    y = expression(p ~ "(" ~ pi ~ " | y)"),
     title = "Distribución a posteriori"
   ) +
   theme_bw() +

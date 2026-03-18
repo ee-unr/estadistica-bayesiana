@@ -1,5 +1,5 @@
 ---
-title: "Instalación de Software"
+title: "Ejemplos de código"
 ---
 
 Esta sección contiene _scripts_ de R que son de utilidad para el curso.
@@ -39,3 +39,4 @@ file_names <- file_names[basename(file_names) != "index.qmd"]
 entries <- make_entries(file_names)
 cat(entries, "\n")
 ```
+
