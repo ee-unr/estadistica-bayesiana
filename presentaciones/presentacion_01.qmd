@@ -133,7 +133,7 @@ Un **Dutch book** es un conjunto de apuestas que aseguran una pérdida. El argum
 
 . . .
 
-Los grados de plausibilidad o grados de creencia que una persona le asigna a un conjunto de eventos deben respetar los axiomas de probabilidad.
+Los grados de plausibilidad o grados de creencia que una persona le asigna a un conjunto de eventos **deben** respetar los axiomas de probabilidad.
 
 . . .
 
@@ -156,6 +156,10 @@ Tres ideas de probabilidad
 
 ## Probabilidad subjetiva {.smaller}
 
+> _La probabilidad no existe._ (De Finetti, 1970)
+
+. . .
+
 - Es la forma más general de interpretar la probabilidad (eventos no equiprobables y eventos que no pueden repetirse)
 - Se utiliza para cuantificar la incertidumbre o ignorancia (o certidumbre o conocimiento) acerca de un evento o proposición
 - Es personal
@@ -165,14 +169,19 @@ Tres ideas de probabilidad
 
 Todos los métodos estadísticos son subjetivos en el sentido que se basan en idealizaciones matemáticas de la realidad (modelos).
 
+##
+
+> _El razonamiento probabilístico —que siempre debe entenderse como subjetivo— surge meramente de nuestra incertidumbre sobre algo. No importa si la incertidumbre se refiere a un futuro imprevisible, o a un pasado inadvertido... o incluso a algo más o menos conocible pero para lo cual no estamos dispuestos o no podemos hacer el esfuerzo._ (De Finetti, 1974)
+
+
 ## Incertidumbre
 
 Distinguimos dos tipos de incertidumbre:
 
 . . .
 
-* **Incertidumbre epistémica**
-* **Incertidumbre aleatoria**
+* **Incertidumbre epistémica**: incertidumbre **irreducible**, inherente al sistema que estamos observando.
+* **Incertidumbre aleatoria**: incertidumbre **reducible** que surge porque nuestro modelo es imperfecto o porque no tenemos datos suficientes.
 
 . . .
 
@@ -202,6 +211,9 @@ Si prefieren $A_1$ entonces... 8 bolas azules y 2 bolas rojas. Se extrae una bol
 - $A_3$: \$1000 si $W$
 - $A_4$: \$1000 si $A$
 
+## Elicitación de probabilidades {.smaller}
+
+Cuando encontramos la cantidad de bolas azules que nos hace indiferentes, esa razón azules/totales **es** nuestra probabilidad subjetiva.
 
 ## 
 
@@ -211,8 +223,8 @@ Interludio...
 
 ¿Qué es más probable?
 
-- Que el PSG le gane al Lyon
-- Que el PSG le gane al Lyon y Messi haga un gol
+- Que el Inter Miami le gane al NYC FC
+- Que el Inter Miami le gane al NYC FC y Messi haga un gol
 
 . . .
 
@@ -301,7 +313,7 @@ $$p(x,y)$$
     #| cache: true
     #| echo: false
     #| fig-align: center
-    #| fig-width:4
+    #| fig-width: 4
     #| fig-dpi: 600
 
 library(dplyr)
@@ -370,7 +382,7 @@ $$p(x,y,z) = p(z) p(y\mid z) p(x\mid y,z)$$
 ## Regla de la probabilidad total
 
 $$p(x) = \int p(x\mid y) p(y) dy$$
-$$p(y) = \int p(y\mid x) p(x) dy$$
+$$p(y) = \int p(y\mid x) p(x) dx$$
 
 . . .
 
@@ -477,7 +489,7 @@ $$p(A\mid T_A) = \frac{p(T_A\mid A) p(A)}{p(T_A\mid A)p(A) + p(T_A\mid V)p(V)}$$
 
 . . .
 
-$$P(A\mid T_A) = \frac{0.80\cdot 0.15}{0.80\cdot 0.15 + 0.2\cdot 0.85}$$
+$$p(A\mid T_A) = \frac{0.80\cdot 0.15}{0.80\cdot 0.15 + 0.2\cdot 0.85}$$
 
 $$p(A\mid T_A) = 0.414$$
 
@@ -503,10 +515,11 @@ Si en el denominador enumeramos exhaustivamente las formas de rechazar $H_0$:
 . . .
 
 $$p(H_1 \mid \text{rechazo }H_0) = \frac{(1-\beta)p(H_1)}{\alpha p(H_0) + (1-\beta) p(H_1)}$$
+. . .
 
-Para el primer caso: $p(H_1 \mid \text{rechazo }H_0) = \frac{{0.80}\ {0.50}}{{0.05}\ {0.50} + {0.80}\ {0.50}} = {0.94}$
+Para el primer caso: $p(H_1 \mid \text{rechazo }H_0) = \frac{{0.80}\cdot {0.50}}{{0.05}\cdot {0.50} + {0.80}\cdot {0.50}} = {0.94}$
 
-Para el segundo caso: $p(H_1 \mid \text{rechazo }H_0) = \frac{{0.80}\ {0.10}}{{0.05}\ {0.90} + {0.80}\ {0.10}} = {0.64}$
+Para el segundo caso: $p(H_1 \mid \text{rechazo }H_0) = \frac{{0.80}\cdot {0.10}}{{0.05}\cdot {0.90} + {0.80}\cdot {0.10}} = {0.64}$
 
 # Inferencia Bayesiana
 
