@@ -132,14 +132,21 @@
     "href": "presentaciones/presentacion_01.html#probabilidad-subjetiva",
     "title": "Estadística Bayesiana",
     "section": "Probabilidad subjetiva",
-    "text": "Probabilidad subjetiva\n\nEs la forma más general de interpretar la probabilidad (eventos no equiprobables y eventos que no pueden repetirse)\nSe utiliza para cuantificar la incertidumbre o ignorancia (o certidumbre o conocimiento) acerca de un evento o proposición\nEs personal\nDepende del estado actual de conocimiento del mundo\n\n\nTodos los métodos estadísticos son subjetivos en el sentido que se basan en idealizaciones matemáticas de la realidad (modelos)."
+    "text": "Probabilidad subjetiva\n\nLa probabilidad no existe. (De Finetti, 1970)\n\n\n\nEs la forma más general de interpretar la probabilidad (eventos no equiprobables y eventos que no pueden repetirse)\nSe utiliza para cuantificar la incertidumbre o ignorancia (o certidumbre o conocimiento) acerca de un evento o proposición\nEs personal\nDepende del estado actual de conocimiento del mundo\n\n\n\nTodos los métodos estadísticos son subjetivos en el sentido que se basan en idealizaciones matemáticas de la realidad (modelos)."
+  },
+  {
+    "objectID": "presentaciones/presentacion_01.html#section-6",
+    "href": "presentaciones/presentacion_01.html#section-6",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "El razonamiento probabilístico —que siempre debe entenderse como subjetivo— surge meramente de nuestra incertidumbre sobre algo. No importa si la incertidumbre se refiere a un futuro imprevisible, o a un pasado inadvertido… o incluso a algo más o menos conocible pero para lo cual no estamos dispuestos o no podemos hacer el esfuerzo. (De Finetti, 1974)"
   },
   {
     "objectID": "presentaciones/presentacion_01.html#incertidumbre",
     "href": "presentaciones/presentacion_01.html#incertidumbre",
     "title": "Estadística Bayesiana",
     "section": "Incertidumbre",
-    "text": "Incertidumbre\nDistinguimos dos tipos de incertidumbre:\n\n\nIncertidumbre epistémica\nIncertidumbre aleatoria\n\n\n\nLo retomaremos a lo largo del curso."
+    "text": "Incertidumbre\nDistinguimos dos tipos de incertidumbre:\n\n\nIncertidumbre epistémica: incertidumbre irreducible, inherente al sistema que estamos observando.\nIncertidumbre aleatoria: incertidumbre reducible que surge porque nuestro modelo es imperfecto o porque no tenemos datos suficientes.\n\n\n\nLo retomaremos a lo largo del curso."
   },
   {
     "objectID": "presentaciones/presentacion_01.html#elicitación-de-probabilidades",
@@ -149,11 +156,18 @@
     "text": "Elicitación de probabilidades\nConsideremos la siguiente proposición:\n\nVoy a aprobar todas las materias de este cuatrimestre (\\(W\\))\n\n\nUna caja con 5 bolas azules y 5 bolas rojas. Se extrae una bola al azar. \\(A\\) es el evento extraer una bola azul\n\n\n\n\\(A_1\\): $1000 si \\(W\\)\n\\(A_2\\): $1000 si \\(A\\)\n\n\n\nSi prefieren \\(A_1\\) entonces… 8 bolas azules y 2 bolas rojas. Se extrae una bola al azar. \\(A\\) es el evento extraer una bola azul.\n\n\n\n\\(A_3\\): $1000 si \\(W\\)\n\\(A_4\\): $1000 si \\(A\\)"
   },
   {
-    "objectID": "presentaciones/presentacion_01.html#section-6",
-    "href": "presentaciones/presentacion_01.html#section-6",
+    "objectID": "presentaciones/presentacion_01.html#elicitación-de-probabilidades-1",
+    "href": "presentaciones/presentacion_01.html#elicitación-de-probabilidades-1",
+    "title": "Estadística Bayesiana",
+    "section": "Elicitación de probabilidades",
+    "text": "Elicitación de probabilidades\nCuando encontramos la cantidad de bolas azules que nos hace indiferentes, esa razón azules/totales es nuestra probabilidad subjetiva."
+  },
+  {
+    "objectID": "presentaciones/presentacion_01.html#section-7",
+    "href": "presentaciones/presentacion_01.html#section-7",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Interludio…\n\n¿Qué es más probable?\n\nQue el PSG le gane al Lyon\nQue el PSG le gane al Lyon y Messi haga un gol"
+    "text": "Interludio…\n\n¿Qué es más probable?\n\nQue el Inter Miami le gane al NYC FC\nQue el Inter Miami le gane al NYC FC y Messi haga un gol"
   },
   {
     "objectID": "presentaciones/presentacion_01.html#sesgos",
@@ -163,22 +177,22 @@
     "text": "Sesgos\nLos seres humanos no estamos optimizados para operar con probabilidades (al menos no intuitivamente)."
   },
   {
-    "objectID": "presentaciones/presentacion_01.html#section-7",
-    "href": "presentaciones/presentacion_01.html#section-7",
+    "objectID": "presentaciones/presentacion_01.html#section-8",
+    "href": "presentaciones/presentacion_01.html#section-8",
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "Probabilidad de un evento \\[\\mathrm{Pr}(A)\\] \\[\\mathrm{Pr}(\\bar{A}) = 1-\\mathrm{Pr}(A)\\]"
   },
   {
-    "objectID": "presentaciones/presentacion_01.html#section-8",
-    "href": "presentaciones/presentacion_01.html#section-8",
+    "objectID": "presentaciones/presentacion_01.html#section-9",
+    "href": "presentaciones/presentacion_01.html#section-9",
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "Probabilidad de la conjunción:\n\\[\\mathrm{Pr}(A\\wedge B) = \\mathrm{Pr}(A,B)\\] Si \\(A\\) y \\(B\\) son independientes, entonces\n\\[\\mathrm{Pr}(A\\wedge B) = \\mathrm{Pr}(A)\\mathrm{Pr}(B)\\] Probabilidad de la unión: \\[\\mathrm{Pr}(A \\vee B) = \\mathrm{Pr}(A) + \\mathrm{Pr}(B) - \\mathrm{Pr}(A,B)\\] Donde, si \\(A\\) y \\(B\\) son mutuamente excluyentes,\n\\[\\mathrm{Pr}(A \\vee B) = \\mathrm{Pr}(A) + \\mathrm{Pr}(B)\\]"
   },
   {
-    "objectID": "presentaciones/presentacion_01.html#section-9",
-    "href": "presentaciones/presentacion_01.html#section-9",
+    "objectID": "presentaciones/presentacion_01.html#section-10",
+    "href": "presentaciones/presentacion_01.html#section-10",
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "\\[\\mathrm{Pr}(B\\mid A) = \\frac{\\mathrm{Pr}(A,B)}{\\mathrm{Pr}(A)} \\] siempre que \\(\\mathrm{Pr}(A)&gt;0\\) (no se puede condicionar a eventos imposibles)"
@@ -191,8 +205,8 @@
     "text": "Variables aleatorias\nUna variable aleatoria (univariada) \\(X\\) es una función que mapea elementos del espacio muestral \\(\\mathcal{X}\\) a la recta real \\(\\mathbb{R}\\)\n\nSi \\(\\mathcal{X}\\) es finito o infinito numerable entonces \\(X\\) es una variable aleatoria discreta\nSi \\(\\mathcal{X}\\) es cualquier valor en \\(\\mathbb{R}\\) entonces \\(X\\) es una variable aleatoria continua"
   },
   {
-    "objectID": "presentaciones/presentacion_01.html#section-10",
-    "href": "presentaciones/presentacion_01.html#section-10",
+    "objectID": "presentaciones/presentacion_01.html#section-11",
+    "href": "presentaciones/presentacion_01.html#section-11",
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "Para el caso discreto: \\[p(x) = \\mathrm{Pr}(X=x) \\quad \\text{(pmf)}\\]\nPara el caso continuo: \\[P(x) = \\mathrm{Pr}(X\\leq x) \\quad \\text{(cdf)}\\] \\[ p(x) = \\frac{d}{dx}P(x) \\quad \\text{(pdf)}\\]\n\\[\\mathrm{Pr}(x\\leq X\\leq x+dx) = p(x)dx\\]"
@@ -205,22 +219,22 @@
     "text": "Distribuciones conjuntas\nCaso discreto\n\\[\n\\begin{array}{c|cc}\np(X,Y) & Y=0 & Y=1 \\\\\n\\hline\nX=0 & 0.2 & 0.3 \\\\\nX=1 & 0.3 & 0.2 \\\\\n\\end{array}\n\\]"
   },
   {
-    "objectID": "presentaciones/presentacion_01.html#section-11",
-    "href": "presentaciones/presentacion_01.html#section-11",
+    "objectID": "presentaciones/presentacion_01.html#section-12",
+    "href": "presentaciones/presentacion_01.html#section-12",
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "Distribución marginal\n\\[p(x)=\\sum_y p(x,y)\\]\n\\[p(y)=\\sum_x p(x,y)\\]\nSe conoce como marginalizar (en inglés también integrate out)"
   },
   {
-    "objectID": "presentaciones/presentacion_01.html#section-12",
-    "href": "presentaciones/presentacion_01.html#section-12",
+    "objectID": "presentaciones/presentacion_01.html#section-13",
+    "href": "presentaciones/presentacion_01.html#section-13",
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "Caso continuo\n\\[p(x,y)\\]"
   },
   {
-    "objectID": "presentaciones/presentacion_01.html#section-13",
-    "href": "presentaciones/presentacion_01.html#section-13",
+    "objectID": "presentaciones/presentacion_01.html#section-14",
+    "href": "presentaciones/presentacion_01.html#section-14",
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "Distribución marginal\n\\[p(x)=\\int p(x,y) dy\\]\n\\[p(y)=\\int p(x,y) dx\\]"
@@ -244,7 +258,7 @@
     "href": "presentaciones/presentacion_01.html#regla-de-la-probabilidad-total",
     "title": "Estadística Bayesiana",
     "section": "Regla de la probabilidad total",
-    "text": "Regla de la probabilidad total\n\\[p(x) = \\int p(x\\mid y) p(y) dy\\] \\[p(y) = \\int p(y\\mid x) p(x) dy\\]\n\nLa probabilidad marginal de \\(x\\) (una función de \\(x\\)) se obtiene ponderando todos los posibles \\(p(x\\mid y)\\) (una función de \\(x\\) para cada valor de \\(y\\)) según la probabilidad de \\(p(y)\\). Y viceversa."
+    "text": "Regla de la probabilidad total\n\\[p(x) = \\int p(x\\mid y) p(y) dy\\] \\[p(y) = \\int p(y\\mid x) p(x) dx\\]\n\nLa probabilidad marginal de \\(x\\) (una función de \\(x\\)) se obtiene ponderando todos los posibles \\(p(x\\mid y)\\) (una función de \\(x\\) para cada valor de \\(y\\)) según la probabilidad de \\(p(y)\\). Y viceversa."
   },
   {
     "objectID": "presentaciones/presentacion_01.html#regla-de-bayes",
@@ -261,8 +275,8 @@
     "text": "Orígenes de la Regla de Bayes\n\n\n\nAlrededor de 1740, Thomas Bayes propone una versión de la regla pero no la publica (¿su descubrimiento era inútil? ¿era muy modesto?). Propuso el experimento imaginario de un juego con bolitas. Asignó iguales probabilidades a priori\n\n\n\nRichard Price publicó el resultado del Teorema de la Probabilidad Inversa de Bayes en An Essay Towards Solving a Problem in the Doctrine of Chances (1763)\n\n\n\nPierre-Simon Laplace llegó al mismo resultado que Bayes (algo que llamó la probabilidad de las causas) y lo publicó en Memoire sur la Probabilité des Causes par les Évenements (1774). Se asemeja más a lo que hoy conocemos. Reconoció que Bayes había descubierto algo similar."
   },
   {
-    "objectID": "presentaciones/presentacion_01.html#section-14",
-    "href": "presentaciones/presentacion_01.html#section-14",
+    "objectID": "presentaciones/presentacion_01.html#section-15",
+    "href": "presentaciones/presentacion_01.html#section-15",
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "Bayes’s rule is a mistake, perhaps the only mistake to which the mathematical world has so deeply committed itself (Fisher, ~1920)\n\n\n\nBayes’s theorem is to the theory of probability what Pythagoras’s theorem is to geometry (Savage, ~1950)"
@@ -282,8 +296,8 @@
     "text": "Ejemplo 1\nNos encontramos con alguien en la calle y nos dice que tiene dos hijos. Le preguntamos si alguno de ellos es mujer y nos responde que sí. ¿Cuál es la probabilidad de que tenga dos niñas?"
   },
   {
-    "objectID": "presentaciones/presentacion_01.html#section-15",
-    "href": "presentaciones/presentacion_01.html#section-15",
+    "objectID": "presentaciones/presentacion_01.html#section-16",
+    "href": "presentaciones/presentacion_01.html#section-16",
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "¿Cómo lo escribimos con símbolos?"
@@ -296,11 +310,11 @@
     "text": "Ejemplo 2\nUn taxi se vio involucrado en una accidente nocturno y se dio a la fuga. En la ciudad hay dos empresas de taxis, la Verde y la Azul. Sobre el accidente se tienen los siguientes datos:\n\n85% de los taxis de la ciudad son de la empresa Verde y 15% de la Azul\nUn testigo identificó el taxi como azul. La corte evaluó la confiabilidad del testigo en las circunstancias del accidente y concluyó que es capaz de identificar correctamente el color en un 80% de los casos.\n\n\n¿Cuál es la probabilidad de que el taxi haya sido azul, de acuerdo a la declaración del testigo?"
   },
   {
-    "objectID": "presentaciones/presentacion_01.html#section-16",
-    "href": "presentaciones/presentacion_01.html#section-16",
+    "objectID": "presentaciones/presentacion_01.html#section-17",
+    "href": "presentaciones/presentacion_01.html#section-17",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "\\[p(A\\mid T_A) = \\frac{p(T_A\\mid A) p(A)}{p(T_A)}\\]\n\n\\[p(A\\mid T_A) = \\frac{p(T_A\\mid A) p(A)}{p(T_A\\mid A)p(A) + p(T_A\\mid V)p(V)}\\]\n\n\n\\[P(A\\mid T_A) = \\frac{0.80\\cdot 0.15}{0.80\\cdot 0.15 + 0.2\\cdot 0.85}\\]\n\\[p(A\\mid T_A) = 0.414\\]"
+    "text": "\\[p(A\\mid T_A) = \\frac{p(T_A\\mid A) p(A)}{p(T_A)}\\]\n\n\\[p(A\\mid T_A) = \\frac{p(T_A\\mid A) p(A)}{p(T_A\\mid A)p(A) + p(T_A\\mid V)p(V)}\\]\n\n\n\\[p(A\\mid T_A) = \\frac{0.80\\cdot 0.15}{0.80\\cdot 0.15 + 0.2\\cdot 0.85}\\]\n\\[p(A\\mid T_A) = 0.414\\]"
   },
   {
     "objectID": "presentaciones/presentacion_01.html#ejemplo-3",
@@ -310,11 +324,11 @@
     "text": "Ejemplo 3\nSe realiza un test de hipótesis que tiene una potencia \\(1-\\beta = 80\\%\\). Se fija el nivel de significación en \\(\\alpha = 5\\%\\). Se testea \\(H_0\\) versus una hipótesis alternativa \\(H_1:\\text{ no }H_0\\).\n\nSi se supone que la probabilidad de que \\(H_0\\) sea cierta es de \\(50\\%\\), ¿cuál es la probabilidad de que \\(H_1\\) sea cierta luego de observar un resultado estadísticamente significativo?\nSi la hipótesis alternativa es muy rara (digamos \\(10\\%\\)), ¿cuál es la probabilidad de que \\(H_1\\) sea cierta luego de observar un resultado estadísticamente significativo?"
   },
   {
-    "objectID": "presentaciones/presentacion_01.html#section-18",
-    "href": "presentaciones/presentacion_01.html#section-18",
+    "objectID": "presentaciones/presentacion_01.html#section-19",
+    "href": "presentaciones/presentacion_01.html#section-19",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "\\[p(H_1 \\mid \\text{rechazo }H_0) = \\frac{p(\\text{rechazo }H_0 \\mid H_1)p(H_1)}{p(\\text{rechazo }H_0)}\\]\n\nSi en el denominador enumeramos exhaustivamente las formas de rechazar \\(H_0\\):\n\n\n\\[p(H_1 \\mid \\text{rechazo }H_0) = \\frac{(1-\\beta)p(H_1)}{\\alpha p(H_0) + (1-\\beta) p(H_1)}\\]\nPara el primer caso: \\(p(H_1 \\mid \\text{rechazo }H_0) = \\frac{{0.80}\\ {0.50}}{{0.05}\\ {0.50} + {0.80}\\ {0.50}} = {0.94}\\)\nPara el segundo caso: \\(p(H_1 \\mid \\text{rechazo }H_0) = \\frac{{0.80}\\ {0.10}}{{0.05}\\ {0.90} + {0.80}\\ {0.10}} = {0.64}\\)"
+    "text": "\\[p(H_1 \\mid \\text{rechazo }H_0) = \\frac{p(\\text{rechazo }H_0 \\mid H_1)p(H_1)}{p(\\text{rechazo }H_0)}\\]\n\nSi en el denominador enumeramos exhaustivamente las formas de rechazar \\(H_0\\):\n\n\n\\[p(H_1 \\mid \\text{rechazo }H_0) = \\frac{(1-\\beta)p(H_1)}{\\alpha p(H_0) + (1-\\beta) p(H_1)}\\] . . .\nPara el primer caso: \\(p(H_1 \\mid \\text{rechazo }H_0) = \\frac{{0.80}\\cdot {0.50}}{{0.05}\\cdot {0.50} + {0.80}\\cdot {0.50}} = {0.94}\\)\nPara el segundo caso: \\(p(H_1 \\mid \\text{rechazo }H_0) = \\frac{{0.80}\\cdot {0.10}}{{0.05}\\cdot {0.90} + {0.80}\\cdot {0.10}} = {0.64}\\)"
   },
   {
     "objectID": "presentaciones/presentacion_01.html#el-problema-de-las-urnas",
@@ -324,8 +338,8 @@
     "text": "El problema de las urnas\n\nSe cuenta con 11 urnas etiquetadas según \\(u = 0,1,\\dots,10\\), que contienen diez bolas cada una. La urna \\(u\\) contiene \\(u\\) bolas azules y \\(10-u\\) bolas blancas. Fede elige una urna \\(u\\) al azar y extrae con reposición \\(N\\) bolas, obteniendo \\(n_A\\) azules y \\(N-n_A\\) blancas. Nico, el amigo de Fede, observa atentamente. Si después de \\(N=10\\) extracciones resulta \\(n_A = 3\\), ¿cuál es la probabilidad de que la urna que Fede está usando sea la \\(u\\)?"
   },
   {
-    "objectID": "presentaciones/presentacion_01.html#section-19",
-    "href": "presentaciones/presentacion_01.html#section-19",
+    "objectID": "presentaciones/presentacion_01.html#section-20",
+    "href": "presentaciones/presentacion_01.html#section-20",
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "La teoría de las probabilidades permite predecir una distribución sobre posibles valores de un resultado dado cierto conocimiento (o estado) del universo: probabilidad hacia adelante\n\nPor el contrario, muchas veces estamos interesados en realizar inferencias sobre el estado del universo a partir de observaciones: probabilidad inversa.\n\n\n\\[p(\\mathcal{H}\\mid E) = \\frac{p(E\\mid\\mathcal{H}) p(\\mathcal{H})}{p(E)}\\]\n\\[p(\\mathcal{H}\\mid E) \\propto p(E\\mid\\mathcal{H}) p(\\mathcal{H})\\]"
@@ -1905,14 +1919,14 @@
     "href": "presentaciones/presentacion_02.html#intolerancia-al-gluten",
     "title": "Estadística Bayesiana",
     "section": "Intolerancia al gluten",
-    "text": "Intolerancia al gluten\n\n¿Pueden las personas alérgicas al gluten distinguir harina común de harina sin gluten en un ensayo ciego? En un experimento, de 35 sujetos, 12 identificaron correctamente la harina común y 23 se equivocaron o no supieron decir de qué harina se trataba.\nIncluso si no hubiera alérgicos al gluten en el experimento, esperaríamos encontrar algunas identificaciones correctas… Basándonos en el número de identificaciones correctas, ¿cuántos de los sujetos son alérgicos al gluten y cuántos estaban adivinando?\n\n\nSupongamos que una persona alérgica al gluten tiene una probabilidad de \\(0.90\\) de detectar la harina común mientras que una persona sin alergia detecta harina común con una probabilidad de \\(0.40\\) (y con una probabilidad de \\(0.6\\) se equivoca o no sabe decir)."
+    "text": "Intolerancia al gluten\n\n¿Pueden las personas intolerantes al gluten distinguir harina común de harina sin gluten en un ensayo ciego? En un experimento, de 35 sujetos, 12 identificaron correctamente la harina común y 23 se equivocaron o no supieron decir de qué harina se trataba.\nIncluso si no hubiera intolerantes al gluten en el experimento, esperaríamos encontrar algunas identificaciones correctas… Basándonos en el número de identificaciones correctas, ¿cuántos de los sujetos son intolerantes al gluten y cuántos estaban adivinando?\n\n\nSupongamos que una persona intolerantes al gluten tiene una probabilidad de \\(0.90\\) de detectar la harina común mientras que una persona sin alergia detecta harina común con una probabilidad de \\(0.40\\) (y con una probabilidad de \\(0.6\\) se equivoca o no sabe decir)."
   },
   {
     "objectID": "presentaciones/presentacion_02.html#section-10",
     "href": "presentaciones/presentacion_02.html#section-10",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Llamemos:\n\n\n\\(N\\) a la cantidad total de personas en el ensayo\n\\(N_a\\) al número de personas alérgicas al gluten\n\\(\\pi_a\\) a la probabilidad de que un alérgico identifique correctamente\n\\(\\pi_f\\) a la probabilidad de que un no alérgico identifique correctamente\n\\(n_i\\) al número de identificaciones correctas\n\n\n\n¿Cuáles son las cantidades conocidas? ¿Cuáles son las cantidades desconocidas? ¿Cómo es el modelo de probabilidad hacia adelante? ¿Cómo es el problema inverso?"
+    "text": "Llamemos:\n\n\n\\(N\\) a la cantidad total de personas en el ensayo\n\\(N_a\\) al número de personas intolerantes al gluten\n\\(\\pi_a\\) a la probabilidad de que un intolerante identifique correctamente\n\\(\\pi_f\\) a la probabilidad de que un no intolerantes identifique correctamente\n\\(n_i\\) al número de identificaciones correctas\n\n\n\n¿Cuáles son las cantidades conocidas? ¿Cuáles son las cantidades desconocidas? ¿Cómo es el modelo de probabilidad hacia adelante? ¿Cómo es el problema inverso?"
   },
   {
     "objectID": "presentaciones/presentacion_02.html#section-11",
@@ -1940,7 +1954,7 @@
     "href": "presentaciones/presentacion_02.html#section-14",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "El número de identificaciones correctas \\(n_i\\) es la suma de las identificaciones correctas entre los \\(N_a\\) alérgicos (\\(n_{ia}\\)) y los \\(N-N_a\\) no alérgicos (\\(n_{if}\\)). ¿Cuántas identificaciones habrá en cada grupo?\n\n\\[n_{ia} \\sim Bi(N_a,\\pi_a)\\] \\[n_{if} \\sim Bi(N-N_a,\\pi_f)\\] \\[n_i = n_{ia} + n_{if}\\]\n\n\n\nN &lt;- 35\npi_a &lt;- 0.9\npi_f &lt;- 0.4\nN_a &lt;- 10 # lo suponemos conocido para simular\n\nn_ia &lt;- rbinom(1, N_a, pi_a)\nn_if &lt;- rbinom(1, N-N_a, pi_f)\n\nn_i &lt;- n_ia + n_if\n\n\n\nSabríamos calcular las probabilidades de los diferentes valores de \\(n_{ia}\\) y \\(n_{if}\\), ¿no?."
+    "text": "El número de identificaciones correctas \\(n_i\\) es la suma de las identificaciones correctas entre los \\(N_a\\) intolerantes (\\(n_{ia}\\)) y los \\(N-N_a\\) no alérgicos (\\(n_{if}\\)). ¿Cuántas identificaciones habrá en cada grupo?\n\n\\[n_{ia} \\sim Bi(N_a,\\pi_a)\\] \\[n_{if} \\sim Bi(N-N_a,\\pi_f)\\] \\[n_i = n_{ia} + n_{if}\\]\n\n\n\nN &lt;- 35\npi_a &lt;- 0.9\npi_f &lt;- 0.4\nN_a &lt;- 10 # lo suponemos conocido para simular\n\nn_ia &lt;- rbinom(1, N_a, pi_a)\nn_if &lt;- rbinom(1, N-N_a, pi_f)\n\nn_i &lt;- n_ia + n_if\n\n\n\nSabríamos calcular las probabilidades de los diferentes valores de \\(n_{ia}\\) y \\(n_{if}\\), ¿no?."
   },
   {
     "objectID": "presentaciones/presentacion_02.html#section-15",
@@ -2024,7 +2038,7 @@
     "href": "presentaciones/presentacion_02.html#prior",
     "title": "Estadística Bayesiana",
     "section": "Prior",
-    "text": "Prior\n\n¿Cómo asignamos una credibilidad a priori para los valores de \\(\\pi_a\\)?\n\n\nCon una distribución de probabilidad.\n\n\n\\[\n\\pi \\sim \\mathrm{Beta}(a,b)\n\\]\n\n\n\\[\np(\\pi\\mid a,b) = p(\\pi) = \\frac{\\pi^{a-1} (1-\\pi)^{b-1}}{B(a,b)}\n\\]\n\n\n\\[\nB(a,b) = \\int_0^1 \\pi^{a-1} (1-\\pi)^{b-1} d\\pi = \\frac{\\Gamma(a)\\Gamma(b)}{\\Gamma(a+b)}\n\\]\n\n\n\\[\n\\Gamma(x) = \\int_0^\\infty u^{x-1} e^{-u} du\n\\]"
+    "text": "Prior\n\n¿Cómo asignamos una credibilidad a priori para los valores de \\(\\pi\\)?\n\n\nCon una distribución de probabilidad.\n\n\n\\[\n\\pi \\sim \\mathrm{Beta}(a,b)\n\\]\n\n\n\\[\np(\\pi\\mid a,b) = p(\\pi) = \\frac{\\pi^{a-1} (1-\\pi)^{b-1}}{B(a,b)}\n\\]\n\n\n\\[\nB(a,b) = \\int_0^1 \\pi^{a-1} (1-\\pi)^{b-1} d\\pi = \\frac{\\Gamma(a)\\Gamma(b)}{\\Gamma(a+b)}\n\\]\n\n\n\\[\n\\Gamma(x) = \\int_0^\\infty u^{x-1} e^{-u} du\n\\]"
   },
   {
     "objectID": "presentaciones/presentacion_02.html#section-27",
@@ -2101,14 +2115,14 @@
     "href": "presentaciones/presentacion_02.html#section-33",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "con \\(N=11\\), \\(a=2\\) y \\(b=2\\).\nAl observar \\(y=7\\) resulta\n\\[\\pi\\mid y \\sim \\text{Beta}(a+y,b+N-y)\\] \\[p(\\pi\\mid y) = \\text{Beta}(2+7,2+4)\\]"
+    "text": "con \\(N=11\\), \\(a=2\\) y \\(b=2\\).\nAl observar \\(y=7\\) resulta\n\\[\\pi\\mid y \\sim \\text{Beta}(a+y,b+N-y)\\] \\[\\pi\\mid y \\sim \\text{Beta}(2+7,2+4)\\]"
   },
   {
     "objectID": "presentaciones/presentacion_02.html#más-ejemplos",
     "href": "presentaciones/presentacion_02.html#más-ejemplos",
     "title": "Estadística Bayesiana",
     "section": "Más ejemplos",
-    "text": "Más ejemplos\nQueremos estimar la probabilidad \\(\\pi\\) de que salga cara al arrojar una moneda.\n\nCredibilidad a priori: \\(\\text{Beta}(2,2)\\)\n\n\n¿Cómo cambia nuestra creencia si…\n\n…realizamos 6 tiradas y observamos 4 caras?\n…realizamos 60 tiradas y observamos 40 caras?\n…realizamos 2 tiradas y observamos 2 caras?\n…realizamos 40 tiradas y observamos 40 caras?\n…realizamos 4 tiradas y obtenemos 3 caras y luego realizamos 2 tiradas más y observamos 1 caras?"
+    "text": "Más ejemplos\nQueremos estimar la probabilidad \\(\\pi\\) de que salga cara al arrojar una moneda.\n\nCredibilidad a priori: \\(\\text{Beta}(2,2)\\)\n\n\n¿Cómo cambia nuestra creencia si…\n\n…realizamos 6 tiradas y observamos 4 caras?\n…realizamos 60 tiradas y observamos 40 caras?\n…realizamos 2 tiradas y observamos 2 caras?\n…realizamos 40 tiradas y observamos 40 caras?\n…realizamos 4 tiradas y obtenemos 3 caras y luego realizamos 2 tiradas más y observamos 1 cara?"
   },
   {
     "objectID": "presentaciones/presentacion_02.html#section-35",
@@ -2171,7 +2185,7 @@
     "href": "presentaciones/presentacion_02.html#section-41",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "La distribución a priori es \\(\\text{Beta}(a,b)\\) y la distribución a posteriori es \\(\\text{Beta}(y+a,N-y+b)\\). La media del es:\n\\[\n\\begin{aligned}\n\\mathbb{E}[{p(\\pi\\mid y)}] & = \\frac{y+a}{a+b+N} \\\\\n& = \\frac{y}{a+b+N} + \\frac{a}{a+b+N} \\\\\n& = \\frac{N}{a+b+N}\\frac{y}{N} + \\frac{a+b}{a+b+N} \\frac{a}{a+b} \\\\\n& = \\frac{N}{a+b+N}\\frac{y}{N} + \\frac{a+b}{a+b+N} \\mathbb{E}{[p(\\pi)]}\n\\end{aligned}\n\\]"
+    "text": "La distribución a priori es \\(\\text{Beta}(a,b)\\) y la distribución a posteriori es \\(\\text{Beta}(y+a,N-y+b)\\).\n\nLa media del es:\n\\[\n\\begin{aligned}\n\\mathbb{E}[{\\pi\\mid y}] & = \\frac{y+a}{a+b+N} \\\\\n& = \\frac{y}{a+b+N} + \\frac{a}{a+b+N} \\\\\n& = \\frac{N}{a+b+N}\\frac{y}{N} + \\frac{a+b}{a+b+N} \\frac{a}{a+b} \\\\\n& = \\frac{N}{a+b+N}\\frac{y}{N} + \\frac{a+b}{a+b+N} \\mathbb{E}{[p(\\pi)]}\n\\end{aligned}\n\\]"
   },
   {
     "objectID": "presentaciones/presentacion_02.html#section-42",
@@ -2213,7 +2227,7 @@
     "href": "presentaciones/presentacion_02.html#section-54",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Para el caso binomial que venimos estudiando, consideramos una realización más (tirar el globo terráqueo y agarrarlo). ¿Cuál es la probabilidad de obtener \\(A\\) (agua)?\n\\[\n\\begin{aligned}\np(\\tilde{y} = 1\\mid y) & = \\int_0^1 \\pi \\vphantom{\\tilde{y}}p(\\pi\\mid x) d \\pi = \\mathbb{E}[{p(\\pi\\mid x)}] \\\\\n& = \\frac{y+a}{y+a+N-y+b} = \\frac{y+a}{N+a+b} \\\\\n\\end{aligned}\n\\]"
+    "text": "Para el caso binomial que venimos estudiando, consideramos una realización más (tirar el globo terráqueo y agarrarlo). ¿Cuál es la probabilidad de obtener \\(A\\) (agua)?\n\\[\n\\begin{aligned}\np(\\tilde{y} = 1\\mid y) & = \\int_0^1 \\pi\\ \\vphantom{\\tilde{y}}p(\\pi\\mid y) d \\pi = \\mathbb{E}[{\\pi\\mid y}] \\\\\n& = \\frac{y+a}{y+a+N-y+b} = \\frac{y+a}{N+a+b} \\\\\n\\end{aligned}\n\\]"
   },
   {
     "objectID": "presentaciones/presentacion_02.html#section-55",

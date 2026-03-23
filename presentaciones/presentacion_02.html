@@ -324,11 +324,11 @@ p(u\mid n_A,N) = \color{#00008B}{{N \choose n_A} \left( \frac{u}{10} \right)^{n_
 <section id="intolerancia-al-gluten" class="slide level2 smaller">
 <h2>Intolerancia al gluten</h2>
 <blockquote>
-<p>¿Pueden las personas alérgicas al gluten distinguir harina común de harina sin gluten en un ensayo ciego? En un experimento, de 35 sujetos, 12 identificaron correctamente la harina común y 23 se equivocaron o no supieron decir de qué harina se trataba.</p>
-<p>Incluso si no hubiera alérgicos al gluten en el experimento, esperaríamos encontrar algunas identificaciones correctas… Basándonos en el número de identificaciones correctas, ¿cuántos de los sujetos son alérgicos al gluten y cuántos estaban adivinando?</p>
+<p>¿Pueden las personas intolerantes al gluten distinguir harina común de harina sin gluten en un ensayo ciego? En un experimento, de 35 sujetos, 12 identificaron correctamente la harina común y 23 se equivocaron o no supieron decir de qué harina se trataba.</p>
+<p>Incluso si no hubiera intolerantes al gluten en el experimento, esperaríamos encontrar algunas identificaciones correctas… Basándonos en el número de identificaciones correctas, ¿cuántos de los sujetos son intolerantes al gluten y cuántos estaban adivinando?</p>
 </blockquote>
 <div class="fragment">
-<p>Supongamos que una persona alérgica al gluten tiene una probabilidad de <span class="math inline">\(0.90\)</span> de detectar la harina común mientras que una persona sin alergia detecta harina común con una probabilidad de <span class="math inline">\(0.40\)</span> (y con una probabilidad de <span class="math inline">\(0.6\)</span> se equivoca o no sabe decir).</p>
+<p>Supongamos que una persona intolerantes al gluten tiene una probabilidad de <span class="math inline">\(0.90\)</span> de detectar la harina común mientras que una persona sin alergia detecta harina común con una probabilidad de <span class="math inline">\(0.40\)</span> (y con una probabilidad de <span class="math inline">\(0.6\)</span> se equivoca o no sabe decir).</p>
 </div>
 </section>
 <section id="section-10" class="slide level2 smaller">
@@ -337,9 +337,9 @@ p(u\mid n_A,N) = \color{#00008B}{{N \choose n_A} \left( \frac{u}{10} \right)^{n_
 <div class="fragment">
 <ul>
 <li class="fragment"><span class="math inline">\(N\)</span> a la cantidad total de personas en el ensayo</li>
-<li class="fragment"><span class="math inline">\(N_a\)</span> al número de personas alérgicas al gluten</li>
-<li class="fragment"><span class="math inline">\(\pi_a\)</span> a la probabilidad de que un alérgico identifique correctamente</li>
-<li class="fragment"><span class="math inline">\(\pi_f\)</span> a la probabilidad de que un no alérgico identifique correctamente</li>
+<li class="fragment"><span class="math inline">\(N_a\)</span> al número de personas intolerantes al gluten</li>
+<li class="fragment"><span class="math inline">\(\pi_a\)</span> a la probabilidad de que un intolerante identifique correctamente</li>
+<li class="fragment"><span class="math inline">\(\pi_f\)</span> a la probabilidad de que un no intolerantes identifique correctamente</li>
 <li class="fragment"><span class="math inline">\(n_i\)</span> al número de identificaciones correctas</li>
 </ul>
 </div>
@@ -370,7 +370,7 @@ p(u\mid n_A,N) = \color{#00008B}{{N \choose n_A} \left( \frac{u}{10} \right)^{n_
 </section>
 <section id="section-14" class="slide level2 smaller">
 <h2></h2>
-<p>El número de identificaciones correctas <span class="math inline">\(n_i\)</span> es la suma de las identificaciones correctas entre los <span class="math inline">\(N_a\)</span> alérgicos (<span class="math inline">\(n_{ia}\)</span>) y los <span class="math inline">\(N-N_a\)</span> no alérgicos (<span class="math inline">\(n_{if}\)</span>). ¿Cuántas identificaciones habrá en cada grupo?</p>
+<p>El número de identificaciones correctas <span class="math inline">\(n_i\)</span> es la suma de las identificaciones correctas entre los <span class="math inline">\(N_a\)</span> intolerantes (<span class="math inline">\(n_{ia}\)</span>) y los <span class="math inline">\(N-N_a\)</span> no alérgicos (<span class="math inline">\(n_{if}\)</span>). ¿Cuántas identificaciones habrá en cada grupo?</p>
 <div class="fragment">
 <p><span class="math display">\[n_{ia} \sim Bi(N_a,\pi_a)\]</span> <span class="math display">\[n_{if} \sim Bi(N-N_a,\pi_f)\]</span> <span class="math display">\[n_i = n_{ia} + n_{if}\]</span></p>
 </div>
@@ -500,7 +500,7 @@ p(n_i=12\mid N_a) &amp; = &amp; p(n_{ia}=0\mid N_a)p(n_{if}=12\mid N_a) \\
 <section id="prior" class="slide level2 smaller">
 <h2><em>Prior</em></h2>
 <div class="fragment">
-<p>¿Cómo asignamos una credibilidad <em>a priori</em> para los valores de <span class="math inline">\(\pi_a\)</span>?</p>
+<p>¿Cómo asignamos una credibilidad <em>a priori</em> para los valores de <span class="math inline">\(\pi\)</span>?</p>
 </div>
 <div class="fragment">
 <p>Con una distribución de probabilidad.</p>
@@ -630,7 +630,7 @@ p(\pi\mid y) = \frac{\pi^{(y+a)-1}(1-\pi)^{(N-y+b)-1}}{B(y+a,N-y+b)}
 <h2></h2>
 <p>con <span class="math inline">\(N=11\)</span>, <span class="math inline">\(a=2\)</span> y <span class="math inline">\(b=2\)</span>.</p>
 <p>Al observar <span class="math inline">\(y=7\)</span> resulta</p>
-<p><span class="math display">\[\pi\mid y \sim \text{Beta}(a+y,b+N-y)\]</span> <span class="math display">\[p(\pi\mid y) = \text{Beta}(2+7,2+4)\]</span></p>
+<p><span class="math display">\[\pi\mid y \sim \text{Beta}(a+y,b+N-y)\]</span> <span class="math display">\[\pi\mid y \sim \text{Beta}(2+7,2+4)\]</span></p>
 </section>
 <section id="section-34" class="slide level2">
 <h2></h2>
@@ -649,7 +649,7 @@ p(\pi\mid y) = \frac{\pi^{(y+a)-1}(1-\pi)^{(N-y+b)-1}}{B(y+a,N-y+b)}
 <li class="fragment">…realizamos 60 tiradas y observamos 40 caras?</li>
 <li class="fragment">…realizamos 2 tiradas y observamos 2 caras?</li>
 <li class="fragment">…realizamos 40 tiradas y observamos 40 caras?</li>
-<li class="fragment">…realizamos 4 tiradas y obtenemos 3 caras y luego realizamos 2 tiradas más y observamos 1 caras?</li>
+<li class="fragment">…realizamos 4 tiradas y obtenemos 3 caras y luego realizamos 2 tiradas más y observamos 1 cara?</li>
 </ol>
 </div>
 </section>
@@ -700,15 +700,18 @@ p(\pi\mid y) = \frac{\pi^{(y+a)-1}(1-\pi)^{(N-y+b)-1}}{B(y+a,N-y+b)}
 </section>
 <section id="section-41" class="slide level2 smaller">
 <h2></h2>
-<p>La distribución <em>a priori</em> es <span class="math inline">\(\text{Beta}(a,b)\)</span> y la distribución <em>a posteriori</em> es <span class="math inline">\(\text{Beta}(y+a,N-y+b)\)</span>. La media del es:</p>
+<p>La distribución <em>a priori</em> es <span class="math inline">\(\text{Beta}(a,b)\)</span> y la distribución <em>a posteriori</em> es <span class="math inline">\(\text{Beta}(y+a,N-y+b)\)</span>.</p>
+<div class="fragment">
+<p>La media del es:</p>
 <p><span class="math display">\[
 \begin{aligned}
-\mathbb{E}[{p(\pi\mid y)}] &amp; = \frac{y+a}{a+b+N} \\
+\mathbb{E}[{\pi\mid y}] &amp; = \frac{y+a}{a+b+N} \\
 &amp; = \frac{y}{a+b+N} + \frac{a}{a+b+N} \\
 &amp; = \frac{N}{a+b+N}\frac{y}{N} + \frac{a+b}{a+b+N} \frac{a}{a+b} \\
 &amp; = \frac{N}{a+b+N}\frac{y}{N} + \frac{a+b}{a+b+N} \mathbb{E}{[p(\pi)]}
 \end{aligned}
 \]</span></p>
+</div>
 </section>
 <section id="section-42" class="slide level2">
 <h2></h2>
@@ -742,39 +745,39 @@ p(\pi\mid y) = \frac{\pi^{(y+a)-1}(1-\pi)^{(N-y+b)-1}}{B(y+a,N-y+b)}
 <section id="section-44" class="slide level2">
 <h2></h2>
 
-<img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section>
+<img data-src="presentacion_02_files/figure-revealjs/prior-desconfianza-1.png" width="960" class="r-stretch"></section>
 <section id="section-45" class="slide level2">
 <h2></h2>
 
-<img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
+<img data-src="presentacion_02_files/figure-revealjs/prior3-1.png" width="960" class="r-stretch"></section>
 <section id="section-46" class="slide level2">
 <h2></h2>
 
-<img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
+<img data-src="presentacion_02_files/figure-revealjs/prior4-1.png" width="960" class="r-stretch"></section>
 <section id="section-47" class="slide level2">
 <h2></h2>
 
-<img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
+<img data-src="presentacion_02_files/figure-revealjs/prior5-1.png" width="960" class="r-stretch"></section>
 <section id="section-48" class="slide level2">
 <h2></h2>
 
-<img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
+<img data-src="presentacion_02_files/figure-revealjs/prior6-1.png" width="960" class="r-stretch"></section>
 <section id="section-49" class="slide level2">
 <h2></h2>
 
-<img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
+<img data-src="presentacion_02_files/figure-revealjs/prior7-1.png" width="960" class="r-stretch"></section>
 <section id="section-50" class="slide level2">
 <h2></h2>
 
-<img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
+<img data-src="presentacion_02_files/figure-revealjs/prior8-1.png" width="960" class="r-stretch"></section>
 <section id="section-51" class="slide level2">
 <h2></h2>
 
-<img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
+<img data-src="presentacion_02_files/figure-revealjs/prior9-1.png" width="960" class="r-stretch"></section>
 <section id="section-52" class="slide level2">
 <h2></h2>
 
-<img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
+<img data-src="presentacion_02_files/figure-revealjs/prior10-1.png" width="960" class="r-stretch"></section>
 <section id="predicciones" class="slide level2 smaller">
 <h2>Predicciones</h2>
 <p>Distribución predictiva <em>a posteriori</em> (también distribución posterior predictiva) (en inglés <em>posterior predictive distribution</em>): queremos predecir un valor futuro de la variable de interés, <span class="math inline">\(\tilde{y}\)</span>. Más aún, interesa la distribución de <span class="math inline">\(\tilde{y}\)</span> <em>a posteriori</em>, es decir, luego de observar los datos <span class="math inline">\(y\)</span>: <span class="math inline">\(\tilde{y}\mid y\)</span></p>
@@ -796,7 +799,7 @@ p(\tilde{y}\mid y) = \int p(\tilde{y}\mid\pi) p(\pi\mid y) d\pi
 <p>Para el caso binomial que venimos estudiando, consideramos una realización más (tirar el globo terráqueo y agarrarlo). ¿Cuál es la probabilidad de obtener <span class="math inline">\(A\)</span> (agua)?</p>
 <p><span class="math display">\[
 \begin{aligned}
-p(\tilde{y} = 1\mid y) &amp; = \int_0^1 \pi \vphantom{\tilde{y}}p(\pi\mid x) d \pi = \mathbb{E}[{p(\pi\mid x)}] \\
+p(\tilde{y} = 1\mid y) &amp; = \int_0^1 \pi\ \vphantom{\tilde{y}}p(\pi\mid y) d \pi = \mathbb{E}[{\pi\mid y}] \\
 &amp; = \frac{y+a}{y+a+N-y+b} = \frac{y+a}{N+a+b} \\
 \end{aligned}
 \]</span></p>
@@ -826,7 +829,7 @@ p(\tilde{y} = 1\mid y) &amp; = \int_0^1 \pi \vphantom{\tilde{y}}p(\pi\mid x) d \
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="../utils/imgs/logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
-<p>Estadística Bayesiana – 2025</p>
+<p>Estadística Bayesiana – 2026</p>
 </div>
 </div></div>
 

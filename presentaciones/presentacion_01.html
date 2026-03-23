@@ -278,7 +278,7 @@
 </div>
 </div>
 <div class="fragment">
-<p>Los grados de plausibilidad o grados de creencia que una persona le asigna a un conjunto de eventos deben respetar los axiomas de probabilidad.</p>
+<p>Los grados de plausibilidad o grados de creencia que una persona le asigna a un conjunto de eventos <strong>deben</strong> respetar los axiomas de probabilidad.</p>
 </div>
 <div class="fragment">
 <p>Se puede asignar un valor de probabilidad a cualquier proposición.</p>
@@ -299,23 +299,34 @@
 </section>
 <section id="probabilidad-subjetiva" class="slide level2 smaller">
 <h2>Probabilidad subjetiva</h2>
+<blockquote>
+<p><em>La probabilidad no existe.</em> (De Finetti, 1970)</p>
+</blockquote>
+<div class="fragment">
 <ul>
 <li class="fragment">Es la forma más general de interpretar la probabilidad (eventos no equiprobables y eventos que no pueden repetirse)</li>
 <li class="fragment">Se utiliza para cuantificar la incertidumbre o ignorancia (o certidumbre o conocimiento) acerca de un evento o proposición</li>
 <li class="fragment">Es personal</li>
 <li class="fragment">Depende del estado actual de conocimiento del mundo</li>
 </ul>
+</div>
 <div class="fragment">
 <p>Todos los métodos estadísticos son subjetivos en el sentido que se basan en idealizaciones matemáticas de la realidad (modelos).</p>
 </div>
+</section>
+<section id="section-6" class="slide level2">
+<h2></h2>
+<blockquote>
+<p><em>El razonamiento probabilístico —que siempre debe entenderse como subjetivo— surge meramente de nuestra incertidumbre sobre algo. No importa si la incertidumbre se refiere a un futuro imprevisible, o a un pasado inadvertido… o incluso a algo más o menos conocible pero para lo cual no estamos dispuestos o no podemos hacer el esfuerzo.</em> (De Finetti, 1974)</p>
+</blockquote>
 </section>
 <section id="incertidumbre" class="slide level2">
 <h2>Incertidumbre</h2>
 <p>Distinguimos dos tipos de incertidumbre:</p>
 <div class="fragment">
 <ul>
-<li class="fragment"><strong>Incertidumbre epistémica</strong></li>
-<li class="fragment"><strong>Incertidumbre aleatoria</strong></li>
+<li class="fragment"><strong>Incertidumbre epistémica</strong>: incertidumbre <strong>irreducible</strong>, inherente al sistema que estamos observando.</li>
+<li class="fragment"><strong>Incertidumbre aleatoria</strong>: incertidumbre <strong>reducible</strong> que surge porque nuestro modelo es imperfecto o porque no tenemos datos suficientes.</li>
 </ul>
 </div>
 <div class="fragment">
@@ -347,14 +358,18 @@
 </ul>
 </div>
 </section>
-<section id="section-6" class="slide level2">
+<section id="elicitación-de-probabilidades-1" class="slide level2 smaller">
+<h2>Elicitación de probabilidades</h2>
+<p>Cuando encontramos la cantidad de bolas azules que nos hace indiferentes, esa razón azules/totales <strong>es</strong> nuestra probabilidad subjetiva.</p>
+</section>
+<section id="section-7" class="slide level2">
 <h2></h2>
 <p>Interludio…</p>
 <div class="fragment">
 <p>¿Qué es más probable?</p>
 <ul>
-<li class="fragment">Que el PSG le gane al Lyon</li>
-<li class="fragment">Que el PSG le gane al Lyon y Messi haga un gol</li>
+<li class="fragment">Que el Inter Miami le gane al NYC FC</li>
+<li class="fragment">Que el Inter Miami le gane al NYC FC y Messi haga un gol</li>
 </ul>
 </div>
 </section>
@@ -367,18 +382,18 @@
 <h1>Repaso de probabilidad</h1>
 
 </section>
-<section id="section-7" class="slide level2">
+<section id="section-8" class="slide level2">
 <h2></h2>
 <p>Probabilidad de un evento <span class="math display">\[\mathrm{Pr}(A)\]</span> <span class="math display">\[\mathrm{Pr}(\bar{A}) = 1-\mathrm{Pr}(A)\]</span></p>
 </section>
-<section id="section-8" class="slide level2 smaller">
+<section id="section-9" class="slide level2 smaller">
 <h2></h2>
 <p>Probabilidad de la conjunción:</p>
 <p><span class="math display">\[\mathrm{Pr}(A\wedge B) = \mathrm{Pr}(A,B)\]</span> Si <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> son independientes, entonces</p>
 <p><span class="math display">\[\mathrm{Pr}(A\wedge B) = \mathrm{Pr}(A)\mathrm{Pr}(B)\]</span> Probabilidad de la unión: <span class="math display">\[\mathrm{Pr}(A \vee B) = \mathrm{Pr}(A) + \mathrm{Pr}(B) - \mathrm{Pr}(A,B)\]</span> Donde, si <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> son mutuamente excluyentes,</p>
 <p><span class="math display">\[\mathrm{Pr}(A \vee B) = \mathrm{Pr}(A) + \mathrm{Pr}(B)\]</span></p>
 </section>
-<section id="section-9" class="slide level2">
+<section id="section-10" class="slide level2">
 <h2></h2>
 <p><span class="math display">\[\mathrm{Pr}(B\mid A) = \frac{\mathrm{Pr}(A,B)}{\mathrm{Pr}(A)} \]</span> siempre que <span class="math inline">\(\mathrm{Pr}(A)&gt;0\)</span> (no se puede condicionar a eventos imposibles)</p>
 </section>
@@ -390,7 +405,7 @@
 <li class="fragment">Si <span class="math inline">\(\mathcal{X}\)</span> es cualquier valor en <span class="math inline">\(\mathbb{R}\)</span> entonces <span class="math inline">\(X\)</span> es una variable aleatoria continua</li>
 </ul>
 </section>
-<section id="section-10" class="slide level2">
+<section id="section-11" class="slide level2">
 <h2></h2>
 <p>Para el caso discreto: <span class="math display">\[p(x) = \mathrm{Pr}(X=x) \quad \text{(pmf)}\]</span></p>
 <p>Para el caso continuo: <span class="math display">\[P(x) = \mathrm{Pr}(X\leq x) \quad \text{(cdf)}\]</span> <span class="math display">\[ p(x) = \frac{d}{dx}P(x) \quad \text{(pdf)}\]</span></p>
@@ -408,20 +423,20 @@ X=1 &amp; 0.3 &amp; 0.2 \\
 \end{array}
 \]</span></p>
 </section>
-<section id="section-11" class="slide level2">
+<section id="section-12" class="slide level2">
 <h2></h2>
 <h3 id="distribución-marginal">Distribución marginal</h3>
 <p><span class="math display">\[p(x)=\sum_y p(x,y)\]</span></p>
 <p><span class="math display">\[p(y)=\sum_x p(x,y)\]</span></p>
 <p>Se conoce como <em>marginalizar</em> (en inglés también <em>integrate out</em>)</p>
 </section>
-<section id="section-12" class="slide level2">
+<section id="section-13" class="slide level2">
 <h2></h2>
 <h3 id="caso-continuo">Caso continuo</h3>
 <p><span class="math display">\[p(x,y)\]</span></p>
 
 <img data-src="presentacion_01_files/figure-revealjs/grafico-distribucion2d-1.png" width="960" class="r-stretch"></section>
-<section id="section-13" class="slide level2">
+<section id="section-14" class="slide level2">
 <h2></h2>
 <h3 id="distribución-marginal-1">Distribución marginal</h3>
 <p><span class="math display">\[p(x)=\int p(x,y) dy\]</span></p>
@@ -455,7 +470,7 @@ X=1 &amp; 0.3 &amp; 0.2 \\
 </section>
 <section id="regla-de-la-probabilidad-total" class="slide level2">
 <h2>Regla de la probabilidad total</h2>
-<p><span class="math display">\[p(x) = \int p(x\mid y) p(y) dy\]</span> <span class="math display">\[p(y) = \int p(y\mid x) p(x) dy\]</span></p>
+<p><span class="math display">\[p(x) = \int p(x\mid y) p(y) dy\]</span> <span class="math display">\[p(y) = \int p(y\mid x) p(x) dx\]</span></p>
 <div class="fragment">
 <p>La probabilidad marginal de <span class="math inline">\(x\)</span> (una función de <span class="math inline">\(x\)</span>) se obtiene ponderando todos los posibles <span class="math inline">\(p(x\mid y)\)</span> (una función de <span class="math inline">\(x\)</span> para cada valor de <span class="math inline">\(y\)</span>) según la probabilidad de <span class="math inline">\(p(y)\)</span>. Y viceversa.</p>
 </div>
@@ -488,7 +503,7 @@ X=1 &amp; 0.3 &amp; 0.2 \\
 </div>
 </div></div>
 </section>
-<section id="section-14" class="slide level2">
+<section id="section-15" class="slide level2">
 <h2></h2>
 <blockquote>
 <p><em>Bayes’s rule is a mistake, perhaps the only mistake to which the mathematical world has so deeply committed itself</em> (Fisher, ~1920)</p>
@@ -507,7 +522,7 @@ X=1 &amp; 0.3 &amp; 0.2 \\
 <h2>Ejemplo 1</h2>
 <p>Nos encontramos con alguien en la calle y nos dice que tiene dos hijos. Le preguntamos si alguno de ellos es mujer y nos responde que sí. ¿Cuál es la probabilidad de que tenga dos niñas?</p>
 </section>
-<section id="section-15" class="slide level2">
+<section id="section-16" class="slide level2">
 <h2></h2>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
@@ -534,14 +549,14 @@ X=1 &amp; 0.3 &amp; 0.2 \\
 <p>¿Cuál es la probabilidad de que el taxi haya sido azul, de acuerdo a la declaración del testigo?</p>
 </div>
 </section>
-<section id="section-16" class="slide level2">
+<section id="section-17" class="slide level2">
 <h2></h2>
 <p><span class="math display">\[p(A\mid T_A) = \frac{p(T_A\mid A) p(A)}{p(T_A)}\]</span></p>
 <div class="fragment">
 <p><span class="math display">\[p(A\mid T_A) = \frac{p(T_A\mid A) p(A)}{p(T_A\mid A)p(A) + p(T_A\mid V)p(V)}\]</span></p>
 </div>
 <div class="fragment">
-<p><span class="math display">\[P(A\mid T_A) = \frac{0.80\cdot 0.15}{0.80\cdot 0.15 + 0.2\cdot 0.85}\]</span></p>
+<p><span class="math display">\[p(A\mid T_A) = \frac{0.80\cdot 0.15}{0.80\cdot 0.15 + 0.2\cdot 0.85}\]</span></p>
 <p><span class="math display">\[p(A\mid T_A) = 0.414\]</span></p>
 </div>
 </section>
@@ -553,20 +568,20 @@ X=1 &amp; 0.3 &amp; 0.2 \\
 <li class="fragment">Si la hipótesis alternativa es muy rara (digamos <span class="math inline">\(10\%\)</span>), ¿cuál es la probabilidad de que <span class="math inline">\(H_1\)</span> sea cierta luego de observar un resultado estadísticamente significativo?</li>
 </ul>
 </section>
-<section id="section-17" class="slide level2 smaller">
+<section id="section-18" class="slide level2 smaller">
 <h2></h2>
 
 <img data-src="imgs/testhipotesis.png" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="section-18" class="slide level2 smaller">
+<section id="section-19" class="slide level2 smaller">
 <h2></h2>
 <p><span class="math display">\[p(H_1 \mid \text{rechazo }H_0) = \frac{p(\text{rechazo }H_0 \mid H_1)p(H_1)}{p(\text{rechazo }H_0)}\]</span></p>
 <div class="fragment">
 <p>Si en el denominador enumeramos exhaustivamente las formas de rechazar <span class="math inline">\(H_0\)</span>:</p>
 </div>
 <div class="fragment">
-<p><span class="math display">\[p(H_1 \mid \text{rechazo }H_0) = \frac{(1-\beta)p(H_1)}{\alpha p(H_0) + (1-\beta) p(H_1)}\]</span></p>
-<p>Para el primer caso: <span class="math inline">\(p(H_1 \mid \text{rechazo }H_0) = \frac{{0.80}\ {0.50}}{{0.05}\ {0.50} + {0.80}\ {0.50}} = {0.94}\)</span></p>
-<p>Para el segundo caso: <span class="math inline">\(p(H_1 \mid \text{rechazo }H_0) = \frac{{0.80}\ {0.10}}{{0.05}\ {0.90} + {0.80}\ {0.10}} = {0.64}\)</span></p>
+<p><span class="math display">\[p(H_1 \mid \text{rechazo }H_0) = \frac{(1-\beta)p(H_1)}{\alpha p(H_0) + (1-\beta) p(H_1)}\]</span> . . .</p>
+<p>Para el primer caso: <span class="math inline">\(p(H_1 \mid \text{rechazo }H_0) = \frac{{0.80}\cdot {0.50}}{{0.05}\cdot {0.50} + {0.80}\cdot {0.50}} = {0.94}\)</span></p>
+<p>Para el segundo caso: <span class="math inline">\(p(H_1 \mid \text{rechazo }H_0) = \frac{{0.80}\cdot {0.10}}{{0.05}\cdot {0.90} + {0.80}\cdot {0.10}} = {0.64}\)</span></p>
 </div>
 </section></section>
 <section>
@@ -580,7 +595,7 @@ X=1 &amp; 0.3 &amp; 0.2 \\
 <p>Se cuenta con 11 urnas etiquetadas según <span class="math inline">\(u = 0,1,\dots,10\)</span>, que contienen diez bolas cada una. La urna <span class="math inline">\(u\)</span> contiene <span class="math inline">\(u\)</span> bolas azules y <span class="math inline">\(10-u\)</span> bolas blancas. Fede elige una urna <span class="math inline">\(u\)</span> al azar y extrae con reposición <span class="math inline">\(N\)</span> bolas, obteniendo <span class="math inline">\(n_A\)</span> azules y <span class="math inline">\(N-n_A\)</span> blancas. Nico, el amigo de Fede, observa atentamente. Si después de <span class="math inline">\(N=10\)</span> extracciones resulta <span class="math inline">\(n_A = 3\)</span>, ¿cuál es la probabilidad de que la urna que Fede está usando sea la <span class="math inline">\(u\)</span>?</p>
 </blockquote>
 </section>
-<section id="section-19" class="slide level2">
+<section id="section-20" class="slide level2">
 <h2></h2>
 <p>La teoría de las probabilidades permite predecir una distribución sobre posibles valores de un resultado dado cierto conocimiento (o estado) del universo: <strong>probabilidad hacia adelante</strong></p>
 <div class="fragment">
@@ -597,7 +612,7 @@ X=1 &amp; 0.3 &amp; 0.2 \\
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="../utils/imgs/logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
-<p>Estadística Bayesiana – 2025</p>
+<p>Estadística Bayesiana – 2026</p>
 </div>
 </div></div>
 
