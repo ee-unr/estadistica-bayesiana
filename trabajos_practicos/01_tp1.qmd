@@ -120,7 +120,7 @@ N2 <- 50
 s1 <- rbeta(N1,2,5)
 s2 <- rbeta(N2,4,2)
 y_true <- rbinom((N1+N2), rep(1,N1+N2), c(s1,s2))
-data <- tibble(G = c(rep("Albatros",N1),rep("Búhos",N2)),
+data <- data.frame(G = c(rep("Albatros",N1),rep("Búhos",N2)),
                Score = c(s1,s2)*100,
                Y = y_true)
 ```
