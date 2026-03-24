@@ -10,9 +10,7 @@ practica: "TP1 2026 (WIP)"
 is_html <- knitr::is_html_output()
 options("knitr.graphics.error" = FALSE)
 captions <- list()
-captions[["apuesta"]] <- "Tanto los casinos virtuales como las apuestas deportivas se han vuelto más populares en los últimos años"
-captions[["aleatorizada"]] <- "En la técnica de respuesta aleatorizada, se introduce una cuota de
- azar al momento de que el encuestado responda"
+captions[["disturbios"]] <- "Imagen del último clásico entre los Albatros y los Búhos"
 ```
 
 ## Introducción
@@ -24,7 +22,7 @@ Luego de incidentes aislados y mucha presión mediática, el Ministerio de Convi
 implementó un sistema de IA llamado Centinela Delta para gestionar el derecho de admisión en los estadios:
 el Templo de la Almeja (localía de los Albatros) y el Fortín de la Bruma (localía de los Búhos).
 
-Para cada persona que intenta ingresar, Centinela Delta asigna un Score de Riesgo $S\in(0,100)$ y se instruyó
+Para cada persona que intenta ingresar, Centinela Delta asigna un score de riesgo $S\in(0,100)$ y se instruyó
 a la policía y al gobierno que consideren que $S$ es la probabilidad estimada de que la persona cometa
 un incidente en la cancha.
 
@@ -37,19 +35,19 @@ La regla de decisión es simple:
 #| echo: false
 #| out-width: 70%
 #| fig-align: center
-#| fig-cap: !expr captions[["apuesta"]]
-if (is_html) knitr::include_graphics(file.path("imgs", "apuesta.png"))
+#| fig-cap: !expr captions[["disturbios"]]
+if (is_html) knitr::include_graphics(file.path("imgs", "disturbios.png"))
 ```
 
-La empresa proveedora, NebulaGuard Analytics, sostiene que su score está perfectamente calibrado:
+La empresa proveedora, NebulaGuard Analytics, sostiene que su _score_ está perfectamente calibrado:
 "un _score_ del 80% es una probabilidad del 80%, sin importar el color de la camiseta".
 
 Tras unos meses del sistema funcionando, la ONG Gradas en Paz presenta una denuncia ante
 la Defensoría del Pueblo. Su argumento es:
 
 > “Históricamente hubo mayor vigilancia y controles alrededor del Fortín de la Bruma. 
-Eso hizo que, incluso entre gente pacífica, los hinchas de Lobos tengan más registros, 
-más ‘señales’ y más fricción con el sistema."
+Eso hizo que, incluso entre gente pacífica, los hinchas de Búhos tengan más registros 
+y más fricción con el sistema."
 
 La denuncia es contra el sistema, en términos estadísticos
 
@@ -57,100 +55,88 @@ La denuncia es contra el sistema, en términos estadísticos
 los pacíficos del Albatros."
 
 Nos pondremos en el rol de consultores de ciencia de datos contratados por la Defensoría del Pueblo para
-auditar el sistema. Nos entregan un dataset anonimizado de la temporada anterior para realizar el análisis.
+auditar el sistema. Nos entregan un dataset anonimizado de la temporada anterior para realizar el análisis (`datos/tp1_hinchas.csv`).
+
+El dataset corresponde a una auditoría retrospectiva: al finalizar la temporada, la Defensoría solicitó
+un cruce entre los registros de ingreso (score $S$ y decisión $\hat{Y}$) y los registros oficiales de incidentes
+y sanciones. De ese cruce se construyó la variable $Y$, que indica si el intento de ingreso quedó asociado 
+posteriormente auna participación en incidentes según la definición operativa del estudio.
 
 Los objetivos son:
 
-- Estimar con estadística Bayesiana si hay evidencia de disparidad en los errores (más allá del ruido).
+- Estimar con estadística Bayesiana si hay evidencia de disparidad en los errores.
 - Explicar el resultado en términos comprensibles para un organismo público.
 - Conectar el resultado con el “trade-off” de fairness: calibración vs igualdad de tasas de error.
 - Estudiar mediante simulación la posibilidad de generar un sistema más justo.
- 
-```{r}
-#| echo: false
-#| out-width: 70%
-#| fig-align: center
-#| fig-cap: !expr captions[["aleatorizada"]]
-if (is_html) knitr::include_graphics(file.path("imgs", "aleatorizada.png"))
-```
 
 
 ## Actividades
 
-### Entrada en calor
+### Primera parte
 
-Para todo lo que sigue, tenga en consideración lo siguiente:
+1. ¿Cuál es la prevalencia de hinchas violentos en cada equipo?
+2. ¿Qué sesgos puede presentar el conjunto de datos retrospectivo entregado?
+3. Verifique que los _scores_ de Centinela Delta están calibrados. Para ello, realice un _calibration plot_,
+un gráfico que  agrupa los puntajes de riesgo ($S$) en intervalos (digamos 10) para comparar la probabilidad predicha por
+el algoritmo (eje x) contra la proporción de casos que resultaron realmente violentos (eje y).
+4. Consideremos un umbral $T=50$, ¿Cuál es la _accuracy_ del modelo?
+5. Con $T=50$, para cada grupo, calcule el número de falsos negativos, verdaderos negativos, falsos
+positivos y verdaderos positivos.
 
-- Se toma una muestra al azar con reemplazo de tamaño $n=100$ de una población de tamaño $N=1000$.
-- Para nuestros estudios comparativos, supondremos que el porcentaje de alumnos que apuesta
-(lo que se quisiera estimar) es 40%.
-- Cuando se les pregunta directamente si han hecho alguna vez apuestas, los estudiantes que sí han
-apostado alguna vez mienten con probabilidad $\mu$.
-- Si se utilizan técnicas de respuesta aleatorizada, los estudiantes no mienten.
+Consideremos que la tasa de falsos positivos de cada grupo ($FPR_g$) es un parámetro desconocido sobre el que queremos hacer inferencia
 
-Comenzaremos realizando un estudio de simulación para estudiar el efecto de la mentira en las
-estimaciones. En esta primera aproximación, consideraremos que se realiza la pregunta directa.
+6. ¿Qué representa la tasa de falsos positivos?
+7. ¿Qué supuestos son necesarios para modelar el número de falsos positivos como una variable binomial?  
+8. ¿Cuál es un _prior_ razonable para el $FPR$ de cada grupo? Escriba el modelo bayesiano y encuentre la distribución _a posteriori_ de $FPR_g$ 
+9. Halle la distribución _a posteriori_ de la diferencia entre $FPR_B$ y $FPR_A$ ¿Cuál es la probabilidad de que $FPR_B > FPR_A$? 
+¿Qué puede concluirse en relación a la denuncia de la ONG Gradas en Paz?
 
-1. Proponga un modelo bayesiano que, a partir de encuestar a $n$ estudiantes, permita estimar $\pi_a$.
-Explique la elección de la función de verosimilitud y el _prior_ e indique cómo se obtiene el _posterior_.
-2. Utilizando R, simule la obtención de una muestra para el caso en que los estudiantes no mienten y
-para el caso en que los estudiantes mienten con tres niveles de mentira $\mu$ bajo, medio y alto.
-Compare los resultados de la inferencia.
-3. Realice ahora 1000 simulaciones y compare los resultados de las inferencias.
+NebulaGuard sostiene que su algoritmo es _justo_ porque la interpretación del _score_ es independiente del equipo: un score de 80 se interpreta como
+una probabilidad del 80% de ser violento, independientemente de si se trata de un hincha de Albatros o de Búhos. La ONG Gradas en Paz sostiene que el
+algoritmo es injusto porque, entre los hinchas pacíficos, a los de Búhos se les prohíbe la entrada con mayor frecuencia que a los de Albatros: si sos inocente, 
+tu probabilidad de ser rechazado no debería depender de tu camiseta.
 
-Considere ahora el caso del método propuesto por Warner:
+Para satisfacer el criterio de la ONG, una opción es utilizar un umbral $T_g$ diferente para cada grupo. 
 
-4. Según este método, ¿cuál es la probabilidad (llamémosla $\lambda_W$) de que un estudiante
-responda afirmativamente? ¿cuál es la probabilidad de que un estudiante responda por la contraria?
-5. A partir de lo anterior, proponga un modelo razonable sobre cómo se generan los datos.
-6. Considere un _prior_ uniforme y halle el _posterior_ exacto.
+10. Construya una grilla de valores de $T_A$ y $T_B$ y compute, para cada combinación, la probabilidad de que la diferencia entre las tasas de falsos positivos
+sea menor al 5%. ¿Cuáles son los valores de $T_A$ y $T_B$ que _igualan_ $FPR_A$ y $FPR_B$.
+11. ¿Considera que esta modificación del mecanismo de decisión es _justa_?
 
-::: {.callout-tip}
-## Ayuda
+En lugar de utilizar un umbral diferente para cada grupo, pueden transformarse los _scores_ de cada grupo, utilizando una función lineal por tramos. Esta función
+debe satisfacer $f_g(0) = 0$, $f_g(100) = 100$ y $f_g(T_g) = 50$.
 
-Escriba el _posterior_ dejando la constante de normalización expresada como $Z$. Es decir,
-escriba
-$$
-p(\pi_a | y) = \frac{N(\pi_a)}{Z}
-$$
+12. Construya las funciones $f_A$ y $f_B$, convierta los _scores_ y compare las distribuciones _a posteriori_ de $FPR_A$ y $FPR_B$.
+13. Para los _scores_ transformados, realice nuevamente el _calibration plot_ y construya también un _calibration plot_ por grupo.
 
-Naturalmente, $Z$ es una integral. Muestre que el resultado de esa integral es:
-$$
-Z = \frac{B(1 - p; y + 1, n - y + 1) - B(p; y + 1, n - y + 1)}{1 - 2p}
-$$
-donde $B(x; a, b) = \int_0^x t^{a - 1} (1 - t)^{b - 1} dt$ es la función beta incompleta,
-$p$ es la probabilidad con la que se le pregunta si apuesta e $y$ es la cantidad de personas que responden afirmativamente.
+### Segunda parte
 
-Para resolver la integral de $Z$, utilice el método de sustitución y hágalo en términos de $\lambda_W$.
-No es tan terrible como parece.
-:::
+Realizaremos ahora un estudio por simulación para observar el comportamiento de las métricas analizadas y las decisiones tomadas.
 
-7. Grafique el _posterior_ para diferentes valores de $p$ y concluya. Si quiere evaluar
-el comportamiento a través de múltiples muestras, puede hacerlo replicando el 
-proceso generador de los datos que planteó en el ítem 5 (no hace falta obtener la muestra aleatoria simple cada vez).
-8. ¿Qué pasaría si el porcentaje de alumnos que apuesta fuera diferente al $40\%$?
-Analice los resultados en función de diferentes niveles de $p$ y $\pi_a$.
-9. Escriba una función de R que le permita realizar la inferencia (en forma aproximada) con un
-_prior_ beta no necesariamente uniforme. Para eso, utilice una grilla de valores de $\pi_a$
+Una forma de simular _scores_ calibrados con diferentes prevalencias por grupo es la siguiente:
 
-Para el método propuesto por Greenberg:
+```{r}
+N1 <- 50
+N2 <- 50
+s1 <- rbeta(N1,2,5)
+s2 <- rbeta(N2,4,2)
+y_true <- rbinom((N1+N2), rep(1,N1+N2), c(s1,s2))
+data <- tibble(G = c(rep("Albatros",N1),rep("Búhos",N2)),
+               Score = c(s1,s2)*100,
+               Y = y_true)
+```
 
-10. ¿Cuál es la probabilidad $\lambda_G$ de que un estudiante responda que sí?
-¿y de que responda que no?
-11. Escriba una función de R que le permita realizar la inferencia (en forma aproximada) con un
-_prior_ beta no necesariamente uniforme.
+14. ¿Por qué los _scores_ `s1` y `s2` resultan calibrados?
 
-Para terminar, es hora de comparar todos los escenarios.
+Repita $N=1000$ veces el proceso de generar un conjunto de datos.
 
-12. Utilizando R, simule la obtención de una muestra para el caso en que los estudiantes no mienten,
-mienten con tres niveles de mentira $\mu$ (bajo, medio y alto), se utiliza el método de Werner ($p = 0.3$) y se
-utiliza el método de Greenberg. Compare los resultados de las inferencias en cada caso.
-13. Realice ahora 1000 simulaciones y analice los resultados.
+15. Construya un _calibration plot_ global y uno por grupo que incluya barras de error de acuerdo a las simulaciones
+16. Realice un gráfico que permita comparar las distribuciones _a posteriori_ $FPR_A$ y $FPR_B$ a lo largo de las simulaciones
+17. Para los valores de $T_A$ y $T_B$ que encontró para iguar los $FPR_g$, compare las distribuciones _a posteriori_ de $FPR_A$ y $FPR_B$
+18. Con las funciones $f_A$ y $f_B$, ajuste los _scores_ y repita el punto 15.
+19. A partir del análisis realizado, reflexione: ¿el sistema Centinela Delta es _injusto_? ¿Qué opciones existen para mitigar la disparidad? 
+¿Qué se gana o se pierde?
 
 
-<!--
-Algunas fuentes:
-https://www.conicet.gov.ar/apuestas-online-en-la-adolescencia-y-juventud-una-mirada-desde-lo-biologico-y-lo-social/
-https://www.clarin.com/sociedad/nuevo-informe-apuestas-online-afecta-4-10-jovenes-pais-alertan-graves-consecuencias_0_X81rrMQMoH.html?srsltid=AfmBOooKGSu0al0XwGV8oIFnbptb7s64b2KXjCV5vgLquI8FmHxR1yd8
-https://ugc.production.linktr.ee/cd2596a8-1dce-4f38-b151-a217d61227f1_informe-resultados-apostar-no-es-un-juego-2024-final-IMPRENTA-v2.pdf
--->
+
+
+
