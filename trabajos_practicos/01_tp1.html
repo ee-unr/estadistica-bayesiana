@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -232,7 +267,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
 <p>La ciudad costera de Puerto Bruma vive su temporada de fútbol con estadios llenos y un clásico que paraliza todo: los Albatros del Muelle contra los Búhos de la Ribera.</p>
 <p>Luego de incidentes aislados y mucha presión mediática, el Ministerio de Convivencia Pública implementó un sistema de IA llamado Centinela Delta para gestionar el derecho de admisión en los estadios: el Templo de la Almeja (localía de los Albatros) y el Fortín de la Bruma (localía de los Búhos).</p>
-<p>Para cada persona que intenta ingresar, Centinela Delta asigna un Score de Riesgo <span class="math inline">\(S\in(0,100)\)</span> y se instruyó a la policía y al gobierno que consideren que <span class="math inline">\(S\)</span> es la probabilidad estimada de que la persona cometa un incidente en la cancha.</p>
+<p>Para cada persona que intenta ingresar, Centinela Delta asigna un score de riesgo <span class="math inline">\(S\in(0,100)\)</span> y se instruyó a la policía y al gobierno que consideren que <span class="math inline">\(S\)</span> es la probabilidad estimada de que la persona cometa un incidente en la cancha.</p>
 <p>La regla de decisión es simple:</p>
 <ul>
 <li>Si <span class="math inline">\(S&gt;T\)</span> (umbral fijo <span class="math inline">\(T\)</span>), se prohíbe el acceso del simpatizante, es decir, predicción: “violento”</li>
@@ -242,103 +277,87 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/apuesta.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>Tanto los casinos virtuales como las apuestas deportivas se han vuelto más populares en los últimos años</figcaption>
+<p><img src="imgs/disturbios.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Imagen del último clásico entre los Albatros y los Búhos</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>La empresa proveedora, NebulaGuard Analytics, sostiene que su score está perfectamente calibrado: “un <em>score</em> del 80% es una probabilidad del 80%, sin importar el color de la camiseta”.</p>
+<p>La empresa proveedora, NebulaGuard Analytics, sostiene que su <em>score</em> está perfectamente calibrado: “un <em>score</em> del 80% es una probabilidad del 80%, sin importar el color de la camiseta”.</p>
 <p>Tras unos meses del sistema funcionando, la ONG Gradas en Paz presenta una denuncia ante la Defensoría del Pueblo. Su argumento es:</p>
 <blockquote class="blockquote">
-<p>“Históricamente hubo mayor vigilancia y controles alrededor del Fortín de la Bruma. Eso hizo que, incluso entre gente pacífica, los hinchas de Lobos tengan más registros, más ‘señales’ y más fricción con el sistema.”</p>
+<p>“Históricamente hubo mayor vigilancia y controles alrededor del Fortín de la Bruma. Eso hizo que, incluso entre gente pacífica, los hinchas de Búhos tengan más registros y más fricción con el sistema.”</p>
 </blockquote>
 <p>La denuncia es contra el sistema, en términos estadísticos</p>
 <blockquote class="blockquote">
 <p>“A los hinchas pacíficos (inocentes) de los Búhos les prohíben entrar más seguido que a los pacíficos del Albatros.”</p>
 </blockquote>
-<p>Nos pondremos en el rol de consultores de ciencia de datos contratados por la Defensoría del Pueblo para auditar el sistema. Nos entregan un dataset anonimizado de la temporada anterior para realizar el análisis.</p>
+<p>Nos pondremos en el rol de consultores de ciencia de datos contratados por la Defensoría del Pueblo para auditar el sistema. Nos entregan un dataset anonimizado de la temporada anterior para realizar el análisis (<code>datos/tp1_hinchas.csv</code>).</p>
+<p>El dataset corresponde a una auditoría retrospectiva: al finalizar la temporada, la Defensoría solicitó un cruce entre los registros de ingreso (score <span class="math inline">\(S\)</span> y decisión <span class="math inline">\(\hat{Y}\)</span>) y los registros oficiales de incidentes y sanciones. De ese cruce se construyó la variable <span class="math inline">\(Y\)</span>, que indica si el intento de ingreso quedó asociado posteriormente auna participación en incidentes según la definición operativa del estudio.</p>
 <p>Los objetivos son:</p>
 <ul>
-<li>Estimar con estadística Bayesiana si hay evidencia de disparidad en los errores (más allá del ruido).</li>
+<li>Estimar con estadística Bayesiana si hay evidencia de disparidad en los errores.</li>
 <li>Explicar el resultado en términos comprensibles para un organismo público.</li>
 <li>Conectar el resultado con el “trade-off” de fairness: calibración vs igualdad de tasas de error.</li>
 <li>Estudiar mediante simulación la posibilidad de generar un sistema más justo.</li>
 </ul>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="imgs/aleatorizada.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>En la técnica de respuesta aleatorizada, se introduce una cuota de azar al momento de que el encuestado responda</figcaption>
-</figure>
-</div>
-</div>
-</div>
 </section>
 <section id="actividades" class="level2">
 <h2 class="anchored" data-anchor-id="actividades">Actividades</h2>
-<section id="entrada-en-calor" class="level3">
-<h3 class="anchored" data-anchor-id="entrada-en-calor">Entrada en calor</h3>
-<p>Para todo lo que sigue, tenga en consideración lo siguiente:</p>
-<ul>
-<li>Se toma una muestra al azar con reemplazo de tamaño <span class="math inline">\(n=100\)</span> de una población de tamaño <span class="math inline">\(N=1000\)</span>.</li>
-<li>Para nuestros estudios comparativos, supondremos que el porcentaje de alumnos que apuesta (lo que se quisiera estimar) es 40%.</li>
-<li>Cuando se les pregunta directamente si han hecho alguna vez apuestas, los estudiantes que sí han apostado alguna vez mienten con probabilidad <span class="math inline">\(\mu\)</span>.</li>
-<li>Si se utilizan técnicas de respuesta aleatorizada, los estudiantes no mienten.</li>
-</ul>
-<p>Comenzaremos realizando un estudio de simulación para estudiar el efecto de la mentira en las estimaciones. En esta primera aproximación, consideraremos que se realiza la pregunta directa.</p>
+<section id="primera-parte" class="level3">
+<h3 class="anchored" data-anchor-id="primera-parte">Primera parte</h3>
 <ol type="1">
-<li>Proponga un modelo bayesiano que, a partir de encuestar a <span class="math inline">\(n\)</span> estudiantes, permita estimar <span class="math inline">\(\pi_a\)</span>. Explique la elección de la función de verosimilitud y el <em>prior</em> e indique cómo se obtiene el <em>posterior</em>.</li>
-<li>Utilizando R, simule la obtención de una muestra para el caso en que los estudiantes no mienten y para el caso en que los estudiantes mienten con tres niveles de mentira <span class="math inline">\(\mu\)</span> bajo, medio y alto. Compare los resultados de la inferencia.</li>
-<li>Realice ahora 1000 simulaciones y compare los resultados de las inferencias.</li>
+<li>¿Cuál es la prevalencia de hinchas violentos en cada equipo?</li>
+<li>¿Qué sesgos puede presentar el conjunto de datos retrospectivo entregado?</li>
+<li>Verifique que los <em>scores</em> de Centinela Delta están calibrados. Para ello, realice un <em>calibration plot</em>, un gráfico que agrupa los puntajes de riesgo (<span class="math inline">\(S\)</span>) en intervalos (digamos 10) para comparar la probabilidad predicha por el algoritmo (eje x) contra la proporción de casos que resultaron realmente violentos (eje y).</li>
+<li>Consideremos un umbral <span class="math inline">\(T=50\)</span>, ¿Cuál es la <em>accuracy</em> del modelo?</li>
+<li>Con <span class="math inline">\(T=50\)</span>, para cada grupo, calcule el número de falsos negativos, verdaderos negativos, falsos positivos y verdaderos positivos.</li>
 </ol>
-<p>Considere ahora el caso del método propuesto por Warner:</p>
-<ol start="4" type="1">
-<li>Según este método, ¿cuál es la probabilidad (llamémosla <span class="math inline">\(\lambda_W\)</span>) de que un estudiante responda afirmativamente? ¿cuál es la probabilidad de que un estudiante responda por la contraria?</li>
-<li>A partir de lo anterior, proponga un modelo razonable sobre cómo se generan los datos.</li>
-<li>Considere un <em>prior</em> uniforme y halle el <em>posterior</em> exacto.</li>
+<p>Consideremos que la tasa de falsos positivos de cada grupo (<span class="math inline">\(FPR_g\)</span>) es un parámetro desconocido sobre el que queremos hacer inferencia</p>
+<ol start="6" type="1">
+<li>¿Qué representa la tasa de falsos positivos?</li>
+<li>¿Qué supuestos son necesarios para modelar el número de falsos positivos como una variable binomial?<br>
+</li>
+<li>¿Cuál es un <em>prior</em> razonable para el <span class="math inline">\(FPR\)</span> de cada grupo? Escriba el modelo bayesiano y encuentre la distribución <em>a posteriori</em> de <span class="math inline">\(FPR_g\)</span></li>
+<li>Halle la distribución <em>a posteriori</em> de la diferencia entre <span class="math inline">\(FPR_B\)</span> y <span class="math inline">\(FPR_A\)</span> ¿Cuál es la probabilidad de que <span class="math inline">\(FPR_B &gt; FPR_A\)</span>? ¿Qué puede concluirse en relación a la denuncia de la ONG Gradas en Paz?</li>
 </ol>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Ayuda
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Escriba el <em>posterior</em> dejando la constante de normalización expresada como <span class="math inline">\(Z\)</span>. Es decir, escriba <span class="math display">\[
-p(\pi_a | y) = \frac{N(\pi_a)}{Z}
-\]</span></p>
-<p>Naturalmente, <span class="math inline">\(Z\)</span> es una integral. Muestre que el resultado de esa integral es: <span class="math display">\[
-Z = \frac{B(1 - p; y + 1, n - y + 1) - B(p; y + 1, n - y + 1)}{1 - 2p}
-\]</span> donde <span class="math inline">\(B(x; a, b) = \int_0^x t^{a - 1} (1 - t)^{b - 1} dt\)</span> es la función beta incompleta, <span class="math inline">\(p\)</span> es la probabilidad con la que se le pregunta si apuesta e <span class="math inline">\(y\)</span> es la cantidad de personas que responden afirmativamente.</p>
-<p>Para resolver la integral de <span class="math inline">\(Z\)</span>, utilice el método de sustitución y hágalo en términos de <span class="math inline">\(\lambda_W\)</span>. No es tan terrible como parece.</p>
-</div>
-</div>
-<ol start="7" type="1">
-<li>Grafique el <em>posterior</em> para diferentes valores de <span class="math inline">\(p\)</span> y concluya. Si quiere evaluar el comportamiento a través de múltiples muestras, puede hacerlo replicando el proceso generador de los datos que planteó en el ítem 5 (no hace falta obtener la muestra aleatoria simple cada vez).</li>
-<li>¿Qué pasaría si el porcentaje de alumnos que apuesta fuera diferente al <span class="math inline">\(40\%\)</span>? Analice los resultados en función de diferentes niveles de <span class="math inline">\(p\)</span> y <span class="math inline">\(\pi_a\)</span>.</li>
-<li>Escriba una función de R que le permita realizar la inferencia (en forma aproximada) con un <em>prior</em> beta no necesariamente uniforme. Para eso, utilice una grilla de valores de <span class="math inline">\(\pi_a\)</span></li>
-</ol>
-<p>Para el método propuesto por Greenberg:</p>
+<p>NebulaGuard sostiene que su algoritmo es <em>justo</em> porque la interpretación del <em>score</em> es independiente del equipo: un score de 80 se interpreta como una probabilidad del 80% de ser violento, independientemente de si se trata de un hincha de Albatros o de Búhos. La ONG Gradas en Paz sostiene que el algoritmo es injusto porque, entre los hinchas pacíficos, a los de Búhos se les prohíbe la entrada con mayor frecuencia que a los de Albatros: si sos inocente, tu probabilidad de ser rechazado no debería depender de tu camiseta.</p>
+<p>Para satisfacer el criterio de la ONG, una opción es utilizar un umbral <span class="math inline">\(T_g\)</span> diferente para cada grupo.</p>
 <ol start="10" type="1">
-<li>¿Cuál es la probabilidad <span class="math inline">\(\lambda_G\)</span> de que un estudiante responda que sí? ¿y de que responda que no?</li>
-<li>Escriba una función de R que le permita realizar la inferencia (en forma aproximada) con un <em>prior</em> beta no necesariamente uniforme.</li>
+<li>Construya una grilla de valores de <span class="math inline">\(T_A\)</span> y <span class="math inline">\(T_B\)</span> y compute, para cada combinación, la probabilidad de que la diferencia entre las tasas de falsos positivos sea menor al 5%. ¿Cuáles son los valores de <span class="math inline">\(T_A\)</span> y <span class="math inline">\(T_B\)</span> que <em>igualan</em> <span class="math inline">\(FPR_A\)</span> y <span class="math inline">\(FPR_B\)</span>.</li>
+<li>¿Considera que esta modificación del mecanismo de decisión es <em>justa</em>?</li>
 </ol>
-<p>Para terminar, es hora de comparar todos los escenarios.</p>
+<p>En lugar de utilizar un umbral diferente para cada grupo, pueden transformarse los <em>scores</em> de cada grupo, utilizando una función lineal por tramos. Esta función debe satisfacer <span class="math inline">\(f_g(0) = 0\)</span>, <span class="math inline">\(f_g(100) = 100\)</span> y <span class="math inline">\(f_g(T_g) = 50\)</span>.</p>
 <ol start="12" type="1">
-<li>Utilizando R, simule la obtención de una muestra para el caso en que los estudiantes no mienten, mienten con tres niveles de mentira <span class="math inline">\(\mu\)</span> (bajo, medio y alto), se utiliza el método de Werner (<span class="math inline">\(p = 0.3\)</span>) y se utiliza el método de Greenberg. Compare los resultados de las inferencias en cada caso.</li>
-<li>Realice ahora 1000 simulaciones y analice los resultados.</li>
+<li>Construya las funciones <span class="math inline">\(f_A\)</span> y <span class="math inline">\(f_B\)</span>, convierta los <em>scores</em> y compare las distribuciones <em>a posteriori</em> de <span class="math inline">\(FPR_A\)</span> y <span class="math inline">\(FPR_B\)</span>.</li>
+<li>Para los <em>scores</em> transformados, realice nuevamente el <em>calibration plot</em> y construya también un <em>calibration plot</em> por grupo.</li>
 </ol>
-<!--
-Algunas fuentes:
-https://www.conicet.gov.ar/apuestas-online-en-la-adolescencia-y-juventud-una-mirada-desde-lo-biologico-y-lo-social/
-https://www.clarin.com/sociedad/nuevo-informe-apuestas-online-afecta-4-10-jovenes-pais-alertan-graves-consecuencias_0_X81rrMQMoH.html?srsltid=AfmBOooKGSu0al0XwGV8oIFnbptb7s64b2KXjCV5vgLquI8FmHxR1yd8
-https://ugc.production.linktr.ee/cd2596a8-1dce-4f38-b151-a217d61227f1_informe-resultados-apostar-no-es-un-juego-2024-final-IMPRENTA-v2.pdf
--->
+</section>
+<section id="segunda-parte" class="level3">
+<h3 class="anchored" data-anchor-id="segunda-parte">Segunda parte</h3>
+<p>Realizaremos ahora un estudio por simulación para observar el comportamiento de las métricas analizadas y las decisiones tomadas.</p>
+<p>Una forma de simular <em>scores</em> calibrados con diferentes prevalencias por grupo es la siguiente:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>N1 <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>N2 <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(N1,<span class="dv">2</span>,<span class="dv">5</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(N2,<span class="dv">4</span>,<span class="dv">2</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>y_true <span class="ot">&lt;-</span> <span class="fu">rbinom</span>((N1<span class="sc">+</span>N2), <span class="fu">rep</span>(<span class="dv">1</span>,N1<span class="sc">+</span>N2), <span class="fu">c</span>(s1,s2))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">G =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"Albatros"</span>,N1),<span class="fu">rep</span>(<span class="st">"Búhos"</span>,N2)),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">Score =</span> <span class="fu">c</span>(s1,s2)<span class="sc">*</span><span class="dv">100</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">Y =</span> y_true)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="14" type="1">
+<li>¿Por qué los <em>scores</em> <code>s1</code> y <code>s2</code> resultan calibrados?</li>
+</ol>
+<p>Repita <span class="math inline">\(N=1000\)</span> veces el proceso de generar un conjunto de datos.</p>
+<ol start="15" type="1">
+<li>Construya un <em>calibration plot</em> global y uno por grupo que incluya barras de error de acuerdo a las simulaciones</li>
+<li>Realice un gráfico que permita comparar las distribuciones <em>a posteriori</em> <span class="math inline">\(FPR_A\)</span> y <span class="math inline">\(FPR_B\)</span> a lo largo de las simulaciones</li>
+<li>Para los valores de <span class="math inline">\(T_A\)</span> y <span class="math inline">\(T_B\)</span> que encontró para iguar los <span class="math inline">\(FPR_g\)</span>, compare las distribuciones <em>a posteriori</em> de <span class="math inline">\(FPR_A\)</span> y <span class="math inline">\(FPR_B\)</span></li>
+<li>Con las funciones <span class="math inline">\(f_A\)</span> y <span class="math inline">\(f_B\)</span>, ajuste los <em>scores</em> y repita el punto 15.</li>
+<li>A partir del análisis realizado, reflexione: ¿el sistema Centinela Delta es <em>injusto</em>? ¿Qué opciones existen para mitigar la disparidad? ¿Qué se gana o se pierde?</li>
+</ol>
 
 
 </section>
