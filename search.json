@@ -146,7 +146,7 @@
     "href": "presentaciones/presentacion_01.html#incertidumbre",
     "title": "Estadística Bayesiana",
     "section": "Incertidumbre",
-    "text": "Incertidumbre\nDistinguimos dos tipos de incertidumbre:\n\n\nIncertidumbre epistémica: incertidumbre irreducible, inherente al sistema que estamos observando.\nIncertidumbre aleatoria: incertidumbre reducible que surge porque nuestro modelo es imperfecto o porque no tenemos datos suficientes.\n\n\n\nLo retomaremos a lo largo del curso."
+    "text": "Incertidumbre\nDistinguimos dos tipos de incertidumbre:\n\n\nIncertidumbre epistémica: incertidumbre reducible que surge porque nuestro modelo es imperfecto o porque no tenemos datos suficientes.\nIncertidumbre aleatoria: incertidumbre irreducible, inherente al sistema que estamos observando.\n\n\n\nLo retomaremos a lo largo del curso."
   },
   {
     "objectID": "presentaciones/presentacion_01.html#elicitación-de-probabilidades",
