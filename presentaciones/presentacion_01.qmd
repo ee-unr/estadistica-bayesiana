@@ -180,8 +180,8 @@ Distinguimos dos tipos de incertidumbre:
 
 . . .
 
-* **Incertidumbre epistémica**: incertidumbre **irreducible**, inherente al sistema que estamos observando.
-* **Incertidumbre aleatoria**: incertidumbre **reducible** que surge porque nuestro modelo es imperfecto o porque no tenemos datos suficientes.
+* **Incertidumbre epistémica**: incertidumbre **reducible** que surge porque nuestro modelo es imperfecto o porque no tenemos datos suficientes.
+* **Incertidumbre aleatoria**: incertidumbre **irreducible**, inherente al sistema que estamos observando.
 
 . . .
 
