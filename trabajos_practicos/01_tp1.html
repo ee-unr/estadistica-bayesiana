@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>TP1 2026 (WIP) – Estadística Bayesiana</title>
+<title>Tribuna Para Pocos – Estadística Bayesiana</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../trabajos_practicos/02_tp2.qmd" rel="next">
 <link href="../trabajos_practicos/descripcion.html" rel="prev">
 <link href="../utils/imgs/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -76,7 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f98c5a868f02a47b347a75723e335e9d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-0996e2aad51fc2aa84036eb34d1dfc99.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -190,7 +189,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../trabajos_practicos/01_tp1.html">TP 1: ¿La gloria es el dinero?</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../trabajos_practicos/01_tp1.html">TP 1: Tribuna Para Pocos</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -213,25 +212,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../trabajos_practicos/01_tp1.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">TP 1: ¿La gloria es el dinero?</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../trabajos_practicos/02_tp2.qmd" class="sidebar-item-text sidebar-link">
- <span class="menu-text">TP 2: El Dibu de la vida</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../trabajos_practicos/03_tp3.qmd" class="sidebar-item-text sidebar-link">
- <span class="menu-text">TP 3: El bayesiano interestelar</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../trabajos_practicos/04_tp_final.qmd" class="sidebar-item-text sidebar-link">
- <span class="menu-text">TP Final</span></a>
+ <span class="menu-text">TP 1: Tribuna Para Pocos</span></a>
   </div>
 </li>
     </ul>
@@ -246,7 +227,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">TP1 2026 (WIP)</h1>
+<h1 class="title">Tribuna Para Pocos</h1>
 </div>
 
 
@@ -267,11 +248,11 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
 <p>La ciudad costera de Puerto Bruma vive su temporada de fútbol con estadios llenos y un clásico que paraliza todo: los Albatros del Muelle contra los Búhos de la Ribera.</p>
 <p>Luego de incidentes aislados y mucha presión mediática, el Ministerio de Convivencia Pública implementó un sistema de IA llamado Centinela Delta para gestionar el derecho de admisión en los estadios: el Templo de la Almeja (localía de los Albatros) y el Fortín de la Bruma (localía de los Búhos).</p>
-<p>Para cada persona que intenta ingresar, Centinela Delta asigna un score de riesgo <span class="math inline">\(S\in(0,100)\)</span> y se instruyó a la policía y al gobierno que consideren que <span class="math inline">\(S\)</span> es la probabilidad estimada de que la persona cometa un incidente en la cancha.</p>
+<p>Para cada persona que intenta ingresar, Centinela Delta asigna un <em>score</em> de riesgo <span class="math inline">\(S\in(0,100)\)</span> y se instruyó a la policía y al gobierno que consideren que <span class="math inline">\(S\)</span> es la probabilidad estimada de que la persona cometa un incidente en la cancha.</p>
 <p>La regla de decisión es simple:</p>
 <ul>
 <li>Si <span class="math inline">\(S&gt;T\)</span> (umbral fijo <span class="math inline">\(T\)</span>), se prohíbe el acceso del simpatizante, es decir, predicción: “violento”</li>
-<li>SI <span class="math inline">\(S\leq T\)</span>, se permite el acceso, es decir, predicción: “pacífico”</li>
+<li>Si <span class="math inline">\(S\leq T\)</span>, se permite el acceso, es decir, predicción: “pacífico”</li>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -288,17 +269,17 @@ window.Quarto = {
 <blockquote class="blockquote">
 <p>“Históricamente hubo mayor vigilancia y controles alrededor del Fortín de la Bruma. Eso hizo que, incluso entre gente pacífica, los hinchas de Búhos tengan más registros y más fricción con el sistema.”</p>
 </blockquote>
-<p>La denuncia es contra el sistema, en términos estadísticos</p>
+<p>En términos estadísticos, la denuncia contra el sistema es la siguiente:</p>
 <blockquote class="blockquote">
 <p>“A los hinchas pacíficos (inocentes) de los Búhos les prohíben entrar más seguido que a los pacíficos del Albatros.”</p>
 </blockquote>
-<p>Nos pondremos en el rol de consultores de ciencia de datos contratados por la Defensoría del Pueblo para auditar el sistema. Nos entregan un dataset anonimizado de la temporada anterior para realizar el análisis (<code>datos/tp1_hinchas.csv</code>).</p>
-<p>El dataset corresponde a una auditoría retrospectiva: al finalizar la temporada, la Defensoría solicitó un cruce entre los registros de ingreso (score <span class="math inline">\(S\)</span> y decisión <span class="math inline">\(\hat{Y}\)</span>) y los registros oficiales de incidentes y sanciones. De ese cruce se construyó la variable <span class="math inline">\(Y\)</span>, que indica si el intento de ingreso quedó asociado posteriormente auna participación en incidentes según la definición operativa del estudio.</p>
-<p>Los objetivos son:</p>
+<p>Nos pondremos en el rol de consultores de ciencia de datos contratados por la Defensoría del Pueblo para auditar el sistema. Nos entregan un conjunto de datos anonimizado de la temporada anterior para realizar el análisis (<code>datos/tp1_hinchas.csv</code>).</p>
+<p>El <em>dataset</em> corresponde a una auditoría retrospectiva: al finalizar la temporada, la Defensoría solicitó un cruce entre los registros de ingreso (<em>score</em> <span class="math inline">\(S\)</span> y decisión <span class="math inline">\(\hat{Y}\)</span>) y los registros oficiales de incidentes y sanciones. De ese cruce se construyó la variable <span class="math inline">\(Y\)</span>, que indica si el intento de ingreso quedó asociado posteriormente a una participación en incidentes según la definición operativa del estudio.</p>
+<p>Los objetivos del trabajo son:</p>
 <ul>
-<li>Estimar con estadística Bayesiana si hay evidencia de disparidad en los errores.</li>
+<li>Determinar si hay evidencia de disparidad en los errores usando estadística bayesiana.</li>
 <li>Explicar el resultado en términos comprensibles para un organismo público.</li>
-<li>Conectar el resultado con el “trade-off” de fairness: calibración vs igualdad de tasas de error.</li>
+<li>Conectar el resultado con el <em>trade-off</em> de <em>fairness</em> entre calibración e igualdad de tasas de error.</li>
 <li>Estudiar mediante simulación la posibilidad de generar un sistema más justo.</li>
 </ul>
 </section>
@@ -310,24 +291,23 @@ window.Quarto = {
 <li>¿Cuál es la prevalencia de hinchas violentos en cada equipo?</li>
 <li>¿Qué sesgos puede presentar el conjunto de datos retrospectivo entregado?</li>
 <li>Verifique que los <em>scores</em> de Centinela Delta están calibrados. Para ello, realice un <em>calibration plot</em>, un gráfico que agrupa los puntajes de riesgo (<span class="math inline">\(S\)</span>) en intervalos (digamos 10) para comparar la probabilidad predicha por el algoritmo (eje x) contra la proporción de casos que resultaron realmente violentos (eje y).</li>
-<li>Consideremos un umbral <span class="math inline">\(T=50\)</span>, ¿Cuál es la <em>accuracy</em> del modelo?</li>
+<li>Consideremos un umbral <span class="math inline">\(T=50\)</span>, ¿cuál es la <em>accuracy</em> del modelo?</li>
 <li>Con <span class="math inline">\(T=50\)</span>, para cada grupo, calcule el número de falsos negativos, verdaderos negativos, falsos positivos y verdaderos positivos.</li>
 </ol>
-<p>Consideremos que la tasa de falsos positivos de cada grupo (<span class="math inline">\(FPR_g\)</span>) es un parámetro desconocido sobre el que queremos hacer inferencia</p>
+<p>Consideremos que la tasa de falsos positivos de cada grupo (<span class="math inline">\(FPR_g\)</span>) es un parámetro desconocido sobre el que queremos hacer inferencia.</p>
 <ol start="6" type="1">
 <li>¿Qué representa la tasa de falsos positivos?</li>
-<li>¿Qué supuestos son necesarios para modelar el número de falsos positivos como una variable binomial?<br>
-</li>
-<li>¿Cuál es un <em>prior</em> razonable para el <span class="math inline">\(FPR\)</span> de cada grupo? Escriba el modelo bayesiano y encuentre la distribución <em>a posteriori</em> de <span class="math inline">\(FPR_g\)</span></li>
-<li>Halle la distribución <em>a posteriori</em> de la diferencia entre <span class="math inline">\(FPR_B\)</span> y <span class="math inline">\(FPR_A\)</span> ¿Cuál es la probabilidad de que <span class="math inline">\(FPR_B &gt; FPR_A\)</span>? ¿Qué puede concluirse en relación a la denuncia de la ONG Gradas en Paz?</li>
+<li>¿Qué supuestos son necesarios para modelar el número de falsos positivos como una variable binomial?</li>
+<li>¿Cuál es un <em>prior</em> razonable para el <span class="math inline">\(FPR\)</span> de cada grupo? Escriba el modelo bayesiano y encuentre la distribución <em>a posteriori</em> de <span class="math inline">\(FPR_g\)</span>.</li>
+<li>Halle la distribución <em>a posteriori</em> de la diferencia entre <span class="math inline">\(FPR_B\)</span> y <span class="math inline">\(FPR_A\)</span>. ¿Cuál es la probabilidad de que <span class="math inline">\(FPR_B &gt; FPR_A\)</span>? ¿Qué puede concluirse en relación a la denuncia de la ONG Gradas en Paz?</li>
 </ol>
-<p>NebulaGuard sostiene que su algoritmo es <em>justo</em> porque la interpretación del <em>score</em> es independiente del equipo: un score de 80 se interpreta como una probabilidad del 80% de ser violento, independientemente de si se trata de un hincha de Albatros o de Búhos. La ONG Gradas en Paz sostiene que el algoritmo es injusto porque, entre los hinchas pacíficos, a los de Búhos se les prohíbe la entrada con mayor frecuencia que a los de Albatros: si sos inocente, tu probabilidad de ser rechazado no debería depender de tu camiseta.</p>
+<p>NebulaGuard sostiene que su algoritmo es <em>justo</em> porque la interpretación del <em>score</em> es independiente del equipo: un <em>score</em> de 80 se interpreta como una probabilidad del 80% de ser violento, independientemente de si se trata de un hincha de Albatros o de Búhos. La ONG Gradas en Paz sostiene que el algoritmo es injusto porque, entre los hinchas pacíficos, a los de Búhos se les prohíbe la entrada con mayor frecuencia que a los de Albatros: si sos inocente, tu probabilidad de ser rechazado no debería depender de tu camiseta.</p>
 <p>Para satisfacer el criterio de la ONG, una opción es utilizar un umbral <span class="math inline">\(T_g\)</span> diferente para cada grupo.</p>
 <ol start="10" type="1">
-<li>Construya una grilla de valores de <span class="math inline">\(T_A\)</span> y <span class="math inline">\(T_B\)</span> y compute, para cada combinación, la probabilidad de que la diferencia entre las tasas de falsos positivos sea menor al 5%. ¿Cuáles son los valores de <span class="math inline">\(T_A\)</span> y <span class="math inline">\(T_B\)</span> que <em>igualan</em> <span class="math inline">\(FPR_A\)</span> y <span class="math inline">\(FPR_B\)</span>.</li>
+<li>Construya una grilla de valores de <span class="math inline">\(T_A\)</span> y <span class="math inline">\(T_B\)</span> y calcule, para cada combinación, la probabilidad de que la diferencia entre las tasas de falsos positivos sea menor al 5%. ¿Cuáles son los valores de <span class="math inline">\(T_A\)</span> y <span class="math inline">\(T_B\)</span> que “igualan” <span class="math inline">\(FPR_A\)</span> y <span class="math inline">\(FPR_B\)</span>?</li>
 <li>¿Considera que esta modificación del mecanismo de decisión es <em>justa</em>?</li>
 </ol>
-<p>En lugar de utilizar un umbral diferente para cada grupo, pueden transformarse los <em>scores</em> de cada grupo, utilizando una función lineal por tramos. Esta función debe satisfacer <span class="math inline">\(f_g(0) = 0\)</span>, <span class="math inline">\(f_g(100) = 100\)</span> y <span class="math inline">\(f_g(T_g) = 50\)</span>.</p>
+<p>En lugar de utilizar un umbral diferente para cada grupo, otra opción es transformar los <em>scores</em> de cada grupo mediante una función lineal por tramos. Esta función debe satisfacer <span class="math inline">\(f_g(0) = 0\)</span>, <span class="math inline">\(f_g(100) = 100\)</span> y <span class="math inline">\(f_g(T_g) = 50\)</span>.</p>
 <ol start="12" type="1">
 <li>Construya las funciones <span class="math inline">\(f_A\)</span> y <span class="math inline">\(f_B\)</span>, convierta los <em>scores</em> y compare las distribuciones <em>a posteriori</em> de <span class="math inline">\(FPR_A\)</span> y <span class="math inline">\(FPR_B\)</span>.</li>
 <li>Para los <em>scores</em> transformados, realice nuevamente el <em>calibration plot</em> y construya también un <em>calibration plot</em> por grupo.</li>
@@ -340,21 +320,23 @@ window.Quarto = {
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>N1 <span class="ot">&lt;-</span> <span class="dv">50</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>N2 <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(N1,<span class="dv">2</span>,<span class="dv">5</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(N2,<span class="dv">4</span>,<span class="dv">2</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>y_true <span class="ot">&lt;-</span> <span class="fu">rbinom</span>((N1<span class="sc">+</span>N2), <span class="fu">rep</span>(<span class="dv">1</span>,N1<span class="sc">+</span>N2), <span class="fu">c</span>(s1,s2))</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">G =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"Albatros"</span>,N1),<span class="fu">rep</span>(<span class="st">"Búhos"</span>,N2)),</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">Score =</span> <span class="fu">c</span>(s1,s2)<span class="sc">*</span><span class="dv">100</span>,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">Y =</span> y_true)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(N1, <span class="dv">2</span>, <span class="dv">5</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(N2, <span class="dv">4</span>, <span class="dv">2</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>y_true <span class="ot">&lt;-</span> <span class="fu">rbinom</span>((N1 <span class="sc">+</span> N2), <span class="fu">rep</span>(<span class="dv">1</span>, N1 <span class="sc">+</span> N2), <span class="fu">c</span>(s1, s2))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">G =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"Albatros"</span>, N1), <span class="fu">rep</span>(<span class="st">"Búhos"</span>, N2)),</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Score =</span> <span class="fu">c</span>(s1,s2) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Y =</span> y_true</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="14" type="1">
 <li>¿Por qué los <em>scores</em> <code>s1</code> y <code>s2</code> resultan calibrados?</li>
 </ol>
 <p>Repita <span class="math inline">\(N=1000\)</span> veces el proceso de generar un conjunto de datos.</p>
 <ol start="15" type="1">
-<li>Construya un <em>calibration plot</em> global y uno por grupo que incluya barras de error de acuerdo a las simulaciones</li>
-<li>Realice un gráfico que permita comparar las distribuciones <em>a posteriori</em> <span class="math inline">\(FPR_A\)</span> y <span class="math inline">\(FPR_B\)</span> a lo largo de las simulaciones</li>
-<li>Para los valores de <span class="math inline">\(T_A\)</span> y <span class="math inline">\(T_B\)</span> que encontró para iguar los <span class="math inline">\(FPR_g\)</span>, compare las distribuciones <em>a posteriori</em> de <span class="math inline">\(FPR_A\)</span> y <span class="math inline">\(FPR_B\)</span></li>
+<li>Construya un <em>calibration plot</em> global y uno por grupo que incluya barras de error de acuerdo a las simulaciones.</li>
+<li>Realice un gráfico que permita comparar las distribuciones <em>a posteriori</em> <span class="math inline">\(FPR_A\)</span> y <span class="math inline">\(FPR_B\)</span> a lo largo de las simulaciones.</li>
+<li>Para los valores de <span class="math inline">\(T_A\)</span> y <span class="math inline">\(T_B\)</span> que encontró para igualar los <span class="math inline">\(FPR_g\)</span>, compare las distribuciones <em>a posteriori</em> de <span class="math inline">\(FPR_A\)</span> y <span class="math inline">\(FPR_B\)</span>.</li>
 <li>Con las funciones <span class="math inline">\(f_A\)</span> y <span class="math inline">\(f_B\)</span>, ajuste los <em>scores</em> y repita el punto 15.</li>
 <li>A partir del análisis realizado, reflexione: ¿el sistema Centinela Delta es <em>injusto</em>? ¿Qué opciones existen para mitigar la disparidad? ¿Qué se gana o se pierde?</li>
 </ol>
@@ -770,9 +752,6 @@ window.Quarto = {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../trabajos_practicos/02_tp2.qmd" class="pagination-link" aria-label="TP 2: El Dibu de la vida">
-        <span class="nav-page-text">TP 2: El Dibu de la vida</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
