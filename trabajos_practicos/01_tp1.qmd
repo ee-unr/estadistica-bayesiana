@@ -1,6 +1,6 @@
 ---
-title: "TP1 2026 (WIP)"
-practica: "TP1 2026 (WIP)"
+title: "Tribuna Para Pocos"
+practica: "Trabajo Práctico 1: Tribuna Para Pocos"
 ---
 
 ```{r}
@@ -15,21 +15,21 @@ captions[["disturbios"]] <- "Imagen del último clásico entre los Albatros y lo
 
 ## Introducción
 
-La ciudad costera de Puerto Bruma vive su temporada de fútbol con estadios llenos y 
+La ciudad costera de Puerto Bruma vive su temporada de fútbol con estadios llenos y
 un clásico que paraliza todo: los Albatros del Muelle contra los Búhos de la Ribera.
 
-Luego de incidentes aislados y mucha presión mediática, el Ministerio de Convivencia Pública 
+Luego de incidentes aislados y mucha presión mediática, el Ministerio de Convivencia Pública
 implementó un sistema de IA llamado Centinela Delta para gestionar el derecho de admisión en los estadios:
 el Templo de la Almeja (localía de los Albatros) y el Fortín de la Bruma (localía de los Búhos).
 
-Para cada persona que intenta ingresar, Centinela Delta asigna un score de riesgo $S\in(0,100)$ y se instruyó
+Para cada persona que intenta ingresar, Centinela Delta asigna un _score_ de riesgo $S\in(0,100)$ y se instruyó
 a la policía y al gobierno que consideren que $S$ es la probabilidad estimada de que la persona cometa
 un incidente en la cancha.
 
 La regla de decisión es simple:
 
 - Si $S>T$ (umbral fijo $T$), se prohíbe el acceso del simpatizante, es decir, predicción: "violento"
-- SI $S\leq T$, se permite el acceso, es decir, predicción: "pacífico"
+- Si $S\leq T$, se permite el acceso, es decir, predicción: "pacífico"
 
 ```{r}
 #| echo: false
@@ -45,30 +45,29 @@ La empresa proveedora, NebulaGuard Analytics, sostiene que su _score_ está perf
 Tras unos meses del sistema funcionando, la ONG Gradas en Paz presenta una denuncia ante
 la Defensoría del Pueblo. Su argumento es:
 
-> “Históricamente hubo mayor vigilancia y controles alrededor del Fortín de la Bruma. 
-Eso hizo que, incluso entre gente pacífica, los hinchas de Búhos tengan más registros 
-y más fricción con el sistema."
+> "Históricamente hubo mayor vigilancia y controles alrededor del Fortín de la Bruma.
+> Eso hizo que, incluso entre gente pacífica, los hinchas de Búhos tengan más registros
+> y más fricción con el sistema."
 
-La denuncia es contra el sistema, en términos estadísticos
+En términos estadísticos, la denuncia contra el sistema es la siguiente:
 
-> "A los hinchas pacíficos (inocentes) de los Búhos les prohíben entrar más seguido que a 
-los pacíficos del Albatros."
+> "A los hinchas pacíficos (inocentes) de los Búhos les prohíben entrar más seguido que a
+> los pacíficos del Albatros."
 
 Nos pondremos en el rol de consultores de ciencia de datos contratados por la Defensoría del Pueblo para
-auditar el sistema. Nos entregan un dataset anonimizado de la temporada anterior para realizar el análisis (`datos/tp1_hinchas.csv`).
+auditar el sistema. Nos entregan un conjunto de datos anonimizado de la temporada anterior para realizar el análisis (`datos/tp1_hinchas.csv`).
 
-El dataset corresponde a una auditoría retrospectiva: al finalizar la temporada, la Defensoría solicitó
-un cruce entre los registros de ingreso (score $S$ y decisión $\hat{Y}$) y los registros oficiales de incidentes
-y sanciones. De ese cruce se construyó la variable $Y$, que indica si el intento de ingreso quedó asociado 
-posteriormente auna participación en incidentes según la definición operativa del estudio.
+El _dataset_ corresponde a una auditoría retrospectiva: al finalizar la temporada, la Defensoría solicitó
+un cruce entre los registros de ingreso (_score_ $S$ y decisión $\hat{Y}$) y los registros oficiales de incidentes
+y sanciones. De ese cruce se construyó la variable $Y$, que indica si el intento de ingreso quedó asociado
+posteriormente a una participación en incidentes según la definición operativa del estudio.
 
-Los objetivos son:
+Los objetivos del trabajo son:
 
-- Estimar con estadística Bayesiana si hay evidencia de disparidad en los errores.
+- Determinar si hay evidencia de disparidad en los errores usando estadística bayesiana.
 - Explicar el resultado en términos comprensibles para un organismo público.
-- Conectar el resultado con el “trade-off” de fairness: calibración vs igualdad de tasas de error.
+- Conectar el resultado con el _trade-off_ de _fairness_ entre calibración e igualdad de tasas de error.
 - Estudiar mediante simulación la posibilidad de generar un sistema más justo.
-
 
 ## Actividades
 
@@ -77,33 +76,38 @@ Los objetivos son:
 1. ¿Cuál es la prevalencia de hinchas violentos en cada equipo?
 2. ¿Qué sesgos puede presentar el conjunto de datos retrospectivo entregado?
 3. Verifique que los _scores_ de Centinela Delta están calibrados. Para ello, realice un _calibration plot_,
-un gráfico que  agrupa los puntajes de riesgo ($S$) en intervalos (digamos 10) para comparar la probabilidad predicha por
+un gráfico que agrupa los puntajes de riesgo ($S$) en intervalos (digamos 10) para comparar la probabilidad predicha por
 el algoritmo (eje x) contra la proporción de casos que resultaron realmente violentos (eje y).
-4. Consideremos un umbral $T=50$, ¿Cuál es la _accuracy_ del modelo?
+4. Consideremos un umbral $T=50$, ¿cuál es la _accuracy_ del modelo?
 5. Con $T=50$, para cada grupo, calcule el número de falsos negativos, verdaderos negativos, falsos
 positivos y verdaderos positivos.
 
-Consideremos que la tasa de falsos positivos de cada grupo ($FPR_g$) es un parámetro desconocido sobre el que queremos hacer inferencia
+Consideremos que la tasa de falsos positivos de cada grupo ($FPR_g$) es un parámetro desconocido sobre el que queremos hacer inferencia.
 
 6. ¿Qué representa la tasa de falsos positivos?
-7. ¿Qué supuestos son necesarios para modelar el número de falsos positivos como una variable binomial?  
-8. ¿Cuál es un _prior_ razonable para el $FPR$ de cada grupo? Escriba el modelo bayesiano y encuentre la distribución _a posteriori_ de $FPR_g$ 
-9. Halle la distribución _a posteriori_ de la diferencia entre $FPR_B$ y $FPR_A$ ¿Cuál es la probabilidad de que $FPR_B > FPR_A$? 
+7. ¿Qué supuestos son necesarios para modelar el número de falsos positivos como una variable binomial?
+8. ¿Cuál es un _prior_ razonable para el $FPR$ de cada grupo? Escriba el modelo bayesiano y encuentre la distribución _a posteriori_ de $FPR_g$.
+9. Halle la distribución _a posteriori_ de la diferencia entre $FPR_B$ y $FPR_A$.
+¿Cuál es la probabilidad de que $FPR_B > FPR_A$?
 ¿Qué puede concluirse en relación a la denuncia de la ONG Gradas en Paz?
 
-NebulaGuard sostiene que su algoritmo es _justo_ porque la interpretación del _score_ es independiente del equipo: un score de 80 se interpreta como
-una probabilidad del 80% de ser violento, independientemente de si se trata de un hincha de Albatros o de Búhos. La ONG Gradas en Paz sostiene que el
-algoritmo es injusto porque, entre los hinchas pacíficos, a los de Búhos se les prohíbe la entrada con mayor frecuencia que a los de Albatros: si sos inocente, 
-tu probabilidad de ser rechazado no debería depender de tu camiseta.
+NebulaGuard sostiene que su algoritmo es _justo_ porque la interpretación del _score_ es independiente del equipo:
+un _score_ de 80 se interpreta como una probabilidad del 80% de ser violento,
+independientemente de si se trata de un hincha de Albatros o de Búhos.
+La ONG Gradas en Paz sostiene que el algoritmo es injusto porque, entre los hinchas pacíficos,
+a los de Búhos se les prohíbe la entrada con mayor frecuencia que a los de Albatros:
+si sos inocente, tu probabilidad de ser rechazado no debería depender de tu camiseta.
 
-Para satisfacer el criterio de la ONG, una opción es utilizar un umbral $T_g$ diferente para cada grupo. 
+Para satisfacer el criterio de la ONG, una opción es utilizar un umbral $T_g$ diferente para cada grupo.
 
-10. Construya una grilla de valores de $T_A$ y $T_B$ y compute, para cada combinación, la probabilidad de que la diferencia entre las tasas de falsos positivos
-sea menor al 5%. ¿Cuáles son los valores de $T_A$ y $T_B$ que _igualan_ $FPR_A$ y $FPR_B$.
+10. Construya una grilla de valores de $T_A$ y $T_B$ y calcule, para cada combinación,
+la probabilidad de que la diferencia entre las tasas de falsos positivos sea menor al 5%.
+¿Cuáles son los valores de $T_A$ y $T_B$ que "igualan" $FPR_A$ y $FPR_B$?
 11. ¿Considera que esta modificación del mecanismo de decisión es _justa_?
 
-En lugar de utilizar un umbral diferente para cada grupo, pueden transformarse los _scores_ de cada grupo, utilizando una función lineal por tramos. Esta función
-debe satisfacer $f_g(0) = 0$, $f_g(100) = 100$ y $f_g(T_g) = 50$.
+En lugar de utilizar un umbral diferente para cada grupo,
+otra opción es transformar los _scores_ de cada grupo mediante una función lineal por tramos.
+Esta función debe satisfacer $f_g(0) = 0$, $f_g(100) = 100$ y $f_g(T_g) = 50$.
 
 12. Construya las funciones $f_A$ y $f_B$, convierta los _scores_ y compare las distribuciones _a posteriori_ de $FPR_A$ y $FPR_B$.
 13. Para los _scores_ transformados, realice nuevamente el _calibration plot_ y construya también un _calibration plot_ por grupo.
@@ -117,26 +121,23 @@ Una forma de simular _scores_ calibrados con diferentes prevalencias por grupo e
 ```{r}
 N1 <- 50
 N2 <- 50
-s1 <- rbeta(N1,2,5)
-s2 <- rbeta(N2,4,2)
-y_true <- rbinom((N1+N2), rep(1,N1+N2), c(s1,s2))
-data <- data.frame(G = c(rep("Albatros",N1),rep("Búhos",N2)),
-               Score = c(s1,s2)*100,
-               Y = y_true)
+s1 <- rbeta(N1, 2, 5)
+s2 <- rbeta(N2, 4, 2)
+y_true <- rbinom((N1 + N2), rep(1, N1 + N2), c(s1, s2))
+data <- data.frame(
+    G = c(rep("Albatros", N1), rep("Búhos", N2)),
+    Score = c(s1,s2) * 100,
+    Y = y_true
+)
 ```
 
 14. ¿Por qué los _scores_ `s1` y `s2` resultan calibrados?
 
 Repita $N=1000$ veces el proceso de generar un conjunto de datos.
 
-15. Construya un _calibration plot_ global y uno por grupo que incluya barras de error de acuerdo a las simulaciones
-16. Realice un gráfico que permita comparar las distribuciones _a posteriori_ $FPR_A$ y $FPR_B$ a lo largo de las simulaciones
-17. Para los valores de $T_A$ y $T_B$ que encontró para iguar los $FPR_g$, compare las distribuciones _a posteriori_ de $FPR_A$ y $FPR_B$
+15. Construya un _calibration plot_ global y uno por grupo que incluya barras de error de acuerdo a las simulaciones.
+16. Realice un gráfico que permita comparar las distribuciones _a posteriori_ $FPR_A$ y $FPR_B$ a lo largo de las simulaciones.
+17. Para los valores de $T_A$ y $T_B$ que encontró para igualar los $FPR_g$, compare las distribuciones _a posteriori_ de $FPR_A$ y $FPR_B$.
 18. Con las funciones $f_A$ y $f_B$, ajuste los _scores_ y repita el punto 15.
-19. A partir del análisis realizado, reflexione: ¿el sistema Centinela Delta es _injusto_? ¿Qué opciones existen para mitigar la disparidad? 
-¿Qué se gana o se pierde?
-
-
-
-
-
+19. A partir del análisis realizado, reflexione: ¿el sistema Centinela Delta es _injusto_?
+¿Qué opciones existen para mitigar la disparidad? ¿Qué se gana o se pierde?
