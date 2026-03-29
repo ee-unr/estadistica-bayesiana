@@ -186,7 +186,7 @@ $\mathrm{Gamma}(s, r)$ en R es `dgamma(x, shape = s, scale = 1/r)`
 El modelo propuesto es
 $$
 \begin{aligned}
-  Y_i \mid \lambda & \sim  Po(\lambda)\\
+  Y_i \mid \lambda & \sim  \mathrm{Po}(\lambda)\\
   \lambda & \sim  \mathrm{Gamma}(s, r)
 \end{aligned}
 $$
@@ -208,6 +208,8 @@ $$p(\lambda\mid \mathbf{y}) \propto p(\mathbf{y}\mid\lambda) p(\lambda)$$
 $$
 p(\lambda \mid \mathbf{y}) \propto \frac{\lambda^{\sum_i y_i}e^{-n\lambda}}{\prod_{i}y_i!} \frac{r^s}{\Gamma(s)} \lambda^{s-1}e^{-r\lambda}
 $$
+
+. . .
 
 $$
 p(\lambda \mid \mathbf{y}) \propto \frac{r^s}{\Gamma(s)\prod_i y_i!} \lambda^{\sum_iy_i+s-1} e^{-n\lambda - r \lambda}
@@ -238,6 +240,8 @@ Por lo tanto, resulta que la distribución _a posteriori_ es Gamma de parámetro
 $$
 p(\lambda\mid \mathbf{y}) = \frac{(n + r )^{\sum_i y_i + s}}{\Gamma(\sum_i y_i + s)} \lambda^{\sum_iy_i+s-1} e^{-(n + r)\lambda}
 $$
+
+. . .
 
 $$
 \lambda\mid \mathbf{y} \sim  \mathrm{Gamma}(\sum_i y_i + s, n+r)
@@ -273,8 +277,8 @@ El _likelihood_ es normal:
 $$
 \small{
   \begin{aligned} 
-  p(y_i\mid \mu) &= \frac{1}{\sqrt{2\pi\sigma}} e^{-\frac{(y_i-\mu)^2}{2\sigma^2}} \rightarrow \\ 
-  p(\mathbf{y}\mid \mu) &= \left(\frac{1}{2\pi\sigma}\right)^{n/2}  e^{-\frac{\sum_i(y_i-\mu)^2}{2\sigma^2}} \propto e^{-\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}}
+  p(y_i\mid \mu) &= \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(y_i-\mu)^2}{2\sigma^2}} \rightarrow \\ 
+  p(\mathbf{y}\mid \mu) &= \left(\frac{1}{2\pi\sigma^2}\right)^{n/2}  e^{-\frac{\sum_i(y_i-\mu)^2}{2\sigma^2}} \propto e^{-\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}}
   \end{aligned}
 }
 $$
@@ -284,7 +288,7 @@ $$
 El _prior_ es normal:
 $$
 \small{
-  p(\mu) = \frac{1}{\sqrt{2\pi\tau}} e^{-\frac{(\mu-\theta)^2}{2\tau^2}}
+  p(\mu) = \frac{1}{\sqrt{2\pi\tau^2}} e^{-\frac{(\mu-\theta)^2}{2\tau^2}}
 }
 $$
 
@@ -295,15 +299,17 @@ Interesa hallar $p(\mu \mid \mathbf{y})$
 ## {.smaller}
 
 $$p(\mu\mid \mathbf{y}) \propto p(\mathbf{y}\mid\mu) p(\mu)$$
-$$p(\mu \mid \mathbf{y}) \propto   e^{-\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}} \frac{1}{\sqrt{2\pi\tau}} e^{-\frac{(\mu-\theta)^2}{2\tau^2}}$$
+. . .
 
+$$p(\mu \mid \mathbf{y}) \propto   e^{-\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}} \frac{1}{\sqrt{2\pi\tau}} e^{-\frac{(\mu-\theta)^2}{2\tau^2}}$$
+. . .
 $$
 \begin{aligned}
 p(\mu \mid \mathbf{y}) & \propto  e^{-\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}} e^{-\frac{(\mu-\theta)^2}{2\tau^2}} \\
 &  \propto  e^{-\left[\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}+\frac{(\mu-\theta)^2}{2\tau^2}\right]} \\
 & \propto e^{-\left[ \frac{\bar{y}^2 - 2\bar{y} \mu + \mu^2}{2\sigma^2/n} + \frac{\mu^2 - 2\mu\theta^2 + \theta^2}{2\tau^2} \right]} \\
-& \propto e^{\left[ \frac{ 2\bar{y} \mu - \mu^2}{2\sigma^2/n} + \frac{-\mu^2 + 2\mu\theta^2}{2\tau^2} \right]} \\
-& \propto e^{\left[ \frac{(2\bar{y} \mu - \mu^2)n\tau^2 + (-\mu^2 + 2\mu\theta^2)\sigma^2}{2\sigma^2\tau^2} \right]}
+& \propto e^{\left[ \frac{ 2\bar{y} \mu - \mu^2}{2\sigma^2/n} + \frac{-\mu^2 + 2\mu\theta}{2\tau^2} \right]} \\
+& \propto e^{\left[ \frac{(2\bar{y} \mu - \mu^2)n\tau^2 + (-\mu^2 + 2\mu\theta)\sigma^2}{2\sigma^2\tau^2} \right]}
 \end{aligned}
 $$
 
@@ -311,7 +317,7 @@ $$
 
 $$
     \begin{aligned}
-P(\mu \mid \mathbf{y}) & \propto e^{\frac{2\mu(\theta\sigma^2+ \bar{y}n\tau^2)-\mu^2(n\tau^2+\sigma^2)}{2\tau^2\sigma^2}} \\
+p(\mu \mid \mathbf{y}) & \propto e^{\frac{2\mu(\theta\sigma^2+ \bar{y}n\tau^2)-\mu^2(n\tau^2+\sigma^2)}{2\tau^2\sigma^2}} \\
 & \propto e^{\frac{-\mu^2 + 2\mu \left( \frac{\theta\sigma^2 + \bar{y}n\tau^2}{n\tau^2 + \sigma^2} \right)}{2\tau^2\sigma^2/(n\tau^2 + \sigma^2)}} e^{-\left(\frac{\theta\sigma^2 + \bar{y}n\tau^2}{n\tau^2 + \sigma^2}\right)^2} \\
 & \propto e^{-\frac{\left(\mu -  \frac{\theta\sigma^2 + \bar{y}n\tau^2}{n\tau^2 + \sigma^2} \right)^2}{2\tau^2\sigma^2/(n\tau^2+\sigma^2)}}
     \end{aligned}
@@ -565,29 +571,44 @@ $$
 
 La precisión _a posteriori_ es la suma de las precisiones del _prior_ y la muestra.
 
-## 
-
-### Distribución predictiva _a posteriori_
+## Distribución predictiva _a posteriori_
 
 $$p(\tilde{y}\mid \mathbf{y}) = \int p(\tilde{y}\mid \mu) p(\mu\mid \mathbf{y})d\mu$$
 El integrando es el producto de dos normales: una normal bivariada. Por lo tanto toda la integral es una distribución marginal de una normal: otra normal.
 
-##
+. . .
 
-Demostración poco formal...
+¿Cuáles son sus parámetros?
 
-_A posteriori_ vale
-$$
-\begin{array}{ccc}
-y & = & (y-\mu) + \mu \\
-y-\mu \mid \mu & \sim & \mathcal{N}(0,\sigma^2) \\
-\mu \mid \mathbf{y} & \sim & \mathcal{N}(\theta_n,\tau_n^2)
-\end{array}
-$$
+## {.smaller}
 
-Resulta
+Demostración poco formal.
 
-$$p(\tilde{y}\mid \mathbf{y}) = \mathcal{N}(\mu_n,\sigma^2 + \tau_n^2)$$
+. . .
+
+Descomponemos $\tilde{y}$ en dos partes:
+
+$$\tilde{y} = \mu + (\tilde{y} - \mu) = \mu + \varepsilon$$
+
+. . .
+
+$\tilde{y} \mid \mu$, al igual que $y \mid \mu$, tiene distribución $\mathcal{N}(\mu,\sigma^2)$ (es la verosimilitud), entonces: 
+
+. . .
+
+$$(\tilde{y} - \mu) \mid \mu \;\sim\; \mathcal{N}(0,\,\sigma^2) 
+\qquad \leftarrow \text{error del modelo, dado } \mu$$
+
+. . .
+
+$$\mu \mid \mathbf{y} \;\sim\; \mathcal{N}(\theta_n,\,\tau_n^2)
+\qquad\qquad \leftarrow \text{posterior de } \mu$$
+
+. . .
+
+$\tilde{y}$ es la suma de dos normales independientes (condicionalmente en $\mu$):
+
+$$\tilde{y} \mid \mathbf{y} \;\sim\; \mathcal{N}(\theta_n,\;\sigma^2 + \tau_n^2)$$
 
 ##
 
@@ -830,7 +851,7 @@ y_bar
 n
 nu <- lambda
 alpha_p <- alpha + n/2
-beta_p <- beta + 0.5+sum((muestra - y_bar)^2) + n*nu/(nu+n)*(y_bar-mean)^2/2
+beta_p <- beta + 0.5*sum((muestra - y_bar)^2) + n*nu/(nu+n)*(y_bar-mean)^2/2
 mean_p <- (nu*mean + n*y_bar)/(nu+n)
 nu_p <- lambda + n
 lambda_p <- nu_p
