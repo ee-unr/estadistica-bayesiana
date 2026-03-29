@@ -112,7 +112,7 @@
   {
     "objectID": "trabajos_practicos/01_tp1.html",
     "href": "trabajos_practicos/01_tp1.html",
-    "title": "Tribuna Para Pocos",
+    "title": "El Clásico de la Injusticia",
     "section": "",
     "text": "La ciudad costera de Puerto Bruma vive su temporada de fútbol con estadios llenos y un clásico que paraliza todo: los Albatros del Muelle contra los Búhos de la Ribera.\nLuego de incidentes aislados y mucha presión mediática, el Ministerio de Convivencia Pública implementó un sistema de IA llamado Centinela Delta para gestionar el derecho de admisión en los estadios: el Templo de la Almeja (localía de los Albatros) y el Fortín de la Bruma (localía de los Búhos).\nPara cada persona que intenta ingresar, Centinela Delta asigna un score de riesgo \\(S\\in(0,100)\\) y se instruyó a la policía y al gobierno que consideren que \\(S\\) es la probabilidad estimada de que la persona cometa un incidente en la cancha.\nLa regla de decisión es simple:\n\nSi \\(S&gt;T\\) (umbral fijo \\(T\\)), se prohíbe el acceso del simpatizante, es decir, predicción: “violento”\nSi \\(S\\leq T\\), se permite el acceso, es decir, predicción: “pacífico”\n\n\n\n\n\n\nImagen del último clásico entre los Albatros y los Búhos\n\n\n\n\nLa empresa proveedora, NebulaGuard Analytics, sostiene que su score está perfectamente calibrado: “un score del 80% es una probabilidad del 80%, sin importar el color de la camiseta”.\nTras unos meses del sistema funcionando, la ONG Gradas en Paz presenta una denuncia ante la Defensoría del Pueblo. Su argumento es:\n\n“Históricamente hubo mayor vigilancia y controles alrededor del Fortín de la Bruma. Eso hizo que, incluso entre gente pacífica, los hinchas de Búhos tengan más registros y más fricción con el sistema.”\n\nEn términos estadísticos, la denuncia contra el sistema es la siguiente:\n\n“A los hinchas pacíficos (inocentes) de los Búhos les prohíben entrar más seguido que a los pacíficos del Albatros.”\n\nNos pondremos en el rol de consultores de ciencia de datos contratados por la Defensoría del Pueblo para auditar el sistema. Nos entregan un conjunto de datos anonimizado de la temporada anterior para realizar el análisis (datos/tp1_hinchas.csv).\nEl dataset corresponde a una auditoría retrospectiva: al finalizar la temporada, la Defensoría solicitó un cruce entre los registros de ingreso (score \\(S\\) y decisión \\(\\hat{Y}\\)) y los registros oficiales de incidentes y sanciones. De ese cruce se construyó la variable \\(Y\\), que indica si el intento de ingreso quedó asociado posteriormente a una participación en incidentes según la definición operativa del estudio.\nLos objetivos del trabajo son:\n\nDeterminar si hay evidencia de disparidad en los errores usando estadística bayesiana.\nExplicar el resultado en términos comprensibles para un organismo público.\nConectar el resultado con el trade-off de fairness entre calibración e igualdad de tasas de error.\nEstudiar mediante simulación la posibilidad de generar un sistema más justo.",
     "crumbs": [
@@ -123,7 +123,7 @@
   {
     "objectID": "trabajos_practicos/01_tp1.html#introducción",
     "href": "trabajos_practicos/01_tp1.html#introducción",
-    "title": "Tribuna Para Pocos",
+    "title": "El Clásico de la Injusticia",
     "section": "",
     "text": "La ciudad costera de Puerto Bruma vive su temporada de fútbol con estadios llenos y un clásico que paraliza todo: los Albatros del Muelle contra los Búhos de la Ribera.\nLuego de incidentes aislados y mucha presión mediática, el Ministerio de Convivencia Pública implementó un sistema de IA llamado Centinela Delta para gestionar el derecho de admisión en los estadios: el Templo de la Almeja (localía de los Albatros) y el Fortín de la Bruma (localía de los Búhos).\nPara cada persona que intenta ingresar, Centinela Delta asigna un score de riesgo \\(S\\in(0,100)\\) y se instruyó a la policía y al gobierno que consideren que \\(S\\) es la probabilidad estimada de que la persona cometa un incidente en la cancha.\nLa regla de decisión es simple:\n\nSi \\(S&gt;T\\) (umbral fijo \\(T\\)), se prohíbe el acceso del simpatizante, es decir, predicción: “violento”\nSi \\(S\\leq T\\), se permite el acceso, es decir, predicción: “pacífico”\n\n\n\n\n\n\nImagen del último clásico entre los Albatros y los Búhos\n\n\n\n\nLa empresa proveedora, NebulaGuard Analytics, sostiene que su score está perfectamente calibrado: “un score del 80% es una probabilidad del 80%, sin importar el color de la camiseta”.\nTras unos meses del sistema funcionando, la ONG Gradas en Paz presenta una denuncia ante la Defensoría del Pueblo. Su argumento es:\n\n“Históricamente hubo mayor vigilancia y controles alrededor del Fortín de la Bruma. Eso hizo que, incluso entre gente pacífica, los hinchas de Búhos tengan más registros y más fricción con el sistema.”\n\nEn términos estadísticos, la denuncia contra el sistema es la siguiente:\n\n“A los hinchas pacíficos (inocentes) de los Búhos les prohíben entrar más seguido que a los pacíficos del Albatros.”\n\nNos pondremos en el rol de consultores de ciencia de datos contratados por la Defensoría del Pueblo para auditar el sistema. Nos entregan un conjunto de datos anonimizado de la temporada anterior para realizar el análisis (datos/tp1_hinchas.csv).\nEl dataset corresponde a una auditoría retrospectiva: al finalizar la temporada, la Defensoría solicitó un cruce entre los registros de ingreso (score \\(S\\) y decisión \\(\\hat{Y}\\)) y los registros oficiales de incidentes y sanciones. De ese cruce se construyó la variable \\(Y\\), que indica si el intento de ingreso quedó asociado posteriormente a una participación en incidentes según la definición operativa del estudio.\nLos objetivos del trabajo son:\n\nDeterminar si hay evidencia de disparidad en los errores usando estadística bayesiana.\nExplicar el resultado en términos comprensibles para un organismo público.\nConectar el resultado con el trade-off de fairness entre calibración e igualdad de tasas de error.\nEstudiar mediante simulación la posibilidad de generar un sistema más justo.",
     "crumbs": [
@@ -134,7 +134,7 @@
   {
     "objectID": "trabajos_practicos/01_tp1.html#actividades",
     "href": "trabajos_practicos/01_tp1.html#actividades",
-    "title": "Tribuna Para Pocos",
+    "title": "El Clásico de la Injusticia",
     "section": "Actividades",
     "text": "Actividades\n\nPrimera parte\n\n¿Cuál es la prevalencia de hinchas violentos en cada equipo?\n¿Qué sesgos puede presentar el conjunto de datos retrospectivo entregado?\nVerifique que los scores de Centinela Delta están calibrados. Para ello, realice un calibration plot, un gráfico que agrupa los puntajes de riesgo (\\(S\\)) en intervalos (digamos 10) para comparar la probabilidad predicha por el algoritmo (eje x) contra la proporción de casos que resultaron realmente violentos (eje y).\nConsideremos un umbral \\(T=50\\), ¿cuál es la accuracy del modelo?\nCon \\(T=50\\), para cada grupo, calcule el número de falsos negativos, verdaderos negativos, falsos positivos y verdaderos positivos.\n\nConsideremos que la tasa de falsos positivos de cada grupo (\\(FPR_g\\)) es un parámetro desconocido sobre el que queremos hacer inferencia.\n\n¿Qué representa la tasa de falsos positivos?\n¿Qué supuestos son necesarios para modelar el número de falsos positivos como una variable binomial?\n¿Cuál es un prior razonable para el \\(FPR\\) de cada grupo? Escriba el modelo bayesiano y encuentre la distribución a posteriori de \\(FPR_g\\).\nHalle la distribución a posteriori de la diferencia entre \\(FPR_B\\) y \\(FPR_A\\). ¿Cuál es la probabilidad de que \\(FPR_B &gt; FPR_A\\)? ¿Qué puede concluirse en relación a la denuncia de la ONG Gradas en Paz?\n\nNebulaGuard sostiene que su algoritmo es justo porque la interpretación del score es independiente del equipo: un score de 80 se interpreta como una probabilidad del 80% de ser violento, independientemente de si se trata de un hincha de Albatros o de Búhos. La ONG Gradas en Paz sostiene que el algoritmo es injusto porque, entre los hinchas pacíficos, a los de Búhos se les prohíbe la entrada con mayor frecuencia que a los de Albatros: si sos inocente, tu probabilidad de ser rechazado no debería depender de tu camiseta.\nPara satisfacer el criterio de la ONG, una opción es utilizar un umbral \\(T_g\\) diferente para cada grupo.\n\nConstruya una grilla de valores de \\(T_A\\) y \\(T_B\\) y calcule, para cada combinación, la probabilidad de que la diferencia entre las tasas de falsos positivos sea menor al 5%. ¿Cuáles son los valores de \\(T_A\\) y \\(T_B\\) que “igualan” \\(FPR_A\\) y \\(FPR_B\\)?\n¿Considera que esta modificación del mecanismo de decisión es justa?\n\nEn lugar de utilizar un umbral diferente para cada grupo, otra opción es transformar los scores de cada grupo mediante una función lineal por tramos. Esta función debe satisfacer \\(f_g(0) = 0\\), \\(f_g(100) = 100\\) y \\(f_g(T_g) = 50\\).\n\nConstruya las funciones \\(f_A\\) y \\(f_B\\), convierta los scores y compare las distribuciones a posteriori de \\(FPR_A\\) y \\(FPR_B\\).\nPara los scores transformados, realice nuevamente el calibration plot y construya también un calibration plot por grupo.\n\n\n\nSegunda parte\nRealizaremos ahora un estudio por simulación para observar el comportamiento de las métricas analizadas y las decisiones tomadas.\nUna forma de simular scores calibrados con diferentes prevalencias por grupo es la siguiente:\n\nN1 &lt;- 50\nN2 &lt;- 50\ns1 &lt;- rbeta(N1, 2, 5)\ns2 &lt;- rbeta(N2, 4, 2)\ny_true &lt;- rbinom((N1 + N2), rep(1, N1 + N2), c(s1, s2))\ndata &lt;- data.frame(\n    G = c(rep(\"Albatros\", N1), rep(\"Búhos\", N2)),\n    Score = c(s1,s2) * 100,\n    Y = y_true\n)\n\n\n¿Por qué los scores s1 y s2 resultan calibrados?\n\nRepita \\(N=1000\\) veces el proceso de generar un conjunto de datos.\n\nConstruya un calibration plot global y uno por grupo que incluya barras de error de acuerdo a las simulaciones.\nRealice un gráfico que permita comparar las distribuciones a posteriori \\(FPR_A\\) y \\(FPR_B\\) a lo largo de las simulaciones.\nPara los valores de \\(T_A\\) y \\(T_B\\) que encontró para igualar los \\(FPR_g\\), compare las distribuciones a posteriori de \\(FPR_A\\) y \\(FPR_B\\).\nCon las funciones \\(f_A\\) y \\(f_B\\), ajuste los scores y repita el punto 15.\nA partir del análisis realizado, reflexione: ¿el sistema Centinela Delta es injusto? ¿Qué opciones existen para mitigar la disparidad? ¿Qué se gana o se pierde?",
     "crumbs": [
@@ -996,21 +996,21 @@
     "href": "presentaciones/presentacion_03.html#section-1",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "El modelo propuesto es \\[\n\\begin{aligned}\n  Y_i \\mid \\lambda & \\sim  Po(\\lambda)\\\\\n  \\lambda & \\sim  \\mathrm{Gamma}(s, r)\n\\end{aligned}\n\\]\nEl likelihood es Poisson: \\[p(y_i\\mid \\lambda) = \\frac{\\lambda^{y_i}e^{-\\lambda}}{y_i!} \\rightarrow p(\\mathbf{y}\\mid \\lambda) = \\prod_i \\frac{\\lambda^{y_i}e^{-\\lambda}}{y_i!} = \\frac{\\lambda^{\\sum_i y_i}e^{-n\\lambda}}{\\prod_{i}y_i!}\\]\nEl prior es Gamma: \\[p(\\lambda) = \\frac{r^s}{\\Gamma(s)} \\lambda^{s-1}e^{-r\\lambda}\\]\nInteresa hallar \\(p(\\lambda\\mid \\mathbf{y})\\)"
+    "text": "El modelo propuesto es \\[\n\\begin{aligned}\n  Y_i \\mid \\lambda & \\sim  \\mathrm{Po}(\\lambda)\\\\\n  \\lambda & \\sim  \\mathrm{Gamma}(s, r)\n\\end{aligned}\n\\]\nEl likelihood es Poisson: \\[p(y_i\\mid \\lambda) = \\frac{\\lambda^{y_i}e^{-\\lambda}}{y_i!} \\rightarrow p(\\mathbf{y}\\mid \\lambda) = \\prod_i \\frac{\\lambda^{y_i}e^{-\\lambda}}{y_i!} = \\frac{\\lambda^{\\sum_i y_i}e^{-n\\lambda}}{\\prod_{i}y_i!}\\]\nEl prior es Gamma: \\[p(\\lambda) = \\frac{r^s}{\\Gamma(s)} \\lambda^{s-1}e^{-r\\lambda}\\]\nInteresa hallar \\(p(\\lambda\\mid \\mathbf{y})\\)"
   },
   {
     "objectID": "presentaciones/presentacion_03.html#section-2",
     "href": "presentaciones/presentacion_03.html#section-2",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "\\[p(\\lambda\\mid \\mathbf{y}) \\propto p(\\mathbf{y}\\mid\\lambda) p(\\lambda)\\]\n\n\\[\np(\\lambda \\mid \\mathbf{y}) \\propto \\frac{\\lambda^{\\sum_i y_i}e^{-n\\lambda}}{\\prod_{i}y_i!} \\frac{r^s}{\\Gamma(s)} \\lambda^{s-1}e^{-r\\lambda}\n\\]\n\\[\np(\\lambda \\mid \\mathbf{y}) \\propto \\frac{r^s}{\\Gamma(s)\\prod_i y_i!} \\lambda^{\\sum_iy_i+s-1} e^{-n\\lambda - r \\lambda}\n\\]\n\n\n\\[p(\\lambda \\mid \\mathbf{y}) = K C \\lambda^{\\sum_iy_i+s-1} e^{-n\\lambda - r \\lambda}\\]\n\n\n\\[p(\\lambda \\mid \\mathbf{y}) = K^* \\lambda^{\\sum_iy_i+s-1} e^{-(n + r)\\lambda}\\]"
+    "text": "\\[p(\\lambda\\mid \\mathbf{y}) \\propto p(\\mathbf{y}\\mid\\lambda) p(\\lambda)\\]\n\n\\[\np(\\lambda \\mid \\mathbf{y}) \\propto \\frac{\\lambda^{\\sum_i y_i}e^{-n\\lambda}}{\\prod_{i}y_i!} \\frac{r^s}{\\Gamma(s)} \\lambda^{s-1}e^{-r\\lambda}\n\\]\n\n\n\\[\np(\\lambda \\mid \\mathbf{y}) \\propto \\frac{r^s}{\\Gamma(s)\\prod_i y_i!} \\lambda^{\\sum_iy_i+s-1} e^{-n\\lambda - r \\lambda}\n\\]\n\n\n\\[p(\\lambda \\mid \\mathbf{y}) = K C \\lambda^{\\sum_iy_i+s-1} e^{-n\\lambda - r \\lambda}\\]\n\n\n\\[p(\\lambda \\mid \\mathbf{y}) = K^* \\lambda^{\\sum_iy_i+s-1} e^{-(n + r)\\lambda}\\]"
   },
   {
     "objectID": "presentaciones/presentacion_03.html#section-3",
     "href": "presentaciones/presentacion_03.html#section-3",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Para que \\(\\int_0^\\infty p(\\lambda\\mid \\mathbf{y})d \\lambda = 1\\), debe ser\n\n\\[K^* = \\frac{(n + r )^{\\sum_i y_i + s}}{\\Gamma(\\sum_i y_i + s)}\\]\n\n\nPor lo tanto, resulta que la distribución a posteriori es Gamma de parámetros \\(\\sum_i y_i + s\\) y \\(n+r\\)\n\n\n\\[\np(\\lambda\\mid \\mathbf{y}) = \\frac{(n + r )^{\\sum_i y_i + s}}{\\Gamma(\\sum_i y_i + s)} \\lambda^{\\sum_iy_i+s-1} e^{-(n + r)\\lambda}\n\\]\n\\[\n\\lambda\\mid \\mathbf{y} \\sim  \\mathrm{Gamma}(\\sum_i y_i + s, n+r)\n\\]"
+    "text": "Para que \\(\\int_0^\\infty p(\\lambda\\mid \\mathbf{y})d \\lambda = 1\\), debe ser\n\n\\[K^* = \\frac{(n + r )^{\\sum_i y_i + s}}{\\Gamma(\\sum_i y_i + s)}\\]\n\n\nPor lo tanto, resulta que la distribución a posteriori es Gamma de parámetros \\(\\sum_i y_i + s\\) y \\(n+r\\)\n\n\n\\[\np(\\lambda\\mid \\mathbf{y}) = \\frac{(n + r )^{\\sum_i y_i + s}}{\\Gamma(\\sum_i y_i + s)} \\lambda^{\\sum_iy_i+s-1} e^{-(n + r)\\lambda}\n\\]\n\n\n\\[\n\\lambda\\mid \\mathbf{y} \\sim  \\mathrm{Gamma}(\\sum_i y_i + s, n+r)\n\\]"
   },
   {
     "objectID": "presentaciones/presentacion_03.html#normal-normal",
@@ -1024,21 +1024,21 @@
     "href": "presentaciones/presentacion_03.html#section-4",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "El modelo propuesto es: \\[\n\\small{\n  \\begin{aligned}\n      y_i \\mid \\mu & \\sim  \\mathcal{N}(\\mu,\\sigma^2)\\\\\n      \\mu & \\sim \\mathcal{N}(\\theta,\\tau^2)\n  \\end{aligned}\n}\n\\]\n\nEl likelihood es normal: \\[\n\\small{\n  \\begin{aligned}\n  p(y_i\\mid \\mu) &= \\frac{1}{\\sqrt{2\\pi\\sigma}} e^{-\\frac{(y_i-\\mu)^2}{2\\sigma^2}} \\rightarrow \\\\\n  p(\\mathbf{y}\\mid \\mu) &= \\left(\\frac{1}{2\\pi\\sigma}\\right)^{n/2}  e^{-\\frac{\\sum_i(y_i-\\mu)^2}{2\\sigma^2}} \\propto e^{-\\frac{(\\bar{y}-\\mu)^2}{2\\sigma^2/n}}\n  \\end{aligned}\n}\n\\]\n\n\nEl prior es normal: \\[\n\\small{\n  p(\\mu) = \\frac{1}{\\sqrt{2\\pi\\tau}} e^{-\\frac{(\\mu-\\theta)^2}{2\\tau^2}}\n}\n\\]\n\n\nInteresa hallar \\(p(\\mu \\mid \\mathbf{y})\\)"
+    "text": "El modelo propuesto es: \\[\n\\small{\n  \\begin{aligned}\n      y_i \\mid \\mu & \\sim  \\mathcal{N}(\\mu,\\sigma^2)\\\\\n      \\mu & \\sim \\mathcal{N}(\\theta,\\tau^2)\n  \\end{aligned}\n}\n\\]\n\nEl likelihood es normal: \\[\n\\small{\n  \\begin{aligned}\n  p(y_i\\mid \\mu) &= \\frac{1}{\\sqrt{2\\pi\\sigma^2}} e^{-\\frac{(y_i-\\mu)^2}{2\\sigma^2}} \\rightarrow \\\\\n  p(\\mathbf{y}\\mid \\mu) &= \\left(\\frac{1}{2\\pi\\sigma^2}\\right)^{n/2}  e^{-\\frac{\\sum_i(y_i-\\mu)^2}{2\\sigma^2}} \\propto e^{-\\frac{(\\bar{y}-\\mu)^2}{2\\sigma^2/n}}\n  \\end{aligned}\n}\n\\]\n\n\nEl prior es normal: \\[\n\\small{\n  p(\\mu) = \\frac{1}{\\sqrt{2\\pi\\tau^2}} e^{-\\frac{(\\mu-\\theta)^2}{2\\tau^2}}\n}\n\\]\n\n\nInteresa hallar \\(p(\\mu \\mid \\mathbf{y})\\)"
   },
   {
     "objectID": "presentaciones/presentacion_03.html#section-5",
     "href": "presentaciones/presentacion_03.html#section-5",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "\\[p(\\mu\\mid \\mathbf{y}) \\propto p(\\mathbf{y}\\mid\\mu) p(\\mu)\\] \\[p(\\mu \\mid \\mathbf{y}) \\propto   e^{-\\frac{(\\bar{y}-\\mu)^2}{2\\sigma^2/n}} \\frac{1}{\\sqrt{2\\pi\\tau}} e^{-\\frac{(\\mu-\\theta)^2}{2\\tau^2}}\\]\n\\[\n\\begin{aligned}\np(\\mu \\mid \\mathbf{y}) & \\propto  e^{-\\frac{(\\bar{y}-\\mu)^2}{2\\sigma^2/n}} e^{-\\frac{(\\mu-\\theta)^2}{2\\tau^2}} \\\\\n&  \\propto  e^{-\\left[\\frac{(\\bar{y}-\\mu)^2}{2\\sigma^2/n}+\\frac{(\\mu-\\theta)^2}{2\\tau^2}\\right]} \\\\\n& \\propto e^{-\\left[ \\frac{\\bar{y}^2 - 2\\bar{y} \\mu + \\mu^2}{2\\sigma^2/n} + \\frac{\\mu^2 - 2\\mu\\theta^2 + \\theta^2}{2\\tau^2} \\right]} \\\\\n& \\propto e^{\\left[ \\frac{ 2\\bar{y} \\mu - \\mu^2}{2\\sigma^2/n} + \\frac{-\\mu^2 + 2\\mu\\theta^2}{2\\tau^2} \\right]} \\\\\n& \\propto e^{\\left[ \\frac{(2\\bar{y} \\mu - \\mu^2)n\\tau^2 + (-\\mu^2 + 2\\mu\\theta^2)\\sigma^2}{2\\sigma^2\\tau^2} \\right]}\n\\end{aligned}\n\\]"
+    "text": "\\[p(\\mu\\mid \\mathbf{y}) \\propto p(\\mathbf{y}\\mid\\mu) p(\\mu)\\] . . .\n\\[p(\\mu \\mid \\mathbf{y}) \\propto   e^{-\\frac{(\\bar{y}-\\mu)^2}{2\\sigma^2/n}} \\frac{1}{\\sqrt{2\\pi\\tau}} e^{-\\frac{(\\mu-\\theta)^2}{2\\tau^2}}\\] . . . \\[\n\\begin{aligned}\np(\\mu \\mid \\mathbf{y}) & \\propto  e^{-\\frac{(\\bar{y}-\\mu)^2}{2\\sigma^2/n}} e^{-\\frac{(\\mu-\\theta)^2}{2\\tau^2}} \\\\\n&  \\propto  e^{-\\left[\\frac{(\\bar{y}-\\mu)^2}{2\\sigma^2/n}+\\frac{(\\mu-\\theta)^2}{2\\tau^2}\\right]} \\\\\n& \\propto e^{-\\left[ \\frac{\\bar{y}^2 - 2\\bar{y} \\mu + \\mu^2}{2\\sigma^2/n} + \\frac{\\mu^2 - 2\\mu\\theta^2 + \\theta^2}{2\\tau^2} \\right]} \\\\\n& \\propto e^{\\left[ \\frac{ 2\\bar{y} \\mu - \\mu^2}{2\\sigma^2/n} + \\frac{-\\mu^2 + 2\\mu\\theta}{2\\tau^2} \\right]} \\\\\n& \\propto e^{\\left[ \\frac{(2\\bar{y} \\mu - \\mu^2)n\\tau^2 + (-\\mu^2 + 2\\mu\\theta)\\sigma^2}{2\\sigma^2\\tau^2} \\right]}\n\\end{aligned}\n\\]"
   },
   {
     "objectID": "presentaciones/presentacion_03.html#section-6",
     "href": "presentaciones/presentacion_03.html#section-6",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "\\[\n    \\begin{aligned}\nP(\\mu \\mid \\mathbf{y}) & \\propto e^{\\frac{2\\mu(\\theta\\sigma^2+ \\bar{y}n\\tau^2)-\\mu^2(n\\tau^2+\\sigma^2)}{2\\tau^2\\sigma^2}} \\\\\n& \\propto e^{\\frac{-\\mu^2 + 2\\mu \\left( \\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2} \\right)}{2\\tau^2\\sigma^2/(n\\tau^2 + \\sigma^2)}} e^{-\\left(\\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2}\\right)^2} \\\\\n& \\propto e^{-\\frac{\\left(\\mu -  \\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2} \\right)^2}{2\\tau^2\\sigma^2/(n\\tau^2+\\sigma^2)}}\n    \\end{aligned}\n\\] \\[p(\\mu\\mid\\mathbf{y}) = K^* e^{-\\frac{\\left(\\mu -  \\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2} \\right)^2}{2\\tau^2\\sigma^2/(n\\tau^2+\\sigma^2)}}\\]"
+    "text": "\\[\n    \\begin{aligned}\np(\\mu \\mid \\mathbf{y}) & \\propto e^{\\frac{2\\mu(\\theta\\sigma^2+ \\bar{y}n\\tau^2)-\\mu^2(n\\tau^2+\\sigma^2)}{2\\tau^2\\sigma^2}} \\\\\n& \\propto e^{\\frac{-\\mu^2 + 2\\mu \\left( \\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2} \\right)}{2\\tau^2\\sigma^2/(n\\tau^2 + \\sigma^2)}} e^{-\\left(\\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2}\\right)^2} \\\\\n& \\propto e^{-\\frac{\\left(\\mu -  \\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2} \\right)^2}{2\\tau^2\\sigma^2/(n\\tau^2+\\sigma^2)}}\n    \\end{aligned}\n\\] \\[p(\\mu\\mid\\mathbf{y}) = K^* e^{-\\frac{\\left(\\mu -  \\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2} \\right)^2}{2\\tau^2\\sigma^2/(n\\tau^2+\\sigma^2)}}\\]"
   },
   {
     "objectID": "presentaciones/presentacion_03.html#section-7",
@@ -1111,36 +1111,36 @@
     "text": "Compromiso\n\\[\n\\small{\n  \\mathbb{V}[p(\\mu\\mid \\mathbf{y})] = \\tau_n^2 = \\frac{\\tau^2\\sigma^2}{n\\tau^2+\\sigma^2}\n}\n\\]\n\\[\n\\small{\n  \\mathbb{V}[p(\\mu\\mid \\mathbf{y})] = \\frac{1}{\\frac{n}{\\sigma^2}+\\frac{1}{\\tau^2}}\n}\n\\]\n\\[\n\\small{\n  \\frac{1}{\\mathbb{V}[p(\\mu\\mid \\mathbf{y})]} =  \\frac{n}{\\sigma^2} + \\frac{1}{\\tau^2}\n}\n\\]\n\nLa precisión a posteriori es la suma de las precisiones del prior y la muestra."
   },
   {
+    "objectID": "presentaciones/presentacion_03.html#distribución-predictiva-a-posteriori",
+    "href": "presentaciones/presentacion_03.html#distribución-predictiva-a-posteriori",
+    "title": "Estadística Bayesiana",
+    "section": "Distribución predictiva a posteriori",
+    "text": "Distribución predictiva a posteriori\n\\[p(\\tilde{y}\\mid \\mathbf{y}) = \\int p(\\tilde{y}\\mid \\mu) p(\\mu\\mid \\mathbf{y})d\\mu\\] El integrando es el producto de dos normales: una normal bivariada. Por lo tanto toda la integral es una distribución marginal de una normal: otra normal.\n\n¿Cuáles son sus parámetros?"
+  },
+  {
     "objectID": "presentaciones/presentacion_03.html#section-15",
     "href": "presentaciones/presentacion_03.html#section-15",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Distribución predictiva a posteriori\n\\[p(\\tilde{y}\\mid \\mathbf{y}) = \\int p(\\tilde{y}\\mid \\mu) p(\\mu\\mid \\mathbf{y})d\\mu\\] El integrando es el producto de dos normales: una normal bivariada. Por lo tanto toda la integral es una distribución marginal de una normal: otra normal."
+    "text": "Demostración poco formal.\n\nDescomponemos \\(\\tilde{y}\\) en dos partes:\n\\[\\tilde{y} = \\mu + (\\tilde{y} - \\mu) = \\mu + \\varepsilon\\]\n\n\n\\(\\tilde{y} \\mid \\mu\\), al igual que \\(y \\mid \\mu\\), tiene distribución \\(\\mathcal{N}(\\mu,\\sigma^2)\\) (es la verosimilitud), entonces:\n\n\n\\[(\\tilde{y} - \\mu) \\mid \\mu \\;\\sim\\; \\mathcal{N}(0,\\,\\sigma^2)\n\\qquad \\leftarrow \\text{error del modelo, dado } \\mu\\]\n\n\n\\[\\mu \\mid \\mathbf{y} \\;\\sim\\; \\mathcal{N}(\\theta_n,\\,\\tau_n^2)\n\\qquad\\qquad \\leftarrow \\text{posterior de } \\mu\\]\n\n\n\\(\\tilde{y}\\) es la suma de dos normales independientes (condicionalmente en \\(\\mu\\)):\n\\[\\tilde{y} \\mid \\mathbf{y} \\;\\sim\\; \\mathcal{N}(\\theta_n,\\;\\sigma^2 + \\tau_n^2)\\]"
   },
   {
     "objectID": "presentaciones/presentacion_03.html#section-16",
     "href": "presentaciones/presentacion_03.html#section-16",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Demostración poco formal…\nA posteriori vale \\[\n\\begin{array}{ccc}\ny & = & (y-\\mu) + \\mu \\\\\ny-\\mu \\mid \\mu & \\sim & \\mathcal{N}(0,\\sigma^2) \\\\\n\\mu \\mid \\mathbf{y} & \\sim & \\mathcal{N}(\\theta_n,\\tau_n^2)\n\\end{array}\n\\]\nResulta\n\\[p(\\tilde{y}\\mid \\mathbf{y}) = \\mathcal{N}(\\mu_n,\\sigma^2 + \\tau_n^2)\\]"
+    "text": "La varianza predictiva \\(\\sigma^2 + \\tau_n^2\\) es una medida de la incertidumbre a posteriori respecto a una observación nueva \\(\\tilde{y}\\).\n\nLa incertidumbre en \\(\\tilde{y}\\) proviene de la variabilidad debida al azar (\\(\\sigma\\)) y de la variabilidad debida al desconocimiento de \\(\\mu\\) (\\(\\tau_n\\))\n\n\nEn otras palabras, si supiéramos que \\(\\mu = 2\\), toda la variabilidad provendría de \\(\\sigma\\), ¡pero no sabemos cuánto vale \\(\\mu\\)! Puede ser \\(2\\) o \\(1.98\\) o \\(1.43\\)… Por lo que hay una componente adicional de varianza."
   },
   {
     "objectID": "presentaciones/presentacion_03.html#section-17",
     "href": "presentaciones/presentacion_03.html#section-17",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "La varianza predictiva \\(\\sigma^2 + \\tau_n^2\\) es una medida de la incertidumbre a posteriori respecto a una observación nueva \\(\\tilde{y}\\).\n\nLa incertidumbre en \\(\\tilde{y}\\) proviene de la variabilidad debida al azar (\\(\\sigma\\)) y de la variabilidad debida al desconocimiento de \\(\\mu\\) (\\(\\tau_n\\))\n\n\nEn otras palabras, si supiéramos que \\(\\mu = 2\\), toda la variabilidad provendría de \\(\\sigma\\), ¡pero no sabemos cuánto vale \\(\\mu\\)! Puede ser \\(2\\) o \\(1.98\\) o \\(1.43\\)… Por lo que hay una componente adicional de varianza."
+    "text": "No se entendió nada. Simular para creer.\n\n¿Cómo obtenemos una observación nueva si sabemos que \\(\\mu = 2\\) (sabiendo que \\(\\sigma = 1.2\\))?\n\n\nDirectamente tomamos una muestra \\(\\tilde{y}\\) de \\(\\mathcal{N}\\left(\\mu=2,\\sigma^2= 1.2^2\\right)\\)\n\ny_new &lt;- rnorm(1, mean = 2, sd = 1.2)\n\n\n\nPero en estadística bayesiana \\(\\mu\\) tiene una distribución de probabilidad (por ejemplo \\(\\mathcal{N}\\left(\\theta_n=2,\\tau_n^2=1.8^2\\right)\\)), ¿cómo hacemos la simulación?\n\n\n\nTomamos una muestra \\(\\mu^{(s)}\\) de la distribución de \\(\\mu\\)\nObtenemos \\(\\tilde{y}\\) a partir de \\(\\mathcal{N}(\\mu=\\mu^{(s)},\\sigma^2=1.2^2)\\)\n\n\n\n\nmu_s &lt;- rnorm(1, mean = 2, sd = 1.8)\ny_new &lt;- rnorm(1, mean = mu_s, sd = 1.2)\n\n\n\n¿Qué va a pasar en cada caso si construimos la distribución de \\(\\tilde{y}\\)?"
   },
   {
     "objectID": "presentaciones/presentacion_03.html#section-18",
     "href": "presentaciones/presentacion_03.html#section-18",
-    "title": "Estadística Bayesiana",
-    "section": "",
-    "text": "No se entendió nada. Simular para creer.\n\n¿Cómo obtenemos una observación nueva si sabemos que \\(\\mu = 2\\) (sabiendo que \\(\\sigma = 1.2\\))?\n\n\nDirectamente tomamos una muestra \\(\\tilde{y}\\) de \\(\\mathcal{N}\\left(\\mu=2,\\sigma^2= 1.2^2\\right)\\)\n\ny_new &lt;- rnorm(1, mean = 2, sd = 1.2)\n\n\n\nPero en estadística bayesiana \\(\\mu\\) tiene una distribución de probabilidad (por ejemplo \\(\\mathcal{N}\\left(\\theta_n=2,\\tau_n^2=1.8^2\\right)\\)), ¿cómo hacemos la simulación?\n\n\n\nTomamos una muestra \\(\\mu^{(s)}\\) de la distribución de \\(\\mu\\)\nObtenemos \\(\\tilde{y}\\) a partir de \\(\\mathcal{N}(\\mu=\\mu^{(s)},\\sigma^2=1.2^2)\\)\n\n\n\n\nmu_s &lt;- rnorm(1, mean = 2, sd = 1.8)\ny_new &lt;- rnorm(1, mean = mu_s, sd = 1.2)\n\n\n\n¿Qué va a pasar en cada caso si construimos la distribución de \\(\\tilde{y}\\)?"
-  },
-  {
-    "objectID": "presentaciones/presentacion_03.html#section-19",
-    "href": "presentaciones/presentacion_03.html#section-19",
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "La distribución predictiva contiene la variabilidad inherente al fenómeno en estudio (\\(\\sigma\\)) y la incertidumbre en el parámetro \\(\\mu\\)."
@@ -1153,50 +1153,50 @@
     "text": "Normal – normal-gamma-inversa\nSea una muestra \\(\\mathbf{y} = (y_1,y_2,\\dots,y_n)\\) obtenida de un modelo normal con varianza desconocida \\(\\sigma^2\\), es decir:\n\\[Y_i \\sim \\mathcal{N}(\\mu,\\sigma^2)\\]\nE interesa realizar una inferencia sobre el valor de \\(\\mu\\) y el valor de \\(\\sigma\\)\n\n¿Cómo asignamos una credibilidad a priori para \\(\\mu\\) y \\(\\sigma\\)? ¡Con una distribución en dos dimensiones!"
   },
   {
+    "objectID": "presentaciones/presentacion_03.html#section-19",
+    "href": "presentaciones/presentacion_03.html#section-19",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "El modelo es\n\\[\n\\begin{aligned}\n    Y_i\\mid\\mu,\\sigma^2 & \\sim  \\mathcal{N}(\\mu,\\sigma^2) \\\\\n    \\mu,\\sigma^2 & \\sim  \\mathcal{N}GI(\\theta,\\tau,\\alpha,\\beta)\n\\end{aligned}\n\\]\n\\(\\mu\\) y \\(\\sigma^2\\) tienen distribución conjunta normal-gamma-inversa:\n\\[\np(\\mu,\\sigma^2 \\mid \\theta, \\tau, \\alpha, \\beta ) =\n  \\frac{\\sqrt{\\tau}}{\\sqrt{2\\pi\\sigma^2}}\n  \\frac{\\beta^\\alpha}{\\Gamma(\\alpha)}\n  \\left( \\frac{1}{\\sigma^2} \\right)^{\\alpha+1}\n  e^{-\\frac{2\\beta + \\tau(\\mu-\\theta)^2}{2\\sigma^2}}\n\\]\nSi anticipamos que la normal-gamma-inversa es conjugada de la normal (para los parámetros \\(\\mu\\) y \\(\\sigma^2\\)), ¿qué podemos decir de la distribución a posteriori (conjunta) de \\(\\mu\\) y \\(\\sigma^2\\)"
+  },
+  {
     "objectID": "presentaciones/presentacion_03.html#section-20",
     "href": "presentaciones/presentacion_03.html#section-20",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "El modelo es\n\\[\n\\begin{aligned}\n    Y_i\\mid\\mu,\\sigma^2 & \\sim  \\mathcal{N}(\\mu,\\sigma^2) \\\\\n    \\mu,\\sigma^2 & \\sim  \\mathcal{N}GI(\\theta,\\tau,\\alpha,\\beta)\n\\end{aligned}\n\\]\n\\(\\mu\\) y \\(\\sigma^2\\) tienen distribución conjunta normal-gamma-inversa:\n\\[\np(\\mu,\\sigma^2 \\mid \\theta, \\tau, \\alpha, \\beta ) =\n  \\frac{\\sqrt{\\tau}}{\\sqrt{2\\pi\\sigma^2}}\n  \\frac{\\beta^\\alpha}{\\Gamma(\\alpha)}\n  \\left( \\frac{1}{\\sigma^2} \\right)^{\\alpha+1}\n  e^{-\\frac{2\\beta + \\tau(\\mu-\\theta)^2}{2\\sigma^2}}\n\\]\nSi anticipamos que la normal-gamma-inversa es conjugada de la normal (para los parámetros \\(\\mu\\) y \\(\\sigma^2\\)), ¿qué podemos decir de la distribución a posteriori (conjunta) de \\(\\mu\\) y \\(\\sigma^2\\)"
+    "text": "Efectivamente, se puede probar que:\n\\[\n\\begin{aligned}\n\\mu,\\sigma^2 \\mid \\mathbf{y} & \\sim  \\mathcal{N}GI(\\theta_n,\\tau_n,\\alpha_n,\\beta_n)\n\\end{aligned}\n\\] con\n\\[\n\\begin{cases}\n\\theta_n = \\frac{\\tau\\theta + n \\bar{y}}{\\tau+n}\\\\\n\\tau_n = \\tau + n\\\\\n\\alpha_n = \\alpha + \\frac{n}{2}\\\\\n\\beta_n = \\beta + \\frac{1}{2} \\sum_i (y_i - \\bar{y})^2 + \\frac{n\\tau}{\\tau + n} \\frac{(\\bar{y}-\\theta)^2}{2}\n\\end{cases}\n\\]\n¿Parámetros desconocidos en la verosimilitud? ¿Dimensión del espacio de parámetros? ¿Constantes de ajuste del prior? ¿Forma del posterior?"
   },
   {
     "objectID": "presentaciones/presentacion_03.html#section-21",
     "href": "presentaciones/presentacion_03.html#section-21",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Efectivamente, se puede probar que:\n\\[\n\\begin{aligned}\n\\mu,\\sigma^2 \\mid \\mathbf{y} & \\sim  \\mathcal{N}GI(\\theta_n,\\tau_n,\\alpha_n,\\beta_n)\n\\end{aligned}\n\\] con\n\\[\n\\begin{cases}\n\\theta_n = \\frac{\\tau\\theta + n \\bar{y}}{\\tau+n}\\\\\n\\tau_n = \\tau + n\\\\\n\\alpha_n = \\alpha + \\frac{n}{2}\\\\\n\\beta_n = \\beta + \\frac{1}{2} \\sum_i (y_i - \\bar{y})^2 + \\frac{n\\tau}{\\tau + n} \\frac{(\\bar{y}-\\theta)^2}{2}\n\\end{cases}\n\\]\n¿Parámetros desconocidos en la verosimilitud? ¿Dimensión del espacio de parámetros? ¿Constantes de ajuste del prior? ¿Forma del posterior?"
+    "text": "Reflexionemos…\n\\[\n\\begin{aligned}\n    Y_i \\mid\\mu & \\sim  \\mathcal{N}(\\mu,\\sigma^2) \\\\\n    \\mu & \\sim  \\mathcal{N}(\\theta,\\tau^2) \\\\\n    \\mu \\mid \\mathbf{y} & \\sim \\mathcal{N}(\\theta_n,\\tau_n^2)\n\\end{aligned}\n\\]\n¿Parámetros desconocidos en la verosimilitud? ¿Dimensión y característica del espacio de parámetros? ¿Constantes de ajuste del prior? ¿Forma del posterior? ¿Qué son \\(\\theta_n\\) y \\(\\tau_n^2\\)?"
   },
   {
-    "objectID": "presentaciones/presentacion_03.html#section-22",
-    "href": "presentaciones/presentacion_03.html#section-22",
+    "objectID": "presentaciones/presentacion_03.html#section-23",
+    "href": "presentaciones/presentacion_03.html#section-23",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Reflexionemos…\n\\[\n\\begin{aligned}\n    Y_i \\mid\\mu & \\sim  \\mathcal{N}(\\mu,\\sigma^2) \\\\\n    \\mu & \\sim  \\mathcal{N}(\\theta,\\tau^2) \\\\\n    \\mu \\mid \\mathbf{y} & \\sim \\mathcal{N}(\\theta_n,\\tau_n^2)\n\\end{aligned}\n\\]\n¿Parámetros desconocidos en la verosimilitud? ¿Dimensión y característica del espacio de parámetros? ¿Constantes de ajuste del prior? ¿Forma del posterior? ¿Qué son \\(\\theta_n\\) y \\(\\tau_n^2\\)?"
+    "text": "¿Puedo representar los datos en el gráfico de la izquierda?\n\nNo, es el mundo de los parámetros\n\n\n¿Qué representan los valores marcados con \\(\\mathbf{\\times}\\)?\n\nPosibles valores de \\(\\mu\\) y \\(\\sigma^2\\) que podrían esperarse a priori.\n\n\n\n¿Qué le da forma a la distribución de la izquierda?\n\n\\(\\theta\\), \\(\\tau\\), \\(\\alpha\\) y \\(\\beta\\)\n\n\n\n¿Media y varianza de las normales de la derecha?\n\n\\(\\mu\\) y \\(\\sigma^2\\)"
   },
   {
     "objectID": "presentaciones/presentacion_03.html#section-24",
     "href": "presentaciones/presentacion_03.html#section-24",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "¿Puedo representar los datos en el gráfico de la izquierda?\n\nNo, es el mundo de los parámetros\n\n\n¿Qué representan los valores marcados con \\(\\mathbf{\\times}\\)?\n\nPosibles valores de \\(\\mu\\) y \\(\\sigma^2\\) que podrían esperarse a priori.\n\n\n\n¿Qué le da forma a la distribución de la izquierda?\n\n\\(\\theta\\), \\(\\tau\\), \\(\\alpha\\) y \\(\\beta\\)\n\n\n\n¿Media y varianza de las normales de la derecha?\n\n\\(\\mu\\) y \\(\\sigma^2\\)"
+    "text": "¿Qué estamos viendo?"
   },
   {
     "objectID": "presentaciones/presentacion_03.html#section-25",
     "href": "presentaciones/presentacion_03.html#section-25",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "¿Qué estamos viendo?"
+    "text": "A posteriori (luego de observar los datos)… ¿qué ocurre con la plausibilidad de los valores de \\(\\mu\\) y \\(\\sigma^2\\)?"
   },
   {
     "objectID": "presentaciones/presentacion_03.html#section-26",
     "href": "presentaciones/presentacion_03.html#section-26",
-    "title": "Estadística Bayesiana",
-    "section": "",
-    "text": "A posteriori (luego de observar los datos)… ¿qué ocurre con la plausibilidad de los valores de \\(\\mu\\) y \\(\\sigma^2\\)?"
-  },
-  {
-    "objectID": "presentaciones/presentacion_03.html#section-27",
-    "href": "presentaciones/presentacion_03.html#section-27",
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "¿Parámetros de la distribución de la izquierda?\n\n\\(\\theta_n\\), \\(\\tau_n\\), \\(\\alpha_n\\) y \\(\\beta_n\\)\n\n\n¿Media y varianza de las normales de la derecha?\n\n\\(\\mu\\) y \\(\\sigma^2\\)"
