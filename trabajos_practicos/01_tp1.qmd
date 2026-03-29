@@ -1,6 +1,6 @@
 ---
-title: "Tribuna Para Pocos"
-practica: "Trabajo Práctico 1: Tribuna Para Pocos"
+title: "El Clásico de la Injusticia"
+practica: "Trabajo Práctico 1: El Clásico de la Injusticia"
 ---
 
 ```{r}
