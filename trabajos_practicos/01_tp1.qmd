@@ -57,10 +57,9 @@ En términos estadísticos, la denuncia contra el sistema es la siguiente:
 Nos pondremos en el rol de consultores de ciencia de datos contratados por la Defensoría del Pueblo para
 auditar el sistema. Nos entregan un conjunto de datos anonimizado de la temporada anterior para realizar el análisis (`datos/tp1_hinchas.csv`).
 
-El _dataset_ corresponde a una auditoría retrospectiva: al finalizar la temporada, la Defensoría solicitó
-un cruce entre los registros de ingreso (_score_ $S$ y decisión $\hat{Y}$) y los registros oficiales de incidentes
-y sanciones. De ese cruce se construyó la variable $Y$, que indica si el intento de ingreso quedó asociado
-posteriormente a una participación en incidentes según la definición operativa del estudio.
+El dataset corresponde a la temporada anterior a la implementación de Centinela Delta, cuando no existían restricciones de admisión. 
+Para cada hincha se registró si participó en incidentes ($Y$). NebulaGuard entrenó su modelo con estos datos y ahora la Defensoría
+quiere auditar qué habría pasado si el sistema se hubiera aplicado.
 
 Los objetivos del trabajo son:
 
