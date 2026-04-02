@@ -7,8 +7,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.26">
 
   <title>Estadística Bayesiana – presentacion_04</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -95,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-20481a7d58f3252d02b1dbf5a92244ef.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-2a285664066d4ed1cc826f6843ba6e22.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -309,7 +309,7 @@ L( \theta, \hat{\theta} ) =
 <section id="section-9" class="slide level2">
 <h2></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>L_2 <span class="ot">&lt;-</span> <span class="cf">function</span>(theta,theta_hat) (theta<span class="sc">-</span>theta_hat)<span class="sc">^</span><span class="dv">2</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>L_2 <span class="ot">&lt;-</span> <span class="cf">function</span>(theta,theta_hat) (theta<span class="sc">-</span>theta_hat)<span class="sc">^</span><span class="dv">2</span></span>
 <span id="cb1-2"><a></a></span>
 <span id="cb1-3"><a></a>loss <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">theta_hat =</span> <span class="fu">double</span>(),</span>
 <span id="cb1-4"><a></a>                   <span class="at">theta =</span> <span class="fu">double</span>(),</span>
@@ -323,7 +323,7 @@ L( \theta, \hat{\theta} ) =
 <span id="cb1-12"><a></a></span>
 <span id="cb1-13"><a></a>expected.loss <span class="ot">&lt;-</span> loss <span class="sc">|&gt;</span></span>
 <span id="cb1-14"><a></a>  <span class="fu">group_by</span>(theta_hat) <span class="sc">|&gt;</span></span>
-<span id="cb1-15"><a></a>  <span class="fu">summarise</span>(<span class="at">loss.mean =</span> <span class="fu">mean</span>(L))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-15"><a></a>  <span class="fu">summarise</span>(<span class="at">loss.mean =</span> <span class="fu">mean</span>(L))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="section-10" class="slide level2">
@@ -436,9 +436,9 @@ L( \theta, \hat{\theta} ) =
 <h3 id="parámetros">Parámetros</h3>
 <p>¿Cuál es la probabilidad <em>a posteriori</em> de que <span class="math inline">\(\pi\)</span> sea mayor a <span class="math inline">\(0.50\)</span>? ¿y de que sea mayor a <span class="math inline">\(0.80\)</span>?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>muestras_pi <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">2000</span>,<span class="dv">6</span>,<span class="dv">4</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>muestras_pi <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">2000</span>,<span class="dv">6</span>,<span class="dv">4</span>)</span>
 <span id="cb2-2"><a></a><span class="fu">mean</span>(muestras_pi <span class="sc">&gt;</span> <span class="fl">0.5</span>)</span>
-<span id="cb2-3"><a></a><span class="fu">mean</span>(muestras_pi <span class="sc">&gt;</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a></a><span class="fu">mean</span>(muestras_pi <span class="sc">&gt;</span> <span class="fl">0.8</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="section-18" class="slide level2">
@@ -446,8 +446,8 @@ L( \theta, \hat{\theta} ) =
 <h3 id="funciones-de-los-parámetros">Funciones de los parámetros</h3>
 <p>¿Cuál es la distribución <em>a posteriori</em> de la chance de obtener cara <span class="math inline">\(\frac{\pi}{1-\pi}\)</span>?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>muestras_pi <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">2000</span>,<span class="dv">6</span>,<span class="dv">4</span>)</span>
-<span id="cb3-2"><a></a>muestras_odds <span class="ot">&lt;-</span> muestras_pi<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>muestras_pi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>muestras_pi <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">2000</span>,<span class="dv">6</span>,<span class="dv">4</span>)</span>
+<span id="cb3-2"><a></a>muestras_odds <span class="ot">&lt;-</span> muestras_pi<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>muestras_pi)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="section-19" class="slide level2">
@@ -455,8 +455,8 @@ L( \theta, \hat{\theta} ) =
 <h3 id="predicciones">Predicciones</h3>
 <p>Si se arroja la moneda 11 veces más ¿cuál es la distribución de probabilidad de la cantidad de caras? (es la distribución predictiva <em>a posteriori</em>)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>muestras_pi <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">2000</span>,<span class="dv">6</span>,<span class="dv">4</span>)</span>
-<span id="cb4-2"><a></a>y_new <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">2000</span>,<span class="dv">11</span>,muestras_pi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>muestras_pi <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">2000</span>,<span class="dv">6</span>,<span class="dv">4</span>)</span>
+<span id="cb4-2"><a></a>y_new <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">2000</span>,<span class="dv">11</span>,muestras_pi)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="section-20" class="slide level2" data-background-color="#ffc13b" style="font-size: 1.8em; text-align: left; color=white">
@@ -655,7 +655,7 @@ L( \theta, \hat{\theta} ) =
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -767,13 +767,14 @@ L( \theta, \hat{\theta} ) =
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

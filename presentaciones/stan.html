@@ -7,8 +7,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.26">
 
   <title>Estadística Bayesiana – stan</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -95,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-20481a7d58f3252d02b1dbf5a92244ef.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-2a285664066d4ed1cc826f6843ba6e22.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -231,12 +231,12 @@
 </section>
 <section id="datos" class="slide level2">
 <h2>Datos</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource stan number-lines code-with-copy"><code class="sourceCode stan"><span id="cb1-1"><a></a><span class="kw">data</span> {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource stan number-lines code-with-copy"><code class="sourceCode stan"><span id="cb1-1"><a></a><span class="kw">data</span> {</span>
 <span id="cb1-2"><a></a>    <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">1</span>&gt; N; <span class="co">// Cantidad de observaciones</span></span>
 <span id="cb1-3"><a></a>    <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">1</span>&gt; K; <span class="co">// Cantidad de variables</span></span>
 <span id="cb1-4"><a></a>    <span class="dt">matrix</span>[N, K] X; <span class="co">// Matriz de diseño</span></span>
 <span id="cb1-5"><a></a>    <span class="dt">vector</span>[N] y;    <span class="co">// Vector de respuestas</span></span>
-<span id="cb1-6"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li class="fragment">En este bloque definimos qué datos, y de qué tipo, serán utilizado en el modelo.</li>
 <li class="fragment">Tenemos que declarar el tipo y dimensión de los datos.</li>
@@ -246,10 +246,10 @@
 </section>
 <section id="parámetros" class="slide level2">
 <h2>Parámetros</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource stan number-lines code-with-copy"><code class="sourceCode stan"><span id="cb2-1"><a></a><span class="kw">parameters</span> {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource stan number-lines code-with-copy"><code class="sourceCode stan"><span id="cb2-1"><a></a><span class="kw">parameters</span> {</span>
 <span id="cb2-2"><a></a>    <span class="dt">vector</span>[K] beta;</span>
 <span id="cb2-3"><a></a>    <span class="dt">real</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; sigma;</span>
-<span id="cb2-4"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li class="fragment">Los parámetros del modelo a estimar se declaran en el bloque de parámetros.</li>
 <li class="fragment">Debemos imponer las restricciones necesarias a los parámetros.</li>
@@ -258,7 +258,7 @@
 </section>
 <section id="modelo" class="slide level2">
 <h2>Modelo</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource stan number-lines code-with-copy"><code class="sourceCode stan"><span id="cb3-1"><a></a><span class="kw">model</span> {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource stan number-lines code-with-copy"><code class="sourceCode stan"><span id="cb3-1"><a></a><span class="kw">model</span> {</span>
 <span id="cb3-2"><a></a>    <span class="dt">vector</span>[N] mu;</span>
 <span id="cb3-3"><a></a>    mu = X * beta;</span>
 <span id="cb3-4"><a></a>    </span>
@@ -268,7 +268,7 @@
 <span id="cb3-8"><a></a></span>
 <span id="cb3-9"><a></a>    <span class="co">// likelihood</span></span>
 <span id="cb3-10"><a></a>    y ~ normal(mu, sigma);</span>
-<span id="cb3-11"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-11"><a></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li class="fragment">El bloque modelo es donde definimos las distribuciones previas y la verosimilitud del modelo.</li>
 <li class="fragment">También podemos declarar algunas variables que no son de nuestro interés pero facilita la escritura del modelo.</li>
@@ -285,36 +285,36 @@
 <section id="datos-de-tipo-escalar" class="slide level2">
 <h2>Datos de tipo escalar</h2>
 <p>Enteros y reales sin restricciones:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource stan number-lines code-with-copy"><code class="sourceCode stan"><span id="cb4-1"><a></a><span class="dt">int</span> N;</span>
-<span id="cb4-2"><a></a><span class="dt">real</span> theta;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource stan number-lines code-with-copy"><code class="sourceCode stan"><span id="cb4-1"><a></a><span class="dt">int</span> N;</span>
+<span id="cb4-2"><a></a><span class="dt">real</span> theta;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Enteros y reales con restricciones:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource stan number-lines code-with-copy"><code class="sourceCode stan"><span id="cb5-1"><a></a><span class="dt">int</span>&lt;<span class="kw">lower</span> = <span class="dv">1</span>&gt; N;</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource stan number-lines code-with-copy"><code class="sourceCode stan"><span id="cb5-1"><a></a><span class="dt">int</span>&lt;<span class="kw">lower</span> = <span class="dv">1</span>&gt; N;</span>
 <span id="cb5-2"><a></a><span class="dt">real</span>&lt;<span class="kw">lower</span> = <span class="dv">0</span>&gt; sigma;</span>
-<span id="cb5-3"><a></a><span class="dt">real</span>&lt;<span class="kw">lower</span> =-<span class="dv">1</span>, <span class="kw">upper</span> = <span class="dv">1</span>&gt; rho;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a></a><span class="dt">real</span>&lt;<span class="kw">lower</span> =-<span class="dv">1</span>, <span class="kw">upper</span> = <span class="dv">1</span>&gt; rho;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="vectores-y-matrices" class="slide level2">
 <h2>Vectores y matrices</h2>
 <p>Los vectores en Stan son de tipo columna y se declaran junto con la dimensión:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource stan number-lines code-with-copy"><code class="sourceCode stan"><span id="cb6-1"><a></a><span class="dt">vector</span>[<span class="dv">3</span>] u;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource stan number-lines code-with-copy"><code class="sourceCode stan"><span id="cb6-1"><a></a><span class="dt">vector</span>[<span class="dv">3</span>] u;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Tambien pueden tener restricciones</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource stan number-lines code-with-copy"><code class="sourceCode stan"><span id="cb7-1"><a></a><span class="dt">vector</span>&lt;<span class="kw">lower</span> = <span class="dv">0</span>&gt;[<span class="dv">3</span>] u;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource stan number-lines code-with-copy"><code class="sourceCode stan"><span id="cb7-1"><a></a><span class="dt">vector</span>&lt;<span class="kw">lower</span> = <span class="dv">0</span>&gt;[<span class="dv">3</span>] u;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Las matrices se declaran junto a su número de filas y columnas</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource stan number-lines code-with-copy"><code class="sourceCode stan"><span id="cb8-1"><a></a><span class="dt">matrix</span>[<span class="dv">3</span>, <span class="dv">3</span>] A;</span>
-<span id="cb8-2"><a></a><span class="dt">matrix</span>&lt;<span class="kw">upper</span>=<span class="dv">0</span>&gt;[<span class="dv">3</span>, <span class="dv">4</span>] B;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource stan number-lines code-with-copy"><code class="sourceCode stan"><span id="cb8-1"><a></a><span class="dt">matrix</span>[<span class="dv">3</span>, <span class="dv">3</span>] A;</span>
+<span id="cb8-2"><a></a><span class="dt">matrix</span>&lt;<span class="kw">upper</span>=<span class="dv">0</span>&gt;[<span class="dv">3</span>, <span class="dv">4</span>] B;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="tipos-especiales-de-matrices-y-vectores" class="slide level2">
 <h2>Tipos especiales de matrices y vectores</h2>
 <p>Vector unitario simplex (suma de elementos es igual a 1)</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource stan number-lines code-with-copy"><code class="sourceCode stan"><span id="cb9-1"><a></a><span class="dt">simplex</span>[<span class="dv">5</span>] theta;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource stan number-lines code-with-copy"><code class="sourceCode stan"><span id="cb9-1"><a></a><span class="dt">simplex</span>[<span class="dv">5</span>] theta;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Vector ordenado o positivo y ordenado</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource stan number-lines code-with-copy"><code class="sourceCode stan"><span id="cb10-1"><a></a><span class="dt">ordered</span>[<span class="dv">5</span>] c;</span>
-<span id="cb10-2"><a></a><span class="dt">positive_ordered</span>[<span class="dv">5</span>] d;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource stan number-lines code-with-copy"><code class="sourceCode stan"><span id="cb10-1"><a></a><span class="dt">ordered</span>[<span class="dv">5</span>] c;</span>
+<span id="cb10-2"><a></a><span class="dt">positive_ordered</span>[<span class="dv">5</span>] d;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Vector fila</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource stan number-lines code-with-copy"><code class="sourceCode stan"><span id="cb11-1"><a></a><span class="dt">row_vector</span>[<span class="dv">3</span>] u;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource stan number-lines code-with-copy"><code class="sourceCode stan"><span id="cb11-1"><a></a><span class="dt">row_vector</span>[<span class="dv">3</span>] u;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Matriz de covarianza</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource stan number-lines code-with-copy"><code class="sourceCode stan"><span id="cb12-1"><a></a><span class="dt">cov_matrix</span>[K] Omega;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource stan number-lines code-with-copy"><code class="sourceCode stan"><span id="cb12-1"><a></a><span class="dt">cov_matrix</span>[K] Omega;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Matriz de correlación</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource stan number-lines code-with-copy"><code class="sourceCode stan"><span id="cb13-1"><a></a><span class="dt">corr_matrix</span>[<span class="dv">3</span>] Sigma;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource stan number-lines code-with-copy"><code class="sourceCode stan"><span id="cb13-1"><a></a><span class="dt">corr_matrix</span>[<span class="dv">3</span>] Sigma;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="ejemplos" class="slide level2">
 <h2>Ejemplos</h2>
@@ -519,7 +519,7 @@
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -593,13 +593,14 @@
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

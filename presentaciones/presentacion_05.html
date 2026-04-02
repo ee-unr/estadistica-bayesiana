@@ -7,8 +7,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.26">
 
   <title>Estadística Bayesiana – presentacion_05</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -95,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-20481a7d58f3252d02b1dbf5a92244ef.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-2a285664066d4ed1cc826f6843ba6e22.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -299,12 +299,12 @@
 <h2></h2>
 <p>En código:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>prob <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">return</span>(<span class="fu">exp</span>(<span class="fl">0.4</span><span class="sc">*</span>(x<span class="fl">-0.4</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> <span class="fl">0.08</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">4</span>)) <span class="co"># sabemos evaluar p</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>prob <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">return</span>(<span class="fu">exp</span>(<span class="fl">0.4</span><span class="sc">*</span>(x<span class="fl">-0.4</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> <span class="fl">0.08</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">4</span>)) <span class="co"># sabemos evaluar p</span></span>
 <span id="cb1-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">4.5</span>, <span class="fl">4.5</span>, <span class="fl">0.5</span>)</span>
 <span id="cb1-3"><a></a>p_ <span class="ot">&lt;-</span> <span class="fu">prob</span>(x) <span class="co"># ~p*</span></span>
 <span id="cb1-4"><a></a>Z_rulito <span class="ot">&lt;-</span> <span class="fu">sum</span>(p_) <span class="co"># ~Z</span></span>
 <span id="cb1-5"><a></a>p_rulito <span class="ot">&lt;-</span> p_<span class="sc">/</span>Z <span class="co"># ~p</span></span>
-<span id="cb1-6"><a></a><span class="fu">sample</span>(x, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> p_rulito)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a></a><span class="fu">sample</span>(x, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> p_rulito)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="section-6" class="slide level2">
@@ -493,7 +493,7 @@
 <h2></h2>
 <p>Para el caso de <span class="math inline">\(q\)</span> simétrica:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>theta <span class="ot">&lt;-</span> <span class="fu">double</span>()</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>theta <span class="ot">&lt;-</span> <span class="fu">double</span>()</span>
 <span id="cb2-2"><a></a>theta[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span>    </span>
 <span id="cb2-3"><a></a>i <span class="ot">&lt;-</span> <span class="dv">1</span></span>
 <span id="cb2-4"><a></a></span>
@@ -512,7 +512,7 @@
 <span id="cb2-17"><a></a>  theta[i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> propuesta </span>
 <span id="cb2-18"><a></a>} <span class="cf">else</span> {</span>
 <span id="cb2-19"><a></a>  theta[i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> theta[i]</span>
-<span id="cb2-20"><a></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-20"><a></a>  }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Debe repetirse el proceso en un <code>for</code></p>
 </section>
@@ -924,7 +924,7 @@
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1036,13 +1036,14 @@
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy
