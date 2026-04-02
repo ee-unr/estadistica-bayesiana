@@ -299,10 +299,13 @@ Interesa hallar $p(\mu \mid \mathbf{y})$
 ## {.smaller}
 
 $$p(\mu\mid \mathbf{y}) \propto p(\mathbf{y}\mid\mu) p(\mu)$$
+
 . . .
 
 $$p(\mu \mid \mathbf{y}) \propto   e^{-\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}} \frac{1}{\sqrt{2\pi\tau}} e^{-\frac{(\mu-\theta)^2}{2\tau^2}}$$
+
 . . .
+
 $$
 \begin{aligned}
 p(\mu \mid \mathbf{y}) & \propto  e^{-\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}} e^{-\frac{(\mu-\theta)^2}{2\tau^2}} \\
@@ -322,6 +325,8 @@ p(\mu \mid \mathbf{y}) & \propto e^{\frac{2\mu(\theta\sigma^2+ \bar{y}n\tau^2)-\
 & \propto e^{-\frac{\left(\mu -  \frac{\theta\sigma^2 + \bar{y}n\tau^2}{n\tau^2 + \sigma^2} \right)^2}{2\tau^2\sigma^2/(n\tau^2+\sigma^2)}}
     \end{aligned}
 $$
+. . .
+
 $$p(\mu\mid\mathbf{y}) = K^* e^{-\frac{\left(\mu -  \frac{\theta\sigma^2 + \bar{y}n\tau^2}{n\tau^2 + \sigma^2} \right)^2}{2\tau^2\sigma^2/(n\tau^2+\sigma^2)}}$$
 
 ##
