@@ -2111,7 +2111,7 @@
     "href": "presentaciones/presentacion_05.html#el-problema",
     "title": "Estadística Bayesiana",
     "section": "El Problema",
-    "text": "El Problema\nTípicamente interesa resolver los siguientes problemas:\n\n\nCalcular integrales de la forma \\(\\mathbb{E}[\\phi(x)] = \\int \\phi(x) p(x) d x\\) (law of the unconscious statistician)\nGenerar \\(S\\) muestras independientes \\(x^{(s)}\\) de una distribución de probabilidad \\(p(x)\\)\n\n\n\nEn la estadística bayesiana, \\(x\\) es \\(\\theta\\), el parámetro desconocido de alguna distribución de probabilidad y \\(p(x)\\) es el posterior."
+    "text": "El Problema\nTípicamente interesa resolver los siguientes problemas:\n\n\nCalcular integrales de la forma \\(\\mathbb{E}[\\phi(X)] = \\int \\phi(x) p(x) d x\\) (law of the unconscious statistician)\nGenerar \\(S\\) muestras independientes \\(x^{(s)}\\) de una distribución de probabilidad \\(p\\) (con función de densidad \\(p(x)\\))\n\n\n\nEn la estadística bayesiana, \\(x\\) es \\(\\theta\\), el parámetro desconocido de alguna distribución de probabilidad y \\(p(x)\\) es el posterior."
   },
   {
     "objectID": "presentaciones/presentacion_05.html#métodos-de-montecarlo",
@@ -2125,7 +2125,7 @@
     "href": "presentaciones/presentacion_05.html#section",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Para el primer problema, sabemos que si \\(X_i \\sim p(x)\\), bajo ciertas condiciones podemos aproximar\n\n\\[\\mathbb{E}[X] \\approx \\frac{1}{N} \\sum_{i=1}^N x_i\\]\n\n\nSi \\(X\\) es una variable aleatoria, entonces para funciones continuas \\(\\phi\\) tenemos que \\(\\phi(X)\\) también es una variable aleatoria y por lo tanto\n\n\n\\[\\mathbb{E}[\\phi(X)] = \\int\\phi(x)p(x)dx \\approx \\frac{1}{N} \\sum_{i=1}^N \\phi(x_i)\\]\n\n\nEs decir, si los \\(x_i\\) son muestras de \\(p(x)\\), entonces la integral \\(\\int\\phi(x)p(x)dx\\) puede aproximarse por \\(\\frac{1}{N} \\sum_{i=1}^N \\phi(x_i)\\)."
+    "text": "Para el primer problema, sabemos que si \\(X \\sim p\\), bajo ciertas condiciones podemos aproximar\n\n\\[\\mathbb{E}[X] \\approx \\frac{1}{N} \\sum_{i=1}^N x_i\\]\n\n\nSi \\(X\\) es una variable aleatoria, entonces para funciones continuas \\(\\phi\\) tenemos que \\(\\phi(X)\\) también es una variable aleatoria y por lo tanto\n\n\n\\[\\mathbb{E}[\\phi(X)] = \\int\\phi(x)p(x)dx \\approx \\frac{1}{N} \\sum_{i=1}^N \\phi(x_i)\\]\n\n\nEs decir, si los \\(x_i\\) son muestras de \\(p(x)\\), entonces la integral \\(\\int\\phi(x)p(x)dx\\) puede aproximarse por \\(\\frac{1}{N} \\sum_{i=1}^N \\phi(x_i)\\)."
   },
   {
     "objectID": "presentaciones/presentacion_05.html#section-1",
@@ -2167,7 +2167,7 @@
     "href": "presentaciones/presentacion_05.html#section-5",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "En código:\n\nprob &lt;- function(x) return(exp(0.4*(x-0.4)^2 - 0.08*x^4)) # sabemos evaluar p\nx &lt;- seq(-4.5, 4.5, 0.5)\np_ &lt;- prob(x) # ~p*\nZ_rulito &lt;- sum(p_) # ~Z\np_rulito &lt;- p_/Z # ~p\nsample(x, replace = TRUE, prob = p_rulito)"
+    "text": "En código:\n\nprob &lt;- function(x) return(exp(0.4*(x-0.4)^2 - 0.08*x^4)) # sabemos evaluar p\nx &lt;- seq(-4.5, 4.5, 0.5)\np_ &lt;- prob(x) # ~p*\nZ_rulito &lt;- sum(p_) # ~Z\np_rulito &lt;- p_/Z_rulito # ~p\nsample(x, replace = TRUE, prob = p_rulito)"
   },
   {
     "objectID": "presentaciones/presentacion_05.html#section-6",
@@ -2188,7 +2188,7 @@
     "href": "presentaciones/presentacion_05.html#section-8",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Deberíamos tomar valores de \\(\\mu\\) en el intervalo \\((-4,4)\\) y valores de \\(\\sigma\\) en el intervalo \\((0,3)\\) y construir una grilla de valores.\nPara cada valor de la grilla podríamos calular el posterior sin normalizar haciendo el producto del prior por el likelihood (necesitamos la muestra)."
+    "text": "Deberíamos tomar valores de \\(\\mu\\) en el intervalo \\((-4,4)\\) y valores de \\(\\sigma\\) en el intervalo \\((0,3)\\) y construir una grilla de valores.\nPara cada valor de la grilla podríamos calcular el posterior sin normalizar haciendo el producto del prior por el likelihood (necesitamos la muestra)."
   },
   {
     "objectID": "presentaciones/presentacion_05.html#rejection-sampling",

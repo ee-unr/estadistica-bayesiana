@@ -203,8 +203,8 @@
 <p>Típicamente interesa resolver los siguientes problemas:</p>
 <div class="fragment">
 <ul>
-<li class="fragment">Calcular integrales de la forma <span class="math inline">\(\mathbb{E}[\phi(x)] = \int \phi(x) p(x) d x\)</span> (<em>law of the unconscious statistician</em>)</li>
-<li class="fragment">Generar <span class="math inline">\(S\)</span> muestras independientes <span class="math inline">\(x^{(s)}\)</span> de una distribución de probabilidad <span class="math inline">\(p(x)\)</span></li>
+<li class="fragment">Calcular integrales de la forma <span class="math inline">\(\mathbb{E}[\phi(X)] = \int \phi(x) p(x) d x\)</span> (<em>law of the unconscious statistician</em>)</li>
+<li class="fragment">Generar <span class="math inline">\(S\)</span> muestras independientes <span class="math inline">\(x^{(s)}\)</span> de una distribución de probabilidad <span class="math inline">\(p\)</span> (con función de densidad <span class="math inline">\(p(x)\)</span>)</li>
 </ul>
 </div>
 <div class="fragment">
@@ -217,7 +217,7 @@
 <img data-src="imgs/montecarlo2.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="section" class="slide level2 smaller">
 <h2></h2>
-<p>Para el primer problema, sabemos que si <span class="math inline">\(X_i \sim p(x)\)</span>, bajo ciertas condiciones podemos aproximar</p>
+<p>Para el primer problema, sabemos que si <span class="math inline">\(X \sim p\)</span>, bajo ciertas condiciones podemos aproximar</p>
 <div class="fragment">
 <p><span class="math display">\[\mathbb{E}[X] \approx \frac{1}{N} \sum_{i=1}^N x_i\]</span></p>
 </div>
@@ -303,7 +303,7 @@
 <span id="cb1-2"><a></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">4.5</span>, <span class="fl">4.5</span>, <span class="fl">0.5</span>)</span>
 <span id="cb1-3"><a></a>p_ <span class="ot">&lt;-</span> <span class="fu">prob</span>(x) <span class="co"># ~p*</span></span>
 <span id="cb1-4"><a></a>Z_rulito <span class="ot">&lt;-</span> <span class="fu">sum</span>(p_) <span class="co"># ~Z</span></span>
-<span id="cb1-5"><a></a>p_rulito <span class="ot">&lt;-</span> p_<span class="sc">/</span>Z <span class="co"># ~p</span></span>
+<span id="cb1-5"><a></a>p_rulito <span class="ot">&lt;-</span> p_<span class="sc">/</span>Z_rulito <span class="co"># ~p</span></span>
 <span id="cb1-6"><a></a><span class="fu">sample</span>(x, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> p_rulito)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
@@ -349,7 +349,7 @@
 <h2></h2>
 <ol type="1">
 <li class="fragment">Deberíamos tomar valores de <span class="math inline">\(\mu\)</span> en el intervalo <span class="math inline">\((-4,4)\)</span> y valores de <span class="math inline">\(\sigma\)</span> en el intervalo <span class="math inline">\((0,3)\)</span> y construir una grilla de valores.</li>
-<li class="fragment">Para cada valor de la grilla podríamos calular el <em>posterior</em> sin normalizar haciendo el producto del <em>prior</em> por el <em>likelihood</em> (necesitamos la muestra).</li>
+<li class="fragment">Para cada valor de la grilla podríamos calcular el <em>posterior</em> sin normalizar haciendo el producto del <em>prior</em> por el <em>likelihood</em> (necesitamos la muestra).</li>
 </ol>
 </section>
 <section id="rejection-sampling" class="slide level2 smaller">
