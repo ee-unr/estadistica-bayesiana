@@ -303,6 +303,7 @@ $$p(\mu\mid \mathbf{y}) \propto p(\mathbf{y}\mid\mu) p(\mu)$$
 
 $$p(\mu \mid \mathbf{y}) \propto   e^{-\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}} \frac{1}{\sqrt{2\pi\tau}} e^{-\frac{(\mu-\theta)^2}{2\tau^2}}$$
 . . .
+
 $$
 \begin{aligned}
 p(\mu \mid \mathbf{y}) & \propto  e^{-\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}} e^{-\frac{(\mu-\theta)^2}{2\tau^2}} \\
