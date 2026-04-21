@@ -1,5 +1,5 @@
 ---
-title: "10 - Aproximación de grilla en 2 dimensiones"
+title: "11 - Aproximación de grilla en 2 dimensiones"
 ---
 
 El siguiente programa muestra como se puede resolver en R el ejercicio
