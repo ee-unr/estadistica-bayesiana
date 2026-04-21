@@ -11,8 +11,7 @@ cognitivos necesarios para avanzar en la materia, la IA puede perjudicar el proc
 de aprendizaje. Por este motivo, se presentan los siguientes lineamientos.
 
 El criterio general para esta materia es simple: la IA puede utilizarse como
-asistente de aprendizaje, pero no como reemplazo del trabajo intelectual que se
-espera del quienes cursan.
+asistente de aprendizaje, pero no como reemplazo del trabajo intelectual esperado.
 
 El uso de IA se trata de la misma manera que la colaboración con otras personas.
 Se permite discutir ideas, pedir explicaciones y contrastar interpretaciones, tanto
