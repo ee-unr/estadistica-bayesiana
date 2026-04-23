@@ -266,9 +266,6 @@ window.Quarto = {
 <section id="primera-parte" class="level3">
 <h3 class="anchored" data-anchor-id="primera-parte">Primera parte</h3>
 <p>El archivo <code>tp2_llegadas_h1.csv</code> contiene los horarios de ingreso de pacientes a la guardia del Hospital Dr.&nbsp;Manuel Puch entre el 1 de febrero de 2026 y el 3 de abril del mismo año, dentro de la franja horaria comprendida entre las 21:00 y las 23:00 horas.</p>
-<ol type="1">
-<li>Lea los datos, realice una exploración inicial y describa la cantidad de personas que ingresan a la guardia por hora. ¿Se observa algún patrón o alguna tendencia a medida que transcurre el tiempo?</li>
-</ol>
 <p>En esta primera parte interesa modelizar la cantidad de personas que ingresan a la guardia por hora mediante un modelo gamma-Poisson.</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -276,9 +273,10 @@ Y \mid \mu &amp; \sim \text{Poisson}(\mu) \\
 \mu &amp;\sim \text{Gamma}(\alpha, \beta) \\
 \end{aligned}
 \]</span></p>
-<ol start="2" type="1">
+<ol type="1">
 <li>Explique qué representa el parámetro <span class="math inline">\(\mu\)</span> en el contexto del problema. ¿Cómo debe interpretarse que tome valores mayores o menores?</li>
 <li>Proponga una distribución <em>a priori</em> para <span class="math inline">\(\mu\)</span> y obtenga de manera exacta la distribución <em>a posteriori</em>. ¿Qué implica sobre el tiempo promedio entre llegada de pacientes?</li>
+<li>Lea los datos, realice una exploración inicial y describa la cantidad de personas que ingresan a la guardia por hora. ¿Se observa algún patrón o alguna tendencia a medida que transcurre el tiempo?</li>
 <li>Encuentre y grafique la distribución predictiva <em>a posteriori</em> para la cantidad de personas que llegan a la guardia en una hora.</li>
 <li>¿Cuál es la probabilidad de que lleguen entre 5 y 10 personas por hora? ¿Y de que lleguen 10 o más?</li>
 </ol>
@@ -457,9 +455,9 @@ Y \mid \mu, \phi &amp; \sim \text{BinomialNegativa}(\mu, \phi) \\
 <ol start="18" type="1">
 <li>Compare la distribución de Poisson con la distribución binomial negativa bajo la parametrización propuesta. En particular, describa qué ocurre con la esperanza, la varianza y el rol que cumplen los parámetros del modelo en cada caso.</li>
 <li>Proponga una distribución <em>a priori</em> para <span class="math inline">\(\phi\)</span>. ¿Qué efecto tiene en la varianza de <span class="math inline">\(Y\)</span>?</li>
-<li>Discuta si resulta conveniente trabajar con una única distribución <em>a posteriori</em> conjunta de cuatro dimensiones para <span class="math inline">\((\mu_1, \alpha_1, \mu_2, \alpha_2)\)</span> o con dos distribuciones <em>a posteriori</em> separadas de dos dimensiones, una para <span class="math inline">\((\mu_1, \alpha_1)\)</span> y otra para <span class="math inline">\((\mu_2, \alpha_2)\)</span>.</li>
-<li>Obtenga muestras de la distribución <em>a posteriori</em> de <span class="math inline">\((\mu_1, \alpha_1, \mu_2, \alpha_2)\)</span> según la estrategia elegida en el punto anterior y verifique, por los procedimientos usuales, que el algoritmo de muestreo funciona adecuadamente.</li>
-<li>Visualice y describa la distribución <em>a posteriori</em> conjunta de <span class="math inline">\((\mu_1, \alpha_1)\)</span> y la de <span class="math inline">\((\mu_2, \alpha_2)\)</span>. Compare los resultados entre hospitales e interprete en términos del problema.</li>
+<li>Discuta si resulta conveniente trabajar con una única distribución <em>a posteriori</em> conjunta de cuatro dimensiones para <span class="math inline">\((\mu_1, \phi_1, \mu_2, \phi)\)</span> o con dos distribuciones <em>a posteriori</em> separadas de dos dimensiones, una para <span class="math inline">\((\mu_1, \phi_1)\)</span> y otra para <span class="math inline">\((\mu_2, \phi_2)\)</span>.</li>
+<li>Obtenga muestras de la distribución <em>a posteriori</em> de <span class="math inline">\((\mu_1, \phi_1, \mu_2, \phi_2)\)</span> según la estrategia elegida en el punto anterior y verifique, por los procedimientos usuales, que el algoritmo de muestreo funciona adecuadamente.</li>
+<li>Visualice y describa la distribución <em>a posteriori</em> conjunta de <span class="math inline">\((\mu_1, \phi_1)\)</span> y la de <span class="math inline">\((\mu_2, \phi_2)\)</span>. Compare los resultados entre hospitales e interprete en términos del problema.</li>
 </ol>
 <p>Finalmente, interesa traducir la afluencia esperada de pacientes en una decisión concreta de dotación médica.</p>
 <ol start="23" type="1">
