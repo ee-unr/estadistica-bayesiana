@@ -54,9 +54,6 @@ El archivo `tp2_llegadas_h1.csv` contiene los horarios de ingreso de pacientes a
 Hospital Dr. Manuel Puch entre el 1 de febrero de 2026 y el 3 de abril del mismo año,
 dentro de la franja horaria comprendida entre las 21:00 y las 23:00 horas.
 
-1. Lea los datos, realice una exploración inicial y describa la cantidad de personas que ingresan
-a la guardia por hora. ¿Se observa algún patrón o alguna tendencia a medida que transcurre el tiempo?
-
 En esta primera parte interesa modelizar la cantidad de personas que ingresan a la guardia
 por hora mediante un modelo gamma-Poisson.
 
@@ -67,10 +64,12 @@ Y \mid \mu & \sim \text{Poisson}(\mu) \\
 \end{aligned}
 $$
 
-2. Explique qué representa el parámetro $\mu$ en el contexto del problema. ¿Cómo debe
-interpretarse que tome valores mayores o menores?
-3. Proponga una distribución _a priori_ para $\mu$ y obtenga de manera exacta la distribución
+1. Explique qué representa el parámetro $\mu$ en el contexto del problema. 
+¿Cómo debe interpretarse que tome valores mayores o menores?
+2. Proponga una distribución _a priori_ para $\mu$ y obtenga de manera exacta la distribución
 _a posteriori_. ¿Qué implica sobre el tiempo promedio entre llegada de pacientes?
+3. Lea los datos, realice una exploración inicial y describa la cantidad de personas que ingresan
+a la guardia por hora. ¿Se observa algún patrón o alguna tendencia a medida que transcurre el tiempo?
 4. Encuentre y grafique la distribución predictiva _a posteriori_ para la cantidad de personas que
 llegan a la guardia en una hora.
 5. ¿Cuál es la probabilidad de que lleguen entre 5 y 10 personas por hora? ¿Y de que lleguen 10 o más?
@@ -290,14 +289,14 @@ parametrización propuesta. En particular, describa qué ocurre con la esperanza
 rol que cumplen los parámetros del modelo en cada caso.
 19. Proponga una distribución _a priori_ para $\phi$. ¿Qué efecto tiene en la varianza de $Y$?
 20. Discuta si resulta conveniente trabajar con una única distribución _a posteriori_ conjunta
-de cuatro dimensiones para $(\mu_1, \alpha_1, \mu_2, \alpha_2)$ o con dos distribuciones
-_a posteriori_ separadas de dos dimensiones, una para $(\mu_1, \alpha_1)$ y otra para
-$(\mu_2, \alpha_2)$.
-21. Obtenga muestras de la distribución _a posteriori_ de $(\mu_1, \alpha_1, \mu_2, \alpha_2)$
+de cuatro dimensiones para $(\mu_1, \phi_1, \mu_2, \phi)$ o con dos distribuciones
+_a posteriori_ separadas de dos dimensiones, una para $(\mu_1, \phi_1)$ y otra para
+$(\mu_2, \phi_2)$.
+21. Obtenga muestras de la distribución _a posteriori_ de $(\mu_1, \phi_1, \mu_2, \phi_2)$
 según la estrategia elegida en el punto anterior y verifique, por los procedimientos usuales,
 que el algoritmo de muestreo funciona adecuadamente.
-22. Visualice y describa la distribución _a posteriori_ conjunta de $(\mu_1, \alpha_1)$ y la de
-$(\mu_2, \alpha_2)$. Compare los resultados entre hospitales e interprete en términos del problema.
+22. Visualice y describa la distribución _a posteriori_ conjunta de $(\mu_1, \phi_1)$ y la de
+$(\mu_2, \phi_2)$. Compare los resultados entre hospitales e interprete en términos del problema.
 
 Finalmente, interesa traducir la afluencia esperada de pacientes en una decisión concreta de
 dotación médica.
