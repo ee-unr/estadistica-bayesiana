@@ -1,6 +1,6 @@
 data {
   int<lower=1> N;             // Cantidad de observaciones
-  int<lower=0, upper=1> y[N]; // Vector de respuesta (0 y 1)
+  array[N] int<lower=0, upper=1> y; // Vector de respuesta (0 y 1)
   vector[N] x;
 }
 parameters {

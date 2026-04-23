@@ -1,0 +1,180 @@
+---
+title: "16 - Introducción a RStan"
+---
+
+A continuación se presenta una introducción a Stan, a través de su interfaz con R: `{rstan}`
+
+La programación probabilística es una herramienta para describir modelos estadísticos (probabilísticos) y operar con ellos. Se trata de usar herramientas de programación para realizar inferencias estadísticas.
+
+## Stan y RStan
+
+¿Qué es Stan?
+
+  - Stan es un lenguaje de programación probabilístico imperativo
+  - Está desarrollado sobre C++
+  - Los programas de Stan definen un modelo probabilístico (datos + parámetros) y realizan inferencias sobre él
+  - _Open source_
+
+¿Qué es RStan?
+
+  - RStan es una interfaz de Stan en R
+  - Permite compilar y ejecutar modelos de Stan directamente en R
+  - Además, incluye la clase `stanfit` y funciones para operar con ella
+
+## Pasos a seguir
+
+  1. Escribir un programa en Stan (archivo `.stan` o `string` en una variable)
+  2. Usando la función `rstan::stan_model`, generar el código C$++$, compilarlo y generar un objeto `stanmodel`
+  3. Usando la función `rstan::sampling`, obtener muestras del _posterior_ dado el `stanmodel` y los datos. Las muestras quedan en un objeto `stanfit`
+  4. Procesar el `stan_fit` y sacar conclusiones
+
+Estructura de un modelo en Stan
+
+```{r}
+#| eval: false
+
+modelo <- "
+data {
+
+}
+transformed data {
+
+}
+parameters {
+
+}
+transformed parameters {
+
+}
+model {
+
+}
+generated quantities {
+
+}"
+```
+
+
+```{r}
+library(rstan)
+library(tidybayes)
+library(ggdist)
+library(ggplot2)
+```
+
+
+```{r beta-binomial}
+N <- 20
+y <- 4
+
+model_beta1_stan <- "
+data {
+  int N;
+  int Y;
+}
+parameters {
+  real<lower=0, upper=1> pi;
+}
+model {
+  pi ~ beta(2,2); // prior
+  Y ~ binomial(N, pi);  // likelihood
+}"
+
+# No olvidar el final de línea ;
+# Todas las variables tienen que estar declaradas
+```
+
+```{r}
+model_beta1 <- stan_model(model_code = model_beta1_stan)
+
+data_list <- list(Y=y, N=N)
+
+model_beta1_fit <- sampling(object=model_beta1,
+                            data=data_list,
+                            chains = 3,
+                            iter = 2000,
+                            warmup = 100)
+
+model_beta1_fit
+```
+
+
+```{r}
+model_beta1_fit@model_pars
+```
+
+
+```{r}
+list_of_draws <- extract(model_beta1_fit,pars="pi")
+
+str(list_of_draws)
+
+dim(list_of_draws$pi)
+
+head(list_of_draws$pi)
+
+mean(list_of_draws$pi<0.6)
+```
+
+
+```{r}
+#| warning: false
+#| fig-width: 7
+#| fig-align: center
+#| fig-cap: Distribución a posteriori de $\pi$.
+
+ggplot2::qplot(list_of_draws$pi)
+```
+
+
+```{r}
+array_of_draws <- as.array(model_beta1_fit, pars="pi")
+```
+
+```{r}
+#| warning: false
+#| fig-width: 7
+#| fig-align: center
+#| fig-cap: Traceplot de $\pi$.
+
+bayesplot::mcmc_trace(array_of_draws,pars="pi")
+```
+
+```{r}
+#| warning: false
+#| fig-width: 7
+#| fig-align: center
+#| fig-cap: Histograma para cada cadena de $\pi$.
+
+bayesplot::mcmc_hist_by_chain(array_of_draws,pars="pi")
+```
+
+
+```{r}
+#| warning: false
+#| fig-width: 7
+#| fig-align: center
+#| fig-cap: Estimación de densidad para cada cadena de $\pi$.
+
+bayesplot::mcmc_dens_chains(array_of_draws,pars="pi")
+```
+
+
+```{r}
+#| warning: false
+#| fig-width: 7
+#| fig-align: center
+#| fig-cap: Distribución a posteriori de $\pi$.
+
+df_of_draws <- as.data.frame(model_beta1_fit,pars="pi")
+
+#usando el paquete tidybayes + ggdist
+model_beta1_fit |>
+  spread_draws(pi) |>
+  ggplot(aes(x=pi)) +
+  stat_histinterval()
+```
+
+
+
+

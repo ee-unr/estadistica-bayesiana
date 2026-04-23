@@ -1,0 +1,105 @@
+---
+title: "10 - Aproximación de grilla en 1 dimensión"
+---
+
+El siguiente programa muestra como se pueden resolver en R los ejercicios
+**Aproximación de grilla** y **Cálculo de probabilidades en base a la grilla (I)**
+de la Práctica 3.
+
+Analíticamente,
+
+$$
+\theta \mid y \sim \text{Beta}(2 + 7, 10 + 80 - 7) = \text{Beta}(9, 83)
+$$
+
+```{r}
+#| warning: false
+library(dplyr)
+library(ggplot2)
+
+n <- 80
+y <- 7
+a_prior <- 2
+b_prior <- 10
+
+a_post <- a_prior + y
+b_post <- b_prior + n - y
+
+crear_posterior_grilla <- function(a, b, k) {
+    grid <- seq(0, 1, length.out = k)
+    posterior <- dbeta(grid, a, b)
+    # Se normaliza para que la altura de los bastones sume a 1
+    data.frame(theta = grid, posterior = posterior / sum(posterior))
+}
+
+posterior_exacto <- data.frame(theta = seq(0, 1, length.out = 1000))
+posterior_exacto$posterior <- dbeta(posterior_exacto$theta, a_post, b_post)
+
+posterior_10 <- crear_posterior_grilla(a_post, b_post, 10)
+posterior_100 <- crear_posterior_grilla(a_post, b_post, 100)
+posterior_1000 <- crear_posterior_grilla(a_post, b_post, 1000)
+```
+
+```{r}
+#| fig-width: 7
+#| fig-align: center
+#| fig-cap: Distribución _a posteriori_ exacta
+ggplot(posterior_exacto) +
+    geom_line(
+        aes(x = theta, y = posterior),
+        linewidth = 1,
+        color = "#3b78b0"
+    ) + 
+    labs(x = expression(theta), y = expression("p(" ~ theta ~ " | y)")) +
+    theme_classic()
+```
+
+```{r}
+#| fig-width: 7
+#| fig-align: center
+#| fig-cap: Distribución _a posteriori_ aproximada por grilla de 10 puntos.
+ggplot(posterior_10) +
+    geom_segment(
+        aes(x = theta, xend = theta, y = 0, yend = posterior),
+        color = "#3b78b0",
+    ) +
+    geom_point(
+        aes(x = theta, y = posterior),
+        color = "#3b78b0",
+        size = 0.8,
+    ) +
+    labs(x = expression(theta), y = expression("p(" ~ theta ~ " | y)")) +
+    theme_classic()
+```
+
+```{r}
+#| fig-width: 7
+#| fig-align: center
+#| fig-cap: Distribución _a posteriori_ aproximada por grilla de 100 puntos.
+ggplot(posterior_100) +
+    geom_segment(
+        aes(x = theta, xend = theta, y = 0, yend = posterior),
+        color = "#3b78b0",
+    ) +
+    geom_point(
+        aes(x = theta, y = posterior),
+        color = "#3b78b0",
+        size = 0.8,
+    ) +
+    labs(x = expression(theta), y = expression("p(" ~ theta ~ " | y)")) +
+    theme_classic()
+```
+
+Con 100 puntos la aproximación ya es muy similar al _posterior_ exacto. 
+Una grilla más densa mejora la precisión, pero también aumenta el costo computacional.
+
+Para calcular las probabilidades uso una grilla de 1000 puntos.
+
+```{r}
+posterior_1000 |>
+    summarise(
+        `P(theta < 0.7)` = sum(posterior[theta < 0.7]),
+        `P(theta > 0.05)` = sum(posterior[theta > 0.05]),
+        `P(0.05 < theta < 0.15)` = sum(posterior[theta > 0.05 & theta < 0.15]),
+    )
+```

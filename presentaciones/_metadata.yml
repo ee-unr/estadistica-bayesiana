@@ -2,7 +2,7 @@ format:
   revealjs:
     incremental: true
     logo: /utils/imgs/logo.png
-    footer: "Estadística Bayesiana -- 2025"
+    footer: "Estadística Bayesiana -- 2026"
     background-transition: fade
     transition: fade
     slide-number: true
@@ -12,7 +12,7 @@ format:
     slide-level: 2
     pdf-engine: xelatex
     # incremental: true
-    footer: "Estadística Bayesiana -- 2025"
+    footer: "Estadística Bayesiana -- 2026"
     header-includes:
     - \usepackage{xcolor}
     - \definecolor{bteal}{HTML}{1F7A8C}

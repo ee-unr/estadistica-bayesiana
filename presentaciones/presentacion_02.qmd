@@ -282,13 +282,13 @@ p1+p2
 
 ## Intolerancia al gluten {.smaller}
 
-> ¿Pueden las personas alérgicas al gluten distinguir harina común de harina sin gluten en un ensayo ciego? En un experimento, de 35 sujetos, 12 identificaron correctamente la harina común y 23 se equivocaron o no supieron decir de qué harina se trataba.
+> ¿Pueden las personas intolerantes al gluten distinguir harina común de harina sin gluten en un ensayo ciego? En un experimento, de 35 sujetos, 12 identificaron correctamente la harina común y 23 se equivocaron o no supieron decir de qué harina se trataba.
 >
-> Incluso si no hubiera alérgicos al gluten en el experimento, esperaríamos encontrar algunas identificaciones correctas... Basándonos en el número de identificaciones correctas, ¿cuántos de los sujetos son alérgicos al gluten y cuántos estaban adivinando?
+> Incluso si no hubiera intolerantes al gluten en el experimento, esperaríamos encontrar algunas identificaciones correctas... Basándonos en el número de identificaciones correctas, ¿cuántos de los sujetos son intolerantes al gluten y cuántos estaban adivinando?
 
 . . .
 
-Supongamos que una persona alérgica al gluten tiene una probabilidad de $0.90$ de detectar la harina común mientras que una persona sin alergia detecta harina común con una probabilidad de $0.40$ (y con una probabilidad de $0.6$ se equivoca o no sabe decir).
+Supongamos que una persona intolerantes al gluten tiene una probabilidad de $0.90$ de detectar la harina común mientras que una persona sin alergia detecta harina común con una probabilidad de $0.40$ (y con una probabilidad de $0.6$ se equivoca o no sabe decir).
 
 ## {.smaller}
 
@@ -297,9 +297,9 @@ Llamemos:
 . . .
 
 - $N$ a la cantidad total de personas en el ensayo
-- $N_a$ al número de personas alérgicas al gluten
-- $\pi_a$ a la probabilidad de que un alérgico identifique correctamente
-- $\pi_f$ a la probabilidad de que un no alérgico identifique correctamente
+- $N_a$ al número de personas intolerantes al gluten
+- $\pi_a$ a la probabilidad de que un intolerante identifique correctamente
+- $\pi_f$ a la probabilidad de que un no intolerantes identifique correctamente
 - $n_i$ al número de identificaciones correctas
 
 . . .
@@ -332,7 +332,7 @@ Pensemos de forma **generativa** (con el modelo de **probabilidad hacia adelante
 
 ## {.smaller}
 
-El número de identificaciones correctas $n_i$ es la suma de las identificaciones correctas entre los $N_a$ alérgicos ($n_{ia}$) y los $N-N_a$ no alérgicos ($n_{if}$). ¿Cuántas identificaciones habrá en cada grupo?
+El número de identificaciones correctas $n_i$ es la suma de las identificaciones correctas entre los $N_a$ intolerantes ($n_{ia}$) y los $N-N_a$ no alérgicos ($n_{if}$). ¿Cuántas identificaciones habrá en cada grupo?
 
 . . .
 
@@ -496,12 +496,12 @@ La verosimilitud de 'perro' es qué tan probable es escribir 'farra' cuando se q
 
 palabra <- "farra"
 pi <- 0.1
-likelihood <- c(pi^2*(1-pi)^3,
-                pi^1*(1-pi)^4,
-                pi^0*(1-pi)^5,
-                pi^2*(1-pi)^3,
-                pi^3*(1-pi)^2,
-                pi^2*(1-pi)^3)
+likelihood <- c(pi^3*(1-pi)^2, # perro
+                pi^1*(1-pi)^4, # parra
+                pi^0*(1-pi)^5, # farra
+                pi^2*(1-pi)^3, # carro
+                pi^3*(1-pi)^2, # corro
+                pi^2*(1-pi)^3) # tarro
 
 data.frame(vocabulario,likelihood) |>
   ggplot() +
@@ -570,7 +570,7 @@ $\pi$ es una cantidad continua entre 0 y 1. Esta vez no la discretizaremos.
 
 . . .
 
-¿Cómo asignamos una credibilidad _a priori_ para los valores de $\pi_a$?
+¿Cómo asignamos una credibilidad _a priori_ para los valores de $\pi$?
 
 . . .
 
@@ -797,7 +797,7 @@ con $N=11$, $a=2$ y $b=2$.
 Al observar $y=7$ resulta
 
 $$\pi\mid y \sim \text{Beta}(a+y,b+N-y)$$
-$$p(\pi\mid y) = \text{Beta}(2+7,2+4)$$ 
+$$\pi\mid y \sim \text{Beta}(2+7,2+4)$$ 
 
 ##
 
@@ -854,7 +854,7 @@ Credibilidad _a priori_: $\text{Beta}(2,2)$
 1. ...realizamos 60 tiradas y observamos 40 caras?
 1. ...realizamos 2 tiradas y observamos 2 caras?
 1. ...realizamos 40 tiradas y observamos 40 caras?
-1. ...realizamos 4 tiradas y obtenemos 3 caras y luego realizamos 2 tiradas más y observamos 1 caras?
+1. ...realizamos 4 tiradas y obtenemos 3 caras y luego realizamos 2 tiradas más y observamos 1 cara?
 
 ##
 
@@ -1011,11 +1011,15 @@ $$\mathbb{E}({X}) = \frac{a}{a+b}$$
 
 ## {.smaller}
 
-La distribución _a priori_ es $\text{Beta}(a,b)$ y la distribución _a posteriori_ es $\text{Beta}(y+a,N-y+b)$. \pause La media del \textit{posterior} es:
+La distribución _a priori_ es $\text{Beta}(a,b)$ y la distribución _a posteriori_ es $\text{Beta}(y+a,N-y+b)$. 
+
+. . . 
+
+La media del \textit{posterior} es:
 
 $$
 \begin{aligned}
-\mathbb{E}[{p(\pi\mid y)}] & = \frac{y+a}{a+b+N} \\
+\mathbb{E}[{\pi\mid y}] & = \frac{y+a}{a+b+N} \\
 & = \frac{y}{a+b+N} + \frac{a}{a+b+N} \\
 & = \frac{N}{a+b+N}\frac{y}{N} + \frac{a+b}{a+b+N} \frac{a}{a+b} \\
 & = \frac{N}{a+b+N}\frac{y}{N} + \frac{a+b}{a+b+N} \mathbb{E}{[p(\pi)]}
@@ -1084,7 +1088,7 @@ tibble(x = seq(0,1,length.out = 500),
 
 ##
 
-```{r}
+```{r prior-desconfianza}
   #| warning: false
   #| echo: false
   #| fig-width: 18
@@ -1107,7 +1111,7 @@ tibble(x = seq(0,1,length.out = 500),
 
 ##
 
-```{r}
+```{r prior3}
   #| warning: false
   #| echo: false
   #| fig-width: 18
@@ -1129,7 +1133,7 @@ tibble(x = seq(0,1,length.out = 500),
 
 ##
 
-```{r}
+```{r prior4}
   #| warning: false
   #| echo: false
   #| fig-width: 18
@@ -1151,7 +1155,7 @@ tibble(x = seq(0,1,length.out = 500),
 
 ##
 
-```{r}
+```{r prior5}
   #| warning: false
   #| echo: false
   #| fig-width: 18
@@ -1173,7 +1177,7 @@ tibble(x = seq(0,1,length.out = 500),
 
 ##
 
-```{r}
+```{r prior6}
   #| warning: false
   #| echo: false
   #| fig-width: 18
@@ -1196,7 +1200,7 @@ tibble(x = seq(0,1,length.out = 500),
 
 ##
 
-```{r}
+```{r prior7}
   #| warning: false
   #| echo: false
   #| fig-width: 18
@@ -1218,7 +1222,7 @@ tibble(x = seq(0,1,length.out = 500),
 
 ##
 
-```{r}
+```{r prior8}
   #| warning: false
   #| echo: false
   #| fig-width: 18
@@ -1240,7 +1244,7 @@ tibble(x = seq(0,1,length.out = 500),
 
 ##
 
-```{r}
+```{r prior9}
   #| warning: false
   #| echo: false
   #| fig-width: 18
@@ -1263,7 +1267,7 @@ tibble(x = seq(0,1,length.out = 500),
 
 ##
 
-```{r}
+```{r prior10}
   #| warning: false
   #| echo: false
   #| fig-width: 18
@@ -1306,7 +1310,7 @@ Para el caso binomial que venimos estudiando, consideramos una realización más
 
 $$
 \begin{aligned}
-p(\tilde{y} = 1\mid y) & = \int_0^1 \pi \vphantom{\tilde{y}}p(\pi\mid x) d \pi = \mathbb{E}[{p(\pi\mid x)}] \\
+p(\tilde{y} = 1\mid y) & = \int_0^1 \pi\ \vphantom{\tilde{y}}p(\pi\mid y) d \pi = \mathbb{E}[{\pi\mid y}] \\
 & = \frac{y+a}{y+a+N-y+b} = \frac{y+a}{N+a+b} \\
 \end{aligned}
 $$

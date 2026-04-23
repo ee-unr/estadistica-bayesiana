@@ -1,0 +1,876 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Actualizador de Creencias</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --panel: #ffffff;
+      --border: #d9dce4;
+      --text: #1d2331;
+      --muted: #5f6778;
+      --prior: #56cbf9;
+      --like: #21dbbc;
+      --post: #ff729f;
+      --danger: #b23a48;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    .page {
+      width: 100%;
+      max-width: none;
+      min-width: 1024px;
+      margin: 0 auto;
+      padding: 12px 16px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+    }
+
+    .sidebar h2 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+    }
+
+    .field {
+      margin-bottom: 12px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+    }
+
+    .field input[type="range"],
+    .field input[type="number"] {
+      width: 100%;
+    }
+
+    .field input[type="number"] {
+      padding: 6px 8px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.92rem;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: 1px solid var(--border);
+      background: #f2f4f9;
+      color: var(--text);
+      border-radius: 7px;
+      padding: 7px 10px;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+
+    button:hover {
+      background: #e9edf6;
+    }
+
+    .tabs {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .multi-group {
+      display: grid;
+      gap: 8px;
+    }
+
+    .multi-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.92rem;
+      color: var(--text);
+    }
+
+    .multi-option input[type="checkbox"] {
+      accent-color: #2563eb;
+    }
+
+    .components-panel {
+      padding: 8px;
+    }
+
+    .component-row {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 8px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .component-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .component-card.hidden {
+      display: none;
+    }
+
+    .component-card {
+      padding: 8px;
+    }
+
+    .empty-selection {
+      display: none;
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .viz-card h3 {
+      margin: 0 0 4px;
+      font-size: 0.95rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .chart {
+      width: 100%;
+      height: 300px;
+      border: none;
+      border-radius: 0;
+      background: transparent;
+      position: relative;
+    }
+
+    .chart-tooltip {
+      position: absolute;
+      left: 0;
+      top: 0;
+      transform: translate(-50%, calc(-100% - 8px));
+      background: rgba(29, 35, 49, 0.94);
+      color: #ffffff;
+      font-size: 0.76rem;
+      line-height: 1;
+      padding: 5px 7px;
+      border-radius: 4px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.08s linear;
+      z-index: 2;
+      white-space: nowrap;
+    }
+
+    .chart-tooltip.visible {
+      opacity: 1;
+    }
+
+    .table-wrap {
+      border: none;
+      border-radius: 0;
+      overflow: auto;
+      max-height: 332px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      background: #ffffff;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid #edf0f5;
+      padding: 5px 6px;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    th {
+      background: #f5f7fc;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      font-weight: 600;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .table-input {
+      width: 100%;
+      min-width: 74px;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 4px 6px;
+      text-align: right;
+      font-size: 0.88rem;
+      font-family: inherit;
+    }
+
+    .notification {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: var(--danger);
+      min-height: 1.1em;
+    }
+
+    @media (max-width: 1024px) {
+      .page {
+        min-width: 0;
+        padding: 12px;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="layout">
+      <aside class="sidebar card">
+        <h2>Controles</h2>
+        <div class="field">
+          <label for="nValues">Valores discretos: <strong id="nValuesLabel">11</strong></label>
+          <input id="nValues" type="range" min="4" max="20" value="11" step="1">
+        </div>
+        <div class="field">
+          <label for="cant">N =</label>
+          <input id="cant" type="number" min="1" step="1" value="5">
+        </div>
+        <div class="field">
+          <label for="cantColor">Y =</label>
+          <input id="cantColor" type="number" min="0" max="5" step="1" value="5">
+        </div>
+        <div class="field">
+          <label>Componentes visibles</label>
+          <div class="multi-group" id="viewSelector">
+            <label class="multi-option"><input type="checkbox" name="viewMode" value="prior" checked> Prior</label>
+            <label class="multi-option"><input type="checkbox" name="viewMode" value="likelihood" checked> Likelihood</label>
+            <label class="multi-option"><input type="checkbox" name="viewMode" value="posterior" checked> Posterior</label>
+          </div>
+        </div>
+        <div id="notification" class="notification" aria-live="polite"></div>
+      </aside>
+
+      <main class="tabs">
+        <section class="components-panel">
+          <p id="emptySelection" class="empty-selection">Selecciona al menos un componente para visualizar.</p>
+          <div id="chartsRow" class="component-row">
+            <div class="viz-card card component-card" data-component="prior">
+              <h3>Creencia inicial</h3>
+              <div id="plotPrior" class="chart"></div>
+            </div>
+            <div class="viz-card card component-card" data-component="likelihood">
+              <h3>Verosimilitud</h3>
+              <div id="plotLikelihood" class="chart"></div>
+            </div>
+            <div class="viz-card card component-card" data-component="posterior">
+              <h3>Creencia final</h3>
+              <div id="plotPosterior" class="chart"></div>
+            </div>
+          </div>
+          <div id="tablesRow" class="component-row">
+            <div class="viz-card card component-card" data-component="prior">
+              <h3>Creencia inicial</h3>
+              <div id="tablePrior" class="table-wrap"></div>
+              <div class="buttons">
+                <button id="resetPrior">Hacer uniforme</button>
+                <button id="normalizePrior">Normalizar</button>
+              </div>
+            </div>
+            <div class="viz-card card component-card" data-component="likelihood">
+              <h3>Verosimilitud</h3>
+              <div id="tableLikelihood" class="table-wrap"></div>
+            </div>
+            <div class="viz-card card component-card" data-component="posterior">
+              <h3>Creencia final</h3>
+              <div id="tablePosterior" class="table-wrap"></div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const state = {
+        nValues: 11,
+        cant: 5,
+        cantColor: 5,
+        theta: [],
+        prior: []
+      };
+
+      const els = {
+        nValues: document.getElementById("nValues"),
+        nValuesLabel: document.getElementById("nValuesLabel"),
+        cant: document.getElementById("cant"),
+        cantColor: document.getElementById("cantColor"),
+        resetPrior: document.getElementById("resetPrior"),
+        normalizePrior: document.getElementById("normalizePrior"),
+        notification: document.getElementById("notification")
+      };
+
+      let notificationTimer = null;
+
+      function round3(value) {
+        if (!Number.isFinite(value)) return NaN;
+        return Math.round((value + Number.EPSILON) * 1000) / 1000;
+      }
+
+      function round4(value) {
+        if (!Number.isFinite(value)) return NaN;
+        return Math.round((value + Number.EPSILON) * 10000) / 10000;
+      }
+
+      function fmt4(value) {
+        return Number.isFinite(value) ? value.toFixed(4) : "NaN";
+      }
+
+      function fmt3(value) {
+        return Number.isFinite(value) ? value.toFixed(3) : "NaN";
+      }
+
+      function fmt2(value) {
+        return Number.isFinite(value) ? value.toFixed(2) : "NaN";
+      }
+
+      function toNonNegativeInt(value) {
+        const num = Number(value);
+        if (!Number.isFinite(num)) return 0;
+        return Math.max(0, Math.round(num));
+      }
+
+      function syncCountInputsToState() {
+        state.cant = Math.max(1, toNonNegativeInt(els.cant.value));
+        state.cantColor = Math.min(state.cant, toNonNegativeInt(els.cantColor.value));
+
+        els.cant.value = String(state.cant);
+        els.cantColor.value = String(state.cantColor);
+        els.cantColor.max = String(state.cant);
+      }
+
+      function showNotification(message) {
+        clearTimeout(notificationTimer);
+        els.notification.textContent = message;
+        notificationTimer = setTimeout(function () {
+          els.notification.textContent = "";
+        }, 3500);
+      }
+
+      function linspaceZeroOne(n) {
+        const values = [];
+        for (let i = 0; i < n; i += 1) {
+          values.push(round3(i / (n - 1)));
+        }
+        return values;
+      }
+
+      function resetPriorToUniform() {
+        state.theta = linspaceZeroOne(state.nValues);
+        const p = round4(1 / state.nValues);
+        state.prior = Array.from({ length: state.nValues }, function () {
+          return p;
+        });
+      }
+
+      function normalizePriorValues() {
+        const sum = state.prior.reduce(function (acc, value) {
+          return acc + Number(value);
+        }, 0);
+        if (!Number.isFinite(sum) || sum === 0) {
+          state.prior = state.prior.map(function () {
+            return NaN;
+          });
+          return;
+        }
+        state.prior = state.prior.map(function (value) {
+          return round4(Number(value) / sum);
+        });
+      }
+
+      function gammaLn(z) {
+        const coeffs = [
+          676.5203681218851,
+          -1259.1392167224028,
+          771.3234287776531,
+          -176.6150291621406,
+          12.507343278686905,
+          -0.13857109526572012,
+          9.9843695780195716e-6,
+          1.5056327351493116e-7
+        ];
+
+        if (z < 0.5) {
+          return Math.log(Math.PI) - Math.log(Math.sin(Math.PI * z)) - gammaLn(1 - z);
+        }
+
+        let x = 0.9999999999998099;
+        let i = 0;
+        const tBase = z - 1;
+        for (; i < coeffs.length; i += 1) {
+          x += coeffs[i] / (tBase + i + 1);
+        }
+        const t = tBase + coeffs.length - 0.5;
+        return 0.5 * Math.log(2 * Math.PI) + (tBase + 0.5) * Math.log(t) - t + Math.log(x);
+      }
+
+      function dbinom(k, n, p) {
+        if (!Number.isFinite(k) || !Number.isFinite(n) || !Number.isFinite(p)) return NaN;
+        if (n < 0 || k < 0 || k > n) return 0;
+        if (Math.floor(n) !== n || Math.floor(k) !== k) return NaN;
+        if (p < 0 || p > 1) return NaN;
+        if (p === 0) return k === 0 ? 1 : 0;
+        if (p === 1) return k === n ? 1 : 0;
+
+        const logCoeff = gammaLn(n + 1) - gammaLn(k + 1) - gammaLn(n - k + 1);
+        const logProb = logCoeff + k * Math.log(p) + (n - k) * Math.log1p(-p);
+        return Math.exp(logProb);
+      }
+
+      function computeLikelihoodRows() {
+        const rows = [];
+        for (let i = 0; i < state.theta.length; i += 1) {
+          const theta = state.theta[i];
+          rows.push({
+            theta: theta,
+            prior: state.prior[i],
+            likelihood: round4(dbinom(state.cantColor, state.cant, theta))
+          });
+        }
+        return rows;
+      }
+
+      function computePosteriorRows(likelihoodRows) {
+        const rawValues = likelihoodRows.map(function (row) {
+          return round4(row.prior * row.likelihood);
+        });
+
+        const sum = rawValues.reduce(function (acc, value) {
+          return acc + (Number.isFinite(value) ? value : 0);
+        }, 0);
+
+        return likelihoodRows.map(function (row, index) {
+          const posteriorRaw = rawValues[index];
+          const posterior = sum === 0 || !Number.isFinite(posteriorRaw)
+            ? NaN
+            : round4(posteriorRaw / sum);
+          return {
+            theta: row.theta,
+            posterior_: posteriorRaw,
+            posterior: posterior
+          };
+        });
+      }
+
+      function createTable(headers, rows, rowRenderer) {
+        const table = document.createElement("table");
+        const thead = document.createElement("thead");
+        const trHead = document.createElement("tr");
+        headers.forEach(function (header) {
+          const th = document.createElement("th");
+          th.textContent = header;
+          trHead.appendChild(th);
+        });
+        thead.appendChild(trHead);
+        table.appendChild(thead);
+
+        const tbody = document.createElement("tbody");
+        rows.forEach(function (row, index) {
+          tbody.appendChild(rowRenderer(row, index));
+        });
+        table.appendChild(tbody);
+        return table;
+      }
+
+      function renderPriorEditableTable() {
+        const container = document.getElementById("tablePrior");
+        container.innerHTML = "";
+
+        const rows = state.theta.map(function (theta, i) {
+          return { theta: theta, prior: state.prior[i], index: i };
+        });
+
+        const table = createTable(["π", "p(π)"], rows, function (row) {
+          const tr = document.createElement("tr");
+
+          const tdTheta = document.createElement("td");
+          tdTheta.textContent = fmt2(row.theta);
+          tr.appendChild(tdTheta);
+
+          const tdPrior = document.createElement("td");
+          const input = document.createElement("input");
+          input.type = "number";
+          input.min = "0";
+          input.step = "0.001";
+          input.lang = "en-US";
+          input.inputMode = "decimal";
+          input.className = "table-input";
+          input.value = fmt3(row.prior);
+          input.dataset.index = String(row.index);
+
+          input.addEventListener("change", function (event) {
+            const idx = Number(event.target.dataset.index);
+            const newValue = Number(event.target.value);
+            if (!Number.isFinite(newValue)) {
+              showNotification("Usa solo numeros con punto decimal (ej. 0.250).");
+              return;
+            }
+            if (newValue < 0) {
+              showNotification("p(π) debe ser mayor o igual a 0.");
+              return;
+            }
+            state.prior[idx] = newValue;
+            renderComputedViews();
+          });
+
+          tdPrior.appendChild(input);
+          tr.appendChild(tdPrior);
+          return tr;
+        });
+
+        container.appendChild(table);
+      }
+
+      function renderComputedViews() {
+        const likelihoodRows = computeLikelihoodRows();
+        const posteriorRows = computePosteriorRows(likelihoodRows);
+        const priorRows = state.theta.map(function (theta, i) {
+          return { theta: theta, prior: state.prior[i] };
+        });
+
+        const priorPosteriorMaxObserved = Math.max(
+          priorRows.reduce(function (acc, row) {
+            return Number.isFinite(row.prior) ? Math.max(acc, row.prior) : acc;
+          }, 0),
+          posteriorRows.reduce(function (acc, row) {
+            return Number.isFinite(row.posterior) ? Math.max(acc, row.posterior) : acc;
+          }, 0)
+        );
+        const likelihoodMaxObserved = likelihoodRows.reduce(function (acc, row) {
+          return Number.isFinite(row.likelihood) ? Math.max(acc, row.likelihood) : acc;
+        }, 0);
+
+        const priorPosteriorYMax = Math.min(priorPosteriorMaxObserved + 0.05, 1);
+        const likelihoodYMax = Math.min(likelihoodMaxObserved + 0.05, 1);
+
+        renderLikelihoodTable("tableLikelihood", likelihoodRows);
+        renderPosteriorTable(posteriorRows);
+
+        renderStemPlot("plotPrior", priorRows, "prior", { color: "var(--prior)", title: "Creencia inicial", xLabel: "π", sharedYMax: priorPosteriorYMax });
+        renderStemPlot("plotLikelihood", likelihoodRows, "likelihood", { color: "var(--like)", title: "Verosimilitud", xLabel: "π", sharedYMax: likelihoodYMax });
+        renderStemPlot("plotPosterior", posteriorRows, "posterior", { color: "var(--post)", title: "Creencia final", xLabel: "π", sharedYMax: priorPosteriorYMax });
+      }
+
+      function renderLikelihoodTable(containerId, likelihoodRows) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = "";
+        const table = createTable(["π", "p(y|π)"], likelihoodRows, function (row) {
+          const tr = document.createElement("tr");
+          const tdTheta = document.createElement("td");
+          tdTheta.textContent = fmt2(row.theta);
+          tr.appendChild(tdTheta);
+          const tdValue = document.createElement("td");
+          tdValue.textContent = fmt4(row.likelihood);
+          tr.appendChild(tdValue);
+          return tr;
+        });
+        container.appendChild(table);
+      }
+
+      function renderPosteriorTable(posteriorRows) {
+        const container = document.getElementById("tablePosterior");
+        container.innerHTML = "";
+        const table = createTable(
+          ["π", "p(π) x p(y|π)", "p(π|y)"],
+          posteriorRows,
+          function (row) {
+            const tr = document.createElement("tr");
+
+            const tdTheta = document.createElement("td");
+            tdTheta.textContent = fmt2(row.theta);
+            tr.appendChild(tdTheta);
+
+            const tdPosteriorRaw = document.createElement("td");
+            tdPosteriorRaw.textContent = fmt4(row.posterior_);
+            tr.appendChild(tdPosteriorRaw);
+
+            const tdPosterior = document.createElement("td");
+            tdPosterior.textContent = fmt4(row.posterior);
+            tr.appendChild(tdPosterior);
+
+            return tr;
+          }
+        );
+        container.appendChild(table);
+      }
+
+      function svgElem(tag, attrs) {
+        const el = document.createElementNS("http://www.w3.org/2000/svg", tag);
+        Object.keys(attrs).forEach(function (key) {
+          el.setAttribute(key, String(attrs[key]));
+        });
+        return el;
+      }
+
+      function renderStemPlot(containerId, rows, yKey, options) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        container.innerHTML = "";
+
+        const tooltipEl = document.createElement("div");
+        tooltipEl.className = "chart-tooltip";
+
+        const width = Math.max(container.clientWidth, 260);
+        const height = Math.max(container.clientHeight, 220);
+        const margin = { top: 20, right: 16, bottom: 48, left: 36 };
+        const plotWidth = width - margin.left - margin.right;
+        const plotHeight = height - margin.top - margin.bottom;
+
+        const showTooltip = function (event, value) {
+          const rect = container.getBoundingClientRect();
+          tooltipEl.textContent = "p = " + fmt4(value);
+          tooltipEl.style.left = (event.clientX - rect.left) + "px";
+          tooltipEl.style.top = (event.clientY - rect.top) + "px";
+          tooltipEl.classList.add("visible");
+        };
+
+        const hideTooltip = function () {
+          tooltipEl.classList.remove("visible");
+        };
+
+        const maxObserved = rows.reduce(function (acc, row) {
+          const value = row[yKey];
+          return Number.isFinite(value) ? Math.max(acc, value) : acc;
+        }, 0);
+        const yMax = Number.isFinite(options.sharedYMax)
+          ? options.sharedYMax
+          : Math.min(maxObserved + 0.05, 1);
+        const xToPx = function (x) {
+          return margin.left + x * plotWidth;
+        };
+        const yToPx = function (y) {
+          return margin.top + (1 - y / yMax) * plotHeight;
+        };
+        const baselineY = yToPx(0);
+
+        const svg = svgElem("svg", {
+          viewBox: "0 0 " + width + " " + height,
+          width: width,
+          height: height,
+          role: "img",
+          "aria-label": options.title
+        });
+
+        const yTicks = [];
+        for (let i = 0; i <= 4; i += 1) {
+          yTicks.push((i / 4) * yMax);
+        }
+        yTicks.forEach(function (tick) {
+          const y = yToPx(tick);
+          svg.appendChild(svgElem("line", {
+            x1: margin.left,
+            x2: width - margin.right,
+            y1: y,
+            y2: y,
+            stroke: "#eef1f7",
+            "stroke-width": 1
+          }));
+          const label = svgElem("text", {
+            x: margin.left - 6,
+            y: y + 3,
+            "text-anchor": "end",
+            "font-size": 10,
+            fill: "#4e5667"
+          });
+          label.textContent = tick.toFixed(2);
+          svg.appendChild(label);
+        });
+
+        svg.appendChild(svgElem("line", {
+          x1: margin.left,
+          x2: width - margin.right,
+          y1: baselineY,
+          y2: baselineY,
+          stroke: "#667085",
+          "stroke-width": 1
+        }));
+
+        rows.forEach(function (row) {
+          const value = row[yKey];
+          if (!Number.isFinite(value)) return;
+          const x = xToPx(row.theta);
+          const y = yToPx(value);
+
+          svg.appendChild(svgElem("line", {
+            x1: x,
+            x2: x,
+            y1: baselineY,
+            y2: y,
+            stroke: options.color,
+            "stroke-width": 2
+          }));
+          const point = svgElem("circle", {
+            cx: x,
+            cy: y,
+            r: 5,
+            fill: options.color
+          });
+          point.style.cursor = "pointer";
+          point.addEventListener("mouseenter", function (event) {
+            showTooltip(event, value);
+          });
+          point.addEventListener("mousemove", function (event) {
+            showTooltip(event, value);
+          });
+          point.addEventListener("mouseleave", hideTooltip);
+          svg.appendChild(point);
+        });
+
+        rows.forEach(function (row) {
+          const x = xToPx(row.theta);
+          svg.appendChild(svgElem("line", {
+            x1: x,
+            x2: x,
+            y1: baselineY,
+            y2: baselineY + 4,
+            stroke: "#667085",
+            "stroke-width": 1
+          }));
+          const label = svgElem("text", {
+            x: x,
+            y: baselineY + 15,
+            "text-anchor": "middle",
+            "font-size": 9,
+            fill: "#4e5667"
+          });
+          label.textContent = fmt2(row.theta);
+          svg.appendChild(label);
+        });
+
+        const xLabel = svgElem("text", {
+          x: width / 2,
+          y: height - 8,
+          "text-anchor": "middle",
+          "font-size": 11,
+          fill: "#1d2331"
+        });
+        xLabel.textContent = options.xLabel;
+        svg.appendChild(xLabel);
+
+        svg.addEventListener("mouseleave", hideTooltip);
+        container.appendChild(svg);
+        container.appendChild(tooltipEl);
+      }
+
+      function bindViewSelector() {
+        const checkboxes = document.querySelectorAll('input[name="viewMode"]');
+        const cards = document.querySelectorAll(".component-card");
+        const emptySelection = document.getElementById("emptySelection");
+
+        function applyVisibility() {
+          const selected = new Set(Array.from(checkboxes)
+            .filter(function (checkbox) { return checkbox.checked; })
+            .map(function (checkbox) { return checkbox.value; }));
+
+          cards.forEach(function (card) {
+            card.classList.toggle("hidden", !selected.has(card.dataset.component));
+          });
+
+          emptySelection.style.display = selected.size === 0 ? "block" : "none";
+          setTimeout(renderAll, 0);
+        }
+
+        checkboxes.forEach(function (checkbox) {
+          checkbox.addEventListener("change", applyVisibility);
+        });
+
+        applyVisibility();
+      }
+
+      function renderAll() {
+        syncCountInputsToState();
+        renderPriorEditableTable();
+        renderComputedViews();
+      }
+
+      function bindInputs() {
+        els.nValues.addEventListener("input", function (event) {
+          state.nValues = toNonNegativeInt(event.target.value);
+          if (state.nValues < 4) state.nValues = 4;
+          if (state.nValues > 20) state.nValues = 20;
+          event.target.value = String(state.nValues);
+          els.nValuesLabel.textContent = String(state.nValues);
+          resetPriorToUniform();
+          renderAll();
+        });
+
+        els.cant.addEventListener("input", renderAll);
+        els.cant.addEventListener("change", renderAll);
+
+        els.cantColor.addEventListener("input", renderAll);
+        els.cantColor.addEventListener("change", renderAll);
+
+        els.resetPrior.addEventListener("click", function () {
+          resetPriorToUniform();
+          renderAll();
+        });
+
+        els.normalizePrior.addEventListener("click", function () {
+          normalizePriorValues();
+          renderAll();
+        });
+      }
+
+      function init() {
+        resetPriorToUniform();
+        els.nValuesLabel.textContent = String(state.nValues);
+        bindViewSelector();
+        bindInputs();
+        renderAll();
+
+        let resizeTimer = null;
+        window.addEventListener("resize", function () {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(renderAll, 120);
+        });
+      }
+
+      init();
+    })();
+  </script>
+</body>
+</html>

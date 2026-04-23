@@ -18,26 +18,26 @@ theme_set(theme_bw() +
 fx <- function(x) exp(0.4*(x-0.4)^2-0.08*x^4)
 
 mh <- function(N,sd){
-theta <- double()
-quehacemos <- character()
-theta[1] <- -1
-for(i in 1:1000){
-  propuesta <- rnorm(1, mean = theta[i], sd = sd)
-  f_actual <- fx(theta[i])
-  f_propuesta <- fx(propuesta)
-  
-  alpha <- min(c(1,f_propuesta/f_actual))
-  
-  quehacemos[i] <- sample(c("salto","no salto"), 
-                       size = 1, 
-                       prob = c(alpha,1-alpha))
-  
-  if(quehacemos[i]=="salto") 
-    theta[i+1] <- propuesta 
-  else
-    theta[i+1] <- theta[i]
-}
-return(list(theta=theta,prop_aceptada=sum(quehacemos=="salto")/N))
+    theta <- double()
+    quehacemos <- character()
+    theta[1] <- -1
+    for(i in 1:N){
+          propuesta <- rnorm(1, mean = theta[i], sd = sd)
+          f_actual <- fx(theta[i])
+          f_propuesta <- fx(propuesta)
+          
+          alpha <- min(c(1,f_propuesta/f_actual))
+          
+          quehacemos[i] <- sample(c("salto","no salto"), 
+                               size = 1, 
+                               prob = c(alpha,1-alpha))
+          
+          if(quehacemos[i]=="salto") 
+            theta[i+1] <- propuesta 
+          else
+            theta[i+1] <- theta[i]
+    }
+    return(list(theta=theta,prop_aceptada=sum(quehacemos=="salto")/N))
 }
 ```
 
@@ -47,8 +47,8 @@ Típicamente interesa resolver los siguientes problemas:
 
 . . .
 
--   Calcular integrales de la forma $\mathbb{E}[\phi(x)] = \int \phi(x) p(x) d x$ (_law of the unconscious statistician_) 
--   Generar $S$ muestras independientes $x^{(s)}$ de una distribución de probabilidad $p(x)$
+-   Calcular integrales de la forma $\mathbb{E}[\phi(X)] = \int \phi(x) p(x) d x$ (_law of the unconscious statistician_) 
+-   Generar $S$ muestras independientes $x^{(s)}$ de una distribución de probabilidad $p$ (con función de densidad $p(x)$)
 
 . . .
 
@@ -60,7 +60,7 @@ En la estadística bayesiana, $x$ es $\theta$, el parámetro desconocido de algu
 
 ## {.smaller}
 
-Para el primer problema, sabemos que si $X_i \sim p(x)$, bajo ciertas condiciones podemos aproximar
+Para el primer problema, sabemos que si $X \sim p$, bajo ciertas condiciones podemos aproximar
 
 . . .
 
@@ -214,7 +214,7 @@ prob <- function(x) return(exp(0.4*(x-0.4)^2 - 0.08*x^4)) # sabemos evaluar p
 x <- seq(-4.5, 4.5, 0.5)
 p_ <- prob(x) # ~p*
 Z_rulito <- sum(p_) # ~Z
-p_rulito <- p_/Z # ~p
+p_rulito <- p_/Z_rulito # ~p
 sample(x, replace = TRUE, prob = p_rulito)
 ```
 
@@ -276,7 +276,7 @@ ggplot(dv) +
 ## {.smaller}
 
 1.  Deberíamos tomar valores de $\mu$ en el intervalo $(-4,4)$ y valores de $\sigma$ en el intervalo $(0,3)$ y construir una grilla de valores.
-2.  Para cada valor de la grilla podríamos calular el _posterior_ sin normalizar haciendo el producto del _prior_ por el _likelihood_ (necesitamos la muestra).
+2.  Para cada valor de la grilla podríamos calcular el _posterior_ sin normalizar haciendo el producto del _prior_ por el _likelihood_ (necesitamos la muestra).
 
 ## Rejection sampling {.smaller}
 
