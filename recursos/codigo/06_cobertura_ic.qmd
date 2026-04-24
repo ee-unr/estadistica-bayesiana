@@ -6,10 +6,22 @@ El siguiente programa sirve para responder al ejercicio **Propiedades frecuentis
 inferencias bayesianas** de la Práctica 2.
 
 ```{r}
+#| code-fold: true
+library(ggplot2)
+custom_theme <- function() {
+    theme_bw() +
+    theme(
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank()
+    )
+}
+
+theme_set(custom_theme())
+```
+
+```{r}
 #| fig-width: 8
 #| fig-align: center
-library(ggplot2)
-
 set.seed(1234)
 
 # Definir cantidad de repeticiones
@@ -61,9 +73,5 @@ ggplot(datos, aes(x = theta, y = cobertura)) +
     geom_point(color = "#3b78b0") +
     geom_hline(yintercept = 0.95, linetype = "dashed") +
     labs(x = expression(theta)) +
-    facet_wrap(~ n, labeller = label_both) +
-    theme_bw() +
-    theme(
-        panel.grid.minor = element_blank()
-    )
+    facet_wrap(~ n, labeller = label_both)
 ```

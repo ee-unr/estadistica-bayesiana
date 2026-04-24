@@ -1,5 +1,5 @@
 ---
-title: "13 - Hamiltonian Monte Carlo para normal bivariada"
+title: "14 - Hamiltonian Monte Carlo para normal bivariada"
 execute:
   warning: false
   fig-align: center

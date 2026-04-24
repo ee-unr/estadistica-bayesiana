@@ -6,10 +6,21 @@ En este recurso se muestra como usar R para resolver el ejercicio de **#DóndeEs
 la primera clase.
 
 ```{r}
+#| code-fold: true
 library(ggplot2)
 library(patchwork)
 
 colores <- c("#f08533", "#3b78b0", "#d1352c")
+
+custom_theme <- function() {
+    theme_bw() +
+    theme(
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank()
+    )
+}
+
+theme_set(custom_theme())
 ```
 
 En base al _prior_ elicitado grupalmente en clase:
@@ -54,9 +65,7 @@ plt_prior <- data.frame(x = pi_grid, y = prior) |>
     x = expression(pi),
     y = expression(p ~ "(" ~ pi ~ ")"),
     title = "Distribución a priori"
-  ) +
-  theme_bw() +
-  theme(panel.grid.minor = element_blank())
+  )
 
 # Graficar verosimilitud
 plt_likelihood <- data.frame(x = pi_grid, y = likelihood) |>
@@ -69,9 +78,7 @@ plt_likelihood <- data.frame(x = pi_grid, y = likelihood) |>
     x = expression(pi),
     y = expression(p ~ "(y | " ~ pi ~ ")"),
     title = "Función de verosimilitud"
-  ) +
-  theme_bw() +
-  theme(panel.grid.minor = element_blank())
+  )
 
 # Graficar posterior
 plt_posterior <- data.frame(x = pi_grid, y = posterior) |>
@@ -84,9 +91,7 @@ plt_posterior <- data.frame(x = pi_grid, y = posterior) |>
     x = expression(pi),
     y = expression(p ~ "(" ~ pi ~ " | y)"),
     title = "Distribución a posteriori"
-  ) +
-  theme_bw() +
-  theme(panel.grid.minor = element_blank())
+  )
 
 # Concatenar graficos
 plt_prior | plt_likelihood | plt_posterior
@@ -125,9 +130,7 @@ plt_prior <- data.frame(x = pi_grid, y = prior) |>
     x = expression(pi),
     y = expression(p ~ "(" ~ pi ~ ")"),
     title = "Distribución a priori"
-  ) +
-  theme_bw() +
-  theme(panel.grid.minor = element_blank())
+  )
 
 # Graficar verosimilitud
 plt_likelihood <- data.frame(x = pi_grid, y = likelihood) |>
@@ -137,9 +140,7 @@ plt_likelihood <- data.frame(x = pi_grid, y = likelihood) |>
     x = expression(pi),
     y = expression(p ~ "(y | " ~ pi ~ ")"),
     title = "Función de verosimilitud"
-  ) +
-  theme_bw() +
-  theme(panel.grid.minor = element_blank())
+  )
 
 # Graficar posterior
 plt_posterior <- data.frame(x = pi_grid, y = posterior) |>
@@ -149,10 +150,7 @@ plt_posterior <- data.frame(x = pi_grid, y = posterior) |>
     x = expression(pi),
     y = expression(p ~ "(" ~ pi ~ " | y)"),
     title = "Distribución a posteriori"
-  ) +
-  theme_bw() +
-  theme(panel.grid.minor = element_blank())
-
+  )
 # Concatenar graficos
 plt_prior | plt_likelihood | plt_posterior
 ```

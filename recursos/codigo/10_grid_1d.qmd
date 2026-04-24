@@ -1,5 +1,9 @@
 ---
 title: "10 - Aproximación de grilla en 1 dimensión"
+execute:
+  fig-align: center
+  fig-height: 5
+  fig-width: 7
 ---
 
 El siguiente programa muestra como se pueden resolver en R los ejercicios
@@ -13,10 +17,22 @@ $$
 $$
 
 ```{r}
+#| code-fold: true
 #| warning: false
 library(dplyr)
 library(ggplot2)
+custom_theme <- function() {
+    theme_bw() +
+    theme(
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank()
+    )
+}
 
+theme_set(custom_theme())
+```
+
+```{r}
 n <- 80
 y <- 7
 a_prior <- 2
@@ -41,8 +57,6 @@ posterior_1000 <- crear_posterior_grilla(a_post, b_post, 1000)
 ```
 
 ```{r}
-#| fig-width: 7
-#| fig-align: center
 #| fig-cap: Distribución _a posteriori_ exacta
 ggplot(posterior_exacto) +
     geom_line(
@@ -50,13 +64,10 @@ ggplot(posterior_exacto) +
         linewidth = 1,
         color = "#3b78b0"
     ) + 
-    labs(x = expression(theta), y = expression("p(" ~ theta ~ " | y)")) +
-    theme_classic()
+    labs(x = expression(theta), y = expression("p(" ~ theta ~ " | y)"))
 ```
 
 ```{r}
-#| fig-width: 7
-#| fig-align: center
 #| fig-cap: Distribución _a posteriori_ aproximada por grilla de 10 puntos.
 ggplot(posterior_10) +
     geom_segment(
@@ -68,13 +79,10 @@ ggplot(posterior_10) +
         color = "#3b78b0",
         size = 0.8,
     ) +
-    labs(x = expression(theta), y = expression("p(" ~ theta ~ " | y)")) +
-    theme_classic()
+    labs(x = expression(theta), y = expression("p(" ~ theta ~ " | y)"))
 ```
 
 ```{r}
-#| fig-width: 7
-#| fig-align: center
 #| fig-cap: Distribución _a posteriori_ aproximada por grilla de 100 puntos.
 ggplot(posterior_100) +
     geom_segment(
@@ -86,8 +94,7 @@ ggplot(posterior_100) +
         color = "#3b78b0",
         size = 0.8,
     ) +
-    labs(x = expression(theta), y = expression("p(" ~ theta ~ " | y)")) +
-    theme_classic()
+    labs(x = expression(theta), y = expression("p(" ~ theta ~ " | y)"))
 ```
 
 Con 100 puntos la aproximación ya es muy similar al _posterior_ exacto. 

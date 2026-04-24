@@ -1,5 +1,5 @@
 ---
-title: "12 - Metropolis-Hastings en 2 dimensiones"
+title: "13 - Metropolis-Hastings en 2 dimensiones"
 ---
 
 El siguiente código es de utilidad para resolver con `R` el ejercicio
@@ -12,6 +12,13 @@ El siguiente código es de utilidad para resolver con `R` el ejercicio
 #| fig-align: center
 library(ggplot2)
 library(mvtnorm)
+
+custom_theme <- function() {
+    theme_bw() +
+    theme(panel.grid.minor = element_blank())
+}
+
+theme_set(custom_theme())
 
 # Cantidad de muestras a obtener
 n <- 5000
@@ -58,11 +65,7 @@ df$x <- 1:n
 
 # Graficar muestras en el plano
 ggplot(df) +
-    geom_point(aes(x = y1, y = y2), alpha = 0.6, color = "grey30") +
-    theme_bw() +
-    theme(
-        panel.grid.minor = element_blank()
-    )
+    geom_point(aes(x = y1, y = y2), alpha = 0.6, color = "grey30")
 
 # Obtener una visualización de la densidad empírica
 ggplot(df, aes(x = y1, y = y2)) +
@@ -81,9 +84,5 @@ tidyr::pivot_longer(df, c("y1", "y2"), names_to = "variable") |>
     geom_line(aes(x = x, y = value, color = variable)) +
     scale_color_manual(values = c("#f08533", "#3b78b0")) +
     facet_wrap(~ variable, ncol = 1) +
-    theme_bw() +
-    theme(
-        panel.grid.minor = element_blank(),
-        legend.position = "none"
-    )
+    theme(legend.position = "none")
 ```

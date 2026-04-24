@@ -6,11 +6,23 @@ Este programa obtiene la distribución _a posteriori_ para los diferentes trabaj
 del ejercicio **Diferentes observaciones, diferentes _posteriors_** de la Práctica 2.
 
 ```{r}
+#| code-fold: true
+library(ggplot2)
+custom_theme <- function() {
+    theme_bw() +
+    theme(
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank()
+    )
+}
+
+theme_set(custom_theme())
+```
+
+```{r}
 #| fig-width: 7
 #| fig-align: center
-library(ggplot2)
-
-colores <- c("#f08533", "#3b78b0", "#d1352c")
+colores <- c("#3b78b0", "#f08533", "#d1352c")
 
 # Crear grilla para los valores de "pi"
 grid_n <- 200
@@ -63,10 +75,5 @@ ggplot(datos, aes(x = p, y = posterior, color = trabajador)) +
     geom_area(aes(fill = trabajador), alpha = 0.4, position = "identity") +
     scale_color_manual(values = colores) +
     scale_fill_manual(values = colores) +
-    labs(x = expression(pi), y = expression("p(" ~ pi ~ "| y)")) +
-    theme_bw() +
-    theme(
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-    )
+    labs(x = expression(pi), y = expression("p(" ~ pi ~ "| y)"))
 ```

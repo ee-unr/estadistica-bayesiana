@@ -20,16 +20,21 @@ La siguiente celda de código contiene funciones utilitarias.
 library(dplyr)
 library(ggplot2)
 
+custom_theme <- function() {
+    theme_bw() +
+    theme(
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank()
+    )
+}
+
+theme_set(custom_theme())
+
 graficar_trazas <- function(df_muestras) {
     plt <- ggplot(df_muestras) +
         geom_line(aes(x = paso, y = valor, group = cadena, color = cadena)) +
         scale_color_manual(values = c("#107591", "#00c0bf", "#f69a48", "#fdcd49")) +
-        labs(x = "Paso", y = "x") +
-        theme_bw()
-        theme(
-            panel.grid.minor = element_blank()
-        )
-
+        labs(x = "Paso", y = "x")
     return(plt)
 }
 
@@ -464,9 +469,8 @@ y se lo resume utilizando la media y un intervalo de credibilidad central del 94
 ggplot(df_muestras) +
     geom_histogram(aes(x = valor), bins = 30, fill = "#f08533", alpha = 0.8) +
     labs(x = expression(mu), y = NULL) +
-    theme_bw() +
     theme(
-        panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank(),
         axis.ticks.y = element_blank(),
         axis.text.y = element_blank()
     )

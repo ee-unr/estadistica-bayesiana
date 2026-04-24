@@ -24,8 +24,20 @@ $$
 $$
 
 ```{r}
+#| code-fold: true
 library(ggplot2)
+custom_theme <- function() {
+    theme_bw() +
+    theme(
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank()
+    )
+}
 
+theme_set(custom_theme())
+```
+
+```{r}
 # Cantidad de mensajes observados
 mensajes <- c(7, 3, 8, 9, 10, 12)
 ```
@@ -33,8 +45,9 @@ mensajes <- c(7, 3, 8, 9, 10, 12)
 **Opción 1**: Escribir la función de verosimilitud analíticamente
 
 ```{r}
-#| fig-width: 7
 #| fig-align: center
+#| fig-height: 5
+#| fig-width: 7
 n <- length(mensajes)
 total <- sum(mensajes)
 producto_factoriales <- prod(factorial(mensajes))
@@ -50,19 +63,15 @@ verosimilitud <- exp(-n * lambda) * lambda ^ total / producto_factoriales
 data.frame(x = lambda, y = verosimilitud) |>
     ggplot() +
     geom_line(aes(x = x, y = y), linewidth = 1, color = "#3b78b0") +
-    labs(x = expression(lambda), y = expression("p(y | " ~ lambda ~ ")")) +
-    theme_bw() +
-    theme(
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-    )
+    labs(x = expression(lambda), y = expression("p(y | " ~ lambda ~ ")"))
 ```
 
 **Opción 2**: Utilizar `dpois`
 
 ```{r}
-#| fig-width: 7
 #| fig-align: center
+#| fig-height: 5
+#| fig-width: 7
 mensajes_matriz <- matrix(rep(mensajes, 200), nrow = 200, byrow = TRUE)
 pmf <- dpois(mensajes_matriz, lambda)                                            # <1>
 verosimilitud <- apply(pmf, 1, prod)                                             # <2>
@@ -70,12 +79,7 @@ verosimilitud <- apply(pmf, 1, prod)                                            
 data.frame(x = lambda, y = verosimilitud) |>
     ggplot() +
     geom_line(aes(x = x, y = y), linewidth = 1, color = "#3b78b0") +
-    labs(x = expression(lambda), y = expression("p(y | " ~ lambda ~ ")")) +
-    theme_bw() +
-    theme(
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-    )
+    labs(x = expression(lambda), y = expression("p(y | " ~ lambda ~ ")"))
 ```
 
 

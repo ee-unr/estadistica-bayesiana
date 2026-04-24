@@ -1,20 +1,35 @@
 ---
 title: "11 - Aproximación de grilla en 2 dimensiones"
+execute:
+  fig-align: center
+  fig-height: 5
+  fig-width: 7
 ---
 
 El siguiente programa muestra como se puede resolver en R el ejercicio
 **Aproximación de grilla en 2 dimensiones** de la Práctica 3.
 
 ```{r}
+#| code-fold: true
 #| warning: false
-#| fig-width: 7
-#| fig-align: center
-#| fig-cap: Distribución _a posteriori_ evaluada en una grilla de 50×50 puntos.<br>
-#|    El punto indica los valores de $\alpha$ y $\beta$ utilizados para generar los
-#|    datos.
 library(dplyr)
 library(ggplot2)
 
+custom_theme <- function() {
+    theme_bw() +
+    theme(
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank()
+    )
+}
+
+theme_set(custom_theme())
+```
+
+```{r}
+#| fig-cap: Distribución _a posteriori_ evaluada en una grilla de 50×50 puntos.<br>
+#|    El punto indica los valores de $\alpha$ y $\beta$ utilizados para generar los
+#|    datos.
 set.seed(121195)
 
 # Generación de datos
@@ -27,8 +42,8 @@ y <- rnorm(n, alpha + beta * x, sigma)
 df <- data.frame(x = x, y = y)
 
 # Crear grilla para alfa y beta
-grid_a <- seq(0.5, 1.5, length.out = 50)
-grid_b <- seq(-2.5, -1.5, length.out = 50)
+grid_a <- seq(0.6, 1.4, length.out = 60)
+grid_b <- seq(-2.2, -1.6, length.out = 60)
 
 # Crear todas las combinaciones entre los valores de las dos grillas
 grid_df <- expand.grid(grid_a, grid_b)
@@ -72,42 +87,28 @@ ggplot(grid_df, aes(x = a, y = b)) +
 ```
 
 ```{r}
-#| fig-width: 7
-#| fig-align: center
 #| fig-cap: Distribución marginal de $\alpha$.
 posterior_a_df <- grid_df |>
     group_by(a) |>
     summarise(p = sum(posterior))
 
 ggplot(posterior_a_df) +
-    geom_segment(aes(x = a, xend = a, y = 0, yend = p), color = "#d1352c") +
-    geom_point(aes(x = a, y = p), color = "#d1352c") +
-    labs(x = expression(alpha), y = expression("p(" ~ alpha ~ " | y)")) +
-    theme_bw() +
-    theme(
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-    )
+    geom_segment(aes(x = a, xend = a, y = 0, yend = p), color = "#3b78b0") +
+    geom_point(aes(x = a, y = p), color = "#3b78b0") +
+    labs(x = expression(alpha), y = expression("p(" ~ alpha ~ " | y)"))
 ```
 
 
 ```{r}
-#| fig-width: 7
-#| fig-align: center
 #| fig-cap: Distribución marginal de $\beta$.
 posterior_b_df <- grid_df |>
     group_by(b) |>
     summarise(p = sum(posterior))
 
 ggplot(posterior_b_df) +
-    geom_segment(aes(x = b, xend = b, y = 0, yend = p), color = "#d1352c") +
-    geom_point(aes(x = b, y = p), color = "#d1352c") +
-    labs(x = expression(beta), y = expression("p(" ~ beta ~ " | y)")) +
-    theme_bw() +
-    theme(
-        panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-    )
+    geom_segment(aes(x = b, xend = b, y = 0, yend = p), color = "#3b78b0") +
+    geom_point(aes(x = b, y = p), color = "#3b78b0") +
+    labs(x = expression(beta), y = expression("p(" ~ beta ~ " | y)"))
 ```
 
 
@@ -122,4 +123,3 @@ $P(\beta < -2)$
 ```{r}
 sum(posterior_b_df$p[posterior_b_df$b < -2])
 ```
-

@@ -6,7 +6,17 @@ El siguiente programa sirve para responder al ejercicio **Bolas infinitas**
 de la Práctica 3.
 
 ```{r}
+#| code-fold: true
 library(ggplot2)
+custom_theme <- function() {
+    theme_bw() +
+    theme(
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank()
+    )
+}
+
+theme_set(custom_theme())
 ```
 
 **Parte 1**
@@ -75,11 +85,7 @@ datos <- data.frame(
 )
 
 ggplot(datos) +
-    geom_line(aes(x = x, y = y, color = prueba)) +
-    theme_bw() +
-    theme(
-        panel.grid.minor = element_blank()
-    )
+    geom_line(aes(x = x, y = y, color = prueba))
 ```
 
 

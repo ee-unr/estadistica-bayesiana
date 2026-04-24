@@ -11,11 +11,25 @@ $p(y \mid \pi)$ y $p(\pi, \mid y)$ en cada valor de la grilla, y devuelve un `da
 permite graficar las 3 curvas con `{ggplot2}`. La segunda, `generar_grafico()`, simplemente toma el
 `data.frame` generado por `generar_datos()` y produce la visualización.
 
+
+```{r}
+#| code-fold: true
+library(ggplot2)
+custom_theme <- function() {
+    theme_bw() +
+    theme(
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_blank()
+    )
+}
+
+theme_set(custom_theme())
+```
+
+
 ```{r}
 #| fig-width: 7
 #| fig-align: center
-library(ggplot2)
-
 grid_n <- 200
 pi_grid <- seq(0, 1, length.out = grid_n)
 
@@ -42,10 +56,7 @@ generar_grafico <- function(datos) {
         scale_color_manual(values = colores) +
         labs(x = expression(pi), y = NULL) +
         facet_wrap(~ grupo, scales = "free_y") +
-        theme_bw() +
         theme(
-            panel.grid.major = element_blank(),
-            panel.grid.minor = element_blank(),
             axis.ticks.y = element_blank(),
             axis.text.y = element_blank(),
             legend.position = "none"

@@ -6,10 +6,21 @@ El siguiente programa sirve para responder al ejercicio **Te veo en la fotocopia
 de la Práctica 3.
 
 ```{r}
+#| code-fold: true
+library(ggplot2)
+custom_theme <- function() {
+    theme_bw() +
+    theme(
+        panel.grid.minor = element_blank()
+    )
+}
+
+theme_set(custom_theme())
+```
+
+```{r}
 #| fig-width: 7
 #| fig-align: center
-library(ggplot2)
-
 # Para reproducibilidad del gráfico
 set.seed(12345)
 
@@ -39,11 +50,7 @@ ggplot(datos) +
   ) +
   geom_vline(xintercept = c(0, 60), linewidth = 0.25, linetype = "dashed") +
   scale_color_manual(values = c("#3b78b0", "#d1352c")) +
-  xlim(c(0, 70)) +
-  theme_bw() +
-  theme(
-    panel.grid.minor = element_blank()
-  )
+  xlim(c(0, 70))
 ```
 
 Si los intervalos se solapan, significa que hay una línea vertical que
