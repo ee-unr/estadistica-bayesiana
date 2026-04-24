@@ -22,10 +22,7 @@ library(ggplot2)
 
 custom_theme <- function() {
     theme_bw() +
-    theme(
-        panel.grid.minor = element_blank(),
-        panel.grid.major = element_blank()
-    )
+    theme(panel.grid.minor = element_blank())
 }
 
 theme_set(custom_theme())
