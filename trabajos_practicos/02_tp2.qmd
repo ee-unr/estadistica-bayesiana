@@ -52,7 +52,7 @@ el resguardo de la salud de las cuentas públicas.
 
 El archivo `tp2_llegadas_h1.csv` contiene los horarios de ingreso de pacientes a la guardia del
 Hospital Dr. Manuel Puch entre el 1 de febrero de 2026 y el 3 de abril del mismo año,
-dentro de la franja horaria comprendida entre las 21:00 y las 23:00 horas.
+dentro de la franja horaria comprendida entre las 22:00 y las 00:00 horas.
 
 En esta primera parte interesa modelizar la cantidad de personas que ingresan a la guardia
 por hora mediante un modelo gamma-Poisson.
