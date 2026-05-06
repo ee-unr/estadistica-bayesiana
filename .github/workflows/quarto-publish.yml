@@ -40,6 +40,7 @@ jobs:
           install-quarto: false
           packages: |
             any::bayesplot@1.15.0
+            any::BH@1.90.0.1
             any::dplyr@1.2.0
             any::ggdist@3.3.3
             any::ggplot2@3.5.2
