@@ -1,0 +1,73 @@
+---
+title: "TP 3: Al agua, pato"
+practica: "Trabajo Práctico 3: Al agua, pato"
+format: html
+---
+
+# Introducción
+
+En el siglo XVII, Evangelista Torricelli, un discípulo de Galileo Galilei, estudió el fenómeno de un tanque que se vacía por un orificio en su parte inferior. Encontró que la velocidad con la que sale un líquido por un orificio depende de la altura de agua por encima de ese orificio:
+$$
+v = \sqrt{2 g h}
+$$
+donde $g$ es la aceleración de la gravedad y $h$ es la altura de agua por encima del orificio.
+
+Consideremos una pileta Pelopincho, ícono del verano argentino de muchas familias. La pileta tiene inicialmente agua hasta una altura $h_0$. Cuando se le quita el tapón, comienza a salir agua con velocidad inicial $v_0 = \sqrt{2 g h_0}$. A medida que el nivel de agua empieza a descender, el agua sale con menos velocidad. Por lo tanto, el ritmo con el cual se vacía la pileta (y el ritmo con el cual baja la altura) no es constante. Al observar la altura del agua de la pileta, notaremos que el ritmo con el que cambia decrece a medida que transcurre el tiempo.
+
+La lectura del párrafo anterior debería permitir asociar el concepto de *ritmo de cambio* con la noción matemática de derivada. En efecto, la derivada de la altura respecto al tiempo varía con el tiempo. En otras palabras, la pendiente no es constante.
+
+Las leyes que rigen el universo pueden muchas veces formularse en términos de lo que en 
+matemática se conoce como ecuación diferencial. 
+
+Si $h(t)$ representa la altura del agua en la pileta en función del tiempo, el volumen de agua es aproximadamente proporcional a $h(t)$, suponiendo que la pileta tiene forma de prisma rectangular. La cantidad de agua que sale por segundo (lo que se conoce como caudal) depende de la velocidad de salida del agua. Como esa velocidad de salida es proporcional a $\sqrt{h(t)}$, entonces el ritmo de cambio de la altura puede escribirse como
+$$
+\frac{dh(t)}{dt} = -k\sqrt{h(t)}
+$$
+
+No se trata de una ecuación algebraica donde la solución es un valor numérico sino de una 
+ecuación donde la solución es una función. Buscamos una función $h(t)$ que satisfaga la 
+ecuación: su derivada debe cambiar con el valor que toma la raíz de la función.
+
+Una función que satisface esa ecuación es:
+$$
+h(t) = \left( \sqrt{h_0} - \frac{k}{2} t \right)^2
+$$
+
+Consideremos que $h$ se mide en $\text{cm}$ y $t$ en $\text{h}$.
+
+1. ¿Qué unidades tiene $k$?
+2. Verifique que la función anterior satisface la ecuación diferencial
+3. ¿Para qué valores de $t$ vale la solución?
+4. Halle el tiempo de vaciado $t_v$
+5. Grafique $h(t)$ para $h_0 = 50 \text{ cm}$, para dos valores de $k$
+6. Según su experiencia con piletas Pelopincho grandes (de 450 cm × 220 cm × 84 cm), 
+¿cuál es un valor razonable para $k$? ¿Qué tiempo de vaciado implica?
+7. Verifique que la raíz cuadrada de $h(t)$ es una función lineal de $t$, ¿qué
+representan el intercepto y la pendiente? Llámelos $\beta_0$ y $\beta_1$
+8. A partir de la linealización anterior, proponga un modelo estadístico para
+mediciones observadas de la altura del agua en distintos momentos.
+
+# Verano del 2026
+
+En verano, una Pelopincho puede transformarse en el centro de la vida familiar. Pero llenarla lleva tiempo, vaciarla también, y no siempre es obvio cuánto. Si se abre el desagote, el agua sale rápido al principio, cuando la pileta está llena, pero cada vez más lento a medida que baja el nivel. Roberto es un enamorado de su Pelopincho. Siempre dice que es “una inversión emocional”. No estaba del todo claro qué significa, pero cada verano, cuando la arma en el patio de su casa, lo repite como si fuera una verdad profunda.
+
+Una noche del último verano, después de un día largo de calor pegajoso que tuvo pileta, licuados de banana y Truco, decidió que ya era hora de vaciar la Pelopincho. Al día siguiente la llenaría con agua renovada.
+
+Eran las nueve y media de la noche. En la casa de Roberto se cena temprano (horario europeo, dice él). Los chicos estaban aprontándose para acostarse, el patio estaba en silencio y el calor estaba empezando a dar una pequeña tregua. Roberto se acercó a la pileta, bajo la luz del reflector que había instalado unos días atrás. El agua, quieta, reflejaba una luna medio borrosa. Roberto calculó que la pileta tendría unos 70 cm de agua. Se agachó, tanteó el tapón de desagote y lo abrió con un pequeño giro. El agua empezó a salir.
+
+Roberto dedicó unos treinta minutos más a los quehaceres del hogar. A las diez de la noche, se asomó al patio y vio que el nivel de agua de la Pelopincho había bajado una cantidad no despreciable, lo que según él eran unos 15 cm. Tras unas vueltas más sin rumbo claro, se tumbó en el sillón y encontró que en la tele estaban pasando Gladiador. Se regocijó del regalo de la casualidad y se decidió a ver por enésima vez la película. Como la película estaba empezada, a las once terminó. Roberto ya había sucumbido al sueño así que lo despertó la música del final. Once y media se levantó y fue a la cocina por un vaso de agua. Casi sin pensarlo, miró por la ventana al patio. La pileta seguía ahí, como una sombra azul oscuro. Le dio curiosidad. Abrió la puerta despacio y salió. A la pileta le quedaban unos 15 cm de agua.
+
+Con los datos que se obtienen del relato, se propone ajustar un modelo lineal normal utilizando los valores transformados.
+
+9. En función de la historia y de su conocimiento de piletas, elija una 
+distribución _a priori_ para $\beta_0$, $\beta_1$ y $\sigma$. ¿Cuáles son las 
+implicancias de sus distribuciones _a priori_? Realice pruebas predictivas _a priori_.
+10. Obtenga curvas de vaciamiento a partir de las distribuciones a priori elegidas. ¿Las curvas generadas son compatibles con lo que se espera de una pileta real?
+11. Ajuste el modelo lineal utilizando `R`.
+12. Reporte la media del _posterior_ marginal de cada parámetro y los intervalo de credibilidad del 95%
+13. Encuentre el _posterior_ de $k$, de $h_0$ y del tiempo de vaciado $t_v$.
+14. Construya una gráfico del modelo ajustado y luego un gráfico donde se vea la relación entre las variables en la escala original. Marque en el gráfico el rango de valores creíbles _a posteriori_ para el tiempo de vaciado.
+15. Construya un intervalo de predicción para la altura de agua a las 00:00
+16. De acuerdo al modelo propuesto, ¿cuál es la probabilidad de que a las 00:30 queden más de 5 cm de agua?
+17. ¿Cuál es la probabilidad de que la pileta ya esté vacía a las 00:30?
+18. A partir de las muestras del _posterior_, estime el LPPD del modelo ajustado.

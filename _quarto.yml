@@ -95,8 +95,8 @@ website:
           file: trabajos_practicos/01_tp1.qmd
         - text: "TP 2: Rescate de Urgencia"
           file: trabajos_practicos/02_tp2.qmd
-        # - text: "TP 3: El bayesiano interestelar"
-        #   file: trabajos_practicos/03_tp3.qmd
+        - text: "TP 3: Al agua, pato"
+          file: trabajos_practicos/03_tp3.qmd
         # - text: TP Final
         #   file: trabajos_practicos/04_tp_final.qmd
     - title: Recursos
