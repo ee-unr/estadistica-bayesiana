@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>16 - Introducción a RStan – Estadística Bayesiana</title>
+<title>17 - Introducción a RStan – Estadística Bayesiana</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../recursos/codigo/17_regresion_lineal_rstan.html" rel="next">
-<link href="../../recursos/codigo/15_medidas_diagnostico_mcmc.html" rel="prev">
+<link href="../../recursos/codigo/18_regresion_lineal_rstan_australia.html" rel="next">
+<link href="../../recursos/codigo/16_medidas_diagnostico_mcmc.html" rel="prev">
 <link href="../../utils/imgs/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-1526e4b8734db91a51eb5800c3ba3f96.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-a19988e8c544ff5a6a158ee56a6a938d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -191,7 +191,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/codigo/index.html">Ejemplos de código</a></li><li class="breadcrumb-item"><a href="../../recursos/codigo/16_intro_rstan.html">16 - Introducción a RStan</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/codigo/index.html">Ejemplos de código</a></li><li class="breadcrumb-item"><a href="../../recursos/codigo/17_intro_rstan.html">17 - Introducción a RStan</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -300,20 +300,38 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/codigo/15_medidas_diagnostico_mcmc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">15 - Medidas de diagnóstico MCMC</span></a>
+  <a href="../../recursos/codigo/15_peso_pescados.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">15 - El peso de los pescados</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/codigo/16_intro_rstan.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">16 - Introducción a RStan</span></a>
+  <a href="../../recursos/codigo/16_medidas_diagnostico_mcmc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">16 - Medidas de diagnóstico MCMC</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/codigo/17_regresion_lineal_rstan.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">17 - Regresión lineal con <code>{RStan}</code></span></a>
+  <a href="../../recursos/codigo/17_intro_rstan.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">17 - Introducción a RStan</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/18_regresion_lineal_rstan_australia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">18 - Regresión lineal con <code>{RStan}</code> (Clima en Australia)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/19_pruebas_predictivas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">19 - Pruebas predictivas en regresión lineal simple</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/20_regresion_lineal_rstan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">20 - Regresión lineal con <code>{RStan}</code></span></a>
   </div>
 </li>
       </ul>
@@ -368,9 +386,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/codigo/index.html">Ejemplos de código</a></li><li class="breadcrumb-item"><a href="../../recursos/codigo/16_intro_rstan.html">16 - Introducción a RStan</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/codigo/index.html">Ejemplos de código</a></li><li class="breadcrumb-item"><a href="../../recursos/codigo/17_intro_rstan.html">17 - Introducción a RStan</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">16 - Introducción a RStan</h1>
+<h1 class="title">17 - Introducción a RStan</h1>
 </div>
 
 
@@ -491,8 +509,8 @@ rstan_options(threads_per_chain = 1)</code></pre>
 <pre><code>
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 1).
 Chain 1: 
-Chain 1: Gradient evaluation took 6e-06 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.06 seconds.
+Chain 1: Gradient evaluation took 4e-06 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
 Chain 1: Adjust your expectations accordingly!
 Chain 1: 
 Chain 1: 
@@ -524,8 +542,8 @@ Chain 1:
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 2).
 Chain 2: 
-Chain 2: Gradient evaluation took 2e-06 seconds
-Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.02 seconds.
+Chain 2: Gradient evaluation took 1e-06 seconds
+Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.01 seconds.
 Chain 2: Adjust your expectations accordingly!
 Chain 2: 
 Chain 2: 
@@ -594,11 +612,11 @@ Chain 3: </code></pre>
 3 chains, each with iter=2000; warmup=100; thin=1; 
 post-warmup draws per chain=1900, total post-warmup draws=5700.
 
-       mean se_mean   sd  2.5%    25%    50%    75%  97.5% n_eff Rhat
-pi     0.25    0.00 0.09   0.1   0.19   0.24   0.31   0.43  2125    1
-lp__ -14.02    0.02 0.74 -16.1 -14.19 -13.74 -13.55 -13.50  2302    1
+       mean se_mean   sd   2.5%    25%    50%    75%  97.5% n_eff Rhat
+pi     0.25    0.00 0.09   0.11   0.19   0.24   0.31   0.43  2334    1
+lp__ -14.00    0.01 0.72 -15.94 -14.15 -13.73 -13.55 -13.50  2805    1
 
-Samples were drawn using NUTS(diag_e) at Fri May 15 11:28:33 2026.
+Samples were drawn using NUTS(diag_e) at Thu May 28 12:50:39 2026.
 For each parameter, n_eff is a crude measure of effective sample size,
 and Rhat is the potential scale reduction factor on split chains (at 
 convergence, Rhat=1).</code></pre>
@@ -616,7 +634,7 @@ convergence, Rhat=1).</code></pre>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(list_of_draws)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 1
- $ pi: num [1:5700(1d)] 0.396 0.187 0.308 0.33 0.215 ...
+ $ pi: num [1:5700(1d)] 0.2325 0.0506 0.1694 0.233 0.2386 ...
   ..- attr(*, "dimnames")=List of 1
   .. ..$ iterations: NULL</code></pre>
 </div>
@@ -626,11 +644,11 @@ convergence, Rhat=1).</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(list_of_draws<span class="sc">$</span>pi)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.3964873 0.1871569 0.3076571 0.3304862 0.2149596 0.3319950</code></pre>
+<pre><code>[1] 0.23254582 0.05063323 0.16935187 0.23303854 0.23859639 0.19789591</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(list_of_draws<span class="sc">$</span>pi<span class="sc">&lt;</span><span class="fl">0.6</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9998246</code></pre>
+<pre><code>[1] 0.9996491</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
@@ -638,7 +656,7 @@ convergence, Rhat=1).</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="16_intro_rstan_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="17_intro_rstan_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption>Distribución a posteriori de <span class="math inline">\(\pi\)</span>.</figcaption>
 </figure>
 </div>
@@ -652,7 +670,7 @@ convergence, Rhat=1).</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="16_intro_rstan_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="17_intro_rstan_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption>Traceplot de <span class="math inline">\(\pi\)</span>.</figcaption>
 </figure>
 </div>
@@ -663,7 +681,7 @@ convergence, Rhat=1).</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="16_intro_rstan_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="17_intro_rstan_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption>Histograma para cada cadena de <span class="math inline">\(\pi\)</span>.</figcaption>
 </figure>
 </div>
@@ -674,7 +692,7 @@ convergence, Rhat=1).</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="16_intro_rstan_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="17_intro_rstan_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption>Estimación de densidad para cada cadena de <span class="math inline">\(\pi\)</span>.</figcaption>
 </figure>
 </div>
@@ -691,7 +709,7 @@ convergence, Rhat=1).</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="16_intro_rstan_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="17_intro_rstan_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption>Distribución a posteriori de <span class="math inline">\(\pi\)</span>.</figcaption>
 </figure>
 </div>
@@ -1104,13 +1122,13 @@ convergence, Rhat=1).</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../recursos/codigo/15_medidas_diagnostico_mcmc.html" class="pagination-link" aria-label="15 - Medidas de diagnóstico MCMC">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">15 - Medidas de diagnóstico MCMC</span>
+      <a href="../../recursos/codigo/16_medidas_diagnostico_mcmc.html" class="pagination-link" aria-label="16 - Medidas de diagnóstico MCMC">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">16 - Medidas de diagnóstico MCMC</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../recursos/codigo/17_regresion_lineal_rstan.html" class="pagination-link" aria-label="17 - Regresión lineal con `{RStan}`">
-        <span class="nav-page-text">17 - Regresión lineal con <code>{RStan}</code></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../recursos/codigo/18_regresion_lineal_rstan_australia.html" class="pagination-link" aria-label="18 - Regresión lineal con `{RStan}` (Clima en Australia)">
+        <span class="nav-page-text">18 - Regresión lineal con <code>{RStan}</code> (Clima en Australia)</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

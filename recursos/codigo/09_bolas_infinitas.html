@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-1526e4b8734db91a51eb5800c3ba3f96.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-a19988e8c544ff5a6a158ee56a6a938d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -271,20 +271,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/codigo/15_medidas_diagnostico_mcmc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">15 - Medidas de diagnóstico MCMC</span></a>
+  <a href="../../recursos/codigo/15_peso_pescados.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">15 - El peso de los pescados</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/codigo/16_intro_rstan.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">16 - Introducción a RStan</span></a>
+  <a href="../../recursos/codigo/16_medidas_diagnostico_mcmc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">16 - Medidas de diagnóstico MCMC</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/codigo/17_regresion_lineal_rstan.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">17 - Regresión lineal con <code>{RStan}</code></span></a>
+  <a href="../../recursos/codigo/17_intro_rstan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">17 - Introducción a RStan</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/18_regresion_lineal_rstan_australia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">18 - Regresión lineal con <code>{RStan}</code> (Clima en Australia)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/19_pruebas_predictivas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">19 - Pruebas predictivas en regresión lineal simple</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/20_regresion_lineal_rstan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">20 - Regresión lineal con <code>{RStan}</code></span></a>
   </div>
 </li>
       </ul>
@@ -394,31 +412,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Proporcion de bolas azules 0.5737 
-Proporcion de bolas azules 0.5489 
-Proporcion de bolas azules 0.5479 
-Proporcion de bolas azules 0.5509 
-Proporcion de bolas azules 0.5488 
-Proporcion de bolas azules 0.5466 
-Proporcion de bolas azules 0.5431 
-Proporcion de bolas azules 0.5435 
-Proporcion de bolas azules 0.5444 
-Proporcion de bolas azules 0.5422 
-Proporcion de bolas azules 0.5436 
-Proporcion de bolas azules 0.5403 
-Proporcion de bolas azules 0.5426 
-Proporcion de bolas azules 0.5457 
-Proporcion de bolas azules 0.5469 
-Proporcion de bolas azules 0.5469 
-Proporcion de bolas azules 0.551 
-Proporcion de bolas azules 0.5507 
-Proporcion de bolas azules 0.5498 
-Proporcion de bolas azules 0.5496 </code></pre>
+<pre><code>Proporcion de bolas azules 0.7092 
+Proporcion de bolas azules 0.7136 
+Proporcion de bolas azules 0.717 
+Proporcion de bolas azules 0.7198 
+Proporcion de bolas azules 0.7194 
+Proporcion de bolas azules 0.7172 
+Proporcion de bolas azules 0.721 
+Proporcion de bolas azules 0.7236 
+Proporcion de bolas azules 0.7272 
+Proporcion de bolas azules 0.7263 
+Proporcion de bolas azules 0.7239 
+Proporcion de bolas azules 0.7218 
+Proporcion de bolas azules 0.7225 
+Proporcion de bolas azules 0.7248 
+Proporcion de bolas azules 0.7245 
+Proporcion de bolas azules 0.7223 
+Proporcion de bolas azules 0.7235 
+Proporcion de bolas azules 0.7226 
+Proporcion de bolas azules 0.722 
+Proporcion de bolas azules 0.7225 </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar la proporción de bolas azules</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(urna <span class="sc">==</span> <span class="st">"azul"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.5495901</code></pre>
+<pre><code>[1] 0.7224555</code></pre>
 </div>
 </div>
 <p><strong>Parte 2</strong></p>
