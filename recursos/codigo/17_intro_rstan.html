@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../recursos/codigo/18_regresion_lineal_rstan_australia.html" rel="next">
+<link href="../../recursos/codigo/18_regresion_lineal_rstan.html" rel="next">
 <link href="../../recursos/codigo/16_medidas_diagnostico_mcmc.html" rel="prev">
 <link href="../../utils/imgs/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -318,8 +318,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/codigo/18_regresion_lineal_rstan_australia.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">18 - Regresión lineal con <code>{RStan}</code> (Clima en Australia)</span></a>
+  <a href="../../recursos/codigo/18_regresion_lineal_rstan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">18 - Regresión lineal con <code>{RStan}</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -330,8 +330,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/codigo/20_regresion_lineal_rstan.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">20 - Regresión lineal con <code>{RStan}</code></span></a>
+  <a href="../../recursos/codigo/20_regresion_lineal_rstan_australia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">20 - Regresión lineal con <code>{RStan}</code> (Clima en Australia)</span></a>
   </div>
 </li>
       </ul>
@@ -509,8 +509,8 @@ rstan_options(threads_per_chain = 1)</code></pre>
 <pre><code>
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 1).
 Chain 1: 
-Chain 1: Gradient evaluation took 4e-06 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
+Chain 1: Gradient evaluation took 5e-06 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.05 seconds.
 Chain 1: Adjust your expectations accordingly!
 Chain 1: 
 Chain 1: 
@@ -569,8 +569,8 @@ Chain 2: Iteration: 1900 / 2000 [ 95%]  (Sampling)
 Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 2: 
 Chain 2:  Elapsed Time: 0 seconds (Warm-up)
-Chain 2:                0.008 seconds (Sampling)
-Chain 2:                0.008 seconds (Total)
+Chain 2:                0.007 seconds (Sampling)
+Chain 2:                0.007 seconds (Total)
 Chain 2: 
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 3).
@@ -613,10 +613,10 @@ Chain 3: </code></pre>
 post-warmup draws per chain=1900, total post-warmup draws=5700.
 
        mean se_mean   sd   2.5%    25%    50%    75%  97.5% n_eff Rhat
-pi     0.25    0.00 0.09   0.11   0.19   0.24   0.31   0.43  2334    1
-lp__ -14.00    0.01 0.72 -15.94 -14.15 -13.73 -13.55 -13.50  2805    1
+pi     0.25    0.00 0.09   0.10   0.18   0.24   0.30   0.44  2097    1
+lp__ -14.02    0.01 0.74 -16.13 -14.19 -13.73 -13.55 -13.50  2603    1
 
-Samples were drawn using NUTS(diag_e) at Thu May 28 12:50:39 2026.
+Samples were drawn using NUTS(diag_e) at Thu May 28 13:41:37 2026.
 For each parameter, n_eff is a crude measure of effective sample size,
 and Rhat is the potential scale reduction factor on split chains (at 
 convergence, Rhat=1).</code></pre>
@@ -634,7 +634,7 @@ convergence, Rhat=1).</code></pre>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(list_of_draws)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 1
- $ pi: num [1:5700(1d)] 0.2325 0.0506 0.1694 0.233 0.2386 ...
+ $ pi: num [1:5700(1d)] 0.201 0.299 0.265 0.166 0.209 ...
   ..- attr(*, "dimnames")=List of 1
   .. ..$ iterations: NULL</code></pre>
 </div>
@@ -644,7 +644,7 @@ convergence, Rhat=1).</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(list_of_draws<span class="sc">$</span>pi)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.23254582 0.05063323 0.16935187 0.23303854 0.23859639 0.19789591</code></pre>
+<pre><code>[1] 0.2013787 0.2989251 0.2647986 0.1659550 0.2089038 0.1897948</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(list_of_draws<span class="sc">$</span>pi<span class="sc">&lt;</span><span class="fl">0.6</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1127,8 +1127,8 @@ convergence, Rhat=1).</code></pre>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../recursos/codigo/18_regresion_lineal_rstan_australia.html" class="pagination-link" aria-label="18 - Regresión lineal con `{RStan}` (Clima en Australia)">
-        <span class="nav-page-text">18 - Regresión lineal con <code>{RStan}</code> (Clima en Australia)</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../recursos/codigo/18_regresion_lineal_rstan.html" class="pagination-link" aria-label="18 - Regresión lineal con `{RStan}`">
+        <span class="nav-page-text">18 - Regresión lineal con <code>{RStan}</code></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

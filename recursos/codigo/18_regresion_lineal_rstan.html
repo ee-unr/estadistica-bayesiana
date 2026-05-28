@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>20 - Regresión lineal con {RStan} – Estadística Bayesiana</title>
+<title>18 - Regresión lineal con {RStan} – Estadística Bayesiana</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../recursos/software/index.html" rel="next">
-<link href="../../recursos/codigo/19_pruebas_predictivas.html" rel="prev">
+<link href="../../recursos/codigo/19_pruebas_predictivas.html" rel="next">
+<link href="../../recursos/codigo/17_intro_rstan.html" rel="prev">
 <link href="../../utils/imgs/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -191,7 +191,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/codigo/index.html">Ejemplos de código</a></li><li class="breadcrumb-item"><a href="../../recursos/codigo/20_regresion_lineal_rstan.html">20 - Regresión lineal con <code>{RStan}</code></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/codigo/index.html">Ejemplos de código</a></li><li class="breadcrumb-item"><a href="../../recursos/codigo/18_regresion_lineal_rstan.html">18 - Regresión lineal con <code>{RStan}</code></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -318,8 +318,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/codigo/18_regresion_lineal_rstan_australia.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">18 - Regresión lineal con <code>{RStan}</code> (Clima en Australia)</span></a>
+  <a href="../../recursos/codigo/18_regresion_lineal_rstan.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">18 - Regresión lineal con <code>{RStan}</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -330,8 +330,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/codigo/20_regresion_lineal_rstan.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">20 - Regresión lineal con <code>{RStan}</code></span></a>
+  <a href="../../recursos/codigo/20_regresion_lineal_rstan_australia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">20 - Regresión lineal con <code>{RStan}</code> (Clima en Australia)</span></a>
   </div>
 </li>
       </ul>
@@ -386,9 +386,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/codigo/index.html">Ejemplos de código</a></li><li class="breadcrumb-item"><a href="../../recursos/codigo/20_regresion_lineal_rstan.html">20 - Regresión lineal con <code>{RStan}</code></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/codigo/index.html">Ejemplos de código</a></li><li class="breadcrumb-item"><a href="../../recursos/codigo/18_regresion_lineal_rstan.html">18 - Regresión lineal con <code>{RStan}</code></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">20 - Regresión lineal con <code>{RStan}</code></h1>
+<h1 class="title">18 - Regresión lineal con <code>{RStan}</code></h1>
 </div>
 
 
@@ -428,7 +428,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="20_regresion_lineal_rstan_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="18_regresion_lineal_rstan_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -507,7 +507,7 @@ beta0 5.45    0.01 0.49 4.52 5.12 5.46 5.77  6.40  1288    1
 beta1 0.29    0.00 0.04 0.21 0.26 0.29 0.31  0.36  1307    1
 sigma 1.21    0.00 0.12 0.99 1.12 1.19 1.28  1.48  1755    1
 
-Samples were drawn using NUTS(diag_e) at Thu May 28 12:43:28 2026.
+Samples were drawn using NUTS(diag_e) at Thu May 28 13:33:57 2026.
 For each parameter, n_eff is a crude measure of effective sample size,
 and Rhat is the potential scale reduction factor on split chains (at 
 convergence, Rhat=1).</code></pre>
@@ -519,12 +519,12 @@ convergence, Rhat=1).</code></pre>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_draws_1)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     beta0     beta1    sigma
-1 5.965519 0.2667816 1.063471
-2 5.424030 0.3029748 1.055680
-3 5.915187 0.2486395 1.193447
-4 5.074628 0.3275780 1.144134
-5 5.607696 0.2688025 1.388542
-6 5.470343 0.2922897 1.164466</code></pre>
+1 6.231486 0.2314598 1.291898
+2 5.947444 0.2868490 1.161520
+3 6.693989 0.1822595 1.225962
+4 5.692152 0.2806399 1.131265
+5 5.630707 0.2581646 1.272642
+6 5.257708 0.3085296 1.088650</code></pre>
 </div>
 </div>
 <p>Lo siguiente es un enfoque posible, aunque bastante manual, para graficar los <em>posteriors</em> marginales de los parámetros del modelo.</p>
@@ -541,7 +541,7 @@ convergence, Rhat=1).</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="20_regresion_lineal_rstan_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+<p><img src="18_regresion_lineal_rstan_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -566,7 +566,7 @@ convergence, Rhat=1).</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="20_regresion_lineal_rstan_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="18_regresion_lineal_rstan_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -600,7 +600,7 @@ convergence, Rhat=1).</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="20_regresion_lineal_rstan_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="18_regresion_lineal_rstan_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -693,7 +693,7 @@ convergence, Rhat=1).</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="20_regresion_lineal_rstan_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="18_regresion_lineal_rstan_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -713,7 +713,7 @@ convergence, Rhat=1).</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="20_regresion_lineal_rstan_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="18_regresion_lineal_rstan_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -733,7 +733,7 @@ convergence, Rhat=1).</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="20_regresion_lineal_rstan_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="18_regresion_lineal_rstan_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -819,7 +819,7 @@ beta0 5.43    0.01 0.47 4.50 5.11 5.42 5.73  6.34  1389    1
 beta1 0.29    0.00 0.04 0.21 0.26 0.29 0.32  0.36  1426    1
 sigma 1.20    0.00 0.13 0.98 1.11 1.19 1.28  1.48  1807    1
 
-Samples were drawn using NUTS(diag_e) at Thu May 28 12:44:30 2026.
+Samples were drawn using NUTS(diag_e) at Thu May 28 13:34:58 2026.
 For each parameter, n_eff is a crude measure of effective sample size,
 and Rhat is the potential scale reduction factor on split chains (at 
 convergence, Rhat=1).</code></pre>
@@ -836,7 +836,7 @@ convergence, Rhat=1).</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="20_regresion_lineal_rstan_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="18_regresion_lineal_rstan_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -871,7 +871,7 @@ convergence, Rhat=1).</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="20_regresion_lineal_rstan_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="18_regresion_lineal_rstan_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1282,13 +1282,13 @@ convergence, Rhat=1).</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../recursos/codigo/19_pruebas_predictivas.html" class="pagination-link" aria-label="19 - Pruebas predictivas en regresión lineal simple">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">19 - Pruebas predictivas en regresión lineal simple</span>
+      <a href="../../recursos/codigo/17_intro_rstan.html" class="pagination-link" aria-label="17 - Introducción a RStan">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">17 - Introducción a RStan</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../recursos/software/index.html" class="pagination-link" aria-label="Instalación de software">
-        <span class="nav-page-text">Instalación de software</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../recursos/codigo/19_pruebas_predictivas.html" class="pagination-link" aria-label="19 - Pruebas predictivas en regresión lineal simple">
+        <span class="nav-page-text">19 - Pruebas predictivas en regresión lineal simple</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

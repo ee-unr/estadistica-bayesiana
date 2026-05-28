@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>18 - Regresión lineal con {RStan} (Clima en Australia) – Estadística Bayesiana</title>
+<title>20 - Regresión lineal con {RStan} (Clima en Australia) – Estadística Bayesiana</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../recursos/codigo/19_pruebas_predictivas.html" rel="next">
-<link href="../../recursos/codigo/17_intro_rstan.html" rel="prev">
+<link href="../../recursos/software/index.html" rel="next">
+<link href="../../recursos/codigo/19_pruebas_predictivas.html" rel="prev">
 <link href="../../utils/imgs/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -191,7 +191,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/codigo/index.html">Ejemplos de código</a></li><li class="breadcrumb-item"><a href="../../recursos/codigo/18_regresion_lineal_rstan_australia.html">18 - Regresión lineal con <code>{RStan}</code> (Clima en Australia)</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/codigo/index.html">Ejemplos de código</a></li><li class="breadcrumb-item"><a href="../../recursos/codigo/20_regresion_lineal_rstan_australia.html">20 - Regresión lineal con <code>{RStan}</code> (Clima en Australia)</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -318,8 +318,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/codigo/18_regresion_lineal_rstan_australia.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">18 - Regresión lineal con <code>{RStan}</code> (Clima en Australia)</span></a>
+  <a href="../../recursos/codigo/18_regresion_lineal_rstan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">18 - Regresión lineal con <code>{RStan}</code></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -330,8 +330,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/codigo/20_regresion_lineal_rstan.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">20 - Regresión lineal con <code>{RStan}</code></span></a>
+  <a href="../../recursos/codigo/20_regresion_lineal_rstan_australia.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">20 - Regresión lineal con <code>{RStan}</code> (Clima en Australia)</span></a>
   </div>
 </li>
       </ul>
@@ -386,9 +386,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/codigo/index.html">Ejemplos de código</a></li><li class="breadcrumb-item"><a href="../../recursos/codigo/18_regresion_lineal_rstan_australia.html">18 - Regresión lineal con <code>{RStan}</code> (Clima en Australia)</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/codigo/index.html">Ejemplos de código</a></li><li class="breadcrumb-item"><a href="../../recursos/codigo/20_regresion_lineal_rstan_australia.html">20 - Regresión lineal con <code>{RStan}</code> (Clima en Australia)</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">18 - Regresión lineal con <code>{RStan}</code> (Clima en Australia)</h1>
+<h1 class="title">20 - Regresión lineal con <code>{RStan}</code> (Clima en Australia)</h1>
 </div>
 
 
@@ -438,7 +438,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="18_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="20_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -586,7 +586,7 @@ Y_i \mid \mu_i, \sigma &amp;\underset{iid}{\sim} \text{Normal}(\mu_i, \sigma) \\
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="18_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+<p><img src="20_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -611,7 +611,7 @@ Y_i \mid \mu_i, \sigma &amp;\underset{iid}{\sim} \text{Normal}(\mu_i, \sigma) \\
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="18_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="20_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -660,7 +660,7 @@ Y_i \mid \mu_i, \sigma &amp;\underset{iid}{\sim} \text{Normal}(\mu_i, \sigma) \\
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="18_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="20_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -800,7 +800,7 @@ Levels: Uluru Wollongong</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="18_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+<p><img src="20_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -829,7 +829,7 @@ Levels: Uluru Wollongong</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="18_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="20_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -894,7 +894,7 @@ Levels: Uluru Wollongong</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="18_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="20_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -987,7 +987,7 @@ Levels: Uluru Wollongong</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="18_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+<p><img src="20_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1016,7 +1016,7 @@ Levels: Uluru Wollongong</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="18_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="20_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1086,7 +1086,7 @@ Levels: Uluru Wollongong</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="18_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="20_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1181,7 +1181,7 @@ Levels: Uluru Wollongong</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="18_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+<p><img src="20_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1210,7 +1210,7 @@ Levels: Uluru Wollongong</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="18_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="20_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1279,7 +1279,7 @@ Levels: Uluru Wollongong</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="18_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="20_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1300,7 +1300,7 @@ Levels: Uluru Wollongong</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="18_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="20_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1326,7 +1326,7 @@ Levels: Uluru Wollongong</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="18_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="3000"></p>
+<p><img src="20_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="3000"></p>
 </figure>
 </div>
 </div>
@@ -1350,7 +1350,7 @@ Levels: Uluru Wollongong</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="18_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="20_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1361,7 +1361,7 @@ Levels: Uluru Wollongong</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="18_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-30-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="20_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-30-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1372,7 +1372,7 @@ Levels: Uluru Wollongong</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="18_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-30-3.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="20_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-30-3.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1383,7 +1383,7 @@ Levels: Uluru Wollongong</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="18_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-30-4.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="20_regresion_lineal_rstan_australia_files/figure-html/unnamed-chunk-30-4.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1892,13 +1892,13 @@ model2 -164.7      22.0 </code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../recursos/codigo/17_intro_rstan.html" class="pagination-link" aria-label="17 - Introducción a RStan">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">17 - Introducción a RStan</span>
+      <a href="../../recursos/codigo/19_pruebas_predictivas.html" class="pagination-link" aria-label="19 - Pruebas predictivas en regresión lineal simple">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">19 - Pruebas predictivas en regresión lineal simple</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../recursos/codigo/19_pruebas_predictivas.html" class="pagination-link" aria-label="19 - Pruebas predictivas en regresión lineal simple">
-        <span class="nav-page-text">19 - Pruebas predictivas en regresión lineal simple</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../recursos/software/index.html" class="pagination-link" aria-label="Instalación de software">
+        <span class="nav-page-text">Instalación de software</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
