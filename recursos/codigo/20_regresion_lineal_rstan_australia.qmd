@@ -1,5 +1,5 @@
 ---
-title: "18 - Regresión lineal con `{RStan}` (Clima en Australia)"
+title: "20 - Regresión lineal con `{RStan}` (Clima en Australia)"
 execute:
     message: false
     warning: false
