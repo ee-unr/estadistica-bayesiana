@@ -1,5 +1,5 @@
 ---
-title: "17 - Regresión lineal con `{RStan}`"
+title: "20 - Regresión lineal con `{RStan}`"
 execute:
     message: false
     warning: false
