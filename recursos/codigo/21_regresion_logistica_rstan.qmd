@@ -1,5 +1,5 @@
 ---
-title: "20 - Regresión logística con `{RStan}`"
+title: "21 - Regresión logística con `{RStan}`"
 execute:
   message: false
   warning: false
