@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>El Clásico de la Injusticia – Estadística Bayesiana</title>
+<title>TP Final – Estadística Bayesiana</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,8 +29,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../trabajos_practicos/02_tp2.html" rel="next">
-<link href="../trabajos_practicos/descripcion.html" rel="prev">
+<link href="../trabajos_practicos/03_tp3.html" rel="prev">
 <link href="../utils/imgs/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -191,7 +155,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../trabajos_practicos/01_tp1.html">TP 1: El Clásico de la Injusticia</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../trabajos_practicos/04_tp_final.html">TP Final</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -213,7 +177,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../trabajos_practicos/01_tp1.html" class="sidebar-item-text sidebar-link active">
+  <a href="../trabajos_practicos/01_tp1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">TP 1: El Clásico de la Injusticia</span></a>
   </div>
 </li>
@@ -231,7 +195,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../trabajos_practicos/04_tp_final.html" class="sidebar-item-text sidebar-link">
+  <a href="../trabajos_practicos/04_tp_final.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">TP Final</span></a>
   </div>
 </li>
@@ -241,13 +205,13 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-    <div class="quarto-alternate-formats"><h2>Otros formatos</h2><ul><li><a href="01_tp1.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
+    <div class="quarto-alternate-formats"><h2>Otros formatos</h2><ul><li><a href="04_tp_final.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">El Clásico de la Injusticia</h1>
+<h1 class="title">TP Final</h1>
 </div>
 
 
@@ -266,103 +230,227 @@ window.Quarto = {
 
 <section id="introducción" class="level2">
 <h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
-<p>La ciudad costera de Puerto Bruma vive su temporada de fútbol con estadios llenos y un clásico que paraliza todo: los Albatros del Muelle contra los Búhos de la Ribera.</p>
-<p>Luego de incidentes aislados y mucha presión mediática, el Ministerio de Convivencia Pública implementó un sistema de IA llamado Centinela Delta para gestionar el derecho de admisión en los estadios: el Templo de la Almeja (localía de los Albatros) y el Fortín de la Bruma (localía de los Búhos).</p>
-<p>Para cada persona que intenta ingresar, Centinela Delta asigna un <em>score</em> de riesgo <span class="math inline">\(S\in(0,100)\)</span> y se instruyó a la policía y al gobierno que consideren que <span class="math inline">\(S\)</span> es la probabilidad estimada de que la persona cometa un incidente en la cancha.</p>
-<p>La regla de decisión es simple:</p>
-<ul>
-<li>Si <span class="math inline">\(S&gt;T\)</span> (umbral fijo <span class="math inline">\(T\)</span>), se prohíbe el acceso del simpatizante, es decir, predicción: “violento”</li>
-<li>Si <span class="math inline">\(S\leq T\)</span>, se permite el acceso, es decir, predicción: “pacífico”</li>
-</ul>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="imgs/disturbios.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>Imagen del último clásico entre los Albatros y los Búhos</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>La empresa proveedora, NebulaGuard Analytics, sostiene que su <em>score</em> está perfectamente calibrado: “un <em>score</em> del 80% es una probabilidad del 80%, sin importar el color de la camiseta”.</p>
-<p>Tras unos meses del sistema funcionando, la ONG Gradas en Paz presenta una denuncia ante la Defensoría del Pueblo. Su argumento es:</p>
-<blockquote class="blockquote">
-<p>“Históricamente hubo mayor vigilancia y controles alrededor del Fortín de la Bruma. Eso hizo que, incluso entre gente pacífica, los hinchas de Búhos tengan más registros y más fricción con el sistema.”</p>
-</blockquote>
-<p>En términos estadísticos, la denuncia contra el sistema es la siguiente:</p>
-<blockquote class="blockquote">
-<p>“A los hinchas pacíficos (inocentes) de los Búhos les prohíben entrar más seguido que a los pacíficos del Albatros.”</p>
-</blockquote>
-<p>Nos pondremos en el rol de consultores de ciencia de datos contratados por la Defensoría del Pueblo para auditar el sistema. Nos entregan un conjunto de datos anonimizado de la temporada anterior para realizar el análisis (<code>datos/tp1_hinchas.csv</code>).</p>
-<p>El dataset corresponde a la temporada anterior a la implementación de Centinela Delta, cuando no existían restricciones de admisión. Para cada hincha se registró si participó en incidentes (<span class="math inline">\(Y\)</span>). NebulaGuard entrenó su modelo con estos datos y ahora la Defensoría quiere auditar qué habría pasado si el sistema se hubiera aplicado.</p>
-<p>Los objetivos del trabajo son:</p>
-<ul>
-<li>Determinar si hay evidencia de disparidad en los errores usando estadística bayesiana.</li>
-<li>Explicar el resultado en términos comprensibles para un organismo público.</li>
-<li>Conectar el resultado con el <em>trade-off</em> de <em>fairness</em> entre calibración e igualdad de tasas de error.</li>
-<li>Estudiar mediante simulación la posibilidad de generar un sistema más justo.</li>
-</ul>
+<p>El rendimiento académico de los estudiantes está atravesado por muchos factores. Algunas variables están directamente vinculadas con la trayectoria escolar previa, como las notas obtenidas durante el año o la cantidad de reprobaciones anteriores. Otras describen aspectos familiares, sociales y personales que también pueden estar asociados al desempeño: el tiempo dedicado al estudio, las ausencias, el apoyo escolar, el apoyo familiar, el tiempo libre, las salidas con amigos o el deseo de continuar estudios superiores.</p>
+<p>En este trabajo nos interesa estudiar el rendimiento de estudiantes en un curso de estadística. En particular, queremos conocer qué factores se asocian a una mejor o peor nota al final del curso. El objetivo no es solamente construir un modelo con buena capacidad predictiva, sino también interpretar qué variables parecen estar relacionadas con mejores o peores resultados académicos.</p>
+<p>Como es esperable, las notas obtenidas durante distintos momentos del año están correlacionadas entre sí. Un estudiante con buen desempeño en el primer o segundo período probablemente también tenga un mejor desempeño en la nota final. Por ese motivo, en una primera etapa se trabajará bajo la premisa de que no pueden utilizarse las notas previas <code>nota1</code> y <code>nota2</code>. Esto obliga a realizar un análisis exploratorio más cuidadoso y a pensar qué información aporta el resto de las variables.</p>
 </section>
-<section id="actividades" class="level2">
-<h2 class="anchored" data-anchor-id="actividades">Actividades</h2>
-<section id="primera-parte" class="level3">
-<h3 class="anchored" data-anchor-id="primera-parte">Primera parte</h3>
-<ol type="1">
-<li>¿Cuál es la prevalencia de hinchas violentos en cada equipo?</li>
-<li>¿Qué sesgos puede presentar el conjunto de datos retrospectivo entregado?</li>
-<li>Verifique que los <em>scores</em> de Centinela Delta están calibrados. Para ello, realice un <em>calibration plot</em>, un gráfico que agrupa los puntajes de riesgo (<span class="math inline">\(S\)</span>) en intervalos (digamos 10) para comparar la probabilidad predicha por el algoritmo (eje x) contra la proporción de casos que resultaron realmente violentos (eje y).</li>
-<li>Consideremos un umbral <span class="math inline">\(T=50\)</span>, ¿cuál es la <em>accuracy</em> del modelo?</li>
-<li>Con <span class="math inline">\(T=50\)</span>, para cada grupo, calcule el número de falsos negativos, verdaderos negativos, falsos positivos y verdaderos positivos.</li>
-</ol>
-<p>Consideremos que la tasa de falsos positivos de cada grupo (<span class="math inline">\(FPR_g\)</span>) es un parámetro desconocido sobre el que queremos hacer inferencia.</p>
-<ol start="6" type="1">
-<li>¿Qué representa la tasa de falsos positivos?</li>
-<li>¿Qué supuestos son necesarios para modelar el número de falsos positivos como una variable binomial?</li>
-<li>¿Cuál es un <em>prior</em> razonable para el <span class="math inline">\(FPR\)</span> de cada grupo? Escriba el modelo bayesiano y encuentre la distribución <em>a posteriori</em> de <span class="math inline">\(FPR_g\)</span>.</li>
-<li>Halle la distribución <em>a posteriori</em> de la diferencia entre <span class="math inline">\(FPR_B\)</span> y <span class="math inline">\(FPR_A\)</span>. ¿Cuál es la probabilidad de que <span class="math inline">\(FPR_B &gt; FPR_A\)</span>? ¿Qué puede concluirse en relación a la denuncia de la ONG Gradas en Paz?</li>
-</ol>
-<p>NebulaGuard sostiene que su algoritmo es <em>justo</em> porque la interpretación del <em>score</em> es independiente del equipo: un <em>score</em> de 80 se interpreta como una probabilidad del 80% de ser violento, independientemente de si se trata de un hincha de Albatros o de Búhos. La ONG Gradas en Paz sostiene que el algoritmo es injusto porque, entre los hinchas pacíficos, a los de Búhos se les prohíbe la entrada con mayor frecuencia que a los de Albatros: si sos inocente, tu probabilidad de ser rechazado no debería depender de tu camiseta.</p>
-<p>Para satisfacer el criterio de la ONG, una opción es utilizar un umbral <span class="math inline">\(T_g\)</span> diferente para cada grupo.</p>
-<ol start="10" type="1">
-<li>Construya una grilla de valores de <span class="math inline">\(T_A\)</span> y <span class="math inline">\(T_B\)</span> y calcule, para cada combinación, la probabilidad de que la diferencia entre las tasas de falsos positivos sea menor al 5%. ¿Cuáles son los valores de <span class="math inline">\(T_A\)</span> y <span class="math inline">\(T_B\)</span> que “igualan” <span class="math inline">\(FPR_A\)</span> y <span class="math inline">\(FPR_B\)</span>?</li>
-<li>¿Considera que esta modificación del mecanismo de decisión es <em>justa</em>?</li>
-</ol>
-<p>En lugar de utilizar un umbral diferente para cada grupo, otra opción es transformar los <em>scores</em> de cada grupo mediante una función lineal por tramos. Esta función debe satisfacer <span class="math inline">\(f_g(0) = 0\)</span>, <span class="math inline">\(f_g(100) = 100\)</span> y <span class="math inline">\(f_g(T_g) = 50\)</span>.</p>
-<ol start="12" type="1">
-<li>Construya las funciones <span class="math inline">\(f_A\)</span> y <span class="math inline">\(f_B\)</span>, convierta los <em>scores</em> y compare las distribuciones <em>a posteriori</em> de <span class="math inline">\(FPR_A\)</span> y <span class="math inline">\(FPR_B\)</span>.</li>
-<li>Para los <em>scores</em> transformados, realice nuevamente el <em>calibration plot</em> y construya también un <em>calibration plot</em> por grupo.</li>
-</ol>
-</section>
-<section id="segunda-parte" class="level3">
-<h3 class="anchored" data-anchor-id="segunda-parte">Segunda parte</h3>
-<p>Realizaremos ahora un estudio por simulación para observar el comportamiento de las métricas analizadas y las decisiones tomadas.</p>
-<p>Una forma de simular <em>scores</em> calibrados con diferentes prevalencias por grupo es la siguiente:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>N1 <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>N2 <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(N1, <span class="dv">2</span>, <span class="dv">5</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(N2, <span class="dv">4</span>, <span class="dv">2</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>y_true <span class="ot">&lt;-</span> <span class="fu">rbinom</span>((N1 <span class="sc">+</span> N2), <span class="fu">rep</span>(<span class="dv">1</span>, N1 <span class="sc">+</span> N2), <span class="fu">c</span>(s1, s2))</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">G =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"Albatros"</span>, N1), <span class="fu">rep</span>(<span class="st">"Búhos"</span>, N2)),</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Score =</span> <span class="fu">c</span>(s1,s2) <span class="sc">*</span> <span class="dv">100</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Y =</span> y_true</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="el-objetivo" class="level2">
+<h2 class="anchored" data-anchor-id="el-objetivo">El objetivo</h2>
+<p>El conjunto de datos <code>notas_estadistica.csv</code> contiene información sobre los estudiantes de un curso de estadística e incluye variables escolares, familiares, sociales y personales. Las notas se encuentran en una escala de 0 a 10.</p>
+<p>Las variables disponibles son:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 77%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>escuela</code></td>
+<td>Escuela a la que asiste el estudiante.</td>
+</tr>
+<tr class="even">
+<td><code>sexo</code></td>
+<td>Sexo del estudiante.</td>
+</tr>
+<tr class="odd">
+<td><code>edad</code></td>
+<td>Edad del estudiante.</td>
+</tr>
+<tr class="even">
+<td><code>domicilio</code></td>
+<td>Tipo de domicilio del estudiante: urbano o rural.</td>
+</tr>
+<tr class="odd">
+<td><code>tamano_familia</code></td>
+<td>Tamaño del grupo familiar: hasta 3 integrantes o más de 3 integrantes.</td>
+</tr>
+<tr class="even">
+<td><code>convivencia_padres</code></td>
+<td>Situación de convivencia de los padres: juntos o separados.</td>
+</tr>
+<tr class="odd">
+<td><code>educacion_madre</code></td>
+<td>Nivel educativo de la madre.</td>
+</tr>
+<tr class="even">
+<td><code>educacion_padre</code></td>
+<td>Nivel educativo del padre.</td>
+</tr>
+<tr class="odd">
+<td><code>trabajo_madre</code></td>
+<td>Ocupación de la madre.</td>
+</tr>
+<tr class="even">
+<td><code>trabajo_padre</code></td>
+<td>Ocupación del padre.</td>
+</tr>
+<tr class="odd">
+<td><code>motivo_escuela</code></td>
+<td>Motivo principal por el que el estudiante eligió la escuela.</td>
+</tr>
+<tr class="even">
+<td><code>tutor</code></td>
+<td>Persona responsable o tutora del estudiante.</td>
+</tr>
+<tr class="odd">
+<td><code>tiempo_viaje</code></td>
+<td>Tiempo de viaje desde el hogar hasta la escuela.</td>
+</tr>
+<tr class="even">
+<td><code>tiempo_estudio</code></td>
+<td>Tiempo semanal dedicado al estudio.</td>
+</tr>
+<tr class="odd">
+<td><code>reprobaciones_previas</code></td>
+<td>Cantidad de materias o cursos reprobados previamente.</td>
+</tr>
+<tr class="even">
+<td><code>apoyo_escolar</code></td>
+<td>Indica si el estudiante recibe apoyo educativo extra de la escuela.</td>
+</tr>
+<tr class="odd">
+<td><code>apoyo_familiar</code></td>
+<td>Indica si el estudiante recibe apoyo educativo de la familia.</td>
+</tr>
+<tr class="even">
+<td><code>clases_pagadas</code></td>
+<td>Indica si el estudiante toma clases pagadas extra.</td>
+</tr>
+<tr class="odd">
+<td><code>actividades</code></td>
+<td>Participación en actividades extracurriculares.</td>
+</tr>
+<tr class="even">
+<td><code>jardin_infantes</code></td>
+<td>Indica si el estudiante asistió a jardín de infantes.</td>
+</tr>
+<tr class="odd">
+<td><code>quiere_superior</code></td>
+<td>Indica si el estudiante quiere continuar estudios superiores.</td>
+</tr>
+<tr class="even">
+<td><code>internet</code></td>
+<td>Acceso a internet en el hogar.</td>
+</tr>
+<tr class="odd">
+<td><code>pareja</code></td>
+<td>Indica si el estudiante está en una relación de pareja.</td>
+</tr>
+<tr class="even">
+<td><code>relacion_familiar</code></td>
+<td>Calidad de las relaciones familiares, medida en una escala ordinal.</td>
+</tr>
+<tr class="odd">
+<td><code>tiempo_libre</code></td>
+<td>Tiempo libre después de la escuela, medido en una escala ordinal.</td>
+</tr>
+<tr class="even">
+<td><code>salidas_amigos</code></td>
+<td>Frecuencia con la que el estudiante sale con amigos, medida en una escala ordinal.</td>
+</tr>
+<tr class="odd">
+<td><code>alcohol_semana</code></td>
+<td>Consumo de alcohol en días de semana, medido en una escala ordinal.</td>
+</tr>
+<tr class="even">
+<td><code>alcohol_finde</code></td>
+<td>Consumo de alcohol durante el fin de semana, medido en una escala ordinal.</td>
+</tr>
+<tr class="odd">
+<td><code>salud</code></td>
+<td>Estado de salud actual reportado por el estudiante.</td>
+</tr>
+<tr class="even">
+<td><code>ausencias</code></td>
+<td>Cantidad de ausencias escolares.</td>
+</tr>
+<tr class="odd">
+<td><code>nota1</code></td>
+<td>Nota del primer período.</td>
+</tr>
+<tr class="even">
+<td><code>nota2</code></td>
+<td>Nota del segundo período.</td>
+</tr>
+<tr class="odd">
+<td><code>nota3</code></td>
+<td>Nota final del curso.</td>
+</tr>
+</tbody>
+</table>
+<p>La variable respuesta principal será <code>nota3</code>. El objetivo final del trabajo es construir modelos de regresión lineal normal bayesiana que permitan estudiar qué variables se asocian con la nota final de los estudiantes.</p>
+<p>En una primera parte, deberán ajustar modelos para <code>nota3</code> sin utilizar <code>nota1</code> ni <code>nota2</code>. Para ello, será necesario realizar un buen análisis exploratorio de datos, estudiar la relación entre las variables disponibles y proponer un subconjunto razonable de predictores. No es necesario utilizar todas las variables: se espera que justifiquen cuáles incorporan, cuáles descartan y por qué.</p>
+<p>En una segunda parte, deberán ajustar nuevos modelos que incorporen información de las notas previas. Comparen los resultados con los modelos anteriores y discutan qué cambia en la interpretación de los parámetros y como se impacta la capacidad predictiva del modelo.</p>
+<p>Se sugiere abordar, entre otros, los siguientes interrogantes:</p>
+<ul>
+<li>¿Qué variables parecen estar más asociadas con la nota final cuando no se usan las notas previas?</li>
+<li>¿Qué patrones aparecen en el análisis exploratorio de datos?</li>
+<li>¿Qué subconjunto de variables resulta razonable para construir un modelo interpretable?</li>
+<li>¿Cómo cambia el modelo cuando se incorpora <code>nota1</code>?</li>
+<li>¿Qué ocurre al incorporar también <code>nota2</code>?</li>
+<li>¿Es preferible un modelo con una o dos notas previas? ¿Por qué?</li>
+<li>¿Las notas previas explican casi toda la variación relevante o siguen apareciendo otros factores?</li>
+</ul>
+<p>Para ello, se recomienda que se tengan en consideración las siguientes pautas generales que hacen a un análisis bayesiano:</p>
+<ul>
+<li>Análisis exploratorio de datos</li>
+<li>Propuesta y ajuste de modelos
+<ul>
+<li>Descripción matemática</li>
+<li>Elicitación de los <em>priors</em></li>
+<li>Pruebas predictivas <em>a priori</em></li>
+<li>Ajuste del modelo</li>
+<li>Evaluación de la convergencia de las cadenas de Markov</li>
+<li>Exploración de la distribución <em>a posteriori</em> de los parámetros</li>
+<li>Pruebas predictivas <em>a posteriori</em></li>
+<li>Evaluación del ajuste del modelo</li>
+<li>Interpretación de parámetros</li>
+</ul></li>
+<li>Comparación de modelos</li>
+<li>Análisis final y conclusión</li>
+</ul>
+<p>Se recomienda fuertemente que se haga uso de diferentes visualizaciones para comunicar los resultados de las diferentes etapas del análisis y que se propongan y evalúen un mínimo de tres modelos.</p>
+<p>La presentación deberá incluir:</p>
+<ul>
+<li>Introducción clara al problema</li>
+<li>Definición de las preguntas de investigación</li>
+<li>Descripción del conjunto de datos a utilizar</li>
+<li>Análisis exploratorio de los datos</li>
+<li>Fundamentación y análisis de los modelos propuestos</li>
+<li>Comparación de modelos</li>
+<li>Hallazgos, resultados y conclusiones</li>
+</ul>
+<p>Adicionalmente, construyan un modelo para predecir la probabilidad de que un estudiante apruebe el curso. Para ello, definan una nueva variable binaria:</p>
+<p><span class="math display">\[
+\text{aprobado} =
+\begin{cases}
+1 &amp; \text{si } \texttt{nota3} \geq 5 \\
+0 &amp; \text{si } \texttt{nota3} &lt; 5
+\end{cases}
+\]</span></p>
+<p>En este caso, la variable respuesta ya no es continua sino binaria.</p>
+<p>Comparen este análisis con el modelo para la nota final: ¿los factores asociados a obtener una mayor nota son los mismos que los asociados a aprobar el curso? ¿Cambia la interpretación de los coeficientes? ¿Qué ventajas y limitaciones tiene transformar la nota final en una variable de aprobación o desaprobación?</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<ol start="14" type="1">
-<li>¿Por qué los <em>scores</em> <code>s1</code> y <code>s2</code> resultan calibrados?</li>
-</ol>
-<p>Repita <span class="math inline">\(N=1000\)</span> veces el proceso de generar un conjunto de datos.</p>
-<ol start="15" type="1">
-<li>Construya un <em>calibration plot</em> global y uno por grupo que incluya barras de error de acuerdo a las simulaciones.</li>
-<li>Realice un gráfico que permita comparar las distribuciones <em>a posteriori</em> <span class="math inline">\(FPR_A\)</span> y <span class="math inline">\(FPR_B\)</span> a lo largo de las simulaciones.</li>
-<li>Para los valores de <span class="math inline">\(T_A\)</span> y <span class="math inline">\(T_B\)</span> que encontró para igualar los <span class="math inline">\(FPR_g\)</span>, compare las distribuciones <em>a posteriori</em> de <span class="math inline">\(FPR_A\)</span> y <span class="math inline">\(FPR_B\)</span>.</li>
-<li>Con las funciones <span class="math inline">\(f_A\)</span> y <span class="math inline">\(f_B\)</span>, ajuste los <em>scores</em> y repita el punto 15.</li>
-<li>A partir del análisis realizado, reflexione: ¿el sistema Centinela Delta es <em>injusto</em>? ¿Qué opciones existen para mitigar la disparidad? ¿Qué se gana o se pierde?</li>
-</ol>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Pautas para la entrega
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La presentación debe tener un máximo de 20 <em>slides</em>.</p>
+</div>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -768,14 +856,11 @@ window.Quarto = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../trabajos_practicos/descripcion.html" class="pagination-link" aria-label="Generalidades">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Generalidades</span>
+      <a href="../trabajos_practicos/03_tp3.html" class="pagination-link" aria-label="TP 3: Al agua, pato">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">TP 3: Al agua, pato</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../trabajos_practicos/02_tp2.html" class="pagination-link" aria-label="TP 2: Rescate de Urgencia">
-        <span class="nav-page-text">TP 2: Rescate de Urgencia</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
