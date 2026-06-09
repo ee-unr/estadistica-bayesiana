@@ -129,10 +129,10 @@ Como punto adicional, construyan un modelo para predecir la probabilidad de que 
 apruebe el curso. Para ello, definan una nueva variable binaria:
 
 $$
-aprobado =
+\text{aprobado} =
 \begin{cases}
-1 & \text{si } nota3 \geq 5 \\
-0 & \text{si } nota3 < 5
+1 & \text{si } \texttt{nota3} \geq 5 \\
+0 & \text{si } \texttt{nota3} < 5
 \end{cases}
 $$
 
