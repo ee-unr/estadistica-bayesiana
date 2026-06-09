@@ -26,8 +26,8 @@ un análisis exploratorio más cuidadoso y a pensar qué información aporta el 
 
 ## El objetivo
 
-El conjunto de datos `notas.csv` contiene información sobre los estudiantes de un curso de estadística
-e incluye variables escolares, familiares, sociales y personales. 
+El conjunto de datos `notas_estadistica.csv` contiene información sobre los estudiantes de un curso de estadística
+e incluye variables escolares, familiares, sociales y personales.
 Las notas se encuentran en una escala de 0 a 10.
 
 Las variables disponibles son:
@@ -123,10 +123,8 @@ La presentación deberá incluir:
 * Comparación de modelos
 * Hallazgos, resultados y conclusiones
 
-## Punto adicional
-
-Como punto adicional, construyan un modelo para predecir la probabilidad de que un estudiante
-apruebe el curso. Para ello, definan una nueva variable binaria:
+Adicionalmente, construyan un modelo para predecir la probabilidad de que un estudiante apruebe el curso.
+Para ello, definan una nueva variable binaria:
 
 $$
 \text{aprobado} =
@@ -142,3 +140,10 @@ Comparen este análisis con el modelo para la nota final: ¿los factores asociad
 mayor nota son los mismos que los asociados a aprobar el curso? ¿Cambia la interpretación de los
 coeficientes? ¿Qué ventajas y limitaciones tiene transformar la nota final en una variable de
 aprobación o desaprobación?
+
+:::: {.callout-important}
+#### Pautas para la entrega
+
+La presentación debe tener un máximo de 20 _slides_.
+
+:::
