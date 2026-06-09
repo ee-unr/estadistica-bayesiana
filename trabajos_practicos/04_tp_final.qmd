@@ -1,0 +1,149 @@
+---
+title: "TP Final"
+practica: "Trabajo Práctico Final"
+---
+
+
+## Introducción
+
+El rendimiento académico de los estudiantes está atravesado por muchos factores. Algunas
+variables están directamente vinculadas con la trayectoria escolar previa, como las notas
+obtenidas durante el año o la cantidad de reprobaciones anteriores. Otras describen aspectos
+familiares, sociales y personales que también pueden estar asociados al desempeño: el tiempo
+dedicado al estudio, las ausencias, el apoyo escolar, el apoyo familiar,
+el tiempo libre, las salidas con amigos o el deseo de continuar estudios superiores.
+
+En este trabajo nos interesa estudiar el rendimiento de estudiantes en un curso de estadística.
+En particular, queremos conocer qué factores se asocian a una mejor o peor nota al final del curso.
+El objetivo no es solamente construir un modelo con buena capacidad predictiva, sino también
+interpretar qué variables parecen estar relacionadas con mejores o peores resultados académicos.
+
+Como es esperable, las notas obtenidas durante distintos momentos del año están correlacionadas
+entre sí. Un estudiante con buen desempeño en el primer o segundo período probablemente también
+tenga un mejor desempeño en la nota final. Por ese motivo, en una primera etapa se trabajará bajo
+la premisa de que no pueden utilizarse las notas previas `nota1` y `nota2`. Esto obliga a realizar
+un análisis exploratorio más cuidadoso y a pensar qué información aporta el resto de las variables.
+
+## El objetivo
+
+El conjunto de datos `notas_estadistica.csv` contiene información sobre los estudiantes de un curso de estadística
+e incluye variables escolares, familiares, sociales y personales.
+Las notas se encuentran en una escala de 0 a 10.
+
+Las variables disponibles son:
+
+| Variable                | Descripción                                                                        |
+|-------------------------|------------------------------------------------------------------------------------|
+| `escuela`               | Escuela a la que asiste el estudiante.                                             |
+| `sexo`                  | Sexo del estudiante.                                                               |
+| `edad`                  | Edad del estudiante.                                                               |
+| `domicilio`             | Tipo de domicilio del estudiante: urbano o rural.                                  |
+| `tamano_familia`        | Tamaño del grupo familiar: hasta 3 integrantes o más de 3 integrantes.             |
+| `convivencia_padres`    | Situación de convivencia de los padres: juntos o separados.                        |
+| `educacion_madre`       | Nivel educativo de la madre.                                                       |
+| `educacion_padre`       | Nivel educativo del padre.                                                         |
+| `trabajo_madre`         | Ocupación de la madre.                                                             |
+| `trabajo_padre`         | Ocupación del padre.                                                               |
+| `motivo_escuela`        | Motivo principal por el que el estudiante eligió la escuela.                       |
+| `tutor`                 | Persona responsable o tutora del estudiante.                                       |
+| `tiempo_viaje`          | Tiempo de viaje desde el hogar hasta la escuela.                                   |
+| `tiempo_estudio`        | Tiempo semanal dedicado al estudio.                                                |
+| `reprobaciones_previas` | Cantidad de materias o cursos reprobados previamente.                              |
+| `apoyo_escolar`         | Indica si el estudiante recibe apoyo educativo extra de la escuela.                |
+| `apoyo_familiar`        | Indica si el estudiante recibe apoyo educativo de la familia.                      |
+| `clases_pagadas`        | Indica si el estudiante toma clases pagadas extra.                                 |
+| `actividades`           | Participación en actividades extracurriculares.                                    |
+| `jardin_infantes`       | Indica si el estudiante asistió a jardín de infantes.                              |
+| `quiere_superior`       | Indica si el estudiante quiere continuar estudios superiores.                      |
+| `internet`              | Acceso a internet en el hogar.                                                     |
+| `pareja`                | Indica si el estudiante está en una relación de pareja.                            |
+| `relacion_familiar`     | Calidad de las relaciones familiares, medida en una escala ordinal.                |
+| `tiempo_libre`          | Tiempo libre después de la escuela, medido en una escala ordinal.                  |
+| `salidas_amigos`        | Frecuencia con la que el estudiante sale con amigos, medida en una escala ordinal. |
+| `alcohol_semana`        | Consumo de alcohol en días de semana, medido en una escala ordinal.                |
+| `alcohol_finde`         | Consumo de alcohol durante el fin de semana, medido en una escala ordinal.         |
+| `salud`                 | Estado de salud actual reportado por el estudiante.                                |
+| `ausencias`             | Cantidad de ausencias escolares.                                                   |
+| `nota1`                 | Nota del primer período.                                                           |
+| `nota2`                 | Nota del segundo período.                                                          |
+| `nota3`                 | Nota final del curso.                                                              |
+
+
+La variable respuesta principal será `nota3`. El objetivo final del trabajo es construir modelos
+de regresión lineal normal bayesiana que permitan estudiar qué variables se asocian con la nota
+final de los estudiantes.
+
+En una primera parte, deberán ajustar modelos para `nota3` sin utilizar `nota1` ni `nota2`.
+Para ello, será necesario realizar un buen análisis exploratorio de datos, estudiar la relación
+entre las variables disponibles y proponer un subconjunto razonable de predictores. No es necesario
+utilizar todas las variables: se espera que justifiquen cuáles incorporan, cuáles descartan y por qué.
+
+En una segunda parte, deberán ajustar nuevos modelos que incorporen información de las notas
+previas. Comparen los resultados con los modelos anteriores y discutan qué cambia en la 
+interpretación de los parámetros y como se impacta la capacidad predictiva del modelo.
+
+Se sugiere abordar, entre otros, los siguientes interrogantes:
+
+* ¿Qué variables parecen estar más asociadas con la nota final cuando no se usan las notas previas?
+* ¿Qué patrones aparecen en el análisis exploratorio de datos?
+* ¿Qué subconjunto de variables resulta razonable para construir un modelo interpretable?
+* ¿Cómo cambia el modelo cuando se incorpora `nota1`?
+* ¿Qué ocurre al incorporar también `nota2`?
+* ¿Es preferible un modelo con una o dos notas previas? ¿Por qué?
+* ¿Las notas previas explican casi toda la variación relevante o siguen apareciendo otros factores?
+
+Para ello, se recomienda que se tengan en consideración las siguientes pautas generales
+que hacen a un análisis bayesiano:
+
+* Análisis exploratorio de datos
+* Propuesta y ajuste de modelos
+    - Descripción matemática
+    - Elicitación de los _priors_
+    - Pruebas predictivas _a priori_
+    - Ajuste del modelo
+    - Evaluación de la convergencia de las cadenas de Markov
+    - Exploración de la distribución _a posteriori_ de los parámetros
+    - Pruebas predictivas _a posteriori_
+    - Evaluación del ajuste del modelo
+    - Interpretación de parámetros
+* Comparación de modelos
+* Análisis final y conclusión
+
+Se recomienda fuertemente que se haga uso de diferentes visualizaciones para comunicar los
+resultados de las diferentes etapas del análisis y que se propongan y evalúen un mínimo de tres
+modelos.
+
+La presentación deberá incluir:
+
+* Introducción clara al problema
+* Definición de las preguntas de investigación
+* Descripción del conjunto de datos a utilizar
+* Análisis exploratorio de los datos
+* Fundamentación y análisis de los modelos propuestos
+* Comparación de modelos
+* Hallazgos, resultados y conclusiones
+
+Adicionalmente, construyan un modelo para predecir la probabilidad de que un estudiante apruebe el curso.
+Para ello, definan una nueva variable binaria:
+
+$$
+\text{aprobado} =
+\begin{cases}
+1 & \text{si } \texttt{nota3} \geq 5 \\
+0 & \text{si } \texttt{nota3} < 5
+\end{cases}
+$$
+
+En este caso, la variable respuesta ya no es continua sino binaria.
+
+Comparen este análisis con el modelo para la nota final: ¿los factores asociados a obtener una
+mayor nota son los mismos que los asociados a aprobar el curso? ¿Cambia la interpretación de los
+coeficientes? ¿Qué ventajas y limitaciones tiene transformar la nota final en una variable de
+aprobación o desaprobación?
+
+:::: {.callout-important}
+#### Pautas para la entrega
+
+La presentación debe tener un máximo de 20 _slides_.
+
+:::
