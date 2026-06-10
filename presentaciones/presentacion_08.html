@@ -209,14 +209,14 @@
 </section>
 <section id="section" class="slide level2 smaller">
 <h2></h2>
-<p>Sabemos (gracias al TP2) que la función de densidad de la distribución beta se puede expresar en términos de su moda <span class="math inline">\(\omega\)</span> y su concentración <span class="math inline">\(\kappa\)</span></p>
+<p>Sabemos que la distribución beta se puede parametrizar en términos de su moda <span class="math inline">\(\omega\)</span> y su concentración <span class="math inline">\(\kappa\)</span></p>
 <p><span class="math display">\[
 \begin{aligned}
   y\mid\pi &amp; \sim  \text{Binomial}(N,\pi)\\
   \pi &amp; \sim  \text{Beta}(\omega(\kappa-2)+1,\ (1-\omega)(\kappa-2)+1)
 \end{aligned}
 \]</span></p>
-<p>El valor de <span class="math inline">\(\pi\)</span> depende del valor de <span class="math inline">\(\omega\)</span>. Lo sabíamos, después de todo, <span class="math inline">\(\omega\)</span> y <span class="math inline">\(\kappa\)</span> son las <em>constantes de ajuste del prior</em> o <em>hiperparámetros</em>. <span class="math inline">\(\kappa\)</span> refleja el grado de credibilidad <em>a priori</em> sobre los valores de <span class="math inline">\(\pi\)</span> (alrededor de <span class="math inline">\(\omega\)</span>).</p>
+<p>El valor de <span class="math inline">\(\pi\)</span> depende del valor de <span class="math inline">\(\omega\)</span>. Lo sabíamos, después de todo, <span class="math inline">\(\omega\)</span> y <span class="math inline">\(\kappa\)</span> son las <em>constantes de ajuste del prior</em> o <em>hiperparámetros</em>. <span class="math inline">\(\kappa\)</span> refleja el grado de credibilidad <em>a priori</em> sobre los valores de <span class="math inline">\(\pi\)</span> (alrededor de <span class="math inline">\(\omega\)</span>); controla qué tan concentrada está la distribución de <span class="math inline">\(\pi\mid\omega\)</span> alrededor de <span class="math inline">\(\omega\)</span>. En ese sentido, mide qué tan fuertemente creemos que <span class="math inline">\(\pi\)</span> debería parecerse a <span class="math inline">\(\omega\)</span>.</p>
 </section>
 <section id="section-1" class="slide level2 smaller">
 <h2></h2>
@@ -255,8 +255,8 @@
 <h2></h2>
 <p>Estamos haciendo inferencia bayesiana sobre una distribución conjunta (de <span class="math inline">\(\pi\)</span> y <span class="math inline">\(\omega\)</span>). Pero la relación entre los parámetros (y la función de verosimilitud) es jerárquica. La jerarquía tiene una interpretación para el modelo.</p>
 </section>
-<section id="section-5" class="slide level2">
-<h2></h2>
+<section id="primer-caso" class="slide level2">
+<h2>Primer caso</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>pi <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">length.out=</span><span class="dv">101</span>)</span>
 <span id="cb1-2"><a></a>omega <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">length.out=</span><span class="dv">101</span>)</span>
@@ -267,7 +267,7 @@
 <span id="cb1-7"><a></a>y <span class="ot">&lt;-</span> <span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="section-6" class="slide level2 smaller">
+<section id="section-5" class="slide level2 smaller">
 <h2></h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>prior <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">pi =</span> pi, <span class="at">omega =</span> omega) <span class="sc">|&gt;</span></span>
@@ -286,20 +286,20 @@
 <span id="cb2-14"><a></a>plot_prior_omega <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(prior) <span class="sc">+</span></span>
 <span id="cb2-15"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>omega, <span class="at">y=</span>p_omega))</span>
 <span id="cb2-16"><a></a></span>
-<span id="cb2-17"><a></a>plot_prior_pi_omega1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(prior <span class="sc">|&gt;</span> <span class="fu">filter</span>(omega <span class="sc">==</span> <span class="fl">0.6</span>)) <span class="sc">+</span></span>
+<span id="cb2-17"><a></a>plot_prior_pi_omega1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(prior <span class="sc">|&gt;</span> <span class="fu">filter</span>(omega <span class="sc">==</span> <span class="fl">0.9</span>)) <span class="sc">+</span></span>
 <span id="cb2-18"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi, <span class="at">y=</span>prior)) <span class="sc">+</span></span>
 <span id="cb2-19"><a></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(pi))</span>
 <span id="cb2-20"><a></a></span>
-<span id="cb2-21"><a></a>plot_prior_pi_omega2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(prior <span class="sc">|&gt;</span> <span class="fu">filter</span>(omega <span class="sc">==</span> <span class="fl">0.9</span>)) <span class="sc">+</span></span>
+<span id="cb2-21"><a></a>plot_prior_pi_omega2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(prior <span class="sc">|&gt;</span> <span class="fu">filter</span>(omega <span class="sc">==</span> <span class="fl">0.6</span>)) <span class="sc">+</span></span>
 <span id="cb2-22"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi, <span class="at">y=</span>prior)) <span class="sc">+</span></span>
 <span id="cb2-23"><a></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(pi))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="section-7" class="slide level2">
+<section id="section-6" class="slide level2">
 <h2></h2>
 
 <img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
-<section id="section-8" class="slide level2 smaller">
+<section id="section-7" class="slide level2 smaller">
 <h2></h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>likelihood <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">pi =</span> pi, <span class="at">omega =</span> omega) <span class="sc">|&gt;</span></span>
@@ -321,46 +321,89 @@
 <span id="cb3-17"><a></a>  viridis<span class="sc">::</span><span class="fu">scale_fill_viridis</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="section-9" class="slide level2">
+<section id="section-8" class="slide level2">
 <h2></h2>
 
 <img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
-<section id="section-10" class="slide level2">
+<section id="section-9" class="slide level2">
 <h2></h2>
+<p>Los datos dicen <em>la moneda parece tener <span class="math inline">\(\pi\)</span> cerca de 0.33</em>. El prior jerárquico dice <em>debería estar alrededor de algún , y antes de ver datos creíamos que estaba cerca de 0.5</em>. Como la asociación es débil/moderada, <span class="math inline">\(\pi\)</span> se mueve hacia los datos, pero <span class="math inline">\(\omega\)</span> solo se mueve un poco hacia abajo.</p>
+<ul>
+<li class="fragment"><span class="math inline">\(\pi\)</span> aprende bastante de los datos</li>
+<li class="fragment"><span class="math inline">\(\omega\)</span> aprende poco, porque solo recibe información a través de <span class="math inline">\(\pi\)</span></li>
+</ul>
+</section>
+<section id="segundo-caso" class="slide level2">
+<h2>Segundo caso</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>pi <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">length.out=</span><span class="dv">101</span>)</span>
 <span id="cb4-2"><a></a>omega <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">length.out=</span><span class="dv">101</span>)</span>
-<span id="cb4-3"><a></a>A_omega <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb4-4"><a></a>B_omega <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb4-5"><a></a>kappa <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb4-3"><a></a>A_omega <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb4-4"><a></a>B_omega <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb4-5"><a></a>kappa <span class="ot">&lt;-</span> <span class="dv">100</span></span>
 <span id="cb4-6"><a></a>N <span class="ot">&lt;-</span> <span class="dv">9</span></span>
 <span id="cb4-7"><a></a>y <span class="ot">&lt;-</span> <span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="section-11" class="slide level2">
+<section id="section-10" class="slide level2">
 <h2></h2>
 
 <img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
-<section id="section-12" class="slide level2">
+<section id="section-11" class="slide level2">
 <h2></h2>
 
 <img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
+<section id="section-12" class="slide level2">
+<h2></h2>
+<p>La estructura jerárquica transmite mucha más información por la asociación fuerte de <span class="math inline">\(\pi\)</span> y <span class="math inline">\(\omega\)</span>. Si los datos sugieren que <span class="math inline">\(\pi\approx\frac{1}{3}\)</span>, eso también se vuelve evidencia fuerte de que <span class="math inline">\(\omega\)</span> debería estar más cerca de <span class="math inline">\(\frac{1}{3}\)</span>.</p>
+</section>
+<section id="tercer-caso" class="slide level2">
+<h2>Tercer caso</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>pi <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">length.out=</span><span class="dv">101</span>)</span>
+<span id="cb5-2"><a></a>omega <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">length.out=</span><span class="dv">101</span>)</span>
+<span id="cb5-3"><a></a>A_omega <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb5-4"><a></a>B_omega <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb5-5"><a></a>kappa <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb5-6"><a></a>N <span class="ot">&lt;-</span> <span class="dv">9</span></span>
+<span id="cb5-7"><a></a>y <span class="ot">&lt;-</span> <span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
 <section id="section-13" class="slide level2">
+<h2></h2>
+
+<img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
+<section id="section-14" class="slide level2">
+<h2></h2>
+
+<img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"></section>
+<section id="section-15" class="slide level2">
+<h2></h2>
+<p>La evidencia dice <span class="math inline">\(\pi parece estar cerca de \frac{1}{3}\)</span>. Pero el <em>prior</em> dice muy fuertemente <span class="math inline">\(\omega está cerca de 0.5\)</span>. Como <span class="math inline">\(\kappa\)</span> no es grande, el modelo puede acomodar ambas cosas: permite que <span class="math inline">\(\pi\)</span> se aleje de <span class="math inline">\(\omega\)</span> sin tener que mover mucho a <span class="math inline">\(\omega\)</span>.</p>
+<ul>
+<li class="fragment"><em>Observé una moneda que parece sesgada, pero sigo creyendo que el proceso de fabricación apunta a monedas justas; puede haber salido una moneda particular desviada</em></li>
+</ul>
+</section>
+<section id="section-16" class="slide level2">
+<h2></h2>
+<p>En los tres casos la verosimilitud es la misma: los datos informan directamente sobre <span class="math inline">\(\pi\)</span>. Lo que cambia es cómo esa información se transmite hacia <span class="math inline">\(\omega\)</span>: por la fuerza de asociación <span class="math inline">\(\kappa\)</span> y por la fuerza del <em>prior</em> <span class="math inline">\(p(\omega)\)</span>.</p>
+</section>
+<section id="section-17" class="slide level2">
 <h2></h2>
 <p>La inferencia bayesiana en un modelo jerárquico es inferencia en el espacio de la distribución conjunta de los parámetros pero reformulando la distribución conjunta en términos jerárquicos: se refactoriza <span class="math inline">\(p(\pi,\omega)\)</span> como <span class="math inline">\(p(\pi\mid\omega)p(\omega)\)</span></p>
 </section>
 <section id="extensión" class="slide level2 smaller">
 <h2>Extensión</h2>
 <p>¿Qué pasaría si contamos con más de una moneda creada por la misma fábrica? Cada moneda tiene un valor de <span class="math inline">\(\pi_s\)</span> que es propio y que a su vez tienen algo en común: provienen de la fábrica que tiene parámetro <span class="math inline">\(\omega\)</span>.</p>
-<p>Con <span class="math inline">\(y_1\)</span> caras en <span class="math inline">\(N_1\)</span> tiradas de la moneda 1 estimamos <span class="math inline">\(\pi_1\)</span>, con <span class="math inline">\(y_2\)</span> caras en <span class="math inline">\(N_2\)</span> tiradas de la moneda 1 estimamos <span class="math inline">\(\pi_2\)</span>… y luego, con todas las tiradas, podemos estimar <span class="math inline">\(\omega\)</span>.</p>
+<p>Con <span class="math inline">\(y_1\)</span> caras en <span class="math inline">\(N_1\)</span> tiradas de la moneda 1 estimamos <span class="math inline">\(\pi_1\)</span>, con <span class="math inline">\(y_2\)</span> caras en <span class="math inline">\(N_2\)</span> tiradas de la moneda 2 estimamos <span class="math inline">\(\pi_2\)</span>… y luego, con todas las tiradas, podemos estimar <span class="math inline">\(\omega\)</span>.</p>
 </section>
-<section id="section-14" class="slide level2 smaller">
+<section id="section-18" class="slide level2 smaller">
 <h2></h2>
 <p>Consideremos un caso real. <span class="math inline">\(S\)</span> personas reciben una droga y son sometidos a un test de memoria. La probabilidad de que el sujeto <span class="math inline">\(s\)</span> recuerde un ítem que se le muestra es <span class="math inline">\(\pi_s\)</span>. El sujeto <span class="math inline">\(s\)</span> recuerda <span class="math inline">\(y_s\)</span> ítems de <span class="math inline">\(N_s\)</span> que se le presentan. Asumimos que la droga induce un efecto en los sujetos alrededor de una tendencia central <span class="math inline">\(\omega\)</span>.</p>
 <p>Consideremos por simplicidad que se tienen dos sujetos…</p>
 <p>¿Cuántos parámetros tiene el modelo? ¿Cómo podemos representar la relación entre los <span class="math inline">\(\theta_s\)</span>?</p>
 </section>
-<section id="section-15" class="slide level2 smaller">
+<section id="section-19" class="slide level2 smaller">
 <h2></h2>
 <p><span class="math display">\[
 \begin{aligned}
@@ -372,124 +415,50 @@
 <p>Si fijo <span class="math inline">\(\omega\)</span>, los valores de los <span class="math inline">\(\pi_s\)</span> son independientes: <span class="math inline">\(\pi_1\)</span> y <span class="math inline">\(\pi_2\)</span> son independientes dado <span class="math inline">\(\omega\)</span>.</p>
 <p>La probabilidad <em>a priori</em> que es <span class="math inline">\(p(\pi_1,\pi_2,\omega)\)</span> ahora puede factorizarse como <span class="math inline">\(p(\pi_1,\pi_2\mid \omega) p(\omega) = p(\pi_1\mid \omega) p(\pi_2\mid \omega) p(\omega)\)</span></p>
 </section>
-<section id="section-16" class="slide level2">
-<h2></h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>pi_1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">length.out=</span><span class="dv">101</span>)</span>
-<span id="cb5-2"><a></a>pi_2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">length.out=</span><span class="dv">101</span>)</span>
-<span id="cb5-3"><a></a>omega <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">length.out=</span><span class="dv">101</span>)</span>
-<span id="cb5-4"><a></a>A_omega <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb5-5"><a></a>B_omega <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb5-6"><a></a>kappa <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb5-7"><a></a>N_1 <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb5-8"><a></a>y_1 <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb5-9"><a></a>N_2 <span class="ot">&lt;-</span> <span class="dv">8</span></span>
-<span id="cb5-10"><a></a>y_2 <span class="ot">&lt;-</span> <span class="dv">4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="section-17" class="slide level2">
-<h2></h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>prior <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">pi_1 =</span> pi_1, <span class="at">pi_2 =</span> pi_2, <span class="at">omega =</span> omega) <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb6-3"><a></a>    <span class="at">p_omega =</span> <span class="fu">dbeta</span>(omega, A_omega, B_omega),</span>
-<span id="cb6-4"><a></a>    <span class="at">p_pi1_given_omega =</span> <span class="fu">dbeta</span>(pi_1, </span>
-<span id="cb6-5"><a></a>                              omega<span class="sc">*</span>(kappa<span class="dv">-2</span>)<span class="sc">+</span><span class="dv">1</span>, </span>
-<span id="cb6-6"><a></a>                              (<span class="dv">1</span><span class="sc">-</span>omega)<span class="sc">*</span>(kappa<span class="dv">-2</span>)<span class="sc">+</span><span class="dv">1</span>),</span>
-<span id="cb6-7"><a></a>    <span class="at">p_pi2_given_omega =</span> <span class="fu">dbeta</span>(pi_2, </span>
-<span id="cb6-8"><a></a>                              omega<span class="sc">*</span>(kappa<span class="dv">-2</span>)<span class="sc">+</span><span class="dv">1</span>, </span>
-<span id="cb6-9"><a></a>                              (<span class="dv">1</span><span class="sc">-</span>omega)<span class="sc">*</span>(kappa<span class="dv">-2</span>)<span class="sc">+</span><span class="dv">1</span>),</span>
-<span id="cb6-10"><a></a>    <span class="at">prior =</span> p_pi1_given_omega <span class="sc">*</span>  p_pi2_given_omega <span class="sc">*</span> p_omega)</span>
-<span id="cb6-11"><a></a></span>
-<span id="cb6-12"><a></a>prior_pi1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(prior <span class="sc">|&gt;</span> </span>
-<span id="cb6-13"><a></a>                      <span class="fu">group_by</span>(pi_1,omega) <span class="sc">|&gt;</span> </span>
-<span id="cb6-14"><a></a>                      <span class="fu">summarise</span>(<span class="at">prior =</span> <span class="fu">sum</span>(prior))) <span class="sc">+</span></span>
-<span id="cb6-15"><a></a>  <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi_1, <span class="at">y=</span>omega, <span class="at">fill=</span>prior)) <span class="sc">+</span></span>
-<span id="cb6-16"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="fu">expression</span>(pi[<span class="dv">1</span>]), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb6-17"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="fu">expression</span>(omega), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb6-18"><a></a>  viridis<span class="sc">::</span><span class="fu">scale_fill_viridis</span>()</span>
-<span id="cb6-19"><a></a></span>
-<span id="cb6-20"><a></a>prior_pi2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(prior <span class="sc">|&gt;</span> </span>
-<span id="cb6-21"><a></a>                      <span class="fu">group_by</span>(pi_2,omega) <span class="sc">|&gt;</span> </span>
-<span id="cb6-22"><a></a>                      <span class="fu">summarise</span>(<span class="at">prior =</span> <span class="fu">sum</span>(prior))) <span class="sc">+</span></span>
-<span id="cb6-23"><a></a>  <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi_2, <span class="at">y=</span>omega, <span class="at">fill=</span>prior)) <span class="sc">+</span></span>
-<span id="cb6-24"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="fu">expression</span>(pi[<span class="dv">2</span>]), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb6-25"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="fu">expression</span>(omega), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb6-26"><a></a>  viridis<span class="sc">::</span><span class="fu">scale_fill_viridis</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="section-18" class="slide level2">
-<h2></h2>
-
-<img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
-<section id="section-19" class="slide level2">
-<h2></h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>likelihood <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">pi_1 =</span> pi_1, <span class="at">pi_2 =</span> pi_2, <span class="at">omega =</span> omega) <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a></a>  <span class="fu">mutate</span>(<span class="at">likelihood_pi1 =</span> <span class="fu">dbinom</span>(y_1, <span class="at">size =</span> N_1, <span class="at">prob =</span> pi_1),</span>
-<span id="cb7-3"><a></a>         <span class="at">likelihood_pi2 =</span> <span class="fu">dbinom</span>(y_2, <span class="at">size =</span> N_2, <span class="at">prob =</span> pi_2),</span>
-<span id="cb7-4"><a></a>         <span class="at">likelihood =</span> likelihood_pi1 <span class="sc">*</span> likelihood_pi2)</span>
-<span id="cb7-5"><a></a></span>
-<span id="cb7-6"><a></a>likelihood1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(likelihood <span class="sc">|&gt;</span> </span>
-<span id="cb7-7"><a></a>                        <span class="fu">group_by</span>(pi_1,omega) <span class="sc">|&gt;</span> </span>
-<span id="cb7-8"><a></a>                        <span class="fu">summarise</span>(<span class="at">likelihood =</span> <span class="fu">sum</span>(likelihood))) <span class="sc">+</span></span>
-<span id="cb7-9"><a></a>  <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi_1, <span class="at">y=</span>omega, <span class="at">fill=</span>likelihood)) <span class="sc">+</span></span>
-<span id="cb7-10"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="fu">expression</span>(pi[<span class="dv">1</span>]), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb7-11"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="fu">expression</span>(omega), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb7-12"><a></a>  viridis<span class="sc">::</span><span class="fu">scale_fill_viridis</span>()</span>
-<span id="cb7-13"><a></a></span>
-<span id="cb7-14"><a></a>likelihood2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(likelihood <span class="sc">|&gt;</span> </span>
-<span id="cb7-15"><a></a>                        <span class="fu">group_by</span>(pi_2,omega) <span class="sc">|&gt;</span> </span>
-<span id="cb7-16"><a></a>                        <span class="fu">summarise</span>(<span class="at">likelihood =</span> <span class="fu">sum</span>(likelihood))) <span class="sc">+</span></span>
-<span id="cb7-17"><a></a>  <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi_2, <span class="at">y=</span>omega, <span class="at">fill=</span>likelihood)) <span class="sc">+</span></span>
-<span id="cb7-18"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="fu">expression</span>(pi[<span class="dv">2</span>]), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb7-19"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="fu">expression</span>(omega), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb7-20"><a></a>  viridis<span class="sc">::</span><span class="fu">scale_fill_viridis</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
 <section id="section-20" class="slide level2">
 <h2></h2>
-
-<img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>pi_1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">length.out=</span><span class="dv">101</span>)</span>
+<span id="cb6-2"><a></a>pi_2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">length.out=</span><span class="dv">101</span>)</span>
+<span id="cb6-3"><a></a>omega <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">length.out=</span><span class="dv">101</span>)</span>
+<span id="cb6-4"><a></a>A_omega <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb6-5"><a></a>B_omega <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb6-6"><a></a>kappa <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb6-7"><a></a>N_1 <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb6-8"><a></a>y_1 <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb6-9"><a></a>N_2 <span class="ot">&lt;-</span> <span class="dv">8</span></span>
+<span id="cb6-10"><a></a>y_2 <span class="ot">&lt;-</span> <span class="dv">4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
 <section id="section-21" class="slide level2">
 <h2></h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>posterior <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(prior, likelihood) <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a></a>  <span class="fu">mutate</span>(<span class="at">posterior =</span> prior <span class="sc">*</span> likelihood)</span>
-<span id="cb8-3"><a></a></span>
-<span id="cb8-4"><a></a>posterior_pi1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(posterior <span class="sc">|&gt;</span> </span>
-<span id="cb8-5"><a></a>                          <span class="fu">group_by</span>(pi_1,omega) <span class="sc">|&gt;</span> </span>
-<span id="cb8-6"><a></a>                          <span class="fu">summarise</span>(<span class="at">posterior =</span> <span class="fu">sum</span>(posterior))) <span class="sc">+</span></span>
-<span id="cb8-7"><a></a>  <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi_1, <span class="at">y=</span>omega, <span class="at">fill=</span>posterior)) <span class="sc">+</span></span>
-<span id="cb8-8"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="fu">expression</span>(pi[<span class="dv">1</span>]), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb8-9"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="fu">expression</span>(omega), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb8-10"><a></a>  viridis<span class="sc">::</span><span class="fu">scale_fill_viridis</span>()</span>
-<span id="cb8-11"><a></a></span>
-<span id="cb8-12"><a></a>posterior_pi2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(posterior <span class="sc">|&gt;</span> </span>
-<span id="cb8-13"><a></a>                          <span class="fu">group_by</span>(pi_2,omega) <span class="sc">|&gt;</span> </span>
-<span id="cb8-14"><a></a>                          <span class="fu">summarise</span>(<span class="at">posterior =</span> <span class="fu">sum</span>(posterior))) <span class="sc">+</span></span>
-<span id="cb8-15"><a></a>  <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi_2, <span class="at">y=</span>omega, <span class="at">fill=</span>posterior)) <span class="sc">+</span></span>
-<span id="cb8-16"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="fu">expression</span>(pi[<span class="dv">2</span>]), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb8-17"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="fu">expression</span>(omega), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb8-18"><a></a>  viridis<span class="sc">::</span><span class="fu">scale_fill_viridis</span>()</span>
-<span id="cb8-19"><a></a></span>
-<span id="cb8-20"><a></a>posterior_omega <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(posterior <span class="sc">|&gt;</span> </span>
-<span id="cb8-21"><a></a>                            <span class="fu">group_by</span>(omega) <span class="sc">|&gt;</span> </span>
-<span id="cb8-22"><a></a>                            <span class="fu">summarise</span>(<span class="at">posterior =</span> <span class="fu">sum</span>(posterior))) <span class="sc">+</span></span>
-<span id="cb8-23"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>omega, <span class="at">y=</span>posterior)) <span class="sc">+</span></span>
-<span id="cb8-24"><a></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(omega))</span>
-<span id="cb8-25"><a></a></span>
-<span id="cb8-26"><a></a>posterior_pi1_marg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(posterior <span class="sc">|&gt;</span> </span>
-<span id="cb8-27"><a></a>                               <span class="fu">group_by</span>(pi_1) <span class="sc">|&gt;</span> </span>
-<span id="cb8-28"><a></a>                               <span class="fu">summarise</span>(<span class="at">posterior =</span> <span class="fu">sum</span>(posterior))) <span class="sc">+</span></span>
-<span id="cb8-29"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi_1, <span class="at">y=</span>posterior)) <span class="sc">+</span></span>
-<span id="cb8-30"><a></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(pi[<span class="dv">1</span>]))</span>
-<span id="cb8-31"><a></a></span>
-<span id="cb8-32"><a></a>posterior_pi2_marg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(posterior <span class="sc">|&gt;</span> </span>
-<span id="cb8-33"><a></a>                               <span class="fu">group_by</span>(pi_2) <span class="sc">|&gt;</span> </span>
-<span id="cb8-34"><a></a>                               <span class="fu">summarise</span>(<span class="at">posterior =</span> <span class="fu">sum</span>(posterior))) <span class="sc">+</span></span>
-<span id="cb8-35"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi_2, <span class="at">y=</span>posterior)) <span class="sc">+</span></span>
-<span id="cb8-36"><a></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(pi[<span class="dv">2</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>prior <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">pi_1 =</span> pi_1, <span class="at">pi_2 =</span> pi_2, <span class="at">omega =</span> omega) <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-3"><a></a>    <span class="at">p_omega =</span> <span class="fu">dbeta</span>(omega, A_omega, B_omega),</span>
+<span id="cb7-4"><a></a>    <span class="at">p_pi1_given_omega =</span> <span class="fu">dbeta</span>(pi_1, </span>
+<span id="cb7-5"><a></a>                              omega<span class="sc">*</span>(kappa<span class="dv">-2</span>)<span class="sc">+</span><span class="dv">1</span>, </span>
+<span id="cb7-6"><a></a>                              (<span class="dv">1</span><span class="sc">-</span>omega)<span class="sc">*</span>(kappa<span class="dv">-2</span>)<span class="sc">+</span><span class="dv">1</span>),</span>
+<span id="cb7-7"><a></a>    <span class="at">p_pi2_given_omega =</span> <span class="fu">dbeta</span>(pi_2, </span>
+<span id="cb7-8"><a></a>                              omega<span class="sc">*</span>(kappa<span class="dv">-2</span>)<span class="sc">+</span><span class="dv">1</span>, </span>
+<span id="cb7-9"><a></a>                              (<span class="dv">1</span><span class="sc">-</span>omega)<span class="sc">*</span>(kappa<span class="dv">-2</span>)<span class="sc">+</span><span class="dv">1</span>),</span>
+<span id="cb7-10"><a></a>    <span class="at">prior =</span> p_pi1_given_omega <span class="sc">*</span>  p_pi2_given_omega <span class="sc">*</span> p_omega)</span>
+<span id="cb7-11"><a></a></span>
+<span id="cb7-12"><a></a>prior_pi1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(prior <span class="sc">|&gt;</span> </span>
+<span id="cb7-13"><a></a>                      <span class="fu">group_by</span>(pi_1,omega) <span class="sc">|&gt;</span> </span>
+<span id="cb7-14"><a></a>                      <span class="fu">summarise</span>(<span class="at">prior =</span> <span class="fu">sum</span>(prior))) <span class="sc">+</span></span>
+<span id="cb7-15"><a></a>  <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi_1, <span class="at">y=</span>omega, <span class="at">fill=</span>prior)) <span class="sc">+</span></span>
+<span id="cb7-16"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="fu">expression</span>(pi[<span class="dv">1</span>]), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb7-17"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="fu">expression</span>(omega), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb7-18"><a></a>  viridis<span class="sc">::</span><span class="fu">scale_fill_viridis</span>()</span>
+<span id="cb7-19"><a></a></span>
+<span id="cb7-20"><a></a>prior_pi2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(prior <span class="sc">|&gt;</span> </span>
+<span id="cb7-21"><a></a>                      <span class="fu">group_by</span>(pi_2,omega) <span class="sc">|&gt;</span> </span>
+<span id="cb7-22"><a></a>                      <span class="fu">summarise</span>(<span class="at">prior =</span> <span class="fu">sum</span>(prior))) <span class="sc">+</span></span>
+<span id="cb7-23"><a></a>  <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi_2, <span class="at">y=</span>omega, <span class="at">fill=</span>prior)) <span class="sc">+</span></span>
+<span id="cb7-24"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="fu">expression</span>(pi[<span class="dv">2</span>]), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb7-25"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="fu">expression</span>(omega), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb7-26"><a></a>  viridis<span class="sc">::</span><span class="fu">scale_fill_viridis</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="section-22" class="slide level2">
@@ -498,34 +467,72 @@
 <img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
 <section id="section-23" class="slide level2">
 <h2></h2>
-
-<img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-17-1.png" width="960" class="r-stretch"></section>
-<section id="section-24" class="slide level2">
-<h2></h2>
-<ul>
-<li class="fragment">La función de verosimilitud no depende de <span class="math inline">\(\omega\)</span></li>
-<li class="fragment">La función de verosimilitud es más estrecha para el sujeto 1 que para el sujeto 2</li>
-<li class="fragment">El <em>posterior</em> marginal de <span class="math inline">\(\pi_1\)</span> está cerca de la proporción muestral</li>
-<li class="fragment">El <em>posterior</em> marginal de <span class="math inline">\(\pi_2\)</span> está cerca de la proporción muestral</li>
-<li class="fragment">El <em>posterior</em> marginal de <span class="math inline">\(\pi_1\)</span> tiene menos incertidumbre que el de <span class="math inline">\(\pi_2\)</span></li>
-</ul>
-<div class="fragment">
-<p>¿Qué ocurre si se cambia el valor de <span class="math inline">\(\kappa\)</span>?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>likelihood <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">pi_1 =</span> pi_1, <span class="at">pi_2 =</span> pi_2, <span class="at">omega =</span> omega) <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a></a>  <span class="fu">mutate</span>(<span class="at">likelihood_pi1 =</span> <span class="fu">dbinom</span>(y_1, <span class="at">size =</span> N_1, <span class="at">prob =</span> pi_1),</span>
+<span id="cb8-3"><a></a>         <span class="at">likelihood_pi2 =</span> <span class="fu">dbinom</span>(y_2, <span class="at">size =</span> N_2, <span class="at">prob =</span> pi_2),</span>
+<span id="cb8-4"><a></a>         <span class="at">likelihood =</span> likelihood_pi1 <span class="sc">*</span> likelihood_pi2)</span>
+<span id="cb8-5"><a></a></span>
+<span id="cb8-6"><a></a>likelihood1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(likelihood <span class="sc">|&gt;</span> </span>
+<span id="cb8-7"><a></a>                        <span class="fu">group_by</span>(pi_1,omega) <span class="sc">|&gt;</span> </span>
+<span id="cb8-8"><a></a>                        <span class="fu">summarise</span>(<span class="at">likelihood =</span> <span class="fu">sum</span>(likelihood))) <span class="sc">+</span></span>
+<span id="cb8-9"><a></a>  <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi_1, <span class="at">y=</span>omega, <span class="at">fill=</span>likelihood)) <span class="sc">+</span></span>
+<span id="cb8-10"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="fu">expression</span>(pi[<span class="dv">1</span>]), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb8-11"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="fu">expression</span>(omega), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb8-12"><a></a>  viridis<span class="sc">::</span><span class="fu">scale_fill_viridis</span>()</span>
+<span id="cb8-13"><a></a></span>
+<span id="cb8-14"><a></a>likelihood2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(likelihood <span class="sc">|&gt;</span> </span>
+<span id="cb8-15"><a></a>                        <span class="fu">group_by</span>(pi_2,omega) <span class="sc">|&gt;</span> </span>
+<span id="cb8-16"><a></a>                        <span class="fu">summarise</span>(<span class="at">likelihood =</span> <span class="fu">sum</span>(likelihood))) <span class="sc">+</span></span>
+<span id="cb8-17"><a></a>  <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi_2, <span class="at">y=</span>omega, <span class="at">fill=</span>likelihood)) <span class="sc">+</span></span>
+<span id="cb8-18"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="fu">expression</span>(pi[<span class="dv">2</span>]), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb8-19"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="fu">expression</span>(omega), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb8-20"><a></a>  viridis<span class="sc">::</span><span class="fu">scale_fill_viridis</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
+<section id="section-24" class="slide level2">
+<h2></h2>
+
+<img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch"></section>
 <section id="section-25" class="slide level2">
 <h2></h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>pi_1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">length.out=</span><span class="dv">101</span>)</span>
-<span id="cb9-2"><a></a>pi_2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">length.out=</span><span class="dv">101</span>)</span>
-<span id="cb9-3"><a></a>omega <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">length.out=</span><span class="dv">101</span>)</span>
-<span id="cb9-4"><a></a>A_omega <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb9-5"><a></a>B_omega <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb9-6"><a></a>kappa <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb9-7"><a></a>N_1 <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb9-8"><a></a>y_1 <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb9-9"><a></a>N_2 <span class="ot">&lt;-</span> <span class="dv">8</span></span>
-<span id="cb9-10"><a></a>y_2 <span class="ot">&lt;-</span> <span class="dv">4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>posterior <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(prior, likelihood) <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a></a>  <span class="fu">mutate</span>(<span class="at">posterior =</span> prior <span class="sc">*</span> likelihood)</span>
+<span id="cb9-3"><a></a></span>
+<span id="cb9-4"><a></a>posterior_pi1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(posterior <span class="sc">|&gt;</span> </span>
+<span id="cb9-5"><a></a>                          <span class="fu">group_by</span>(pi_1,omega) <span class="sc">|&gt;</span> </span>
+<span id="cb9-6"><a></a>                          <span class="fu">summarise</span>(<span class="at">posterior =</span> <span class="fu">sum</span>(posterior))) <span class="sc">+</span></span>
+<span id="cb9-7"><a></a>  <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi_1, <span class="at">y=</span>omega, <span class="at">fill=</span>posterior)) <span class="sc">+</span></span>
+<span id="cb9-8"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="fu">expression</span>(pi[<span class="dv">1</span>]), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb9-9"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="fu">expression</span>(omega), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb9-10"><a></a>  viridis<span class="sc">::</span><span class="fu">scale_fill_viridis</span>()</span>
+<span id="cb9-11"><a></a></span>
+<span id="cb9-12"><a></a>posterior_pi2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(posterior <span class="sc">|&gt;</span> </span>
+<span id="cb9-13"><a></a>                          <span class="fu">group_by</span>(pi_2,omega) <span class="sc">|&gt;</span> </span>
+<span id="cb9-14"><a></a>                          <span class="fu">summarise</span>(<span class="at">posterior =</span> <span class="fu">sum</span>(posterior))) <span class="sc">+</span></span>
+<span id="cb9-15"><a></a>  <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi_2, <span class="at">y=</span>omega, <span class="at">fill=</span>posterior)) <span class="sc">+</span></span>
+<span id="cb9-16"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="fu">expression</span>(pi[<span class="dv">2</span>]), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb9-17"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="fu">expression</span>(omega), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb9-18"><a></a>  viridis<span class="sc">::</span><span class="fu">scale_fill_viridis</span>()</span>
+<span id="cb9-19"><a></a></span>
+<span id="cb9-20"><a></a>posterior_omega <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(posterior <span class="sc">|&gt;</span> </span>
+<span id="cb9-21"><a></a>                            <span class="fu">group_by</span>(omega) <span class="sc">|&gt;</span> </span>
+<span id="cb9-22"><a></a>                            <span class="fu">summarise</span>(<span class="at">posterior =</span> <span class="fu">sum</span>(posterior))) <span class="sc">+</span></span>
+<span id="cb9-23"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>omega, <span class="at">y=</span>posterior)) <span class="sc">+</span></span>
+<span id="cb9-24"><a></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(omega))</span>
+<span id="cb9-25"><a></a></span>
+<span id="cb9-26"><a></a>posterior_pi1_marg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(posterior <span class="sc">|&gt;</span> </span>
+<span id="cb9-27"><a></a>                               <span class="fu">group_by</span>(pi_1) <span class="sc">|&gt;</span> </span>
+<span id="cb9-28"><a></a>                               <span class="fu">summarise</span>(<span class="at">posterior =</span> <span class="fu">sum</span>(posterior))) <span class="sc">+</span></span>
+<span id="cb9-29"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi_1, <span class="at">y=</span>posterior)) <span class="sc">+</span></span>
+<span id="cb9-30"><a></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(pi[<span class="dv">1</span>]))</span>
+<span id="cb9-31"><a></a></span>
+<span id="cb9-32"><a></a>posterior_pi2_marg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(posterior <span class="sc">|&gt;</span> </span>
+<span id="cb9-33"><a></a>                               <span class="fu">group_by</span>(pi_2) <span class="sc">|&gt;</span> </span>
+<span id="cb9-34"><a></a>                               <span class="fu">summarise</span>(<span class="at">posterior =</span> <span class="fu">sum</span>(posterior))) <span class="sc">+</span></span>
+<span id="cb9-35"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi_2, <span class="at">y=</span>posterior)) <span class="sc">+</span></span>
+<span id="cb9-36"><a></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(pi[<span class="dv">2</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="section-26" class="slide level2">
@@ -538,13 +545,49 @@
 <img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-21-1.png" width="960" class="r-stretch"></section>
 <section id="section-28" class="slide level2">
 <h2></h2>
-
-<img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-22-1.png" width="960" class="r-stretch"></section>
+<ul>
+<li class="fragment">La función de verosimilitud no depende de <span class="math inline">\(\omega\)</span></li>
+<li class="fragment">La función de verosimilitud es más estrecha para el sujeto 1 que para el sujeto 2</li>
+<li class="fragment">El <em>posterior</em> marginal de <span class="math inline">\(\pi_1\)</span> está cerca de la proporción muestral</li>
+<li class="fragment">El <em>posterior</em> marginal de <span class="math inline">\(\pi_2\)</span> está cerca de la proporción muestral</li>
+<li class="fragment">El <em>posterior</em> marginal de <span class="math inline">\(\pi_1\)</span> tiene menos incertidumbre que el de <span class="math inline">\(\pi_2\)</span></li>
+</ul>
+<div class="fragment">
+<p>¿Qué ocurre si se cambia el valor de <span class="math inline">\(\kappa\)</span>?</p>
+</div>
+</section>
 <section id="section-29" class="slide level2">
 <h2></h2>
-
-<img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-23-1.png" width="960" class="r-stretch"></section>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>pi_1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">length.out=</span><span class="dv">101</span>)</span>
+<span id="cb10-2"><a></a>pi_2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">length.out=</span><span class="dv">101</span>)</span>
+<span id="cb10-3"><a></a>omega <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">length.out=</span><span class="dv">101</span>)</span>
+<span id="cb10-4"><a></a>A_omega <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb10-5"><a></a>B_omega <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb10-6"><a></a>kappa <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb10-7"><a></a>N_1 <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb10-8"><a></a>y_1 <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb10-9"><a></a>N_2 <span class="ot">&lt;-</span> <span class="dv">8</span></span>
+<span id="cb10-10"><a></a>y_2 <span class="ot">&lt;-</span> <span class="dv">4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
 <section id="section-30" class="slide level2">
+<h2></h2>
+
+<img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-24-1.png" width="960" class="r-stretch"></section>
+<section id="section-31" class="slide level2">
+<h2></h2>
+
+<img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-25-1.png" width="960" class="r-stretch"></section>
+<section id="section-32" class="slide level2">
+<h2></h2>
+
+<img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-26-1.png" width="960" class="r-stretch"></section>
+<section id="section-33" class="slide level2">
+<h2></h2>
+
+<img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-27-1.png" width="960" class="r-stretch"></section>
+<section id="section-34" class="slide level2">
 <h2></h2>
 <p>El <em>posterior</em> marginal de <span class="math inline">\(\pi_2\)</span> se alejó de la proporción muestral. El sujeto 1 tenía un tamaño de muestra mayor (más evidencia) y por lo tanto influyó más en la estimación de <span class="math inline">\(\omega\)</span>, lo que a la vez influye en la estimación de <span class="math inline">\(\pi_2\)</span>.</p>
 </section>
@@ -553,7 +596,7 @@
 <p>La estructura jerárquica de los modelos hace que las estimaciones de los parámetros de los niveles más bajos se acerquen más de lo que lo harían si no hubiera una distribución en un nivel superior. Esto es lo que se conoce como <em>shrinkage</em> de las estimaciones.</p>
 <p>Las estimaciones de los parámetros de los niveles más bajos son tiradas (<em>pulled</em>) o se estrechan o tienden a concentrarse hacia la moda de la distribución superior.</p>
 </section>
-<section id="section-31" class="slide level2 smaller">
+<section id="section-35" class="slide level2 smaller">
 <h2></h2>
 <p>El <em>shrinkage</em> ocurre porque los parámetros de los niveles bajos (los <span class="math inline">\(\pi_s\)</span>) son influenciados por:</p>
 <div class="fragment">
@@ -569,7 +612,7 @@
 <p>Nota: el <em>shrinkage</em> es consecuencia exclusivamente de la estructura jerárquica (y no de la inferencia bayesiana). Existe en la teoría clásica de estimación (ver estimador de James-Stein)</p>
 </div>
 </section>
-<section id="section-32" class="slide level2">
+<section id="section-36" class="slide level2">
 <h2></h2>
 
 <img data-src="imgs/shrinkage.png" class="r-stretch"></section>
@@ -577,7 +620,7 @@
 <h2>Otro ejemplo</h2>
 <p>El radón es un gas radioactivo y cancerígeno. Los productos de la desintegración del radón son también radioactivos y en altas concentraciones se sabe que producen cáncer de pulmón. Trabajaremos con datos de mediciones de radón en el estado de Minnesota. Se cuenta con mediciones en hogares de diferentes condados dentro del estado.</p>
 </section>
-<section id="section-33" class="slide level2">
+<section id="section-37" class="slide level2">
 <h2></h2>
 <ol type="1">
 <li class="fragment"><span class="math inline">\(i\)</span> es el índice de los hogares</li>
@@ -586,11 +629,11 @@
 <li class="fragment"><span class="math inline">\(j[i] = \mathrm{county}[i]\)</span> es el condado al que pertenece el hogar <span class="math inline">\(i\)</span></li>
 </ol>
 </section>
-<section id="section-34" class="slide level2">
+<section id="section-38" class="slide level2">
 <h2></h2>
 
-<img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-24-1.png" width="960" class="r-stretch"></section>
-<section id="section-35" class="slide level2">
+<img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-28-1.png" width="960" class="r-stretch"></section>
+<section id="section-39" class="slide level2">
 <h2></h2>
 <h3 class="smaller" id="complete-pooling">Complete pooling</h3>
 <p><span class="math display">\[
@@ -603,7 +646,7 @@
 \]</span></p>
 <p>Hay una única media <span class="math inline">\(\alpha\)</span> común para todos los <span class="math inline">\(i\)</span>, independientemente del grupo <span class="math inline">\(j\)</span> al que pertenezcan</p>
 </section>
-<section id="section-36" class="slide level2">
+<section id="section-40" class="slide level2">
 <h2></h2>
 <h3 class="smaller" id="no-pooling">No pooling</h3>
 <p><span class="math display">\[
@@ -616,7 +659,7 @@
 \]</span></p>
 <p>Decimos que los <span class="math inline">\(Y_i\)</span> tienen distribución de media <span class="math inline">\(\alpha_{j[i]}\)</span>, sin imponer ninguna restricción sobre los <span class="math inline">\(\alpha_j\)</span>. <span class="math inline">\(P(\alpha_j)\)</span> es una distribución no informativa (muy ancha y chata). Todos los <span class="math inline">\(\alpha_j\)</span> son independientes. Coincide con la estimación clásica que incluye una variable <em>dummy</em> para cada grupo.</p>
 </section>
-<section id="section-37" class="slide level2 smaller">
+<section id="section-41" class="slide level2 smaller">
 <h2></h2>
 <p>Podemos mejorar el modelo anterior incorporando un prior que regularice los <span class="math inline">\(\alpha_j\)</span></p>
 <p><span class="math display">\[
@@ -629,7 +672,7 @@
 \]</span></p>
 <p>0 y 10 son valores arbitrarios para la media y la varianza de la distribución <em>a priori</em> de los <span class="math inline">\(\alpha_j\)</span>. Los <span class="math inline">\(\alpha_j\)</span> dejan de poder ser estimados libremente. Hay <em>regularización</em> y tendemos a evitar el <em>overfitting</em>. Hay un <em>partial pooling</em>. Si en lugar de 10 se elige un valor más grande, tendemos a <em>no pooling</em>; si se elige un valor más chico, tendemos a <em>pooling completo</em></p>
 </section>
-<section id="section-38" class="slide level2">
+<section id="section-42" class="slide level2">
 <h2></h2>
 <p>Mejor aún, podemos estimar el grado de regularización partir de los datos. ¿Cuánto <em>pooling</em> es necesario? Se estima a partir de los datos…</p>
 <p><span class="math display">\[
@@ -643,7 +686,7 @@
 \end{aligned}
 \]</span></p>
 </section>
-<section id="section-39" class="slide level2">
+<section id="section-43" class="slide level2">
 <h2></h2>
 <p><span class="math inline">\(\mu_\alpha\)</span> y <span class="math inline">\(\sigma_\alpha\)</span> son hiperparámetros (parámetros de la distribución de <em>a priori</em> de los parámetros) y por lo tanto tienen <em>hiperpriors</em></p>
 <p>El chiste es que <em>todos</em> los datos se usan para estimar <span class="math inline">\(\mu_\alpha\)</span> y <span class="math inline">\(\sigma_\alpha\)</span> y por lo tanto en la estimación de cada <span class="math inline">\(\alpha_j\)</span> hay información de todos los datos. La regularización es adaptativa (se aprende de los datos).</p>
@@ -656,7 +699,7 @@
 <li class="fragment">Así, los grupos que tienen menor tamaño de muestra toman más información del resto de los grupos y el <em>shrinkage</em> es más intenso.</li>
 </ol>
 </section>
-<section id="section-40" class="slide level2 smaller">
+<section id="section-44" class="slide level2 smaller">
 <h2></h2>
 <ol type="1">
 <li class="fragment"><em>Pooling completo</em>: hay una única media para todos los individuos, independientemente del grupo. La variación entre los grupos es cero. <em>Underfitting</em>.</li>
@@ -664,7 +707,7 @@
 <li class="fragment"><em>Partial pooling</em>: cada grupo tiene una media pero todas las medias están conectadas. Es una solución de compromiso, un punto medio entre <em>pooling completo</em> y <em>no pooling</em>.</li>
 </ol>
 </section>
-<section id="section-41" class="slide level2 smaller">
+<section id="section-45" class="slide level2 smaller">
 <h2></h2>
 <p>Para algunos condados: a la izquierda está la estimación de la media <em>no pooling</em> de la media, a la derecha la estimación del modelo multinivel (<em>pooling parcial</em>). En línea de trazos el <em>pooling completo</em>.</p>
 
@@ -673,20 +716,20 @@
 <h2>Otro ejemplo</h2>
 <p>Corredores que han participado varias veces de una famosa maratón en Washington. Se registraron los tiempos de los participantes.</p>
 
-<img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-26-1.png" width="960" class="r-stretch"></section>
-<section id="section-42" class="slide level2">
+<img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-30-1.png" width="960" class="r-stretch"></section>
+<section id="section-46" class="slide level2">
 <h2></h2>
 
-<img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-27-1.png" width="960" class="r-stretch"></section>
-<section id="section-43" class="slide level2">
+<img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-31-1.png" width="960" class="r-stretch"></section>
+<section id="section-47" class="slide level2">
 <h2></h2>
 
 <img data-src="imgs/no_pooling_slope.png" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="section-44" class="slide level2">
+<section id="section-48" class="slide level2">
 <h2></h2>
 
 <img data-src="imgs/partial_pooling_slope.png" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="section-45" class="slide level2">
+<section id="section-49" class="slide level2">
 <h2></h2>
 <ul>
 <li class="fragment">La información de la estimación de la pendiente de un grupo es útil para estimar las otras pendientes</li>
@@ -694,7 +737,7 @@
 <li class="fragment">Las pendientes y las ordenadas al origen trabajan de forma conjunta para describir a un corredor, covarían</li>
 </ul>
 </section>
-<section id="section-46" class="slide level2">
+<section id="section-50" class="slide level2">
 <h2></h2>
 <p><span class="math display">\[
 \begin{aligned}
@@ -704,7 +747,7 @@
 \end{aligned}
 \]</span></p>
 </section>
-<section id="section-47" class="slide level2 smaller">
+<section id="section-51" class="slide level2 smaller">
 <h2></h2>
 <p><span class="math inline">\(\left[\begin{array}{c}\alpha_j\\\beta_j\end{array}\right]\)</span> tienen una distribución conjunta, normal multivariada de hiperparámetros <span class="math inline">\(\left[\begin{array}{c}\mu_\alpha\\\mu_\beta\end{array}\right]\)</span> y <span class="math inline">\(\Sigma\)</span>. ¡Necesitan !</p>
 <div class="fragment">
@@ -717,14 +760,14 @@
 <p>Llamando <span class="math display">\[R = \left( \begin{array}{cc} 1 &amp; \rho \\ \rho &amp; 1 \end{array}\right)\]</span> solo habría que definir una distribución para <span class="math inline">\(\sigma_\alpha\)</span>, <span class="math inline">\(\sigma_\beta\)</span> y <span class="math inline">\(R\)</span> (o <span class="math inline">\(\rho\)</span>)</p>
 </div>
 </section>
-<section id="section-48" class="slide level2 smaller">
+<section id="section-52" class="slide level2 smaller">
 <h2></h2>
 <p>No es solo para modelos lineales… Se tienen 60 tanques con ranitas de la especie <em>Hyperolius viridiflavus</em>. Cada tanque <span class="math inline">\(i\)</span> de ellos contiene una cantidad inicial de renacuajos <span class="math inline">\(N_i\)</span>. Al cabo de unas semanas se observa el número <span class="math inline">\(S_i\)</span> de renacuajos que sobrevivieron en el tanque <span class="math inline">\(i\)</span>.</p>
 <center>
 <img data-src="imgs/frog.jpg" width="300">
 </center>
 </section>
-<section id="section-49" class="slide level2">
+<section id="section-53" class="slide level2">
 <h2></h2>
 <p>Se modeliza la probabilidad de supervivencia de cada tanque con una regresión logística:</p>
 <p><span class="math display">\[
@@ -736,7 +779,7 @@
 \]</span></p>
 <p>Observar que no hay grupos (no hay índice <span class="math inline">\(j\)</span>), simplemente hacemos de los individuos.</p>
 </section>
-<section id="section-50" class="slide level2 smaller">
+<section id="section-54" class="slide level2 smaller">
 <h2></h2>
 <p>Comparamos la estimación de <span class="math inline">\(p_i = \frac{e^{\alpha_i}}{1+e^{\alpha_i}}\)</span> con la obtenida por máxima verosimilitud en cada tanque: <span class="math inline">\(p_{i,ML} = \frac{S_i}{N_i}\)</span></p>
 
