@@ -13,7 +13,7 @@ theme_set(theme_bw() +
           theme(legend.position = "none",
                 panel.grid = element_blank(),
                 #strip.background = element_rect(fill="#ade658"),
-                text = element_text(size=26)))
+                text = element_text(size=18)))
 ```
 
 ## Introducción
@@ -28,7 +28,7 @@ $$
 
 ## {.smaller}
 
-Sabemos (gracias al TP2) que la función de densidad de la distribución beta se puede expresar en términos de su moda $\omega$ y su concentración $\kappa$
+Sabemos que la distribución beta se puede parametrizar en términos de su moda $\omega$ y su concentración $\kappa$
 
 $$
 \begin{aligned}
@@ -37,7 +37,7 @@ $$
 \end{aligned}
 $$
 
-El valor de $\pi$ depende del valor de $\omega$. Lo sabíamos, después de todo, $\omega$ y $\kappa$ son las _constantes de ajuste del prior_ o _hiperparámetros_. $\kappa$ refleja el grado de credibilidad _a priori_ sobre los valores de $\pi$ (alrededor de $\omega$).
+El valor de $\pi$ depende del valor de $\omega$. Lo sabíamos, después de todo, $\omega$ y $\kappa$ son las _constantes de ajuste del prior_ o _hiperparámetros_. $\kappa$ refleja el grado de credibilidad _a priori_ sobre los valores de $\pi$ (alrededor de $\omega$); controla qué tan concentrada está la distribución de $\pi\mid\omega$ alrededor de $\omega$. En ese sentido, mide qué tan fuertemente creemos que $\pi$ debería parecerse a $\omega$.
 
 ## {.smaller}
 
@@ -85,7 +85,7 @@ $$p(\pi,\omega\mid y) = \frac{p(y\mid\pi,\omega)p(\pi,\omega)}{p(y)} = \frac{p(y
 
 Estamos haciendo inferencia bayesiana sobre una distribución conjunta (de $\pi$ y $\omega$). Pero la relación entre los parámetros (y la función de verosimilitud) es jerárquica. La jerarquía tiene una interpretación para el modelo.
 
-##
+## Primer caso
 
 ```{r}
 #| echo: true
@@ -122,11 +122,11 @@ plot_prior <- ggplot(prior) +
 plot_prior_omega <- ggplot(prior) +
   geom_line(aes(x=omega, y=p_omega))
 
-plot_prior_pi_omega1 <- ggplot(prior |> filter(omega == 0.6)) +
+plot_prior_pi_omega1 <- ggplot(prior |> filter(omega == 0.9)) +
   geom_line(aes(x=pi, y=prior)) +
   xlab(expression(pi))
 
-plot_prior_pi_omega2 <- ggplot(prior |> filter(omega == 0.9)) +
+plot_prior_pi_omega2 <- ggplot(prior |> filter(omega == 0.6)) +
   geom_line(aes(x=pi, y=prior)) +
   xlab(expression(pi))
 ```
@@ -182,15 +182,22 @@ plot_prior + plot_likelihood + plot_posterior
 
 ##
 
+Los datos dicen _la moneda parece tener $\pi$ cerca de 0.33_. El prior jerárquico dice _\pi debería estar alrededor de algún \omega, y antes de ver datos creíamos que \omega estaba cerca de 0.5_. Como la asociación es débil/moderada, $\pi$ se mueve hacia los datos, pero $\omega$ solo se mueve un poco hacia abajo.
+
+- $\pi$ aprende bastante de los datos
+- $\omega$ aprende poco, porque solo recibe información a través de $\pi$
+
+## Segundo caso
+
 ```{r}
 #| echo: true
 #| eval: true
 
 pi <- seq(0,1,length.out=101)
 omega <- seq(0,1,length.out=101)
-A_omega <- 20
-B_omega <- 20
-kappa <- 10
+A_omega <- 2
+B_omega <- 2
+kappa <- 100
 N <- 9
 y <- 3
 ```
@@ -217,11 +224,11 @@ plot_prior <- ggplot(prior) +
 prior_omega <- ggplot(prior) +
   geom_line(aes(x=omega, y=p_omega))
 
-prior_pi_1 <- ggplot(prior |> filter(omega == 0.6)) +
+prior_pi_1 <- ggplot(prior |> filter(omega == 0.9)) +
   geom_line(aes(x=pi, y=prior)) +
   xlab(expression(pi))
 
-prior_pi_2 <- ggplot(prior |> filter(omega == 0.9)) +
+prior_pi_2 <- ggplot(prior |> filter(omega == 0.6)) +
   geom_line(aes(x=pi, y=prior)) +
   xlab(expression(pi))
 ```
@@ -235,7 +242,7 @@ prior_pi_2 <- ggplot(prior |> filter(omega == 0.9)) +
   #| fig-height: 8
   #| fig-align: center
 
-plot_prior + (plot_prior_pi_omega1/plot_prior_pi_omega2)
+plot_prior + (prior_pi_1/prior_pi_2)
 ```
 
 ##
@@ -268,6 +275,108 @@ plot_posterior <- ggplot(posterior) +
 plot_prior + plot_likelihood + plot_posterior
 ```
 
+##
+
+La estructura jerárquica transmite mucha más información por la asociación fuerte de $\pi$ y $\omega$. Si los datos sugieren que $\pi\approx\frac{1}{3}$, eso también se vuelve evidencia fuerte de que $\omega$ debería estar más cerca de $\frac{1}{3}$.
+
+## Tercer caso
+
+```{r}
+#| echo: true
+#| eval: true
+
+pi <- seq(0,1,length.out=101)
+omega <- seq(0,1,length.out=101)
+A_omega <- 20
+B_omega <- 20
+kappa <- 5
+N <- 9
+y <- 3
+```
+
+
+
+```{r}
+#| echo: false
+#| eval: true
+
+prior <- expand.grid(pi = pi, omega = omega) |>
+  mutate(p_omega = dbeta(omega, A_omega, B_omega),
+         p_pi_given_omega = dbeta(pi, omega*(kappa-2)+1, (1-omega)*(kappa-2)+1),
+         prior = p_pi_given_omega * p_omega)
+
+plot_prior <- ggplot(prior) +
+  geom_raster(aes(x=pi, y=omega, fill=prior)) +
+  geom_hline(yintercept = 0.6) +
+  geom_hline(yintercept = 0.9) +
+  scale_x_continuous(expression(pi), expand = c(0,0)) +
+  scale_y_continuous(expression(omega), expand = c(0,0)) +
+  viridis::scale_fill_viridis()
+
+prior_omega <- ggplot(prior) +
+  geom_line(aes(x=omega, y=p_omega))
+
+prior_pi_1 <- ggplot(prior |> filter(omega == 0.9)) +
+  geom_line(aes(x=pi, y=prior)) +
+  xlab(expression(pi))
+
+prior_pi_2 <- ggplot(prior |> filter(omega == 0.6)) +
+  geom_line(aes(x=pi, y=prior)) +
+  xlab(expression(pi))
+```
+
+##
+
+```{r}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 8
+  #| fig-height: 8
+  #| fig-align: center
+
+plot_prior + (prior_pi_1/prior_pi_2)
+```
+
+##
+
+```{r}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 8
+  #| fig-height: 8
+  #| fig-align: center
+
+likelihood <- expand.grid(pi = pi, omega = omega) |>
+  mutate(likelihood = dbinom(y, size = N, prob = pi))
+
+plot_likelihood <- ggplot(likelihood) +
+  geom_raster(aes(x=pi, y=omega, fill=likelihood)) +
+  scale_x_continuous(expression(pi), expand = c(0,0)) +
+  scale_y_continuous(expression(omega), expand = c(0,0)) +
+  viridis::scale_fill_viridis()
+
+posterior <- inner_join(prior,likelihood) |>
+  mutate(posterior = prior * likelihood)
+
+plot_posterior <- ggplot(posterior) +
+  geom_raster(aes(x=pi, y=omega, fill=posterior)) +
+  scale_x_continuous(expression(pi), expand = c(0,0)) +
+  scale_y_continuous(expression(omega), expand = c(0,0)) +
+  viridis::scale_fill_viridis()
+
+plot_prior + plot_likelihood + plot_posterior
+```
+
+##
+
+La evidencia dice $\pi parece estar cerca de \frac{1}{3}$. Pero el _prior_ dice muy fuertemente $\omega está cerca de 0.5$. Como $\kappa$ no es grande, el modelo puede acomodar ambas cosas: permite que $\pi$ se aleje de $\omega$ sin tener que mover mucho a $\omega$.
+
+- _Observé una moneda que parece sesgada, pero sigo creyendo que el proceso de fabricación apunta a monedas justas; puede haber salido una moneda particular desviada_
+
+##
+
+En los tres casos la verosimilitud es la misma: los datos informan directamente sobre $\pi$.
+Lo que cambia es cómo esa información se transmite hacia $\omega$: por la fuerza de asociación $\kappa$ y por la fuerza del _prior_ $p(\omega)$.
 
 ##
 
@@ -277,7 +386,7 @@ La inferencia bayesiana en un modelo jerárquico es inferencia en el espacio de 
 
 ¿Qué pasaría si contamos con más de una moneda creada por la misma fábrica? Cada moneda tiene un valor de $\pi_s$ que es propio y que a su vez tienen algo en común: provienen de la fábrica que tiene parámetro $\omega$.
 
-Con $y_1$ caras en $N_1$ tiradas de la moneda 1 estimamos $\pi_1$, con $y_2$ caras en $N_2$ tiradas de la moneda 1 estimamos $\pi_2$... y luego, con todas las tiradas, podemos estimar $\omega$.
+Con $y_1$ caras en $N_1$ tiradas de la moneda 1 estimamos $\pi_1$, con $y_2$ caras en $N_2$ tiradas de la moneda 2 estimamos $\pi_2$... y luego, con todas las tiradas, podemos estimar $\omega$.
 
 ## {.smaller}
 
