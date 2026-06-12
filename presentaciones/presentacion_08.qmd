@@ -787,10 +787,10 @@ ggplot() +
 
 $$
 \begin{aligned}
-    Y_i\mid\mu_i,\sigma & \sim  \mathcal{N}(\mu_i,\sigma^2) \\
-    \mu_i & = \alpha  \\
-    \alpha & \sim  P(\alpha) \\
-    \sigma & \sim  P(\sigma)
+    Y_i\mid\alpha_{j[i]},\sigma & \sim  \mathcal{N}(\alpha_{j[i]},\sigma^2) \\
+    \alpha_{j[i]} & = \alpha  \\
+    \alpha & \sim  \mathcal{D}_\alpha(\theta_1) \\
+    \sigma & \sim  \mathcal{D}_\sigma(\theta_2)
 \end{aligned}
 $$
 
@@ -802,14 +802,13 @@ Hay una única media $\alpha$ común para todos los $i$, independientemente del 
 
 $$
 \begin{aligned}
-    Y_i\mid\mu_i,\sigma & \sim  \mathcal{N}(\mu_i,\sigma^2)\\
-    \mu_i & = \alpha_{j[i]}  \\
-    \alpha_j & \sim  P(\alpha_j) \\
-    \sigma & \sim  P(\sigma)
+    Y_i\mid\alpha_{j[i]},\sigma & \sim  \mathcal{N}(\alpha_{j[i]},\sigma^2)\\
+    \alpha_j & \sim \mathcal{D}_{\alpha_j}(\theta_1) \\
+    \sigma & \sim \mathcal{D}_\sigma(\theta_2)
 \end{aligned}
 $$
 
-Decimos que los $Y_i$ tienen distribución de media $\alpha_{j[i]}$, sin imponer ninguna restricción sobre los $\alpha_j$. $P(\alpha_j)$ es una distribución no informativa (muy ancha y chata). Todos los $\alpha_j$ son independientes. Coincide con la estimación clásica que incluye una variable _dummy_ para cada grupo.
+Decimos que los $Y_i$ tienen distribución de media $\alpha_{j[i]}$, sin imponer ninguna restricción sobre los $\alpha_j$. $\mathcal{D}_{\alpha_j}(\theta_1)$ es una distribución no informativa (muy ancha y chata). Todos los $\alpha_j$ son independientes. Coincide con la estimación clásica que incluye una variable _dummy_ para cada grupo.
 
 ## {.smaller}
 
@@ -818,10 +817,9 @@ Podemos mejorar el modelo anterior incorporando un prior que regularice los $\al
 \pause
 $$
 \begin{aligned}
-    Y_i\mid\mu_i,\sigma & \sim  \mathcal{N}(\mu_i,\sigma^2) \\
-    \mu_i & = \alpha_{j[i]}  \\
+    Y_i\mid\alpha_{j[i]},\sigma & \sim  \mathcal{N}(\alpha_{j[i]},\sigma^2) \\
     \alpha_j & \sim  \mathcal{N}(0,10) \\
-    \sigma & \sim  P(\sigma)
+    \sigma & \sim \mathcal{D_\sigma}(\theta)
 \end{aligned}
 $$
 
@@ -833,12 +831,11 @@ Mejor aún, podemos estimar el grado de regularización partir de los datos. ¿C
 
 $$
 \begin{aligned}
-    Y_i\mid\mu_i,\sigma & \sim  \mathcal{N}(\mu_i,\sigma^2) \\
-    \mu_i & = \alpha_{j[i]}  \\
-    \alpha_j & \sim  \mathcal{N}(\mu_\alpha,\sigma_\alpha^2) \\
-    \sigma & \sim  P(\sigma) \\
-    \mu_\alpha & \sim  P(\mu_\alpha) \\
-    \sigma_\alpha & \sim  P(\sigma_\alpha) \\
+    Y_i\mid\alpha_{j[i]},\sigma & \sim  \mathcal{N}(\alpha_{j[i]},\sigma_y^2) \\
+    \alpha_j \mid \mu_\alpha,\sigma_\alpha & \sim  \mathcal{N}(\mu_\alpha,\sigma_\alpha^2) \\
+    \mu_\alpha & \sim  \mathcal{D_{\mu_\alpha}}(\theta_1) \\
+    \sigma_\alpha & \sim  \mathcal{D_{\sigma_\alpha}}(\theta_2) \\
+    \sigma_y & \sim  \mathcal{D_{\sigma_y}}(\theta_3) \\
 \end{aligned}
 $$
 
