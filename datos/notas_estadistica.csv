@@ -1,396 +1,396 @@
 escuela,sexo,edad,domicilio,tamano_familia,convivencia_padres,educacion_madre,educacion_padre,trabajo_madre,trabajo_padre,motivo_escuela,tutor,tiempo_viaje,tiempo_estudio,reprobaciones_previas,apoyo_escolar,apoyo_familiar,clases_pagadas,actividades,jardin_infantes,quiere_superior,internet,pareja,relacion_familiar,tiempo_libre,salidas_amigos,alcohol_semana,alcohol_finde,salud,ausencias,nota1,nota2,nota3
-GP,F,18,U,4+,separados,4,4,en casa,profesor,cursos,madre,2,2,0,1,0,0,0,1,1,0,0,4,3,4,1,1,3,6,2.5,3.0,3.0
+GP,F,18,U,4+,separados,educación superior,educación superior,en casa,profesor,cursos,madre,2,2,0,1,0,0,0,1,1,0,0,4,3,4,1,1,3,6,2.5,3.0,3.0
 GP,F,17,U,4+,juntos,educación primaria,educación primaria,en casa,otro,cursos,padre,1,2,0,0,1,0,0,0,1,1,0,5,3,3,1,1,3,4,2.5,2.5,3.0
 GP,F,15,U,1-3,juntos,educación primaria,educación primaria,en casa,otro,otro,madre,1,2,3,1,0,1,0,1,1,1,0,4,3,2,2,3,3,10,3.5,4.0,5.0
-GP,F,15,U,4+,juntos,4,educación secundaria,salud,servicios,proximidad,madre,1,3,0,0,1,1,1,1,1,1,1,3,2,2,1,1,5,2,7.5,7.0,7.5
-GP,F,16,U,4+,juntos,educación superior,educación superior,otro,otro,proximidad,padre,1,2,0,0,1,1,0,1,1,0,0,4,3,2,1,2,5,4,3.0,5.0,5.0
-GP,M,16,U,1-3,juntos,4,educación superior,servicios,otro,reputación,madre,1,2,0,0,1,1,1,1,1,1,0,5,4,2,1,2,5,10,7.5,7.5,7.5
-GP,M,16,U,1-3,juntos,educación secundaria,educación secundaria,otro,otro,proximidad,madre,1,2,0,0,0,0,0,1,1,1,0,4,4,4,1,1,3,0,6.0,6.0,5.5
-GP,F,17,U,4+,separados,4,4,otro,profesor,proximidad,madre,2,2,0,1,1,0,0,1,1,0,0,4,1,4,1,1,1,6,3.0,2.5,3.0
-GP,M,15,U,1-3,separados,educación superior,educación secundaria,servicios,otro,proximidad,madre,1,2,0,0,1,1,0,1,1,1,0,4,2,2,1,1,1,0,8.0,9.0,9.5
-GP,M,15,U,4+,juntos,educación superior,4,otro,otro,proximidad,madre,1,2,0,0,1,1,1,1,1,1,0,5,5,1,1,1,5,0,7.0,7.5,7.5
-GP,F,15,U,4+,juntos,4,4,profesora,salud,reputación,madre,1,2,0,0,1,1,0,1,1,1,0,3,3,3,1,2,2,0,5.0,4.0,4.5
-GP,F,15,U,4+,juntos,educación secundaria,educación primaria,servicios,otro,reputación,padre,3,3,0,0,1,0,1,1,1,1,0,5,2,2,1,1,4,4,5.0,6.0,6.0
-GP,M,15,U,1-3,juntos,4,4,salud,servicios,cursos,padre,1,1,0,0,1,1,1,1,1,1,0,4,3,3,1,3,5,2,7.0,7.0,7.0
-GP,M,15,U,4+,juntos,4,educación superior,profesora,otro,cursos,madre,2,2,0,0,1,1,0,1,1,1,0,5,4,3,1,2,3,2,5.0,5.0,5.5
-GP,M,15,U,4+,separados,educación secundaria,educación secundaria,otro,otro,proximidad,otro,1,3,0,0,1,0,0,1,1,1,1,4,5,2,1,1,3,0,7.0,8.0,8.0
-GP,F,16,U,4+,juntos,4,4,salud,otro,proximidad,madre,1,1,0,0,1,0,0,1,1,1,0,4,4,4,1,2,2,4,7.0,7.0,7.0
-GP,F,16,U,4+,juntos,4,4,servicios,servicios,reputación,madre,1,3,0,0,1,1,1,1,1,1,0,3,2,3,1,2,2,6,6.5,7.0,7.0
-GP,F,16,U,4+,juntos,educación superior,educación superior,otro,otro,reputación,madre,3,2,0,1,1,0,1,1,1,0,0,5,3,2,1,1,4,4,4.0,5.0,5.0
-GP,M,17,U,4+,juntos,educación superior,educación secundaria,servicios,servicios,cursos,madre,1,1,3,0,1,0,1,1,1,1,0,5,5,5,2,4,5,16,3.0,2.5,2.5
-GP,M,16,U,1-3,juntos,4,educación superior,salud,otro,proximidad,padre,1,1,0,0,0,1,1,1,1,1,0,3,1,3,1,3,5,4,4.0,5.0,5.0
-GP,M,15,U,4+,juntos,4,educación superior,profesora,otro,reputación,madre,1,2,0,0,0,0,0,1,1,1,0,4,4,1,1,1,1,0,6.5,7.0,7.5
-GP,M,15,U,4+,juntos,4,4,salud,salud,otro,padre,1,1,0,0,1,1,0,1,1,1,0,5,4,2,1,1,5,0,6.0,7.5,7.5
-GP,M,16,U,1-3,juntos,4,educación secundaria,profesora,otro,cursos,madre,1,2,0,0,0,0,1,1,1,1,0,4,5,1,1,3,5,2,7.5,7.5,8.0
-GP,M,16,U,1-3,juntos,educación secundaria,educación secundaria,otro,otro,reputación,madre,2,2,0,0,1,0,1,1,1,1,0,5,4,4,2,4,5,0,6.5,6.5,6.0
-GP,F,15,R,4+,juntos,educación secundaria,4,servicios,salud,cursos,madre,1,3,0,1,1,1,1,1,1,1,0,4,3,2,1,1,5,2,5.0,4.5,4.0
-GP,F,16,U,4+,juntos,educación secundaria,educación secundaria,servicios,servicios,proximidad,madre,1,1,2,0,1,1,0,0,1,1,0,1,2,2,1,3,5,14,3.0,4.5,4.0
-GP,M,15,U,4+,juntos,educación secundaria,educación secundaria,otro,otro,proximidad,madre,1,1,0,0,1,1,0,1,1,1,0,4,2,2,1,2,5,2,6.0,6.0,5.5
-GP,M,15,U,4+,juntos,4,educación secundaria,salud,servicios,otro,madre,1,1,0,0,0,1,0,1,1,1,0,2,2,4,2,4,1,4,7.5,8.0,7.5
-GP,M,16,U,1-3,separados,educación superior,4,servicios,otro,proximidad,madre,1,2,0,1,1,0,1,1,1,1,0,5,3,3,1,1,5,4,5.5,5.5,5.5
-GP,M,16,U,4+,juntos,4,4,profesora,profesor,proximidad,madre,1,2,0,0,1,1,1,1,1,1,1,4,4,5,5,5,5,16,5.0,6.0,5.5
-GP,M,15,U,4+,juntos,4,4,salud,servicios,proximidad,madre,1,2,0,0,1,1,0,0,1,1,0,5,4,2,3,4,5,0,4.5,5.5,6.0
-GP,M,15,U,4+,juntos,4,4,servicios,servicios,reputación,madre,2,2,0,0,1,0,1,1,1,1,0,4,3,1,1,1,5,0,8.5,8.0,8.5
-GP,M,15,R,4+,juntos,4,educación superior,profesora,en casa,cursos,madre,1,2,0,0,1,0,1,1,1,1,1,4,5,2,1,1,5,0,8.5,8.0,8.0
-GP,M,15,U,1-3,juntos,educación superior,educación superior,otro,otro,cursos,madre,1,2,0,0,0,0,1,0,1,1,0,5,3,2,1,1,2,0,4.0,5.0,6.0
-GP,M,16,U,4+,juntos,educación superior,educación secundaria,otro,otro,proximidad,madre,1,1,0,0,1,1,0,0,1,1,0,5,4,3,1,1,5,0,6.0,7.0,7.5
-GP,F,15,U,4+,juntos,educación secundaria,educación superior,otro,otro,otro,padre,2,1,0,0,1,0,1,1,1,0,0,3,5,1,1,1,5,0,4.0,3.5,3.0
-GP,M,15,U,1-3,juntos,4,educación superior,profesora,servicios,proximidad,madre,1,3,0,0,1,0,1,1,1,1,0,5,4,3,1,1,4,2,7.5,8.0,9.0
-GP,M,16,R,4+,separados,4,4,otro,profesor,reputación,madre,2,3,0,0,1,0,1,1,1,1,1,2,4,3,1,1,5,7,7.5,8.0,7.5
-GP,F,15,R,4+,juntos,educación superior,4,servicios,salud,cursos,madre,1,3,0,1,1,1,1,1,1,1,0,4,3,2,1,1,5,2,6.0,6.0,5.5
-GP,F,15,R,4+,juntos,educación secundaria,educación secundaria,en casa,otro,reputación,madre,1,1,0,1,1,1,1,1,1,0,0,4,3,1,1,1,2,8,7.0,6.5,6.5
-GP,F,16,U,1-3,juntos,educación secundaria,educación secundaria,otro,otro,proximidad,madre,2,2,1,0,1,0,1,0,1,1,1,3,3,3,1,2,3,25,3.5,5.0,5.5
-GP,M,15,U,1-3,juntos,4,4,profesora,otro,proximidad,otro,1,1,0,0,1,0,0,0,1,1,1,5,4,3,2,4,5,8,6.0,6.0,6.0
-GP,M,15,U,4+,juntos,4,4,servicios,profesor,cursos,padre,1,2,0,0,1,0,1,1,1,1,0,4,3,3,1,1,5,2,9.5,9.0,9.0
-GP,M,15,U,4+,juntos,educación secundaria,educación secundaria,servicios,servicios,cursos,padre,1,1,0,1,1,0,0,1,1,1,0,5,4,1,1,1,1,0,4.0,4.0,5.5
-GP,F,16,U,1-3,juntos,educación secundaria,educación secundaria,otro,en casa,cursos,padre,2,2,1,1,0,0,1,1,1,1,0,4,3,3,2,2,5,14,5.0,5.0,4.5
-GP,F,15,U,1-3,separados,4,educación superior,otro,otro,cursos,madre,1,2,0,1,1,1,1,1,1,1,1,5,2,2,1,1,5,8,4.0,4.0,3.0
-GP,F,16,U,1-3,separados,educación superior,educación superior,otro,servicios,proximidad,madre,1,2,0,0,1,0,0,1,1,1,0,2,3,5,1,4,3,12,5.5,6.0,5.5
-GP,M,16,U,4+,juntos,4,educación superior,salud,servicios,reputación,madre,1,4,0,0,0,0,1,1,1,1,0,4,2,2,1,1,2,4,9.5,9.5,10.0
-GP,M,15,U,4+,juntos,4,educación secundaria,profesora,otro,proximidad,madre,1,2,0,0,1,1,0,1,1,0,0,4,3,3,2,2,5,2,7.5,7.5,7.0
-GP,F,15,U,4+,juntos,4,4,servicios,profesor,otro,padre,1,2,1,1,1,0,1,0,1,1,0,4,4,4,1,1,3,2,3.5,3.5,3.5
-GP,F,16,U,1-3,juntos,educación secundaria,educación secundaria,servicios,servicios,cursos,madre,3,2,0,0,1,1,0,1,1,1,0,4,3,3,2,3,4,2,6.0,6.5,6.5
-GP,F,15,U,1-3,juntos,4,educación secundaria,salud,otro,otro,madre,1,2,0,0,1,1,0,1,1,1,0,4,3,3,1,1,5,2,5.5,6.5,6.5
-GP,M,15,U,1-3,separados,4,educación secundaria,salud,salud,otro,padre,2,1,1,0,0,0,0,1,1,0,0,5,5,5,3,4,5,6,5.5,5.5,5.0
-GP,F,15,U,4+,juntos,4,4,servicios,servicios,cursos,madre,1,1,0,1,1,1,0,1,1,1,0,3,3,4,2,3,5,0,4.0,5.0,5.5
-GP,F,15,U,1-3,separados,educación superior,educación superior,otro,otro,otro,madre,1,1,0,0,0,1,0,1,1,1,0,5,3,4,4,4,1,6,5.0,6.5,6.5
-GP,F,16,U,4+,separados,educación secundaria,educación primaria,otro,otro,otro,madre,1,2,0,0,0,1,1,1,1,1,1,5,3,4,1,1,2,8,4.0,4.5,5.0
-GP,F,15,U,4+,separados,4,educación superior,servicios,servicios,reputación,madre,1,2,0,0,1,1,1,1,1,1,0,4,3,2,1,1,1,0,7.0,7.5,7.5
-GP,M,15,U,4+,juntos,4,4,profesora,salud,reputación,madre,1,2,0,0,1,0,1,1,1,0,0,3,2,2,1,1,5,4,7.0,7.5,7.5
-GP,M,15,U,1-3,juntos,educación primaria,educación secundaria,otro,en casa,proximidad,padre,1,2,0,1,1,0,1,1,1,1,0,4,3,2,1,1,5,2,4.5,5.0,4.5
-GP,F,16,U,4+,juntos,4,educación secundaria,servicios,otro,cursos,madre,1,2,0,0,1,0,0,1,1,1,0,4,2,3,1,1,5,2,7.5,8.0,8.0
-GP,F,16,R,4+,juntos,4,4,salud,profesor,otro,madre,1,2,0,0,1,0,1,1,1,0,0,2,4,4,2,3,4,6,5.0,5.5,5.5
+GP,F,15,U,4+,juntos,educación superior,educación secundaria incompleta,salud,servicios,proximidad,madre,1,3,0,0,1,1,1,1,1,1,1,3,2,2,1,1,5,2,7.5,7.0,7.5
+GP,F,16,U,4+,juntos,educación secundaria,educación secundaria,otro,otro,proximidad,padre,1,2,0,0,1,1,0,1,1,0,0,4,3,2,1,2,5,4,3.0,5.0,5.0
+GP,M,16,U,1-3,juntos,educación superior,educación secundaria,servicios,otro,reputación,madre,1,2,0,0,1,1,1,1,1,1,0,5,4,2,1,2,5,10,7.5,7.5,7.5
+GP,M,16,U,1-3,juntos,educación secundaria incompleta,educación secundaria incompleta,otro,otro,proximidad,madre,1,2,0,0,0,0,0,1,1,1,0,4,4,4,1,1,3,0,6.0,6.0,5.5
+GP,F,17,U,4+,separados,educación superior,educación superior,otro,profesor,proximidad,madre,2,2,0,1,1,0,0,1,1,0,0,4,1,4,1,1,1,6,3.0,2.5,3.0
+GP,M,15,U,1-3,separados,educación secundaria,educación secundaria incompleta,servicios,otro,proximidad,madre,1,2,0,0,1,1,0,1,1,1,0,4,2,2,1,1,1,0,8.0,9.0,9.5
+GP,M,15,U,4+,juntos,educación secundaria,educación superior,otro,otro,proximidad,madre,1,2,0,0,1,1,1,1,1,1,0,5,5,1,1,1,5,0,7.0,7.5,7.5
+GP,F,15,U,4+,juntos,educación superior,educación superior,profesora,salud,reputación,madre,1,2,0,0,1,1,0,1,1,1,0,3,3,3,1,2,2,0,5.0,4.0,4.5
+GP,F,15,U,4+,juntos,educación secundaria incompleta,educación primaria,servicios,otro,reputación,padre,3,3,0,0,1,0,1,1,1,1,0,5,2,2,1,1,4,4,5.0,6.0,6.0
+GP,M,15,U,1-3,juntos,educación superior,educación superior,salud,servicios,cursos,padre,1,1,0,0,1,1,1,1,1,1,0,4,3,3,1,3,5,2,7.0,7.0,7.0
+GP,M,15,U,4+,juntos,educación superior,educación secundaria,profesora,otro,cursos,madre,2,2,0,0,1,1,0,1,1,1,0,5,4,3,1,2,3,2,5.0,5.0,5.5
+GP,M,15,U,4+,separados,educación secundaria incompleta,educación secundaria incompleta,otro,otro,proximidad,otro,1,3,0,0,1,0,0,1,1,1,1,4,5,2,1,1,3,0,7.0,8.0,8.0
+GP,F,16,U,4+,juntos,educación superior,educación superior,salud,otro,proximidad,madre,1,1,0,0,1,0,0,1,1,1,0,4,4,4,1,2,2,4,7.0,7.0,7.0
+GP,F,16,U,4+,juntos,educación superior,educación superior,servicios,servicios,reputación,madre,1,3,0,0,1,1,1,1,1,1,0,3,2,3,1,2,2,6,6.5,7.0,7.0
+GP,F,16,U,4+,juntos,educación secundaria,educación secundaria,otro,otro,reputación,madre,3,2,0,1,1,0,1,1,1,0,0,5,3,2,1,1,4,4,4.0,5.0,5.0
+GP,M,17,U,4+,juntos,educación secundaria,educación secundaria incompleta,servicios,servicios,cursos,madre,1,1,3,0,1,0,1,1,1,1,0,5,5,5,2,4,5,16,3.0,2.5,2.5
+GP,M,16,U,1-3,juntos,educación superior,educación secundaria,salud,otro,proximidad,padre,1,1,0,0,0,1,1,1,1,1,0,3,1,3,1,3,5,4,4.0,5.0,5.0
+GP,M,15,U,4+,juntos,educación superior,educación secundaria,profesora,otro,reputación,madre,1,2,0,0,0,0,0,1,1,1,0,4,4,1,1,1,1,0,6.5,7.0,7.5
+GP,M,15,U,4+,juntos,educación superior,educación superior,salud,salud,otro,padre,1,1,0,0,1,1,0,1,1,1,0,5,4,2,1,1,5,0,6.0,7.5,7.5
+GP,M,16,U,1-3,juntos,educación superior,educación secundaria incompleta,profesora,otro,cursos,madre,1,2,0,0,0,0,1,1,1,1,0,4,5,1,1,3,5,2,7.5,7.5,8.0
+GP,M,16,U,1-3,juntos,educación secundaria incompleta,educación secundaria incompleta,otro,otro,reputación,madre,2,2,0,0,1,0,1,1,1,1,0,5,4,4,2,4,5,0,6.5,6.5,6.0
+GP,F,15,R,4+,juntos,educación secundaria incompleta,educación superior,servicios,salud,cursos,madre,1,3,0,1,1,1,1,1,1,1,0,4,3,2,1,1,5,2,5.0,4.5,4.0
+GP,F,16,U,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,servicios,servicios,proximidad,madre,1,1,2,0,1,1,0,0,1,1,0,1,2,2,1,3,5,14,3.0,4.5,4.0
+GP,M,15,U,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,otro,otro,proximidad,madre,1,1,0,0,1,1,0,1,1,1,0,4,2,2,1,2,5,2,6.0,6.0,5.5
+GP,M,15,U,4+,juntos,educación superior,educación secundaria incompleta,salud,servicios,otro,madre,1,1,0,0,0,1,0,1,1,1,0,2,2,4,2,4,1,4,7.5,8.0,7.5
+GP,M,16,U,1-3,separados,educación secundaria,educación superior,servicios,otro,proximidad,madre,1,2,0,1,1,0,1,1,1,1,0,5,3,3,1,1,5,4,5.5,5.5,5.5
+GP,M,16,U,4+,juntos,educación superior,educación superior,profesora,profesor,proximidad,madre,1,2,0,0,1,1,1,1,1,1,1,4,4,5,5,5,5,16,5.0,6.0,5.5
+GP,M,15,U,4+,juntos,educación superior,educación superior,salud,servicios,proximidad,madre,1,2,0,0,1,1,0,0,1,1,0,5,4,2,3,4,5,0,4.5,5.5,6.0
+GP,M,15,U,4+,juntos,educación superior,educación superior,servicios,servicios,reputación,madre,2,2,0,0,1,0,1,1,1,1,0,4,3,1,1,1,5,0,8.5,8.0,8.5
+GP,M,15,R,4+,juntos,educación superior,educación secundaria,profesora,en casa,cursos,madre,1,2,0,0,1,0,1,1,1,1,1,4,5,2,1,1,5,0,8.5,8.0,8.0
+GP,M,15,U,1-3,juntos,educación secundaria,educación secundaria,otro,otro,cursos,madre,1,2,0,0,0,0,1,0,1,1,0,5,3,2,1,1,2,0,4.0,5.0,6.0
+GP,M,16,U,4+,juntos,educación secundaria,educación secundaria incompleta,otro,otro,proximidad,madre,1,1,0,0,1,1,0,0,1,1,0,5,4,3,1,1,5,0,6.0,7.0,7.5
+GP,F,15,U,4+,juntos,educación secundaria incompleta,educación secundaria,otro,otro,otro,padre,2,1,0,0,1,0,1,1,1,0,0,3,5,1,1,1,5,0,4.0,3.5,3.0
+GP,M,15,U,1-3,juntos,educación superior,educación secundaria,profesora,servicios,proximidad,madre,1,3,0,0,1,0,1,1,1,1,0,5,4,3,1,1,4,2,7.5,8.0,9.0
+GP,M,16,R,4+,separados,educación superior,educación superior,otro,profesor,reputación,madre,2,3,0,0,1,0,1,1,1,1,1,2,4,3,1,1,5,7,7.5,8.0,7.5
+GP,F,15,R,4+,juntos,educación secundaria,educación superior,servicios,salud,cursos,madre,1,3,0,1,1,1,1,1,1,1,0,4,3,2,1,1,5,2,6.0,6.0,5.5
+GP,F,15,R,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,en casa,otro,reputación,madre,1,1,0,1,1,1,1,1,1,0,0,4,3,1,1,1,2,8,7.0,6.5,6.5
+GP,F,16,U,1-3,juntos,educación secundaria incompleta,educación secundaria incompleta,otro,otro,proximidad,madre,2,2,1,0,1,0,1,0,1,1,1,3,3,3,1,2,3,25,3.5,5.0,5.5
+GP,M,15,U,1-3,juntos,educación superior,educación superior,profesora,otro,proximidad,otro,1,1,0,0,1,0,0,0,1,1,1,5,4,3,2,4,5,8,6.0,6.0,6.0
+GP,M,15,U,4+,juntos,educación superior,educación superior,servicios,profesor,cursos,padre,1,2,0,0,1,0,1,1,1,1,0,4,3,3,1,1,5,2,9.5,9.0,9.0
+GP,M,15,U,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,servicios,servicios,cursos,padre,1,1,0,1,1,0,0,1,1,1,0,5,4,1,1,1,1,0,4.0,4.0,5.5
+GP,F,16,U,1-3,juntos,educación secundaria incompleta,educación secundaria incompleta,otro,en casa,cursos,padre,2,2,1,1,0,0,1,1,1,1,0,4,3,3,2,2,5,14,5.0,5.0,4.5
+GP,F,15,U,1-3,separados,educación superior,educación secundaria,otro,otro,cursos,madre,1,2,0,1,1,1,1,1,1,1,1,5,2,2,1,1,5,8,4.0,4.0,3.0
+GP,F,16,U,1-3,separados,educación secundaria,educación secundaria,otro,servicios,proximidad,madre,1,2,0,0,1,0,0,1,1,1,0,2,3,5,1,4,3,12,5.5,6.0,5.5
+GP,M,16,U,4+,juntos,educación superior,educación secundaria,salud,servicios,reputación,madre,1,4,0,0,0,0,1,1,1,1,0,4,2,2,1,1,2,4,9.5,9.5,10.0
+GP,M,15,U,4+,juntos,educación superior,educación secundaria incompleta,profesora,otro,proximidad,madre,1,2,0,0,1,1,0,1,1,0,0,4,3,3,2,2,5,2,7.5,7.5,7.0
+GP,F,15,U,4+,juntos,educación superior,educación superior,servicios,profesor,otro,padre,1,2,1,1,1,0,1,0,1,1,0,4,4,4,1,1,3,2,3.5,3.5,3.5
+GP,F,16,U,1-3,juntos,educación secundaria incompleta,educación secundaria incompleta,servicios,servicios,cursos,madre,3,2,0,0,1,1,0,1,1,1,0,4,3,3,2,3,4,2,6.0,6.5,6.5
+GP,F,15,U,1-3,juntos,educación superior,educación secundaria incompleta,salud,otro,otro,madre,1,2,0,0,1,1,0,1,1,1,0,4,3,3,1,1,5,2,5.5,6.5,6.5
+GP,M,15,U,1-3,separados,educación superior,educación secundaria incompleta,salud,salud,otro,padre,2,1,1,0,0,0,0,1,1,0,0,5,5,5,3,4,5,6,5.5,5.5,5.0
+GP,F,15,U,4+,juntos,educación superior,educación superior,servicios,servicios,cursos,madre,1,1,0,1,1,1,0,1,1,1,0,3,3,4,2,3,5,0,4.0,5.0,5.5
+GP,F,15,U,1-3,separados,educación secundaria,educación secundaria,otro,otro,otro,madre,1,1,0,0,0,1,0,1,1,1,0,5,3,4,4,4,1,6,5.0,6.5,6.5
+GP,F,16,U,4+,separados,educación secundaria incompleta,educación primaria,otro,otro,otro,madre,1,2,0,0,0,1,1,1,1,1,1,5,3,4,1,1,2,8,4.0,4.5,5.0
+GP,F,15,U,4+,separados,educación superior,educación secundaria,servicios,servicios,reputación,madre,1,2,0,0,1,1,1,1,1,1,0,4,3,2,1,1,1,0,7.0,7.5,7.5
+GP,M,15,U,4+,juntos,educación superior,educación superior,profesora,salud,reputación,madre,1,2,0,0,1,0,1,1,1,0,0,3,2,2,1,1,5,4,7.0,7.5,7.5
+GP,M,15,U,1-3,juntos,educación primaria,educación secundaria incompleta,otro,en casa,proximidad,padre,1,2,0,1,1,0,1,1,1,1,0,4,3,2,1,1,5,2,4.5,5.0,4.5
+GP,F,16,U,4+,juntos,educación superior,educación secundaria incompleta,servicios,otro,cursos,madre,1,2,0,0,1,0,0,1,1,1,0,4,2,3,1,1,5,2,7.5,8.0,8.0
+GP,F,16,R,4+,juntos,educación superior,educación superior,salud,profesor,otro,madre,1,2,0,0,1,0,1,1,1,0,0,2,4,4,2,3,4,6,5.0,5.5,5.5
 GP,F,16,U,4+,juntos,educación primaria,educación primaria,servicios,servicios,cursos,padre,4,1,0,1,1,0,1,0,1,1,1,5,5,5,5,5,5,6,5.0,4.0,5.5
-GP,F,16,U,1-3,juntos,educación primaria,educación secundaria,otro,servicios,reputación,padre,1,2,0,1,0,0,1,1,1,1,0,4,4,3,1,1,1,4,4.0,5.0,4.5
-GP,F,16,U,4+,juntos,4,educación superior,profesora,salud,proximidad,madre,1,3,0,1,1,1,1,1,1,1,0,3,4,4,2,4,4,2,5.0,4.5,4.5
-GP,F,15,U,1-3,juntos,4,educación superior,servicios,servicios,reputación,padre,1,2,0,1,0,0,1,1,1,1,1,4,4,4,2,4,2,0,5.0,5.0,5.0
-GP,F,16,U,1-3,juntos,4,educación superior,profesora,servicios,cursos,madre,3,2,0,0,1,0,1,1,1,1,0,5,4,3,1,2,1,2,8.0,7.5,7.5
-GP,M,15,U,4+,separados,4,4,otro,servicios,reputación,madre,1,4,0,0,1,0,1,0,1,1,1,1,3,3,5,5,3,4,6.5,6.5,6.0
-GP,F,16,U,4+,juntos,educación superior,educación primaria,servicios,otro,cursos,madre,1,4,0,1,1,1,0,1,1,1,0,4,3,3,1,2,5,4,3.5,3.5,3.0
-GP,F,15,R,1-3,juntos,educación secundaria,educación secundaria,salud,servicios,reputación,madre,2,2,0,1,1,1,0,1,1,1,0,4,1,3,1,3,4,2,4.0,4.5,4.0
-GP,F,15,R,1-3,juntos,educación superior,educación primaria,otro,otro,reputación,padre,2,4,0,0,1,0,0,0,1,1,0,4,4,2,2,3,3,12,8.0,8.0,8.0
-GP,M,16,U,4+,juntos,educación superior,educación primaria,otro,otro,reputación,padre,2,4,0,0,1,1,0,1,1,1,0,4,3,2,1,1,5,0,6.5,7.5,7.5
-GP,M,15,U,4+,juntos,4,educación secundaria,otro,otro,cursos,madre,1,4,0,0,0,0,0,1,1,1,0,3,3,3,1,1,3,0,5.0,5.0,5.0
+GP,F,16,U,1-3,juntos,educación primaria,educación secundaria incompleta,otro,servicios,reputación,padre,1,2,0,1,0,0,1,1,1,1,0,4,4,3,1,1,1,4,4.0,5.0,4.5
+GP,F,16,U,4+,juntos,educación superior,educación secundaria,profesora,salud,proximidad,madre,1,3,0,1,1,1,1,1,1,1,0,3,4,4,2,4,4,2,5.0,4.5,4.5
+GP,F,15,U,1-3,juntos,educación superior,educación secundaria,servicios,servicios,reputación,padre,1,2,0,1,0,0,1,1,1,1,1,4,4,4,2,4,2,0,5.0,5.0,5.0
+GP,F,16,U,1-3,juntos,educación superior,educación secundaria,profesora,servicios,cursos,madre,3,2,0,0,1,0,1,1,1,1,0,5,4,3,1,2,1,2,8.0,7.5,7.5
+GP,M,15,U,4+,separados,educación superior,educación superior,otro,servicios,reputación,madre,1,4,0,0,1,0,1,0,1,1,1,1,3,3,5,5,3,4,6.5,6.5,6.0
+GP,F,16,U,4+,juntos,educación secundaria,educación primaria,servicios,otro,cursos,madre,1,4,0,1,1,1,0,1,1,1,0,4,3,3,1,2,5,4,3.5,3.5,3.0
+GP,F,15,R,1-3,juntos,educación secundaria incompleta,educación secundaria incompleta,salud,servicios,reputación,madre,2,2,0,1,1,1,0,1,1,1,0,4,1,3,1,3,4,2,4.0,4.5,4.0
+GP,F,15,R,1-3,juntos,educación secundaria,educación primaria,otro,otro,reputación,padre,2,4,0,0,1,0,0,0,1,1,0,4,4,2,2,3,3,12,8.0,8.0,8.0
+GP,M,16,U,4+,juntos,educación secundaria,educación primaria,otro,otro,reputación,padre,2,4,0,0,1,1,0,1,1,1,0,4,3,2,1,1,5,0,6.5,7.5,7.5
+GP,M,15,U,4+,juntos,educación superior,educación secundaria incompleta,otro,otro,cursos,madre,1,4,0,0,0,0,0,1,1,1,0,3,3,3,1,1,3,0,5.0,5.0,5.0
 GP,F,15,R,4+,juntos,educación primaria,educación primaria,otro,otro,reputación,madre,1,2,2,1,1,0,0,0,1,1,1,3,3,4,2,4,5,2,4.0,3.0,2.5
-GP,M,16,U,4+,juntos,educación superior,educación primaria,otro,otro,reputación,madre,1,1,0,0,0,0,1,1,1,0,0,5,3,2,2,2,5,2,6.0,6.0,7.0
-GP,F,16,U,4+,juntos,educación superior,educación superior,otro,servicios,proximidad,madre,1,2,0,1,1,1,1,1,1,1,0,4,3,3,2,4,5,54,5.5,6.0,5.5
-GP,M,15,U,4+,juntos,4,educación superior,profesora,otro,proximidad,madre,1,2,0,0,1,1,1,1,1,1,0,4,3,3,2,3,5,6,4.5,4.5,5.0
-GP,M,15,U,4+,juntos,4,sin educación,profesora,otro,cursos,madre,2,4,0,0,0,0,1,1,1,1,0,3,4,3,1,1,1,8,5.5,5.5,5.0
-GP,F,16,U,4+,juntos,educación secundaria,educación secundaria,otro,otro,reputación,madre,1,4,0,0,0,1,0,1,1,1,1,5,2,3,1,3,3,0,5.5,5.5,5.5
-GP,M,17,U,4+,juntos,educación secundaria,educación primaria,otro,otro,proximidad,madre,2,1,3,1,1,0,1,1,0,1,0,4,5,1,1,1,3,2,4.0,4.0,5.0
-GP,F,16,U,4+,juntos,educación superior,4,en casa,otro,cursos,madre,1,2,0,0,1,0,0,1,1,1,0,2,4,3,1,2,3,12,2.5,2.5,2.5
-GP,M,15,U,4+,juntos,educación secundaria,educación superior,otro,servicios,cursos,padre,1,1,0,1,1,1,1,0,1,1,1,3,2,2,1,3,3,2,5.0,6.0,6.0
-GP,M,15,U,4+,juntos,educación secundaria,educación superior,otro,otro,proximidad,madre,1,3,0,1,0,1,0,0,1,1,0,5,3,2,1,2,5,4,5.5,5.0,5.5
-GP,F,15,U,1-3,juntos,educación superior,educación secundaria,servicios,otro,reputación,madre,1,2,0,0,1,1,0,1,1,1,0,4,4,4,1,1,5,10,3.5,3.0,3.0
-GP,M,15,U,1-3,juntos,educación secundaria,educación secundaria,servicios,servicios,proximidad,madre,2,2,0,0,0,1,1,1,1,1,0,5,3,3,1,3,4,4,7.5,7.5,7.5
+GP,M,16,U,4+,juntos,educación secundaria,educación primaria,otro,otro,reputación,madre,1,1,0,0,0,0,1,1,1,0,0,5,3,2,2,2,5,2,6.0,6.0,7.0
+GP,F,16,U,4+,juntos,educación secundaria,educación secundaria,otro,servicios,proximidad,madre,1,2,0,1,1,1,1,1,1,1,0,4,3,3,2,4,5,54,5.5,6.0,5.5
+GP,M,15,U,4+,juntos,educación superior,educación secundaria,profesora,otro,proximidad,madre,1,2,0,0,1,1,1,1,1,1,0,4,3,3,2,3,5,6,4.5,4.5,5.0
+GP,M,15,U,4+,juntos,educación superior,sin educación,profesora,otro,cursos,madre,2,4,0,0,0,0,1,1,1,1,0,3,4,3,1,1,1,8,5.5,5.5,5.0
+GP,F,16,U,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,otro,otro,reputación,madre,1,4,0,0,0,1,0,1,1,1,1,5,2,3,1,3,3,0,5.5,5.5,5.5
+GP,M,17,U,4+,juntos,educación secundaria incompleta,educación primaria,otro,otro,proximidad,madre,2,1,3,1,1,0,1,1,0,1,0,4,5,1,1,1,3,2,4.0,4.0,5.0
+GP,F,16,U,4+,juntos,educación secundaria,educación superior,en casa,otro,cursos,madre,1,2,0,0,1,0,0,1,1,1,0,2,4,3,1,2,3,12,2.5,2.5,2.5
+GP,M,15,U,4+,juntos,educación secundaria incompleta,educación secundaria,otro,servicios,cursos,padre,1,1,0,1,1,1,1,0,1,1,1,3,2,2,1,3,3,2,5.0,6.0,6.0
+GP,M,15,U,4+,juntos,educación secundaria incompleta,educación secundaria,otro,otro,proximidad,madre,1,3,0,1,0,1,0,0,1,1,0,5,3,2,1,2,5,4,5.5,5.0,5.5
+GP,F,15,U,1-3,juntos,educación secundaria,educación secundaria incompleta,servicios,otro,reputación,madre,1,2,0,0,1,1,0,1,1,1,0,4,4,4,1,1,5,10,3.5,3.0,3.0
+GP,M,15,U,1-3,juntos,educación secundaria incompleta,educación secundaria incompleta,servicios,servicios,proximidad,madre,2,2,0,0,0,1,1,1,1,1,0,5,3,3,1,3,4,4,7.5,7.5,7.5
 GP,F,15,U,4+,juntos,educación primaria,educación primaria,otro,otro,proximidad,padre,1,2,0,0,1,0,1,0,1,1,0,4,3,2,2,3,4,2,4.5,5.0,5.0
-GP,F,15,U,4+,juntos,4,4,servicios,servicios,reputación,padre,2,2,2,0,0,1,0,1,1,1,1,4,4,4,2,3,5,6,3.5,4.5,4.0
-GP,F,16,U,1-3,juntos,educación secundaria,educación secundaria,en casa,otro,cursos,madre,1,2,0,0,1,0,0,1,1,0,0,4,3,4,1,2,2,4,4.0,3.5,3.0
-GP,F,15,U,4+,juntos,4,educación secundaria,otro,otro,reputación,madre,1,3,0,0,1,0,1,1,1,1,0,5,3,3,1,3,1,4,6.5,7.0,7.0
-GP,M,16,U,4+,juntos,educación secundaria,educación secundaria,servicios,otro,reputación,padre,2,2,1,0,0,1,1,0,1,1,0,4,4,2,1,1,3,12,5.5,5.0,5.0
-GP,M,16,U,1-3,separados,4,4,profesora,salud,reputación,madre,1,2,0,0,1,0,0,1,1,0,0,4,1,3,3,5,5,18,4.0,3.0,3.5
-GP,F,16,U,4+,juntos,educación superior,educación superior,otro,otro,proximidad,madre,1,3,0,0,1,1,0,1,1,1,1,4,3,3,1,3,4,0,3.5,3.5,4.0
-GP,F,15,U,4+,juntos,4,educación superior,servicios,otro,reputación,madre,1,1,0,0,0,1,1,1,1,1,0,4,5,5,1,3,1,4,8.0,8.5,9.0
-GP,F,16,U,1-3,juntos,educación superior,educación primaria,otro,otro,proximidad,padre,1,2,0,1,1,0,0,1,1,0,0,3,3,3,2,3,2,4,3.5,3.0,3.0
-GP,F,16,U,4+,juntos,4,educación secundaria,profesora,servicios,proximidad,madre,2,2,0,0,1,1,1,1,1,1,0,5,3,3,1,1,1,0,5.5,5.0,5.0
-GP,M,15,U,1-3,juntos,educación secundaria,educación secundaria,servicios,salud,reputación,madre,1,4,0,0,1,0,1,1,1,1,0,4,3,4,1,1,4,6,5.5,6.5,7.0
+GP,F,15,U,4+,juntos,educación superior,educación superior,servicios,servicios,reputación,padre,2,2,2,0,0,1,0,1,1,1,1,4,4,4,2,3,5,6,3.5,4.5,4.0
+GP,F,16,U,1-3,juntos,educación secundaria incompleta,educación secundaria incompleta,en casa,otro,cursos,madre,1,2,0,0,1,0,0,1,1,0,0,4,3,4,1,2,2,4,4.0,3.5,3.0
+GP,F,15,U,4+,juntos,educación superior,educación secundaria incompleta,otro,otro,reputación,madre,1,3,0,0,1,0,1,1,1,1,0,5,3,3,1,3,1,4,6.5,7.0,7.0
+GP,M,16,U,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,servicios,otro,reputación,padre,2,2,1,0,0,1,1,0,1,1,0,4,4,2,1,1,3,12,5.5,5.0,5.0
+GP,M,16,U,1-3,separados,educación superior,educación superior,profesora,salud,reputación,madre,1,2,0,0,1,0,0,1,1,0,0,4,1,3,3,5,5,18,4.0,3.0,3.5
+GP,F,16,U,4+,juntos,educación secundaria,educación secundaria,otro,otro,proximidad,madre,1,3,0,0,1,1,0,1,1,1,1,4,3,3,1,3,4,0,3.5,3.5,4.0
+GP,F,15,U,4+,juntos,educación superior,educación secundaria,servicios,otro,reputación,madre,1,1,0,0,0,1,1,1,1,1,0,4,5,5,1,3,1,4,8.0,8.5,9.0
+GP,F,16,U,1-3,juntos,educación secundaria,educación primaria,otro,otro,proximidad,padre,1,2,0,1,1,0,0,1,1,0,0,3,3,3,2,3,2,4,3.5,3.0,3.0
+GP,F,16,U,4+,juntos,educación superior,educación secundaria incompleta,profesora,servicios,proximidad,madre,2,2,0,0,1,1,1,1,1,1,0,5,3,3,1,1,1,0,5.5,5.0,5.0
+GP,M,15,U,1-3,juntos,educación secundaria incompleta,educación secundaria incompleta,servicios,salud,reputación,madre,1,4,0,0,1,0,1,1,1,1,0,4,3,4,1,1,4,6,5.5,6.5,7.0
 GP,F,15,R,4+,juntos,educación primaria,educación primaria,en casa,otro,proximidad,madre,2,4,1,1,1,1,1,1,1,1,0,3,1,2,1,1,1,2,3.5,5.0,5.0
-GP,M,16,R,4+,juntos,4,educación superior,servicios,otro,reputación,madre,2,1,0,1,1,0,1,0,1,1,0,3,3,3,1,1,4,2,5.5,7.5,7.5
-GP,F,16,U,4+,juntos,educación secundaria,educación primaria,otro,otro,cursos,madre,1,2,0,0,1,1,0,1,1,0,1,4,3,5,1,1,5,2,4.0,4.5,5.0
-GP,F,16,U,4+,juntos,4,4,otro,otro,reputación,madre,1,1,0,0,0,0,1,0,1,1,0,5,3,4,1,2,1,6,5.5,7.0,7.0
-GP,F,16,U,4+,juntos,4,educación superior,otro,en casa,cursos,madre,1,3,0,1,1,1,0,1,1,1,0,5,3,5,1,1,3,0,3.5,4.5,4.0
-GP,M,16,U,4+,juntos,4,4,servicios,servicios,otro,madre,1,1,0,1,1,1,1,1,1,1,0,4,5,5,5,5,4,14,3.5,3.5,2.5
-GP,M,16,U,4+,juntos,4,4,servicios,profesor,otro,padre,1,3,0,0,1,0,1,1,1,1,1,4,4,3,1,1,4,0,8.0,8.5,8.5
-GP,M,15,U,4+,juntos,4,4,servicios,otro,cursos,madre,1,1,0,0,1,0,1,0,1,1,0,5,3,3,1,1,5,4,5.0,6.5,7.0
-GP,F,15,U,4+,juntos,educación superior,educación secundaria,servicios,otro,proximidad,madre,2,2,0,1,1,1,0,1,1,1,0,4,3,5,1,1,2,26,3.5,3.0,3.0
-GP,M,15,U,4+,separados,educación superior,4,servicios,otro,cursos,madre,1,2,0,0,1,1,1,1,1,1,0,5,4,4,1,1,1,0,8.0,9.0,9.0
-GP,F,15,U,4+,separados,educación superior,educación superior,otro,salud,reputación,padre,1,4,0,1,0,0,0,1,1,0,0,4,3,3,1,1,4,10,5.0,5.5,5.5
-GP,F,15,U,4+,juntos,educación secundaria,educación secundaria,otro,otro,cursos,madre,1,4,0,1,1,1,0,1,1,1,0,5,1,2,1,1,3,8,3.5,4.0,4.0
-GP,M,16,U,4+,juntos,educación superior,educación superior,servicios,otro,proximidad,padre,1,3,0,0,1,0,1,1,1,1,0,5,3,3,1,1,5,2,8.0,9.0,9.0
-GP,M,15,R,4+,juntos,4,4,otro,otro,proximidad,padre,4,4,0,0,1,1,1,1,1,1,1,1,3,5,3,5,1,6,5.0,6.5,6.5
-GP,F,16,U,1-3,juntos,4,4,salud,salud,otro,madre,1,3,0,0,1,1,1,1,1,1,1,5,4,5,1,1,4,4,7.0,7.5,8.0
-GP,M,15,U,1-3,separados,4,4,profesora,profesor,cursos,madre,1,1,0,0,0,0,1,1,1,1,0,5,5,3,1,1,4,6,9.0,9.5,9.5
-GP,F,16,R,4+,juntos,educación superior,educación superior,servicios,otro,reputación,padre,1,3,1,1,1,0,1,1,1,1,0,4,1,2,1,1,2,0,3.5,5.0,5.0
-GP,F,16,U,4+,juntos,educación secundaria,educación secundaria,en casa,otro,proximidad,madre,1,2,1,1,0,0,1,1,1,1,0,3,1,2,1,1,5,6,5.0,6.5,6.5
-GP,M,15,U,1-3,juntos,4,educación secundaria,profesora,otro,cursos,madre,1,1,0,0,0,0,0,1,1,1,0,3,5,2,1,1,3,10,9.0,9.5,9.5
-GP,M,15,R,4+,juntos,educación secundaria,educación primaria,salud,servicios,reputación,madre,1,2,0,0,0,0,1,1,1,1,1,5,4,2,1,1,5,8,4.5,4.5,4.5
-GP,M,16,U,4+,juntos,4,4,profesora,profesor,cursos,padre,1,2,0,0,1,0,1,1,1,1,0,5,4,4,1,2,5,2,7.5,7.5,8.0
-GP,M,15,U,4+,juntos,4,4,otro,profesor,reputación,padre,2,2,0,0,1,0,1,1,1,0,0,4,4,3,1,1,2,2,5.5,6.5,7.0
-GP,M,16,U,4+,juntos,educación superior,educación superior,otro,servicios,proximidad,padre,2,1,0,0,0,0,1,1,1,1,0,5,4,2,1,1,5,0,6.5,7.0,6.5
-GP,M,17,R,4+,juntos,educación primaria,educación superior,otro,otro,cursos,padre,3,2,1,0,1,0,1,1,1,1,0,5,2,4,1,4,5,20,4.5,3.5,4.0
-GP,M,15,U,4+,juntos,educación superior,4,otro,otro,reputación,padre,1,1,0,0,0,0,0,1,1,1,0,3,4,3,1,2,4,6,7.0,6.5,6.5
-GP,F,15,U,4+,juntos,educación primaria,educación secundaria,en casa,servicios,cursos,madre,1,2,0,0,0,0,0,0,1,1,0,3,2,3,1,2,1,2,8.0,7.5,7.5
-GP,M,15,U,4+,juntos,educación secundaria,educación secundaria,servicios,servicios,proximidad,padre,1,4,0,0,1,1,1,1,1,1,0,5,5,4,1,2,5,6,8.0,7.0,7.5
-GP,F,16,U,1-3,juntos,educación secundaria,4,otro,salud,cursos,padre,2,2,0,0,1,1,1,1,1,1,1,4,2,2,1,2,5,2,6.5,6.5,6.5
-GP,M,16,U,4+,juntos,4,4,salud,otro,cursos,madre,1,1,0,0,1,0,1,1,1,1,0,3,4,4,1,4,5,18,7.0,5.5,6.5
-GP,F,16,U,4+,juntos,educación secundaria,educación secundaria,otro,otro,proximidad,madre,1,2,0,0,0,1,0,1,1,1,1,5,4,4,1,1,5,0,4.0,3.5,4.0
-GP,M,15,U,4+,juntos,educación superior,4,servicios,servicios,proximidad,padre,1,1,0,1,0,0,0,1,1,1,0,5,5,5,3,2,5,0,6.5,6.5,6.0
-GP,F,15,U,1-3,separados,educación superior,4,otro,otro,proximidad,madre,1,2,0,1,0,0,1,1,1,1,1,5,3,2,1,1,1,0,3.5,5.0,5.5
+GP,M,16,R,4+,juntos,educación superior,educación secundaria,servicios,otro,reputación,madre,2,1,0,1,1,0,1,0,1,1,0,3,3,3,1,1,4,2,5.5,7.5,7.5
+GP,F,16,U,4+,juntos,educación secundaria incompleta,educación primaria,otro,otro,cursos,madre,1,2,0,0,1,1,0,1,1,0,1,4,3,5,1,1,5,2,4.0,4.5,5.0
+GP,F,16,U,4+,juntos,educación superior,educación superior,otro,otro,reputación,madre,1,1,0,0,0,0,1,0,1,1,0,5,3,4,1,2,1,6,5.5,7.0,7.0
+GP,F,16,U,4+,juntos,educación superior,educación secundaria,otro,en casa,cursos,madre,1,3,0,1,1,1,0,1,1,1,0,5,3,5,1,1,3,0,3.5,4.5,4.0
+GP,M,16,U,4+,juntos,educación superior,educación superior,servicios,servicios,otro,madre,1,1,0,1,1,1,1,1,1,1,0,4,5,5,5,5,4,14,3.5,3.5,2.5
+GP,M,16,U,4+,juntos,educación superior,educación superior,servicios,profesor,otro,padre,1,3,0,0,1,0,1,1,1,1,1,4,4,3,1,1,4,0,8.0,8.5,8.5
+GP,M,15,U,4+,juntos,educación superior,educación superior,servicios,otro,cursos,madre,1,1,0,0,1,0,1,0,1,1,0,5,3,3,1,1,5,4,5.0,6.5,7.0
+GP,F,15,U,4+,juntos,educación secundaria,educación secundaria incompleta,servicios,otro,proximidad,madre,2,2,0,1,1,1,0,1,1,1,0,4,3,5,1,1,2,26,3.5,3.0,3.0
+GP,M,15,U,4+,separados,educación secundaria,educación superior,servicios,otro,cursos,madre,1,2,0,0,1,1,1,1,1,1,0,5,4,4,1,1,1,0,8.0,9.0,9.0
+GP,F,15,U,4+,separados,educación secundaria,educación secundaria,otro,salud,reputación,padre,1,4,0,1,0,0,0,1,1,0,0,4,3,3,1,1,4,10,5.0,5.5,5.5
+GP,F,15,U,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,otro,otro,cursos,madre,1,4,0,1,1,1,0,1,1,1,0,5,1,2,1,1,3,8,3.5,4.0,4.0
+GP,M,16,U,4+,juntos,educación secundaria,educación secundaria,servicios,otro,proximidad,padre,1,3,0,0,1,0,1,1,1,1,0,5,3,3,1,1,5,2,8.0,9.0,9.0
+GP,M,15,R,4+,juntos,educación superior,educación superior,otro,otro,proximidad,padre,4,4,0,0,1,1,1,1,1,1,1,1,3,5,3,5,1,6,5.0,6.5,6.5
+GP,F,16,U,1-3,juntos,educación superior,educación superior,salud,salud,otro,madre,1,3,0,0,1,1,1,1,1,1,1,5,4,5,1,1,4,4,7.0,7.5,8.0
+GP,M,15,U,1-3,separados,educación superior,educación superior,profesora,profesor,cursos,madre,1,1,0,0,0,0,1,1,1,1,0,5,5,3,1,1,4,6,9.0,9.5,9.5
+GP,F,16,R,4+,juntos,educación secundaria,educación secundaria,servicios,otro,reputación,padre,1,3,1,1,1,0,1,1,1,1,0,4,1,2,1,1,2,0,3.5,5.0,5.0
+GP,F,16,U,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,en casa,otro,proximidad,madre,1,2,1,1,0,0,1,1,1,1,0,3,1,2,1,1,5,6,5.0,6.5,6.5
+GP,M,15,U,1-3,juntos,educación superior,educación secundaria incompleta,profesora,otro,cursos,madre,1,1,0,0,0,0,0,1,1,1,0,3,5,2,1,1,3,10,9.0,9.5,9.5
+GP,M,15,R,4+,juntos,educación secundaria incompleta,educación primaria,salud,servicios,reputación,madre,1,2,0,0,0,0,1,1,1,1,1,5,4,2,1,1,5,8,4.5,4.5,4.5
+GP,M,16,U,4+,juntos,educación superior,educación superior,profesora,profesor,cursos,padre,1,2,0,0,1,0,1,1,1,1,0,5,4,4,1,2,5,2,7.5,7.5,8.0
+GP,M,15,U,4+,juntos,educación superior,educación superior,otro,profesor,reputación,padre,2,2,0,0,1,0,1,1,1,0,0,4,4,3,1,1,2,2,5.5,6.5,7.0
+GP,M,16,U,4+,juntos,educación secundaria,educación secundaria,otro,servicios,proximidad,padre,2,1,0,0,0,0,1,1,1,1,0,5,4,2,1,1,5,0,6.5,7.0,6.5
+GP,M,17,R,4+,juntos,educación primaria,educación secundaria,otro,otro,cursos,padre,3,2,1,0,1,0,1,1,1,1,0,5,2,4,1,4,5,20,4.5,3.5,4.0
+GP,M,15,U,4+,juntos,educación secundaria,educación superior,otro,otro,reputación,padre,1,1,0,0,0,0,0,1,1,1,0,3,4,3,1,2,4,6,7.0,6.5,6.5
+GP,F,15,U,4+,juntos,educación primaria,educación secundaria incompleta,en casa,servicios,cursos,madre,1,2,0,0,0,0,0,0,1,1,0,3,2,3,1,2,1,2,8.0,7.5,7.5
+GP,M,15,U,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,servicios,servicios,proximidad,padre,1,4,0,0,1,1,1,1,1,1,0,5,5,4,1,2,5,6,8.0,7.0,7.5
+GP,F,16,U,1-3,juntos,educación secundaria incompleta,educación superior,otro,salud,cursos,padre,2,2,0,0,1,1,1,1,1,1,1,4,2,2,1,2,5,2,6.5,6.5,6.5
+GP,M,16,U,4+,juntos,educación superior,educación superior,salud,otro,cursos,madre,1,1,0,0,1,0,1,1,1,1,0,3,4,4,1,4,5,18,7.0,5.5,6.5
+GP,F,16,U,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,otro,otro,proximidad,madre,1,2,0,0,0,1,0,1,1,1,1,5,4,4,1,1,5,0,4.0,3.5,4.0
+GP,M,15,U,4+,juntos,educación secundaria,educación superior,servicios,servicios,proximidad,padre,1,1,0,1,0,0,0,1,1,1,0,5,5,5,3,2,5,0,6.5,6.5,6.0
+GP,F,15,U,1-3,separados,educación secundaria,educación superior,otro,otro,proximidad,madre,1,2,0,1,0,0,1,1,1,1,1,5,3,2,1,1,1,0,3.5,5.0,5.5
 GP,F,19,U,4+,juntos,sin educación,educación primaria,en casa,otro,cursos,otro,1,2,3,0,1,0,0,0,0,0,0,3,4,2,1,1,5,2,3.5,4.0,4.5
-GP,M,18,R,4+,juntos,educación secundaria,educación secundaria,servicios,otro,reputación,madre,1,1,2,0,1,0,1,1,1,1,0,3,3,3,1,2,4,0,3.5,2.0,0.0
-GP,M,16,R,4+,juntos,4,4,profesora,profesor,cursos,madre,1,1,0,0,0,1,1,1,1,1,0,3,5,5,2,5,4,8,9.0,9.0,9.0
-GP,F,15,R,4+,juntos,educación superior,4,servicios,profesor,cursos,padre,2,3,2,0,1,0,0,1,1,1,1,4,2,2,2,2,5,0,6.0,0.0,0.0
+GP,M,18,R,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,servicios,otro,reputación,madre,1,1,2,0,1,0,1,1,1,1,0,3,3,3,1,2,4,0,3.5,2.0,0.0
+GP,M,16,R,4+,juntos,educación superior,educación superior,profesora,profesor,cursos,madre,1,1,0,0,0,1,1,1,1,1,0,3,5,5,2,5,4,8,9.0,9.0,9.0
+GP,F,15,R,4+,juntos,educación secundaria,educación superior,servicios,profesor,cursos,padre,2,3,2,0,1,0,0,1,1,1,1,4,2,2,2,2,5,0,6.0,0.0,0.0
 GP,F,15,U,4+,juntos,educación primaria,educación primaria,en casa,otro,cursos,madre,3,1,0,0,1,0,1,0,1,1,1,4,3,3,1,2,4,0,4.0,0.0,0.0
-GP,F,17,U,1-3,juntos,educación secundaria,educación secundaria,otro,otro,cursos,padre,1,1,0,0,1,0,0,1,1,1,1,3,4,4,1,3,5,12,5.0,6.5,6.0
-GP,F,16,U,4+,separados,educación superior,4,servicios,otro,cursos,padre,1,1,0,0,0,0,0,1,1,1,0,3,2,1,1,4,5,16,6.0,5.5,5.5
-GP,M,15,R,4+,juntos,educación superior,4,en casa,profesor,cursos,madre,4,2,0,0,1,0,0,1,1,0,1,5,3,3,1,1,5,0,4.5,0.0,0.0
-GP,F,15,U,4+,juntos,4,4,servicios,en casa,cursos,madre,1,3,0,0,1,0,1,1,1,1,1,4,3,3,1,1,5,0,5.5,0.0,0.0
-GP,M,17,R,4+,juntos,educación superior,4,en casa,otro,cursos,madre,3,2,0,0,0,0,0,1,1,0,0,5,4,5,2,4,5,0,5.0,0.0,0.0
-GP,F,16,U,4+,separados,educación superior,educación superior,otro,otro,cursos,otro,2,1,2,0,1,0,1,0,1,1,1,4,3,2,1,1,5,0,2.0,0.0,0.0
+GP,F,17,U,1-3,juntos,educación secundaria incompleta,educación secundaria incompleta,otro,otro,cursos,padre,1,1,0,0,1,0,0,1,1,1,1,3,4,4,1,3,5,12,5.0,6.5,6.0
+GP,F,16,U,4+,separados,educación secundaria,educación superior,servicios,otro,cursos,padre,1,1,0,0,0,0,0,1,1,1,0,3,2,1,1,4,5,16,6.0,5.5,5.5
+GP,M,15,R,4+,juntos,educación secundaria,educación superior,en casa,profesor,cursos,madre,4,2,0,0,1,0,0,1,1,0,1,5,3,3,1,1,5,0,4.5,0.0,0.0
+GP,F,15,U,4+,juntos,educación superior,educación superior,servicios,en casa,cursos,madre,1,3,0,0,1,0,1,1,1,1,1,4,3,3,1,1,5,0,5.5,0.0,0.0
+GP,M,17,R,4+,juntos,educación secundaria,educación superior,en casa,otro,cursos,madre,3,2,0,0,0,0,0,1,1,0,0,5,4,5,2,4,5,0,5.0,0.0,0.0
+GP,F,16,U,4+,separados,educación secundaria,educación secundaria,otro,otro,cursos,otro,2,1,2,0,1,0,1,0,1,1,1,4,3,2,1,1,5,0,2.0,0.0,0.0
 GP,M,16,U,1-3,juntos,educación primaria,educación primaria,servicios,otro,cursos,madre,1,2,1,0,0,0,0,1,1,0,1,4,4,4,1,3,5,0,7.0,6.0,6.0
-GP,F,15,U,4+,juntos,4,4,profesora,profesor,cursos,madre,2,1,0,0,0,0,1,1,1,1,0,4,3,2,1,1,5,0,8.0,8.0,7.5
-GP,M,15,U,4+,juntos,4,educación superior,profesora,servicios,cursos,padre,2,4,0,1,1,0,0,1,1,1,0,2,2,2,1,1,3,0,3.5,4.5,0.0
-GP,M,16,U,1-3,juntos,educación secundaria,educación secundaria,servicios,servicios,reputación,padre,2,1,2,0,1,0,1,1,1,1,0,2,3,3,2,2,2,8,4.5,4.5,4.5
-GP,F,15,U,4+,juntos,4,4,profesora,servicios,cursos,madre,1,3,0,0,1,1,1,1,1,1,0,4,2,2,1,1,5,2,4.5,5.5,5.5
+GP,F,15,U,4+,juntos,educación superior,educación superior,profesora,profesor,cursos,madre,2,1,0,0,0,0,1,1,1,1,0,4,3,2,1,1,5,0,8.0,8.0,7.5
+GP,M,15,U,4+,juntos,educación superior,educación secundaria,profesora,servicios,cursos,padre,2,4,0,1,1,0,0,1,1,1,0,2,2,2,1,1,3,0,3.5,4.5,0.0
+GP,M,16,U,1-3,juntos,educación secundaria incompleta,educación secundaria incompleta,servicios,servicios,reputación,padre,2,1,2,0,1,0,1,1,1,1,0,2,3,3,2,2,2,8,4.5,4.5,4.5
+GP,F,15,U,4+,juntos,educación superior,educación superior,profesora,servicios,cursos,madre,1,3,0,0,1,1,1,1,1,1,0,4,2,2,1,1,5,2,4.5,5.5,5.5
 GP,F,16,U,1-3,juntos,educación primaria,educación primaria,en casa,en casa,cursos,madre,1,1,0,0,0,0,0,1,1,1,0,3,4,4,3,3,1,2,7.0,7.0,6.5
-GP,M,17,U,4+,juntos,educación secundaria,educación primaria,otro,otro,proximidad,madre,1,1,3,0,1,0,0,1,1,1,0,5,4,5,1,2,5,0,2.5,0.0,0.0
+GP,M,17,U,4+,juntos,educación secundaria incompleta,educación primaria,otro,otro,proximidad,madre,1,1,3,0,1,0,0,1,1,1,0,5,4,5,1,2,5,0,2.5,0.0,0.0
 GP,F,15,U,4+,juntos,educación primaria,educación primaria,otro,servicios,cursos,padre,1,2,0,0,1,1,0,1,1,1,0,4,4,2,1,2,5,0,4.0,5.5,5.5
-GP,F,15,U,4+,juntos,educación superior,educación secundaria,salud,servicios,proximidad,padre,1,2,3,0,1,0,0,1,1,1,0,3,3,2,1,1,3,0,3.0,3.5,0.0
-GP,F,15,U,4+,juntos,educación primaria,educación secundaria,en casa,otro,cursos,madre,1,2,0,0,1,1,0,0,1,1,0,4,3,2,1,1,5,2,5.0,5.5,5.5
-GP,M,16,U,4+,juntos,4,4,profesora,profesor,cursos,madre,1,1,0,0,1,0,0,1,0,1,1,3,3,2,2,1,5,0,3.5,3.0,0.0
-GP,M,15,U,1-3,separados,educación secundaria,educación primaria,servicios,otro,cursos,madre,4,1,3,0,0,0,0,1,1,1,0,4,5,5,2,5,5,0,4.0,4.5,5.0
+GP,F,15,U,4+,juntos,educación secundaria,educación secundaria incompleta,salud,servicios,proximidad,padre,1,2,3,0,1,0,0,1,1,1,0,3,3,2,1,1,3,0,3.0,3.5,0.0
+GP,F,15,U,4+,juntos,educación primaria,educación secundaria incompleta,en casa,otro,cursos,madre,1,2,0,0,1,1,0,0,1,1,0,4,3,2,1,1,5,2,5.0,5.5,5.5
+GP,M,16,U,4+,juntos,educación superior,educación superior,profesora,profesor,cursos,madre,1,1,0,0,1,0,0,1,0,1,1,3,3,2,2,1,5,0,3.5,3.0,0.0
+GP,M,15,U,1-3,separados,educación secundaria incompleta,educación primaria,servicios,otro,cursos,madre,4,1,3,0,0,0,0,1,1,1,0,4,5,5,2,5,5,0,4.0,4.5,5.0
 GP,M,18,U,1-3,juntos,educación primaria,educación primaria,otro,otro,cursos,madre,1,1,3,0,0,0,0,1,0,1,1,2,3,5,2,5,4,0,3.0,2.5,0.0
-GP,M,16,U,1-3,juntos,educación secundaria,educación primaria,en casa,otro,cursos,madre,1,1,1,0,0,0,1,1,1,0,1,4,4,4,3,5,5,6,6.0,6.5,7.0
-GP,F,15,R,4+,juntos,educación superior,educación superior,servicios,servicios,reputación,otro,2,3,2,0,1,1,1,1,1,1,1,4,2,1,2,3,3,8,5.0,5.0,5.0
-GP,M,19,U,4+,juntos,educación superior,educación secundaria,servicios,en casa,proximidad,madre,1,1,3,0,1,0,0,1,0,1,1,4,5,4,1,1,4,0,2.5,0.0,0.0
-GP,F,17,U,4+,juntos,4,4,otro,profesor,cursos,madre,1,1,0,1,1,0,0,1,1,0,1,4,2,1,1,1,4,0,5.5,5.5,6.0
-GP,M,15,R,4+,juntos,educación secundaria,educación superior,en casa,servicios,cursos,madre,1,2,0,1,0,1,1,1,1,0,0,4,4,4,1,1,1,2,5.5,4.0,4.0
-GP,M,17,R,1-3,juntos,educación primaria,educación secundaria,otro,otro,reputación,madre,1,1,0,0,0,0,0,1,1,0,0,2,2,2,3,3,5,8,8.0,6.0,6.5
+GP,M,16,U,1-3,juntos,educación secundaria incompleta,educación primaria,en casa,otro,cursos,madre,1,1,1,0,0,0,1,1,1,0,1,4,4,4,3,5,5,6,6.0,6.5,7.0
+GP,F,15,R,4+,juntos,educación secundaria,educación secundaria,servicios,servicios,reputación,otro,2,3,2,0,1,1,1,1,1,1,1,4,2,1,2,3,3,8,5.0,5.0,5.0
+GP,M,19,U,4+,juntos,educación secundaria,educación secundaria incompleta,servicios,en casa,proximidad,madre,1,1,3,0,1,0,0,1,0,1,1,4,5,4,1,1,4,0,2.5,0.0,0.0
+GP,F,17,U,4+,juntos,educación superior,educación superior,otro,profesor,cursos,madre,1,1,0,1,1,0,0,1,1,0,1,4,2,1,1,1,4,0,5.5,5.5,6.0
+GP,M,15,R,4+,juntos,educación secundaria incompleta,educación secundaria,en casa,servicios,cursos,madre,1,2,0,1,0,1,1,1,1,0,0,4,4,4,1,1,1,2,5.5,4.0,4.0
+GP,M,17,R,1-3,juntos,educación primaria,educación secundaria incompleta,otro,otro,reputación,madre,1,1,0,0,0,0,0,1,1,0,0,2,2,2,3,3,5,8,8.0,6.0,6.5
 GP,F,18,R,4+,juntos,educación primaria,educación primaria,en casa,otro,cursos,madre,3,1,3,0,1,0,1,0,1,0,0,5,2,5,1,5,4,6,4.5,4.0,5.0
-GP,M,16,R,4+,juntos,educación secundaria,educación secundaria,en casa,otro,cursos,madre,3,1,0,0,0,0,0,0,1,0,0,4,2,2,1,2,3,2,8.5,7.5,7.5
-GP,M,16,U,4+,juntos,educación superior,educación superior,otro,servicios,cursos,padre,1,2,1,0,1,1,0,1,1,1,1,4,5,5,4,4,5,4,5.0,6.0,6.0
-GP,M,17,R,1-3,juntos,educación secundaria,educación primaria,en casa,otro,cursos,madre,2,1,2,0,0,0,1,1,0,1,1,3,3,2,2,2,5,0,3.5,3.0,0.0
-GP,M,15,R,4+,juntos,educación superior,educación secundaria,otro,otro,cursos,madre,2,2,2,1,1,0,0,1,1,1,1,4,4,4,1,4,3,6,2.5,4.5,3.5
-GP,M,16,U,1-3,juntos,educación primaria,educación secundaria,otro,otro,cursos,madre,2,1,1,0,0,0,1,1,1,0,0,4,4,4,2,4,5,0,3.5,0.0,0.0
-GP,M,17,U,4+,juntos,educación primaria,educación superior,en casa,servicios,cursos,padre,1,1,0,0,0,0,0,1,0,1,0,5,3,3,1,4,2,2,5.0,5.0,5.0
+GP,M,16,R,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,en casa,otro,cursos,madre,3,1,0,0,0,0,0,0,1,0,0,4,2,2,1,2,3,2,8.5,7.5,7.5
+GP,M,16,U,4+,juntos,educación secundaria,educación secundaria,otro,servicios,cursos,padre,1,2,1,0,1,1,0,1,1,1,1,4,5,5,4,4,5,4,5.0,6.0,6.0
+GP,M,17,R,1-3,juntos,educación secundaria incompleta,educación primaria,en casa,otro,cursos,madre,2,1,2,0,0,0,1,1,0,1,1,3,3,2,2,2,5,0,3.5,3.0,0.0
+GP,M,15,R,4+,juntos,educación secundaria,educación secundaria incompleta,otro,otro,cursos,madre,2,2,2,1,1,0,0,1,1,1,1,4,4,4,1,4,3,6,2.5,4.5,3.5
+GP,M,16,U,1-3,juntos,educación primaria,educación secundaria incompleta,otro,otro,cursos,madre,2,1,1,0,0,0,1,1,1,0,0,4,4,4,2,4,5,0,3.5,0.0,0.0
+GP,M,17,U,4+,juntos,educación primaria,educación secundaria,en casa,servicios,cursos,padre,1,1,0,0,0,0,0,1,0,1,0,5,3,3,1,4,2,2,5.0,5.0,5.0
 GP,M,17,R,1-3,juntos,educación primaria,educación primaria,otro,servicios,cursos,madre,4,2,3,0,0,0,1,1,0,0,1,5,3,5,1,5,5,0,2.5,4.0,3.5
-GP,M,16,U,4+,juntos,educación superior,educación secundaria,servicios,servicios,cursos,madre,2,1,1,0,1,0,1,0,0,0,0,4,5,2,1,1,2,16,6.0,5.5,6.0
-GP,M,16,U,4+,juntos,educación secundaria,educación secundaria,otro,otro,cursos,padre,1,2,0,0,0,0,0,1,0,1,0,4,3,5,2,4,4,4,5.0,5.0,5.0
-GP,F,16,U,4+,juntos,4,educación secundaria,salud,servicios,proximidad,padre,1,2,0,0,0,1,0,1,1,1,1,4,2,3,1,1,3,0,7.0,7.5,8.0
-GP,F,16,U,4+,juntos,educación secundaria,educación secundaria,otro,otro,proximidad,madre,1,2,0,0,1,1,0,0,1,1,0,5,1,5,1,1,4,0,3.0,3.5,0.0
-GP,F,16,U,4+,juntos,4,4,salud,salud,reputación,madre,1,2,0,0,1,1,0,1,1,1,1,4,4,2,1,1,3,0,7.0,7.0,7.0
-GP,M,16,U,4+,juntos,educación superior,4,otro,otro,cursos,padre,3,1,2,0,1,0,1,0,1,1,0,3,4,5,2,4,2,0,3.0,2.5,0.0
+GP,M,16,U,4+,juntos,educación secundaria,educación secundaria incompleta,servicios,servicios,cursos,madre,2,1,1,0,1,0,1,0,0,0,0,4,5,2,1,1,2,16,6.0,5.5,6.0
+GP,M,16,U,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,otro,otro,cursos,padre,1,2,0,0,0,0,0,1,0,1,0,4,3,5,2,4,4,4,5.0,5.0,5.0
+GP,F,16,U,4+,juntos,educación superior,educación secundaria incompleta,salud,servicios,proximidad,padre,1,2,0,0,0,1,0,1,1,1,1,4,2,3,1,1,3,0,7.0,7.5,8.0
+GP,F,16,U,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,otro,otro,proximidad,madre,1,2,0,0,1,1,0,0,1,1,0,5,1,5,1,1,4,0,3.0,3.5,0.0
+GP,F,16,U,4+,juntos,educación superior,educación superior,salud,salud,reputación,madre,1,2,0,0,1,1,0,1,1,1,1,4,4,2,1,1,3,0,7.0,7.0,7.0
+GP,M,16,U,4+,juntos,educación secundaria,educación superior,otro,otro,cursos,padre,3,1,2,0,1,0,1,0,1,1,0,3,4,5,2,4,2,0,3.0,2.5,0.0
 GP,M,16,U,4+,juntos,educación primaria,sin educación,otro,otro,reputación,madre,2,2,0,0,1,1,1,1,1,1,1,4,3,2,1,1,3,2,6.5,7.5,8.0
-GP,M,17,U,1-3,juntos,4,4,profesora,otro,reputación,madre,1,2,0,0,1,1,1,1,1,1,0,4,4,4,1,3,5,0,6.5,5.5,5.0
-GP,F,16,U,4+,juntos,educación primaria,educación superior,en casa,servicios,proximidad,madre,1,2,3,0,0,0,1,0,1,1,1,4,3,5,1,1,3,0,4.0,3.5,0.0
-GP,F,16,U,1-3,juntos,educación superior,educación superior,otro,otro,reputación,madre,2,2,0,0,1,1,1,1,1,1,0,4,4,5,1,1,4,4,5.0,5.5,4.5
-GP,M,17,U,1-3,juntos,4,educación superior,profesora,otro,cursos,madre,2,2,0,0,0,1,1,1,1,1,0,4,4,4,4,4,4,4,5.0,4.5,4.5
-GP,F,16,U,4+,juntos,educación secundaria,educación secundaria,servicios,otro,reputación,madre,2,2,0,0,0,1,1,0,1,1,0,3,4,4,1,4,5,2,6.5,6.5,5.5
-GP,M,17,U,4+,juntos,educación superior,educación superior,otro,otro,reputación,padre,1,2,0,0,0,0,1,0,1,1,0,4,3,4,1,4,4,4,3.0,2.5,3.0
-GP,M,16,R,4+,juntos,4,educación secundaria,profesora,servicios,otro,madre,1,1,0,0,1,0,1,1,1,1,1,4,3,3,3,4,3,10,5.0,4.0,4.5
-GP,M,17,U,4+,juntos,4,educación superior,otro,otro,cursos,madre,1,2,0,0,1,0,1,1,1,1,1,5,2,3,1,1,2,4,5.0,5.0,5.5
-GP,M,16,U,4+,juntos,4,educación superior,profesora,otro,proximidad,madre,1,2,0,0,1,1,1,1,1,1,0,3,4,3,2,3,3,10,4.5,4.0,4.0
-GP,M,16,U,4+,juntos,educación superior,educación superior,servicios,otro,proximidad,madre,1,2,0,0,0,1,1,1,1,1,1,4,2,3,1,2,3,2,6.0,6.5,6.0
-GP,F,17,U,4+,juntos,educación secundaria,4,servicios,servicios,reputación,padre,1,2,0,0,1,0,1,1,1,0,0,5,4,2,2,3,5,0,8.0,8.5,8.5
-GP,F,17,U,1-3,juntos,educación superior,educación superior,otro,otro,reputación,madre,1,2,0,0,1,0,1,1,1,1,1,5,3,3,2,3,1,56,4.5,4.5,4.0
-GP,F,16,U,4+,juntos,educación superior,educación secundaria,otro,otro,reputación,madre,1,2,0,0,1,1,0,1,1,1,0,1,2,2,1,2,1,14,6.0,6.5,6.0
-GP,M,17,U,4+,juntos,educación superior,educación superior,servicios,servicios,otro,madre,1,2,0,0,1,0,1,1,1,1,1,4,3,4,2,3,4,12,6.0,6.0,5.5
-GP,M,16,U,4+,juntos,educación primaria,educación secundaria,servicios,servicios,otro,madre,1,1,0,0,1,1,1,1,1,1,1,3,3,3,1,2,3,2,5.5,6.0,5.5
-GP,M,16,U,1-3,juntos,educación secundaria,educación primaria,otro,otro,cursos,madre,1,2,0,0,0,1,1,1,1,1,1,4,2,3,1,2,5,0,7.5,7.5,7.5
-GP,F,17,U,4+,separados,educación superior,educación superior,salud,otro,reputación,madre,1,2,0,0,1,0,0,0,1,1,1,3,3,3,1,3,3,6,4.0,3.5,4.5
-GP,M,17,R,4+,juntos,educación primaria,educación secundaria,en casa,otro,proximidad,madre,1,2,0,0,0,0,0,1,1,0,0,3,1,3,1,5,3,4,4.0,4.5,5.0
-GP,F,16,U,4+,juntos,educación secundaria,educación superior,servicios,servicios,cursos,madre,1,2,0,0,0,0,0,1,1,1,0,4,3,3,1,1,2,10,5.5,6.0,6.5
+GP,M,17,U,1-3,juntos,educación superior,educación superior,profesora,otro,reputación,madre,1,2,0,0,1,1,1,1,1,1,0,4,4,4,1,3,5,0,6.5,5.5,5.0
+GP,F,16,U,4+,juntos,educación primaria,educación secundaria,en casa,servicios,proximidad,madre,1,2,3,0,0,0,1,0,1,1,1,4,3,5,1,1,3,0,4.0,3.5,0.0
+GP,F,16,U,1-3,juntos,educación secundaria,educación secundaria,otro,otro,reputación,madre,2,2,0,0,1,1,1,1,1,1,0,4,4,5,1,1,4,4,5.0,5.5,4.5
+GP,M,17,U,1-3,juntos,educación superior,educación secundaria,profesora,otro,cursos,madre,2,2,0,0,0,1,1,1,1,1,0,4,4,4,4,4,4,4,5.0,4.5,4.5
+GP,F,16,U,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,servicios,otro,reputación,madre,2,2,0,0,0,1,1,0,1,1,0,3,4,4,1,4,5,2,6.5,6.5,5.5
+GP,M,17,U,4+,juntos,educación secundaria,educación secundaria,otro,otro,reputación,padre,1,2,0,0,0,0,1,0,1,1,0,4,3,4,1,4,4,4,3.0,2.5,3.0
+GP,M,16,R,4+,juntos,educación superior,educación secundaria incompleta,profesora,servicios,otro,madre,1,1,0,0,1,0,1,1,1,1,1,4,3,3,3,4,3,10,5.0,4.0,4.5
+GP,M,17,U,4+,juntos,educación superior,educación secundaria,otro,otro,cursos,madre,1,2,0,0,1,0,1,1,1,1,1,5,2,3,1,1,2,4,5.0,5.0,5.5
+GP,M,16,U,4+,juntos,educación superior,educación secundaria,profesora,otro,proximidad,madre,1,2,0,0,1,1,1,1,1,1,0,3,4,3,2,3,3,10,4.5,4.0,4.0
+GP,M,16,U,4+,juntos,educación secundaria,educación secundaria,servicios,otro,proximidad,madre,1,2,0,0,0,1,1,1,1,1,1,4,2,3,1,2,3,2,6.0,6.5,6.0
+GP,F,17,U,4+,juntos,educación secundaria incompleta,educación superior,servicios,servicios,reputación,padre,1,2,0,0,1,0,1,1,1,0,0,5,4,2,2,3,5,0,8.0,8.5,8.5
+GP,F,17,U,1-3,juntos,educación secundaria,educación secundaria,otro,otro,reputación,madre,1,2,0,0,1,0,1,1,1,1,1,5,3,3,2,3,1,56,4.5,4.5,4.0
+GP,F,16,U,4+,juntos,educación secundaria,educación secundaria incompleta,otro,otro,reputación,madre,1,2,0,0,1,1,0,1,1,1,0,1,2,2,1,2,1,14,6.0,6.5,6.0
+GP,M,17,U,4+,juntos,educación secundaria,educación secundaria,servicios,servicios,otro,madre,1,2,0,0,1,0,1,1,1,1,1,4,3,4,2,3,4,12,6.0,6.0,5.5
+GP,M,16,U,4+,juntos,educación primaria,educación secundaria incompleta,servicios,servicios,otro,madre,1,1,0,0,1,1,1,1,1,1,1,3,3,3,1,2,3,2,5.5,6.0,5.5
+GP,M,16,U,1-3,juntos,educación secundaria incompleta,educación primaria,otro,otro,cursos,madre,1,2,0,0,0,1,1,1,1,1,1,4,2,3,1,2,5,0,7.5,7.5,7.5
+GP,F,17,U,4+,separados,educación secundaria,educación secundaria,salud,otro,reputación,madre,1,2,0,0,1,0,0,0,1,1,1,3,3,3,1,3,3,6,4.0,3.5,4.5
+GP,M,17,R,4+,juntos,educación primaria,educación secundaria incompleta,en casa,otro,proximidad,madre,1,2,0,0,0,0,0,1,1,0,0,3,1,3,1,5,3,4,4.0,4.5,5.0
+GP,F,16,U,4+,juntos,educación secundaria incompleta,educación secundaria,servicios,servicios,cursos,madre,1,2,0,0,0,0,0,1,1,1,0,4,3,3,1,1,2,10,5.5,6.0,6.5
 GP,F,17,U,4+,juntos,educación primaria,educación primaria,en casa,servicios,cursos,madre,1,2,0,0,0,0,1,1,1,1,0,5,3,3,1,1,3,0,4.0,4.0,4.5
-GP,M,17,U,4+,juntos,educación primaria,educación secundaria,en casa,servicios,otro,otro,2,2,0,0,0,1,1,0,1,1,0,4,4,4,4,5,5,12,3.5,4.0,4.0
-GP,M,16,R,4+,juntos,educación superior,educación superior,servicios,servicios,reputación,madre,1,1,0,0,1,0,1,1,1,1,0,4,3,2,3,4,5,8,4.0,4.5,5.0
-GP,M,16,U,4+,juntos,educación secundaria,educación superior,otro,otro,proximidad,padre,2,1,0,0,0,0,0,1,1,1,0,5,3,3,1,1,3,0,6.5,7.0,7.0
-GP,F,17,U,1-3,juntos,educación secundaria,4,servicios,servicios,cursos,padre,1,2,0,0,0,0,1,1,1,1,1,4,3,2,1,1,5,0,7.0,7.5,7.5
-GP,M,17,U,4+,juntos,4,4,servicios,profesor,proximidad,madre,1,1,0,0,0,0,0,1,1,1,0,5,2,3,1,2,5,4,8.5,7.5,8.0
-GP,M,16,R,1-3,juntos,educación superior,educación superior,profesora,otro,proximidad,padre,3,1,0,0,1,1,1,1,1,1,0,3,3,4,3,5,3,8,4.5,4.5,5.0
-GP,F,17,U,4+,juntos,4,4,servicios,profesor,proximidad,madre,2,1,1,0,1,0,0,1,1,1,0,4,2,4,2,3,2,24,9.0,9.0,9.0
-GP,F,16,U,1-3,juntos,4,4,profesora,profesor,reputación,madre,1,2,0,0,1,1,0,1,1,1,0,4,5,2,1,2,3,0,4.5,4.5,5.0
-GP,F,16,U,4+,juntos,4,educación superior,salud,otro,proximidad,madre,1,2,0,0,1,0,1,1,1,1,0,4,3,5,1,5,2,2,8.0,8.0,8.0
-GP,F,16,U,4+,juntos,educación secundaria,educación superior,otro,otro,reputación,madre,1,2,0,1,1,1,1,1,1,0,0,4,4,3,1,3,4,6,4.0,5.0,5.0
+GP,M,17,U,4+,juntos,educación primaria,educación secundaria incompleta,en casa,servicios,otro,otro,2,2,0,0,0,1,1,0,1,1,0,4,4,4,4,5,5,12,3.5,4.0,4.0
+GP,M,16,R,4+,juntos,educación secundaria,educación secundaria,servicios,servicios,reputación,madre,1,1,0,0,1,0,1,1,1,1,0,4,3,2,3,4,5,8,4.0,4.5,5.0
+GP,M,16,U,4+,juntos,educación secundaria incompleta,educación secundaria,otro,otro,proximidad,padre,2,1,0,0,0,0,0,1,1,1,0,5,3,3,1,1,3,0,6.5,7.0,7.0
+GP,F,17,U,1-3,juntos,educación secundaria incompleta,educación superior,servicios,servicios,cursos,padre,1,2,0,0,0,0,1,1,1,1,1,4,3,2,1,1,5,0,7.0,7.5,7.5
+GP,M,17,U,4+,juntos,educación superior,educación superior,servicios,profesor,proximidad,madre,1,1,0,0,0,0,0,1,1,1,0,5,2,3,1,2,5,4,8.5,7.5,8.0
+GP,M,16,R,1-3,juntos,educación secundaria,educación secundaria,profesora,otro,proximidad,padre,3,1,0,0,1,1,1,1,1,1,0,3,3,4,3,5,3,8,4.5,4.5,5.0
+GP,F,17,U,4+,juntos,educación superior,educación superior,servicios,profesor,proximidad,madre,2,1,1,0,1,0,0,1,1,1,0,4,2,4,2,3,2,24,9.0,9.0,9.0
+GP,F,16,U,1-3,juntos,educación superior,educación superior,profesora,profesor,reputación,madre,1,2,0,0,1,1,0,1,1,1,0,4,5,2,1,2,3,0,4.5,4.5,5.0
+GP,F,16,U,4+,juntos,educación superior,educación secundaria,salud,otro,proximidad,madre,1,2,0,0,1,0,1,1,1,1,0,4,3,5,1,5,2,2,8.0,8.0,8.0
+GP,F,16,U,4+,juntos,educación secundaria incompleta,educación secundaria,otro,otro,reputación,madre,1,2,0,1,1,1,1,1,1,0,0,4,4,3,1,3,4,6,4.0,5.0,5.0
 GP,F,17,U,4+,juntos,educación primaria,educación primaria,otro,otro,cursos,madre,1,2,0,0,1,1,0,0,1,0,0,4,4,4,1,3,1,4,4.5,4.5,5.0
-GP,F,17,R,4+,juntos,educación secundaria,educación secundaria,otro,otro,reputación,madre,1,1,0,0,1,0,0,1,1,1,0,5,3,2,1,2,3,18,3.5,3.0,3.0
-GP,F,16,R,4+,juntos,educación secundaria,educación secundaria,servicios,servicios,reputación,madre,2,4,0,0,1,1,1,0,1,1,0,5,3,5,1,1,5,6,5.0,5.0,5.5
-GP,F,17,U,4+,juntos,educación superior,4,en casa,servicios,proximidad,madre,1,3,1,0,1,1,0,1,1,1,1,4,4,3,3,4,5,28,5.0,4.5,4.5
-GP,F,16,U,4+,separados,educación superior,educación primaria,servicios,otro,cursos,madre,1,2,3,0,1,1,0,1,1,1,0,2,3,3,2,2,4,5,3.5,3.5,3.5
-GP,F,16,U,4+,juntos,4,educación superior,profesora,otro,otro,madre,1,2,0,0,0,1,1,1,1,1,1,1,3,2,1,1,1,10,5.5,6.0,6.5
+GP,F,17,R,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,otro,otro,reputación,madre,1,1,0,0,1,0,0,1,1,1,0,5,3,2,1,2,3,18,3.5,3.0,3.0
+GP,F,16,R,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,servicios,servicios,reputación,madre,2,4,0,0,1,1,1,0,1,1,0,5,3,5,1,1,5,6,5.0,5.0,5.5
+GP,F,17,U,4+,juntos,educación secundaria,educación superior,en casa,servicios,proximidad,madre,1,3,1,0,1,1,0,1,1,1,1,4,4,3,3,4,5,28,5.0,4.5,4.5
+GP,F,16,U,4+,separados,educación secundaria,educación primaria,servicios,otro,cursos,madre,1,2,3,0,1,1,0,1,1,1,0,2,3,3,2,2,4,5,3.5,3.5,3.5
+GP,F,16,U,4+,juntos,educación superior,educación secundaria,profesora,otro,otro,madre,1,2,0,0,0,1,1,1,1,1,1,1,3,2,1,1,1,10,5.5,6.0,6.5
 GP,F,16,U,4+,juntos,educación primaria,educación primaria,en casa,otro,proximidad,madre,2,1,0,0,1,1,0,1,1,0,0,4,3,2,1,4,5,6,4.5,4.5,5.0
-GP,F,17,R,4+,juntos,4,educación superior,profesora,otro,reputación,madre,2,3,0,0,1,1,1,1,1,1,1,4,4,2,1,1,4,6,3.5,3.5,3.5
-GP,F,19,U,4+,juntos,educación superior,educación superior,otro,otro,reputación,otro,1,4,0,0,1,1,1,1,1,1,0,4,3,3,1,2,3,10,4.0,4.0,4.0
-GP,M,17,U,1-3,juntos,4,4,servicios,otro,proximidad,madre,1,2,0,0,1,1,0,1,1,1,1,5,3,5,4,5,3,13,6.0,6.0,6.5
-GP,F,16,U,4+,separados,educación secundaria,educación secundaria,otro,otro,reputación,madre,1,2,0,1,1,1,0,1,1,1,0,3,3,4,1,1,4,0,6.0,6.5,7.0
-GP,M,18,U,4+,juntos,educación secundaria,educación secundaria,servicios,otro,proximidad,madre,1,2,1,0,1,1,1,1,1,1,0,4,4,4,2,4,5,15,3.0,3.5,4.0
-GP,F,17,R,1-3,juntos,4,4,servicios,otro,otro,madre,1,1,0,0,1,1,0,1,1,0,0,5,2,1,1,2,3,12,4.0,5.0,5.0
-GP,F,17,U,1-3,juntos,educación superior,educación secundaria,otro,otro,reputación,madre,2,2,0,0,0,1,0,1,1,1,0,4,4,4,1,3,1,2,7.0,7.5,7.5
-GP,F,17,U,4+,juntos,4,educación superior,otro,otro,reputación,madre,1,2,2,0,0,1,0,1,1,1,1,3,4,5,2,4,1,22,3.0,3.0,2.0
-GP,M,18,U,1-3,juntos,educación superior,educación superior,servicios,salud,proximidad,padre,1,2,1,0,1,1,0,1,1,1,0,3,2,4,2,4,4,13,3.0,3.0,4.0
-GP,F,17,U,4+,juntos,educación secundaria,educación superior,en casa,otro,proximidad,padre,2,1,0,0,1,1,0,1,1,0,0,3,3,3,1,4,3,3,3.5,3.5,4.0
-GP,F,17,U,4+,juntos,educación secundaria,educación secundaria,en casa,en casa,cursos,madre,1,3,0,0,1,1,1,1,1,1,0,4,3,3,1,1,4,4,4.5,5.0,5.0
-GP,F,17,R,4+,juntos,educación secundaria,educación primaria,en casa,servicios,reputación,madre,2,2,0,0,1,0,1,1,1,1,0,4,2,5,1,2,5,2,3.0,3.0,3.0
+GP,F,17,R,4+,juntos,educación superior,educación secundaria,profesora,otro,reputación,madre,2,3,0,0,1,1,1,1,1,1,1,4,4,2,1,1,4,6,3.5,3.5,3.5
+GP,F,19,U,4+,juntos,educación secundaria,educación secundaria,otro,otro,reputación,otro,1,4,0,0,1,1,1,1,1,1,0,4,3,3,1,2,3,10,4.0,4.0,4.0
+GP,M,17,U,1-3,juntos,educación superior,educación superior,servicios,otro,proximidad,madre,1,2,0,0,1,1,0,1,1,1,1,5,3,5,4,5,3,13,6.0,6.0,6.5
+GP,F,16,U,4+,separados,educación secundaria incompleta,educación secundaria incompleta,otro,otro,reputación,madre,1,2,0,1,1,1,0,1,1,1,0,3,3,4,1,1,4,0,6.0,6.5,7.0
+GP,M,18,U,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,servicios,otro,proximidad,madre,1,2,1,0,1,1,1,1,1,1,0,4,4,4,2,4,5,15,3.0,3.5,4.0
+GP,F,17,R,1-3,juntos,educación superior,educación superior,servicios,otro,otro,madre,1,1,0,0,1,1,0,1,1,0,0,5,2,1,1,2,3,12,4.0,5.0,5.0
+GP,F,17,U,1-3,juntos,educación secundaria,educación secundaria incompleta,otro,otro,reputación,madre,2,2,0,0,0,1,0,1,1,1,0,4,4,4,1,3,1,2,7.0,7.5,7.5
+GP,F,17,U,4+,juntos,educación superior,educación secundaria,otro,otro,reputación,madre,1,2,2,0,0,1,0,1,1,1,1,3,4,5,2,4,1,22,3.0,3.0,2.0
+GP,M,18,U,1-3,juntos,educación secundaria,educación secundaria,servicios,salud,proximidad,padre,1,2,1,0,1,1,0,1,1,1,0,3,2,4,2,4,4,13,3.0,3.0,4.0
+GP,F,17,U,4+,juntos,educación secundaria incompleta,educación secundaria,en casa,otro,proximidad,padre,2,1,0,0,1,1,0,1,1,0,0,3,3,3,1,4,3,3,3.5,3.5,4.0
+GP,F,17,U,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,en casa,en casa,cursos,madre,1,3,0,0,1,1,1,1,1,1,0,4,3,3,1,1,4,4,4.5,5.0,5.0
+GP,F,17,R,4+,juntos,educación secundaria incompleta,educación primaria,en casa,servicios,reputación,madre,2,2,0,0,1,0,1,1,1,1,0,4,2,5,1,2,5,2,3.0,3.0,3.0
 GP,F,17,U,4+,juntos,educación primaria,educación primaria,en casa,otro,reputación,madre,1,3,1,0,1,0,1,1,1,0,1,4,3,4,1,1,5,0,3.0,2.5,0.0
-GP,F,16,U,4+,juntos,educación secundaria,educación superior,servicios,profesor,otro,madre,1,2,0,1,0,0,0,1,1,1,0,2,3,1,1,1,3,2,8.0,8.0,8.5
-GP,M,18,U,4+,juntos,educación secundaria,educación secundaria,otro,otro,proximidad,madre,2,2,0,0,1,1,0,1,1,1,0,3,3,3,5,5,4,0,6.0,6.5,6.5
-GP,F,16,U,4+,juntos,4,4,profesora,servicios,proximidad,madre,1,3,0,0,1,0,1,0,1,1,0,5,3,2,1,1,5,0,6.5,6.5,7.0
-GP,F,18,R,4+,juntos,educación superior,educación primaria,otro,otro,reputación,madre,1,2,1,0,0,0,1,1,1,1,1,5,3,3,1,1,4,16,4.5,4.0,3.5
-GP,F,17,U,4+,juntos,educación superior,educación secundaria,otro,otro,cursos,madre,1,2,0,0,0,0,1,0,1,1,0,5,3,4,1,3,3,10,8.0,7.5,7.5
-GP,M,17,U,1-3,juntos,educación secundaria,educación superior,servicios,servicios,reputación,padre,1,2,0,0,1,1,0,0,1,1,0,5,3,3,1,3,3,2,6.0,5.5,6.0
-GP,M,18,U,1-3,juntos,educación secundaria,educación primaria,en casa,otro,cursos,madre,4,2,0,1,1,1,1,1,1,1,1,4,3,2,4,5,3,14,5.0,4.0,4.5
-GP,F,17,U,4+,separados,educación secundaria,educación primaria,otro,otro,cursos,madre,2,3,0,0,0,0,1,1,1,1,1,3,2,3,1,2,3,10,6.0,5.0,6.0
-GP,F,17,U,1-3,juntos,4,educación superior,salud,otro,reputación,padre,1,2,0,0,0,0,1,1,1,1,1,3,2,3,1,2,3,14,6.5,6.5,7.0
-GP,M,17,R,4+,juntos,educación secundaria,educación secundaria,otro,otro,cursos,padre,2,2,0,0,1,1,1,1,1,1,0,4,5,2,1,1,1,4,5.5,5.5,5.5
-GP,M,17,U,4+,juntos,4,4,profesora,profesor,reputación,madre,1,2,0,1,1,0,1,1,1,1,1,4,5,5,1,3,2,14,5.5,4.5,4.5
-GP,M,16,U,4+,juntos,4,4,salud,otro,reputación,padre,1,2,0,0,1,1,1,1,1,1,0,4,2,4,2,4,1,2,7.0,6.5,6.5
+GP,F,16,U,4+,juntos,educación secundaria incompleta,educación secundaria,servicios,profesor,otro,madre,1,2,0,1,0,0,0,1,1,1,0,2,3,1,1,1,3,2,8.0,8.0,8.5
+GP,M,18,U,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,otro,otro,proximidad,madre,2,2,0,0,1,1,0,1,1,1,0,3,3,3,5,5,4,0,6.0,6.5,6.5
+GP,F,16,U,4+,juntos,educación superior,educación superior,profesora,servicios,proximidad,madre,1,3,0,0,1,0,1,0,1,1,0,5,3,2,1,1,5,0,6.5,6.5,7.0
+GP,F,18,R,4+,juntos,educación secundaria,educación primaria,otro,otro,reputación,madre,1,2,1,0,0,0,1,1,1,1,1,5,3,3,1,1,4,16,4.5,4.0,3.5
+GP,F,17,U,4+,juntos,educación secundaria,educación secundaria incompleta,otro,otro,cursos,madre,1,2,0,0,0,0,1,0,1,1,0,5,3,4,1,3,3,10,8.0,7.5,7.5
+GP,M,17,U,1-3,juntos,educación secundaria incompleta,educación secundaria,servicios,servicios,reputación,padre,1,2,0,0,1,1,0,0,1,1,0,5,3,3,1,3,3,2,6.0,5.5,6.0
+GP,M,18,U,1-3,juntos,educación secundaria incompleta,educación primaria,en casa,otro,cursos,madre,4,2,0,1,1,1,1,1,1,1,1,4,3,2,4,5,3,14,5.0,4.0,4.5
+GP,F,17,U,4+,separados,educación secundaria incompleta,educación primaria,otro,otro,cursos,madre,2,3,0,0,0,0,1,1,1,1,1,3,2,3,1,2,3,10,6.0,5.0,6.0
+GP,F,17,U,1-3,juntos,educación superior,educación secundaria,salud,otro,reputación,padre,1,2,0,0,0,0,1,1,1,1,1,3,2,3,1,2,3,14,6.5,6.5,7.0
+GP,M,17,R,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,otro,otro,cursos,padre,2,2,0,0,1,1,1,1,1,1,0,4,5,2,1,1,1,4,5.5,5.5,5.5
+GP,M,17,U,4+,juntos,educación superior,educación superior,profesora,profesor,reputación,madre,1,2,0,1,1,0,1,1,1,1,1,4,5,5,1,3,2,14,5.5,4.5,4.5
+GP,M,16,U,4+,juntos,educación superior,educación superior,salud,otro,reputación,padre,1,2,0,0,1,1,1,1,1,1,0,4,2,4,2,4,1,2,7.0,6.5,6.5
 GP,M,16,U,1-3,juntos,educación primaria,educación primaria,otro,otro,proximidad,madre,2,2,0,0,1,1,0,1,1,1,0,3,4,2,1,1,5,18,4.5,3.5,3.0
-GP,M,16,U,4+,juntos,educación superior,educación secundaria,en casa,otro,reputación,madre,2,3,0,0,0,0,1,1,1,1,1,5,3,3,1,3,2,10,5.5,4.5,5.0
-GP,M,17,U,1-3,juntos,educación secundaria,educación secundaria,otro,otro,proximidad,padre,1,2,0,0,0,1,1,0,1,1,1,4,4,2,5,5,4,4,7.0,6.5,6.5
-GP,F,16,U,4+,juntos,educación secundaria,educación primaria,otro,otro,proximidad,madre,1,1,0,0,0,0,0,1,1,1,1,4,5,2,1,1,5,20,6.5,6.0,6.0
-GP,F,17,R,4+,juntos,educación secundaria,educación primaria,en casa,servicios,cursos,madre,3,2,0,0,0,0,1,1,1,0,0,2,1,1,1,1,3,2,6.5,5.5,5.5
-GP,M,18,U,4+,juntos,educación secundaria,educación secundaria,otro,servicios,reputación,padre,1,2,1,0,0,0,0,1,0,1,0,5,5,4,3,5,2,0,3.5,3.5,0.0
-GP,M,17,U,1-3,juntos,4,educación superior,salud,otro,cursos,madre,2,2,0,0,0,0,1,1,1,1,1,2,5,5,1,4,5,14,6.0,6.0,6.0
-GP,M,17,R,1-3,separados,4,4,profesora,otro,cursos,madre,2,2,0,0,1,1,0,1,1,1,0,3,3,3,2,3,4,2,5.0,5.5,6.0
-GP,M,16,U,1-3,juntos,4,educación superior,profesora,otro,cursos,madre,1,1,0,0,0,0,1,0,1,1,0,5,4,5,1,1,3,0,3.0,0.0,0.0
-GP,M,16,U,4+,juntos,4,4,servicios,servicios,cursos,madre,1,1,0,0,0,0,1,1,1,1,0,5,3,2,1,2,5,0,6.5,6.0,6.0
-GP,F,18,U,4+,juntos,educación secundaria,educación primaria,otro,otro,cursos,otro,2,3,0,0,1,1,0,0,1,1,1,4,4,4,1,1,3,0,3.5,0.0,0.0
-GP,M,16,U,4+,juntos,educación secundaria,educación primaria,otro,otro,cursos,madre,3,1,0,0,0,0,0,1,1,1,0,4,3,3,1,1,4,6,9.0,9.0,9.0
-GP,M,17,U,4+,juntos,educación secundaria,educación superior,otro,otro,cursos,padre,2,1,0,0,0,0,0,1,1,1,0,5,2,2,1,1,2,4,6.0,6.0,6.5
-GP,M,22,U,4+,juntos,educación superior,educación primaria,servicios,servicios,otro,madre,1,1,3,0,0,0,0,0,0,1,1,5,4,5,5,5,1,16,3.0,4.0,4.0
-GP,M,18,R,1-3,juntos,educación superior,educación superior,otro,servicios,cursos,madre,1,2,1,0,1,0,0,1,1,1,1,4,3,3,1,3,5,8,1.5,2.5,2.5
-GP,M,16,U,4+,juntos,sin educación,educación secundaria,otro,otro,otro,madre,1,1,0,0,0,1,0,0,1,1,0,4,3,2,2,4,5,0,6.5,7.5,7.5
-GP,M,18,U,4+,juntos,educación superior,educación secundaria,servicios,otro,cursos,madre,2,1,1,0,0,0,0,1,0,1,0,4,4,5,2,4,5,0,3.0,4.0,4.0
-GP,M,16,U,4+,juntos,educación superior,educación superior,en casa,otro,reputación,otro,3,2,0,1,1,0,0,0,1,1,0,5,3,3,1,3,2,6,3.5,5.0,5.0
-GP,M,18,U,4+,juntos,educación secundaria,educación primaria,servicios,servicios,otro,madre,1,1,1,0,0,0,0,0,0,1,0,3,2,5,2,5,5,4,3.0,4.5,4.0
-GP,M,16,R,4+,juntos,educación secundaria,educación primaria,otro,otro,cursos,madre,2,1,0,0,0,0,1,0,1,0,0,3,3,2,1,3,3,0,4.0,4.5,4.0
-GP,M,17,R,4+,juntos,educación secundaria,educación primaria,otro,otro,cursos,madre,1,1,0,0,0,0,0,0,1,1,0,4,4,2,2,4,5,0,4.0,6.0,6.0
+GP,M,16,U,4+,juntos,educación secundaria,educación secundaria incompleta,en casa,otro,reputación,madre,2,3,0,0,0,0,1,1,1,1,1,5,3,3,1,3,2,10,5.5,4.5,5.0
+GP,M,17,U,1-3,juntos,educación secundaria incompleta,educación secundaria incompleta,otro,otro,proximidad,padre,1,2,0,0,0,1,1,0,1,1,1,4,4,2,5,5,4,4,7.0,6.5,6.5
+GP,F,16,U,4+,juntos,educación secundaria incompleta,educación primaria,otro,otro,proximidad,madre,1,1,0,0,0,0,0,1,1,1,1,4,5,2,1,1,5,20,6.5,6.0,6.0
+GP,F,17,R,4+,juntos,educación secundaria incompleta,educación primaria,en casa,servicios,cursos,madre,3,2,0,0,0,0,1,1,1,0,0,2,1,1,1,1,3,2,6.5,5.5,5.5
+GP,M,18,U,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,otro,servicios,reputación,padre,1,2,1,0,0,0,0,1,0,1,0,5,5,4,3,5,2,0,3.5,3.5,0.0
+GP,M,17,U,1-3,juntos,educación superior,educación secundaria,salud,otro,cursos,madre,2,2,0,0,0,0,1,1,1,1,1,2,5,5,1,4,5,14,6.0,6.0,6.0
+GP,M,17,R,1-3,separados,educación superior,educación superior,profesora,otro,cursos,madre,2,2,0,0,1,1,0,1,1,1,0,3,3,3,2,3,4,2,5.0,5.5,6.0
+GP,M,16,U,1-3,juntos,educación superior,educación secundaria,profesora,otro,cursos,madre,1,1,0,0,0,0,1,0,1,1,0,5,4,5,1,1,3,0,3.0,0.0,0.0
+GP,M,16,U,4+,juntos,educación superior,educación superior,servicios,servicios,cursos,madre,1,1,0,0,0,0,1,1,1,1,0,5,3,2,1,2,5,0,6.5,6.0,6.0
+GP,F,18,U,4+,juntos,educación secundaria incompleta,educación primaria,otro,otro,cursos,otro,2,3,0,0,1,1,0,0,1,1,1,4,4,4,1,1,3,0,3.5,0.0,0.0
+GP,M,16,U,4+,juntos,educación secundaria incompleta,educación primaria,otro,otro,cursos,madre,3,1,0,0,0,0,0,1,1,1,0,4,3,3,1,1,4,6,9.0,9.0,9.0
+GP,M,17,U,4+,juntos,educación secundaria incompleta,educación secundaria,otro,otro,cursos,padre,2,1,0,0,0,0,0,1,1,1,0,5,2,2,1,1,2,4,6.0,6.0,6.5
+GP,M,22,U,4+,juntos,educación secundaria,educación primaria,servicios,servicios,otro,madre,1,1,3,0,0,0,0,0,0,1,1,5,4,5,5,5,1,16,3.0,4.0,4.0
+GP,M,18,R,1-3,juntos,educación secundaria,educación secundaria,otro,servicios,cursos,madre,1,2,1,0,1,0,0,1,1,1,1,4,3,3,1,3,5,8,1.5,2.5,2.5
+GP,M,16,U,4+,juntos,sin educación,educación secundaria incompleta,otro,otro,otro,madre,1,1,0,0,0,1,0,0,1,1,0,4,3,2,2,4,5,0,6.5,7.5,7.5
+GP,M,18,U,4+,juntos,educación secundaria,educación secundaria incompleta,servicios,otro,cursos,madre,2,1,1,0,0,0,0,1,0,1,0,4,4,5,2,4,5,0,3.0,4.0,4.0
+GP,M,16,U,4+,juntos,educación secundaria,educación secundaria,en casa,otro,reputación,otro,3,2,0,1,1,0,0,0,1,1,0,5,3,3,1,3,2,6,3.5,5.0,5.0
+GP,M,18,U,4+,juntos,educación secundaria incompleta,educación primaria,servicios,servicios,otro,madre,1,1,1,0,0,0,0,0,0,1,0,3,2,5,2,5,5,4,3.0,4.5,4.0
+GP,M,16,R,4+,juntos,educación secundaria incompleta,educación primaria,otro,otro,cursos,madre,2,1,0,0,0,0,1,0,1,0,0,3,3,2,1,3,3,0,4.0,4.5,4.0
+GP,M,17,R,4+,juntos,educación secundaria incompleta,educación primaria,otro,otro,cursos,madre,1,1,0,0,0,0,0,0,1,1,0,4,4,2,2,4,5,0,4.0,6.0,6.0
 GP,M,17,U,1-3,juntos,educación primaria,educación primaria,salud,otro,cursos,madre,2,1,1,0,1,0,1,1,1,1,0,4,4,4,1,2,5,2,3.5,4.5,4.0
-GP,F,17,U,1-3,juntos,4,educación secundaria,profesora,servicios,reputación,madre,1,4,0,0,1,1,1,1,1,1,0,4,2,3,1,1,4,6,7.0,6.0,6.5
-GP,M,19,U,1-3,separados,4,educación superior,servicios,en casa,reputación,madre,1,2,0,0,1,0,0,1,1,1,0,4,3,1,1,1,1,12,5.5,5.5,5.5
-GP,M,18,U,4+,juntos,educación secundaria,educación primaria,otro,otro,proximidad,madre,1,2,0,0,0,0,1,1,1,1,0,5,2,4,1,2,4,8,7.5,7.0,7.0
-GP,F,17,U,1-3,juntos,educación secundaria,educación secundaria,servicios,servicios,cursos,padre,1,4,0,0,0,1,1,1,1,1,1,3,4,1,1,1,2,0,5.0,4.5,0.0
-GP,F,18,U,4+,juntos,4,educación superior,servicios,otro,proximidad,padre,1,2,0,0,1,1,0,1,1,1,1,3,1,2,1,3,2,21,8.5,9.0,9.0
-GP,M,18,U,4+,juntos,4,educación superior,profesora,otro,cursos,madre,1,2,0,0,1,1,0,0,1,1,0,4,3,2,1,1,3,2,4.0,4.0,4.0
-GP,M,18,R,4+,juntos,educación superior,educación secundaria,otro,otro,cursos,madre,1,3,0,0,0,0,1,0,1,0,0,5,3,2,1,1,3,1,6.5,6.0,6.0
-GP,F,17,U,4+,juntos,educación superior,educación superior,otro,otro,proximidad,madre,1,3,0,0,0,0,1,0,1,0,0,3,2,3,1,1,4,4,5.0,4.5,4.5
-GP,F,18,U,4+,juntos,educación secundaria,educación secundaria,en casa,servicios,proximidad,madre,1,3,0,0,1,1,1,1,1,1,1,4,3,3,1,1,3,0,4.5,5.0,0.0
-GP,M,18,R,1-3,separados,educación superior,4,otro,otro,reputación,madre,2,2,0,0,1,1,1,1,1,1,0,4,2,5,3,4,1,13,8.5,8.5,8.5
-GP,M,17,U,4+,juntos,educación superior,educación primaria,servicios,otro,otro,madre,1,2,0,0,0,1,1,1,1,1,1,5,4,4,3,4,5,2,4.5,4.5,5.0
-GP,F,18,R,4+,juntos,4,4,profesora,otro,reputación,madre,2,2,0,0,0,1,1,1,1,1,0,4,3,4,2,2,4,8,6.0,5.0,5.5
-GP,M,18,U,4+,juntos,4,educación secundaria,salud,otro,reputación,padre,1,2,0,0,1,1,1,1,1,1,1,5,4,5,1,3,5,10,5.0,4.5,5.0
-GP,F,18,R,4+,juntos,educación secundaria,educación primaria,otro,otro,reputación,madre,2,2,0,0,1,0,0,1,0,1,1,4,3,5,1,2,3,0,3.0,0.0,0.0
-GP,F,19,U,4+,juntos,educación superior,educación superior,otro,servicios,proximidad,otro,1,2,2,0,1,1,1,1,1,1,0,4,3,5,3,3,5,15,4.5,4.5,4.5
-GP,F,18,U,4+,juntos,educación secundaria,educación superior,otro,servicios,reputación,padre,1,4,0,0,1,1,1,1,1,1,1,4,5,5,1,3,2,4,7.5,7.0,7.0
+GP,F,17,U,1-3,juntos,educación superior,educación secundaria incompleta,profesora,servicios,reputación,madre,1,4,0,0,1,1,1,1,1,1,0,4,2,3,1,1,4,6,7.0,6.0,6.5
+GP,M,19,U,1-3,separados,educación superior,educación secundaria,servicios,en casa,reputación,madre,1,2,0,0,1,0,0,1,1,1,0,4,3,1,1,1,1,12,5.5,5.5,5.5
+GP,M,18,U,4+,juntos,educación secundaria incompleta,educación primaria,otro,otro,proximidad,madre,1,2,0,0,0,0,1,1,1,1,0,5,2,4,1,2,4,8,7.5,7.0,7.0
+GP,F,17,U,1-3,juntos,educación secundaria incompleta,educación secundaria incompleta,servicios,servicios,cursos,padre,1,4,0,0,0,1,1,1,1,1,1,3,4,1,1,1,2,0,5.0,4.5,0.0
+GP,F,18,U,4+,juntos,educación superior,educación secundaria,servicios,otro,proximidad,padre,1,2,0,0,1,1,0,1,1,1,1,3,1,2,1,3,2,21,8.5,9.0,9.0
+GP,M,18,U,4+,juntos,educación superior,educación secundaria,profesora,otro,cursos,madre,1,2,0,0,1,1,0,0,1,1,0,4,3,2,1,1,3,2,4.0,4.0,4.0
+GP,M,18,R,4+,juntos,educación secundaria,educación secundaria incompleta,otro,otro,cursos,madre,1,3,0,0,0,0,1,0,1,0,0,5,3,2,1,1,3,1,6.5,6.0,6.0
+GP,F,17,U,4+,juntos,educación secundaria,educación secundaria,otro,otro,proximidad,madre,1,3,0,0,0,0,1,0,1,0,0,3,2,3,1,1,4,4,5.0,4.5,4.5
+GP,F,18,U,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,en casa,servicios,proximidad,madre,1,3,0,0,1,1,1,1,1,1,1,4,3,3,1,1,3,0,4.5,5.0,0.0
+GP,M,18,R,1-3,separados,educación secundaria,educación superior,otro,otro,reputación,madre,2,2,0,0,1,1,1,1,1,1,0,4,2,5,3,4,1,13,8.5,8.5,8.5
+GP,M,17,U,4+,juntos,educación secundaria,educación primaria,servicios,otro,otro,madre,1,2,0,0,0,1,1,1,1,1,1,5,4,4,3,4,5,2,4.5,4.5,5.0
+GP,F,18,R,4+,juntos,educación superior,educación superior,profesora,otro,reputación,madre,2,2,0,0,0,1,1,1,1,1,0,4,3,4,2,2,4,8,6.0,5.0,5.5
+GP,M,18,U,4+,juntos,educación superior,educación secundaria incompleta,salud,otro,reputación,padre,1,2,0,0,1,1,1,1,1,1,1,5,4,5,1,3,5,10,5.0,4.5,5.0
+GP,F,18,R,4+,juntos,educación secundaria incompleta,educación primaria,otro,otro,reputación,madre,2,2,0,0,1,0,0,1,0,1,1,4,3,5,1,2,3,0,3.0,0.0,0.0
+GP,F,19,U,4+,juntos,educación secundaria,educación secundaria,otro,servicios,proximidad,otro,1,2,2,0,1,1,1,1,1,1,0,4,3,5,3,3,5,15,4.5,4.5,4.5
+GP,F,18,U,4+,juntos,educación secundaria incompleta,educación secundaria,otro,servicios,reputación,padre,1,4,0,0,1,1,1,1,1,1,1,4,5,5,1,3,2,4,7.5,7.0,7.0
 GP,F,18,U,1-3,juntos,educación primaria,educación primaria,otro,otro,proximidad,madre,2,2,0,0,1,1,0,0,1,0,0,4,4,3,1,1,3,2,5.5,5.5,5.5
-GP,M,17,R,4+,juntos,educación primaria,educación secundaria,en casa,en casa,proximidad,madre,1,2,0,0,1,1,1,0,1,0,1,3,5,2,2,2,1,2,7.5,7.0,7.0
-GP,F,17,U,4+,juntos,educación secundaria,4,en casa,salud,reputación,madre,2,2,0,0,1,1,0,1,1,1,1,4,3,3,1,1,1,2,5.0,5.0,5.0
-GP,F,17,U,1-3,juntos,educación secundaria,educación secundaria,servicios,otro,cursos,madre,2,2,0,1,1,1,0,1,1,1,1,4,4,4,2,3,5,6,6.0,6.0,6.0
-GP,F,18,R,4+,separados,educación superior,educación secundaria,otro,servicios,proximidad,madre,2,2,0,0,0,0,0,0,0,1,1,4,1,1,1,1,5,75,5.0,4.5,4.5
-GP,M,18,U,4+,juntos,4,4,profesora,servicios,proximidad,madre,2,1,0,0,0,1,1,1,1,1,0,3,2,4,1,4,3,22,4.5,4.5,4.5
-GP,F,18,U,4+,juntos,4,4,salud,salud,reputación,padre,1,2,1,1,1,0,1,1,1,1,1,2,4,4,1,1,4,15,4.5,4.0,4.0
-GP,M,18,U,1-3,juntos,4,educación superior,profesora,servicios,cursos,madre,2,1,0,0,0,1,1,1,1,1,0,4,2,3,1,2,1,8,5.0,5.5,5.0
-GP,M,17,U,1-3,separados,4,educación primaria,servicios,otro,proximidad,madre,2,1,0,0,0,1,1,1,1,1,1,4,5,4,2,4,5,30,4.0,4.0,4.0
-GP,M,17,U,1-3,separados,educación superior,educación secundaria,profesora,servicios,proximidad,madre,1,1,1,0,0,0,0,1,1,1,0,4,4,4,3,4,3,19,5.5,4.5,5.0
+GP,M,17,R,4+,juntos,educación primaria,educación secundaria incompleta,en casa,en casa,proximidad,madre,1,2,0,0,1,1,1,0,1,0,1,3,5,2,2,2,1,2,7.5,7.0,7.0
+GP,F,17,U,4+,juntos,educación secundaria incompleta,educación superior,en casa,salud,reputación,madre,2,2,0,0,1,1,0,1,1,1,1,4,3,3,1,1,1,2,5.0,5.0,5.0
+GP,F,17,U,1-3,juntos,educación secundaria incompleta,educación secundaria incompleta,servicios,otro,cursos,madre,2,2,0,1,1,1,0,1,1,1,1,4,4,4,2,3,5,6,6.0,6.0,6.0
+GP,F,18,R,4+,separados,educación secundaria,educación secundaria incompleta,otro,servicios,proximidad,madre,2,2,0,0,0,0,0,0,0,1,1,4,1,1,1,1,5,75,5.0,4.5,4.5
+GP,M,18,U,4+,juntos,educación superior,educación superior,profesora,servicios,proximidad,madre,2,1,0,0,0,1,1,1,1,1,0,3,2,4,1,4,3,22,4.5,4.5,4.5
+GP,F,18,U,4+,juntos,educación superior,educación superior,salud,salud,reputación,padre,1,2,1,1,1,0,1,1,1,1,1,2,4,4,1,1,4,15,4.5,4.0,4.0
+GP,M,18,U,1-3,juntos,educación superior,educación secundaria,profesora,servicios,cursos,madre,2,1,0,0,0,1,1,1,1,1,0,4,2,3,1,2,1,8,5.0,5.5,5.0
+GP,M,17,U,1-3,separados,educación superior,educación primaria,servicios,otro,proximidad,madre,2,1,0,0,0,1,1,1,1,1,1,4,5,4,2,4,5,30,4.0,4.0,4.0
+GP,M,17,U,1-3,separados,educación secundaria,educación secundaria incompleta,profesora,servicios,proximidad,madre,1,1,1,0,0,0,0,1,1,1,0,4,4,4,3,4,3,19,5.5,4.5,5.0
 GP,F,18,R,1-3,juntos,educación primaria,educación primaria,en casa,otro,reputación,madre,2,4,0,0,1,1,1,1,1,0,0,5,2,2,1,1,3,1,6.0,6.0,6.0
 GP,F,18,U,4+,juntos,educación primaria,educación primaria,otro,otro,proximidad,madre,2,2,0,1,0,0,1,1,1,1,0,5,4,4,1,1,4,4,4.0,4.5,5.0
-GP,F,17,U,4+,juntos,educación secundaria,educación secundaria,otro,otro,cursos,madre,1,2,0,0,1,0,0,0,1,1,0,5,4,5,1,2,5,4,5.0,4.5,5.5
+GP,F,17,U,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,otro,otro,cursos,madre,1,2,0,0,1,0,0,0,1,1,0,5,4,5,1,2,5,4,5.0,4.5,5.5
 GP,M,17,U,4+,juntos,educación primaria,educación primaria,otro,otro,reputación,padre,1,2,0,0,0,1,0,0,1,1,0,4,3,3,1,2,4,2,6.0,5.0,5.5
-GP,F,18,U,4+,juntos,educación secundaria,educación secundaria,en casa,en casa,otro,madre,1,3,0,0,1,1,0,1,1,1,0,4,3,3,1,2,2,5,9.0,9.0,9.5
+GP,F,18,U,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,en casa,en casa,otro,madre,1,3,0,0,1,1,0,1,1,1,0,4,3,3,1,2,2,5,9.0,9.0,9.5
 GP,F,17,U,4+,juntos,educación primaria,educación primaria,servicios,profesor,reputación,madre,1,3,0,0,1,1,0,1,1,1,0,4,3,3,1,1,3,6,6.5,6.0,6.0
-GP,M,18,U,4+,juntos,educación secundaria,educación primaria,servicios,servicios,reputación,madre,1,3,0,0,0,1,1,1,1,1,0,4,2,4,1,3,2,6,7.5,7.0,7.0
-GP,M,18,U,1-3,separados,4,4,profesora,profesor,reputación,madre,1,2,0,0,1,1,1,1,1,1,0,5,4,3,1,1,2,9,7.5,6.5,7.5
-GP,M,18,U,4+,juntos,4,educación secundaria,profesora,otro,proximidad,madre,1,2,0,0,1,1,1,1,1,1,1,4,3,2,1,4,5,11,6.0,5.5,5.5
-GP,F,17,U,4+,juntos,4,educación superior,salud,servicios,reputación,madre,1,3,0,0,1,1,0,1,1,1,0,4,2,2,1,2,3,0,7.5,7.5,7.5
-GP,F,18,U,1-3,juntos,educación secundaria,educación primaria,servicios,en casa,reputación,madre,1,2,1,0,0,0,0,1,1,1,1,5,4,3,1,1,5,12,6.0,6.0,6.5
-GP,F,17,R,1-3,juntos,educación superior,educación primaria,servicios,otro,reputación,madre,2,4,0,0,1,1,0,1,1,0,0,3,1,2,1,1,3,6,9.0,9.0,9.0
-GP,M,18,R,1-3,juntos,educación superior,educación secundaria,servicios,otro,reputación,madre,2,3,0,0,1,1,1,1,1,1,0,5,4,2,1,1,4,8,7.0,6.5,7.0
-GP,M,17,U,4+,juntos,educación superior,educación superior,salud,otro,proximidad,madre,1,1,0,0,1,1,0,1,1,1,0,4,4,3,1,3,5,4,7.0,6.0,5.5
-GP,F,19,U,4+,juntos,4,4,salud,otro,reputación,otro,2,2,0,0,1,1,1,1,1,1,0,2,3,4,2,3,2,0,5.0,4.5,0.0
-GP,F,18,U,1-3,juntos,4,educación superior,otro,otro,proximidad,otro,2,2,0,0,1,1,0,1,1,1,1,4,4,5,1,2,2,10,5.0,4.0,4.0
-GP,F,18,U,4+,juntos,4,educación superior,otro,otro,reputación,padre,1,4,0,0,1,1,0,1,1,1,0,4,3,3,1,1,3,0,7.0,6.5,7.0
-GP,M,18,U,1-3,juntos,4,4,profesora,profesor,proximidad,madre,1,1,0,0,1,1,0,1,1,1,1,1,4,2,2,2,1,5,8.0,7.5,8.0
-GP,F,18,U,1-3,separados,4,4,salud,otro,proximidad,madre,1,2,0,0,1,0,0,1,1,1,1,4,2,4,1,1,4,14,6.0,5.0,5.5
-GP,M,17,U,1-3,juntos,4,4,otro,profesor,proximidad,padre,2,1,0,0,0,1,0,1,1,1,0,4,1,1,2,2,5,0,5.5,5.5,5.0
-GP,F,17,U,4+,juntos,4,educación secundaria,otro,otro,reputación,madre,2,3,0,0,1,1,0,1,1,1,0,4,3,3,1,1,3,0,7.5,6.0,7.0
-GP,F,17,U,4+,juntos,educación superior,educación secundaria,salud,salud,reputación,padre,1,4,0,0,1,1,1,0,1,1,0,5,2,2,1,2,5,0,8.5,8.5,9.0
-GP,M,19,U,4+,juntos,educación superior,educación superior,otro,otro,proximidad,otro,1,2,1,0,1,0,1,1,1,1,1,4,4,4,1,1,3,20,7.5,7.0,6.5
-GP,F,18,U,4+,juntos,educación secundaria,4,servicios,en casa,reputación,otro,1,2,1,0,1,1,1,1,1,1,0,4,4,3,1,1,3,8,7.0,6.0,6.0
-GP,M,20,U,4+,separados,educación superior,educación secundaria,servicios,otro,cursos,otro,1,1,0,0,0,0,1,1,1,0,0,5,5,3,1,1,5,0,8.5,9.0,9.0
-GP,M,19,U,4+,juntos,4,4,profesora,servicios,reputación,otro,2,1,1,0,1,1,0,1,1,1,1,4,3,4,1,1,4,38,4.0,4.5,4.0
-GP,M,19,R,4+,juntos,educación superior,educación superior,otro,servicios,reputación,padre,1,2,1,0,0,0,1,1,1,0,1,4,5,3,1,2,5,0,7.5,6.0,6.0
+GP,M,18,U,4+,juntos,educación secundaria incompleta,educación primaria,servicios,servicios,reputación,madre,1,3,0,0,0,1,1,1,1,1,0,4,2,4,1,3,2,6,7.5,7.0,7.0
+GP,M,18,U,1-3,separados,educación superior,educación superior,profesora,profesor,reputación,madre,1,2,0,0,1,1,1,1,1,1,0,5,4,3,1,1,2,9,7.5,6.5,7.5
+GP,M,18,U,4+,juntos,educación superior,educación secundaria incompleta,profesora,otro,proximidad,madre,1,2,0,0,1,1,1,1,1,1,1,4,3,2,1,4,5,11,6.0,5.5,5.5
+GP,F,17,U,4+,juntos,educación superior,educación secundaria,salud,servicios,reputación,madre,1,3,0,0,1,1,0,1,1,1,0,4,2,2,1,2,3,0,7.5,7.5,7.5
+GP,F,18,U,1-3,juntos,educación secundaria incompleta,educación primaria,servicios,en casa,reputación,madre,1,2,1,0,0,0,0,1,1,1,1,5,4,3,1,1,5,12,6.0,6.0,6.5
+GP,F,17,R,1-3,juntos,educación secundaria,educación primaria,servicios,otro,reputación,madre,2,4,0,0,1,1,0,1,1,0,0,3,1,2,1,1,3,6,9.0,9.0,9.0
+GP,M,18,R,1-3,juntos,educación secundaria,educación secundaria incompleta,servicios,otro,reputación,madre,2,3,0,0,1,1,1,1,1,1,0,5,4,2,1,1,4,8,7.0,6.5,7.0
+GP,M,17,U,4+,juntos,educación secundaria,educación secundaria,salud,otro,proximidad,madre,1,1,0,0,1,1,0,1,1,1,0,4,4,3,1,3,5,4,7.0,6.0,5.5
+GP,F,19,U,4+,juntos,educación superior,educación superior,salud,otro,reputación,otro,2,2,0,0,1,1,1,1,1,1,0,2,3,4,2,3,2,0,5.0,4.5,0.0
+GP,F,18,U,1-3,juntos,educación superior,educación secundaria,otro,otro,proximidad,otro,2,2,0,0,1,1,0,1,1,1,1,4,4,5,1,2,2,10,5.0,4.0,4.0
+GP,F,18,U,4+,juntos,educación superior,educación secundaria,otro,otro,reputación,padre,1,4,0,0,1,1,0,1,1,1,0,4,3,3,1,1,3,0,7.0,6.5,7.0
+GP,M,18,U,1-3,juntos,educación superior,educación superior,profesora,profesor,proximidad,madre,1,1,0,0,1,1,0,1,1,1,1,1,4,2,2,2,1,5,8.0,7.5,8.0
+GP,F,18,U,1-3,separados,educación superior,educación superior,salud,otro,proximidad,madre,1,2,0,0,1,0,0,1,1,1,1,4,2,4,1,1,4,14,6.0,5.0,5.5
+GP,M,17,U,1-3,juntos,educación superior,educación superior,otro,profesor,proximidad,padre,2,1,0,0,0,1,0,1,1,1,0,4,1,1,2,2,5,0,5.5,5.5,5.0
+GP,F,17,U,4+,juntos,educación superior,educación secundaria incompleta,otro,otro,reputación,madre,2,3,0,0,1,1,0,1,1,1,0,4,3,3,1,1,3,0,7.5,6.0,7.0
+GP,F,17,U,4+,juntos,educación secundaria,educación secundaria incompleta,salud,salud,reputación,padre,1,4,0,0,1,1,1,0,1,1,0,5,2,2,1,2,5,0,8.5,8.5,9.0
+GP,M,19,U,4+,juntos,educación secundaria,educación secundaria,otro,otro,proximidad,otro,1,2,1,0,1,0,1,1,1,1,1,4,4,4,1,1,3,20,7.5,7.0,6.5
+GP,F,18,U,4+,juntos,educación secundaria incompleta,educación superior,servicios,en casa,reputación,otro,1,2,1,0,1,1,1,1,1,1,0,4,4,3,1,1,3,8,7.0,6.0,6.0
+GP,M,20,U,4+,separados,educación secundaria,educación secundaria incompleta,servicios,otro,cursos,otro,1,1,0,0,0,0,1,1,1,0,0,5,5,3,1,1,5,0,8.5,9.0,9.0
+GP,M,19,U,4+,juntos,educación superior,educación superior,profesora,servicios,reputación,otro,2,1,1,0,1,1,0,1,1,1,1,4,3,4,1,1,4,38,4.0,4.5,4.0
+GP,M,19,R,4+,juntos,educación secundaria,educación secundaria,otro,servicios,reputación,padre,1,2,1,0,0,0,1,1,1,0,1,4,5,3,1,2,5,0,7.5,6.0,6.0
 GP,F,19,U,1-3,juntos,educación primaria,educación primaria,en casa,otro,reputación,otro,1,2,1,1,1,0,1,0,1,1,0,4,4,3,1,3,3,18,6.0,5.0,5.0
-GP,F,19,U,1-3,juntos,educación primaria,educación secundaria,servicios,servicios,proximidad,otro,1,2,1,0,0,0,1,0,1,0,1,4,2,4,2,2,3,0,4.5,4.5,0.0
-GP,F,19,U,4+,juntos,educación secundaria,educación primaria,en casa,otro,otro,otro,3,2,0,0,1,0,0,1,0,1,1,3,4,1,1,1,2,20,7.0,6.0,6.5
-GP,M,19,U,4+,juntos,educación primaria,educación secundaria,otro,servicios,cursos,otro,1,2,1,0,0,0,0,0,1,1,0,4,5,2,2,2,4,3,6.5,5.5,5.5
-GP,F,19,U,1-3,juntos,educación superior,educación secundaria,servicios,otro,reputación,otro,2,2,1,0,1,1,0,0,1,1,1,4,2,2,1,2,1,22,6.5,5.0,5.5
+GP,F,19,U,1-3,juntos,educación primaria,educación secundaria incompleta,servicios,servicios,proximidad,otro,1,2,1,0,0,0,1,0,1,0,1,4,2,4,2,2,3,0,4.5,4.5,0.0
+GP,F,19,U,4+,juntos,educación secundaria incompleta,educación primaria,en casa,otro,otro,otro,3,2,0,0,1,0,0,1,0,1,1,3,4,1,1,1,2,20,7.0,6.0,6.5
+GP,M,19,U,4+,juntos,educación primaria,educación secundaria incompleta,otro,servicios,cursos,otro,1,2,1,0,0,0,0,0,1,1,0,4,5,2,2,2,4,3,6.5,5.5,5.5
+GP,F,19,U,1-3,juntos,educación secundaria,educación secundaria incompleta,servicios,otro,reputación,otro,2,2,1,0,1,1,0,0,1,1,1,4,2,2,1,2,1,22,6.5,5.0,5.5
 GP,F,19,U,4+,juntos,educación primaria,educación primaria,en casa,salud,proximidad,otro,1,3,2,0,0,0,0,0,1,1,1,4,1,2,1,1,3,14,7.5,6.5,6.5
-GP,F,19,R,4+,juntos,educación secundaria,educación superior,otro,otro,reputación,otro,1,3,1,0,0,0,0,1,1,1,1,4,1,2,1,1,3,40,6.5,5.5,5.5
-GP,F,18,U,4+,juntos,educación secundaria,educación primaria,servicios,otro,cursos,madre,2,2,0,0,1,1,1,1,1,1,0,5,3,3,1,2,1,0,4.0,4.0,0.0
-GP,F,18,U,4+,juntos,4,educación superior,otro,otro,cursos,madre,1,3,0,0,1,1,1,1,1,1,1,4,3,4,1,1,5,9,4.5,5.0,4.5
-GP,F,17,R,4+,juntos,educación superior,4,en casa,servicios,cursos,padre,1,3,0,0,1,1,1,0,1,1,0,4,3,4,2,5,5,0,5.5,5.5,5.0
-GP,F,18,U,4+,juntos,4,4,profesora,otro,cursos,madre,1,2,0,0,1,1,0,1,1,1,0,4,4,4,3,3,5,2,5.5,5.5,5.5
-GP,F,17,U,4+,separados,4,educación superior,servicios,servicios,cursos,madre,1,2,0,0,1,1,0,1,1,1,1,5,2,2,1,2,5,23,6.5,6.5,6.5
-GP,F,17,U,4+,juntos,educación secundaria,educación secundaria,otro,otro,cursos,madre,1,2,0,0,1,0,0,1,1,0,1,4,2,2,1,1,3,12,5.5,4.5,4.5
-GP,F,17,R,1-3,juntos,educación secundaria,educación secundaria,servicios,servicios,cursos,madre,1,3,0,0,1,1,1,1,1,1,0,3,3,2,2,2,3,3,5.5,5.5,5.5
-GP,F,17,U,4+,juntos,educación superior,educación primaria,servicios,servicios,cursos,padre,1,3,0,0,1,0,0,0,1,1,0,3,4,3,2,3,5,1,6.0,7.0,7.5
-GP,F,17,U,1-3,juntos,sin educación,educación secundaria,en casa,en casa,proximidad,padre,2,3,0,0,0,0,0,1,1,1,0,3,3,3,2,3,2,0,8.0,7.5,7.5
-GP,M,18,U,4+,juntos,4,4,otro,otro,cursos,madre,1,3,0,0,0,0,1,1,1,1,0,4,3,3,2,2,3,3,4.5,6.0,5.5
-GP,M,17,U,4+,juntos,educación superior,educación superior,otro,servicios,reputación,madre,1,1,0,0,0,0,1,0,1,1,0,4,3,5,3,5,5,3,7.0,7.5,8.0
-GP,M,17,R,4+,juntos,educación secundaria,educación secundaria,servicios,otro,cursos,madre,4,1,0,0,1,0,0,1,1,1,0,4,4,5,5,5,4,8,5.5,5.0,5.0
-GP,F,17,U,4+,juntos,4,4,profesora,servicios,cursos,madre,1,3,0,0,1,1,1,1,1,1,0,5,4,4,1,3,4,7,5.0,4.5,4.5
-GP,F,17,U,4+,juntos,4,4,profesora,profesor,cursos,madre,2,3,0,0,1,1,0,0,1,1,1,4,3,3,1,2,4,4,7.0,7.0,7.0
-GP,M,18,U,1-3,juntos,educación secundaria,educación secundaria,otro,otro,cursos,madre,1,4,0,0,1,0,1,1,1,1,0,4,5,5,2,4,5,2,4.5,4.0,4.0
-GP,F,17,R,4+,juntos,educación secundaria,4,en casa,otro,cursos,padre,1,3,0,0,1,0,0,1,1,1,1,4,4,3,1,1,5,7,6.0,7.0,7.0
-GP,F,18,U,4+,juntos,educación superior,educación superior,servicios,servicios,proximidad,madre,1,2,0,0,0,0,1,1,1,1,0,5,3,4,1,1,4,0,3.5,0.0,0.0
-GP,F,18,U,1-3,juntos,educación secundaria,educación secundaria,otro,otro,proximidad,otro,1,2,0,0,0,0,1,0,1,1,1,4,3,3,1,1,2,0,4.0,4.0,0.0
-GP,F,18,R,4+,juntos,educación secundaria,educación secundaria,en casa,otro,cursos,madre,2,4,0,0,0,0,1,1,1,0,0,4,4,4,1,1,4,0,5.0,4.5,0.0
-GP,F,17,U,4+,juntos,educación superior,4,servicios,otro,cursos,madre,1,3,0,0,0,0,0,1,1,1,0,4,4,5,1,3,5,16,8.0,7.5,7.5
-GP,F,19,R,4+,separados,educación superior,educación primaria,servicios,en casa,proximidad,otro,1,3,1,0,0,1,0,1,1,0,0,5,4,3,1,2,5,12,7.0,6.5,6.5
-GP,F,17,U,4+,juntos,educación superior,educación secundaria,otro,otro,proximidad,madre,1,2,0,0,1,1,0,1,1,1,1,4,3,2,2,3,2,0,3.5,4.0,0.0
-GP,F,18,U,1-3,juntos,educación superior,educación superior,servicios,servicios,proximidad,madre,1,4,0,0,1,0,0,1,1,1,0,5,3,3,1,1,1,7,8.0,7.5,8.5
-GP,F,17,R,4+,separados,educación superior,educación secundaria,otro,otro,proximidad,madre,1,2,0,0,1,1,0,1,1,1,0,4,3,3,2,3,2,4,4.5,5.0,5.0
-GP,F,19,U,4+,juntos,educación secundaria,educación primaria,servicios,servicios,proximidad,otro,1,3,1,0,0,1,1,1,1,1,1,4,3,4,1,3,3,4,5.5,6.0,5.5
-GP,M,18,U,4+,juntos,4,4,profesora,servicios,proximidad,padre,1,2,1,0,1,0,1,1,1,1,0,4,3,3,2,2,2,0,5.0,5.0,0.0
-GP,M,18,U,1-3,juntos,educación superior,4,servicios,otro,proximidad,madre,1,2,0,0,0,0,1,1,1,1,1,4,3,3,1,3,5,11,8.0,7.5,7.5
-GP,F,17,U,4+,separados,educación secundaria,educación secundaria,en casa,en casa,proximidad,padre,1,2,1,0,1,0,0,1,1,1,1,3,3,1,1,2,4,0,4.5,4.0,0.0
-GP,F,18,U,4+,juntos,educación secundaria,educación superior,en casa,otro,cursos,madre,1,3,0,0,1,0,0,1,1,1,0,4,3,3,1,2,3,4,5.5,5.0,5.0
-GP,F,18,U,4+,juntos,educación superior,educación secundaria,otro,servicios,otro,madre,1,3,0,0,0,0,0,1,1,1,1,5,4,3,2,3,1,7,6.5,6.5,7.0
-GP,M,18,R,4+,juntos,4,educación superior,profesora,servicios,cursos,madre,1,3,0,0,0,0,0,1,1,1,1,5,3,2,1,2,4,9,8.0,7.5,8.0
-GP,M,18,U,4+,juntos,4,educación superior,profesora,otro,cursos,madre,1,3,0,0,1,1,0,1,1,1,1,5,4,5,2,3,5,0,5.0,5.0,4.5
-GP,F,17,U,4+,juntos,4,educación superior,salud,otro,reputación,madre,1,3,0,0,1,1,1,1,1,1,1,4,4,3,1,3,4,0,6.5,7.5,7.5
-MS,M,18,R,4+,juntos,educación superior,educación secundaria,otro,otro,cursos,madre,2,1,1,0,1,0,0,0,1,1,0,2,5,5,5,5,5,10,5.5,6.5,6.5
+GP,F,19,R,4+,juntos,educación secundaria incompleta,educación secundaria,otro,otro,reputación,otro,1,3,1,0,0,0,0,1,1,1,1,4,1,2,1,1,3,40,6.5,5.5,5.5
+GP,F,18,U,4+,juntos,educación secundaria incompleta,educación primaria,servicios,otro,cursos,madre,2,2,0,0,1,1,1,1,1,1,0,5,3,3,1,2,1,0,4.0,4.0,0.0
+GP,F,18,U,4+,juntos,educación superior,educación secundaria,otro,otro,cursos,madre,1,3,0,0,1,1,1,1,1,1,1,4,3,4,1,1,5,9,4.5,5.0,4.5
+GP,F,17,R,4+,juntos,educación secundaria,educación superior,en casa,servicios,cursos,padre,1,3,0,0,1,1,1,0,1,1,0,4,3,4,2,5,5,0,5.5,5.5,5.0
+GP,F,18,U,4+,juntos,educación superior,educación superior,profesora,otro,cursos,madre,1,2,0,0,1,1,0,1,1,1,0,4,4,4,3,3,5,2,5.5,5.5,5.5
+GP,F,17,U,4+,separados,educación superior,educación secundaria,servicios,servicios,cursos,madre,1,2,0,0,1,1,0,1,1,1,1,5,2,2,1,2,5,23,6.5,6.5,6.5
+GP,F,17,U,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,otro,otro,cursos,madre,1,2,0,0,1,0,0,1,1,0,1,4,2,2,1,1,3,12,5.5,4.5,4.5
+GP,F,17,R,1-3,juntos,educación secundaria incompleta,educación secundaria incompleta,servicios,servicios,cursos,madre,1,3,0,0,1,1,1,1,1,1,0,3,3,2,2,2,3,3,5.5,5.5,5.5
+GP,F,17,U,4+,juntos,educación secundaria,educación primaria,servicios,servicios,cursos,padre,1,3,0,0,1,0,0,0,1,1,0,3,4,3,2,3,5,1,6.0,7.0,7.5
+GP,F,17,U,1-3,juntos,sin educación,educación secundaria incompleta,en casa,en casa,proximidad,padre,2,3,0,0,0,0,0,1,1,1,0,3,3,3,2,3,2,0,8.0,7.5,7.5
+GP,M,18,U,4+,juntos,educación superior,educación superior,otro,otro,cursos,madre,1,3,0,0,0,0,1,1,1,1,0,4,3,3,2,2,3,3,4.5,6.0,5.5
+GP,M,17,U,4+,juntos,educación secundaria,educación secundaria,otro,servicios,reputación,madre,1,1,0,0,0,0,1,0,1,1,0,4,3,5,3,5,5,3,7.0,7.5,8.0
+GP,M,17,R,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,servicios,otro,cursos,madre,4,1,0,0,1,0,0,1,1,1,0,4,4,5,5,5,4,8,5.5,5.0,5.0
+GP,F,17,U,4+,juntos,educación superior,educación superior,profesora,servicios,cursos,madre,1,3,0,0,1,1,1,1,1,1,0,5,4,4,1,3,4,7,5.0,4.5,4.5
+GP,F,17,U,4+,juntos,educación superior,educación superior,profesora,profesor,cursos,madre,2,3,0,0,1,1,0,0,1,1,1,4,3,3,1,2,4,4,7.0,7.0,7.0
+GP,M,18,U,1-3,juntos,educación secundaria incompleta,educación secundaria incompleta,otro,otro,cursos,madre,1,4,0,0,1,0,1,1,1,1,0,4,5,5,2,4,5,2,4.5,4.0,4.0
+GP,F,17,R,4+,juntos,educación secundaria incompleta,educación superior,en casa,otro,cursos,padre,1,3,0,0,1,0,0,1,1,1,1,4,4,3,1,1,5,7,6.0,7.0,7.0
+GP,F,18,U,4+,juntos,educación secundaria,educación secundaria,servicios,servicios,proximidad,madre,1,2,0,0,0,0,1,1,1,1,0,5,3,4,1,1,4,0,3.5,0.0,0.0
+GP,F,18,U,1-3,juntos,educación secundaria incompleta,educación secundaria incompleta,otro,otro,proximidad,otro,1,2,0,0,0,0,1,0,1,1,1,4,3,3,1,1,2,0,4.0,4.0,0.0
+GP,F,18,R,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,en casa,otro,cursos,madre,2,4,0,0,0,0,1,1,1,0,0,4,4,4,1,1,4,0,5.0,4.5,0.0
+GP,F,17,U,4+,juntos,educación secundaria,educación superior,servicios,otro,cursos,madre,1,3,0,0,0,0,0,1,1,1,0,4,4,5,1,3,5,16,8.0,7.5,7.5
+GP,F,19,R,4+,separados,educación secundaria,educación primaria,servicios,en casa,proximidad,otro,1,3,1,0,0,1,0,1,1,0,0,5,4,3,1,2,5,12,7.0,6.5,6.5
+GP,F,17,U,4+,juntos,educación secundaria,educación secundaria incompleta,otro,otro,proximidad,madre,1,2,0,0,1,1,0,1,1,1,1,4,3,2,2,3,2,0,3.5,4.0,0.0
+GP,F,18,U,1-3,juntos,educación secundaria,educación secundaria,servicios,servicios,proximidad,madre,1,4,0,0,1,0,0,1,1,1,0,5,3,3,1,1,1,7,8.0,7.5,8.5
+GP,F,17,R,4+,separados,educación secundaria,educación secundaria incompleta,otro,otro,proximidad,madre,1,2,0,0,1,1,0,1,1,1,0,4,3,3,2,3,2,4,4.5,5.0,5.0
+GP,F,19,U,4+,juntos,educación secundaria incompleta,educación primaria,servicios,servicios,proximidad,otro,1,3,1,0,0,1,1,1,1,1,1,4,3,4,1,3,3,4,5.5,6.0,5.5
+GP,M,18,U,4+,juntos,educación superior,educación superior,profesora,servicios,proximidad,padre,1,2,1,0,1,0,1,1,1,1,0,4,3,3,2,2,2,0,5.0,5.0,0.0
+GP,M,18,U,1-3,juntos,educación secundaria,educación superior,servicios,otro,proximidad,madre,1,2,0,0,0,0,1,1,1,1,1,4,3,3,1,3,5,11,8.0,7.5,7.5
+GP,F,17,U,4+,separados,educación secundaria incompleta,educación secundaria incompleta,en casa,en casa,proximidad,padre,1,2,1,0,1,0,0,1,1,1,1,3,3,1,1,2,4,0,4.5,4.0,0.0
+GP,F,18,U,4+,juntos,educación secundaria incompleta,educación secundaria,en casa,otro,cursos,madre,1,3,0,0,1,0,0,1,1,1,0,4,3,3,1,2,3,4,5.5,5.0,5.0
+GP,F,18,U,4+,juntos,educación secundaria,educación secundaria incompleta,otro,servicios,otro,madre,1,3,0,0,0,0,0,1,1,1,1,5,4,3,2,3,1,7,6.5,6.5,7.0
+GP,M,18,R,4+,juntos,educación superior,educación secundaria,profesora,servicios,cursos,madre,1,3,0,0,0,0,0,1,1,1,1,5,3,2,1,2,4,9,8.0,7.5,8.0
+GP,M,18,U,4+,juntos,educación superior,educación secundaria,profesora,otro,cursos,madre,1,3,0,0,1,1,0,1,1,1,1,5,4,5,2,3,5,0,5.0,5.0,4.5
+GP,F,17,U,4+,juntos,educación superior,educación secundaria,salud,otro,reputación,madre,1,3,0,0,1,1,1,1,1,1,1,4,4,3,1,3,4,0,6.5,7.5,7.5
+MS,M,18,R,4+,juntos,educación secundaria,educación secundaria incompleta,otro,otro,cursos,madre,2,1,1,0,1,0,0,0,1,1,0,2,5,5,5,5,5,10,5.5,6.5,6.5
 MS,M,19,R,4+,juntos,educación primaria,educación primaria,otro,servicios,proximidad,otro,3,2,3,0,0,0,0,1,1,1,0,5,4,4,3,3,2,8,4.0,3.5,4.0
-MS,M,17,U,4+,juntos,educación superior,educación superior,salud,otro,cursos,madre,2,2,0,0,1,1,0,1,1,1,0,4,5,4,2,3,3,2,6.5,6.5,6.5
-MS,M,18,U,1-3,juntos,educación primaria,educación superior,en casa,servicios,cursos,madre,1,1,1,0,0,0,0,1,0,1,1,4,3,3,2,3,3,7,4.0,3.5,4.0
+MS,M,17,U,4+,juntos,educación secundaria,educación secundaria,salud,otro,cursos,madre,2,2,0,0,1,1,0,1,1,1,0,4,5,4,2,3,3,2,6.5,6.5,6.5
+MS,M,18,U,1-3,juntos,educación primaria,educación secundaria,en casa,servicios,cursos,madre,1,1,1,0,0,0,0,1,0,1,1,4,3,3,2,3,3,7,4.0,3.5,4.0
 MS,M,19,R,4+,juntos,educación primaria,educación primaria,otro,otro,proximidad,otro,3,1,1,0,1,0,0,1,1,1,0,4,4,4,3,3,5,4,4.0,4.0,4.0
-MS,M,17,R,4+,juntos,4,educación superior,servicios,otro,proximidad,madre,2,2,0,0,1,1,1,0,1,1,1,4,5,5,1,3,2,4,6.5,5.5,5.5
-MS,F,18,U,4+,juntos,educación superior,educación superior,servicios,servicios,cursos,padre,1,2,0,0,1,0,0,1,1,0,1,5,3,4,1,1,5,0,5.0,4.5,4.5
-MS,F,17,R,4+,juntos,4,4,profesora,servicios,otro,padre,2,2,0,0,1,1,1,1,1,1,0,4,3,3,1,2,5,4,6.0,6.5,6.5
-MS,F,17,U,1-3,separados,educación superior,educación secundaria,servicios,otro,reputación,madre,2,2,0,0,0,0,0,1,1,0,1,1,2,3,1,2,5,2,6.0,6.0,5.5
+MS,M,17,R,4+,juntos,educación superior,educación secundaria,servicios,otro,proximidad,madre,2,2,0,0,1,1,1,0,1,1,1,4,5,5,1,3,2,4,6.5,5.5,5.5
+MS,F,18,U,4+,juntos,educación secundaria,educación secundaria,servicios,servicios,cursos,padre,1,2,0,0,1,0,0,1,1,0,1,5,3,4,1,1,5,0,5.0,4.5,4.5
+MS,F,17,R,4+,juntos,educación superior,educación superior,profesora,servicios,otro,padre,2,2,0,0,1,1,1,1,1,1,0,4,3,3,1,2,5,4,6.0,6.5,6.5
+MS,F,17,U,1-3,separados,educación secundaria,educación secundaria incompleta,servicios,otro,reputación,madre,2,2,0,0,0,0,0,1,1,0,1,1,2,3,1,2,5,2,6.0,6.0,5.5
 MS,M,18,U,1-3,juntos,educación primaria,educación primaria,otro,servicios,proximidad,padre,2,1,0,0,0,0,0,0,1,1,1,3,3,2,1,2,3,4,5.0,5.0,5.0
 MS,F,18,U,1-3,juntos,educación primaria,educación primaria,en casa,servicios,cursos,padre,2,3,0,0,0,0,0,1,1,1,0,5,3,2,1,1,4,0,9.0,8.0,8.0
-MS,F,18,R,1-3,separados,educación primaria,4,en casa,otro,cursos,madre,3,2,0,0,0,0,0,1,1,0,1,4,3,4,1,4,5,0,6.5,6.5,6.5
+MS,F,18,R,1-3,separados,educación primaria,educación superior,en casa,otro,cursos,madre,3,2,0,0,0,0,0,1,1,0,1,4,3,4,1,4,5,0,6.5,6.5,6.5
 MS,M,18,R,1-3,juntos,educación primaria,educación primaria,en casa,otro,otro,madre,2,2,1,0,0,0,1,0,0,0,0,4,4,3,2,3,5,2,6.5,6.0,6.0
-MS,F,18,U,4+,juntos,educación superior,educación superior,servicios,servicios,otro,madre,2,2,0,0,1,0,0,1,1,1,1,4,3,2,1,3,3,0,5.5,5.5,5.0
-MS,F,17,U,1-3,juntos,4,4,en casa,en casa,cursos,madre,1,2,0,0,1,1,1,1,1,1,1,2,3,4,1,1,1,0,8.0,7.5,7.5
-MS,F,17,R,4+,juntos,educación primaria,educación secundaria,otro,servicios,cursos,padre,2,2,0,0,0,0,0,0,1,0,0,3,2,2,1,2,3,0,6.0,5.5,6.0
-MS,M,18,R,4+,juntos,educación primaria,educación superior,en casa,otro,cursos,madre,2,2,0,0,1,1,0,1,1,0,0,3,3,4,2,4,3,4,5.0,5.0,5.0
-MS,M,18,U,1-3,juntos,4,4,profesora,servicios,otro,madre,2,3,0,0,0,1,0,1,1,1,1,4,2,2,2,2,5,0,6.5,6.5,6.5
+MS,F,18,U,4+,juntos,educación secundaria,educación secundaria,servicios,servicios,otro,madre,2,2,0,0,1,0,0,1,1,1,1,4,3,2,1,3,3,0,5.5,5.5,5.0
+MS,F,17,U,1-3,juntos,educación superior,educación superior,en casa,en casa,cursos,madre,1,2,0,0,1,1,1,1,1,1,1,2,3,4,1,1,1,0,8.0,7.5,7.5
+MS,F,17,R,4+,juntos,educación primaria,educación secundaria incompleta,otro,servicios,cursos,padre,2,2,0,0,0,0,0,0,1,0,0,3,2,2,1,2,3,0,6.0,5.5,6.0
+MS,M,18,R,4+,juntos,educación primaria,educación secundaria,en casa,otro,cursos,madre,2,2,0,0,1,1,0,1,1,0,0,3,3,4,2,4,3,4,5.0,5.0,5.0
+MS,M,18,U,1-3,juntos,educación superior,educación superior,profesora,servicios,otro,madre,2,3,0,0,0,1,0,1,1,1,1,4,2,2,2,2,5,0,6.5,6.5,6.5
 MS,F,17,R,4+,juntos,educación primaria,educación primaria,otro,servicios,reputación,madre,3,1,1,0,1,1,0,1,1,1,1,5,2,1,1,2,1,0,3.5,3.0,0.0
-MS,F,18,U,4+,juntos,educación secundaria,educación superior,en casa,servicios,cursos,padre,2,1,0,0,1,1,0,1,1,1,1,5,2,3,1,2,4,0,5.5,5.0,5.0
-MS,F,18,R,4+,juntos,4,4,otro,profesor,otro,padre,3,2,0,0,1,1,0,0,1,1,1,3,2,2,4,2,5,10,7.0,6.0,5.5
-MS,F,19,U,1-3,juntos,educación superior,educación secundaria,servicios,servicios,proximidad,otro,2,2,2,0,0,0,1,1,1,0,1,3,2,2,1,1,3,4,3.5,3.5,4.5
-MS,M,18,R,1-3,juntos,educación primaria,educación secundaria,en casa,servicios,otro,padre,3,1,0,0,1,1,1,1,0,1,1,4,3,3,2,3,3,3,7.0,6.0,6.0
-MS,F,17,U,4+,juntos,educación secundaria,educación secundaria,otro,en casa,proximidad,madre,1,3,0,0,0,0,1,1,1,0,1,3,4,3,1,1,3,8,6.5,5.5,5.5
-MS,F,17,R,4+,juntos,educación primaria,educación secundaria,otro,otro,cursos,madre,1,1,0,0,0,0,1,1,1,1,0,3,5,5,1,3,1,14,3.0,2.5,2.5
-MS,F,18,R,1-3,juntos,4,4,otro,otro,reputación,madre,2,3,0,0,0,0,0,1,1,1,0,5,4,4,1,1,1,0,9.5,9.0,9.5
+MS,F,18,U,4+,juntos,educación secundaria incompleta,educación secundaria,en casa,servicios,cursos,padre,2,1,0,0,1,1,0,1,1,1,1,5,2,3,1,2,4,0,5.5,5.0,5.0
+MS,F,18,R,4+,juntos,educación superior,educación superior,otro,profesor,otro,padre,3,2,0,0,1,1,0,0,1,1,1,3,2,2,4,2,5,10,7.0,6.0,5.5
+MS,F,19,U,1-3,juntos,educación secundaria,educación secundaria incompleta,servicios,servicios,proximidad,otro,2,2,2,0,0,0,1,1,1,0,1,3,2,2,1,1,3,4,3.5,3.5,4.5
+MS,M,18,R,1-3,juntos,educación primaria,educación secundaria incompleta,en casa,servicios,otro,padre,3,1,0,0,1,1,1,1,0,1,1,4,3,3,2,3,3,3,7.0,6.0,6.0
+MS,F,17,U,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,otro,en casa,proximidad,madre,1,3,0,0,0,0,1,1,1,0,1,3,4,3,1,1,3,8,6.5,5.5,5.5
+MS,F,17,R,4+,juntos,educación primaria,educación secundaria incompleta,otro,otro,cursos,madre,1,1,0,0,0,0,1,1,1,1,0,3,5,5,1,3,1,14,3.0,2.5,2.5
+MS,F,18,R,1-3,juntos,educación superior,educación superior,otro,otro,reputación,madre,2,3,0,0,0,0,0,1,1,1,0,5,4,4,1,1,1,0,9.5,9.0,9.5
 MS,F,18,R,4+,juntos,educación primaria,educación primaria,otro,otro,proximidad,madre,4,3,0,0,0,0,0,1,1,1,0,4,3,2,1,2,4,2,4.0,4.0,5.0
-MS,F,20,U,4+,juntos,4,educación secundaria,salud,otro,cursos,otro,2,3,2,0,1,1,0,0,1,1,1,5,4,3,1,1,3,4,7.5,7.0,7.5
-MS,F,18,R,1-3,juntos,4,4,profesora,servicios,cursos,madre,1,2,0,0,0,1,1,1,1,1,0,5,4,3,3,4,2,4,4.0,4.5,5.0
-MS,F,18,U,4+,juntos,educación superior,educación superior,otro,otro,proximidad,madre,1,2,0,0,0,1,0,1,1,1,1,4,1,3,1,2,1,0,7.5,7.5,7.5
-MS,F,17,R,4+,juntos,educación superior,educación primaria,en casa,otro,reputación,madre,1,2,0,0,1,1,1,0,1,1,0,4,5,4,2,3,1,17,5.0,5.0,5.0
-MS,M,18,U,4+,juntos,4,4,profesora,profesor,proximidad,padre,1,2,0,0,0,1,1,0,1,1,0,3,2,4,1,4,2,4,7.5,7.0,7.0
-MS,M,18,R,4+,juntos,educación secundaria,educación primaria,otro,otro,otro,madre,2,1,0,0,0,0,1,0,1,1,1,4,4,3,1,3,5,5,3.5,3.0,3.5
-MS,M,17,U,4+,juntos,educación secundaria,educación superior,otro,servicios,proximidad,padre,2,2,0,0,0,0,1,1,1,1,0,4,4,3,1,1,3,2,5.5,5.5,5.0
+MS,F,20,U,4+,juntos,educación superior,educación secundaria incompleta,salud,otro,cursos,otro,2,3,2,0,1,1,0,0,1,1,1,5,4,3,1,1,3,4,7.5,7.0,7.5
+MS,F,18,R,1-3,juntos,educación superior,educación superior,profesora,servicios,cursos,madre,1,2,0,0,0,1,1,1,1,1,0,5,4,3,3,4,2,4,4.0,4.5,5.0
+MS,F,18,U,4+,juntos,educación secundaria,educación secundaria,otro,otro,proximidad,madre,1,2,0,0,0,1,0,1,1,1,1,4,1,3,1,2,1,0,7.5,7.5,7.5
+MS,F,17,R,4+,juntos,educación secundaria,educación primaria,en casa,otro,reputación,madre,1,2,0,0,1,1,1,0,1,1,0,4,5,4,2,3,1,17,5.0,5.0,5.0
+MS,M,18,U,4+,juntos,educación superior,educación superior,profesora,profesor,proximidad,padre,1,2,0,0,0,1,1,0,1,1,0,3,2,4,1,4,2,4,7.5,7.0,7.0
+MS,M,18,R,4+,juntos,educación secundaria incompleta,educación primaria,otro,otro,otro,madre,2,1,0,0,0,0,1,0,1,1,1,4,4,3,1,3,5,5,3.5,3.0,3.5
+MS,M,17,U,4+,juntos,educación secundaria incompleta,educación secundaria,otro,servicios,proximidad,padre,2,2,0,0,0,0,1,1,1,1,0,4,4,3,1,1,3,2,5.5,5.5,5.0
 MS,M,19,R,4+,juntos,educación primaria,educación primaria,otro,servicios,otro,madre,2,1,1,0,0,0,0,1,1,0,0,4,3,2,1,3,5,0,3.0,2.5,0.0
-MS,M,18,R,4+,juntos,4,educación secundaria,otro,otro,proximidad,padre,2,1,1,0,0,1,0,1,1,0,0,5,4,3,4,3,3,14,3.0,2.5,2.5
-MS,F,18,R,4+,juntos,educación secundaria,educación secundaria,en casa,otro,otro,madre,2,3,0,0,0,1,0,1,1,0,0,5,3,3,1,3,4,2,5.0,4.5,5.0
-MS,F,18,R,4+,juntos,4,4,profesora,en casa,reputación,madre,3,1,0,0,1,1,1,1,1,1,1,4,4,3,2,2,5,7,3.0,2.5,3.0
-MS,F,19,R,4+,juntos,educación secundaria,educación superior,servicios,otro,cursos,madre,1,3,1,0,0,0,1,0,1,1,0,5,4,2,1,2,5,0,3.5,2.5,0.0
-MS,F,18,U,1-3,juntos,educación superior,educación primaria,profesora,servicios,cursos,madre,1,2,0,0,1,1,0,1,1,1,0,4,3,4,1,1,1,0,3.5,4.5,4.0
+MS,M,18,R,4+,juntos,educación superior,educación secundaria incompleta,otro,otro,proximidad,padre,2,1,1,0,0,1,0,1,1,0,0,5,4,3,4,3,3,14,3.0,2.5,2.5
+MS,F,18,R,4+,juntos,educación secundaria incompleta,educación secundaria incompleta,en casa,otro,otro,madre,2,3,0,0,0,1,0,1,1,0,0,5,3,3,1,3,4,2,5.0,4.5,5.0
+MS,F,18,R,4+,juntos,educación superior,educación superior,profesora,en casa,reputación,madre,3,1,0,0,1,1,1,1,1,1,1,4,4,3,2,2,5,7,3.0,2.5,3.0
+MS,F,19,R,4+,juntos,educación secundaria incompleta,educación secundaria,servicios,otro,cursos,madre,1,3,1,0,0,0,1,0,1,1,0,5,4,2,1,2,5,0,3.5,2.5,0.0
+MS,F,18,U,1-3,juntos,educación secundaria,educación primaria,profesora,servicios,cursos,madre,1,2,0,0,1,1,0,1,1,1,0,4,3,4,1,1,1,0,3.5,4.5,4.0
 MS,F,18,U,4+,juntos,educación primaria,educación primaria,otro,otro,cursos,madre,2,2,1,0,0,0,1,1,1,0,0,1,1,1,1,1,5,0,3.0,2.5,0.0
-MS,M,20,U,1-3,separados,educación secundaria,educación secundaria,servicios,servicios,cursos,otro,1,2,2,0,1,1,0,1,1,0,0,5,5,4,4,5,4,11,4.5,4.5,4.5
-MS,M,17,U,1-3,juntos,educación superior,educación primaria,servicios,servicios,cursos,madre,2,1,0,0,0,0,0,0,1,1,0,2,4,5,3,4,2,3,7.0,8.0,8.0
+MS,M,20,U,1-3,separados,educación secundaria incompleta,educación secundaria incompleta,servicios,servicios,cursos,otro,1,2,2,0,1,1,0,1,1,0,0,5,5,4,4,5,4,11,4.5,4.5,4.5
+MS,M,17,U,1-3,juntos,educación secundaria,educación primaria,servicios,servicios,cursos,madre,2,1,0,0,0,0,0,0,1,1,0,2,4,5,3,4,2,3,7.0,8.0,8.0
 MS,M,21,R,4+,juntos,educación primaria,educación primaria,otro,otro,cursos,otro,1,1,3,0,0,0,0,0,1,0,0,5,5,3,3,3,3,3,5.0,4.0,3.5
-MS,M,18,R,1-3,juntos,educación superior,educación secundaria,servicios,otro,cursos,madre,3,1,0,0,0,0,0,0,1,1,0,4,4,1,3,4,5,0,5.5,6.0,5.0
+MS,M,18,R,1-3,juntos,educación secundaria,educación secundaria incompleta,servicios,otro,cursos,madre,3,1,0,0,0,0,0,0,1,1,0,4,4,1,3,4,5,0,5.5,6.0,5.0
 MS,M,19,U,1-3,juntos,educación primaria,educación primaria,otro,en casa,cursos,padre,1,1,0,0,0,0,0,1,1,1,0,3,2,3,3,3,5,5,4.0,4.5,4.5
