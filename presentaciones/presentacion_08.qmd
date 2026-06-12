@@ -182,7 +182,7 @@ plot_prior + plot_likelihood + plot_posterior
 
 ##
 
-Los datos dicen _la moneda parece tener $\pi$ cerca de $\frac{1}{3}$_. El prior jerárquico dice _\pi debería estar alrededor de algún \omega, y antes de ver datos creíamos que \omega estaba cerca de \frac{1}{2}_. Como la asociación es débil/moderada, $\pi$ se mueve hacia los datos, pero $\omega$ solo se mueve un poco hacia abajo.
+Los datos dicen _la moneda parece tener $\pi$ cerca de $\frac{1}{3}$_. El prior jerárquico dice _\pi debería estar alrededor de algún \omega, y antes de ver datos creíamos que \omega estaba cerca de \frac{1}{2}_. Como la asociación es débil, $\pi$ se mueve hacia los datos, pero $\omega$ solo se mueve un poco hacia abajo.
 
 - $\pi$ aprende bastante de los datos
 - $\omega$ aprende poco, porque solo recibe información a través de $\pi$
