@@ -327,7 +327,7 @@
 <img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
 <section id="section-9" class="slide level2">
 <h2></h2>
-<p>Los datos dicen <em>la moneda parece tener <span class="math inline">\(\pi\)</span> cerca de 0.33</em>. El prior jerárquico dice <em>debería estar alrededor de algún , y antes de ver datos creíamos que estaba cerca de 0.5</em>. Como la asociación es débil/moderada, <span class="math inline">\(\pi\)</span> se mueve hacia los datos, pero <span class="math inline">\(\omega\)</span> solo se mueve un poco hacia abajo.</p>
+<p>Los datos dicen <em>la moneda parece tener <span class="math inline">\(\pi\)</span> cerca de <span class="math inline">\(\frac{1}{3}\)</span></em>. El prior jerárquico dice <em>debería estar alrededor de algún , y antes de ver datos creíamos que estaba cerca de <span class="math inline">\(\frac{1}{2}\)</span></em>. Como la asociación es débil, <span class="math inline">\(\pi\)</span> se mueve hacia los datos, pero <span class="math inline">\(\omega\)</span> solo se mueve un poco hacia abajo.</p>
 <ul>
 <li class="fragment"><span class="math inline">\(\pi\)</span> aprende bastante de los datos</li>
 <li class="fragment"><span class="math inline">\(\omega\)</span> aprende poco, porque solo recibe información a través de <span class="math inline">\(\pi\)</span></li>
@@ -355,7 +355,7 @@
 <img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
 <section id="section-12" class="slide level2">
 <h2></h2>
-<p>La estructura jerárquica transmite mucha más información por la asociación fuerte de <span class="math inline">\(\pi\)</span> y <span class="math inline">\(\omega\)</span>. Si los datos sugieren que <span class="math inline">\(\pi\approx\frac{1}{3}\)</span>, eso también se vuelve evidencia fuerte de que <span class="math inline">\(\omega\)</span> debería estar más cerca de <span class="math inline">\(\frac{1}{3}\)</span>.</p>
+<p>La estructura jerárquica transmite mucha más información por la asociación fuerte de <span class="math inline">\(\pi\)</span> y <span class="math inline">\(\omega\)</span>. Si los datos sugieren que <span class="math inline">\(\pi=\frac{1}{3}\)</span>, eso también se vuelve evidencia fuerte de que <span class="math inline">\(\omega\)</span> debería estar más cerca de <span class="math inline">\(\frac{1}{3}\)</span>.</p>
 </section>
 <section id="tercer-caso" class="slide level2">
 <h2>Tercer caso</h2>
@@ -379,10 +379,8 @@
 <img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"></section>
 <section id="section-15" class="slide level2">
 <h2></h2>
-<p>La evidencia dice <span class="math inline">\(\pi parece estar cerca de \frac{1}{3}\)</span>. Pero el <em>prior</em> dice muy fuertemente <span class="math inline">\(\omega está cerca de 0.5\)</span>. Como <span class="math inline">\(\kappa\)</span> no es grande, el modelo puede acomodar ambas cosas: permite que <span class="math inline">\(\pi\)</span> se aleje de <span class="math inline">\(\omega\)</span> sin tener que mover mucho a <span class="math inline">\(\omega\)</span>.</p>
-<ul>
-<li class="fragment"><em>Observé una moneda que parece sesgada, pero sigo creyendo que el proceso de fabricación apunta a monedas justas; puede haber salido una moneda particular desviada</em></li>
-</ul>
+<p>La evidencia dice <span class="math inline">\(\pi\)</span> parece estar cerca de <span class="math inline">\(\frac{1}{3}\)</span>. Pero el <em>prior</em> dice muy fuertemente <span class="math inline">\(\omega\)</span> está cerca de <span class="math inline">\(\frac{1}{2}\)</span>. Como <span class="math inline">\(\kappa\)</span> no es grande, el modelo puede acomodar ambas cosas: permite que <span class="math inline">\(\pi\)</span> se aleje de <span class="math inline">\(\omega\)</span> sin tener que mover mucho a <span class="math inline">\(\omega\)</span>.</p>
+<p><em>Observé una moneda que parece sesgada, pero sigo creyendo que el proceso de fabricación apunta a monedas justas; puede haber salido una moneda particular desviada</em></p>
 </section>
 <section id="section-16" class="slide level2">
 <h2></h2>
@@ -639,7 +637,7 @@
 <p><span class="math display">\[
 \begin{aligned}
     Y_i\mid\alpha_{j[i]},\sigma &amp; \sim  \mathcal{N}(\alpha_{j[i]},\sigma^2) \\
-    \alpha_{j[i]} &amp; = \alpha  \\
+    \alpha_{j} &amp; = \alpha  \\
     \alpha &amp; \sim  \mathcal{D}_\alpha(\theta_1) \\
     \sigma &amp; \sim  \mathcal{D}_\sigma(\theta_2)
 \end{aligned}
@@ -746,7 +744,7 @@
 </section>
 <section id="section-51" class="slide level2 smaller">
 <h2></h2>
-<p><span class="math inline">\(\left[\begin{array}{c}\alpha_j\\\beta_j\end{array}\right]\)</span> tienen una distribución conjunta, normal multivariada de hiperparámetros <span class="math inline">\(\left[\begin{array}{c}\mu_\alpha\\\mu_\beta\end{array}\right]\)</span> y <span class="math inline">\(\Sigma\)</span>. ¡Necesitan !</p>
+<p><span class="math inline">\(\left[\begin{array}{c}\alpha_j\\\beta_j\end{array}\right]\)</span> tienen una distribución conjunta, normal multivariada de hiperparámetros <span class="math inline">\(\left[\begin{array}{c}\mu_\alpha\\\mu_\beta\end{array}\right]\)</span> y <span class="math inline">\(\Sigma\)</span>. ¡Necesitan <em>hiperpriors</em>}!</p>
 <div class="fragment">
 <p><span class="math inline">\(\Sigma\)</span> puede factorizarse según: </p>
 <p><span class="math display">\[
